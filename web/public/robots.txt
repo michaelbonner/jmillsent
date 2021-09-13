@@ -1,0 +1,9 @@
+# *
+User-agent: *
+Allow: /
+
+# Host
+Host: https://jeremymillerdirector.com
+
+# Sitemaps
+Sitemap: https://jeremymillerdirector.com/sitemap.xml

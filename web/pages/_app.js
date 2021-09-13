@@ -6,7 +6,7 @@ import { useRouter } from "next/dist/client/router";
 function MyApp({ Component, pageProps }) {
   const router = useRouter();
   useEffect(() => {
-    TagManager.initialize({ gtmId: "GTM-NQB4SLF" });
+    TagManager.initialize({ gtmId: "GTM-N25KK2B" });
   }, []);
 
   return <Component {...pageProps} key={router.asPath} />;

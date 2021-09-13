@@ -266,7 +266,7 @@ const Layout = ({
               }`}
             >
               <Link href={`/`}>
-                <a>Director</a>
+                <a>JmillsENT</a>
               </Link>
             </p>
             <p
@@ -275,7 +275,7 @@ const Layout = ({
               }`}
             >
               <Link href={`/`}>
-                <a>Jeremy Miller</a>
+                <a>MOTION PICTURE STUDIO & FILM AGENCY</a>
               </Link>
             </p>
           </div>

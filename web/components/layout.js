@@ -293,11 +293,14 @@ const Layout = ({
 				<div className="relative flex items-center justify-between p-4 z-10">
 					<div>
 						<Link href={`/`}>
+							<a>
 							<Image
+								alt="JMills Logo"
 								src="/images/JME-logo-white.png"
 								width={100}
 								height={60}
 							/>
+							</a>
 						</Link>
 					</div>
 					<div className="flex justify-end items-center">

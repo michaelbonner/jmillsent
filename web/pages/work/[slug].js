@@ -420,7 +420,7 @@ const WorkItem = ({ workItem = {}, workItems = [] }) => {
 								Work
 							</span>{" "}
 							<span className="text-lg lg:text-2xl font-bold">
-								>
+								&gt;
 							</span>
 						</a>
 					</Link>

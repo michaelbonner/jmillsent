@@ -3,80 +3,85 @@
 @tailwind utilities;
 
 .bpd-fade-in {
-	animation: fadeInAnimation ease 3s;
-	animation-iteration-count: 1;
-	animation-fill-mode: forwards;
-	animation-delay: 800ms;
-	opacity: 0;
+    animation: fadeInAnimation ease 3s;
+    animation-iteration-count: 1;
+    animation-fill-mode: forwards;
+    animation-delay: 800ms;
+    opacity: 0;
 }
 
 @keyframes fadeInAnimation {
-	0% {
-		opacity: 0;
-	}
-	100% {
-		opacity: 1;
-	}
+    0% {
+        opacity: 0;
+    }
+    100% {
+        opacity: 1;
+    }
 }
 
 body {
-	@apply bg-black;
+    @apply bg-black;
 }
 
 .prose h2 {
-	@apply text-3xl;
-	@apply mb-3;
+    @apply text-3xl;
+    @apply mb-3;
 }
 .prose strong {
-	@apply font-extrabold;
+    @apply font-extrabold;
 }
 
 .bpd-project-tile {
-	min-height: 33vh;
+    min-height: 33vh;
 }
 
 @media screen and (min-width: 1024px) {
-	.bpd-project-tile {
-		min-height: 180px;
-	}
+    .bpd-project-tile {
+        min-height: 180px;
+    }
 }
 
 @media screen and (min-width: 1400px) {
-	.bpd-project-tile {
-		min-height: 22vh;
-	}
+    .bpd-project-tile {
+        min-height: 22vh;
+    }
 }
 
 @media screen and (min-width: 1800px) {
-	.bpd-project-tile {
-		min-height: 20vh;
-	}
+    .bpd-project-tile {
+        min-height: 20vh;
+    }
 }
 
 @media (min-aspect-ratio: 4/3) {
-	.bpd-hero-foreground {
-		height: 300%;
-		transform: translate3d(0, -33%, 0);
-	}
+    .bpd-hero-background {
+        height: 300%;
+        transform: translate3d(0, -33%, 0);
+    }
 }
 
 @media (max-aspect-ratio: 4/3) {
-	.bpd-hero-foreground {
-		width: 300%;
-		transform: translate3d(-33%, 0, 0);
-	}
+    .bpd-hero-background {
+        width: 300%;
+        transform: translate3d(-33%, 0, 0);
+    }
+}
+
+header {
+    max-width: 100%;
+    overflow-x: hidden;
 }
 
 .bpd-play-icon polygon {
-	stroke: #fff;
+    stroke: #fff;
 }
 
 .bpd-player-container:fullscreen {
-	background-color: rgb(0, 0, 0);
+    background-color: rgb(0, 0, 0);
 }
 .bpd-player-container:-webkit-full-screen {
-	background-color: rgb(0, 0, 0);
+    background-color: rgb(0, 0, 0);
 }
 .bpd-player-container:-moz-full-screen {
-	background-color: rgb(0, 0, 0);
+    background-color: rgb(0, 0, 0);
 }

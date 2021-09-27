@@ -39,7 +39,7 @@ const Layout = ({
     description,
     heroImageUrl,
     heroVideoId,
-    isDesktop,
+    heroContent = '',
 }) => {
     const [menuOpen, setMenuOpen] = useState(false)
     const [menuVisible, setMenuVisible] = useState(false)
@@ -88,7 +88,7 @@ const Layout = ({
     }, [router])
 
     useEffect(() => {
-        if ((heroImageUrl || heroVideoId) && isDesktop) {
+        if (heroImageUrl || heroVideoId) {
             setShowHero(true)
             setHeaderStyles({
                 backgroundImage: heroImageUrl
@@ -97,10 +97,10 @@ const Layout = ({
                 backgroundSize: 'cover',
                 backgroundPosition: 'center',
                 backgroundRepeat: 'no-repeat',
-                minHeight: '60vh',
+                minHeight: '80vh',
             })
         }
-    }, [heroVideoId, heroImageUrl, isDesktop])
+    }, [heroVideoId, heroImageUrl])
 
     useEffect(() => {
         setTimeout(() => {
@@ -110,8 +110,8 @@ const Layout = ({
 
     return (
         <div
-            className={`${isDesktop && heroVideoId ? 'opacity-0' : null} ${
-                isDesktop && heroVideoId && videoPlaying ? 'bpd-fade-in' : null
+            className={`${heroVideoId ? 'opacity-0' : null} ${
+                heroVideoId && videoPlaying ? 'bpd-fade-in' : null
             }`}
         >
             <Head>
@@ -256,16 +256,16 @@ const Layout = ({
             </nav>
 
             <header
-                className={`relative bg-black ${
+                className={`relative h-full bg-black ${
                     heroVideoId
                         ? `lg:bg-gradient-to-b from-gray-400 to-white via-gray-100 lg:bg-opacity-25`
                         : null
                 }`}
                 style={headerStyles}
             >
-                {isDesktop && heroVideoId && (
+                {heroVideoId && (
                     <div
-                        className={`bpd-hero-foreground absolute z-0 h-full w-full inset-0 ${
+                        className={`bpd-hero-background absolute z-0 h-full w-full inset-0 ${
                             videoPlaying ? 'opacity-100' : 'opacity-0'
                         }`}
                     >
@@ -283,12 +283,19 @@ const Layout = ({
                                 top: 0,
                                 left: 0,
                                 pointerEvents: 'none',
+                                width: '140%',
+                                transform: 'translate3d(-20%, 0, 0)',
                             }}
                             onPlay={() => setVideoPlaying(true)}
                             title="Ravens Film Works"
                             url={`https://player.vimeo.com/video/${heroVideoId}?badge=0&autopause=0&player_id=0&app_id=58479&autoplay=true&background=true`}
-                            width={`100%`}
+                            width={`140%`}
                         />
+                        {heroContent && (
+                            <div className="bpd-hero-foreground z-30 h-full w-full text-white relative">
+                                {heroContent}
+                            </div>
+                        )}
                     </div>
                 )}
                 <div className="relative flex items-center justify-between p-4 z-10">
@@ -338,7 +345,7 @@ const Layout = ({
                 {children}
             </main>
             <footer className="bg-black relative z-10 py-8 text-center">
-                <nav className="container max-w-5xl mx-auto flex flex-wrap justify-around space-x-4 py-8">
+                <nav className="w-full container max-w-5xl px-12 lg:px-4 py-8 lg:mx-auto flex flex-wrap justify-center lg:justify-around space-x-4">
                     {navItems.map((navItem, index) => {
                         return (
                             <Link key={index} href={navItem.href}>
@@ -347,7 +354,7 @@ const Layout = ({
                                         router.route === navItem.href
                                             ? 'border-b '
                                             : ''
-                                    }font-outline text-white uppercase text-2xl py-4`}
+                                    }font-outline text-white uppercase text-lg lg:text-2xl py-4`}
                                 >
                                     {navItem.name}
                                 </a>

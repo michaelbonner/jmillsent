@@ -72,7 +72,8 @@ header {
     overflow-x: hidden;
 }
 
-.bpd-play-icon polygon {
+.bpd-white-icon polygon,
+.bpd-white-icon path {
     stroke: #fff;
 }
 

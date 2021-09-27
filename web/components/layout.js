@@ -255,7 +255,7 @@ const Layout = ({
                 })}
             </nav>
 
-            <header>
+            <header className="overflow-hidden">
                 <div className="relative flex items-center justify-between p-4 z-10 bg-black">
                     <div>
                         <Link href={`/`}>

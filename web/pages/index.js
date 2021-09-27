@@ -9,10 +9,10 @@ function Home({ homePage }) {
     const heroContent = (
         <div className="h-full w-full flex flex-col items-center justify-center text-white">
             <h1 className="uppercase font-extrabold text-3xl lg:text-7xl mb-4">
-                JMILLS ENTERTAINMENT
+                {homePage.main_title}
             </h1>
             <h2 className="uppercase font-outline text-2xl lg:text-5xl">
-                MOTION PICTURE STUDIO
+                {homePage.subtitle}
             </h2>
         </div>
     )
@@ -38,6 +38,8 @@ export async function getStaticProps() {
     seo_description,
     poster,
     video_id,
+	main_title,
+	subtitle
   }
   `
     )

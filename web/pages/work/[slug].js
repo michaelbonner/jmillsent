@@ -63,7 +63,7 @@ const WorkItem = ({ workItem = {}, workItems = [] }) => {
                 `${fullTitle} | JmillsENT | Motion Picture Studio + Film Agency`
             }
         >
-            <div className="p-8 border border-white mx-4 lg:mx-auto max-w-7xl">
+            <div className="my-12 p-4 xl:p-8 border border-white mx-4 xl:mx-auto max-w-9xl">
                 <VideoPlayer
                     poster={workItem.poster}
                     title={workItem.title}
@@ -76,7 +76,7 @@ const WorkItem = ({ workItem = {}, workItems = [] }) => {
                         workItem.videoWidthAspectRatio || '16'
                     }
                 />
-                <p className="text-4xl mt-8 flex items-center justify-center space-x-6">
+                <p className="text-4xl mt-4 xl:mt-8 flex items-center justify-center space-x-6">
                     <span className="uppercase font-extrabold text-2xl lg:text-5xl">
                         {workItem.clientName}
                     </span>
@@ -88,10 +88,10 @@ const WorkItem = ({ workItem = {}, workItems = [] }) => {
 
             <div className="container px-4 md:px-0 mx-auto mt-4">
                 {workItem.credits && workItem.credits.length > 0 && (
-                    <div className="my-12 max-w-6xl mx-auto">
+                    <div className="my-12 max-w-7xl mx-auto">
                         <H3>Credits</H3>
                         <div
-                            className={`lg:text-2xl h-auto transition-all overflow-hidden mt-12`}
+                            className={`lg:text-2xl h-auto transition-all overflow-hidden xl:mt-12`}
                         >
                             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-2 gap-x-12 gap-y-4 mb-12">
                                 {workItem.credits.map((credit, index) => {

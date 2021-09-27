@@ -229,12 +229,8 @@ function About({ aboutPage }) {
                         in Utah
                     </p>
                 </div>
-                <div>
+                <div className="mt-12 grid grid-cols-1 lg:grid-cols-3 gap-1">
                     {aboutPage.utahLocations.map((utahLocation, index) => {
-                        console.log(
-                            'utahLocation.caption',
-                            utahLocation.caption
-                        )
                         return (
                             <div key={index}>
                                 <Image

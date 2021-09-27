@@ -21,7 +21,7 @@ const workItemQuery = groq`
   poster,
   slug,
   title,
-  video_id,
+  videoId,
   videoHeightAspectRatio,
   videoWidthAspectRatio,
 }
@@ -55,11 +55,11 @@ const WorkItem = ({ workItem = {}, workItems = [] }) => {
     return (
         <Layout
             title={
-                workItem.seo_title ||
+                workItem.seoTitle ||
                 `${fullTitle} | JmillsENT | Motion Picture Studio + Film Agency`
             }
             description={
-                workItem.seo_description ||
+                workItem.seoDescription ||
                 `${fullTitle} | JmillsENT | Motion Picture Studio + Film Agency`
             }
         >
@@ -67,7 +67,7 @@ const WorkItem = ({ workItem = {}, workItems = [] }) => {
                 <VideoPlayer
                     poster={workItem.poster}
                     title={workItem.title}
-                    videoId={workItem.video_id}
+                    videoId={workItem.videoId}
                     clientName={workItem.clientName}
                     videoHeightAspectRatio={
                         workItem.videoHeightAspectRatio || '9'

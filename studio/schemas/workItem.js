@@ -26,14 +26,14 @@ export default {
       },
     },
     {
-      name: "seo_title",
+      name: "seoTitle",
       title: "SEO Title",
       type: "string",
     },
     {
-      name: "seo_description",
+      name: "seoDescription",
       title: "SEO Description",
-      type: "string",
+      type: "text",
     },
     {
       name: "date",
@@ -54,7 +54,7 @@ export default {
       type: "file",
     },
     {
-      name: "video_id",
+      name: "videoId",
       title: "Video ID",
       type: "string",
       description:

@@ -21,83 +21,35 @@ export default {
       },
     },
     {
-      name: "seo_title",
+      name: "seoTitle",
       title: "SEO Title",
       type: "string",
     },
     {
-      name: "seo_description",
+      name: "seoDescription",
       title: "SEO Description",
+      type: "text",
+    },
+    {
+      name: "mainTitle",
+      title: "Main title",
       type: "string",
     },
     {
-      name: "photo",
-      title: "Photo",
-      type: "image",
-      options: {
-        hotspot: true,
-      },
-    },
-    {
-      name: "bio",
-      title: "Bio",
-      type: "blockContent",
-    },
-    {
-      name: "bioMaxWidth",
-      title: "Bio Image Max Width",
+      name: "subtitle",
+      title: "Subtitle",
       type: "string",
-      description: "What is the maximum width of the image",
-      options: {
-        list: [
-          {
-            title: "xs",
-            value: "xs",
-          },
-          {
-            title: "sm",
-            value: "sm",
-          },
-          {
-            title: "md",
-            value: "md",
-          },
-          {
-            title: "lg",
-            value: "lg",
-          },
-          {
-            title: "xl",
-            value: "xl",
-          },
-          {
-            title: "2xl",
-            value: "2xl",
-          },
-          {
-            title: "3xl",
-            value: "3xl",
-          },
-          {
-            title: "4xl",
-            value: "4xl",
-          },
-          {
-            title: "5xl",
-            value: "5xl",
-          },
-        ],
-      },
     },
     {
-      name: "representation",
-      title: "Representation",
-      type: "blockContent",
+      name: "section1Title",
+      title: "Section 1 title",
+      type: "string",
     },
     {
-      name: "notableAwards",
-      title: "Notable Awards",
-      type: "blockContent",
+      name: "section1Body",
+      title: "Section 1 body",
+      type: "array",
+      of: [{ type: "block" }],
     },
   ],
   preview: {

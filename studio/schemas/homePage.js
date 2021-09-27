@@ -14,7 +14,7 @@ export default {
     {
       name: "seoDescription",
       title: "Seo description",
-      type: "string",
+      type: "text",
     },
     {
       name: "poster",

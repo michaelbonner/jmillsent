@@ -180,6 +180,30 @@ export default {
       title: "Company 3 link",
       type: "url",
     },
+    {
+      name: "directorImage",
+      title: "Director image",
+      type: "image",
+      options: {
+        hotspot: true,
+      },
+    },
+    {
+      name: "directorTitle",
+      title: "Director title",
+      type: "string",
+    },
+    {
+      name: "directorName",
+      title: "Director name",
+      type: "string",
+    },
+    {
+      name: "directorDescription",
+      title: "Director description",
+      type: "array",
+      of: [{ type: "block" }],
+    },
   ],
   preview: {
     select: {

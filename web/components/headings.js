@@ -9,16 +9,16 @@ const H1 = ({ children }) => {
 }
 const H2 = ({ children }) => {
     return (
-        <h1 className="uppercase font-extrabold text-2xl lg:text-5xl mb-4">
+        <h2 className="uppercase font-extrabold text-2xl lg:text-5xl mb-4">
             {children}
-        </h1>
+        </h2>
     )
 }
 const H3 = ({ children }) => {
     return (
-        <h1 className="uppercase font-extrabold text-xl lg:text-5xl mb-4">
+        <h3 className="uppercase font-extrabold text-xl lg:text-5xl mb-4">
             {children}
-        </h1>
+        </h3>
     )
 }
 export { H1, H2, H3 }

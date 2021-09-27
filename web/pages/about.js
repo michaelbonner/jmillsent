@@ -146,6 +146,44 @@ function About({ aboutPage }) {
             </div>
             {/* end: company 3 */}
             {/* director section */}
+            <section className="grid grid-cols-1 lg:grid-cols-3 max-w-7xl mx-auto items-center">
+                <div className="w-full">
+                    <Image
+                        src={urlForSanitySource(aboutPage.directorImage)
+                            .width(500)
+                            .height(644)
+                            .url()}
+                        height="644"
+                        width="500"
+                        alt={aboutPage.directorName}
+                    />
+                </div>
+                <div className="lg:col-span-2 text-center">
+                    <p className="uppercase font-extrabold text-xl lg:text-4xl mb-4">
+                        {aboutPage.directorTitle}
+                    </p>
+                    <p className="font-outline text-4xl">
+                        {aboutPage.directorName}
+                    </p>
+                    <div className="prose prose-lg text-gray-300 mx-auto mt-12">
+                        <BlockContent blocks={aboutPage.directorDescription} />
+                    </div>
+                    <Link href="https://jeremymillerdirector.com/">
+                        <a className="flex items-end justify-center space-x-4 mt-12">
+                            <span className="uppercase font-extrabold text-xl lg:text-3xl">
+                                {aboutPage.directorName} DIRECTOR’S
+                            </span>{' '}
+                            <span className="uppercase font-outline text-xl lg:text-3xl">
+                                SITE
+                            </span>{' '}
+                            <span className="font-bold text-xl lg:text-2xl">
+                                &gt;
+                            </span>
+                        </a>
+                    </Link>
+                </div>
+            </section>
+            <MediumWhiteBar />
             {/* end: director section */}
         </Layout>
     )
@@ -184,6 +222,10 @@ export async function getStaticProps() {
 			company3VideoPoster,
 			company3VideoTitle,
 			company3VideoWidthAspectRatio,
+            directorImage,
+            directorTitle,
+            directorName,
+            directorDescription,
   		}
   		`
     )

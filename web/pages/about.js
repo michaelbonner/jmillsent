@@ -227,15 +227,14 @@ function About({ aboutPage }) {
                 <div className="mt-12 grid grid-cols-1 lg:grid-cols-3 gap-1">
                     {aboutPage.utahLocations.map((utahLocation, index) => {
                         return (
-                            <div key={index}>
-                                <Image
-                                    className="filter grayscale hover:filter-none transition-all"
-                                    src={`${utahLocation.imageUrl}?w=600&h=400`}
-                                    height="400"
-                                    width="600"
-                                    alt={utahLocation.caption}
-                                />
-                            </div>
+                            <Image
+                                key={index}
+                                className="block filter grayscale hover:filter-none transition-all"
+                                src={`${utahLocation.imageUrl}?w=600&h=400`}
+                                height="400"
+                                width="600"
+                                alt={utahLocation.caption}
+                            />
                         )
                     })}
                 </div>

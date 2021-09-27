@@ -188,21 +188,28 @@ const Layout = ({
                 />
             </Head>
 
-            <div className="bg-black absolute w-full top-12 lg:top-16">
-                <div className="relative z-50 lg:container mx-auto flex justify-end items-center overflow-visible">
+            <div className="bg-black absolute w-full">
+                <div
+                    className={`${menuOpen ? 'opacity-100' : 'opacity-0'} ${
+                        menuVisible ? 'relative' : 'hidden'
+                    } w-full transition-all ease-in delay-500 duration-300 z-50 flex justify-between items-center overflow-visible text-white p-4`}
+                >
+                    <Link href={`/`}>
+                        <a>
+                            <Image
+                                alt="JMills Logo"
+                                src="/images/JME-logo-white.png"
+                                width={100}
+                                height={60}
+                            />
+                        </a>
+                    </Link>
                     <button
-                        className="w-12 h-8 focus:outline-none absolute top-0 lg:top-4 right-4 lg:right-0"
+                        className="w-12 h-8 focus:outline-none absolute top-0 lg:top-8 right-4"
                         onClick={() => toggleMenu(!menuOpen)}
                         aria-label="Close menu"
                     >
-                        <span
-                            className={`${
-                                menuOpen ? 'opacity-100' : 'opacity-0'
-                            } ${
-                                menuVisible ? 'absolute' : 'hidden'
-                            } top-0 right-0 transform transition-all ease-in delay-500 duration-300`}
-                            style={{ width: '48px', height: '32px' }}
-                        >
+                        <span style={{ width: '48px', height: '32px' }}>
                             <Image
                                 alt="Close menu"
                                 className={`w-12 h-8 fill-current text-white stroke-2 stroke-current`}
@@ -229,13 +236,19 @@ const Layout = ({
                                     hoveredMenuItem === navItem.href
                                         ? 'text-white'
                                         : 'text-gray-500'
-                                } font-extrabold relative group py-6 uppercase text-bold text-2xl md:text-4xl transition-all duration-700 w-64 text-center`}
+                                } font-bold relative group py-6 uppercase text-2xl md:text-4xl xl:text-6xl tracking-wider transition-all duration-700 w-96 text-center`}
                                 onMouseEnter={() =>
                                     setHoveredMenuItem(navItem.href)
                                 }
                                 onMouseLeave={() => setHoveredMenuItem('')}
                             >
-                                <span className="relative z-10">
+                                <span
+                                    className={`${
+                                        navItem.href === router.pathname
+                                            ? 'text-gold '
+                                            : ''
+                                    }relative z-10`}
+                                >
                                     {navItem.name}
                                 </span>
                                 <span

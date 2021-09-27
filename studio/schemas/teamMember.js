@@ -1,10 +1,10 @@
-import UserIcon from "part:@sanity/base/user-icon";
+import { MdPeople as icon } from "react-icons/md";
 
 export default {
   name: "teamMember",
   title: "Team Members",
   type: "document",
-  icon: UserIcon,
+  icon,
   fields: [
     {
       name: "name",

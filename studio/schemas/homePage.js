@@ -1,4 +1,4 @@
-import { MdGridOn as icon } from "react-icons/md";
+import { MdImportantDevices as icon } from "react-icons/md";
 
 export default {
   name: "homePage",
@@ -6,6 +6,16 @@ export default {
   type: "document",
   icon,
   fields: [
+    {
+      name: "mainTitle",
+      title: "Main title",
+      type: "string",
+    },
+    {
+      name: "subtitle",
+      title: "Subtitle",
+      type: "string",
+    },
     {
       name: "seoTitle",
       title: "Seo title",
@@ -30,16 +40,6 @@ export default {
       type: "string",
       description:
         "Enter the ID ( {{video_id}} ) of the video, not the whole url. https://player.vimeo.com/video/{{video_id}}?badge=0&autopause=0&player_id=0&app_id=58479",
-    },
-    {
-      name: "mainTitle",
-      title: "Main title",
-      type: "string",
-    },
-    {
-      name: "subtitle",
-      title: "Subtitle",
-      type: "string",
     },
     {
       name: "section1Title",

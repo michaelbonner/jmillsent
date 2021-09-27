@@ -1,10 +1,10 @@
-import UserIcon from "part:@sanity/base/user-icon";
+import { MdDeveloperBoard as icon } from "react-icons/md";
 
 export default {
   name: "service",
-  title: "Service",
+  title: "Services",
   type: "document",
-  icon: UserIcon,
+  icon,
   fields: [
     {
       name: "name",

@@ -13,6 +13,9 @@ import service from "./service";
 import teamMember from "./teamMember";
 import brand from "./brand";
 import photo from "./photo";
+import contactPage from "./contactPage";
+import studioItem from "./studioItem";
+import studioPage from "./studioPage";
 
 // Then we give our schema to the builder and provide the result to Sanity
 export default createSchema({
@@ -24,10 +27,13 @@ export default createSchema({
     // The following are document types which will appear
     // in the studio.
     homePage,
-    aboutPage,
     workPage,
     workItem,
+    aboutPage,
     service,
+    studioPage,
+    studioItem,
+    contactPage,
     teamMember,
     brand,
     photo,

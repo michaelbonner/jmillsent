@@ -1,10 +1,10 @@
-import UserIcon from "part:@sanity/base/user-icon";
+import { MdWhatshot as icon } from "react-icons/md";
 
 export default {
   name: "brand",
   title: "Brands",
   type: "document",
-  icon: UserIcon,
+  icon,
   fields: [
     {
       name: "name",

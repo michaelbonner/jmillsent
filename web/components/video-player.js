@@ -120,7 +120,7 @@ const VideoPlayer = ({
             {videoId ? (
                 <div
                     className={`${isFullscreen ? 'w-full' : 'container'}${
-                        !showVideo ? ' bg-gray-50' : ''
+                        !showVideo ? ' bg-gray-900' : ''
                     } mx-auto transition-all duration-700`}
                 >
                     <div
@@ -174,7 +174,7 @@ const VideoPlayer = ({
                     </div>
 
                     {!isIos ? (
-                        <div className="container mx-auto pt-3 flex space-x-8">
+                        <div className="container mx-auto pt-3 flex space-x-8 bg-black">
                             <button
                                 className="relative text-4xl w-8 h-8"
                                 onClick={() => setVideoPlaying(!videoPlaying)}

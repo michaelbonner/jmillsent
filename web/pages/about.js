@@ -72,7 +72,7 @@ function About({ aboutPage }) {
                                                 alt={service.title}
                                             />
                                         </div>
-                                        <h3 className="text-center font-outline text-3xl mt-8">
+                                        <h3 className="text-center font-bold text-3xl mt-8">
                                             {service.name}
                                         </h3>
                                         <LittleWhiteBar yMargin={4} />

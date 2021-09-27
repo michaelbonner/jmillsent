@@ -9,6 +9,7 @@ import aboutPage from "./aboutPage";
 import homePage from "./homePage";
 import workItem from "./workItem";
 import workPage from "./workPage";
+import service from "./service";
 
 // Then we give our schema to the builder and provide the result to Sanity
 export default createSchema({
@@ -23,6 +24,7 @@ export default createSchema({
     aboutPage,
     workPage,
     workItem,
+    service,
     blockContent,
   ]),
 });

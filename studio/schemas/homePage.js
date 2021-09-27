@@ -96,7 +96,7 @@ export default {
     },
     {
       name: "reelVideoHeightAspectRatio",
-      title: "Video aspect ratio for height",
+      title: "Reel video aspect ratio for height",
       type: "string",
       description: "What is the height of the aspect ratio",
       options: {

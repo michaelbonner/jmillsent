@@ -51,8 +51,7 @@ function Home({ homePage }) {
                 <p className="text-4xl mt-8 flex items-center justify-center space-x-6">
                     <span className="uppercase font-extrabold text-2xl lg:text-5xl">
                         {homePage.reelVideoClient}
-                    </span>{' '}
-                    <span>&gt;&gt;</span>
+                    </span>
                     <span className="uppercase font-outline text-2xl lg:text-5xl">
                         {homePage.reelVideoTitle}
                     </span>

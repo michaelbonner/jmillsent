@@ -14,4 +14,11 @@ const H2 = ({ children }) => {
         </h1>
     )
 }
-export { H1, H2 }
+const H3 = ({ children }) => {
+    return (
+        <h1 className="uppercase font-extrabold text-xl lg:text-5xl mb-4">
+            {children}
+        </h1>
+    )
+}
+export { H1, H2, H3 }

@@ -6,6 +6,8 @@ import { HiChevronDown } from 'react-icons/hi'
 import Layout from '../../components/layout'
 import { getClient } from '../../lib/sanity'
 import VideoPlayer from '../../components/video-player'
+import MediumWhiteBar from '../../components/medium-white-bar'
+import { H3 } from '../../components/headings'
 // import WorkItemTile from "../../components/work-item-tile"
 
 const workItemQuery = groq`
@@ -46,8 +48,6 @@ aspect-w-16	aspect-h-16
 */
 
 const WorkItem = ({ workItem = {}, workItems = [] }) => {
-    const [creditsOpen, setCreditsOpen] = useState(false)
-
     const fullTitle = workItem.clientName
         ? `${workItem.clientName} | ${workItem.title}`
         : workItem.title
@@ -63,87 +63,68 @@ const WorkItem = ({ workItem = {}, workItems = [] }) => {
                 `${fullTitle} | JmillsENT | Motion Picture Studio + Film Agency`
             }
         >
-            <VideoPlayer
-                poster={workItem.poster}
-                title={workItem.title}
-                videoId={workItem.video_id}
-                clientName={workItem.clientName}
-                videoHeightAspectRatio={workItem.videoHeightAspectRatio || '9'}
-                videoWidthAspectRatio={workItem.videoWidthAspectRatio || '16'}
-            />
-            <div className="mx-auto my-12 border border-white w-48"></div>
+            <div className="p-8 border border-white mx-4 lg:mx-auto max-w-7xl">
+                <VideoPlayer
+                    poster={workItem.poster}
+                    title={workItem.title}
+                    videoId={workItem.video_id}
+                    clientName={workItem.clientName}
+                    videoHeightAspectRatio={
+                        workItem.videoHeightAspectRatio || '9'
+                    }
+                    videoWidthAspectRatio={
+                        workItem.videoWidthAspectRatio || '16'
+                    }
+                />
+                <p className="text-4xl mt-8 flex items-center justify-center space-x-6">
+                    <span className="uppercase font-extrabold text-2xl lg:text-5xl">
+                        {workItem.clientName}
+                    </span>
+                    <span className="uppercase font-outline text-2xl lg:text-5xl">
+                        {workItem.title}
+                    </span>
+                </p>
+            </div>
 
             <div className="container px-4 md:px-0 mx-auto mt-4">
-                <div>
-                    {workItem.credits && workItem.credits.length > 0 && (
-                        <>
-                            <button
-                                className="w-full flex items-center justify-center space-x-8 font-bold text-lg lg:text-4xl text-left my-12 uppercase pb-2"
-                                onClick={() => setCreditsOpen(!creditsOpen)}
-                                type="button"
-                            >
-                                <span>Credits</span>
-                                <span
-                                    className={`${
-                                        creditsOpen ? 'rotate-180' : null
-                                    } transform transition-all text-4xl`}
-                                >
-                                    <HiChevronDown />
-                                </span>
-                            </button>
-                            <div
-                                className={`lg:text-2xl ${
-                                    creditsOpen ? 'h-auto' : 'h-0'
-                                } transition-all overflow-hidden`}
-                            >
-                                <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-2 gap-x-12 gap-y-4 mb-12">
-                                    {workItem.credits.map((credit, index) => {
-                                        return (
-                                            <div
-                                                className="grid grid-cols-3"
-                                                key={index}
-                                            >
-                                                <div className="font-bold uppercase">
-                                                    {credit.role}
-                                                </div>
-                                                <div className="col-span-2 uppercase space-x-4 space-x-4 font-outline tracking-wide">
-                                                    {credit.value}
-                                                </div>
+                {workItem.credits && workItem.credits.length > 0 && (
+                    <div className="my-12 max-w-6xl mx-auto">
+                        <H3>Credits</H3>
+                        <div
+                            className={`lg:text-2xl h-auto transition-all overflow-hidden mt-12`}
+                        >
+                            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-2 gap-x-12 gap-y-4 mb-12">
+                                {workItem.credits.map((credit, index) => {
+                                    return (
+                                        <div
+                                            className="grid grid-cols-3"
+                                            key={index}
+                                        >
+                                            <div className="font-bold uppercase">
+                                                {credit.role}
                                             </div>
-                                        )
-                                    })}
-                                </div>
-                                <div className="text-center">
-                                    <div className="text-lg lg:text-3xl font-bold uppercase">
-                                        Production Company
-                                    </div>
-                                    <div className="uppercase space-x-4 space-x-4 font-outline tracking-wide">
-                                        JMills Entertainment
-                                    </div>
-                                </div>
+                                            <div className="col-span-2 uppercase space-x-4 space-x-4 font-outline tracking-wide">
+                                                {credit.value}
+                                            </div>
+                                        </div>
+                                    )
+                                })}
                             </div>
-                        </>
-                    )}
-                </div>
+                        </div>
+                    </div>
+                )}
             </div>
 
-            <div className="mx-auto my-12 border border-white w-48"></div>
-
-            <div className="text-center">
-                <Link href="/work">
-                    <a>
-                        <span className="text-lg lg:text-2xl font-bold uppercase">
-                            Back To
-                        </span>{' '}
-                        <span className="text-lg lg:text-3xl uppercase space-x-4 space-x-4 font-outline tracking-wide">
-                            Work
-                        </span>{' '}
-                        <span className="text-lg lg:text-2xl font-bold">
-                            &gt;
-                        </span>
-                    </a>
-                </Link>
+            <div className="pt-24 px-8 container mx-4 lg:mx-auto text-center uppercase">
+                <p className="text-4xl font-extrabold tracking-widest">
+                    Production Company
+                </p>
+                <p className="mt-2 text-3xl font-outline">
+                    JMills Entertainment
+                </p>
             </div>
+
+            <MediumWhiteBar />
         </Layout>
     )
 }

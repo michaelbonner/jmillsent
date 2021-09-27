@@ -220,20 +220,16 @@ function About({ aboutPage }) {
 
             {/* utah locations */}
             <section className="max-w-7xl mx-auto text-center my-12 lg:my-36">
-                <H3>ICONIC UTAH LOCATIONS</H3>
-                <div className="prose prose-xl text-center mx-auto text-gray-300">
-                    <p>
-                        Start at our studio and drive in any direction for 60
-                        min and you’ll hit an iconic location or different
-                        climate. Pull o! nearly any look in the world right here
-                        in Utah
-                    </p>
+                <H2>{aboutPage.utahLocationsTitle}</H2>
+                <div className="mt-8 mb-8 prose-lg max-w-3xl text-center mx-auto">
+                    <BlockContent blocks={aboutPage.utahLocationsDescription} />
                 </div>
                 <div className="mt-12 grid grid-cols-1 lg:grid-cols-3 gap-1">
                     {aboutPage.utahLocations.map((utahLocation, index) => {
                         return (
                             <div key={index}>
                                 <Image
+                                    className="filter grayscale hover:filter-none transition-all"
                                     src={`${utahLocation.imageUrl}?w=600&h=400`}
                                     height="400"
                                     width="600"
@@ -315,6 +311,8 @@ export async function getStaticProps() {
             section2Title,
             services[]->,
             teamMembers[]->,
+            utahLocationsTitle,
+            utahLocationsDescription,
             utahLocations[]{
                 caption,
                 "imageUrl": asset->url

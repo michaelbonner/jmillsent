@@ -216,6 +216,17 @@ export default {
       ],
     },
     {
+      name: "utahLocationsTitle",
+      title: "Utah locations title",
+      type: "string",
+    },
+    {
+      name: "utahLocationsDescription",
+      description: "Utah locations title",
+      type: "array",
+      of: [{ type: "block" }],
+    },
+    {
       name: "utahLocations",
       title: "Utah Locations",
       type: "array",
@@ -230,12 +241,6 @@ export default {
               options: {
                 isHighlighted: true, // <-- make this field easily accessible
               },
-            },
-            {
-              // Editing this field will be hidden behind an "Edit"-button
-              name: "attribution",
-              type: "string",
-              title: "Attribution",
             },
           ],
         },

@@ -229,7 +229,7 @@ function About({ aboutPage }) {
                         return (
                             <Image
                                 key={index}
-                                className="block filter grayscale hover:filter-none transition-all"
+                                className="block filter grayscale hover:filter-none transition-all duration-500"
                                 src={`${utahLocation.imageUrl}?w=600&h=400`}
                                 height="400"
                                 width="600"

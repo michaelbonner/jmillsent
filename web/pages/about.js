@@ -13,7 +13,7 @@ import LittleWhiteBar from '../components/little-white-bar'
 function About({ aboutPage }) {
     const heroContent = (
         <div className="h-full w-full flex flex-col items-center justify-center text-white">
-            <H1>{aboutPage.mainTitle}</H1>
+            <H1>{aboutPage.title}</H1>
             <h2 className="uppercase font-outline text-2xl lg:text-5xl">
                 {aboutPage.subtitle}
             </h2>
@@ -28,7 +28,7 @@ function About({ aboutPage }) {
             heroVideoId={aboutPage.videoId}
             heroContent={heroContent}
         >
-            <div className="container mx-4 lg:mx-auto text-white text-center my-12 lg:my-36">
+            <div className="container mx-4 lg:mx-auto text-white text-center my-12 lg:my-24">
                 <H2>{aboutPage.section1Title}</H2>
                 <div className="mt-16 mb-8 prose-lg max-w-3xl text-center mx-auto">
                     <BlockContent blocks={aboutPage.section1Body} />
@@ -75,8 +75,8 @@ function About({ aboutPage }) {
                                         <h3 className="text-center font-outline text-3xl mt-8">
                                             {service.name}
                                         </h3>
-                                        <LittleWhiteBar />
-                                        <div className="prose-lg text-center mx-auto text-white font-light">
+                                        <LittleWhiteBar yMargin={4} />
+                                        <div className="mt-4 max-w-5xl prose-lg text-center mx-auto text-white font-light">
                                             <BlockContent
                                                 blocks={service.description}
                                             />
@@ -87,6 +87,9 @@ function About({ aboutPage }) {
                         </div>
                     )}
                 </section>
+                <div className="mt-12 lg:mt-24">
+                    <MediumWhiteBar />
+                </div>
                 {/* end: services */}
 
                 {/* company 3 */}
@@ -145,8 +148,9 @@ function About({ aboutPage }) {
                 <MediumWhiteBar />
             </div>
             {/* end: company 3 */}
+
             {/* director section */}
-            <section className="grid grid-cols-1 lg:grid-cols-3 max-w-7xl mx-auto items-center">
+            <section className="grid grid-cols-1 lg:grid-cols-3 max-w-7xl mx-auto items-center my-12 lg:my-24">
                 <div className="w-full">
                     <Image
                         src={urlForSanitySource(aboutPage.directorImage)
@@ -249,7 +253,7 @@ function About({ aboutPage }) {
                 <div className="grid grid-cols-1 lg:grid-cols-3 xl:grid-cols-5 gap-8 lg:gap-20 mt-12">
                     {aboutPage.brands.map((brand) => {
                         return (
-                            <div key={brand.id}>
+                            <div key={brand._id}>
                                 <Image
                                     src={urlForSanitySource(brand.image)
                                         .width(600)
@@ -282,7 +286,6 @@ export async function getStaticProps() {
 			company3VideoWidthAspectRatio,
 			footerSubtitle,
 			footerTitle,
-			mainTitle,
 			poster,
 			reelVideoClient,
 			reelVideoHeightAspectRatio,
@@ -310,6 +313,7 @@ export async function getStaticProps() {
             section2Title,
             services[]->,
             teamMembers[]->,
+            title,
             utahLocationsTitle,
             utahLocationsDescription,
             utahLocations[]{

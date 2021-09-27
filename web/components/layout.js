@@ -370,7 +370,7 @@ const Layout = ({
                                         router.route === navItem.href
                                             ? 'border-b '
                                             : ''
-                                    }font-outline text-white uppercase text-lg lg:text-2xl py-4`}
+                                    }font-bold text-white uppercase text-lg lg:text-2xl py-4`}
                                 >
                                     {navItem.name}
                                 </a>

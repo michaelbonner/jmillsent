@@ -220,65 +220,39 @@ const Layout = ({
                     menuVisible ? 'fixed' : 'hidden'
                 } bg-black inset-0 transform transition-all ease-in duration-300 z-40 text-right flex flex-col justify-center items-center`}
             >
-                <Link href="/">
-                    <a
-                        className={`${
-                            !hoveredMenuItem || hoveredMenuItem === '/'
-                                ? 'text-white'
-                                : 'text-gray-500'
-                        } font-extrabold relative group py-6 uppercase text-bold text-2xl md:text-4xl transition-all duration-700 w-64 text-center`}
-                        onMouseEnter={() => setHoveredMenuItem('/')}
-                        onMouseLeave={() => setHoveredMenuItem('')}
-                    >
-                        <span className="relative z-10">Home</span>
-                        <span
-                            className={`${
-                                hoveredMenuItem === '/' ? 'w-full' : 'w-0'
-                            } transition-all duration-500 absolute z-0 left-0 right-0 bg-white`}
-                            style={{ bottom: 'calc(50% - 1px)', height: '2px' }}
-                        ></span>
-                    </a>
-                </Link>
-                <Link href="/work">
-                    <a
-                        className={`${
-                            !hoveredMenuItem || hoveredMenuItem === '/work'
-                                ? 'text-white'
-                                : 'text-gray-500'
-                        } hidden lg:inline-block font-extrabold relative group py-6 uppercase text-bold text-2xl md:text-4xl transition-all duration-700 w-64 text-center`}
-                        onMouseEnter={() => setHoveredMenuItem('/work')}
-                        onMouseLeave={() => setHoveredMenuItem('')}
-                    >
-                        <span className="relative z-10">Work</span>
-                        <span
-                            className={`${
-                                hoveredMenuItem === '/work' ? 'w-full' : 'w-0'
-                            } transition-all duration-500 absolute z-0 left-0 right-0 bg-white`}
-                            style={{ bottom: 'calc(50% - 1px)', height: '2px' }}
-                        ></span>
-                    </a>
-                </Link>
-                <Link href="/contact">
-                    <a
-                        className={`${
-                            !hoveredMenuItem || hoveredMenuItem === '/contact'
-                                ? 'text-white'
-                                : 'text-gray-500'
-                        } font-extrabold relative group py-6 uppercase text-bold text-2xl md:text-4xl transition-all duration-700 w-64 text-center`}
-                        onMouseEnter={() => setHoveredMenuItem('/contact')}
-                        onMouseLeave={() => setHoveredMenuItem('')}
-                    >
-                        <span className="relative z-10">Contact</span>
-                        <span
-                            className={`${
-                                hoveredMenuItem === '/contact'
-                                    ? 'w-full'
-                                    : 'w-0'
-                            } transition-all duration-500 absolute z-0 left-0 right-0 bg-white`}
-                            style={{ bottom: 'calc(50% - 1px)', height: '2px' }}
-                        ></span>
-                    </a>
-                </Link>
+                {navItems.map((navItem, index) => {
+                    return (
+                        <Link href="/" key={index}>
+                            <a
+                                className={`${
+                                    !hoveredMenuItem ||
+                                    hoveredMenuItem === navItem.href
+                                        ? 'text-white'
+                                        : 'text-gray-500'
+                                } font-extrabold relative group py-6 uppercase text-bold text-2xl md:text-4xl transition-all duration-700 w-64 text-center`}
+                                onMouseEnter={() =>
+                                    setHoveredMenuItem(navItem.href)
+                                }
+                                onMouseLeave={() => setHoveredMenuItem('')}
+                            >
+                                <span className="relative z-10">
+                                    {navItem.name}
+                                </span>
+                                <span
+                                    className={`${
+                                        hoveredMenuItem === navItem.href
+                                            ? 'w-full'
+                                            : 'w-0'
+                                    } transition-all duration-500 absolute z-0 left-0 right-0 bg-white`}
+                                    style={{
+                                        bottom: 'calc(50% - 1px)',
+                                        height: '2px',
+                                    }}
+                                ></span>
+                            </a>
+                        </Link>
+                    )
+                })}
             </nav>
 
             <header
@@ -368,7 +342,13 @@ const Layout = ({
                     {navItems.map((navItem, index) => {
                         return (
                             <Link key={index} href={navItem.href}>
-                                <a className="font-outline text-white uppercase text-2xl">
+                                <a
+                                    className={`${
+                                        router.route === navItem.href
+                                            ? 'border-b '
+                                            : ''
+                                    }font-outline text-white uppercase text-2xl py-4`}
+                                >
                                     {navItem.name}
                                 </a>
                             </Link>

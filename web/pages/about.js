@@ -185,6 +185,97 @@ function About({ aboutPage }) {
             </section>
             <MediumWhiteBar />
             {/* end: director section */}
+
+            {/* team section */}
+            <section className="max-w-7xl mx-auto text-center my-12 lg:my-36">
+                <H3>MEET THE WORLD CLASS</H3>
+                <p className="font-outline text-4xl">JME TEAM</p>
+                <div className="grid grid-cols-1 lg:grid-cols-3 gap-8 lg:gap-20 mt-12">
+                    {aboutPage.teamMembers.map((teamMember) => {
+                        return (
+                            <div key={teamMember._id}>
+                                <Image
+                                    src={urlForSanitySource(teamMember.image)
+                                        .width(400)
+                                        .height(644)
+                                        .url()}
+                                    height="644"
+                                    width="400"
+                                    alt={teamMember.name}
+                                />
+                                <p className="mt-4 uppercase font-extrabold text-xl lg:text-2xl">
+                                    {teamMember.name}
+                                </p>
+                                <LittleWhiteBar yMargin={2} />
+                                <p className="uppercase font-outline text-xl">
+                                    {teamMember.title}
+                                </p>
+                            </div>
+                        )
+                    })}
+                </div>
+            </section>
+            <MediumWhiteBar />
+            {/* end: team section */}
+
+            {/* utah locations */}
+            <section className="max-w-7xl mx-auto text-center my-12 lg:my-36">
+                <H3>ICONIC UTAH LOCATIONS</H3>
+                <div className="prose prose-xl text-center mx-auto text-gray-300">
+                    <p>
+                        Start at our studio and drive in any direction for 60
+                        min and you’ll hit an iconic location or different
+                        climate. Pull o! nearly any look in the world right here
+                        in Utah
+                    </p>
+                </div>
+                <div>
+                    {aboutPage.utahLocations.map((utahLocation, index) => {
+                        console.log(
+                            'utahLocation.caption',
+                            utahLocation.caption
+                        )
+                        return (
+                            <div key={index}>
+                                <Image
+                                    src={`${utahLocation.imageUrl}?w=600&h=400`}
+                                    height="400"
+                                    width="600"
+                                    alt={utahLocation.caption}
+                                />
+                            </div>
+                        )
+                    })}
+                </div>
+            </section>
+            <MediumWhiteBar />
+            {/* end: utah locations */}
+
+            {/* trusted by */}
+            <section className="max-w-7xl mx-auto text-center my-12 lg:my-36">
+                <H3>Trusted By the Following</H3>
+                <LittleWhiteBar />
+                <div className="grid grid-cols-1 lg:grid-cols-3 xl:grid-cols-5 gap-8 lg:gap-20 mt-12">
+                    {aboutPage.brands.map((brand) => {
+                        return (
+                            <div key={brand.id}>
+                                <Image
+                                    src={urlForSanitySource(brand.image)
+                                        .width(600)
+                                        .height(300)
+                                        .crop('center')
+                                        .url()}
+                                    height="300"
+                                    width="600"
+                                    alt={brand.name}
+                                />
+                            </div>
+                        )
+                    })}
+                </div>
+            </section>
+            <MediumWhiteBar />
+            {/* end: trusted by */}
         </Layout>
     )
 }
@@ -193,6 +284,11 @@ export async function getStaticProps() {
     const aboutPage = await getClient().fetch(
         groq`
 		*[_type == "aboutPage"][0]{
+			company3VideoHeightAspectRatio,
+			company3VideoId,
+			company3VideoPoster,
+			company3VideoTitle,
+			company3VideoWidthAspectRatio,
 			footerSubtitle,
 			footerTitle,
 			mainTitle,
@@ -210,22 +306,23 @@ export async function getStaticProps() {
 			subtitle,
 			videoClient,
 			videoId,
-            section2Subtitle,
-            section2Title,
-            services[]->,
+            brands[]->,
             company3Body,
             company3Link,
             company3Title,
             company3VideoClient,
-			company3VideoHeightAspectRatio,
-			company3VideoId,
-			company3VideoPoster,
-			company3VideoTitle,
-			company3VideoWidthAspectRatio,
-            directorImage,
-            directorTitle,
-            directorName,
             directorDescription,
+            directorImage,
+            directorName,
+            directorTitle,
+            section2Subtitle,
+            section2Title,
+            services[]->,
+            teamMembers[]->,
+            utahLocations[]{
+                caption,
+                "imageUrl": asset->url
+            },
   		}
   		`
     )

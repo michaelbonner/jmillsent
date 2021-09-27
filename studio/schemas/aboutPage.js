@@ -204,6 +204,54 @@ export default {
       type: "array",
       of: [{ type: "block" }],
     },
+    {
+      name: "teamMembers",
+      title: "Team members",
+      type: "array",
+      of: [
+        {
+          type: "reference",
+          to: [{ type: "teamMember" }],
+        },
+      ],
+    },
+    {
+      name: "utahLocations",
+      title: "Utah Locations",
+      type: "array",
+      of: [
+        {
+          type: "image",
+          fields: [
+            {
+              name: "caption",
+              type: "string",
+              title: "Caption",
+              options: {
+                isHighlighted: true, // <-- make this field easily accessible
+              },
+            },
+            {
+              // Editing this field will be hidden behind an "Edit"-button
+              name: "attribution",
+              type: "string",
+              title: "Attribution",
+            },
+          ],
+        },
+      ],
+    },
+    {
+      name: "brands",
+      title: "Brands",
+      type: "array",
+      of: [
+        {
+          type: "reference",
+          to: [{ type: "brand" }],
+        },
+      ],
+    },
   ],
   preview: {
     select: {

@@ -222,7 +222,7 @@ const Layout = ({
             >
                 {navItems.map((navItem, index) => {
                     return (
-                        <Link href="/" key={index}>
+                        <Link href={navItem.href} key={index}>
                             <a
                                 className={`${
                                     !hoveredMenuItem ||
@@ -255,50 +255,8 @@ const Layout = ({
                 })}
             </nav>
 
-            <header
-                className={`relative h-full bg-black ${
-                    heroVideoId
-                        ? `lg:bg-gradient-to-b from-gray-400 to-white via-gray-100 lg:bg-opacity-25`
-                        : null
-                }`}
-                style={headerStyles}
-            >
-                {heroVideoId && (
-                    <div
-                        className={`bpd-hero-background absolute z-0 h-full w-full inset-0 ${
-                            videoPlaying ? 'opacity-100' : 'opacity-0'
-                        }`}
-                    >
-                        <ReactPlayer
-                            allow="autoplay; fullscreen; picture-in-picture"
-                            controls={false}
-                            frameBorder="0"
-                            height={`100%`}
-                            loop={true}
-                            muted={true}
-                            playing={true}
-                            playsinline={true}
-                            style={{
-                                position: 'absolute',
-                                top: 0,
-                                left: 0,
-                                pointerEvents: 'none',
-                                width: '140%',
-                                transform: 'translate3d(-20%, 0, 0)',
-                            }}
-                            onPlay={() => setVideoPlaying(true)}
-                            title="Ravens Film Works"
-                            url={`https://player.vimeo.com/video/${heroVideoId}?badge=0&autopause=0&player_id=0&app_id=58479&autoplay=true&background=true`}
-                            width={`140%`}
-                        />
-                        {heroContent && (
-                            <div className="bpd-hero-foreground z-30 h-full w-full text-white relative">
-                                {heroContent}
-                            </div>
-                        )}
-                    </div>
-                )}
-                <div className="relative flex items-center justify-between p-4 z-10">
+            <header>
+                <div className="relative flex items-center justify-between p-4 z-10 bg-black">
                     <div>
                         <Link href={`/`}>
                             <a>
@@ -339,6 +297,51 @@ const Layout = ({
                             </button>
                         </div>
                     </div>
+                </div>
+
+                <div
+                    className={`relative h-full bg-black ${
+                        heroVideoId
+                            ? `lg:bg-gradient-to-b from-gray-400 to-white via-gray-100 lg:bg-opacity-25`
+                            : null
+                    }`}
+                    style={headerStyles}
+                >
+                    {heroVideoId && (
+                        <div
+                            className={`bpd-hero-background absolute z-0 h-full w-full inset-0 ${
+                                videoPlaying ? 'opacity-100' : 'opacity-0'
+                            }`}
+                        >
+                            <ReactPlayer
+                                allow="autoplay; fullscreen; picture-in-picture"
+                                controls={false}
+                                frameBorder="0"
+                                height={`100%`}
+                                loop={true}
+                                muted={true}
+                                playing={true}
+                                playsinline={true}
+                                style={{
+                                    position: 'absolute',
+                                    top: 0,
+                                    left: 0,
+                                    pointerEvents: 'none',
+                                    width: '140%',
+                                    transform: 'translate3d(-20%, 0, 0)',
+                                }}
+                                onPlay={() => setVideoPlaying(true)}
+                                title="Ravens Film Works"
+                                url={`https://player.vimeo.com/video/${heroVideoId}?badge=0&autopause=0&player_id=0&app_id=58479&autoplay=true&background=true`}
+                                width={`140%`}
+                            />
+                            {heroContent && (
+                                <div className="bpd-hero-foreground z-30 h-full w-full text-white relative">
+                                    {heroContent}
+                                </div>
+                            )}
+                        </div>
+                    )}
                 </div>
             </header>
             <main className="bg-black text-white relative z-10 w-full">

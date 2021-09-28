@@ -57,13 +57,18 @@ function Moments({ momentsPage }) {
             <section className="max-w-7xl mx-auto text-center my-12 lg:my-36">
                 <div className="mt-12 grid grid-cols-1 lg:grid-cols-3 xl:grid-cols-4 gap-1">
                     {momentsPage.images.map((image, index) => {
+                        const evenRow = index / 4 % 2 >= 1;
+
+                        const width = `400`;
+                        const height = evenRow ? `450` : `250`;
+
                         return (
                             <Image
                                 key={index}
                                 className="block filter grayscale hover:filter-none transition-all duration-500"
-                                src={`${image.imageUrl}?w=600&h=400`}
-                                height="400"
-                                width="600"
+                                src={`${image.imageUrl}?w=${width}&h=${height}&auto=format&fit=crop&crop=focalpoint`}
+                                height={height}
+                                width={width}
                                 alt={image.caption}
                             />
                         )

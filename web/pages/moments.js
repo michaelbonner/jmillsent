@@ -55,7 +55,7 @@ function Moments({ momentsPage }) {
 
             {/* utah locations */}
             <section className="max-w-7xl mx-auto text-center my-12 lg:my-36">
-                <div className="mt-12 grid grid-cols-1 lg:grid-cols-3 gap-1">
+                <div className="mt-12 grid grid-cols-1 lg:grid-cols-3 xl:grid-cols-4 gap-1">
                     {momentsPage.images.map((image, index) => {
                         return (
                             <Image

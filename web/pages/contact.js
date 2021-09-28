@@ -176,7 +176,7 @@ function Contact({ contact }) {
                             marker={{
                                 lat: 40.8664457,
                                 lng: -111.9247221,
-                                icon: 'http://localhost:3000/images/map-pin.png',
+                                icon: 'https://jmillsent.vercel.app/images/map-pin.png',
                             }}
                         />
                     </div>

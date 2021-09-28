@@ -86,3 +86,7 @@ header {
 .bpd-player-container:-moz-full-screen {
     background-color: rgb(0, 0, 0);
 }
+
+.prose-white a {
+    @apply text-gray-300;
+}

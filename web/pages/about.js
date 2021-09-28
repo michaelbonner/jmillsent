@@ -30,9 +30,11 @@ function About({ aboutPage }) {
         >
             <div className="container mx-4 lg:mx-auto text-white text-center my-12 lg:my-24">
                 <H2>{aboutPage.section1Title}</H2>
-                <div className="mt-16 mb-8 prose-lg max-w-3xl text-center mx-auto">
-                    <BlockContent blocks={aboutPage.section1Body} />
-                </div>
+                {aboutPage.section1Body && (
+                    <div className="mt-16 mb-8 prose-lg max-w-3xl text-center mx-auto">
+                        <BlockContent blocks={aboutPage.section1Body} />
+                    </div>
+                )}
                 <Image
                     src={`/images/jmills-raven-white.svg`}
                     alt="Jmills"
@@ -75,12 +77,18 @@ function About({ aboutPage }) {
                                         <h3 className="text-center font-bold text-3xl mt-8">
                                             {service.name}
                                         </h3>
-                                        <LittleWhiteBar yMargin={4} />
-                                        <div className="mt-4 max-w-5xl prose-lg text-center mx-auto text-white font-light">
-                                            <BlockContent
-                                                blocks={service.description}
-                                            />
-                                        </div>
+                                        {service.description && (
+                                            <>
+                                                <LittleWhiteBar yMargin={4} />
+                                                <div className="mt-4 max-w-5xl prose-lg text-center mx-auto text-white font-light">
+                                                    <BlockContent
+                                                        blocks={
+                                                            service.description
+                                                        }
+                                                    />
+                                                </div>
+                                            </>
+                                        )}
                                     </div>
                                 )
                             })}
@@ -118,9 +126,11 @@ function About({ aboutPage }) {
                     </div>
                     <div className="mt-12 lg:mt-24">
                         <H3>{aboutPage.company3Title}</H3>
-                        <div className="mt-4 mb-8 prose-lg max-w-3xl text-center mx-auto text-white">
-                            <BlockContent blocks={aboutPage.company3Body} />
-                        </div>
+                        {aboutPage.company3Body && (
+                            <div className="mt-4 mb-8 prose-lg max-w-3xl text-center mx-auto text-white">
+                                <BlockContent blocks={aboutPage.company3Body} />
+                            </div>
+                        )}
                     </div>
                     <Link
                         href={
@@ -169,9 +179,13 @@ function About({ aboutPage }) {
                     <p className="font-outline text-4xl">
                         {aboutPage.directorName}
                     </p>
-                    <div className="prose prose-lg text-gray-300 mx-auto mt-12">
-                        <BlockContent blocks={aboutPage.directorDescription} />
-                    </div>
+                    {aboutPage.directorDescription && (
+                        <div className="prose prose-lg text-gray-300 mx-auto mt-12">
+                            <BlockContent
+                                blocks={aboutPage.directorDescription}
+                            />
+                        </div>
+                    )}
                     <Link href="https://jeremymillerdirector.com/">
                         <a className="flex items-end justify-center space-x-4 mt-12">
                             <span className="uppercase font-extrabold text-xl lg:text-3xl">
@@ -225,9 +239,13 @@ function About({ aboutPage }) {
             {/* utah locations */}
             <section className="max-w-7xl mx-auto text-center my-12 lg:my-36">
                 <H2>{aboutPage.utahLocationsTitle}</H2>
-                <div className="mt-8 mb-8 prose-lg max-w-3xl text-center mx-auto">
-                    <BlockContent blocks={aboutPage.utahLocationsDescription} />
-                </div>
+                {aboutPage.utahLocationsDescription && (
+                    <div className="mt-8 mb-8 prose-lg max-w-3xl text-center mx-auto">
+                        <BlockContent
+                            blocks={aboutPage.utahLocationsDescription}
+                        />
+                    </div>
+                )}
                 <div className="mt-12 grid grid-cols-1 lg:grid-cols-3 gap-1">
                     {aboutPage.utahLocations.map((utahLocation, index) => {
                         return (
@@ -287,12 +305,6 @@ export async function getStaticProps() {
 			footerSubtitle,
 			footerTitle,
 			poster,
-			reelVideoClient,
-			reelVideoHeightAspectRatio,
-			reelVideoId,
-			reelVideoPoster,
-			reelVideoTitle,
-			reelVideoWidthAspectRatio,
 			section1Body,
 			section1Title,
 			seoDescription,

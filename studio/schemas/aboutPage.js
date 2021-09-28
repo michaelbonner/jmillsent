@@ -257,6 +257,7 @@ export default {
     select: {
       title: "title",
     },
+    media: "poster",
     prepare(selection) {
       return {
         title: `${selection.title}`,

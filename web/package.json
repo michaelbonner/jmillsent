@@ -20,6 +20,7 @@
     "react-gtm-module": "^2.0.11",
     "react-icons": "^4.2.0",
     "react-player": "^2.9.0",
+    "react-scroll": "^1.8.4",
     "screenfull": "^5.1.0"
   },
   "devDependencies": {

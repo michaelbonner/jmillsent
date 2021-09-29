@@ -125,7 +125,7 @@ function Studio({ studioPage }) {
                                         </h3>
                                         {service.description && (
                                             <>
-                                                <LittleWhiteBar yMargin={4} />
+                                                <LittleWhiteBar yMargin={'my-4'} />
                                                 <div className="mt-4 max-w-5xl prose-lg text-center mx-auto text-white font-light">
                                                     <BlockContent
                                                         blocks={

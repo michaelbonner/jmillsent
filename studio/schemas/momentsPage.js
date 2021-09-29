@@ -1,4 +1,5 @@
 import { MdPhotoLibrary as icon } from "react-icons/md";
+import assetSources from "../parts/assetSources";
 
 export default {
   name: "momentsPage",
@@ -68,21 +69,15 @@ export default {
       of: [
         {
           type: "image",
-          fields: [
-            {
-              name: "caption",
-              type: "string",
-              title: "Caption",
-              options: {
-                isHighlighted: true, // <-- make this field easily accessible
-              },
-            },
-          ],
           options: {
             hotspot: true,
+            sources: assetSources,
           },
         },
       ],
+      options: {
+        layout: "grid",
+      },
     },
   ],
   preview: {

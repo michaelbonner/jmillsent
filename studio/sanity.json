@@ -16,7 +16,8 @@
     "@sanity/google-maps-input",
     "dashboard-widget-vercel",
     "@sanity/dashboard",
-    "order-documents"
+    "order-documents",
+    "media"
   ],
   "env": {
     "development": {
@@ -24,6 +25,10 @@
     }
   },
   "parts": [
+    {
+      "implements": "part:@sanity/form-builder/input/image/asset-sources",
+      "path": "./parts/assetSources.js"
+    },
     {
       "implements": "part:@sanity/base/brand-logo",
       "path": "./logo/myLogo.js"

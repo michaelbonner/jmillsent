@@ -28,7 +28,7 @@ function Moments({ momentsPage }) {
       heroVideoId={momentsPage.videoId}
       heroContent={heroContent}
     >
-      <div className="container mx-4 lg:mx-auto text-white text-center my-12 lg:my-24">
+      <div className="container px-4 lg:mx-auto text-white text-center my-12 lg:my-24">
         <H2>{momentsPage.section1Title}</H2>
         {momentsPage.section1Body && (
           <div className="mt-16 mb-8 prose-lg max-w-3xl text-center mx-auto">
@@ -42,7 +42,7 @@ function Moments({ momentsPage }) {
           height="130"
         />
         <MediumWhiteBar />
-        <div className="pt-24 px-8 container mx-4 lg:mx-auto text-center">
+        <div className="pt-24 px-8 container px-4 lg:mx-auto text-center">
           <p className="text-4xl font-extrabold tracking-widest">
             {momentsPage.section2Title}
           </p>

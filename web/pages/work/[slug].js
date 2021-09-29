@@ -63,7 +63,7 @@ const WorkItem = ({ workItem = {}, workItems = [] }) => {
         `${fullTitle} | JmillsENT | Motion Picture Studio + Film Agency`
       }
     >
-      <div className="my-12 p-4 xl:p-8 border border-white mx-4 xl:mx-auto max-w-9xl">
+      <div className="my-12 p-4 xl:p-8 border border-white px-4 xl:mx-auto max-w-9xl">
         <VideoPlayer
           poster={workItem.poster}
           title={workItem.title}
@@ -106,7 +106,7 @@ const WorkItem = ({ workItem = {}, workItems = [] }) => {
         )}
       </div>
 
-      <div className="pt-24 px-8 container mx-4 lg:mx-auto text-center uppercase">
+      <div className="pt-24 px-8 container lg:mx-auto text-center uppercase">
         <p className="text-4xl font-extrabold tracking-widest">
           Production Company
         </p>

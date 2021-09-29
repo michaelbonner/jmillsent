@@ -26,7 +26,7 @@ function Home({ homePage }) {
       heroVideoId={homePage.videoId}
       heroContent={heroContent}
     >
-      <div className="container mx-4 lg:mx-auto text-white text-center my-12 lg:my-36">
+      <div className="container px-4 lg:mx-auto text-white text-center my-12 lg:my-36">
         <H2>{homePage.section1Title}</H2>
         <div className="mt-16 mb-8 prose-lg max-w-3xl text-center mx-auto">
           <BlockContent blocks={homePage.section1Body} />
@@ -39,25 +39,27 @@ function Home({ homePage }) {
         />
         <LittleWhiteBar />
       </div>
-      <div className="border border-white py-8 px-8 container mx-4 lg:mx-auto">
-        <VideoPlayer
-          poster={homePage.reelVideoPoster}
-          title={homePage.reelVideoTitle}
-          videoId={homePage.reelVideoId}
-          clientName={homePage.reelVideoClient}
-          videoHeightAspectRatio={homePage.reelVideoHeightAspectRatio}
-          videoWidthAspectRatio={homePage.reelVideoWidthAspectRatio}
-        />
-        <p className="text-4xl mt-8 flex items-center justify-center space-x-6">
-          <span className="uppercase font-extrabold text-2xl lg:text-5xl">
-            {homePage.reelVideoClient}
-          </span>
-          <span className="uppercase font-outline text-2xl lg:text-5xl">
-            {homePage.reelVideoTitle}
-          </span>
-        </p>
+      <div className="px-4">
+        <div className="border border-white py-8 px-8 container lg:mx-auto">
+          <VideoPlayer
+            poster={homePage.reelVideoPoster}
+            title={homePage.reelVideoTitle}
+            videoId={homePage.reelVideoId}
+            clientName={homePage.reelVideoClient}
+            videoHeightAspectRatio={homePage.reelVideoHeightAspectRatio}
+            videoWidthAspectRatio={homePage.reelVideoWidthAspectRatio}
+          />
+          <p className="text-4xl mt-8 flex items-center justify-center space-x-6">
+            <span className="uppercase font-extrabold text-2xl lg:text-5xl">
+              {homePage.reelVideoClient}
+            </span>
+            <span className="uppercase font-outline text-2xl lg:text-5xl">
+              {homePage.reelVideoTitle}
+            </span>
+          </p>
+        </div>
       </div>
-      <div className="pt-24 px-8 container mx-4 lg:mx-auto text-center">
+      <div className="pt-24 px-8 container lg:mx-auto text-center">
         <p className="text-4xl font-extrabold tracking-widest">
           {homePage.footerTitle}
         </p>

@@ -179,7 +179,7 @@ const Layout = ({
             </a>
           </Link>
           <button
-            className="w-12 h-8 focus:outline-none absolute top-0 lg:top-8 right-4"
+            className="w-12 h-8 focus:outline-none absolute top-8 right-4"
             onClick={() => toggleMenu(!menuOpen)}
             aria-label="Close menu"
           >

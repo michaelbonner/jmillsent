@@ -13,11 +13,13 @@ import SanityImage from '../components/sanity-image'
 
 function About({ aboutPage }) {
   const heroContent = (
-    <div className="h-full w-full flex flex-col items-center justify-center text-white">
-      <H1>{aboutPage.title}</H1>
-      <h2 className="uppercase font-outline text-2xl lg:text-5xl">
-        {aboutPage.subtitle}
-      </h2>
+    <div className="h-full w-full text-white flex items-center justify-center">
+      <div className="w-screen px-4 flex flex-col items-center justify-center text-center">
+        <H1>{aboutPage.title}</H1>
+        <h2 className="uppercase font-outline text-2xl lg:text-5xl">
+          {aboutPage.subtitle}
+        </h2>
+      </div>
     </div>
   )
 
@@ -29,7 +31,7 @@ function About({ aboutPage }) {
       heroVideoId={aboutPage.videoId}
       heroContent={heroContent}
     >
-      <div className="container mx-4 lg:mx-auto text-white text-center my-12 lg:my-24">
+      <div className="container px-4 lg:mx-auto text-white text-center my-12 lg:my-24">
         <H2>{aboutPage.section1Title}</H2>
         {aboutPage.section1Body && (
           <div className="mt-16 mb-8 prose-lg max-w-3xl text-center mx-auto">
@@ -43,7 +45,7 @@ function About({ aboutPage }) {
           height="130"
         />
         <MediumWhiteBar />
-        <div className="pt-24 px-8 container mx-4 lg:mx-auto text-center">
+        <div className="pt-24 px-8 container lg:mx-auto text-center">
           <p className="text-4xl font-extrabold tracking-widest">
             {aboutPage.section2Title}
           </p>
@@ -97,7 +99,7 @@ function About({ aboutPage }) {
 
         {/* company 3 */}
         <section>
-          <div className="mt-12 lg:mt-24 border border-white py-8 px-8 container mx-4 lg:mx-auto max-w-7xl">
+          <div className="mt-12 lg:mt-24 border border-white py-8 px-8 container lg:mx-auto max-w-7xl">
             <VideoPlayer
               poster={aboutPage.company3VideoPoster}
               title={aboutPage.company3VideoTitle}
@@ -146,7 +148,7 @@ function About({ aboutPage }) {
       {/* end: company 3 */}
 
       {/* director section */}
-      <section className="grid grid-cols-1 lg:grid-cols-3 max-w-7xl mx-auto items-center my-12 lg:my-24">
+      <section className="grid grid-cols-1 lg:grid-cols-3 max-w-7xl mx-auto items-center my-12 lg:my-24 px-4">
         <div className="w-full">
           <Image
             src={urlForSanitySource(aboutPage.directorImage)
@@ -185,22 +187,24 @@ function About({ aboutPage }) {
       {/* end: director section */}
 
       {/* team section */}
-      <section className="max-w-7xl mx-auto text-center my-12 lg:my-36">
+      <section className="max-w-7xl mx-auto text-center my-12 lg:my-36 px-4">
         <H3>MEET THE WORLD CLASS</H3>
         <p className="font-outline text-4xl">JME TEAM</p>
         <div className="grid grid-cols-1 lg:grid-cols-3 gap-8 lg:gap-20 mt-12">
           {aboutPage.teamMembers.map((teamMember) => {
             return (
               <div key={teamMember._id}>
-                <Image
-                  src={urlForSanitySource(teamMember.image)
-                    .width(400)
-                    .height(644)
-                    .url()}
-                  height="644"
-                  width="400"
-                  alt={teamMember.name}
-                />
+                <div className="px-8">
+                  <Image
+                    src={urlForSanitySource(teamMember.image)
+                      .width(400)
+                      .height(644)
+                      .url()}
+                    height="644"
+                    width="400"
+                    alt={teamMember.name}
+                  />
+                </div>
                 <p className="mt-4 uppercase font-extrabold text-xl lg:text-2xl">
                   {teamMember.name}
                 </p>
@@ -217,7 +221,7 @@ function About({ aboutPage }) {
       {/* end: team section */}
 
       {/* utah locations */}
-      <section className="max-w-7xl mx-auto text-center my-12 lg:my-36">
+      <section className="max-w-7xl mx-auto text-center my-12 lg:my-36 px-4">
         <H2>{aboutPage.utahLocationsTitle}</H2>
         {aboutPage.utahLocationsDescription && (
           <div className="mt-8 mb-8 prose-lg max-w-3xl text-center mx-auto">
@@ -243,10 +247,10 @@ function About({ aboutPage }) {
       {/* end: utah locations */}
 
       {/* trusted by */}
-      <section className="max-w-7xl mx-auto text-center my-12 lg:my-36">
+      <section className="max-w-7xl mx-auto text-center my-12 lg:my-36 px-4">
         <H3>Trusted By the Following</H3>
         <LittleWhiteBar />
-        <div className="grid grid-cols-1 lg:grid-cols-3 xl:grid-cols-5 gap-8 lg:gap-20 mt-12 items-center">
+        <div className="grid grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 gap-8 lg:gap-20 mt-12 items-center">
           {aboutPage.brands.map((brand) => {
             return (
               <div key={brand._id}>

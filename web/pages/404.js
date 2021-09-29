@@ -11,7 +11,7 @@ import MediumWhiteBar from '../components/medium-white-bar'
 function NotFound() {
   return (
     <Layout title={`404: This page could not be found.`} description={''}>
-      <div className="container mx-4 lg:mx-auto text-white text-center my-12 lg:my-36">
+      <div className="container px-4 lg:mx-auto text-white text-center my-12 lg:my-36">
         <H1>404: This page could not be found</H1>
         <div className="mx-auto prose prose-lg mb-12">
           <p className="text-gray-100">

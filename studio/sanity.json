@@ -25,6 +25,10 @@
   },
   "parts": [
     {
+      "implements": "part:@sanity/base/brand-logo",
+      "path": "./logo/myLogo.js"
+    },
+    {
       "name": "part:@sanity/base/schema",
       "path": "./schemas/schema"
     },

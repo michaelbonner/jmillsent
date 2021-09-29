@@ -1,37 +1,37 @@
-import React, { useEffect, useState } from "react";
-import Head from "next/head";
-import Image from "next/image";
-import Link from "next/link";
-import { useRouter } from "next/dist/client/router";
-import urlForSanitySource from "../lib/urlForSanitySource";
-import ReactPlayer from "react-player";
+import React, { useEffect, useState } from 'react'
+import Head from 'next/head'
+import Image from 'next/image'
+import Link from 'next/link'
+import { useRouter } from 'next/dist/client/router'
+import urlForSanitySource from '../lib/urlForSanitySource'
+import ReactPlayer from 'react-player'
 
 const navItems = [
   {
-    name: "Home",
-    href: "/",
+    name: 'Home',
+    href: '/',
   },
   {
-    name: "Work",
-    href: "/work",
+    name: 'Work',
+    href: '/work',
   },
   {
-    name: "About",
-    href: "/about",
+    name: 'About',
+    href: '/about',
   },
   {
-    name: "Studio",
-    href: "/studio",
+    name: 'Studio',
+    href: '/studio',
   },
   {
-    name: "Contact",
-    href: "/contact",
+    name: 'Contact',
+    href: '/contact',
   },
   {
-    name: "Moments",
-    href: "/moments",
+    name: 'Moments',
+    href: '/moments',
   },
-];
+]
 
 const Layout = ({
   children,
@@ -39,84 +39,84 @@ const Layout = ({
   description,
   heroImageUrl,
   heroVideoId,
-  heroContent = "",
+  heroContent = '',
 }) => {
-  const [menuOpen, setMenuOpen] = useState(false);
-  const [menuVisible, setMenuVisible] = useState(false);
-  const router = useRouter();
-  const [hoveredMenuItem, setHoveredMenuItem] = useState("");
-  const [headerStyles, setHeaderStyles] = useState({});
-  const [showHero, setShowHero] = useState(false);
-  const [videoPlaying, setVideoPlaying] = useState(false);
+  const [menuOpen, setMenuOpen] = useState(false)
+  const [menuVisible, setMenuVisible] = useState(false)
+  const router = useRouter()
+  const [hoveredMenuItem, setHoveredMenuItem] = useState('')
+  const [headerStyles, setHeaderStyles] = useState({})
+  const [showHero, setShowHero] = useState(false)
+  const [videoPlaying, setVideoPlaying] = useState(false)
 
   const toggleMenu = () => {
     if (menuOpen) {
-      setMenuOpen(!menuOpen);
+      setMenuOpen(!menuOpen)
       setTimeout(() => {
-        setMenuVisible(!menuOpen);
-      }, 100);
+        setMenuVisible(!menuOpen)
+      }, 100)
     } else {
-      setMenuVisible(!menuOpen);
+      setMenuVisible(!menuOpen)
       setTimeout(() => {
-        setMenuOpen(!menuOpen);
-      }, 100);
+        setMenuOpen(!menuOpen)
+      }, 100)
     }
-  };
+  }
 
   useEffect(() => {
     if (menuOpen) {
-      document.body.style.overflow = "hidden";
+      document.body.style.overflow = 'hidden'
     } else {
-      document.body.style.overflow = "inherit";
+      document.body.style.overflow = 'inherit'
     }
 
     return () => {
-      document.body.style.overflow = "inherit";
-    };
-  }, [menuOpen]);
+      document.body.style.overflow = 'inherit'
+    }
+  }, [menuOpen])
 
   useEffect(() => {
     const handleRouteChangeComplete = () => {
-      setMenuVisible(false);
-      setMenuOpen(false);
-    };
-    router.events.on("routeChangeComplete", handleRouteChangeComplete);
+      setMenuVisible(false)
+      setMenuOpen(false)
+    }
+    router.events.on('routeChangeComplete', handleRouteChangeComplete)
 
     return () => {
-      router.events.off("routeChangeComplete", handleRouteChangeComplete);
-    };
-  }, [router]);
+      router.events.off('routeChangeComplete', handleRouteChangeComplete)
+    }
+  }, [router])
 
   useEffect(() => {
     if (heroImageUrl || heroVideoId) {
-      setShowHero(true);
+      setShowHero(true)
       setHeaderStyles({
         backgroundImage: heroImageUrl
           ? `url(${urlForSanitySource(heroImageUrl).width(1400)})`
-          : "",
-        backgroundSize: "cover",
-        backgroundPosition: "center",
-        backgroundRepeat: "no-repeat",
-        minHeight: "80vh",
-      });
+          : '',
+        backgroundSize: 'cover',
+        backgroundPosition: 'center',
+        backgroundRepeat: 'no-repeat',
+        minHeight: '80vh',
+      })
     }
-  }, [heroVideoId, heroImageUrl]);
+  }, [heroVideoId, heroImageUrl])
 
   useEffect(() => {
     setTimeout(() => {
-      setVideoPlaying(true);
-    }, 1500);
-  }, []);
+      setVideoPlaying(true)
+    }, 1500)
+  }, [])
 
   return (
     <div
-      className={`${heroVideoId ? "opacity-0" : null} ${
-        heroVideoId && videoPlaying ? "bpd-fade-in" : null
+      className={`${heroVideoId ? 'opacity-0' : null} ${
+        heroVideoId && videoPlaying ? 'bpd-fade-in' : null
       }`}
     >
       <Head>
         <title>
-          {title || "JmillsENT | Motion Picture Studio + Film Agency"}
+          {title || 'JmillsENT | Motion Picture Studio + Film Agency'}
         </title>
         <link rel="stylesheet" href="https://use.typekit.net/apl0yxr.css" />
         <link
@@ -147,7 +147,7 @@ const Layout = ({
         <meta name="theme-color" content="#ffffff" />
         <meta
           property="og:title"
-          content={title || "JmillsENT | Motion Picture Studio + Film Agency"}
+          content={title || 'JmillsENT | Motion Picture Studio + Film Agency'}
         />
         <meta property="og:type" content="website" />
         <meta property="og:description" content={description} />
@@ -164,8 +164,8 @@ const Layout = ({
 
       <div className="bg-black absolute w-full">
         <div
-          className={`${menuOpen ? "opacity-100" : "opacity-0"} ${
-            menuVisible ? "relative" : "hidden"
+          className={`${menuOpen ? 'opacity-100' : 'opacity-0'} ${
+            menuVisible ? 'relative' : 'hidden'
           } w-full transition-all ease-in delay-500 duration-300 z-50 flex justify-between items-center overflow-visible text-white p-4`}
         >
           <Link href={`/`}>
@@ -183,7 +183,7 @@ const Layout = ({
             onClick={() => toggleMenu(!menuOpen)}
             aria-label="Close menu"
           >
-            <span style={{ width: "48px", height: "32px" }}>
+            <span style={{ width: '48px', height: '32px' }}>
               <Image
                 alt="Close menu"
                 className={`w-12 h-8 fill-current text-white stroke-2 stroke-current`}
@@ -195,8 +195,8 @@ const Layout = ({
         </div>
       </div>
       <nav
-        className={`${menuOpen ? "translate-x-0" : "translate-x-4 opacity-0"} ${
-          menuVisible ? "fixed" : "hidden"
+        className={`${menuOpen ? 'translate-x-0' : 'translate-x-4 opacity-0'} ${
+          menuVisible ? 'fixed' : 'hidden'
         } bg-black inset-0 transform transition-all ease-in duration-300 z-40 text-right flex flex-col justify-center items-center`}
       >
         {navItems.map((navItem, index) => {
@@ -205,31 +205,31 @@ const Layout = ({
               <a
                 className={`${
                   !hoveredMenuItem || hoveredMenuItem === navItem.href
-                    ? "text-white"
-                    : "text-gray-500"
+                    ? 'text-white'
+                    : 'text-gray-500'
                 } font-bold relative group py-6 uppercase text-2xl md:text-4xl xl:text-6xl tracking-wider transition-all duration-700 w-96 text-center`}
                 onMouseEnter={() => setHoveredMenuItem(navItem.href)}
-                onMouseLeave={() => setHoveredMenuItem("")}
+                onMouseLeave={() => setHoveredMenuItem('')}
               >
                 <span
                   className={`${
-                    navItem.href === router.pathname ? "text-gold " : ""
+                    navItem.href === router.pathname ? 'text-gold ' : ''
                   }relative z-10`}
                 >
                   {navItem.name}
                 </span>
                 <span
                   className={`${
-                    hoveredMenuItem === navItem.href ? "w-full" : "w-0"
+                    hoveredMenuItem === navItem.href ? 'w-full' : 'w-0'
                   } transition-all duration-500 absolute z-0 left-0 right-0 bg-white`}
                   style={{
-                    bottom: "calc(50% - 1px)",
-                    height: "2px",
+                    bottom: 'calc(50% - 1px)',
+                    height: '2px',
                   }}
                 ></span>
               </a>
             </Link>
-          );
+          )
         })}
       </nav>
 
@@ -255,8 +255,8 @@ const Layout = ({
                 aria-label="Open menu"
               >
                 <span
-                  className={`${!menuOpen ? "opacity-100" : "opacity-0"} ${
-                    !menuVisible ? "absolute" : "hidden"
+                  className={`${!menuOpen ? 'opacity-100' : 'opacity-0'} ${
+                    !menuVisible ? 'absolute' : 'hidden'
                   } top-0 right-0 w-12 h-8 transform transition-all ease-in duration-300`}
                 >
                   <Image
@@ -284,7 +284,7 @@ const Layout = ({
           {heroVideoId && (
             <div
               className={`bpd-hero-background absolute z-0 h-full w-full inset-0 ${
-                videoPlaying ? "opacity-100" : "opacity-0"
+                videoPlaying ? 'opacity-100' : 'opacity-0'
               }`}
             >
               <ReactPlayer
@@ -297,12 +297,12 @@ const Layout = ({
                 playing={true}
                 playsinline={true}
                 style={{
-                  position: "absolute",
+                  position: 'absolute',
                   top: 0,
                   left: 0,
-                  pointerEvents: "none",
-                  width: "140%",
-                  transform: "translate3d(-20%, 0, 0)",
+                  pointerEvents: 'none',
+                  width: '140%',
+                  transform: 'translate3d(-20%, 0, 0)',
                 }}
                 onPlay={() => setVideoPlaying(true)}
                 title="Ravens Film Works"
@@ -328,18 +328,18 @@ const Layout = ({
               <Link key={index} href={navItem.href}>
                 <a
                   className={`${
-                    router.route === navItem.href ? "border-b " : ""
+                    router.route === navItem.href ? 'border-b ' : ''
                   }font-bold text-white uppercase text-lg lg:text-2xl py-4`}
                 >
                   {navItem.name}
                 </a>
               </Link>
-            );
+            )
           })}
         </nav>
         &copy; Jeremy Miller {new Date().getFullYear()}
       </footer>
     </div>
-  );
-};
-export default Layout;
+  )
+}
+export default Layout

@@ -1,16 +1,16 @@
-import groq from "groq";
-import BlockContent from "@sanity/block-content-to-react";
-import { H1, H2 } from "../components/headings";
-import Layout from "../components/layout";
-import { getClient } from "../lib/sanity";
-import Image from "next/image";
-import LittleWhiteBar from "../components/little-white-bar";
-import VideoPlayer from "../components/video-player";
-import MediumWhiteBar from "../components/medium-white-bar";
+import groq from 'groq'
+import BlockContent from '@sanity/block-content-to-react'
+import { H1, H2 } from '../components/headings'
+import Layout from '../components/layout'
+import { getClient } from '../lib/sanity'
+import Image from 'next/image'
+import LittleWhiteBar from '../components/little-white-bar'
+import VideoPlayer from '../components/video-player'
+import MediumWhiteBar from '../components/medium-white-bar'
 
 function NotFound() {
   return (
-    <Layout title={`404: This page could not be found.`} description={""}>
+    <Layout title={`404: This page could not be found.`} description={''}>
       <div className="container mx-4 lg:mx-auto text-white text-center my-12 lg:my-36">
         <H1>404: This page could not be found</H1>
         <div className="mx-auto prose prose-lg mb-12">
@@ -29,7 +29,7 @@ function NotFound() {
         <LittleWhiteBar />
       </div>
     </Layout>
-  );
+  )
 }
 
-export default NotFound;
+export default NotFound

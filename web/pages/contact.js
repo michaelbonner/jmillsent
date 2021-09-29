@@ -1,51 +1,51 @@
 /* eslint-disable @next/next/no-img-element */
-import groq from "groq";
-import Layout from "../components/layout";
-import { getClient } from "../lib/sanity";
-import { toast } from "react-toastify";
-import urlForSanitySource from "../lib/urlForSanitySource";
-import { H1 } from "../components/headings";
-import * as Yup from "yup";
-import "yup-phone";
-import { Formik, Form, Field, ErrorMessage } from "formik";
-import { useState } from "react";
-import Map from "../components/map";
+import groq from 'groq'
+import Layout from '../components/layout'
+import { getClient } from '../lib/sanity'
+import { toast } from 'react-toastify'
+import urlForSanitySource from '../lib/urlForSanitySource'
+import { H1 } from '../components/headings'
+import * as Yup from 'yup'
+import 'yup-phone'
+import { Formik, Form, Field, ErrorMessage } from 'formik'
+import { useState } from 'react'
+import Map from '../components/map'
 
 const contactSchema = Yup.object().shape({
   name: Yup.string()
-    .min(2, "Too short")
-    .max(120, "Too long")
-    .required("Full name is required"),
+    .min(2, 'Too short')
+    .max(120, 'Too long')
+    .required('Full name is required'),
   emailAddress: Yup.string()
-    .email("Invalid email")
-    .required("Email address is required"),
+    .email('Invalid email')
+    .required('Email address is required'),
   phoneNumber: Yup.string()
-    .label("Phone number")
-    .phone("Invalid phone")
-    .required("Valid Phone number is Required"),
-  message: Yup.string().min(2, "Too short").required("Message is Required"),
-});
+    .label('Phone number')
+    .phone('Invalid phone')
+    .required('Valid Phone number is Required'),
+  message: Yup.string().min(2, 'Too short').required('Message is Required'),
+})
 
 function Contact({ contact }) {
-  const [state, setState] = useState("initial");
+  const [state, setState] = useState('initial')
   const contactForm = {
-    name: "",
-    emailAddress: "",
-    phoneNumber: "",
-    message: "",
-  };
+    name: '',
+    emailAddress: '',
+    phoneNumber: '',
+    message: '',
+  }
 
   const backgroundImageUrl = urlForSanitySource(contact.backgroundImage)
     .width(1400)
-    .url();
+    .url()
   return (
     <Layout title={contact.seoTitle} description={contact.seoDescription}>
       <div
         style={{
-          backgroundColor: "#ccc",
+          backgroundColor: '#ccc',
           backgroundImage: `url(${backgroundImageUrl})`,
-          backgroundSize: "cover",
-          backgroundPosition: "center center",
+          backgroundSize: 'cover',
+          backgroundPosition: 'center center',
         }}
       >
         <div className="max-w-5xl mx-auto px-4 lg:px-0 py-24 text-center">
@@ -53,34 +53,34 @@ function Contact({ contact }) {
         </div>
         <div className="max-w-7xl w-full mx-auto lg:flex space-x-16 pb-24">
           <div className="max-w-lg lg:w-1/2">
-            {state === "initial" && (
+            {state === 'initial' && (
               <Formik
                 initialValues={contactForm}
                 validationSchema={contactSchema}
                 onSubmit={async (values, { setSubmitting }) => {
                   try {
-                    const response = await fetch("/api/contact", {
-                      method: "post",
+                    const response = await fetch('/api/contact', {
+                      method: 'post',
                       headers: {
-                        "Content-Type": "application/json",
+                        'Content-Type': 'application/json',
                       },
                       body: JSON.stringify(values),
-                    });
+                    })
 
                     if (response?.status === 201) {
-                      setState("submitted");
-                      setSubmitting(false);
+                      setState('submitted')
+                      setSubmitting(false)
                     } else {
-                      setSubmitting(false);
-                      toast("Save failed", {
+                      setSubmitting(false)
+                      toast('Save failed', {
                         type: toast.TYPE.ERROR,
-                      });
+                      })
                     }
                   } catch (error) {
-                    setSubmitting(false);
-                    toast("Save failed", {
+                    setSubmitting(false)
+                    toast('Save failed', {
                       type: toast.TYPE.ERROR,
-                    });
+                    })
                   }
                 }}
               >
@@ -146,7 +146,7 @@ function Contact({ contact }) {
                     <button
                       type="submit"
                       className={`inline-block rounded-full font-bold uppercase tracking-wider border border-white py-2 px-8 bg-black bg-opacity-50 hover:bg-gold hover:text-black transition-all
-                          ${isSubmitting || !isValid ? "opacity-50" : ""}
+                          ${isSubmitting || !isValid ? 'opacity-50' : ''}
                         }`}
                       disabled={isSubmitting}
                     >
@@ -157,7 +157,7 @@ function Contact({ contact }) {
               </Formik>
             )}
 
-            {state === "submitted" && (
+            {state === 'submitted' && (
               <div className="relative h-full flex flex-col justify-center items-center text-center bg-white rounded-md shadow-md py-24 px-8 text-gray-900">
                 <h2 className="font-medium text-2xl relative z-20">
                   Thank you for contacting us!
@@ -172,7 +172,7 @@ function Contact({ contact }) {
               marker={{
                 lat: 40.8664457,
                 lng: -111.9247221,
-                icon: "https://jmillsent.vercel.app/images/map-pin.png",
+                icon: 'https://jmillsent.vercel.app/images/map-pin.png',
               }}
             />
           </div>
@@ -198,17 +198,17 @@ function Contact({ contact }) {
           </div>
           <div>
             <p>
-              STUDIO LINE:{" "}
+              STUDIO LINE:{' '}
               <a className="text-gray-300" href="tel:801-797-9023">
                 801-797-9023
               </a>
               <br />
-              DIRECT LINE:{" "}
+              DIRECT LINE:{' '}
               <a className="text-gray-300" href="tel:801-971-4683">
                 801-971-4683
               </a>
               <br />
-              EMAIL:{" "}
+              EMAIL:{' '}
               <a className="text-gray-300" href="mailto:info@jmillsent.com">
                 INFO@JMILLSENT.COM
               </a>
@@ -217,7 +217,7 @@ function Contact({ contact }) {
         </div>
       </div>
     </Layout>
-  );
+  )
 }
 
 export async function getStaticProps() {
@@ -232,7 +232,7 @@ export async function getStaticProps() {
           }
         `),
     },
-  };
+  }
 }
 
-export default Contact;
+export default Contact

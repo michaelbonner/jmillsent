@@ -1,16 +1,16 @@
-import Link from "next/link";
-import { useLayoutEffect, useState } from "react";
-import urlForSanitySource from "../lib/urlForSanitySource";
+import Link from 'next/link'
+import { useLayoutEffect, useState } from 'react'
+import urlForSanitySource from '../lib/urlForSanitySource'
 
 const WorkItemTile = ({ workItem, index, hideAfterCount = 999 }) => {
-  const [isHovered, setIsHovered] = useState(false);
-  const [hasHovered, setHasHovered] = useState(false);
+  const [isHovered, setIsHovered] = useState(false)
+  const [hasHovered, setHasHovered] = useState(false)
 
   useLayoutEffect(() => {
     setTimeout(() => {
-      setHasHovered(true);
-    }, 1500);
-  }, []);
+      setHasHovered(true)
+    }, 1500)
+  }, [])
 
   return (
     <Link href={`/work/${workItem.slug.current}`} key={workItem._id}>
@@ -22,26 +22,26 @@ const WorkItemTile = ({ workItem, index, hideAfterCount = 999 }) => {
         style={{
           backgroundImage: workItem.poster
             ? `url(${urlForSanitySource(workItem.poster).width(700)})`
-            : "",
-          backgroundSize: "cover",
-          backgroundPosition: "center",
-          backgroundRepeat: "no-repeat",
+            : '',
+          backgroundSize: 'cover',
+          backgroundPosition: 'center',
+          backgroundRepeat: 'no-repeat',
         }}
         onMouseEnter={() => {
-          setHasHovered(true);
-          setIsHovered(true);
+          setHasHovered(true)
+          setIsHovered(true)
         }}
         onMouseLeave={() => setIsHovered(false)}
         onTouchStart={() => {
-          setHasHovered(true);
-          setIsHovered(true);
+          setHasHovered(true)
+          setIsHovered(true)
         }}
         onTouchEnd={() => setIsHovered(false)}
       >
         {hasHovered && workItem.shortClipMp4URL && workItem.shortClipOgvURL && (
           <video
             className={`absolute w-full h-full inset-0 object-cover transition-all duration-700 ${
-              isHovered ? "opacity-100" : "opacity-0"
+              isHovered ? 'opacity-100' : 'opacity-0'
             }`}
             muted={true}
             autoPlay={true}
@@ -61,7 +61,7 @@ const WorkItemTile = ({ workItem, index, hideAfterCount = 999 }) => {
         </div>
       </a>
     </Link>
-  );
-};
+  )
+}
 
-export default WorkItemTile;
+export default WorkItemTile

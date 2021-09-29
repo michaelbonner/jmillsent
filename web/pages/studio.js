@@ -1,17 +1,14 @@
-import groq from "groq";
-import BlockContent from "@sanity/block-content-to-react";
-import Image from "next/image";
-import {
-  Link as SmoothScrollLink,
-  animateScroll as scroll,
-} from "react-scroll";
-import { H1, H2, H3 } from "../components/headings";
-import Layout from "../components/layout";
-import { getClient } from "../lib/sanity";
-import VideoPlayer from "../components/video-player";
-import MediumWhiteBar from "../components/medium-white-bar";
-import urlForSanitySource from "../lib/urlForSanitySource";
-import LittleWhiteBar from "../components/little-white-bar";
+import groq from 'groq'
+import BlockContent from '@sanity/block-content-to-react'
+import Image from 'next/image'
+import { Link as SmoothScrollLink, animateScroll as scroll } from 'react-scroll'
+import { H1, H2, H3 } from '../components/headings'
+import Layout from '../components/layout'
+import { getClient } from '../lib/sanity'
+import VideoPlayer from '../components/video-player'
+import MediumWhiteBar from '../components/medium-white-bar'
+import urlForSanitySource from '../lib/urlForSanitySource'
+import LittleWhiteBar from '../components/little-white-bar'
 
 function Studio({ studioPage }) {
   const heroContent = (
@@ -29,7 +26,7 @@ function Studio({ studioPage }) {
         offset={-100}
         duration={500}
         style={{
-          transform: "translate3d(0, 20vh, 0)",
+          transform: 'translate3d(0, 20vh, 0)',
         }}
       >
         <span className="text-4xl uppercase font-bold">Play</span>
@@ -37,7 +34,7 @@ function Studio({ studioPage }) {
         <span className="text-2xl font-bold">&gt;</span>
       </SmoothScrollLink>
     </div>
-  );
+  )
 
   return (
     <Layout
@@ -122,14 +119,14 @@ function Studio({ studioPage }) {
                     </h3>
                     {service.description && (
                       <>
-                        <LittleWhiteBar yMargin={"my-4"} />
+                        <LittleWhiteBar yMargin={'my-4'} />
                         <div className="mt-4 max-w-5xl prose-lg text-center mx-auto text-white font-light">
                           <BlockContent blocks={service.description} />
                         </div>
                       </>
                     )}
                   </div>
-                );
+                )
               })}
             </div>
           )}
@@ -138,7 +135,7 @@ function Studio({ studioPage }) {
       </div>
       <MediumWhiteBar />
     </Layout>
-  );
+  )
 }
 
 export async function getStaticProps() {
@@ -176,12 +173,12 @@ export async function getStaticProps() {
             title,
   		}
   		`
-  );
+  )
   return {
     props: {
       studioPage,
     },
-  };
+  }
 }
 
-export default Studio;
+export default Studio

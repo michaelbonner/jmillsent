@@ -1,14 +1,14 @@
-import groq from "groq";
-import BlockContent from "@sanity/block-content-to-react";
-import Image from "next/image";
-import Link from "next/link";
-import { H1, H2, H3 } from "../components/headings";
-import Layout from "../components/layout";
-import { getClient } from "../lib/sanity";
-import VideoPlayer from "../components/video-player";
-import MediumWhiteBar from "../components/medium-white-bar";
-import urlForSanitySource from "../lib/urlForSanitySource";
-import LittleWhiteBar from "../components/little-white-bar";
+import groq from 'groq'
+import BlockContent from '@sanity/block-content-to-react'
+import Image from 'next/image'
+import Link from 'next/link'
+import { H1, H2, H3 } from '../components/headings'
+import Layout from '../components/layout'
+import { getClient } from '../lib/sanity'
+import VideoPlayer from '../components/video-player'
+import MediumWhiteBar from '../components/medium-white-bar'
+import urlForSanitySource from '../lib/urlForSanitySource'
+import LittleWhiteBar from '../components/little-white-bar'
 
 function Moments({ momentsPage }) {
   const heroContent = (
@@ -18,7 +18,7 @@ function Moments({ momentsPage }) {
         {momentsPage.subtitle}
       </h2>
     </div>
-  );
+  )
 
   return (
     <Layout
@@ -56,10 +56,10 @@ function Moments({ momentsPage }) {
       <section className="max-w-7xl mx-auto text-center my-12 lg:my-36">
         <div className="mt-12 grid grid-cols-1 lg:grid-cols-3 xl:grid-cols-4 gap-1">
           {momentsPage.images.map((image, index) => {
-            const evenRow = (index / 4) % 2 >= 1;
+            const evenRow = (index / 4) % 2 >= 1
 
-            const width = `400`;
-            const height = evenRow ? `450` : `250`;
+            const width = `400`
+            const height = evenRow ? `450` : `250`
 
             return (
               <Image
@@ -70,14 +70,14 @@ function Moments({ momentsPage }) {
                 width={width}
                 alt={image.caption}
               />
-            );
+            )
           })}
         </div>
       </section>
       <MediumWhiteBar />
       {/* end: utah locations */}
     </Layout>
-  );
+  )
 }
 
 export async function getStaticProps() {
@@ -103,12 +103,12 @@ export async function getStaticProps() {
             },
   		}
   		`
-  );
+  )
   return {
     props: {
       momentsPage,
     },
-  };
+  }
 }
 
-export default Moments;
+export default Moments

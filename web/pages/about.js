@@ -1,15 +1,15 @@
-import groq from "groq";
-import BlockContent from "@sanity/block-content-to-react";
-import Image from "next/image";
-import Link from "next/link";
-import { H1, H2, H3 } from "../components/headings";
-import Layout from "../components/layout";
-import { getClient } from "../lib/sanity";
-import VideoPlayer from "../components/video-player";
-import MediumWhiteBar from "../components/medium-white-bar";
-import urlForSanitySource from "../lib/urlForSanitySource";
-import LittleWhiteBar from "../components/little-white-bar";
-import SanityImage from "../components/sanity-image";
+import groq from 'groq'
+import BlockContent from '@sanity/block-content-to-react'
+import Image from 'next/image'
+import Link from 'next/link'
+import { H1, H2, H3 } from '../components/headings'
+import Layout from '../components/layout'
+import { getClient } from '../lib/sanity'
+import VideoPlayer from '../components/video-player'
+import MediumWhiteBar from '../components/medium-white-bar'
+import urlForSanitySource from '../lib/urlForSanitySource'
+import LittleWhiteBar from '../components/little-white-bar'
+import SanityImage from '../components/sanity-image'
 
 function About({ aboutPage }) {
   const heroContent = (
@@ -19,7 +19,7 @@ function About({ aboutPage }) {
         {aboutPage.subtitle}
       </h2>
     </div>
-  );
+  )
 
   return (
     <Layout
@@ -78,14 +78,14 @@ function About({ aboutPage }) {
                     </h3>
                     {service.description && (
                       <>
-                        <LittleWhiteBar yMargin={"my-4"} />
+                        <LittleWhiteBar yMargin={'my-4'} />
                         <div className="mt-4 max-w-5xl prose-lg text-center mx-auto text-white font-light">
                           <BlockContent blocks={service.description} />
                         </div>
                       </>
                     )}
                   </div>
-                );
+                )
               })}
             </div>
           )}
@@ -123,7 +123,7 @@ function About({ aboutPage }) {
               </div>
             )}
           </div>
-          <Link href={aboutPage.company3Link || "https://www.company3.com/"}>
+          <Link href={aboutPage.company3Link || 'https://www.company3.com/'}>
             <a
               className="mt-12 flex items-center justify-center text-4xl font-outline uppercase space-x-6 max-w-3xl mx-auto"
               target="_blank"
@@ -172,10 +172,10 @@ function About({ aboutPage }) {
             <a className="flex items-end justify-center space-x-4 mt-12">
               <span className="uppercase font-extrabold text-xl lg:text-3xl">
                 {aboutPage.directorName} DIRECTOR’S
-              </span>{" "}
+              </span>{' '}
               <span className="uppercase font-outline text-xl lg:text-3xl">
                 SITE
-              </span>{" "}
+              </span>{' '}
               <span className="font-bold text-xl lg:text-2xl">&gt;</span>
             </a>
           </Link>
@@ -204,12 +204,12 @@ function About({ aboutPage }) {
                 <p className="mt-4 uppercase font-extrabold text-xl lg:text-2xl">
                   {teamMember.name}
                 </p>
-                <LittleWhiteBar yMargin={"my-2"} />
+                <LittleWhiteBar yMargin={'my-2'} />
                 <p className="uppercase font-outline text-xl">
                   {teamMember.title}
                 </p>
               </div>
-            );
+            )
           })}
         </div>
       </section>
@@ -235,7 +235,7 @@ function About({ aboutPage }) {
                 width="600"
                 alt={utahLocation.caption}
               />
-            );
+            )
           })}
         </div>
       </section>
@@ -252,14 +252,14 @@ function About({ aboutPage }) {
               <div key={brand._id}>
                 <SanityImage image={brand.image} alt={brand.name} />
               </div>
-            );
+            )
           })}
         </div>
       </section>
       <MediumWhiteBar />
       {/* end: trusted by */}
     </Layout>
-  );
+  )
 }
 
 export async function getStaticProps() {
@@ -303,12 +303,12 @@ export async function getStaticProps() {
             },
   		}
   		`
-  );
+  )
   return {
     props: {
       aboutPage,
     },
-  };
+  }
 }
 
-export default About;
+export default About

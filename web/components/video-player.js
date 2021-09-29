@@ -1,123 +1,123 @@
 /* eslint-disable @next/next/no-img-element */
-import { useEffect, useLayoutEffect, useRef, useState } from "react";
-import ReactPlayer from "react-player";
-import { GrPlay, GrPause, GrContract, GrExpand } from "react-icons/gr";
-import useInterval from "../hooks/useInterval";
-import screenfull from "screenfull";
-import urlForSanitySource from "../lib/urlForSanitySource";
+import { useEffect, useLayoutEffect, useRef, useState } from 'react'
+import ReactPlayer from 'react-player'
+import { GrPlay, GrPause, GrContract, GrExpand } from 'react-icons/gr'
+import useInterval from '../hooks/useInterval'
+import screenfull from 'screenfull'
+import urlForSanitySource from '../lib/urlForSanitySource'
 
 const VideoPlayer = ({
   poster,
   title,
   videoId,
   clientName,
-  videoHeightAspectRatio = "9",
-  videoWidthAspectRatio = "16",
+  videoHeightAspectRatio = '9',
+  videoWidthAspectRatio = '16',
 }) => {
-  const [showVideo, setShowVideo] = useState(false);
-  const [videoPlaying, setVideoPlaying] = useState(false);
-  const player = useRef(null);
-  const scrubber = useRef(null);
-  const [scrubberWidth, setScrubberWidth] = useState(0);
-  const [scrubberPosition, setScrubberPosition] = useState(0);
-  const [totalPlaySeconds, setTotalPlaySeconds] = useState(0);
-  const [isPlaying, setIsPlaying] = useState(false);
-  const [isFullscreen, setIsFullscreen] = useState(false);
-  const [isIos, setIsIos] = useState(false);
-  const [isIpad, setIsIpad] = useState(false);
+  const [showVideo, setShowVideo] = useState(false)
+  const [videoPlaying, setVideoPlaying] = useState(false)
+  const player = useRef(null)
+  const scrubber = useRef(null)
+  const [scrubberWidth, setScrubberWidth] = useState(0)
+  const [scrubberPosition, setScrubberPosition] = useState(0)
+  const [totalPlaySeconds, setTotalPlaySeconds] = useState(0)
+  const [isPlaying, setIsPlaying] = useState(false)
+  const [isFullscreen, setIsFullscreen] = useState(false)
+  const [isIos, setIsIos] = useState(false)
+  const [isIpad, setIsIpad] = useState(false)
 
   const checkIfIos = (navigator) => {
     return (
       [
-        "iPad Simulator",
-        "iPhone Simulator",
-        "iPod Simulator",
-        "iPad",
-        "iPhone",
-        "iPod",
+        'iPad Simulator',
+        'iPhone Simulator',
+        'iPod Simulator',
+        'iPad',
+        'iPhone',
+        'iPod',
       ].includes(navigator.platform) ||
       // iPad on iOS 13 detection
-      (navigator.userAgent.includes("Mac") && "ontouchend" in document)
-    );
-  };
+      (navigator.userAgent.includes('Mac') && 'ontouchend' in document)
+    )
+  }
 
   const checkIfIpad = (navigator) => {
     return (
-      !["iPhone", "iPod"].includes(navigator.platform) &&
-      navigator.userAgent.includes("Mac") &&
-      "ontouchend" in document
-    );
-  };
+      !['iPhone', 'iPod'].includes(navigator.platform) &&
+      navigator.userAgent.includes('Mac') &&
+      'ontouchend' in document
+    )
+  }
 
   const toggleFullScreen = (onOff) => {
-    const element = document.querySelector(".bpd-player-container");
+    const element = document.querySelector('.bpd-player-container')
     if (onOff) {
       if (screenfull.isEnabled) {
-        screenfull.request(element);
+        screenfull.request(element)
       }
-      setIsFullscreen(true);
+      setIsFullscreen(true)
     } else {
       if (screenfull.isEnabled) {
-        screenfull.exit();
+        screenfull.exit()
       }
-      setIsFullscreen(false);
+      setIsFullscreen(false)
     }
-  };
+  }
 
   const handleFullScreenChange = (event) => {
     if (screenfull.isFullscreen) {
-      setIsFullscreen(true);
+      setIsFullscreen(true)
     } else {
-      setIsFullscreen(false);
+      setIsFullscreen(false)
     }
-  };
+  }
 
   useEffect(() => {
     if (screenfull.isEnabled) {
-      screenfull.on("change", handleFullScreenChange);
+      screenfull.on('change', handleFullScreenChange)
     }
 
     return () => {
       if (screenfull.isEnabled) {
-        screenfull.off("change", handleFullScreenChange);
+        screenfull.off('change', handleFullScreenChange)
       }
-    };
-  }, []);
+    }
+  }, [])
 
   useEffect(() => {
     setTimeout(() => {
-      setScrubberWidth(scrubber?.current?.clientWidth || 100);
-    }, 1000);
-  }, [scrubber]);
+      setScrubberWidth(scrubber?.current?.clientWidth || 100)
+    }, 1000)
+  }, [scrubber])
 
   useInterval(
     () => {
       setScrubberPosition(
         (player.current.getCurrentTime() / totalPlaySeconds) * scrubberWidth
-      );
+      )
     },
     isPlaying ? 75 : null
-  );
+  )
 
   useLayoutEffect(() => {
     if (checkIfIos(window.navigator)) {
-      setIsIos(true);
+      setIsIos(true)
     }
     if (checkIfIpad(window.navigator)) {
-      setIsIpad(true);
+      setIsIpad(true)
     }
-  }, []);
+  }, [])
 
   return (
     <article
       className={`bpd-player-container relative z-20 ${
-        isFullscreen ? "h-screen flex flex-col justify-center items-center" : ""
+        isFullscreen ? 'h-screen flex flex-col justify-center items-center' : ''
       }`}
     >
       {videoId ? (
         <div
-          className={`${isFullscreen ? "w-full" : "container"}${
-            !showVideo ? " bg-gray-900" : ""
+          className={`${isFullscreen ? 'w-full' : 'container'}${
+            !showVideo ? ' bg-gray-900' : ''
           } mx-auto transition-all duration-700`}
         >
           <div
@@ -137,18 +137,18 @@ const VideoPlayer = ({
               playing={videoPlaying}
               onReady={() => {
                 setTimeout(() => {
-                  setTotalPlaySeconds(player.current?.getDuration() || 0);
-                  setShowVideo(true);
-                }, [500]);
+                  setTotalPlaySeconds(player.current?.getDuration() || 0)
+                  setShowVideo(true)
+                }, [500])
               }}
               onEnded={() => {
-                setVideoPlaying(false);
+                setVideoPlaying(false)
               }}
               onPlay={async () => {
-                setIsPlaying(true);
+                setIsPlaying(true)
               }}
               onPause={() => {
-                setIsPlaying(false);
+                setIsPlaying(false)
               }}
               ref={player}
             ></ReactPlayer>
@@ -159,7 +159,7 @@ const VideoPlayer = ({
               >
                 <GrPlay
                   className={`bpd-white-icon transition-all duration-500 ${
-                    videoPlaying ? "opacity-0" : "opacity-100"
+                    videoPlaying ? 'opacity-0' : 'opacity-100'
                   }`}
                 />
               </button>
@@ -175,12 +175,12 @@ const VideoPlayer = ({
               >
                 <GrPause
                   className={`bpd-white-icon ${
-                    videoPlaying ? "opacity-100" : "opacity-0"
+                    videoPlaying ? 'opacity-100' : 'opacity-0'
                   } absolute inset-0 transition-all duration-500fill-current`}
                 />
                 <GrPlay
                   className={`bpd-white-icon ${
-                    videoPlaying ? "opacity-0" : "opacity-100"
+                    videoPlaying ? 'opacity-0' : 'opacity-100'
                   } absolute inset-0 transition-all duration-500fill-current`}
                 />
               </button>
@@ -188,16 +188,16 @@ const VideoPlayer = ({
                 className="relative w-full border-2 border-white rounded"
                 onClick={(e) => {
                   const scrubberBoundingClientRect =
-                    scrubber.current.getBoundingClientRect();
+                    scrubber.current.getBoundingClientRect()
 
                   const zeroBasedClickPosition =
-                    e.clientX - scrubberBoundingClientRect.left;
+                    e.clientX - scrubberBoundingClientRect.left
 
                   const xPercentageClicked =
-                    zeroBasedClickPosition / scrubber.current.clientWidth;
+                    zeroBasedClickPosition / scrubber.current.clientWidth
 
-                  player.current.seekTo(xPercentageClicked, "fraction");
-                  setScrubberPosition(xPercentageClicked * scrubberWidth);
+                  player.current.seekTo(xPercentageClicked, 'fraction')
+                  setScrubberPosition(xPercentageClicked * scrubberWidth)
                 }}
                 ref={scrubber}
               >
@@ -244,6 +244,6 @@ const VideoPlayer = ({
         </div>
       )}
     </article>
-  );
-};
-export default VideoPlayer;
+  )
+}
+export default VideoPlayer

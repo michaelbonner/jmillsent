@@ -1,13 +1,13 @@
 /* eslint-disable @next/next/no-img-element */
-import { useState } from "react";
-import groq from "groq";
-import Link from "next/link";
-import { HiChevronDown } from "react-icons/hi";
-import Layout from "../../components/layout";
-import { getClient } from "../../lib/sanity";
-import VideoPlayer from "../../components/video-player";
-import MediumWhiteBar from "../../components/medium-white-bar";
-import { H3 } from "../../components/headings";
+import { useState } from 'react'
+import groq from 'groq'
+import Link from 'next/link'
+import { HiChevronDown } from 'react-icons/hi'
+import Layout from '../../components/layout'
+import { getClient } from '../../lib/sanity'
+import VideoPlayer from '../../components/video-player'
+import MediumWhiteBar from '../../components/medium-white-bar'
+import { H3 } from '../../components/headings'
 // import WorkItemTile from "../../components/work-item-tile"
 
 const workItemQuery = groq`
@@ -25,7 +25,7 @@ const workItemQuery = groq`
   videoHeightAspectRatio,
   videoWidthAspectRatio,
 }
-`;
+`
 
 /*
 prevent purging of aspect ratio
@@ -50,7 +50,7 @@ aspect-w-16	aspect-h-16
 const WorkItem = ({ workItem = {}, workItems = [] }) => {
   const fullTitle = workItem.clientName
     ? `${workItem.clientName} | ${workItem.title}`
-    : workItem.title;
+    : workItem.title
 
   return (
     <Layout
@@ -69,8 +69,8 @@ const WorkItem = ({ workItem = {}, workItems = [] }) => {
           title={workItem.title}
           videoId={workItem.videoId}
           clientName={workItem.clientName}
-          videoHeightAspectRatio={workItem.videoHeightAspectRatio || "9"}
-          videoWidthAspectRatio={workItem.videoWidthAspectRatio || "16"}
+          videoHeightAspectRatio={workItem.videoHeightAspectRatio || '9'}
+          videoWidthAspectRatio={workItem.videoWidthAspectRatio || '16'}
         />
         <p className="text-4xl mt-4 xl:mt-8 flex items-center justify-center space-x-6">
           <span className="uppercase font-extrabold text-2xl lg:text-5xl">
@@ -98,7 +98,7 @@ const WorkItem = ({ workItem = {}, workItems = [] }) => {
                         {credit.value}
                       </div>
                     </div>
-                  );
+                  )
                 })}
               </div>
             </div>
@@ -115,33 +115,33 @@ const WorkItem = ({ workItem = {}, workItems = [] }) => {
 
       <MediumWhiteBar />
     </Layout>
-  );
-};
+  )
+}
 
 export async function getStaticPaths() {
   const paths = await getClient().fetch(
     `
     *[_type == "workItem"]{slug}
   `
-  );
+  )
 
   return {
     paths: paths
       .filter((path) => {
-        return path;
+        return path
       })
       .map((path) => {
-        return { params: { slug: path.slug.current } };
+        return { params: { slug: path.slug.current } }
       }),
     fallback: true,
-  };
+  }
 }
 
 export async function getStaticProps({ params }) {
   // It's important to default the slug so that it doesn't return "undefined"
-  const { slug = "" } = params;
+  const { slug = '' } = params
   try {
-    const workItem = await getClient().fetch(workItemQuery, { slug });
+    const workItem = await getClient().fetch(workItemQuery, { slug })
     const workItems = await getClient().fetch(
       groq`
       *[_type == "workItem"][!(_id in path('drafts.**'))]|order(order asc){
@@ -154,15 +154,15 @@ export async function getStaticProps({ params }) {
         "shortClipOgvURL": shortClipOgv.asset->url,
       }
     `
-    );
+    )
     return {
       props: { workItem, workItems },
-    };
+    }
   } catch (error) {
     return {
       props: {},
-    };
+    }
   }
 }
 
-export default WorkItem;
+export default WorkItem

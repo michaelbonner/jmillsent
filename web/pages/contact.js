@@ -48,11 +48,11 @@ function Contact({ contact }) {
           backgroundPosition: 'center center',
         }}
       >
-        <div className="max-w-5xl mx-auto px-4 lg:px-0 py-24 text-center">
+        <div className="max-w-5xl mx-auto px-4 lg:px-0 pt-14 pb-8 lg:pt-24 lg:pb-24 text-center">
           <H1>{contact.title}</H1>
         </div>
-        <div className="max-w-7xl w-full mx-auto lg:flex space-x-16 pb-24">
-          <div className="max-w-lg lg:w-1/2">
+        <div className="max-w-7xl w-full mx-auto lg:flex lg:space-x-16 pb-24">
+          <div className="max-w-lg lg:w-1/2 px-4 lg:px-0">
             {state === 'initial' && (
               <Formik
                 initialValues={contactForm}
@@ -167,7 +167,7 @@ function Contact({ contact }) {
               </div>
             )}
           </div>
-          <div className="w-full lg:w-1/2">
+          <div className="w-full lg:w-1/2 px-4 lg:px-0 mt-20 lg:mt-0">
             <Map
               marker={{
                 lat: 40.8664457,
@@ -179,7 +179,7 @@ function Contact({ contact }) {
         </div>
       </div>
       <div className="bg-black">
-        <div className="max-w-5xl mx-auto px-4 lg:px-0 pt-24 flex items-center justify-center space-x-12 prose prose-white text-gray-300 font-light text-lg">
+        <div className="max-w-5xl mx-auto px-4 lg:px-0 pt-24 lg:flex items-center justify-center text-center lg:text-left lg:space-x-12 prose prose-white text-gray-300 font-light text-lg">
           <div>
             <p>
               JME STUDIO ADDRESS
@@ -193,7 +193,7 @@ function Contact({ contact }) {
               </a>
             </p>
           </div>
-          <div>
+          <div className="hidden lg:block">
             <span className="block h-16 w-px bg-white" />
           </div>
           <div>

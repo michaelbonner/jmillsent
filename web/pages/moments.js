@@ -1,16 +1,18 @@
+import { useState } from 'react'
+import Lightbox from 'react-image-lightbox'
 import groq from 'groq'
 import BlockContent from '@sanity/block-content-to-react'
 import Image from 'next/image'
-import Link from 'next/link'
-import { H1, H2, H3 } from '../components/headings'
+import { H1, H2 } from '../components/headings'
 import Layout from '../components/layout'
 import { getClient } from '../lib/sanity'
-import VideoPlayer from '../components/video-player'
 import MediumWhiteBar from '../components/medium-white-bar'
-import urlForSanitySource from '../lib/urlForSanitySource'
-import LittleWhiteBar from '../components/little-white-bar'
+
+import 'react-image-lightbox/style.css'
 
 function Moments({ momentsPage }) {
+  const [isGalleryModelOpen, setIsGalleryModelOpen] = useState(false)
+  const [photoIndex, setPhotoIndex] = useState(0)
   const heroContent = (
     <div className="h-full w-full flex flex-col items-center justify-center text-white">
       <H1>{momentsPage.title}</H1>
@@ -18,6 +20,10 @@ function Moments({ momentsPage }) {
         {momentsPage.subtitle}
       </h2>
     </div>
+  )
+
+  const images = momentsPage.images.map(
+    (image) => `${image.imageUrl}?w=1200&auto=format`
   )
 
   return (
@@ -28,6 +34,21 @@ function Moments({ momentsPage }) {
       heroVideoId={momentsPage.videoId}
       heroContent={heroContent}
     >
+      {isGalleryModelOpen && (
+        <Lightbox
+          mainSrc={images[photoIndex]}
+          nextSrc={images[(photoIndex + 1) % images.length]}
+          prevSrc={images[(photoIndex + images.length - 1) % images.length]}
+          onCloseRequest={() => setIsGalleryModelOpen(false)}
+          onMovePrevRequest={() =>
+            setPhotoIndex((photoIndex + images.length - 1) % images.length)
+          }
+          onMoveNextRequest={() =>
+            setPhotoIndex((photoIndex + 1) % images.length)
+          }
+        />
+      )}
+
       <div className="container px-4 lg:mx-auto text-white text-center my-12 lg:my-24">
         <H2>{momentsPage.section1Title}</H2>
         {momentsPage.section1Body && (
@@ -42,7 +63,7 @@ function Moments({ momentsPage }) {
           height="130"
         />
         <MediumWhiteBar />
-        <div className="pt-24 px-8 container px-4 lg:mx-auto text-center">
+        <div className="pt-24 px-8 container lg:mx-auto text-center">
           <p className="text-4xl font-extrabold tracking-widest">
             {momentsPage.section2Title}
           </p>
@@ -64,11 +85,15 @@ function Moments({ momentsPage }) {
             return (
               <Image
                 key={index}
-                className="block filter grayscale hover:filter-none transition-all duration-500"
+                className="block cursor-pointer"
                 src={`${image.imageUrl}?w=${width}&h=${height}&auto=format&fit=crop&crop=focalpoint`}
                 height={height}
                 width={width}
                 alt={image.caption}
+                onClick={() => {
+                  setIsGalleryModelOpen(true)
+                  setPhotoIndex(index)
+                }}
               />
             )
           })}

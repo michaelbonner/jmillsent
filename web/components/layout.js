@@ -281,7 +281,7 @@ const Layout = ({
           }`}
           style={headerStyles}
         >
-          {heroVideoId && (
+          {heroVideoId ? (
             <div
               className={`bpd-hero-background absolute z-0 h-full w-full inset-0 ${
                 videoPlaying ? 'opacity-100' : 'opacity-0'
@@ -315,6 +315,15 @@ const Layout = ({
                 </div>
               )}
             </div>
+          ) : (
+            heroContent && (
+              <div
+                className="flex items-center bpd-hero-foreground z-30 h-full w-full text-white relative"
+                style={{ minHeight: `50vh` }}
+              >
+                {heroContent}
+              </div>
+            )
           )}
         </div>
       </header>

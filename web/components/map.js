@@ -25,6 +25,10 @@ const Map = ({ marker }) => {
         icon={marker.icon}
         position={{ lat: marker.lat, lng: marker.lng }}
       />
+      <Marker
+        icon={`http://localhost:3000/images/pin-slc-airport.png`}
+        position={{ lat: 40.7899404, lng: -111.9790706 }}
+      />
     </GoogleMap>
   ) : (
     <></>

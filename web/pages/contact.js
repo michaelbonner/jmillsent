@@ -52,7 +52,7 @@ function Contact({ contact }) {
           <H1>{contact.title}</H1>
         </div>
         <div className="max-w-7xl w-full mx-auto lg:flex lg:space-x-16 pb-24">
-          <div className="max-w-lg lg:w-1/2 px-4 lg:px-0">
+          <div className="max-w-lg lg:w-1/3 px-4 lg:px-0">
             {state === 'initial' && (
               <Formik
                 initialValues={contactForm}
@@ -95,7 +95,7 @@ function Contact({ contact }) {
                       />
                       <ErrorMessage
                         name="name"
-                        className="absolute right-2 top-0 text-left text-red-700 px-4 py-3"
+                        className="absolute right-0 -bottom-2 text-left text-xs text-red-700 px-4 py-3 leading-3"
                         component="div"
                       />
                     </div>
@@ -109,7 +109,7 @@ function Contact({ contact }) {
                       />
                       <ErrorMessage
                         name="emailAddress"
-                        className="absolute right-2 top-0 text-left text-red-700 px-4 py-3"
+                        className="absolute right-0 -bottom-2 text-left text-xs text-red-700 px-4 py-3 leading-3"
                         component="div"
                       />
                     </div>
@@ -123,7 +123,7 @@ function Contact({ contact }) {
                       />
                       <ErrorMessage
                         name="phoneNumber"
-                        className="absolute right-2 top-0 text-left text-red-700 px-4 py-3"
+                        className="absolute right-0 -bottom-2 text-left text-xs text-red-700 px-4 py-3 leading-3"
                         component="div"
                       />
                     </div>
@@ -138,7 +138,7 @@ function Contact({ contact }) {
                       />
                       <ErrorMessage
                         name="message"
-                        className="absolute right-2 top-0 text-left text-red-700 px-4 py-3"
+                        className="absolute right-0 -bottom-2 text-left text-xs text-red-700 px-4 py-3 leading-3"
                         component="div"
                       />
                     </div>
@@ -167,7 +167,7 @@ function Contact({ contact }) {
               </div>
             )}
           </div>
-          <div className="w-full lg:w-1/2 px-4 lg:px-0 mt-20 lg:mt-0">
+          <div className="w-full lg:w-2/3 px-4 lg:px-0 mt-20 lg:mt-0">
             <Map
               marker={{
                 lat: 40.8664457,

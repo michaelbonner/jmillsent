@@ -1,34 +1,32 @@
 module.exports = {
-    purge: [
-        './pages/**/*.{js,ts,jsx,tsx}',
-        './components/**/*.{js,ts,jsx,tsx}',
-    ],
-    darkMode: false, // or 'media' or 'class'
-    theme: {
-        extend: {
-            colors: {
-                'trans-black': 'rgba(0,0,0,0.5)',
-                gold: {
-                    DEFAULT: '#967738',
-                },
-            },
-            maxWidth: {
-                '8xl': '80rem',
-                '9xl': '90rem',
-            },
+  purge: ['./pages/**/*.{js,ts,jsx,tsx}', './components/**/*.{js,ts,jsx,tsx}'],
+  darkMode: false, // or 'media' or 'class'
+  theme: {
+    extend: {
+      colors: {
+        'trans-black': 'rgba(0,0,0,0.5)',
+        gold: {
+          DEFAULT: '#967738',
         },
-        fontFamily: {
-            sans: ['proxima-nova', 'sans-serif'],
-            outline: ['hwt-republic-gothic-outline', 'sans-serif'],
-        },
+      },
+      maxWidth: {
+        '8xl': '80rem',
+        '9xl': '90rem',
+      },
     },
-    variants: {
-        extend: {
-            filter: ['hover', 'focus'],
-        },
+    fontFamily: {
+      sans: ['proxima-nova', 'sans-serif'],
+      outline: ['hwt-republic-gothic-outline', 'sans-serif'],
     },
-    plugins: [
-        require('@tailwindcss/typography'),
-        require('@tailwindcss/aspect-ratio'),
-    ],
+  },
+  variants: {
+    extend: {
+      filter: ['hover', 'focus'],
+      translate: ['group-hover'],
+    },
+  },
+  plugins: [
+    require('@tailwindcss/typography'),
+    require('@tailwindcss/aspect-ratio'),
+  ],
 }

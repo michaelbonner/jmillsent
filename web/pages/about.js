@@ -127,10 +127,12 @@ function About({ aboutPage }) {
           </div>
           <Link href={aboutPage.company3Link || 'https://www.company3.com/'}>
             <a
-              className="mt-12 flex items-center justify-center text-4xl font-outline uppercase space-x-6 max-w-3xl mx-auto"
+              className="mt-12 flex items-center justify-center text-4xl font-outline uppercase space-x-6 max-w-3xl mx-auto group"
               target="_blank"
             >
-              <span>View</span>
+              <span className="group-hover:-translate-x-2 transform transition-all">
+                View
+              </span>
               <div>
                 <Image
                   alt="Company 3"
@@ -139,7 +141,9 @@ function About({ aboutPage }) {
                   width="50"
                 />
               </div>
-              <span>Site</span>
+              <span className="group-hover:translate-x-2 transform transition-all">
+                Site
+              </span>
             </a>
           </Link>
         </section>

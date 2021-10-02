@@ -17,11 +17,14 @@
     "dashboard-widget-vercel",
     "@sanity/dashboard",
     "order-documents",
-    "media"
+    "media",
+    "s3-dam"
   ],
   "env": {
     "development": {
-      "plugins": ["@sanity/vision"]
+      "plugins": [
+        "@sanity/vision"
+      ]
     }
   },
   "parts": [

@@ -110,8 +110,8 @@ const Layout = ({
 
   return (
     <div
-      className={`${heroVideoId ? 'opacity-0' : null} ${
-        heroVideoId && videoPlaying ? 'bpd-fade-in' : null
+      className={`${heroVideoId ? 'opacity-0' : ''} ${
+        heroVideoId && videoPlaying ? 'bpd-fade-in' : ''
       }`}
     >
       <Head>
@@ -277,7 +277,7 @@ const Layout = ({
           className={`relative h-full bg-black ${
             heroVideoId
               ? `lg:bg-gradient-to-b from-gray-400 to-white via-gray-100 lg:bg-opacity-25`
-              : null
+              : ''
           }`}
           style={headerStyles}
         >
@@ -319,7 +319,7 @@ const Layout = ({
             heroContent && (
               <div
                 className="flex items-center bpd-hero-foreground z-30 h-full w-full text-white relative"
-                style={{ minHeight: `50vh` }}
+                style={{ minHeight: `20vh` }}
               >
                 {heroContent}
               </div>

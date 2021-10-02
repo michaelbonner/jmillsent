@@ -9,6 +9,7 @@ import { getClient } from '../lib/sanity'
 import MediumWhiteBar from '../components/medium-white-bar'
 
 import 'react-image-lightbox/style.css'
+import LittleWhiteBar from '../components/little-white-bar'
 
 function Moments({ momentsPage }) {
   const [isGalleryModelOpen, setIsGalleryModelOpen] = useState(false)
@@ -49,33 +50,11 @@ function Moments({ momentsPage }) {
         />
       )}
 
-      <div className="container px-4 lg:mx-auto text-white text-center my-12 lg:my-24">
-        <H2>{momentsPage.section1Title}</H2>
-        {momentsPage.section1Body && (
-          <div className="mt-16 mb-8 prose-lg max-w-3xl text-center mx-auto">
-            <BlockContent blocks={momentsPage.section1Body} />
-          </div>
-        )}
-        <Image
-          src={`/images/jmills-raven-white.svg`}
-          alt="Jmills"
-          width="130"
-          height="130"
-        />
-        <MediumWhiteBar />
-        <div className="pt-24 px-8 container lg:mx-auto text-center">
-          <p className="text-4xl font-extrabold tracking-widest">
-            {momentsPage.section2Title}
-          </p>
-          <p className="mt-2 text-3xl font-outline">
-            {momentsPage.section2Subtitle}
-          </p>
-        </div>
-      </div>
+      <LittleWhiteBar />
 
-      {/* utah locations */}
-      <section className="max-w-7xl mx-auto text-center my-12 lg:my-36">
-        <div className="mt-12 grid grid-cols-1 lg:grid-cols-3 xl:grid-cols-4 gap-1 px-1">
+      {/* moments images */}
+      <section className="max-w-7xl mx-auto text-center my-12 lg:mt-16">
+        <div className="mt-0 grid grid-cols-1 lg:grid-cols-3 xl:grid-cols-4 gap-1 px-1">
           {momentsPage.images.map((image, index) => {
             const evenRow = (index / 4) % 2 >= 1
 
@@ -100,7 +79,7 @@ function Moments({ momentsPage }) {
         </div>
       </section>
       <MediumWhiteBar />
-      {/* end: utah locations */}
+      {/* end: moments images */}
     </Layout>
   )
 }

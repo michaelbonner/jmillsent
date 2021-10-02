@@ -43,7 +43,9 @@ const WorkItemTile = ({ workItem, index, hideAfterCount = 999 }) => {
           (workItem.shortClipOgvURL || workItem.shortClipOgvS3URL) && (
             <video
               className={`absolute w-full h-full inset-0 object-cover transition-all duration-700 ${
-                isHovered ? 'opacity-100' : 'opacity-0'
+                workItem.shortClipMp4S3URL || isHovered
+                  ? 'opacity-100'
+                  : 'opacity-0'
               }`}
               muted={true}
               autoPlay={true}

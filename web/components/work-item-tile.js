@@ -38,21 +38,47 @@ const WorkItemTile = ({ workItem, index, hideAfterCount = 999 }) => {
         }}
         onTouchEnd={() => setIsHovered(false)}
       >
-        {hasHovered && workItem.shortClipMp4URL && workItem.shortClipOgvURL && (
-          <video
-            className={`absolute w-full h-full inset-0 object-cover transition-all duration-700 ${
-              isHovered ? 'opacity-100' : 'opacity-0'
-            }`}
-            muted={true}
-            autoPlay={true}
-            loop={true}
-            playsInline={true}
-            preload="none"
-          >
-            <source id="mp4" src={workItem.shortClipMp4URL} type="video/mp4" />
-            <source id="ogv" src={workItem.shortClipOgvURL} type="video/ogg" />
-          </video>
-        )}
+        {hasHovered &&
+          (workItem.shortClipMp4URL || workItem.shortClipMp4S3URL) &&
+          (workItem.shortClipOgvURL || workItem.shortClipOgvS3URL) && (
+            <video
+              className={`absolute w-full h-full inset-0 object-cover transition-all duration-700 ${
+                isHovered ? 'opacity-100' : 'opacity-0'
+              }`}
+              muted={true}
+              autoPlay={true}
+              loop={true}
+              playsInline={true}
+              preload="none"
+            >
+              {workItem.shortClipMp4S3URL ? (
+                <source
+                  id="mp4"
+                  src={workItem.shortClipMp4S3URL}
+                  type="video/mp4"
+                />
+              ) : (
+                <source
+                  id="mp4"
+                  src={workItem.shortClipMp4URL}
+                  type="video/mp4"
+                />
+              )}
+              {workItem.shortClipOgvS3URL ? (
+                <source
+                  id="ogv"
+                  src={workItem.shortClipOgvS3URL}
+                  type="video/ogg"
+                />
+              ) : (
+                <source
+                  id="ogv"
+                  src={workItem.shortClipOgvURL}
+                  type="video/ogg"
+                />
+              )}
+            </video>
+          )}
         <div className="z-10 text-center">
           <h2 className="uppercase font-extrabold text-3xl lg:text-4xl">
             {workItem.clientName}

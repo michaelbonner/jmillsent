@@ -35,7 +35,9 @@ export async function getStaticProps() {
       title,
       poster,
       "shortClipMp4URL": shortClipMp4.asset->url,
+      "shortClipMp4S3URL": shortClipMp4S3.asset->fileURL,
       "shortClipOgvURL": shortClipOgv.asset->url,
+      "shortClipOgvS3URL": shortClipOgvS3.asset->fileURL,
     }
   `
   )

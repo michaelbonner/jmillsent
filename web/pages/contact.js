@@ -168,13 +168,7 @@ function Contact({ contact }) {
             )}
           </div>
           <div className="w-full lg:w-2/3 px-4 lg:px-0 mt-20 lg:mt-0">
-            <Map
-              marker={{
-                lat: 40.8664457,
-                lng: -111.9247221,
-                icon: 'https://jmillsent.vercel.app/images/map-pin.png',
-              }}
-            />
+            <Map />
           </div>
         </div>
       </div>

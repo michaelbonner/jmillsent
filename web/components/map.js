@@ -21,10 +21,12 @@ const Map = ({ marker }) => {
         styles: mapStyles,
       }}
     >
+      {/* JME */}
       <Marker
-        icon={marker.icon}
-        position={{ lat: marker.lat, lng: marker.lng }}
+        icon="https://jmillsent.vercel.app/images/jme-pin.png"
+        position={{ lat: 40.8664457, lng: -111.9247221 }}
       />
+      {/* Airport */}
       <Marker
         icon={`https://jmillsent.vercel.app/images/pin-slc-airport.png`}
         position={{ lat: 40.7899404, lng: -111.9790706 }}

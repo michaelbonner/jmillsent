@@ -26,7 +26,7 @@ const Map = ({ marker }) => {
         position={{ lat: marker.lat, lng: marker.lng }}
       />
       <Marker
-        icon={`https://jmills.vercel.app/images/pin-slc-airport.png`}
+        icon={`https://jmillsent.vercel.app/images/pin-slc-airport.png`}
         position={{ lat: 40.7899404, lng: -111.9790706 }}
       />
     </GoogleMap>

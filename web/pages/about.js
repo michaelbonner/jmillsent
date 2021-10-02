@@ -250,6 +250,67 @@ function About({ aboutPage }) {
       <MediumWhiteBar />
       {/* end: utah locations */}
 
+      {/* utah locations */}
+      <section className="max-w-7xl mx-auto text-center my-12 lg:my-36 px-4">
+        <div className="mt-12 grid grid-cols-1 lg:grid-cols-3 gap-8 my-12 lg:my-24">
+          {aboutPage.ravensCards.map((ravensCard, index) => {
+            return (
+              <div
+                className="flex flex-col space-y-12 border-2 border-gold py-8 px-12"
+                key={index}
+              >
+                <div>
+                  <Image
+                    className="block filter grayscale hover:filter-none transition-all duration-500"
+                    src={`/images/ravens-logo-white.svg`}
+                    height="197"
+                    width="646"
+                    alt={ravensCard.caption}
+                  />
+                </div>
+                <h4 className="font-bold text-4xl uppercase">
+                  {ravensCard.title}
+                </h4>
+                <div>
+                  <Image
+                    className="block filter grayscale hover:filter-none transition-all duration-500"
+                    src={`${ravensCard.imageUrl}?w=600&h=400`}
+                    height="400"
+                    width="600"
+                    alt={ravensCard.caption}
+                  />
+                </div>
+                <div className="prose-lg">
+                  <BlockContent blocks={ravensCard.body} />
+                </div>
+              </div>
+            )
+          })}
+        </div>
+        <H2>{aboutPage.ravensCardsTitle}</H2>
+        <p className="mt-2 text-3xl font-outline">
+          {aboutPage.ravensCardsSubtitle}
+        </p>
+        {aboutPage.ravensCardsContent && (
+          <div className="mt-8 mb-8 prose-lg max-w-3xl text-center mx-auto">
+            <BlockContent blocks={aboutPage.ravensCardsContent} />
+          </div>
+        )}
+        <Link href="https://ravensfilmworks.com/">
+          <a className="flex items-end justify-center space-x-4 mt-12 transform transition-all hover:translate-x-1">
+            <span className="uppercase font-extrabold text-xl lg:text-3xl">
+              View
+            </span>{' '}
+            <span className="uppercase font-outline text-xl lg:text-3xl">
+              SITE
+            </span>{' '}
+            <span className="font-bold text-xl lg:text-2xl">&gt;</span>
+          </a>
+        </Link>
+      </section>
+      <MediumWhiteBar />
+      {/* end: utah locations */}
+
       {/* trusted by */}
       <section className="max-w-7xl mx-auto text-center my-12 lg:my-36 px-4">
         <H3>Trusted By the Following</H3>
@@ -289,26 +350,34 @@ export async function getStaticProps() {
 			subtitle,
 			videoClient,
 			videoId,
-            brands[]->,
-            company3Body,
-            company3Link,
-            company3Title,
-            company3VideoClient,
-            directorDescription,
-            directorImage,
-            directorName,
-            directorTitle,
-            section2Subtitle,
-            section2Title,
-            services[]->,
-            teamMembers[]->,
-            title,
-            utahLocationsTitle,
-            utahLocationsDescription,
-            utahLocations[]{
-                caption,
-                "imageUrl": asset->url
-            },
+      brands[]->,
+      company3Body,
+      company3Link,
+      company3Title,
+      company3VideoClient,
+      directorDescription,
+      directorImage,
+      directorName,
+      directorTitle,
+      section2Subtitle,
+      section2Title,
+      services[]->,
+      teamMembers[]->,
+      title,
+      utahLocationsTitle,
+      utahLocationsDescription,
+      utahLocations[]{
+          caption,
+          "imageUrl": asset->url
+      },
+      ravensCards[]{
+          title,
+          "imageUrl": image.asset->url,
+          body
+      },
+      ravensCardsTitle,
+      ravensCardsSubtitle,
+      ravensCardsContent,
   		}
   		`
   )

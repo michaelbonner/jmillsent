@@ -242,6 +242,28 @@ export default {
       ],
     },
     {
+      name: "ravensCards",
+      title: "Ravens Cards",
+      type: "array",
+      of: [{ type: "ravensCard" }],
+    },
+    {
+      name: "ravensCardsTitle",
+      title: "Ravens Title",
+      type: "string",
+    },
+    {
+      name: "ravensCardsSubtitle",
+      title: "Ravens Subtitle",
+      type: "string",
+    },
+    {
+      name: "ravensCardsContent",
+      title: "Ravens Content",
+      type: "array",
+      of: [{ type: "block" }],
+    },
+    {
       name: "brands",
       title: "Brands",
       type: "array",

@@ -17,6 +17,7 @@ import contactPage from "./contactPage";
 import studioItem from "./studioItem";
 import studioPage from "./studioPage";
 import momentsPage from "./momentsPage";
+import ravensCard from "./ravensCard";
 
 // Then we give our schema to the builder and provide the result to Sanity
 export default createSchema({
@@ -40,5 +41,6 @@ export default createSchema({
     photo,
     momentsPage,
     blockContent,
+    ravensCard,
   ]),
 });

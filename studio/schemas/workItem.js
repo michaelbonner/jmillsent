@@ -41,14 +41,6 @@ export default {
       type: "datetime",
     },
     {
-      name: "shortClipMp4",
-      title: "DO NOT USE - Short hover clip - mp4",
-      type: "file",
-      options: {
-        accept: "video/mp4",
-      },
-    },
-    {
       name: "shortClipMp4S3",
       title: "Short hover clip - mp4 - S3",
       type: "s3-dam.media",
@@ -56,11 +48,6 @@ export default {
         accept: "video/*",
         storeOriginalFilename: true,
       },
-    },
-    {
-      name: "shortClipOgv",
-      title: "DO NOT USE - Short hover clip - ogv",
-      type: "file",
     },
     {
       name: "shortClipOgvS3",

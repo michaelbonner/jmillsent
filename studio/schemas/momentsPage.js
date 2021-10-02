@@ -52,17 +52,6 @@ export default {
         "Enter the ID ( {{video_id}} ) of the video, not the whole url. https://player.vimeo.com/video/{{video_id}}?badge=0&autopause=0&player_id=0&app_id=58479",
     },
     {
-      name: "section1Title",
-      title: "Section 1 title",
-      type: "string",
-    },
-    {
-      name: "section1Body",
-      title: "Section 1 body",
-      type: "array",
-      of: [{ type: "block" }],
-    },
-    {
       name: "images",
       title: "Images",
       type: "array",

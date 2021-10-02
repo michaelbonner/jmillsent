@@ -171,9 +171,9 @@ function About({ aboutPage }) {
             </div>
           )}
           <Link href="https://jeremymillerdirector.com/">
-            <a className="flex items-end justify-center space-x-4 mt-12">
+            <a className="flex items-end justify-center space-x-4 mt-12 transform transition-all hover:translate-x-1">
               <span className="uppercase font-extrabold text-xl lg:text-3xl">
-                {aboutPage.directorName} DIRECTOR’S
+                View Director&apos;s
               </span>{' '}
               <span className="uppercase font-outline text-xl lg:text-3xl">
                 SITE

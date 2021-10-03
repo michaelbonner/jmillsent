@@ -38,6 +38,17 @@ export default {
         hotspot: true,
       },
     },
+    {
+      name: "representationTitle",
+      title: "Representation title",
+      type: "string",
+    },
+    {
+      name: "representationCards",
+      title: "Representation cards",
+      type: "array",
+      of: [{ type: "representationCard" }],
+    },
   ],
   preview: {
     select: { title: "title", media: "backgroundImage" },

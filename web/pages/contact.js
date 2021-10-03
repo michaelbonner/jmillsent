@@ -6,11 +6,13 @@ import * as Yup from 'yup'
 import { Formik, Form, Field, ErrorMessage } from 'formik'
 import classNames from 'classnames'
 import TextareaAutosize from 'react-textarea-autosize'
+import BlockContent from '@sanity/block-content-to-react'
 import Layout from '../components/layout'
 import { getClient } from '../lib/sanity'
 import urlForSanitySource from '../lib/urlForSanitySource'
-import { H1 } from '../components/headings'
+import { H1, H3 } from '../components/headings'
 import Map from '../components/map'
+import LargeWhiteBar from '../components/large-white-bar'
 
 const phoneRegExp =
   /^((\\+[1-9]{1,4}[ \\-]*)|(\\([0-9]{2,3}\\)[ \\-]*)|([0-9]{2,4})[ \\-]*)*?[0-9]{3,4}?[ \\-]*[0-9]{3,4}?$/
@@ -189,42 +191,66 @@ function Contact({ contact }) {
             <Map />
           </div>
         </div>
-      </div>
-      <div className="bg-black">
-        <div className="max-w-5xl mx-auto px-4 lg:px-0 pt-24 lg:flex items-center justify-center text-center lg:text-left lg:space-x-12 prose prose-white text-gray-300 font-light text-lg">
-          <div>
-            <p>
-              JME STUDIO ADDRESS
-              <br />
-              <a
-                className="text-gray-300"
-                href="https://g.page/jmillsent?share"
-              >
-                1589 W 2225 S<br />
-                WOODS CROSS, UT 84087
-              </a>
-            </p>
+        <div className="mt-12">
+          <div className="text-center">
+            <H3>{contact.representationTitle}</H3>
           </div>
-          <div className="hidden lg:block">
-            <span className="block h-16 w-px bg-white" />
+          <LargeWhiteBar />
+          <div className="max-w-7xl mx-auto text-center grid grid-cols-1 lg:grid-cols-4 gap-8 text-gray-300">
+            {contact.representationCards.map((card) => {
+              return (
+                <div key={card.title}>
+                  <h4
+                    className="font-outline py-8 border-b border-white text-2xl lg:text-3xl mx-auto mb-12"
+                    style={{ maxWidth: '200px' }}
+                  >
+                    {card.title}
+                  </h4>
+                  <div className="prose prose-lg leading-5 text-gray-400">
+                    <BlockContent blocks={card.body} />
+                  </div>
+                </div>
+              )
+            })}
           </div>
-          <div>
-            <p>
-              STUDIO LINE:{' '}
-              <a className="text-gray-300" href="tel:801-797-9023">
-                801-797-9023
-              </a>
-              <br />
-              DIRECT LINE:{' '}
-              <a className="text-gray-300" href="tel:801-971-4683">
-                801-971-4683
-              </a>
-              <br />
-              EMAIL:{' '}
-              <a className="text-gray-300" href="mailto:info@jmillsent.com">
-                INFO@JMILLSENT.COM
-              </a>
-            </p>
+          <div className="lg:mt-24">
+            <LargeWhiteBar />
+          </div>
+          <div className="max-w-5xl mx-auto px-4 lg:px-0 lg:flex items-center justify-center text-center lg:text-left lg:space-x-12 prose prose-white text-gray-300 font-light text-lg">
+            <div>
+              <p>
+                JME STUDIO ADDRESS
+                <br />
+                <a
+                  className="text-gray-300"
+                  href="https://g.page/jmillsent?share"
+                >
+                  1589 W 2225 S<br />
+                  WOODS CROSS, UT 84087
+                </a>
+              </p>
+            </div>
+            <div className="hidden lg:block">
+              <span className="block h-16 w-px bg-white" />
+            </div>
+            <div>
+              <p>
+                STUDIO LINE:{' '}
+                <a className="text-gray-300" href="tel:801-797-9023">
+                  801-797-9023
+                </a>
+                <br />
+                DIRECT LINE:{' '}
+                <a className="text-gray-300" href="tel:801-971-4683">
+                  801-971-4683
+                </a>
+                <br />
+                EMAIL:{' '}
+                <a className="text-gray-300" href="mailto:info@jmillsent.com">
+                  INFO@JMILLSENT.COM
+                </a>
+              </p>
+            </div>
           </div>
         </div>
       </div>
@@ -240,7 +266,9 @@ export async function getStaticProps() {
             title,
             backgroundImage,
             seoTitle,
-            seoDescription
+            seoDescription,
+            representationTitle,
+            representationCards,
           }
         `),
     },

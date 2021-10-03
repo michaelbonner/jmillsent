@@ -52,6 +52,15 @@ const WorkItem = ({ workItem = {}, workItems = [] }) => {
     ? `${workItem.clientName} | ${workItem.title}`
     : workItem.title
 
+  const column1Credits = workItem.credits.slice(
+    0,
+    Math.ceil(workItem.credits.length / 2)
+  )
+  const column2Credits = workItem.credits.slice(column1Credits.length)
+
+  console.log('column1Credits', column1Credits)
+  console.log('column2Credits', column2Credits)
+
   return (
     <Layout
       title={
@@ -88,19 +97,36 @@ const WorkItem = ({ workItem = {}, workItems = [] }) => {
             <H3>Credits</H3>
             <div className="lg:text-xl h-auto transition-all overflow-hidden xl:mt-12">
               <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-2 gap-x-20 gap-y-4 mb-12">
-                {workItem.credits.map((credit, index) => {
-                  return (
-                    <div
-                      className="grid grid-cols-2 gap-x-2 items-center"
-                      key={index}
-                    >
-                      <div className="font-bold uppercase">{credit.role}</div>
-                      <div className="uppercase space-x-4 space-x-4 font-outline tracking-wide">
-                        {credit.value}
+                <div>
+                  {column1Credits.map((credit, index) => {
+                    return (
+                      <div
+                        className="grid grid-cols-2 gap-2 items-center pt-4"
+                        key={index}
+                      >
+                        <div className="font-bold uppercase">{credit.role}</div>
+                        <div className="uppercase space-x-4 space-x-4 font-outline tracking-wide">
+                          {credit.value}
+                        </div>
                       </div>
-                    </div>
-                  )
-                })}
+                    )
+                  })}
+                </div>
+                <div>
+                  {column2Credits.map((credit, index) => {
+                    return (
+                      <div
+                        className="grid grid-cols-2 gap-2 items-center pt-4"
+                        key={index}
+                      >
+                        <div className="font-bold uppercase">{credit.role}</div>
+                        <div className="uppercase space-x-4 space-x-4 font-outline tracking-wide">
+                          {credit.value}
+                        </div>
+                      </div>
+                    )
+                  })}
+                </div>
               </div>
             </div>
           </div>

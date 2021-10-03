@@ -26,7 +26,7 @@ function Home({ homePage }) {
       heroVideoId={homePage.videoId}
       heroContent={heroContent}
     >
-      <div className="container px-4 lg:mx-auto text-white text-center my-12 lg:my-36">
+      <div className="container px-4 lg:mx-auto text-white text-center my-12 lg:mt-36">
         <H2>{homePage.section1Title}</H2>
         <div className="mt-16 mb-8 prose-lg max-w-3xl text-center mx-auto">
           <BlockContent blocks={homePage.section1Body} />
@@ -37,9 +37,8 @@ function Home({ homePage }) {
           width="130"
           height="130"
         />
-        <LittleWhiteBar />
       </div>
-      <div className="px-4">
+      {/* <div className="px-4">
         <div className="border border-white py-8 px-8 container lg:mx-auto">
           <VideoPlayer
             poster={homePage.reelVideoPoster}
@@ -58,8 +57,8 @@ function Home({ homePage }) {
             </span>
           </p>
         </div>
-      </div>
-      <div className="pt-24 px-8 container lg:mx-auto text-center">
+      </div> */}
+      <div className="px-8 container lg:mx-auto text-center">
         <p className="text-4xl font-extrabold tracking-widest">
           {homePage.footerTitle}
         </p>

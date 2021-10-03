@@ -1,3 +1,4 @@
+import classNames from 'classnames'
 import Link from 'next/link'
 import { useLayoutEffect, useState } from 'react'
 import urlForSanitySource from '../lib/urlForSanitySource'
@@ -15,9 +16,13 @@ const WorkItemTile = ({ workItem, index, hideAfterCount = 999 }) => {
   return (
     <Link href={`/work/${workItem.slug.current}`} key={workItem._id}>
       <a
-        className={`${
-          index >= hideAfterCount ? `lg:hidden` : null
-        } relative text-white flex flex-col items-center justify-center space-y-2 lg:space-y-0 bpd-project-tile`}
+        className={classNames(
+          {
+            'lg:hidden': index >= hideAfterCount,
+          },
+          `bpd-project-tile relative text-white `,
+          `flex flex-col items-center justify-center space-y-2 lg:space-y-0`
+        )}
         key={workItem._id}
         style={{
           backgroundImage: workItem.poster
@@ -42,11 +47,13 @@ const WorkItemTile = ({ workItem, index, hideAfterCount = 999 }) => {
           (workItem.shortClipMp4URL || workItem.shortClipMp4S3URL) &&
           (workItem.shortClipOgvURL || workItem.shortClipOgvS3URL) && (
             <video
-              className={`absolute w-full h-full inset-0 object-cover transition-all duration-700 ${
-                workItem.shortClipMp4S3URL || isHovered
-                  ? 'opacity-100'
-                  : 'opacity-0'
-              }`}
+              className={classNames(
+                `absolute w-full h-full inset-0 object-cover transition-all duration-700`,
+                {
+                  'opacity-100': workItem.shortClipMp4S3URL || isHovered,
+                  'opacity-0': !workItem.shortClipMp4S3URL || !isHovered,
+                }
+              )}
               muted={true}
               autoPlay={true}
               loop={true}

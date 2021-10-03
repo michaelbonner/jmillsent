@@ -3,7 +3,7 @@ User-agent: *
 Allow: /
 
 # Host
-Host: https://jeremymillerdirector.com
+Host: https://jmillsent.vercel.app
 
 # Sitemaps
-Sitemap: https://jeremymillerdirector.com/sitemap.xml
+Sitemap: https://jmillsent.vercel.app/sitemap.xml

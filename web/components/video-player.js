@@ -5,6 +5,7 @@ import { GrPlay, GrPause, GrContract, GrExpand } from 'react-icons/gr'
 import useInterval from '../hooks/useInterval'
 import screenfull from 'screenfull'
 import urlForSanitySource from '../lib/urlForSanitySource'
+import classNames from 'classnames'
 
 const VideoPlayer = ({
   poster,
@@ -110,20 +111,34 @@ const VideoPlayer = ({
 
   return (
     <article
-      className={`bpd-player-container relative z-20 ${
-        isFullscreen ? 'h-screen flex flex-col justify-center items-center' : ''
-      }`}
+      className={classNames(
+        {
+          'h-screen flex flex-col justify-center items-center': isFullscreen,
+        },
+        'bpd-player-container relative z-20'
+      )}
     >
       {videoId ? (
         <div
-          className={`${isFullscreen ? 'w-full' : 'container'}${
-            !showVideo ? ' bg-gray-900' : ''
-          } mx-auto transition-all duration-700`}
+          className={classNames(
+            {
+              'w-full': isFullscreen,
+              container: !isFullscreen,
+              'bg-gray-900': !showVideo,
+            },
+            'mx-auto transition-all duration-700'
+          )}
         >
           <div
-            className={`my-12 lg:my-0 relative aspect-w-${videoWidthAspectRatio} aspect-h-${videoHeightAspectRatio} transition-all duration-700 ${
-              showVideo ? `opacity-100` : `opacity-0`
-            }`}
+            className={classNames(
+              `my-12 lg:my-0 relative`,
+              `aspect-w-${videoWidthAspectRatio} aspect-h-${videoHeightAspectRatio}`,
+              `transition-all duration-700`,
+              {
+                'opacity-100': showVideo,
+                'opacity-0': !showVideo,
+              }
+            )}
           >
             <ReactPlayer
               allow="autoplay; fullscreen; picture-in-picture"
@@ -158,9 +173,13 @@ const VideoPlayer = ({
                 onClick={() => setVideoPlaying(!videoPlaying)}
               >
                 <GrPlay
-                  className={`bpd-white-icon transition-all duration-500 ${
-                    videoPlaying ? 'opacity-0' : 'opacity-100'
-                  }`}
+                  className={classNames(
+                    `bpd-white-icon transition-all duration-500`,
+                    {
+                      'opacity-0': videoPlaying,
+                      'opacity-100': !videoPlaying,
+                    }
+                  )}
                 />
               </button>
             )}
@@ -174,14 +193,24 @@ const VideoPlayer = ({
                 title="Play/Pause"
               >
                 <GrPause
-                  className={`bpd-white-icon ${
-                    videoPlaying ? 'opacity-100' : 'opacity-0'
-                  } absolute inset-0 transition-all duration-500fill-current`}
+                  className={classNames(
+                    `bpd-white-icon`,
+                    {
+                      'opacity-100': videoPlaying,
+                      'opacity-0': !videoPlaying,
+                    },
+                    `absolute inset-0 transition-all duration-500 fill-current`
+                  )}
                 />
                 <GrPlay
-                  className={`bpd-white-icon ${
-                    videoPlaying ? 'opacity-0' : 'opacity-100'
-                  } absolute inset-0 transition-all duration-500fill-current`}
+                  className={classNames(
+                    `bpd-white-icon`,
+                    {
+                      'opacity-100': !videoPlaying,
+                      'opacity-0': videoPlaying,
+                    },
+                    `absolute inset-0 transition-all duration-500 fill-current`
+                  )}
                 />
               </button>
               <button
@@ -231,7 +260,11 @@ const VideoPlayer = ({
       ) : (
         <div className="container mx-auto">
           <div
-            className={`aspect-w-${videoWidthAspectRatio} aspect-h-${videoHeightAspectRatio} transition-all duration-700`}
+            className={classNames(
+              `aspect-w-${videoWidthAspectRatio}`,
+              `aspect-h-${videoHeightAspectRatio}`,
+              `transition-all duration-700`
+            )}
           >
             {poster ? (
               <img

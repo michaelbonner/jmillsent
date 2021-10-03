@@ -86,9 +86,7 @@ const WorkItem = ({ workItem = {}, workItems = [] }) => {
         {workItem.credits && workItem.credits.length > 0 && (
           <div className="my-12 max-w-9xl mx-auto">
             <H3>Credits</H3>
-            <div
-              className={`lg:text-xl h-auto transition-all overflow-hidden xl:mt-12`}
-            >
+            <div className="lg:text-xl h-auto transition-all overflow-hidden xl:mt-12">
               <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-2 gap-x-20 gap-y-4 mb-12">
                 {workItem.credits.map((credit, index) => {
                   return (

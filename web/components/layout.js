@@ -5,6 +5,7 @@ import Link from 'next/link'
 import { useRouter } from 'next/dist/client/router'
 import urlForSanitySource from '../lib/urlForSanitySource'
 import ReactPlayer from 'react-player'
+import classNames from 'classnames'
 
 const navItems = [
   {
@@ -107,12 +108,12 @@ const Layout = ({
       setVideoPlaying(true)
     }, 1500)
   }, [])
-
   return (
     <div
-      className={`${heroVideoId ? 'opacity-0' : ''} ${
-        heroVideoId && videoPlaying ? 'bpd-fade-in' : ''
-      }`}
+      className={classNames({
+        'opacity-0': heroVideoId,
+        'bpd-fade-in': heroVideoId && videoPlaying,
+      })}
     >
       <Head>
         <title>
@@ -164,9 +165,16 @@ const Layout = ({
 
       <div className="bg-black absolute w-full">
         <div
-          className={`${menuOpen ? 'opacity-100' : 'opacity-0'} ${
-            menuVisible ? 'relative' : 'hidden'
-          } w-full transition-all ease-in delay-500 duration-300 z-50 flex justify-between items-center overflow-visible text-white p-4`}
+          className={classNames(
+            {
+              'opacity-100': menuOpen,
+              'opacity-0': !menuOpen,
+              relative: menuVisible,
+              hidden: !menuVisible,
+            },
+            'w-full transition-all ease-in delay-500 duration-300',
+            'z-50 flex justify-between items-center overflow-visible text-white p-4'
+          )}
         >
           <Link href={`/`}>
             <a>
@@ -186,7 +194,7 @@ const Layout = ({
             <span style={{ width: '48px', height: '32px' }}>
               <Image
                 alt="Close menu"
-                className={`w-12 h-8 fill-current text-white stroke-2 stroke-current`}
+                className="w-12 h-8 fill-current text-white stroke-2 stroke-current"
                 src={`/images/menu-close-white.svg`}
                 layout="fill"
               />
@@ -195,33 +203,53 @@ const Layout = ({
         </div>
       </div>
       <nav
-        className={`${menuOpen ? 'translate-x-0' : 'translate-x-4 opacity-0'} ${
-          menuVisible ? 'fixed' : 'hidden'
-        } bg-black inset-0 transform transition-all ease-in duration-300 z-40 text-right flex flex-col justify-center items-center`}
+        className={classNames(
+          {
+            'translate-x-0': menuOpen,
+            'translate-x-4 opacity-0': !menuOpen,
+            fixed: menuVisible,
+            hidden: !menuVisible,
+          },
+          'bg-black inset-0 transform transition-all ease-in',
+          'duration-300 z-40 text-right flex flex-col justify-center items-center'
+        )}
       >
         {navItems.map((navItem, index) => {
           return (
             <Link href={navItem.href} key={index}>
               <a
-                className={`${
-                  !hoveredMenuItem || hoveredMenuItem === navItem.href
-                    ? 'text-white'
-                    : 'text-gray-500'
-                } font-bold relative group py-6 uppercase text-2xl md:text-4xl xl:text-6xl tracking-wider transition-all duration-700 w-96 text-center`}
+                className={classNames(
+                  `${
+                    !hoveredMenuItem || hoveredMenuItem === navItem.href
+                      ? 'text-white'
+                      : 'text-gray-500'
+                  }`,
+                  `font-bold relative group py-6 uppercase`,
+                  `text-2xl md:text-4xl xl:text-6xl tracking-wider`,
+                  `transition-all duration-700 w-96 text-center`
+                )}
                 onMouseEnter={() => setHoveredMenuItem(navItem.href)}
                 onMouseLeave={() => setHoveredMenuItem('')}
               >
                 <span
-                  className={`${
-                    navItem.href === router.pathname ? 'text-gold ' : ''
-                  }relative z-10`}
+                  className={classNames(
+                    {
+                      'text-gold': navItem.href === router.pathname,
+                      'text-gold opacity-50': navItem.href === router.pathname,
+                    },
+                    `relative z-10`
+                  )}
                 >
                   {navItem.name}
                 </span>
                 <span
-                  className={`${
-                    hoveredMenuItem === navItem.href ? 'w-full' : 'w-0'
-                  } transition-all duration-500 absolute z-0 left-0 right-0 bg-white`}
+                  className={classNames(
+                    {
+                      'w-full': hoveredMenuItem === navItem.href,
+                      'w-0': hoveredMenuItem !== navItem.href,
+                    },
+                    'transition-all duration-500 absolute z-0 left-0 right-0 bg-white'
+                  )}
                   style={{
                     bottom: 'calc(50% - 1px)',
                     height: '2px',
@@ -255,13 +283,19 @@ const Layout = ({
                 aria-label="Open menu"
               >
                 <span
-                  className={`${!menuOpen ? 'opacity-100' : 'opacity-0'} ${
-                    !menuVisible ? 'absolute' : 'hidden'
-                  } top-0 right-0 w-12 h-8 transform transition-all ease-in duration-300`}
+                  className={classNames(
+                    {
+                      'opacity-100': !menuOpen,
+                      'opacity-0': menuOpen,
+                      absolute: !menuVisible,
+                      hidden: menuVisible,
+                    },
+                    'top-0 right-0 w-12 h-8 transform transition-all ease-in duration-300'
+                  )}
                 >
                   <Image
                     alt="Open menu"
-                    className={`w-12 h-8 fill-current text-white stroke-2 stroke-current`}
+                    className="w-12 h-8 fill-current text-white stroke-2 stroke-current"
                     src={
                       showHero ? `/images/menu-white.svg` : `/images/menu.svg`
                     }
@@ -274,18 +308,24 @@ const Layout = ({
         </div>
 
         <div
-          className={`relative h-full bg-black ${
-            heroVideoId
-              ? `lg:bg-gradient-to-b from-gray-400 to-white via-gray-100 lg:bg-opacity-25`
-              : ''
-          }`}
+          className={classNames(
+            {
+              'lg:bg-gradient-to-b from-gray-400 to-white via-gray-100 lg:bg-opacity-25':
+                heroVideoId,
+            },
+            `relative h-full bg-black`
+          )}
           style={headerStyles}
         >
           {heroVideoId ? (
             <div
-              className={`bpd-hero-background absolute z-0 h-full w-full inset-0 ${
-                videoPlaying ? 'opacity-100' : 'opacity-0'
-              }`}
+              className={classNames(
+                {
+                  'opacity-100': videoPlaying,
+                  'opacity-0': !videoPlaying,
+                },
+                `bpd-hero-background absolute z-0 h-full w-full inset-0`
+              )}
             >
               <ReactPlayer
                 allow="autoplay; fullscreen; picture-in-picture"
@@ -336,9 +376,12 @@ const Layout = ({
             return (
               <Link key={index} href={navItem.href}>
                 <a
-                  className={`${
-                    router.route === navItem.href ? 'border-b ' : ''
-                  }font-bold text-white uppercase text-lg lg:text-2xl py-4`}
+                  className={classNames(
+                    {
+                      'border-b': router.route === navItem.href,
+                    },
+                    `font-bold text-white uppercase text-lg lg:text-2xl py-4`
+                  )}
                 >
                   {navItem.name}
                 </a>

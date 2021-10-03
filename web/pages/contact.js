@@ -1,15 +1,19 @@
 /* eslint-disable @next/next/no-img-element */
+import { useState } from 'react'
 import groq from 'groq'
+import { toast } from 'react-toastify'
+import * as Yup from 'yup'
+import { Formik, Form, Field, ErrorMessage } from 'formik'
+import classNames from 'classnames'
+import TextareaAutosize from 'react-textarea-autosize'
 import Layout from '../components/layout'
 import { getClient } from '../lib/sanity'
-import { toast } from 'react-toastify'
 import urlForSanitySource from '../lib/urlForSanitySource'
 import { H1 } from '../components/headings'
-import * as Yup from 'yup'
-import 'yup-phone'
-import { Formik, Form, Field, ErrorMessage } from 'formik'
-import { useState } from 'react'
 import Map from '../components/map'
+
+const phoneRegExp =
+  /^((\\+[1-9]{1,4}[ \\-]*)|(\\([0-9]{2,3}\\)[ \\-]*)|([0-9]{2,4})[ \\-]*)*?[0-9]{3,4}?[ \\-]*[0-9]{3,4}?$/
 
 const contactSchema = Yup.object().shape({
   name: Yup.string()
@@ -21,7 +25,7 @@ const contactSchema = Yup.object().shape({
     .required('Email address is required'),
   phoneNumber: Yup.string()
     .label('Phone number')
-    .phone('Invalid phone')
+    .matches(phoneRegExp, 'Phone number is not valid')
     .required('Valid Phone number is Required'),
   message: Yup.string().min(2, 'Too short').required('Message is Required'),
 })
@@ -84,7 +88,13 @@ function Contact({ contact }) {
                   }
                 }}
               >
-                {({ isSubmitting, isValid }) => (
+                {({
+                  isSubmitting,
+                  isValid,
+                  handleChange,
+                  handleBlur,
+                  values,
+                }) => (
                   <Form className="grid grid-cols-1 gap-y-6 max-w-3xl mx-auto">
                     <div className="border-gray-300 rounded-md bg-white bg-opacity-90 relative">
                       <Field
@@ -129,12 +139,14 @@ function Contact({ contact }) {
                     </div>
 
                     <div className="border-gray-300 rounded-md bg-white bg-opacity-90 relative">
-                      <Field
-                        as="textarea"
-                        name="message"
-                        placeholder="MESSAGE"
-                        rows="4"
+                      <TextareaAutosize
                         className="py-3 px-4 block w-full shadow-sm focus:ring-indigo-500 text-gray-500 placeholder-black focus:border-indigo-500 border-gray-300 rounded-md bg-transparent"
+                        minRows={4}
+                        onChange={handleChange}
+                        onBlur={handleBlur}
+                        placeholder="MESSAGE"
+                        name="message"
+                        value={values.message}
                       />
                       <ErrorMessage
                         name="message"
@@ -145,9 +157,15 @@ function Contact({ contact }) {
 
                     <button
                       type="submit"
-                      className={`inline-block rounded-full font-bold uppercase tracking-wider border border-white py-2 px-8 bg-black bg-opacity-50 hover:bg-gold hover:text-black transition-all
-                          ${isSubmitting || !isValid ? 'opacity-50' : ''}
-                        }`}
+                      className={classNames(
+                        `inline-block rounded-full font-bold uppercase`,
+                        `tracking-wider border border-white py-2 px-8`,
+                        `bg-black bg-opacity-50 hover:bg-gold`,
+                        `hover:text-black transition-all`,
+                        {
+                          'opacity-50': isSubmitting || !isValid,
+                        }
+                      )}
                       disabled={isSubmitting}
                     >
                       Submit

@@ -24,7 +24,7 @@ function Moments({ momentsPage }) {
   )
 
   const images = momentsPage.images.map(
-    (image) => `${image.imageUrl}?w=1200&auto=format`
+    (image) => `${image.imageUrl}?w=1800&auto=format`
   )
 
   return (
@@ -54,7 +54,7 @@ function Moments({ momentsPage }) {
 
       {/* moments images */}
       <section className="max-w-7xl mx-auto text-center my-12 lg:mt-16">
-        <div className="mt-0 grid grid-cols-1 lg:grid-cols-3 xl:grid-cols-4 gap-1 px-1">
+        <div className="mt-0 grid grid-cols-1 lg:grid-cols-4 gap-1 px-1">
           {momentsPage.images.map((image, index) => {
             const evenRow = (index / 4) % 2 >= 1
 
@@ -63,16 +63,16 @@ function Moments({ momentsPage }) {
 
             return (
               <Image
-                key={index}
-                className="block cursor-pointer"
-                src={`${image.imageUrl}?w=${width}&h=${height}&auto=format&fit=crop&crop=focalpoint`}
-                height={height}
-                width={width}
                 alt={image.caption}
+                className="block cursor-pointer bpd-gallery-image"
+                height={height}
+                key={index}
                 onClick={() => {
                   setIsGalleryModelOpen(true)
                   setPhotoIndex(index)
                 }}
+                src={`${image.imageUrl}?w=${width}&h=${height}&auto=format&fit=crop&crop=focalpoint`}
+                width={width}
               />
             )
           })}

@@ -90,3 +90,7 @@ header {
 .prose-white a {
   @apply text-gray-300;
 }
+
+.bpd-gallery-image {
+  border: thin solid white !important;
+}

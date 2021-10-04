@@ -15,6 +15,7 @@ const Map = ({ marker }) => {
         height: '400px',
         maxHeight: `800px`,
       }}
+      mapContainerClassName="rounded-lg"
       center={{ lat: 40.8309715, lng: -111.9024321 }}
       zoom={11}
       options={{

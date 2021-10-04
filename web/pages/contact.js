@@ -187,7 +187,7 @@ function Contact({ contact }) {
               </div>
             )}
           </div>
-          <div className="w-full lg:w-2/3 px-4 lg:px-0 mt-20 lg:mt-0">
+          <div className="w-full lg:w-2/3 px-4 lg:px-0 mt-20 lg:mt-0 border border-white rounded-lg">
             <Map />
           </div>
         </div>

@@ -1,7 +1,6 @@
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
 import Lightbox from 'react-image-lightbox'
 import groq from 'groq'
-import BlockContent from '@sanity/block-content-to-react'
 import Image from 'next/image'
 import { H1, H2 } from '../components/headings'
 import Layout from '../components/layout'
@@ -10,10 +9,33 @@ import MediumWhiteBar from '../components/medium-white-bar'
 
 import 'react-image-lightbox/style.css'
 import LittleWhiteBar from '../components/little-white-bar'
+import useWindowSize from '../hooks/useWindowSize'
+import classNames from 'classnames'
 
 function Moments({ momentsPage }) {
   const [isGalleryModelOpen, setIsGalleryModelOpen] = useState(false)
   const [photoIndex, setPhotoIndex] = useState(0)
+  const size = useWindowSize()
+  const [gridColumns, setGridColumns] = useState(1)
+  const [gridColumnsClassName, setGridColumnsClassName] =
+    useState('grid-cols-1')
+
+  useEffect(() => {
+    if (size.width > 1800) {
+      setGridColumns(7)
+      setGridColumnsClassName('grid-cols-7')
+    } else if (size.width > 1200) {
+      setGridColumns(5)
+      setGridColumnsClassName('grid-cols-5')
+    } else if (size.width > 800) {
+      setGridColumns(3)
+      setGridColumnsClassName('grid-cols-3')
+    } else {
+      setGridColumns(1)
+      setGridColumnsClassName('grid-cols-1')
+    }
+  }, [size.width])
+
   const heroContent = (
     <div className="h-full w-full flex flex-col items-center justify-center text-white">
       <H1>{momentsPage.title}</H1>
@@ -53,10 +75,12 @@ function Moments({ momentsPage }) {
       <LittleWhiteBar />
 
       {/* moments images */}
-      <section className="max-w-7xl mx-auto text-center my-12 lg:mt-16">
-        <div className="mt-0 grid grid-cols-1 lg:grid-cols-4 gap-1 px-1">
+      <section className="max-w-13xl mx-auto text-center my-12 lg:mt-16 px-6">
+        <div
+          className={classNames(gridColumnsClassName, 'mt-0 grid gap-1 px-1')}
+        >
           {momentsPage.images.map((image, index) => {
-            const evenRow = (index / 4) % 2 >= 1
+            const evenRow = (index / gridColumns) % 2 >= 1
 
             const width = `400`
             const height = evenRow ? `450` : `250`

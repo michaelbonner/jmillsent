@@ -12,6 +12,10 @@ module.exports = {
       maxWidth: {
         '8xl': '80rem',
         '9xl': '90rem',
+        '10xl': '100rem',
+        '11xl': '110rem',
+        '12xl': '120rem',
+        '13xl': '130rem',
       },
     },
     fontFamily: {

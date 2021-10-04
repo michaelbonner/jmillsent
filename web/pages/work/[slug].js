@@ -47,19 +47,17 @@ aspect-w-15	aspect-h-15
 aspect-w-16	aspect-h-16
 */
 
-const WorkItem = ({ workItem = {}, workItems = [] }) => {
+const WorkItem = ({ workItem = {} }) => {
   const fullTitle = workItem.clientName
     ? `${workItem.clientName} | ${workItem.title}`
     : workItem.title
 
-  const column1Credits = workItem.credits.slice(
-    0,
-    Math.ceil(workItem.credits.length / 2)
-  )
-  const column2Credits = workItem.credits.slice(column1Credits.length)
-
-  console.log('column1Credits', column1Credits)
-  console.log('column2Credits', column2Credits)
+  const column1Credits = workItem?.credits?.length
+    ? workItem.credits.slice(0, Math.ceil(workItem.credits.length / 2))
+    : []
+  const column2Credits = workItem?.credits?.length
+    ? workItem.credits.slice(column1Credits.length)
+    : []
 
   return (
     <Layout

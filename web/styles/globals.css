@@ -91,6 +91,15 @@ header {
   @apply text-gray-300;
 }
 
+.bpd-gallery-image-container {
+  @apply block;
+}
+
+.bpd-gallery-image-container div {
+  @apply block !important;
+}
+
 .bpd-gallery-image {
+  @apply block;
   border: thin solid white !important;
 }

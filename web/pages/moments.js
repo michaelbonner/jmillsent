@@ -14,25 +14,49 @@ import classNames from 'classnames'
 
 function Moments({ momentsPage }) {
   const [isGalleryModelOpen, setIsGalleryModelOpen] = useState(false)
+  const [isDesktop, setIsDesktop] = useState(false)
   const [photoIndex, setPhotoIndex] = useState(0)
   const size = useWindowSize()
-  const [gridColumns, setGridColumns] = useState(1)
-  const [gridColumnsClassName, setGridColumnsClassName] =
-    useState('grid-cols-1')
+
+  const imageTypeMap = [
+    {
+      width: 400,
+      height: 400,
+      colSpan: 'col-span-2',
+    },
+    {
+      width: 600,
+      height: 400,
+      colSpan: 'col-span-3',
+    },
+    {
+      width: 800,
+      height: 600,
+      colSpan: 'col-span-4',
+    },
+    {
+      width: 600,
+      height: 400,
+      colSpan: 'col-span-3',
+    },
+  ]
+
+  const desktopImageTypeSequence = [
+    // row 0
+    2, 2, 2,
+    // row 1
+    1, 0, 0, 0, 1,
+    // row 2
+    1, 1, 1, 1,
+    // row 3
+    1, 0, 0, 0, 1,
+  ]
 
   useEffect(() => {
-    if (size.width > 1800) {
-      setGridColumns(7)
-      setGridColumnsClassName('grid-cols-7')
-    } else if (size.width > 1200) {
-      setGridColumns(5)
-      setGridColumnsClassName('grid-cols-5')
-    } else if (size.width > 800) {
-      setGridColumns(3)
-      setGridColumnsClassName('grid-cols-3')
+    if (size.width > 1024) {
+      setIsDesktop(true)
     } else {
-      setGridColumns(1)
-      setGridColumnsClassName('grid-cols-1')
+      setIsDesktop(false)
     }
   }, [size.width])
 
@@ -77,27 +101,38 @@ function Moments({ momentsPage }) {
       {/* moments images */}
       <section className="max-w-13xl mx-auto text-center my-12 lg:mt-16 px-6">
         <div
-          className={classNames(gridColumnsClassName, 'mt-0 grid gap-1 px-1')}
+          className={classNames(
+            'mt-0 grid grid-cols-1 lg:grid-cols-12 gap-1 px-1'
+          )}
         >
           {momentsPage.images.map((image, index) => {
-            const evenRow = (index / gridColumns) % 2 >= 1
+            const desktopIndex = index % 17
+            const imageType =
+              imageTypeMap[desktopImageTypeSequence[desktopIndex]]
+            const width = isDesktop ? imageType.width : 600
 
-            const width = `400`
-            const height = evenRow ? `450` : `250`
+            const height = isDesktop ? imageType.height : 800
 
             return (
-              <Image
-                alt={image.caption}
-                className="block cursor-pointer bpd-gallery-image"
-                height={height}
+              <div
+                className={classNames(
+                  imageType.colSpan,
+                  'bpd-gallery-image-container'
+                )}
                 key={index}
-                onClick={() => {
-                  setIsGalleryModelOpen(true)
-                  setPhotoIndex(index)
-                }}
-                src={`${image.imageUrl}?w=${width}&h=${height}&auto=format&fit=crop&crop=focalpoint`}
-                width={width}
-              />
+              >
+                <Image
+                  alt={image.caption}
+                  className={`cursor-pointer bpd-gallery-image`}
+                  height={height}
+                  onClick={() => {
+                    setIsGalleryModelOpen(true)
+                    setPhotoIndex(index)
+                  }}
+                  src={`${image.imageUrl}?w=${width}&h=${height}&auto=format&fit=crop&crop=focalpoint`}
+                  width={width}
+                />
+              </div>
             )
           })}
         </div>

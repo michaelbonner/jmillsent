@@ -102,21 +102,21 @@ function Moments({ momentsPage }) {
       <section className="max-w-13xl mx-auto text-center my-12 lg:mt-16 px-6">
         <div
           className={classNames(
-            'mt-0 grid grid-cols-1 lg:grid-cols-12 gap-1 px-1'
+            'mt-0 grid grid-cols-2 lg:grid-cols-12 gap-1 px-1'
           )}
         >
           {momentsPage.images.map((image, index) => {
             const desktopIndex = index % 17
             const imageType =
               imageTypeMap[desktopImageTypeSequence[desktopIndex]]
-            const width = isDesktop ? imageType.width : 600
+            const width = isDesktop ? imageType.width : 800
 
-            const height = isDesktop ? imageType.height : 800
+            const height = isDesktop ? imageType.height : 600
 
             return (
               <div
                 className={classNames(
-                  imageType.colSpan,
+                  isDesktop ? imageType.colSpan : '',
                   'bpd-gallery-image-container'
                 )}
                 key={index}

@@ -21,17 +21,17 @@ function Moments({ momentsPage }) {
   const imageTypeMap = [
     {
       width: 400,
-      height: 400,
+      height: 300,
       colSpan: 'col-span-2',
     },
     {
       width: 600,
-      height: 400,
+      height: 300,
       colSpan: 'col-span-3',
     },
     {
       width: 800,
-      height: 600,
+      height: 400,
       colSpan: 'col-span-4',
     },
     {
@@ -47,9 +47,9 @@ function Moments({ momentsPage }) {
     // row 1
     1, 0, 0, 0, 1,
     // row 2
-    1, 1, 1, 1,
+    3, 3, 3, 3,
     // row 3
-    1, 0, 0, 0, 1,
+    0, 1, 1, 0, 0,
   ]
 
   useEffect(() => {
@@ -102,7 +102,7 @@ function Moments({ momentsPage }) {
       <section className="max-w-13xl mx-auto text-center my-12 lg:mt-16 px-6">
         <div
           className={classNames(
-            'mt-0 grid grid-cols-2 lg:grid-cols-12 gap-1 px-1'
+            'mt-0 grid grid-cols-2 lg:grid-cols-12 gap-4 px-1'
           )}
         >
           {momentsPage.images.map((image, index) => {

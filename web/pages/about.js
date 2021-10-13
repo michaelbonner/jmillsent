@@ -1,4 +1,5 @@
 import groq from 'groq'
+import { useState, useEffect } from 'react'
 import BlockContent from '@sanity/block-content-to-react'
 import Image from 'next/image'
 import Link from 'next/link'
@@ -10,8 +11,20 @@ import MediumWhiteBar from '../components/medium-white-bar'
 import urlForSanitySource from '../lib/urlForSanitySource'
 import LittleWhiteBar from '../components/little-white-bar'
 import SanityImage from '../components/sanity-image'
+import useWindowSize from '../hooks/useWindowSize'
 
 function About({ aboutPage }) {
+  const [isDesktop, setIsDesktop] = useState(false)
+  const size = useWindowSize()
+
+  useEffect(() => {
+    if (size.width > 1024) {
+      setIsDesktop(true)
+    } else {
+      setIsDesktop(false)
+    }
+  }, [size.width])
+
   const heroContent = (
     <div className="h-full w-full text-white flex items-center justify-center">
       <div className="w-screen px-4 flex flex-col items-center justify-center text-center">
@@ -45,7 +58,7 @@ function About({ aboutPage }) {
           height="130"
         />
         <MediumWhiteBar />
-        <div className="pt-24 px-8 container lg:mx-auto text-center">
+        <div className="pt-24 px-8 container lg:mx-auto text-center break-all">
           <p className="text-4xl font-extrabold tracking-widest">
             {aboutPage.section2Title}
           </p>
@@ -196,16 +209,18 @@ function About({ aboutPage }) {
         <p className="font-outline text-4xl">JME TEAM</p>
         <div className="grid grid-cols-1 lg:grid-cols-3 gap-8 lg:gap-20 mt-12">
           {aboutPage.teamMembers.map((teamMember) => {
+            const width = 400
+            const height = isDesktop ? 644 : 500
             return (
               <div key={teamMember._id}>
                 <div className="px-8">
                   <Image
                     src={urlForSanitySource(teamMember.image)
-                      .width(400)
-                      .height(644)
+                      .width(width)
+                      .height(height)
                       .url()}
-                    height="644"
-                    width="400"
+                    height={height}
+                    width={width}
                     alt={teamMember.name}
                   />
                 </div>

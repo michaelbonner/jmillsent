@@ -3,18 +3,22 @@ import { useState, useEffect } from 'react'
 import BlockContent from '@sanity/block-content-to-react'
 import Image from 'next/image'
 import Link from 'next/link'
+import Lightbox from 'react-image-lightbox'
 import { H1, H2, H3 } from '../components/headings'
 import Layout from '../components/layout'
 import { getClient } from '../lib/sanity'
-import VideoPlayer from '../components/video-player'
 import MediumWhiteBar from '../components/medium-white-bar'
 import urlForSanitySource from '../lib/urlForSanitySource'
 import LittleWhiteBar from '../components/little-white-bar'
 import SanityImage from '../components/sanity-image'
 import useWindowSize from '../hooks/useWindowSize'
 
+import 'react-image-lightbox/style.css'
+
 function About({ aboutPage }) {
+  const [isGalleryModelOpen, setIsGalleryModelOpen] = useState(false)
   const [isDesktop, setIsDesktop] = useState(false)
+  const [photoIndex, setPhotoIndex] = useState(0)
   const size = useWindowSize()
 
   useEffect(() => {
@@ -24,6 +28,10 @@ function About({ aboutPage }) {
       setIsDesktop(false)
     }
   }, [size.width])
+
+  const utahLocationsImages = aboutPage.utahLocations.map(
+    (image) => `${image.imageUrl}?w=1800&auto=format`
+  )
 
   const heroContent = (
     <div className="h-full w-full text-white flex items-center justify-center">
@@ -240,6 +248,30 @@ function About({ aboutPage }) {
       {/* end: team section */}
 
       {/* utah locations */}
+      {isGalleryModelOpen && (
+        <Lightbox
+          mainSrc={utahLocationsImages[photoIndex]}
+          nextSrc={
+            utahLocationsImages[(photoIndex + 1) % utahLocationsImages.length]
+          }
+          prevSrc={
+            utahLocationsImages[
+              (photoIndex + utahLocationsImages.length - 1) %
+                utahLocationsImages.length
+            ]
+          }
+          onCloseRequest={() => setIsGalleryModelOpen(false)}
+          onMovePrevRequest={() =>
+            setPhotoIndex(
+              (photoIndex + utahLocationsImages.length - 1) %
+                utahLocationsImages.length
+            )
+          }
+          onMoveNextRequest={() =>
+            setPhotoIndex((photoIndex + 1) % utahLocationsImages.length)
+          }
+        />
+      )}
       <section className="max-w-7xl mx-auto text-center my-12 lg:my-36 px-4">
         <H2>{aboutPage.utahLocationsTitle}</H2>
         {aboutPage.utahLocationsDescription && (
@@ -247,16 +279,20 @@ function About({ aboutPage }) {
             <BlockContent blocks={aboutPage.utahLocationsDescription} />
           </div>
         )}
-        <div className="mt-12 grid grid-cols-1 lg:grid-cols-3 gap-1">
+        <div className="mt-12 grid grid-cols-2 lg:grid-cols-3 gap-1">
           {aboutPage.utahLocations.map((utahLocation, index) => {
             return (
               <Image
-                key={index}
-                className="block filter grayscale hover:filter-none transition-all duration-500"
-                src={`${utahLocation.imageUrl}?w=600&h=400`}
-                height="400"
-                width="600"
                 alt={utahLocation.caption}
+                className="block filter grayscale hover:filter-none transition-all duration-500 cursor-pointer"
+                height="400"
+                key={index}
+                onClick={() => {
+                  setIsGalleryModelOpen(true)
+                  setPhotoIndex(index)
+                }}
+                src={`${utahLocation.imageUrl}?w=600&h=400`}
+                width="600"
               />
             )
           })}
@@ -265,7 +301,7 @@ function About({ aboutPage }) {
       <MediumWhiteBar />
       {/* end: utah locations */}
 
-      {/* utah locations */}
+      {/* ravens */}
       <section className="max-w-7xl mx-auto text-center my-12 lg:my-36 px-4">
         <div className="mt-12 grid grid-cols-1 lg:grid-cols-3 gap-8 my-12 lg:my-24">
           {aboutPage.ravensCards.map((ravensCard, index) => {
@@ -324,7 +360,7 @@ function About({ aboutPage }) {
         </Link>
       </section>
       <MediumWhiteBar />
-      {/* end: utah locations */}
+      {/* end: ravens */}
 
       {/* trusted by */}
       <section className="max-w-7xl mx-auto text-center my-12 lg:my-36 px-4">

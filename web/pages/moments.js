@@ -2,15 +2,15 @@ import { useEffect, useState } from 'react'
 import Lightbox from 'react-image-lightbox'
 import groq from 'groq'
 import Image from 'next/image'
+import classNames from 'classnames'
 import { H1, H2 } from '../components/headings'
 import Layout from '../components/layout'
 import { getClient } from '../lib/sanity'
 import MediumWhiteBar from '../components/medium-white-bar'
-
-import 'react-image-lightbox/style.css'
 import LittleWhiteBar from '../components/little-white-bar'
 import useWindowSize from '../hooks/useWindowSize'
-import classNames from 'classnames'
+
+import 'react-image-lightbox/style.css'
 
 function Moments({ momentsPage }) {
   const [isGalleryModelOpen, setIsGalleryModelOpen] = useState(false)

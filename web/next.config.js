@@ -170,6 +170,25 @@ module.exports = {
       { source: '/roster', destination: '/about', permanent: true },
       { source: '/films', destination: '/work', permanent: true },
       { source: '/reel', destination: '/work', permanent: true },
+      {
+        source: '/films/pattern-accelerate-coming-soon/',
+        destination: '/work/pattern-accelerate',
+        permanent: true,
+      },
+      {
+        source: '/films/pluralsight-role-iq/',
+        destination: '/work',
+        permanent: true,
+      },
+      {
+        source: '/2017/06/15/hello-world/',
+        destination: '/about',
+        permanent: true,
+      },
+      { source: '/films/workfront/', destination: '/work', permanent: true },
+      { source: '/films/ford-gt/', destination: '/work', permanent: true },
+      { source: '/author/jmills/', destination: '/work', permanent: true },
+      { source: '/films/amber/', destination: '/work', permanent: true },
     ]
   },
 }

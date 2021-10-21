@@ -11,7 +11,7 @@ module.exports = {
         permanent: true,
       },
       { source: '/author/drew', destination: '/', permanent: true },
-      { source: '/author/jmills/', destination: '/work', permanent: true },
+      { source: '/author/jmills', destination: '/work', permanent: true },
       { source: '/casestudies', destination: '/work', permanent: true },
       {
         source: '/casestudies/doterra-all-yours',
@@ -71,7 +71,7 @@ module.exports = {
       },
       { source: '/films', destination: '/work', permanent: true },
       { source: '/films/613', destination: '/work', permanent: true },
-      { source: '/films/amber/', destination: '/work', permanent: true },
+      { source: '/films/amber', destination: '/work', permanent: true },
       {
         source: '/films/built-bar',
         destination: '/work/built-bar-all-the-flavor',
@@ -92,7 +92,7 @@ module.exports = {
         destination: '/work/ford-imagine',
         permanent: true,
       },
-      { source: '/films/ford-gt/', destination: '/work', permanent: true },
+      { source: '/films/ford-gt', destination: '/work', permanent: true },
       {
         source: '/films/k12-education-for-any-one',
         destination: '/work/k12-education-for-any-one',
@@ -173,7 +173,7 @@ module.exports = {
         destination: '/work/webb-who-we-are',
         permanent: true,
       },
-      { source: '/films/workfront/', destination: '/work', permanent: true },
+      { source: '/films/workfront', destination: '/work', permanent: true },
       {
         source: '/films/yes-gum',
         destination: '/work/yes-gum-back-to-work',

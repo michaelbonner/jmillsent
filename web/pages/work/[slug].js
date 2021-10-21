@@ -154,7 +154,7 @@ export async function getStaticPaths() {
       .map((path) => {
         return { params: { slug: path.slug.current } }
       }),
-    fallback: true,
+    fallback: false,
   }
 }
 
@@ -184,6 +184,7 @@ export async function getStaticProps({ params }) {
         notFound: true,
       }
     }
+
     return {
       props: { workItem, workItems },
     }

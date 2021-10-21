@@ -1,7 +1,7 @@
-import Layout from '../../components/layout'
+import Layout from '@/components/layout'
 import groq from 'groq'
-import { getClient } from '../../lib/sanity'
-import WorkItemTile from '../../components/work-item-tile'
+import { getClient } from '@/lib/sanity'
+import WorkItemTile from '@/components/work-item-tile'
 
 function Work({ workPage, workItems }) {
   return (

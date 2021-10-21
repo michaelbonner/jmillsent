@@ -1,14 +1,10 @@
 /* eslint-disable @next/next/no-img-element */
-import { useState } from 'react'
 import groq from 'groq'
-import Link from 'next/link'
-import { HiChevronDown } from 'react-icons/hi'
-import Layout from '../../components/layout'
-import { getClient } from '../../lib/sanity'
-import VideoPlayer from '../../components/video-player'
-import MediumWhiteBar from '../../components/medium-white-bar'
-import { H3 } from '../../components/headings'
-// import WorkItemTile from "../../components/work-item-tile"
+import Layout from '@/components/layout'
+import { getClient } from '@/lib/sanity'
+import VideoPlayer from '@/components/video-player'
+import MediumWhiteBar from '@/components/medium-white-bar'
+import { H3 } from '@/components/headings'
 
 const workItemQuery = groq`
 *[_type == "workItem" && slug.current == $slug][0]{

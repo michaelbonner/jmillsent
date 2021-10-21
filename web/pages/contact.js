@@ -7,12 +7,12 @@ import { Formik, Form, Field, ErrorMessage } from 'formik'
 import classNames from 'classnames'
 import TextareaAutosize from 'react-textarea-autosize'
 import BlockContent from '@sanity/block-content-to-react'
-import Layout from '../components/layout'
+import Layout from '@/components/layout'
 import { getClient } from '../lib/sanity'
 import urlForSanitySource from '../lib/urlForSanitySource'
-import { H1, H3 } from '../components/headings'
-import Map from '../components/map'
-import LargeWhiteBar from '../components/large-white-bar'
+import { H1, H3 } from '@/components/headings'
+import Map from '@/components/map'
+import LargeWhiteBar from '@/components/large-white-bar'
 
 const phoneRegExp =
   /^((\\+[1-9]{1,4}[ \\-]*)|(\\([0-9]{2,3}\\)[ \\-]*)|([0-9]{2,4})[ \\-]*)*?[0-9]{3,4}?[ \\-]*[0-9]{3,4}?$/

@@ -127,7 +127,7 @@ module.exports = {
       },
       {
         source: '/films/built-bar',
-        destination: '/work/built-bar',
+        destination: '/work/built-bar-all-the-flavor',
         permanent: true,
       },
       {

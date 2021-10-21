@@ -178,6 +178,12 @@ export async function getStaticProps({ params }) {
       }
     `
     )
+
+    if (!workItem) {
+      return {
+        notFound: true,
+      }
+    }
     return {
       props: { workItem, workItems },
     }

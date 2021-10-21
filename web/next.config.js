@@ -6,7 +6,7 @@ module.exports = {
   async redirects() {
     return [
       {
-        source: '/2017/06/15/hello-world/',
+        source: '/2017/06/15/hello-world',
         destination: '/about',
         permanent: true,
       },
@@ -35,7 +35,7 @@ module.exports = {
       },
       {
         source: '/casestudies/lincoln-aviator',
-        destination: '/work/lincoln-sunday-drive/',
+        destination: '/work/lincoln-sunday-drive',
         permanent: true,
       },
       {
@@ -124,7 +124,7 @@ module.exports = {
         permanent: true,
       },
       {
-        source: '/films/pattern-accelerate-coming-soon/',
+        source: '/films/pattern-accelerate-coming-soon',
         destination: '/work/pattern-accelerate',
         permanent: true,
       },
@@ -134,7 +134,7 @@ module.exports = {
         permanent: true,
       },
       {
-        source: '/films/pluralsight-role-iq/',
+        source: '/films/pluralsight-role-iq',
         destination: '/work',
         permanent: true,
       },

@@ -17,12 +17,12 @@ module.exports = {
       },
       {
         source: '/films/panasonic-toughbook-police',
-        destination: '/work/panasonic-toughbook-police',
+        destination: '/work/verizon-police',
         permanent: true,
       },
       {
         source: '/films/panasonic-toughbook-fire',
-        destination: '/work/panasonic-toughbook-fire',
+        destination: '/work/verizon-fire',
         permanent: true,
       },
       {
@@ -32,7 +32,7 @@ module.exports = {
       },
       {
         source: '/films/panasonic-toughbook-ems',
-        destination: '/work/panasonic-toughbook-ems',
+        destination: '/work/verizon-emt',
         permanent: true,
       },
       {
@@ -67,7 +67,7 @@ module.exports = {
       },
       {
         source: '/casestudies/lincoln-aviator',
-        destination: '/work/lincoln-aviator/',
+        destination: '/work/lincoln-sunday-drive/',
         permanent: true,
       },
       {
@@ -82,7 +82,7 @@ module.exports = {
       },
       {
         source: '/films/traeger-grills-d2',
-        destination: '/work/traeger-grills-d2',
+        destination: '/work/traeger-d2',
         permanent: true,
       },
       {
@@ -117,12 +117,12 @@ module.exports = {
       },
       {
         source: '/films/lincoln',
-        destination: '/work/lincoln-aviator',
+        destination: '/work/lincoln-sunday-drive',
         permanent: true,
       },
       {
         source: '/films/ram-trucks',
-        destination: '/work/ram-trucks',
+        destination: '/work/ram-hey-america',
         permanent: true,
       },
       {
@@ -142,15 +142,19 @@ module.exports = {
       },
       {
         source: '/films/viruserv',
-        destination: '/work/viruserv',
+        destination: '/work/viruserv-restoring-life',
         permanent: true,
       },
       {
         source: '/films/yes-gum',
-        destination: '/work/yes-gum',
+        destination: '/work/yes-gum-back-to-work',
         permanent: true,
       },
-      { source: '/casestudies/k12', destination: '/work/k12', permanent: true },
+      {
+        source: '/casestudies/k12',
+        destination: '/work/k12-education-for-any-one',
+        permanent: true,
+      },
       { source: '/category/uncategorized', destination: '/', permanent: true },
       { source: '/rentals-request', destination: '/contact', permanent: true },
       { source: '/front-page/films', destination: '/work', permanent: true },

@@ -112,7 +112,7 @@ module.exports = {
       },
       {
         source: '/films/ford-f-150',
-        destination: '/work/ford-f-150',
+        destination: '/work/ford-imagine',
         permanent: true,
       },
       {

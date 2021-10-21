@@ -157,10 +157,26 @@ const Layout = ({
           content="https://jmillsent.vercel.app/og-image.jpg"
         />
         <meta name="description" content={description} />
-        <link rel="preconnect" href="https://cdn.sanity.io" crossOrigin />
-        <link rel="preconnect" href="https://player.vimeo.com" crossOrigin />
-        <link rel="preconnect" href="https://f.vimeocdn.com" crossOrigin />
-        <link rel="preconnect" href="https://i.vimeocdn.com" crossOrigin />
+        <link
+          rel="preconnect"
+          href="https://cdn.sanity.io"
+          crossOrigin="true"
+        />
+        <link
+          rel="preconnect"
+          href="https://player.vimeo.com"
+          crossOrigin="true"
+        />
+        <link
+          rel="preconnect"
+          href="https://f.vimeocdn.com"
+          crossOrigin="true"
+        />
+        <link
+          rel="preconnect"
+          href="https://i.vimeocdn.com"
+          crossOrigin="true"
+        />
       </Head>
 
       <div className="bg-black absolute w-full">

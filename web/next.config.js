@@ -37,7 +37,7 @@ module.exports = {
       },
       {
         source: '/casestudies/panasonic-toughbook',
-        destination: '/work/panasonic-toughbook',
+        destination: '/work/verizon-fire',
         permanent: true,
       },
       {

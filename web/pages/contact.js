@@ -10,7 +10,7 @@ import BlockContent from '@sanity/block-content-to-react'
 import Layout from '@/components/layout'
 import { getClient } from '../lib/sanity'
 import urlForSanitySource from '../lib/urlForSanitySource'
-import { H1, H3 } from '@/components/headings'
+import { H1, H4 } from '@/components/headings'
 import Map from '@/components/map'
 import LargeWhiteBar from '@/components/large-white-bar'
 
@@ -193,7 +193,7 @@ function Contact({ contact }) {
         </div>
         <div className="mt-12">
           <div className="text-center">
-            <H3>{contact.representationTitle}</H3>
+            <H4>{contact.representationTitle}</H4>
           </div>
           <LargeWhiteBar />
           <div className="max-w-7xl mx-auto text-center grid grid-cols-1 lg:grid-cols-4 gap-8 text-gray-300">

@@ -196,16 +196,10 @@ function Contact({ contact }) {
             <H4>{contact.representationTitle}</H4>
           </div>
           <LargeWhiteBar />
-          <div className="max-w-7xl mx-auto text-center grid grid-cols-1 lg:grid-cols-4 gap-8 text-gray-300">
+          <div className="max-w-7xl mx-auto text-center flex justify-center text-gray-200">
             {contact.representationCards.map((card) => {
               return (
                 <div key={card.title}>
-                  <h4
-                    className="font-outline py-8 border-b border-white text-2xl lg:text-3xl mx-auto mb-12"
-                    style={{ maxWidth: '200px' }}
-                  >
-                    {card.title}
-                  </h4>
                   <div className="prose prose-lg leading-5 text-gray-400">
                     <BlockContent blocks={card.body} />
                   </div>

@@ -14,6 +14,7 @@ import SanityImage from '@/components/sanity-image'
 import useWindowSize from '../hooks/useWindowSize'
 
 import 'react-image-lightbox/style.css'
+import VideoPlayer from '@/components/video-player'
 
 function About({ aboutPage }) {
   const [isGalleryModelOpen, setIsGalleryModelOpen] = useState(false)
@@ -120,7 +121,7 @@ function About({ aboutPage }) {
 
         {/* company 3 */}
         <section>
-          {/* <div className="mt-12 lg:mt-24 border border-white py-8 px-8 container lg:mx-auto max-w-7xl">
+          <div className="mt-12 lg:mt-24 border border-white py-8 px-8 container lg:mx-auto max-w-7xl">
             <VideoPlayer
               poster={aboutPage.company3VideoPoster}
               title={aboutPage.company3VideoTitle}
@@ -137,7 +138,7 @@ function About({ aboutPage }) {
                 {aboutPage.company3VideoTitle}
               </span>
             </p>
-          </div> */}
+          </div>
           <div className="mt-12 lg:mt-24">
             <H3>{aboutPage.company3Title}</H3>
             {aboutPage.company3Body && (

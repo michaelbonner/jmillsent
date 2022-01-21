@@ -62,6 +62,16 @@ export default {
             hotspot: true,
             sources: assetSources,
           },
+          fields: [
+            {
+              name: "caption",
+              type: "string",
+              title: "Caption",
+              options: {
+                isHighlighted: true,
+              },
+            },
+          ],
         },
       ],
       options: {

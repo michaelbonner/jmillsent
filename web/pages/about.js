@@ -303,7 +303,7 @@ function About({ aboutPage }) {
           {aboutPage.ravensCards.map((ravensCard, index) => {
             return (
               <div
-                className="flex flex-col space-y-12 border-2 border-gold py-8 px-12"
+                className="flex flex-col justify-between space-y-12 border-2 border-gold py-8 px-12"
                 key={index}
               >
                 <div>
@@ -314,10 +314,10 @@ function About({ aboutPage }) {
                     width="646"
                     alt={ravensCard.caption}
                   />
+                  <h4 className="font-bold text-4xl uppercase mt-12">
+                    {ravensCard.title}
+                  </h4>
                 </div>
-                <h4 className="font-bold text-4xl uppercase">
-                  {ravensCard.title}
-                </h4>
                 <div>
                   <SanityImage
                     image={ravensCard.image}

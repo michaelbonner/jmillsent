@@ -5,6 +5,7 @@ import Layout from '@/components/layout'
 import { getClient } from '@/lib/sanity'
 import Image from 'next/image'
 import MediumWhiteBar from '@/components/medium-white-bar'
+import VideoPlayer from '@/components/video-player'
 
 function Home({ homePage }) {
   const heroContent = (
@@ -36,7 +37,7 @@ function Home({ homePage }) {
           height="130"
         />
       </div>
-      {/* <div className="px-4">
+      <div className="px-4">
         <div className="border border-white py-8 px-8 container lg:mx-auto">
           <VideoPlayer
             poster={homePage.reelVideoPoster}
@@ -45,6 +46,7 @@ function Home({ homePage }) {
             clientName={homePage.reelVideoClient}
             videoHeightAspectRatio={homePage.reelVideoHeightAspectRatio}
             videoWidthAspectRatio={homePage.reelVideoWidthAspectRatio}
+            autoPlay={true}
           />
           <p className="text-4xl mt-8 flex items-center justify-center space-x-6">
             <span className="uppercase font-extrabold text-2xl lg:text-5xl">
@@ -55,8 +57,8 @@ function Home({ homePage }) {
             </span>
           </p>
         </div>
-      </div> */}
-      <div className="px-8 container lg:mx-auto text-center">
+      </div>
+      <div className="px-8 container lg:mx-auto text-center mt-16">
         <p className="text-4xl font-extrabold tracking-widest">
           {homePage.footerTitle}
         </p>

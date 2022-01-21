@@ -11,7 +11,6 @@ const VideoPlayer = ({
   poster,
   title,
   videoId,
-  clientName,
   videoHeightAspectRatio = '9',
   videoWidthAspectRatio = '16',
 }) => {

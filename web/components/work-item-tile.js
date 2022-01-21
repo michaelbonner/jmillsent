@@ -7,12 +7,6 @@ const WorkItemTile = ({ workItem, index, hideAfterCount = 999 }) => {
   const [isHovered, setIsHovered] = useState(false)
   const [hasHovered, setHasHovered] = useState(false)
 
-  useLayoutEffect(() => {
-    setTimeout(() => {
-      setHasHovered(true)
-    }, 1500)
-  }, [])
-
   return (
     <Link href={`/work/${workItem.slug.current}`} key={workItem._id}>
       <a
@@ -50,7 +44,7 @@ const WorkItemTile = ({ workItem, index, hideAfterCount = 999 }) => {
               className={classNames(
                 `absolute w-full h-full inset-0 object-cover transition-all duration-700`,
                 {
-                  'opacity-100': workItem.shortClipMp4S3URL || isHovered,
+                  'opacity-100': workItem.shortClipMp4S3URL && isHovered,
                   'opacity-0': !workItem.shortClipMp4S3URL || !isHovered,
                 }
               )}

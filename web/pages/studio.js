@@ -78,6 +78,7 @@ function Studio({ studioPage }) {
             clientName={studioPage.tourVideoClient}
             videoHeightAspectRatio={studioPage.tourVideoHeightAspectRatio}
             videoWidthAspectRatio={studioPage.tourVideoWidthAspectRatio}
+            autoPlay={true}
           />
           <p className="text-4xl mt-8 flex items-center justify-center space-x-6">
             <span className="uppercase font-extrabold text-2xl lg:text-5xl">

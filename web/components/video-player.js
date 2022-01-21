@@ -1,7 +1,14 @@
 /* eslint-disable @next/next/no-img-element */
 import { useEffect, useLayoutEffect, useRef, useState } from 'react'
 import ReactPlayer from 'react-player'
-import { GrPlay, GrPause, GrContract, GrExpand } from 'react-icons/gr'
+import {
+  GrPlay,
+  GrPause,
+  GrContract,
+  GrExpand,
+  GrVolume,
+  GrVolumeMute,
+} from 'react-icons/gr'
 import useInterval from '../hooks/useInterval'
 import screenfull from 'screenfull'
 import urlForSanitySource from '../lib/urlForSanitySource'
@@ -13,9 +20,10 @@ const VideoPlayer = ({
   videoId,
   videoHeightAspectRatio = '9',
   videoWidthAspectRatio = '16',
+  autoPlay = false,
 }) => {
   const [showVideo, setShowVideo] = useState(false)
-  const [videoPlaying, setVideoPlaying] = useState(false)
+  const [videoPlaying, setVideoPlaying] = useState(autoPlay)
   const player = useRef(null)
   const scrubber = useRef(null)
   const [scrubberWidth, setScrubberWidth] = useState(0)
@@ -25,6 +33,8 @@ const VideoPlayer = ({
   const [isFullscreen, setIsFullscreen] = useState(false)
   const [isIos, setIsIos] = useState(false)
   const [isIpad, setIsIpad] = useState(false)
+  const [muted, setMuted] = useState(autoPlay)
+  const [volume, setVolume] = useState(1)
 
   const checkIfIos = (navigator) => {
     return (
@@ -108,6 +118,14 @@ const VideoPlayer = ({
     }
   }, [])
 
+  useLayoutEffect(() => {
+    if (muted) {
+      player.current.muted = true
+    } else {
+      player.current.muted = false
+    }
+  }, [muted])
+
   return (
     <article
       className={classNames(
@@ -145,10 +163,8 @@ const VideoPlayer = ({
               controls={isIpad}
               frameBorder="0"
               height={`100%`}
-              title={title}
-              url={`https://player.vimeo.com/video/${videoId}?badge=0&amp;autopause=0&amp;player_id=0&amp;app_id=58479`}
-              width={`100%`}
-              playing={videoPlaying}
+              muted={muted}
+              loop={autoPlay}
               onReady={() => {
                 setTimeout(() => {
                   setTotalPlaySeconds(player.current?.getDuration() || 0)
@@ -164,7 +180,12 @@ const VideoPlayer = ({
               onPause={() => {
                 setIsPlaying(false)
               }}
+              playing={videoPlaying}
               ref={player}
+              title={title}
+              url={`https://player.vimeo.com/video/${videoId}?badge=0&amp;autopause=0&amp;player_id=0&amp;app_id=58479`}
+              volume={volume}
+              width={`100%`}
             ></ReactPlayer>
             {!isIpad && (
               <button
@@ -236,7 +257,28 @@ const VideoPlayer = ({
                   }}
                 ></div>
               </button>
-              <div className="text-2xl flex items-center">
+              <div className="text-2xl flex items-center space-x-6">
+                {muted === true ? (
+                  <button
+                    className="bpd-white-icon"
+                    onClick={() => {
+                      setMuted(false)
+                      setVolume(1)
+                    }}
+                  >
+                    <GrVolumeMute />
+                  </button>
+                ) : (
+                  <button
+                    className="bpd-white-icon"
+                    onClick={() => {
+                      setMuted(true)
+                      setVolume(0)
+                    }}
+                  >
+                    <GrVolume />
+                  </button>
+                )}
                 {isFullscreen ? (
                   <button
                     className="bpd-white-icon"

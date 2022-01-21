@@ -128,6 +128,7 @@ function About({ aboutPage }) {
               clientName={aboutPage.company3VideoClient}
               videoHeightAspectRatio={aboutPage.company3VideoHeightAspectRatio}
               videoWidthAspectRatio={aboutPage.company3VideoWidthAspectRatio}
+              autoPlay={true}
             />
             <p className="text-4xl mt-8 flex items-center justify-center space-x-6">
               <span className="uppercase font-extrabold text-2xl lg:text-5xl">

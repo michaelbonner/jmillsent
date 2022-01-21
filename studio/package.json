@@ -29,7 +29,7 @@
     "react-icons": "^4.2.0",
     "sanity-plugin-dashboard-widget-vercel": "^1.1.0",
     "sanity-plugin-media": "^1.4.0",
-    "sanity-plugin-order-documents": "^0.0.20",
+    "sanity-plugin-order-documents": "^0.0.22",
     "sanity-plugin-s3-dam": "^0.6.0",
     "styled-components": "^5.3.1"
   }

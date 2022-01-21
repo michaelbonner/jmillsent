@@ -6,7 +6,7 @@ import Link from 'next/link'
 import Lightbox from 'react-image-lightbox'
 import { H1, H2, H3 } from '@/components/headings'
 import Layout from '@/components/layout'
-import { getClient } from '../lib/sanity'
+import { getClient, urlFor } from '../lib/sanity'
 import MediumWhiteBar from '@/components/medium-white-bar'
 import urlForSanitySource from '../lib/urlForSanitySource'
 import LittleWhiteBar from '@/components/little-white-bar'
@@ -31,7 +31,7 @@ function About({ aboutPage }) {
   }, [size.width])
 
   const utahLocationsImages = aboutPage.utahLocations.map(
-    (image) => `${image.imageUrl}?w=1800&auto=format`
+    (image) => `${urlForSanitySource(image)}?w=1800&auto=format`
   )
 
   const heroContent = (
@@ -87,13 +87,9 @@ function About({ aboutPage }) {
                     key={service._id}
                   >
                     <div className="w-full">
-                      <Image
-                        src={urlForSanitySource(service.image)
-                          .width(1800)
-                          .height(800)
-                          .url()}
+                      <SanityImage
+                        image={service.image}
                         width="1800"
-                        height="800"
                         alt={service.title}
                       />
                     </div>
@@ -176,13 +172,8 @@ function About({ aboutPage }) {
       {/* director section */}
       <section className="grid grid-cols-1 lg:grid-cols-3 max-w-7xl mx-auto items-center my-12 lg:my-24 px-4">
         <div className="w-full">
-          <Image
-            src={urlForSanitySource(aboutPage.directorImage)
-              .width(500)
-              .height(644)
-              .url()}
-            height="644"
-            width="500"
+          <SanityImage
+            image={aboutPage.directorImage}
             alt={aboutPage.directorName}
           />
         </div>
@@ -283,18 +274,22 @@ function About({ aboutPage }) {
         <div className="mt-12 grid grid-cols-2 lg:grid-cols-3 gap-1">
           {aboutPage.utahLocations.map((utahLocation, index) => {
             return (
-              <Image
-                alt={utahLocation.caption}
-                className="block filter grayscale hover:filter-none transition-all duration-500 cursor-pointer"
-                height="400"
+              <button
+                className="w-full h-full"
                 key={index}
                 onClick={() => {
                   setIsGalleryModelOpen(true)
                   setPhotoIndex(index)
                 }}
-                src={`${utahLocation.imageUrl}?w=600&h=400`}
-                width="600"
-              />
+                style={{
+                  backgroundImage: `url(${urlForSanitySource(
+                    utahLocation.asset
+                  ).size(600, 400)})`,
+                  backgroundSize: 'cover',
+                  backgroundPosition: 'center',
+                  height: 'min(25vh, 300px)',
+                }}
+              ></button>
             )
           })}
         </div>
@@ -324,11 +319,9 @@ function About({ aboutPage }) {
                   {ravensCard.title}
                 </h4>
                 <div>
-                  <Image
+                  <SanityImage
+                    image={ravensCard.image}
                     className="block filter grayscale hover:filter-none transition-all duration-500"
-                    src={`${ravensCard.imageUrl}?w=600&h=400`}
-                    height="400"
-                    width="600"
                     alt={ravensCard.caption}
                   />
                 </div>
@@ -420,11 +413,11 @@ export async function getStaticProps() {
       utahLocationsDescription,
       utahLocations[]{
           caption,
-          "imageUrl": asset->url
+          asset
       },
       ravensCards[]{
           title,
-          "imageUrl": image.asset->url,
+          image,
           body
       },
       ravensCardsTitle,

@@ -195,12 +195,11 @@ function Contact({ contact }) {
           <div className="text-center">
             <H4>{contact.representationTitle}</H4>
           </div>
-          <LargeWhiteBar />
-          <div className="max-w-7xl mx-auto text-center flex justify-center text-gray-200">
+          <div className="max-w-7xl mx-auto text-center flex justify-center text-gray-200 mt-8">
             {contact.representationCards.map((card) => {
               return (
                 <div key={card.title}>
-                  <div className="prose prose-lg leading-5 text-gray-400">
+                  <div className="prose prose-lg leading-7 prose-white text-gray-400">
                     <BlockContent blocks={card.body} />
                   </div>
                 </div>

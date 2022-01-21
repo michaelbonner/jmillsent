@@ -87,9 +87,12 @@ function About({ aboutPage }) {
                     key={service._id}
                   >
                     <div className="w-full">
-                      <SanityImage
-                        image={service.image}
-                        width="1800"
+                      <Image
+                        src={`${urlForSanitySource(
+                          service.image
+                        )}?w=1200&h=600&auto=format&fit=crop&crop=focalpoint`}
+                        height={600}
+                        width={1200}
                         alt={service.title}
                       />
                     </div>

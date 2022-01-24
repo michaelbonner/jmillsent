@@ -57,8 +57,8 @@ function Contact({ contact }) {
         <div className="max-w-5xl mx-auto px-4 lg:px-0 pt-14 pb-8 lg:pt-24 lg:pb-24 text-center">
           <H1>{contact.title}</H1>
         </div>
-        <div className="max-w-7xl w-full mx-auto lg:flex lg:space-x-16 pb-24">
-          <div className="max-w-lg lg:w-1/3 px-4 lg:px-0">
+        <div className="max-w-7xl w-full mx-auto lg:flex lg:space-x-16 pb-24 px-4">
+          <div className="max-w-lg lg:w-1/3">
             {state === 'initial' && (
               <Formik
                 initialValues={contactForm}
@@ -187,7 +187,7 @@ function Contact({ contact }) {
               </div>
             )}
           </div>
-          <div className="w-full lg:w-2/3 px-4 lg:px-0 mt-20 lg:mt-0 border border-white rounded-lg">
+          <div className="w-full lg:w-2/3 mt-20 lg:mt-0 border border-white rounded-lg">
             <Map />
           </div>
         </div>

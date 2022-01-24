@@ -111,6 +111,8 @@ const VideoPlayer = ({
 
   useLayoutEffect(() => {
     if (checkIfIos(window.navigator)) {
+      setVideoPlaying(false)
+      setMuted(false)
       setIsIos(true)
     }
     if (checkIfIpad(window.navigator)) {

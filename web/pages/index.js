@@ -1,11 +1,11 @@
-import groq from 'groq'
-import BlockContent from '@sanity/block-content-to-react'
 import { H1, H2 } from '@/components/headings'
 import Layout from '@/components/layout'
-import { getClient } from '@/lib/sanity'
-import Image from 'next/image'
 import MediumWhiteBar from '@/components/medium-white-bar'
 import VideoPlayer from '@/components/video-player'
+import { getClient } from '@/lib/sanity'
+import BlockContent from '@sanity/block-content-to-react'
+import groq from 'groq'
+import Image from 'next/image'
 
 function Home({ homePage }) {
   const heroContent = (

@@ -1,18 +1,18 @@
 /* eslint-disable @next/next/no-img-element */
-import { useState } from 'react'
+import { H1, H4 } from '@/components/headings'
+import LargeWhiteBar from '@/components/large-white-bar'
+import Layout from '@/components/layout'
+import Map from '@/components/map'
+import BlockContent from '@sanity/block-content-to-react'
+import classNames from 'classnames'
+import { ErrorMessage, Field, Form, Formik } from 'formik'
 import groq from 'groq'
+import { useState } from 'react'
+import TextareaAutosize from 'react-textarea-autosize'
 import { toast } from 'react-toastify'
 import * as Yup from 'yup'
-import { Formik, Form, Field, ErrorMessage } from 'formik'
-import classNames from 'classnames'
-import TextareaAutosize from 'react-textarea-autosize'
-import BlockContent from '@sanity/block-content-to-react'
-import Layout from '@/components/layout'
 import { getClient } from '../lib/sanity'
 import urlForSanitySource from '../lib/urlForSanitySource'
-import { H1, H4 } from '@/components/headings'
-import Map from '@/components/map'
-import LargeWhiteBar from '@/components/large-white-bar'
 
 const phoneRegExp =
   /^((\\+[1-9]{1,4}[ \\-]*)|(\\([0-9]{2,3}\\)[ \\-]*)|([0-9]{2,4})[ \\-]*)*?[0-9]{3,4}?[ \\-]*[0-9]{3,4}?$/

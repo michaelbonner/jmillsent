@@ -1,14 +1,14 @@
-import groq from 'groq'
-import BlockContent from '@sanity/block-content-to-react'
-import Image from 'next/image'
-import { Link as SmoothScrollLink, animateScroll as scroll } from 'react-scroll'
-import { H1, H2, H3 } from '@/components/headings'
+import { H1, H2 } from '@/components/headings'
 import Layout from '@/components/layout'
-import { getClient } from '../lib/sanity'
-import VideoPlayer from '@/components/video-player'
-import MediumWhiteBar from '@/components/medium-white-bar'
-import urlForSanitySource from '../lib/urlForSanitySource'
 import LittleWhiteBar from '@/components/little-white-bar'
+import MediumWhiteBar from '@/components/medium-white-bar'
+import VideoPlayer from '@/components/video-player'
+import BlockContent from '@sanity/block-content-to-react'
+import groq from 'groq'
+import Image from 'next/image'
+import { Link as SmoothScrollLink } from 'react-scroll'
+import { getClient } from '../lib/sanity'
+import urlForSanitySource from '../lib/urlForSanitySource'
 
 function Studio({ studioPage }) {
   const heroContent = (

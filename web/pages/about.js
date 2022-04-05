@@ -85,15 +85,15 @@ function About({ aboutPage }) {
                 const leftOrRight = index % 2 === 0 ? 'left' : 'right'
                 const styles = {
                   left: {
-                    textAlign: 'text-left',
-                    barPosition: 'mr-auto',
-                    containerPosition: 'left-0 pl-12',
+                    textAlign: 'text-center lg:text-left',
+                    barPosition: 'mx-auto lg:ml-0 lg:mr-auto',
+                    containerPosition: 'left-0 lg:pl-12',
                     gradientDirection: 'bg-gradient-to-r',
                   },
                   right: {
-                    textAlign: 'text-right',
-                    barPosition: 'ml-auto',
-                    containerPosition: 'right-0 pr-12',
+                    textAlign: 'text-center lg:text-right',
+                    barPosition: 'mx-auto lg:mr-0 lg:ml-auto',
+                    containerPosition: 'right-0 lg:pr-12',
                     gradientDirection: 'bg-gradient-to-l',
                   },
                 }
@@ -112,10 +112,10 @@ function About({ aboutPage }) {
                         alt={service.title}
                       />
                       <div
-                        className={`absolute w-full ${styles[leftOrRight].containerPosition} top-0 bottom-0 h-full ${styles[leftOrRight].gradientDirection} from-black to-transparent opacity-80 group-hover:opacity-100 transition-all duration-500`}
+                        className={`lg:absolute w-full ${styles[leftOrRight].containerPosition} top-0 bottom-0 h-full ${styles[leftOrRight].gradientDirection} from-black to-transparent opacity-80 group-hover:opacity-100 transition-all duration-500`}
                       />
                       <div
-                        className={`absolute ${styles[leftOrRight].containerPosition} top-0 bottom-0 ${styles[leftOrRight].textAlign} flex flex-col justify-center items-start`}
+                        className={`lg:absolute ${styles[leftOrRight].containerPosition} top-0 bottom-0 ${styles[leftOrRight].textAlign} flex flex-col justify-center items-start gap-y-2`}
                       >
                         <h3 className="font-bold text-3xl mt-8 font-outline w-full">
                           {service.name}
@@ -202,7 +202,7 @@ function About({ aboutPage }) {
           />
         </div>
         <div className="lg:col-span-2 text-center">
-          <p className="uppercase font-extrabold text-xl lg:text-4xl mb-4">
+          <p className="uppercase font-extrabold text-xl lg:text-4xl mt-8 lg:mt-0 mb-4">
             {aboutPage.directorTitle}
           </p>
           <p className="font-outline text-4xl">{aboutPage.directorName}</p>

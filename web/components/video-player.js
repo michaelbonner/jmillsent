@@ -348,11 +348,11 @@ const VideoPlayer = ({
       </button>
 
       <div
-        className={`py-4 block lg:hidden text-3xl text-left transition-all duration-500`}
+        className={`py-4 block lg:hidden text-3xl text-center transition-all duration-500`}
         onClick={() => setVideoPlaying(!videoPlaying)}
       >
         <div className="h-full bg-gradient-to-r from-black via-black to-transparent opacity-80"></div>
-        <div className="pl-1 flex flex-col gap-y-3 h-full items-start justify-center">
+        <div className="pl-1 flex flex-col gap-y-3 h-full items-center justify-center">
           <div className="font-bold uppercase text-2xl">{client}</div>
           <div className="font-outline uppercase text-4xl">{title}</div>
           {description && (

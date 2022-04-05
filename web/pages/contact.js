@@ -1,5 +1,6 @@
 /* eslint-disable @next/next/no-img-element */
-import { H1, H4 } from '@/components/headings'
+import { H1, H2, H3, H4 } from '@/components/headings'
+import MediumWhiteBar from '@/components/medium-white-bar'
 import LargeWhiteBar from '@/components/large-white-bar'
 import Layout from '@/components/layout'
 import Map from '@/components/map'
@@ -13,6 +14,7 @@ import { toast } from 'react-toastify'
 import * as Yup from 'yup'
 import { getClient } from '../lib/sanity'
 import urlForSanitySource from '../lib/urlForSanitySource'
+import LittleWhiteBar from '@/components/little-white-bar'
 
 const phoneRegExp =
   /^((\\+[1-9]{1,4}[ \\-]*)|(\\([0-9]{2,3}\\)[ \\-]*)|([0-9]{2,4})[ \\-]*)*?[0-9]{3,4}?[ \\-]*[0-9]{3,4}?$/
@@ -193,13 +195,20 @@ function Contact({ contact }) {
         </div>
         <div className="mt-12">
           <div className="text-center">
-            <H4>{contact.representationTitle}</H4>
+            <h2 className="text-3xl font-semibold uppercase tracking-wider">
+              {contact.representationTitle}
+            </h2>
           </div>
-          <div className="max-w-7xl mx-auto text-center flex justify-center text-gray-200 mt-8">
+          <LargeWhiteBar />
+          <div className="max-w-7xl mx-auto text-center grid lg:grid-cols-3 text-gray-200 mt-8">
             {contact.representationCards.map((card) => {
               return (
                 <div key={card.title}>
-                  <div className="prose prose-lg leading-7 prose-white text-gray-400">
+                  <h3 className="font-outline uppercase text-2xl">
+                    {card.title}
+                  </h3>
+                  <LittleWhiteBar yMargin="my-4" />
+                  <div className="text-lg leading-9 prose-white text-gray-300">
                     <BlockContent blocks={card.body} />
                   </div>
                 </div>
@@ -207,15 +216,15 @@ function Contact({ contact }) {
             })}
           </div>
           <div className="lg:mt-24">
-            <LargeWhiteBar />
+            <MediumWhiteBar />
           </div>
           <div className="max-w-5xl mx-auto px-4 lg:px-0 lg:flex items-center justify-center text-center lg:text-left lg:space-x-12 prose prose-white text-gray-300 font-light text-lg">
-            <div>
+            <div className="leading-9 text-gray-300 text-center">
               <p>
                 JME STUDIO ADDRESS
                 <br />
                 <a
-                  className="text-gray-300"
+                  className="text-gray-300 no-underline border-b border-gray-500 font-light"
                   href="https://g.page/jmillsent?share"
                 >
                   1589 W 2225 S<br />
@@ -223,28 +232,8 @@ function Contact({ contact }) {
                 </a>
               </p>
             </div>
-            <div className="hidden lg:block">
-              <span className="block h-16 w-px bg-white" />
-            </div>
-            <div>
-              <p>
-                STUDIO LINE:{' '}
-                <a className="text-gray-300" href="tel:801-797-9023">
-                  801-797-9023
-                </a>
-                <br />
-                DIRECT LINE:{' '}
-                <a className="text-gray-300" href="tel:801-971-4683">
-                  801-971-4683
-                </a>
-                <br />
-                EMAIL:{' '}
-                <a className="text-gray-300" href="mailto:info@jmillsent.com">
-                  INFO@JMILLSENT.COM
-                </a>
-              </p>
-            </div>
           </div>
+          <LargeWhiteBar yMargin="mt-12" />
         </div>
       </div>
     </Layout>

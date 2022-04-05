@@ -1,6 +1,6 @@
+import BackgroundText from '@/components/background-text-section'
 import { H1, H2 } from '@/components/headings'
 import Layout from '@/components/layout'
-import LittleWhiteBar from '@/components/little-white-bar'
 import MediumWhiteBar from '@/components/medium-white-bar'
 import VideoPlayer from '@/components/video-player'
 import BlockContent from '@sanity/block-content-to-react'
@@ -8,7 +8,6 @@ import groq from 'groq'
 import Image from 'next/image'
 import { Link as SmoothScrollLink } from 'react-scroll'
 import { getClient } from '../lib/sanity'
-import urlForSanitySource from '../lib/urlForSanitySource'
 
 function Studio({ studioPage }) {
   const heroContent = (
@@ -91,35 +90,17 @@ function Studio({ studioPage }) {
         <section>
           {studioPage.studioItems?.length > 0 && (
             <div className="grid grid-cols-1 gap-y-16 mt-12 max-w-7xl mx-auto">
-              {studioPage.studioItems.map((service) => {
+              {studioPage.studioItems.map((service, index) => {
+                const leftOrRight = index % 2 === 0 ? 'left' : 'right'
                 return (
-                  <div
-                    className="border p-4 lg:px-8 border-white"
+                  <BackgroundText
+                    leftOrRight={leftOrRight}
+                    image={service.image}
+                    imageAlt={service.title}
+                    title={service.title}
+                    description={service.description}
                     key={service._id}
-                  >
-                    <div className="w-full">
-                      <Image
-                        src={urlForSanitySource(service.image)
-                          .width(1800)
-                          .height(800)
-                          .url()}
-                        width="1800"
-                        height="800"
-                        alt={service.title}
-                      />
-                    </div>
-                    <h3 className="text-center font-bold text-3xl mt-8 uppercase">
-                      {service.title}
-                    </h3>
-                    {service.description && (
-                      <>
-                        <LittleWhiteBar yMargin={'my-4'} />
-                        <div className="mt-4 max-w-5xl prose-lg text-center mx-auto text-white font-light">
-                          <BlockContent blocks={service.description} />
-                        </div>
-                      </>
-                    )}
-                  </div>
+                  />
                 )
               })}
             </div>

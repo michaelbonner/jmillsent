@@ -1,19 +1,21 @@
 /* eslint-disable @next/next/no-img-element */
+import classNames from 'classnames'
+import dynamic from 'next/dynamic'
 import { useEffect, useLayoutEffect, useRef, useState } from 'react'
-import ReactPlayer from 'react-player'
 import {
-  GrPlay,
-  GrPause,
   GrContract,
   GrExpand,
+  GrPause,
+  GrPlay,
   GrVolume,
   GrVolumeMute,
 } from 'react-icons/gr'
-import useInterval from '../hooks/useInterval'
 import screenfull from 'screenfull'
+import useInterval from '../hooks/useInterval'
 import urlForSanitySource from '../lib/urlForSanitySource'
-import classNames from 'classnames'
 import LittleGoldBar from './little-gold-bar'
+
+const ReactPlayer = dynamic(() => import('react-player'), { ssr: false })
 
 const VideoPlayer = ({
   poster,

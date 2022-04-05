@@ -4,8 +4,10 @@ import Image from 'next/image'
 import Link from 'next/link'
 import { useRouter } from 'next/dist/client/router'
 import urlForSanitySource from '../lib/urlForSanitySource'
-import ReactPlayer from 'react-player'
 import classNames from 'classnames'
+import dynamic from 'next/dynamic'
+
+const ReactPlayer = dynamic(() => import('react-player'), { ssr: false })
 
 const navItems = [
   {

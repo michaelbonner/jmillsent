@@ -1,9 +1,10 @@
 /* eslint-disable @next/next/no-img-element */
-import { H1, H2, H3, H4 } from '@/components/headings'
-import MediumWhiteBar from '@/components/medium-white-bar'
+import { H1 } from '@/components/headings'
 import LargeWhiteBar from '@/components/large-white-bar'
 import Layout from '@/components/layout'
+import LittleWhiteBar from '@/components/little-white-bar'
 import Map from '@/components/map'
+import MediumWhiteBar from '@/components/medium-white-bar'
 import BlockContent from '@sanity/block-content-to-react'
 import classNames from 'classnames'
 import { ErrorMessage, Field, Form, Formik } from 'formik'
@@ -14,7 +15,6 @@ import { toast } from 'react-toastify'
 import * as Yup from 'yup'
 import { getClient } from '../lib/sanity'
 import urlForSanitySource from '../lib/urlForSanitySource'
-import LittleWhiteBar from '@/components/little-white-bar'
 
 const phoneRegExp =
   /^((\\+[1-9]{1,4}[ \\-]*)|(\\([0-9]{2,3}\\)[ \\-]*)|([0-9]{2,4})[ \\-]*)*?[0-9]{3,4}?[ \\-]*[0-9]{3,4}?$/

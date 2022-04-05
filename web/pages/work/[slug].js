@@ -102,7 +102,7 @@ const WorkItem = ({ workItem = {} }) => {
                         key={index}
                       >
                         <div className="font-bold uppercase">{credit.role}</div>
-                        <div className="uppercase space-x-4 space-x-4 font-outline tracking-wide">
+                        <div className="uppercase space-x-4 font-outline tracking-wide">
                           {credit.value}
                         </div>
                       </div>
@@ -117,7 +117,7 @@ const WorkItem = ({ workItem = {} }) => {
                         key={index}
                       >
                         <div className="font-bold uppercase">{credit.role}</div>
-                        <div className="uppercase space-x-4 space-x-4 font-outline tracking-wide">
+                        <div className="uppercase space-x-4 font-outline tracking-wide">
                           {credit.value}
                         </div>
                       </div>

@@ -125,19 +125,12 @@ function About({ aboutPage }) {
               poster={aboutPage.company3VideoPoster}
               title={aboutPage.company3VideoTitle}
               videoId={aboutPage.company3VideoId}
-              clientName={aboutPage.company3VideoClient}
+              client={aboutPage.company3VideoClient}
+              description={aboutPage.company3VideoDescription}
               videoHeightAspectRatio={aboutPage.company3VideoHeightAspectRatio}
               videoWidthAspectRatio={aboutPage.company3VideoWidthAspectRatio}
               autoPlay={true}
             />
-            <p className="text-4xl mt-8 flex items-center justify-center space-x-6">
-              <span className="uppercase font-extrabold text-2xl lg:text-5xl">
-                {aboutPage.company3VideoClient}
-              </span>
-              <span className="uppercase font-outline text-2xl lg:text-5xl">
-                {aboutPage.company3VideoTitle}
-              </span>
-            </p>
           </div>
           <div className="mt-12 lg:mt-24">
             <H3>{aboutPage.company3Title}</H3>
@@ -404,6 +397,7 @@ export async function getStaticProps() {
       company3Link,
       company3Title,
       company3VideoClient,
+      company3VideoDescription,
       directorDescription,
       directorImage,
       directorName,

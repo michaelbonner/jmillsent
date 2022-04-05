@@ -43,19 +43,12 @@ function Home({ homePage }) {
             poster={homePage.reelVideoPoster}
             title={homePage.reelVideoTitle}
             videoId={homePage.reelVideoId}
-            clientName={homePage.reelVideoClient}
+            client={homePage.reelVideoClient}
+            description={homePage.reelVideoDescription}
             videoHeightAspectRatio={homePage.reelVideoHeightAspectRatio}
             videoWidthAspectRatio={homePage.reelVideoWidthAspectRatio}
             autoPlay={true}
           />
-          <p className="text-4xl mt-8 flex items-center justify-center space-x-6">
-            <span className="uppercase font-extrabold text-2xl lg:text-5xl">
-              {homePage.reelVideoClient}
-            </span>
-            <span className="uppercase font-outline text-2xl lg:text-5xl">
-              {homePage.reelVideoTitle}
-            </span>
-          </p>
         </div>
       </div>
       <div className="px-8 container lg:mx-auto text-center mt-16">
@@ -78,6 +71,7 @@ export async function getStaticProps() {
 			mainTitle,
 			poster,
 			reelVideoClient,
+			reelVideoDescription,
 			reelVideoHeightAspectRatio,
 			reelVideoId,
 			reelVideoPoster,

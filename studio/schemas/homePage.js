@@ -63,6 +63,11 @@ export default {
       type: "string",
     },
     {
+      name: "reelVideoDescription",
+      title: "Reel video description",
+      type: "text",
+    },
+    {
       name: "reelVideoId",
       title: "Reel video id",
       type: "string",

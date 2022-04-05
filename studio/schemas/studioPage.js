@@ -72,6 +72,11 @@ export default {
       type: "string",
     },
     {
+      name: "tourVideoDescription",
+      title: "Tour video description",
+      type: "text",
+    },
+    {
       name: "tourVideoId",
       title: "Tour video id",
       type: "string",

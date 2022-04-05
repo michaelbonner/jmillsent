@@ -93,6 +93,11 @@ export default {
       type: "string",
     },
     {
+      name: "company3VideoDescription",
+      title: "Company 3 video description",
+      type: "text",
+    },
+    {
       name: "company3VideoId",
       title: "Company 3 video id",
       type: "string",

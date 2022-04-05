@@ -16,7 +16,9 @@ import classNames from 'classnames'
 
 const VideoPlayer = ({
   poster,
+  client = '',
   title,
+  description = '',
   videoId,
   videoHeightAspectRatio = '9',
   videoWidthAspectRatio = '16',
@@ -121,6 +123,9 @@ const VideoPlayer = ({
   }, [])
 
   useLayoutEffect(() => {
+    if (!player.current) {
+      return
+    }
     if (muted) {
       player.current.muted = true
     } else {
@@ -191,7 +196,7 @@ const VideoPlayer = ({
             ></ReactPlayer>
             {!isIpad && (
               <button
-                className="absolute inset-0 bg-transparent flex items-center justify-center cursor-pointer text-6xl"
+                className="absolute z-10 inset-0 bg-transparent flex items-center justify-center cursor-pointer text-6xl"
                 onClick={() => setVideoPlaying(!videoPlaying)}
               >
                 <GrPlay
@@ -208,7 +213,7 @@ const VideoPlayer = ({
           </div>
 
           {!isIos ? (
-            <div className="container mx-auto pt-3 flex space-x-8 bg-black">
+            <div className="relative z-10 container mx-auto pt-3 flex space-x-8 bg-black">
               <button
                 className="relative text-4xl w-8 h-8"
                 onClick={() => setVideoPlaying(!videoPlaying)}
@@ -319,6 +324,46 @@ const VideoPlayer = ({
           </div>
         </div>
       )}
+
+      <button
+        className={`${
+          isPlaying ? 'opacity-0' : 'opacity-100'
+        } invisible lg:visible absolute inset-0 bg-transparent cursor-pointer text-3xl text-left transition-all duration-500`}
+        onClick={() => setVideoPlaying(!videoPlaying)}
+      >
+        <div className="absolute inset-0 h-full w-3/5 bg-gradient-to-r from-black via-black to-transparent opacity-80"></div>
+        <div className="absolute inset-0 pl-16 flex flex-col gap-y-3 h-full items-start justify-center">
+          <div className="font-bold uppercase text-2xl">{client}</div>
+          <div className="font-outline uppercase text-4xl">{title}</div>
+          {description && (
+            <>
+              <div className="h-1 w-32 bg-gold my-2" />
+              <div className="w-full uppercase text-base tracking-wide max-w-sm max-h-[300px] overflow-y-scroll whitespace-pre-wrap">
+                {description}
+              </div>
+            </>
+          )}
+        </div>
+      </button>
+
+      <div
+        className={`py-4 block lg:hidden text-3xl text-left transition-all duration-500`}
+        onClick={() => setVideoPlaying(!videoPlaying)}
+      >
+        <div className="h-full bg-gradient-to-r from-black via-black to-transparent opacity-80"></div>
+        <div className="pl-1 flex flex-col gap-y-3 h-full items-start justify-center">
+          <div className="font-bold uppercase text-2xl">{client}</div>
+          <div className="font-outline uppercase text-4xl">{title}</div>
+          {description && (
+            <>
+              <div className="h-1 w-32 bg-gold my-1" />
+              <div className="w-full uppercase text-lg tracking-wide max-w-sm max-h-[300px] overflow-y-scroll">
+                {description}
+              </div>
+            </>
+          )}
+        </div>
+      </div>
     </article>
   )
 }

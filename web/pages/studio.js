@@ -75,19 +75,12 @@ function Studio({ studioPage }) {
             poster={studioPage.tourVideoPoster}
             title={studioPage.tourVideoTitle}
             videoId={studioPage.tourVideoId}
-            clientName={studioPage.tourVideoClient}
+            client={studioPage.tourVideoClient}
+            description={studioPage.tourVideoDescription}
             videoHeightAspectRatio={studioPage.tourVideoHeightAspectRatio}
             videoWidthAspectRatio={studioPage.tourVideoWidthAspectRatio}
             autoPlay={true}
           />
-          <p className="text-4xl mt-8 flex items-center justify-center space-x-6">
-            <span className="uppercase font-extrabold text-2xl lg:text-5xl">
-              {studioPage.tourVideoClient}
-            </span>
-            <span className="uppercase font-outline text-2xl lg:text-5xl">
-              {studioPage.tourVideoTitle}
-            </span>
-          </p>
         </div>
 
         <div className="my-12 lg:my-24">
@@ -151,6 +144,7 @@ export async function getStaticProps() {
 			tourVideoId,
 			tourVideoPoster,
 			tourVideoTitle,
+			tourVideoDescription,
 			tourVideoWidthAspectRatio,
 			section1Body,
 			section1Title,
@@ -159,19 +153,19 @@ export async function getStaticProps() {
 			subtitle,
 			videoClient,
 			videoId,
-            brands[]->,
-            company3Body,
-            company3Link,
-            company3Title,
-            company3VideoClient,
-            directorDescription,
-            directorImage,
-            directorName,
-            directorTitle,
-            section2Subtitle,
-            section2Title,
-            studioItems[]->,
-            title,
+      brands[]->,
+        company3Body,
+        company3Link,
+        company3Title,
+        company3VideoClient,
+        directorDescription,
+        directorImage,
+        directorName,
+        directorTitle,
+        section2Subtitle,
+        section2Title,
+        studioItems[]->,
+        title,
   		}
   		`
   )

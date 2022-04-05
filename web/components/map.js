@@ -2,7 +2,7 @@ import React from 'react'
 import mapStyles from '../data/map-styles'
 import { GoogleMap, useJsApiLoader, Marker } from '@react-google-maps/api'
 
-const Map = ({ marker }) => {
+const Map = () => {
   const { isLoaded } = useJsApiLoader({
     id: 'google-map-script',
     googleMapsApiKey: process.env.NEXT_PUBLIC_GOOGLE_API_KEY || '',

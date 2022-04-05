@@ -1,13 +1,11 @@
-import React, { useEffect, useState } from 'react'
+import classNames from 'classnames'
+import { useRouter } from 'next/dist/client/router'
 import Head from 'next/head'
 import Image from 'next/image'
 import Link from 'next/link'
-import { useRouter } from 'next/dist/client/router'
+import React, { useEffect, useState } from 'react'
+import ReactPlayer from 'react-player'
 import urlForSanitySource from '../lib/urlForSanitySource'
-import classNames from 'classnames'
-import dynamic from 'next/dynamic'
-
-const ReactPlayer = dynamic(() => import('react-player'), { ssr: false })
 
 const navItems = [
   {

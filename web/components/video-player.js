@@ -1,6 +1,5 @@
 /* eslint-disable @next/next/no-img-element */
 import classNames from 'classnames'
-import dynamic from 'next/dynamic'
 import { useEffect, useLayoutEffect, useRef, useState } from 'react'
 import {
   GrContract,
@@ -10,12 +9,11 @@ import {
   GrVolume,
   GrVolumeMute,
 } from 'react-icons/gr'
+import ReactPlayer from 'react-player'
 import screenfull from 'screenfull'
 import useInterval from '../hooks/useInterval'
 import urlForSanitySource from '../lib/urlForSanitySource'
 import LittleGoldBar from './little-gold-bar'
-
-const ReactPlayer = dynamic(() => import('react-player'), { ssr: false })
 
 const VideoPlayer = ({
   poster,
@@ -121,9 +119,14 @@ const VideoPlayer = ({
 
   useInterval(
     () => {
-      setScrubberPosition(
-        (player.current.getCurrentTime() / totalPlaySeconds) * scrubberWidth
-      )
+      if (
+        player.current &&
+        typeof player.current.getCurrentTime === 'function'
+      ) {
+        setScrubberPosition(
+          (player.current.getCurrentTime() / totalPlaySeconds) * scrubberWidth
+        )
+      }
     },
     isPlaying ? 75 : null
   )
@@ -191,8 +194,13 @@ const VideoPlayer = ({
               loop={autoPlay}
               onReady={() => {
                 setTimeout(() => {
-                  setTotalPlaySeconds(player.current?.getDuration() || 0)
-                  setShowVideo(true)
+                  if (
+                    player?.current &&
+                    typeof player?.current?.getDuration === 'function'
+                  ) {
+                    setTotalPlaySeconds(player?.current?.getDuration() || 0)
+                    setShowVideo(true)
+                  }
                 }, [500])
               }}
               onEnded={() => {

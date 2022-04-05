@@ -331,7 +331,7 @@ const VideoPlayer = ({
         } invisible lg:visible absolute inset-0 bg-transparent cursor-pointer text-3xl text-left transition-all duration-500`}
         onClick={() => setVideoPlaying(!videoPlaying)}
       >
-        <div className="absolute inset-0 h-full w-3/5 bg-gradient-to-r from-black via-black to-transparent opacity-80"></div>
+        <div className="absolute inset-0 h-full bg-gradient-to-r from-black via-transparent to-transparent opacity-80"></div>
         <div className="absolute inset-0 pl-16 flex flex-col gap-y-3 h-full items-start justify-center">
           <div className="font-bold uppercase text-2xl">{client}</div>
           <div className="font-outline uppercase text-4xl">{title}</div>

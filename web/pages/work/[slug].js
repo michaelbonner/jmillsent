@@ -67,25 +67,19 @@ const WorkItem = ({ workItem = {} }) => {
         `${fullTitle} | JmillsENT | Motion Picture Studio + Film Agency`
       }
     >
-      <div className="my-12 p-4 xl:p-8 border border-white px-4 xl:mx-auto max-w-9xl">
-        <VideoPlayer
-          client={workItem.clientName}
-          description={workItem.description}
-          poster={workItem.poster}
-          title={workItem.title}
-          videoId={workItem.videoId}
-          clientName={workItem.clientName}
-          videoHeightAspectRatio={workItem.videoHeightAspectRatio || '9'}
-          videoWidthAspectRatio={workItem.videoWidthAspectRatio || '16'}
-        />
-        {/* <p className="text-4xl mt-4 xl:mt-8 flex items-center justify-center space-x-6">
-          <span className="uppercase font-extrabold text-2xl lg:text-5xl">
-            {workItem.clientName}
-          </span>
-          <span className="uppercase font-outline text-2xl lg:text-5xl">
-            {workItem.title}
-          </span>
-        </p> */}
+      <div className="px-4 lg:px-8">
+        <div className="my-12 p-4 xl:p-8 border border-white px-4 xl:mx-auto max-w-9xl">
+          <VideoPlayer
+            client={workItem.clientName}
+            description={workItem.description}
+            poster={workItem.poster}
+            title={workItem.title}
+            videoId={workItem.videoId}
+            clientName={workItem.clientName}
+            videoHeightAspectRatio={workItem.videoHeightAspectRatio || '9'}
+            videoWidthAspectRatio={workItem.videoWidthAspectRatio || '16'}
+          />
+        </div>
       </div>
 
       <div className="container px-4 md:px-0 mx-auto mt-4">

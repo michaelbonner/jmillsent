@@ -13,6 +13,7 @@ import useInterval from '../hooks/useInterval'
 import screenfull from 'screenfull'
 import urlForSanitySource from '../lib/urlForSanitySource'
 import classNames from 'classnames'
+import LittleGoldBar from './little-gold-bar'
 
 const VideoPlayer = ({
   poster,
@@ -201,7 +202,7 @@ const VideoPlayer = ({
               >
                 <GrPlay
                   className={classNames(
-                    `bpd-white-icon transition-all duration-500`,
+                    `bpd-white-icon transition-opacity duration-500`,
                     {
                       'opacity-0': videoPlaying,
                       'opacity-100': !videoPlaying,
@@ -337,7 +338,7 @@ const VideoPlayer = ({
           <div className="font-outline uppercase text-4xl">{title}</div>
           {description && (
             <>
-              <div className="h-1 w-32 bg-gold my-2" />
+              <LittleGoldBar />
               <div className="w-full uppercase text-base tracking-wide max-w-sm max-h-[300px] overflow-y-scroll whitespace-pre-wrap">
                 {description}
               </div>

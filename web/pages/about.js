@@ -15,6 +15,7 @@ import useWindowSize from '../hooks/useWindowSize'
 
 import 'react-image-lightbox/style.css'
 import VideoPlayer from '@/components/video-player'
+import LittleGoldBar from '@/components/little-gold-bar'
 
 function About({ aboutPage }) {
   const [isGalleryModelOpen, setIsGalleryModelOpen] = useState(false)
@@ -80,13 +81,28 @@ function About({ aboutPage }) {
         <section>
           {aboutPage.services.length > 0 && (
             <div className="grid grid-cols-1 gap-y-8 mt-12 max-w-7xl mx-auto">
-              {aboutPage.services.map((service) => {
+              {aboutPage.services.map((service, index) => {
+                const leftOrRight = index % 2 === 0 ? 'left' : 'right'
+                const styles = {
+                  left: {
+                    textAlign: 'text-left',
+                    barPosition: 'mr-auto',
+                    containerPosition: 'left-0 pl-12',
+                    gradientDirection: 'bg-gradient-to-r',
+                  },
+                  right: {
+                    textAlign: 'text-right',
+                    barPosition: 'ml-auto',
+                    containerPosition: 'right-0 pr-12',
+                    gradientDirection: 'bg-gradient-to-l',
+                  },
+                }
                 return (
                   <div
                     className="border p-4 lg:px-8 border-white"
                     key={service._id}
                   >
-                    <div className="w-full">
+                    <div className="w-full relative group">
                       <Image
                         src={`${urlForSanitySource(
                           service.image
@@ -95,18 +111,29 @@ function About({ aboutPage }) {
                         width={1200}
                         alt={service.title}
                       />
+                      <div
+                        className={`absolute w-full ${styles[leftOrRight].containerPosition} top-0 bottom-0 h-full ${styles[leftOrRight].gradientDirection} from-black to-transparent opacity-80 group-hover:opacity-100 transition-all duration-500`}
+                      />
+                      <div
+                        className={`absolute ${styles[leftOrRight].containerPosition} top-0 bottom-0 ${styles[leftOrRight].textAlign} flex flex-col justify-center items-start`}
+                      >
+                        <h3 className="font-bold text-3xl mt-8 font-outline w-full">
+                          {service.name}
+                        </h3>
+                        {service.description && (
+                          <>
+                            <div
+                              className={`${styles[leftOrRight].barPosition}`}
+                            >
+                              <LittleGoldBar />
+                            </div>
+                            <div className="mt-4 max-w-lg prose-lg mx-auto text-white font-light leading-normal">
+                              <BlockContent blocks={service.description} />
+                            </div>
+                          </>
+                        )}
+                      </div>
                     </div>
-                    <h3 className="text-center font-bold text-3xl mt-8">
-                      {service.name}
-                    </h3>
-                    {service.description && (
-                      <>
-                        <LittleWhiteBar yMargin={'my-4'} />
-                        <div className="mt-4 max-w-5xl prose-lg text-center mx-auto text-white font-light">
-                          <BlockContent blocks={service.description} />
-                        </div>
-                      </>
-                    )}
                   </div>
                 )
               })}

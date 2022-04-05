@@ -38,6 +38,7 @@ const VideoPlayer = ({
   const [isIpad, setIsIpad] = useState(false)
   const [muted, setMuted] = useState(autoPlay)
   const [volume, setVolume] = useState(1)
+  const [hasClicked, setHasClicked] = useState(false)
 
   const checkIfIos = (navigator) => {
     return (
@@ -102,6 +103,19 @@ const VideoPlayer = ({
       setScrubberWidth(scrubber?.current?.clientWidth || 100)
     }, 1000)
   }, [scrubber])
+
+  useEffect(() => {
+    if (autoPlay) {
+      if (!videoPlaying && !hasClicked) {
+        setHasClicked(true)
+      }
+      return
+    }
+
+    if (videoPlaying) {
+      setHasClicked(true)
+    }
+  }, [autoPlay, hasClicked, videoPlaying])
 
   useInterval(
     () => {
@@ -328,9 +342,11 @@ const VideoPlayer = ({
 
       <button
         className={`${
-          isPlaying ? 'opacity-0' : 'opacity-100'
+          !hasClicked || !isPlaying ? 'opacity-100' : 'opacity-0'
         } invisible lg:visible absolute inset-0 bg-transparent cursor-pointer text-3xl text-left transition-all duration-500`}
-        onClick={() => setVideoPlaying(!videoPlaying)}
+        onClick={() => {
+          setVideoPlaying(!videoPlaying)
+        }}
       >
         <div className="absolute inset-0 h-full bg-gradient-to-r from-black via-transparent to-transparent opacity-80"></div>
         <div className="absolute inset-0 pl-16 flex flex-col gap-y-3 h-full items-start justify-center">

@@ -80,7 +80,7 @@ function About({ aboutPage }) {
         {/* services */}
         <section>
           {aboutPage.services.length > 0 && (
-            <div className="grid grid-cols-1 gap-y-8 mt-12 max-w-7xl mx-auto">
+            <div className="grid grid-cols-1 gap-y-12 mt-12 max-w-7xl mx-auto">
               {aboutPage.services.map((service, index) => {
                 const leftOrRight = index % 2 === 0 ? 'left' : 'right'
                 const styles = {
@@ -99,17 +99,20 @@ function About({ aboutPage }) {
                 }
                 return (
                   <div
-                    className="border p-4 lg:px-8 border-white"
+                    className="border p-4 lg:p-6 border-white"
                     key={service._id}
                   >
-                    <div className="w-full relative group">
+                    <div
+                      className="w-full relative group"
+                      style={{ lineHeight: 0 }}
+                    >
                       <Image
+                        alt={service.title}
+                        height={600}
                         src={`${urlForSanitySource(
                           service.image
-                        )}?w=1200&h=600&auto=format&fit=crop&crop=focalpoint`}
-                        height={600}
-                        width={1200}
-                        alt={service.title}
+                        )}?w=1246&h=600&auto=format&fit=crop&crop=focalpoint`}
+                        width={1246}
                       />
                       <div
                         className={`lg:absolute w-full ${styles[leftOrRight].containerPosition} top-0 bottom-0 h-full ${styles[leftOrRight].gradientDirection} from-black to-transparent opacity-80 group-hover:opacity-100 transition-all duration-500`}

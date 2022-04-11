@@ -109,12 +109,7 @@ const Layout = ({
     }, 1500)
   }, [])
   return (
-    <div
-      className={classNames({
-        'opacity-0': heroVideoId,
-        'bpd-fade-in': heroVideoId && videoPlaying,
-      })}
-    >
+    <div>
       <Head>
         <title>
           {title || 'JmillsENT | Motion Picture Studio + Film Agency'}
@@ -178,6 +173,28 @@ const Layout = ({
           crossOrigin="true"
         />
       </Head>
+
+      <div
+        className={`
+        bg-black pointer-events-none fixed inset-0 transition-opacity duration-[3000ms] z-20
+          ${heroVideoId && !videoPlaying ? `opacity-100` : `opacity-0`}
+            `}
+      >
+        <div
+          className={`${
+            heroVideoId && !videoPlaying
+              ? `opacity-100 animate-pulse`
+              : `opacity-0`
+          } w-full h-full flex items-center justify-center`}
+        >
+          <Image
+            alt="JMills Logo"
+            src="/images/JME-logo-white.png"
+            width={100}
+            height={60}
+          />
+        </div>
+      </div>
 
       <div className="bg-black absolute w-full">
         <div

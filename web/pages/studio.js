@@ -68,7 +68,7 @@ function Studio({ studioPage }) {
 
         <div
           id="tour"
-          className="border border-white py-8 px-8 container lg:mx-auto"
+          className="border border-white py-8 px-8 container max-w-7xl lg:mx-auto"
         >
           <VideoPlayer
             poster={studioPage.tourVideoPoster}

@@ -360,7 +360,7 @@ const VideoPlayer = ({
       >
         <div className="absolute inset-0 h-full bg-gradient-to-r from-black via-transparent to-transparent opacity-80"></div>
         <div className="absolute inset-0 pl-16 flex flex-col gap-y-3 h-full items-start justify-center">
-          <div className="font-bold uppercase text-2xl">{client}</div>
+          <div className="font-bold uppercase text-6xl">{client}</div>
           <div className="font-outline uppercase text-4xl">{title}</div>
           {description && (
             <>

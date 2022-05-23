@@ -51,6 +51,16 @@ export default {
         "Enter the ID ( {{video_id}} ) of the video, not the whole url. https://player.vimeo.com/video/{{video_id}}?badge=0&autopause=0&player_id=0&app_id=58479",
     },
     {
+      name: "headerVideoWidthInPixels",
+      title: "Header video width in pixels",
+      type: "number",
+    },
+    {
+      name: "headerVideoHeightInPixels",
+      title: "Header video height in pixels",
+      type: "number",
+    },
+    {
       name: "section1Title",
       title: "Section 1 title",
       type: "string",

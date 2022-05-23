@@ -1,4 +1,5 @@
 import classNames from 'classnames'
+import useWindowSize from 'hooks/useWindowSize'
 import { useRouter } from 'next/dist/client/router'
 import Head from 'next/head'
 import Image from 'next/image'
@@ -41,6 +42,8 @@ const Layout = ({
   heroImageUrl,
   heroVideoId,
   heroContent = '',
+  heroVideoHeightInPixels = 0,
+  heroVideoWidthInPixels = 0,
 }) => {
   const [menuOpen, setMenuOpen] = useState(false)
   const [menuVisible, setMenuVisible] = useState(false)
@@ -49,6 +52,10 @@ const Layout = ({
   const [headerStyles, setHeaderStyles] = useState({})
   const [showHero, setShowHero] = useState(false)
   const [videoPlaying, setVideoPlaying] = useState(false)
+  const { width: windowWidth, height: windowHeight } = useWindowSize()
+  const heroContainerRef = React.createRef()
+  const [heroVideoHeight, setHeroVideoHeight] = useState('70vh')
+  const [heroVideoWidth, setHeroVideoWidth] = useState('100vw')
 
   const toggleMenu = () => {
     if (menuOpen) {
@@ -98,16 +105,33 @@ const Layout = ({
         backgroundSize: 'cover',
         backgroundPosition: 'center',
         backgroundRepeat: 'no-repeat',
-        minHeight: '80vh',
+        height: heroVideoHeight,
+        width: heroVideoWidth,
       })
     }
-  }, [heroVideoId, heroImageUrl])
+  }, [heroVideoId, heroImageUrl, heroVideoHeight, heroVideoWidth])
 
   useEffect(() => {
     setTimeout(() => {
       setVideoPlaying(true)
     }, 1500)
   }, [])
+
+  useEffect(() => {
+    if (heroVideoWidthInPixels && heroVideoHeightInPixels) {
+      const scaleFactor = windowWidth / heroVideoWidthInPixels
+
+      setHeroVideoHeight(`${heroVideoHeightInPixels * scaleFactor}px`)
+      setHeroVideoWidth(`${heroVideoWidthInPixels * scaleFactor}px`)
+    }
+  }, [
+    heroContainerRef,
+    heroVideoHeightInPixels,
+    heroVideoWidthInPixels,
+    windowHeight,
+    windowWidth,
+  ])
+
   return (
     <div>
       <Head>
@@ -343,7 +367,7 @@ const Layout = ({
         <div
           className={classNames(
             {
-              'lg:bg-gradient-to-b from-gray-400 to-white via-gray-100 lg:bg-opacity-25':
+              'lg:bg-gradient-to-b from-gray-700 to-black via-gray-800 lg:bg-opacity-25':
                 heroVideoId,
             },
             `relative h-full bg-black`
@@ -357,14 +381,17 @@ const Layout = ({
                   'opacity-100': videoPlaying,
                   'opacity-0': !videoPlaying,
                 },
-                `bpd-hero-background absolute z-0 h-full w-full inset-0`
+                `absolute z-0 inset-0`
               )}
+              height={heroVideoHeight}
+              width={heroVideoWidth}
+              ref={heroContainerRef}
             >
               <ReactPlayer
                 allow="autoplay; fullscreen; picture-in-picture"
                 controls={false}
                 frameBorder="0"
-                height={`100%`}
+                height={heroVideoHeight}
                 loop={true}
                 muted={true}
                 playing={true}
@@ -372,18 +399,20 @@ const Layout = ({
                 style={{
                   position: 'absolute',
                   top: 0,
+                  right: 0,
+                  bottom: 0,
                   left: 0,
                   pointerEvents: 'none',
-                  width: '140%',
-                  transform: 'translate3d(-20%, 0, 0)',
+                  width: heroVideoWidth,
+                  height: heroVideoHeight,
                 }}
                 onPlay={() => setVideoPlaying(true)}
                 title="Ravens Film Works"
                 url={`https://player.vimeo.com/video/${heroVideoId}?badge=0&autopause=0&player_id=0&app_id=58479&autoplay=true&background=true`}
-                width={`140%`}
+                width={heroVideoWidth}
               />
               {heroContent && (
-                <div className="bpd-hero-foreground z-30 h-full w-full text-white relative">
+                <div className="z-30 h-full w-full text-white relative">
                   {heroContent}
                 </div>
               )}
@@ -391,7 +420,7 @@ const Layout = ({
           ) : (
             heroContent && (
               <div
-                className="flex items-center bpd-hero-foreground z-30 h-full w-full text-white relative"
+                className="flex items-center z-30 h-full w-full text-white relative"
                 style={{ minHeight: `20vh` }}
               >
                 {heroContent}

@@ -2,7 +2,7 @@ import React from 'react'
 
 const H1 = ({ children }) => {
   return (
-    <h1 className="uppercase font-extrabold text-3xl lg:text-7xl mb-4">
+    <h1 className="uppercase font-extrabold text-3xl lg:text-7xl mb-2 lg:mb-4">
       {children}
     </h1>
   )

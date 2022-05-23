@@ -73,6 +73,16 @@ export default {
       type: "string",
     },
     {
+      name: "reelVideoWidthInPixels",
+      title: "Reel video width in pixels",
+      type: "number",
+    },
+    {
+      name: "reelVideoHeightInPixels",
+      title: "Reel video height in pixels",
+      type: "number",
+    },
+    {
       name: "reelVideoWidthAspectRatio",
       title: "Reel video aspect ratio for width",
       type: "string",

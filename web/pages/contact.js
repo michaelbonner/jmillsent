@@ -15,6 +15,7 @@ import { toast } from 'react-toastify'
 import * as Yup from 'yup'
 import { getClient } from '../lib/sanity'
 import urlForSanitySource from '../lib/urlForSanitySource'
+import { GrInstagram, GrVimeo } from 'react-icons/gr'
 
 const phoneRegExp =
   /^((\\+[1-9]{1,4}[ \\-]*)|(\\([0-9]{2,3}\\)[ \\-]*)|([0-9]{2,4})[ \\-]*)*?[0-9]{3,4}?[ \\-]*[0-9]{3,4}?$/
@@ -218,7 +219,15 @@ function Contact({ contact }) {
           <div className="lg:mt-24">
             <MediumWhiteBar />
           </div>
-          <div className="max-w-5xl mx-auto px-4 lg:px-0 lg:flex items-center justify-center text-center lg:text-left lg:space-x-12 prose prose-white text-gray-300 font-light text-lg">
+          <div className="grid grid-cols-3 max-w-5xl mx-auto px-4 lg:px-0 items-center justify-center text-center lg:text-left  prose prose-white text-gray-300 font-light text-lg">
+            <a
+              href="https://www.instagram.com/jmillsent/"
+              target="_blank"
+              rel="noreferrer"
+              className="mx-auto"
+            >
+              <GrInstagram size={32} />
+            </a>
             <div className="leading-9 text-gray-300 text-center">
               <p>
                 JME STUDIO ADDRESS
@@ -232,6 +241,14 @@ function Contact({ contact }) {
                 </a>
               </p>
             </div>
+            <a
+              href="https://vimeo.com/jmillsent"
+              target="_blank"
+              rel="noreferrer"
+              className="mx-auto"
+            >
+              <GrVimeo size={32} />
+            </a>
           </div>
           <LargeWhiteBar yMargin="mt-12" />
         </div>

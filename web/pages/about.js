@@ -52,6 +52,8 @@ function About({ aboutPage }) {
       heroImageUrl={aboutPage.poster || null}
       heroVideoId={aboutPage.videoId}
       heroContent={heroContent}
+      heroVideoHeightInPixels={aboutPage.headerVideoHeightInPixels}
+      heroVideoWidthInPixels={aboutPage.headerVideoWidthInPixels}
     >
       <div className="container px-4 lg:mx-auto text-white text-center my-12 lg:my-24">
         <H2>{aboutPage.section1Title}</H2>
@@ -375,6 +377,8 @@ export async function getStaticProps() {
 			subtitle,
 			videoClient,
 			videoId,
+      headerVideoWidthInPixels,
+      headerVideoHeightInPixels,
       brands[]->,
       company3Body,
       company3Link,

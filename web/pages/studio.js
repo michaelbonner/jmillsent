@@ -11,8 +11,8 @@ import { getClient } from '../lib/sanity'
 
 function Studio({ studioPage }) {
   const heroContent = (
-    <div className="h-full w-full flex flex-col items-center justify-center text-white">
-      <div className="flex flex-col items-center justify-center mb-12">
+    <div className="h-full w-full flex flex-col lg:gap-4 items-center justify-around text-white">
+      <div className="flex flex-col lg:mt-12 items-center justify-center">
         <H1>{studioPage.title}</H1>
         <h2 className="uppercase font-outline text-2xl lg:text-5xl">
           {studioPage.subtitle}
@@ -20,17 +20,16 @@ function Studio({ studioPage }) {
       </div>
       <SmoothScrollLink
         to="tour"
-        className="flex space-x-2 items-end cursor-pointer"
+        className="flex space-x-2 items-center cursor-pointer"
         smooth={true}
         offset={-100}
         duration={500}
-        style={{
-          transform: 'translate3d(0, 20vh, 0)',
-        }}
       >
-        <span className="text-4xl uppercase font-bold">Play</span>
-        <span className="text-4xl uppercase font-outline">Tour</span>
-        <span className="text-2xl font-bold">&gt;</span>
+        <span className="text-2xl lg:text-4xl uppercase font-bold">Play</span>
+        <span className="text-2xl lg:text-4xl uppercase font-outline">
+          Tour
+        </span>
+        <span className="text-xl lg:text-2xl font-bold">&gt;</span>
       </SmoothScrollLink>
     </div>
   )
@@ -42,6 +41,8 @@ function Studio({ studioPage }) {
       heroImageUrl={studioPage.poster || null}
       heroVideoId={studioPage.videoId}
       heroContent={heroContent}
+      heroVideoHeightInPixels={studioPage.headerVideoHeightInPixels}
+      heroVideoWidthInPixels={studioPage.headerVideoWidthInPixels}
     >
       <div className="container px-4 lg:mx-auto text-white text-center my-12 lg:my-24">
         <H2>{studioPage.section1Title}</H2>
@@ -134,6 +135,8 @@ export async function getStaticProps() {
 			subtitle,
 			videoClient,
 			videoId,
+      headerVideoWidthInPixels,
+      headerVideoHeightInPixels,
       brands[]->,
         company3Body,
         company3Link,

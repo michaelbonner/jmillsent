@@ -24,6 +24,8 @@ function Home({ homePage }) {
       heroImageUrl={homePage.poster || null}
       heroVideoId={homePage.videoId}
       heroContent={heroContent}
+      heroVideoHeightInPixels={homePage.reelVideoHeightInPixels}
+      heroVideoWidthInPixels={homePage.reelVideoWidthInPixels}
     >
       <div className="container px-4 lg:mx-auto text-white text-center my-12 lg:mt-36">
         <H2>{homePage.section1Title}</H2>
@@ -73,6 +75,8 @@ export async function getStaticProps() {
 			reelVideoClient,
 			reelVideoDescription,
 			reelVideoHeightAspectRatio,
+      reelVideoHeightInPixels,
+      reelVideoWidthInPixels,
 			reelVideoId,
 			reelVideoPoster,
 			reelVideoTitle,

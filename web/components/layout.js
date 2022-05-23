@@ -190,8 +190,8 @@ const Layout = ({
           <Image
             alt="JMills Logo"
             src="/images/JME-logo-white.svg"
-            width={100}
-            height={76}
+            width={140}
+            height={106}
           />
         </div>
       </div>

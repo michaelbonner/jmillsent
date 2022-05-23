@@ -83,10 +83,10 @@ const WorkItemTile = ({ workItem, index, hideAfterCount = 999 }) => {
             </video>
           )}
         <div className="z-10 text-center">
-          <h2 className="uppercase font-extrabold text-3xl lg:text-4xl">
+          <h2 className="uppercase font-extrabold text-3xl lg:text-2xl">
             {workItem.clientName}
           </h2>
-          <h3 className="uppercase font-outline text-2xl lg:text-3xl">
+          <h3 className="uppercase font-outline text-2xl lg:text-xl">
             {workItem.title}
           </h3>
         </div>

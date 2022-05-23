@@ -190,8 +190,8 @@ const Layout = ({
           <Image
             alt="JMills Logo"
             src="/images/JME-logo-white.svg"
-            width={125}
-            height={95}
+            width={100}
+            height={76}
           />
         </div>
       </div>
@@ -214,8 +214,8 @@ const Layout = ({
               <Image
                 alt="JMills Logo"
                 src="/images/JME-logo-white.svg"
-                width={125}
-                height={95}
+                width={100}
+                height={76}
               />
             </a>
           </Link>
@@ -302,8 +302,8 @@ const Layout = ({
                 <Image
                   alt="JMills Logo"
                   src="/images/JME-logo-white.svg"
-                  width={125}
-                  height={95}
+                  width={100}
+                  height={76}
                 />
               </a>
             </Link>

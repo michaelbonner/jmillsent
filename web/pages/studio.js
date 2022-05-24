@@ -99,7 +99,7 @@ function Studio({ studioPage }) {
           {studioPage.studioItems?.length > 0 && (
             <div className="grid grid-cols-1 gap-y-16 mt-12 max-w-7xl mx-auto">
               {studioPage.studioItems.map((service, index) => {
-                const leftOrRight = index % 2 === 0 ? 'left' : 'right'
+                const leftOrRight = service.rightAlign ? 'right' : 'left'
                 return (
                   <BackgroundText
                     leftOrRight={leftOrRight}

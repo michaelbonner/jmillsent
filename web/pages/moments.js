@@ -4,6 +4,7 @@ import LittleWhiteBar from '@/components/little-white-bar'
 import MediumWhiteBar from '@/components/medium-white-bar'
 import classNames from 'classnames'
 import groq from 'groq'
+import shuffle from 'just-shuffle'
 import Image from 'next/image'
 import { useEffect, useState } from 'react'
 import Lightbox from 'react-image-lightbox'
@@ -16,6 +17,7 @@ function Moments({ momentsPage }) {
   const [isDesktop, setIsDesktop] = useState(false)
   const [photoIndex, setPhotoIndex] = useState(0)
   const size = useWindowSize()
+  const shuffledImages = shuffle(momentsPage.images)
 
   const imageTypeMap = [
     {
@@ -68,7 +70,7 @@ function Moments({ momentsPage }) {
     </div>
   )
 
-  const images = momentsPage.images.map(
+  const images = shuffledImages.map(
     (image) => `${image.imageUrl}?w=1800&auto=format`
   )
 
@@ -104,7 +106,7 @@ function Moments({ momentsPage }) {
             'mt-0 grid grid-cols-2 lg:grid-cols-12 gap-4 px-1'
           )}
         >
-          {momentsPage.images.map((image, index) => {
+          {shuffledImages.map((image, index) => {
             const desktopIndex = index % 17
             const imageType =
               imageTypeMap[desktopImageTypeSequence[desktopIndex]]
@@ -156,16 +158,17 @@ export async function getStaticProps() {
 			subtitle,
 			videoClient,
 			videoId,
-            section2Subtitle,
-            section2Title,
-            title,
-            images[]{
-                caption,
-                "imageUrl": asset->url
-            },
-  		}
-  		`
+      section2Subtitle,
+      section2Title,
+      title,
+      images[]{
+          caption,
+          "imageUrl": asset->url
+      },
+    }
+    `
   )
+
   return {
     props: {
       momentsPage,

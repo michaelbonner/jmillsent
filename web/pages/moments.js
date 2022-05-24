@@ -4,6 +4,7 @@ import LittleWhiteBar from '@/components/little-white-bar'
 import MediumWhiteBar from '@/components/medium-white-bar'
 import classNames from 'classnames'
 import groq from 'groq'
+import shuffle from 'just-shuffle'
 import Image from 'next/image'
 import { useEffect, useState } from 'react'
 import Lightbox from 'react-image-lightbox'
@@ -156,16 +157,19 @@ export async function getStaticProps() {
 			subtitle,
 			videoClient,
 			videoId,
-            section2Subtitle,
-            section2Title,
-            title,
-            images[]{
-                caption,
-                "imageUrl": asset->url
-            },
-  		}
-  		`
+      section2Subtitle,
+      section2Title,
+      title,
+      images[]{
+          caption,
+          "imageUrl": asset->url
+      },
+    }
+    `
   )
+
+  momentsPage.images = shuffle(momentsPage.images)
+
   return {
     props: {
       momentsPage,

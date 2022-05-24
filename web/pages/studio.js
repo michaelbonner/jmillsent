@@ -18,19 +18,22 @@ function Studio({ studioPage }) {
           {studioPage.subtitle}
         </h2>
       </div>
-      <SmoothScrollLink
-        to="tour"
-        className="flex space-x-2 items-center cursor-pointer"
-        smooth={true}
-        offset={-100}
-        duration={500}
-      >
-        <span className="text-2xl lg:text-4xl uppercase font-bold">Play</span>
-        <span className="text-2xl lg:text-4xl uppercase font-outline">
-          Tour
-        </span>
-        <span className="text-xl lg:text-2xl font-bold">&gt;</span>
-      </SmoothScrollLink>
+      {/* Ternary to remove hero video & video player if no videoId found. */}
+      {studioPage.tourVideoId && (
+        <SmoothScrollLink
+          to="tour"
+          className="flex space-x-2 items-center cursor-pointer"
+          smooth={true}
+          offset={-100}
+          duration={500}
+        >
+          <span className="text-2xl lg:text-4xl uppercase font-bold">Play</span>
+          <span className="text-2xl lg:text-4xl uppercase font-outline">
+            Tour
+          </span>
+          <span className="text-xl lg:text-2xl font-bold">&gt;</span>
+        </SmoothScrollLink>
+      )}
     </div>
   )
 
@@ -67,25 +70,29 @@ function Studio({ studioPage }) {
           </p>
         </div>
 
-        <div
-          id="tour"
-          className="border border-white py-8 px-8 container max-w-7xl lg:mx-auto"
-        >
-          <VideoPlayer
-            poster={studioPage.tourVideoPoster}
-            title={studioPage.tourVideoTitle}
-            videoId={studioPage.tourVideoId}
-            client={studioPage.tourVideoClient}
-            description={studioPage.tourVideoDescription}
-            videoHeightAspectRatio={studioPage.tourVideoHeightAspectRatio}
-            videoWidthAspectRatio={studioPage.tourVideoWidthAspectRatio}
-            autoPlay={true}
-          />
-        </div>
-
-        <div className="my-12 lg:my-24">
-          <MediumWhiteBar />
-        </div>
+        {/* Ternary to remove hero video & video player if no videoId found. */}
+        {studioPage.tourVideoId && (
+          <>
+            <div
+              id="tour"
+              className="border border-white py-8 px-8 container max-w-7xl lg:mx-auto"
+            >
+              <VideoPlayer
+                poster={studioPage.tourVideoPoster}
+                title={studioPage.tourVideoTitle}
+                videoId={studioPage.tourVideoId}
+                client={studioPage.tourVideoClient}
+                description={studioPage.tourVideoDescription}
+                videoHeightAspectRatio={studioPage.tourVideoHeightAspectRatio}
+                videoWidthAspectRatio={studioPage.tourVideoWidthAspectRatio}
+                autoPlay={true}
+              />
+            </div>
+            <div className="my-12 lg:my-24">
+              <MediumWhiteBar />
+            </div>
+          </>
+        )}
 
         {/* studioItems */}
         <section>

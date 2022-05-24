@@ -209,7 +209,7 @@ function Contact({ contact }) {
                     {card.title}
                   </h3>
                   <LittleWhiteBar yMargin="my-4" />
-                  <div className="text-lg leading-9 prose-white text-gray-300">
+                  <div className="text-lg leading-9 prose prose-white text-gray-300">
                     <BlockContent blocks={card.body} />
                   </div>
                 </div>

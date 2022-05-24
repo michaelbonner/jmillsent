@@ -1,7 +1,9 @@
 import Layout from '@/components/layout'
 import groq from 'groq'
 import { getClient } from '@/lib/sanity'
+import BlockContent from '@sanity/block-content-to-react'
 import WorkItemTile from '@/components/work-item-tile'
+import Image from 'next/image'
 
 function Work({ workPage, workItems }) {
   return (
@@ -10,6 +12,17 @@ function Work({ workPage, workItems }) {
         {workItems.map((workItem, index) => {
           return <WorkItemTile workItem={workItem} key={index} />
         })}
+      </div>
+      <div className="container px-4 lg:mx-auto text-white text-center my-12 lg:mt-36">
+        <div className="mt-16 mb-8 prose-lg max-w-3xl text-center mx-auto">
+          <BlockContent blocks={workPage.workPageDescription} />
+        </div>
+        <Image
+          src={`/images/jmills-raven-white.svg`}
+          alt="Jmills"
+          width="130"
+          height="130"
+        />
       </div>
     </Layout>
   )
@@ -23,6 +36,7 @@ export async function getStaticProps() {
     seoDescription,
     poster,
     videoId,
+    workPageDescription,
   }
   `
   )

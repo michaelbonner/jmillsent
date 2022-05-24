@@ -201,7 +201,7 @@ function Contact({ contact }) {
             </h2>
           </div>
           <LargeWhiteBar />
-          <div className="max-w-7xl mx-auto text-center grid lg:grid-cols-3 text-gray-200 mt-8">
+          <div className="max-w-7xl mx-auto text-center grid lg:grid-cols-3 gap-y-16 text-gray-200 mt-8">
             {contact.representationCards.map((card) => {
               return (
                 <div key={card.title}>
@@ -209,7 +209,7 @@ function Contact({ contact }) {
                     {card.title}
                   </h3>
                   <LittleWhiteBar yMargin="my-4" />
-                  <div className="text-lg leading-9 prose prose-white text-gray-300">
+                  <div className="mx-auto text-lg leading-9 prose prose-white text-gray-300">
                     <BlockContent blocks={card.body} />
                   </div>
                 </div>
@@ -219,12 +219,12 @@ function Contact({ contact }) {
           <div className="lg:mt-24">
             <MediumWhiteBar />
           </div>
-          <div className="grid grid-cols-3 max-w-3xl mx-auto px-4 lg:px-0 items-center justify-center text-center lg:text-left  prose prose-white text-gray-300 font-light text-lg">
+          <div className="flex gap-x-16 max-w-3xl mx-auto px-4 lg:px-0 items-center justify-center text-center lg:text-left prose prose-white text-gray-300 font-light text-lg">
             <a
               href="https://www.instagram.com/jmillsent/"
               target="_blank"
               rel="noreferrer"
-              className="mx-auto"
+              className="hidden lg:block"
             >
               <GrInstagram size={40} />
             </a>
@@ -245,7 +245,23 @@ function Contact({ contact }) {
               href="https://vimeo.com/jmillsent"
               target="_blank"
               rel="noreferrer"
-              className="mx-auto"
+              className="hidden lg:block"
+            >
+              <GrVimeo size={40} />
+            </a>
+          </div>
+          <div className="flex lg:hidden gap-12 mt-8 items-center justify-center">
+            <a
+              href="https://www.instagram.com/jmillsent/"
+              target="_blank"
+              rel="noreferrer"
+            >
+              <GrInstagram size={40} />
+            </a>
+            <a
+              href="https://vimeo.com/jmillsent"
+              target="_blank"
+              rel="noreferrer"
             >
               <GrVimeo size={40} />
             </a>

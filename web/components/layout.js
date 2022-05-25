@@ -209,13 +209,14 @@ const Layout = ({
             heroVideoId && !videoPlaying
               ? `opacity-100 animate-pulse`
               : `opacity-0`
-          } w-full h-full flex items-center justify-center`}
+          } w-full h-full flex items-center justify-center duration-1500`}
         >
           <Image
             alt="JMills Logo"
+            className="max-w-full px-8"
             src="/images/jme_film_co_x_white.svg"
-            width={192}
-            height={150}
+            width={Math.floor(192 * 1.4)}
+            height={Math.floor(150 * 1.4)}
           />
         </div>
       </div>

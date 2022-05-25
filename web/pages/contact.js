@@ -240,14 +240,14 @@ function Contact({ contact }) {
               target="_blank"
               rel="noreferrer"
             >
-              <GrInstagram size={30} />
+              <GrInstagram size={20} />
             </a>
             <a
               href="https://vimeo.com/jmillsent"
               target="_blank"
               rel="noreferrer"
             >
-              <GrVimeo size={30} />
+              <GrVimeo size={20} />
             </a>
           </div>
           <LargeWhiteBar yMargin="mt-12" />

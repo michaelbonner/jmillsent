@@ -4,6 +4,7 @@ import { getClient } from '@/lib/sanity'
 import BlockContent from '@sanity/block-content-to-react'
 import WorkItemTile from '@/components/work-item-tile'
 import Image from 'next/image'
+import MediumWhiteBar from '@/components/medium-white-bar'
 
 function Work({ workPage, workItems }) {
   return (
@@ -17,12 +18,7 @@ function Work({ workPage, workItems }) {
         <div className="mt-16 mb-8 prose-lg max-w-3xl text-center mx-auto">
           <BlockContent blocks={workPage.workPageDescription} />
         </div>
-        <Image
-          src={`/images/jmills-raven-white.svg`}
-          alt="Jmills"
-          width="130"
-          height="130"
-        />
+        <MediumWhiteBar />
       </div>
     </Layout>
   )

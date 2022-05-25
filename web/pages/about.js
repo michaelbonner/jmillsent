@@ -83,7 +83,7 @@ function About({ aboutPage }) {
           {aboutPage.services.length > 0 && (
             <div className="grid grid-cols-1 gap-y-12 mt-12 max-w-7xl mx-auto">
               {aboutPage.services.map((service, index) => {
-                const leftOrRight = index % 2 === 0 ? 'left' : 'right'
+                const leftOrRight = service.rightAlign ? 'right' : 'left'
                 return (
                   <BackgroundText
                     leftOrRight={leftOrRight}

@@ -220,14 +220,6 @@ function Contact({ contact }) {
             <MediumWhiteBar />
           </div>
           <div className="flex gap-x-16 max-w-3xl mx-auto px-4 lg:px-0 items-center justify-center text-center lg:text-left prose prose-white text-gray-300 font-light text-lg">
-            <a
-              href="https://www.instagram.com/jmillsent/"
-              target="_blank"
-              rel="noreferrer"
-              className="hidden lg:block"
-            >
-              <GrInstagram size={40} />
-            </a>
             <div className="leading-9 text-gray-300 text-center">
               <p>
                 JME STUDIO ADDRESS
@@ -241,29 +233,21 @@ function Contact({ contact }) {
                 </a>
               </p>
             </div>
-            <a
-              href="https://vimeo.com/jmillsent"
-              target="_blank"
-              rel="noreferrer"
-              className="hidden lg:block"
-            >
-              <GrVimeo size={40} />
-            </a>
           </div>
-          <div className="flex lg:hidden gap-12 mt-8 items-center justify-center">
+          <div className="flex gap-12 mt-8 items-center justify-center">
             <a
               href="https://www.instagram.com/jmillsent/"
               target="_blank"
               rel="noreferrer"
             >
-              <GrInstagram size={40} />
+              <GrInstagram size={30} />
             </a>
             <a
               href="https://vimeo.com/jmillsent"
               target="_blank"
               rel="noreferrer"
             >
-              <GrVimeo size={40} />
+              <GrVimeo size={30} />
             </a>
           </div>
           <LargeWhiteBar yMargin="mt-12" />

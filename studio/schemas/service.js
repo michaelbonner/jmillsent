@@ -35,6 +35,13 @@ export default {
       type: "array",
       of: [{ type: "block" }],
     },
+    {
+      name: "rightAlign",
+      title: "Right Align",
+      type: "boolean",
+      description: "If checked, the text will be aligned to the right",
+      initialValue: false,
+    },
   ],
   preview: {
     select: { title: "name", media: "image" },

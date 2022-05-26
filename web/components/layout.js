@@ -209,13 +209,14 @@ const Layout = ({
             heroVideoId && !videoPlaying
               ? `opacity-100 animate-pulse`
               : `opacity-0`
-          } w-full h-full flex items-center justify-center`}
+          } w-full h-full flex items-center justify-center duration-1500`}
         >
           <Image
             alt="JMills Logo"
-            src="/images/JME-logo-white.svg"
-            width={140}
-            height={106}
+            className="max-w-full px-8"
+            src="/images/jme_film_co_x_white.svg"
+            width={Math.floor(192 * 1.4)}
+            height={Math.floor(150 * 1.4)}
           />
         </div>
       </div>
@@ -237,9 +238,9 @@ const Layout = ({
             <a>
               <Image
                 alt="JMills Logo"
-                src="/images/JME-logo-white.svg"
-                width={100}
-                height={76}
+                src="/images/jme_film_co_x_white.svg"
+                width={Math.floor(192 * 0.6)}
+                height={Math.floor(150 * 0.6)}
               />
             </a>
           </Link>
@@ -325,9 +326,9 @@ const Layout = ({
               <a className="flex items-center">
                 <Image
                   alt="JMills Logo"
-                  src="/images/JME-logo-white.svg"
-                  width={100}
-                  height={76}
+                  src="/images/jme_film_co_x_white.svg"
+                  width={Math.floor(192 * 0.6)}
+                  height={Math.floor(150 * 0.6)}
                 />
               </a>
             </Link>

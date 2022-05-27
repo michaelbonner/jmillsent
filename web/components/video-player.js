@@ -221,7 +221,7 @@ const VideoPlayer = ({
             ></ReactPlayer>
             {!isIpad && (
               <button
-                className="absolute z-10 inset-0 bg-transparent flex items-center justify-center cursor-pointer text-6xl"
+                className="absolute z-10 inset-x-0 bg-transparent flex items-center justify-center cursor-pointer text-6xl"
                 onClick={() => setVideoPlaying(!videoPlaying)}
               >
                 <GrPlay

@@ -14,8 +14,8 @@ function Work({ workPage, workItems }) {
           return <WorkItemTile workItem={workItem} key={index} />
         })}
       </div>
-      <div className="container px-4 lg:mx-auto text-white text-center my-12 lg:mt-36">
-        <div className="mt-16 mb-8 prose-lg max-w-3xl text-center mx-auto">
+      <div className="container px-4 lg:mx-auto text-white text-center my-12">
+        <div className="prose-lg max-w-3xl text-center mx-auto">
           <BlockContent blocks={workPage.workPageDescription} />
         </div>
         <MediumWhiteBar />

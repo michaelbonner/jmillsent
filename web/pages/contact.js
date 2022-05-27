@@ -57,7 +57,7 @@ function Contact({ contact }) {
           backgroundPosition: 'center center',
         }}
       >
-        <div className="max-w-5xl mx-auto px-4 lg:px-0 pt-14 pb-8 lg:pt-24 lg:pb-24 text-center">
+        <div className="max-w-5xl mx-auto px-4 lg:px-0 py-12 lg:py-24 text-center">
           <H1>{contact.title}</H1>
         </div>
         <div className="max-w-7xl w-full mx-auto lg:flex lg:space-x-16 pb-24 px-4">
@@ -216,9 +216,9 @@ function Contact({ contact }) {
               )
             })}
           </div>
-          <div className="lg:mt-24">
-            <MediumWhiteBar />
-          </div>
+
+          <MediumWhiteBar />
+
           <div className="flex gap-x-16 max-w-3xl mx-auto px-4 lg:px-0 items-center justify-center text-center lg:text-left prose prose-white text-gray-300 font-light text-lg">
             <div className="leading-9 text-gray-300 text-center">
               <p>
@@ -250,7 +250,7 @@ function Contact({ contact }) {
               <GrVimeo size={20} />
             </a>
           </div>
-          <LargeWhiteBar yMargin="mt-12" />
+          <LargeWhiteBar yMargin="my-8" />
         </div>
       </div>
     </Layout>

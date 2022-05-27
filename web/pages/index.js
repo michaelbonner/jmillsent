@@ -29,7 +29,7 @@ function Home({ homePage }) {
     >
       <div className="container px-4 lg:mx-auto text-white text-center my-12 lg:mt-36">
         <H2>{homePage.section1Title}</H2>
-        <div className="mt-16 mb-8 prose-lg max-w-xl md:max-w-2xl lg:max-w-4xl text-center mx-auto">
+        <div className="mt-16 mb-8 prose-lg lg:max-w-5xl text-center mx-auto">
           <BlockContent blocks={homePage.section1Body} />
         </div>
         <Image

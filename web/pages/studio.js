@@ -54,25 +54,19 @@ function Studio({ studioPage }) {
             <BlockContent blocks={studioPage.section1Body} />
           </div>
         )}
-        <Image
-          src={`/images/jmills-raven-white.svg`}
-          alt="Jmills"
-          width="130"
-          height="130"
-        />
         <MediumWhiteBar />
-        <div className="pt-1 px-8 container lg:mx-auto text-center">
-          <p className="text-4xl font-extrabold tracking-widest">
-            {studioPage.section2Title}
-          </p>
-          <p className="mt-2 text-3xl font-outline">
-            {studioPage.section2Subtitle}
-          </p>
-        </div>
 
         {/* Ternary to remove hero video & video player if no videoId found. */}
         {studioPage.tourVideoId && (
           <>
+            <div className="pt-24 px-8 container lg:mx-auto text-center">
+              <p className="text-4xl font-extrabold tracking-widest">
+                {studioPage.section2Title}
+              </p>
+              <p className="mt-2 text-3xl font-outline">
+                {studioPage.section2Subtitle}
+              </p>
+            </div>
             <div
               id="tour"
               className="border border-white py-8 px-8 container max-w-7xl lg:mx-auto"

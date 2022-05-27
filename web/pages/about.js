@@ -55,10 +55,10 @@ function About({ aboutPage }) {
       heroVideoHeightInPixels={aboutPage.headerVideoHeightInPixels}
       heroVideoWidthInPixels={aboutPage.headerVideoWidthInPixels}
     >
-      <div className="container px-4 lg:mx-auto text-white text-center my-12 lg:my-24">
+      <div className="container px-4 lg:mx-auto text-white text-center my-12 lg:my-16 2xl:my-20">
         <H2>{aboutPage.section1Title}</H2>
         {aboutPage.section1Body && (
-          <div className="mt-16 mb-8 prose-lg max-w-3xl text-center mx-auto">
+          <div className="my-12 prose-lg max-w-3xl text-center mx-auto">
             <BlockContent blocks={aboutPage.section1Body} />
           </div>
         )}
@@ -69,7 +69,7 @@ function About({ aboutPage }) {
           height="130"
         />
         <MediumWhiteBar />
-        <div className="pt-24 px-8 container lg:mx-auto text-center break-all">
+        <div className="px-8 pt-8 container lg:mx-auto text-center break-all">
           <p className="text-4xl font-extrabold tracking-widest">
             {aboutPage.section2Title}
           </p>

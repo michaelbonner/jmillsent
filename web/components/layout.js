@@ -433,8 +433,8 @@ const Layout = ({
       <main className="bg-black text-white relative z-10 w-full">
         {children}
       </main>
-      <footer className="bg-black relative z-10 py-8 text-center">
-        <nav className="w-full container max-w-5xl px-12 lg:px-4 py-8 lg:mx-auto flex flex-wrap justify-center lg:justify-around space-x-4">
+      <footer className="bg-black relative z-10 pb-8 text-center">
+        <nav className="w-full container max-w-5xl px-12 lg:px-4 pb-8 lg:mx-auto flex flex-wrap justify-center lg:justify-around space-x-4">
           {navItems.map((navItem, index) => {
             return (
               <Link key={index} href={navItem.href}>
@@ -443,7 +443,7 @@ const Layout = ({
                     {
                       'border-b': router.route === navItem.href,
                     },
-                    `font-bold text-white uppercase text-lg lg:text-2xl py-4`
+                    `font-bold text-white uppercase text-lg lg:text-2xl pb-4`
                   )}
                 >
                   {navItem.name}

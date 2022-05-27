@@ -47,7 +47,7 @@ function Studio({ studioPage }) {
       heroVideoHeightInPixels={studioPage.headerVideoHeightInPixels}
       heroVideoWidthInPixels={studioPage.headerVideoWidthInPixels}
     >
-      <div className="container px-4 lg:mx-auto text-white text-center my-12 lg:my-24">
+      <div className="container px-4 lg:mx-auto text-white text-center my-14 lg:my-16 2xl:my-20">
         <H2>{studioPage.section1Title}</H2>
         {studioPage.section1Body && (
           <div className="mt-16 mb-8 prose-lg max-w-3xl text-center mx-auto">
@@ -61,7 +61,7 @@ function Studio({ studioPage }) {
           height="130"
         />
         <MediumWhiteBar />
-        <div className="pt-24 px-8 container lg:mx-auto text-center">
+        <div className="pt-1 px-8 container lg:mx-auto text-center">
           <p className="text-4xl font-extrabold tracking-widest">
             {studioPage.section2Title}
           </p>

@@ -50,7 +50,7 @@ function Studio({ studioPage }) {
       <div className="container px-4 lg:mx-auto text-white text-center my-14 lg:my-16 2xl:my-20">
         <H2>{studioPage.section1Title}</H2>
         {studioPage.section1Body && (
-          <div className="mt-16 mb-8 prose-lg max-w-3xl text-center mx-auto">
+          <div className="mt-16 mb-8 prose-lg max-w-5xl text-center mx-auto">
             <BlockContent blocks={studioPage.section1Body} />
           </div>
         )}

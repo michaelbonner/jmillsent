@@ -58,7 +58,7 @@ function About({ aboutPage }) {
       <div className="container px-4 lg:mx-auto text-white text-center my-12 lg:my-24">
         <H2>{aboutPage.section1Title}</H2>
         {aboutPage.section1Body && (
-          <div className="mt-16 mb-8 prose-lg max-w-3xl text-center mx-auto">
+          <div className="mt-16 mb-8 prose-lg max-w-xl md:max-w-2xl lg:max-w-4xl text-center mx-auto">
             <BlockContent blocks={aboutPage.section1Body} />
           </div>
         )}

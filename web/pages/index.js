@@ -32,13 +32,8 @@ function Home({ homePage }) {
         <div className="mt-16 mb-8 prose-lg lg:max-w-5xl text-center mx-auto">
           <BlockContent blocks={homePage.section1Body} />
         </div>
-        <Image
-          src={`/images/jmills-raven-white.svg`}
-          alt="Jmills"
-          width="130"
-          height="130"
-        />
       </div>
+      <MediumWhiteBar />
       <div className="px-4">
         <div className="border border-white py-8 px-8 container lg:mx-auto">
           <VideoPlayer

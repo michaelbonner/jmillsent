@@ -62,12 +62,6 @@ function About({ aboutPage }) {
             <BlockContent blocks={aboutPage.section1Body} />
           </div>
         )}
-        <Image
-          src={`/images/jmills-raven-white.svg`}
-          alt="Jmills"
-          width="130"
-          height="130"
-        />
         <MediumWhiteBar />
         <div className="pt-24 px-8 container lg:mx-auto text-center break-all">
           <p className="text-4xl font-extrabold tracking-widest">

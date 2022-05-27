@@ -55,7 +55,7 @@ function About({ aboutPage }) {
       heroVideoHeightInPixels={aboutPage.headerVideoHeightInPixels}
       heroVideoWidthInPixels={aboutPage.headerVideoWidthInPixels}
     >
-      <div className="container px-4 lg:mx-auto text-white text-center my-12 lg:my-24">
+      <div className="container px-4 lg:mx-auto text-white text-center my-12 lg:my-16 2xl:my-20">
         <H2>{aboutPage.section1Title}</H2>
         {aboutPage.section1Body && (
           <div className="mt-16 mb-8 prose-lg max-w-5xl text-center mx-auto">
@@ -69,7 +69,7 @@ function About({ aboutPage }) {
           height="130"
         />
         <MediumWhiteBar />
-        <div className="pt-24 px-8 container lg:mx-auto text-center break-all">
+        <div className="px-8 pt-8 container lg:mx-auto text-center break-all">
           <p className="text-4xl font-extrabold tracking-widest">
             {aboutPage.section2Title}
           </p>
@@ -186,7 +186,7 @@ function About({ aboutPage }) {
       {/* end: director section */}
 
       {/* team section */}
-      <section className="max-w-7xl mx-auto text-center my-12 lg:my-36 px-4">
+      <section className="max-w-7xl mx-auto text-center my-12 lg:my-24 px-4">
         <H3>MEET THE WORLD CLASS</H3>
         <p className="font-outline text-4xl">JME TEAM</p>
         <div className="grid grid-cols-1 lg:grid-cols-3 gap-8 lg:gap-20 mt-12">
@@ -246,7 +246,7 @@ function About({ aboutPage }) {
           }
         />
       )}
-      <section className="max-w-7xl mx-auto text-center my-12 lg:my-36 px-4">
+      <section className="max-w-7xl mx-auto text-center my-12 lg:my-24 px-4">
         <H2>{aboutPage.utahLocationsTitle}</H2>
         {aboutPage.utahLocationsDescription && (
           <div className="mt-8 mb-8 prose-lg max-w-3xl text-center mx-auto">
@@ -280,7 +280,7 @@ function About({ aboutPage }) {
       {/* end: utah locations */}
 
       {/* ravens */}
-      <section className="max-w-7xl mx-auto text-center my-12 lg:my-36 px-4">
+      <section className="max-w-7xl mx-auto text-center my-12 lg:my-24 px-4">
         <div className="mt-12 grid grid-cols-1 lg:grid-cols-3 gap-8 my-12 lg:my-24">
           {aboutPage.ravensCards.map((ravensCard, index) => {
             return (
@@ -339,7 +339,7 @@ function About({ aboutPage }) {
       {/* end: ravens */}
 
       {/* trusted by */}
-      <section className="max-w-7xl mx-auto text-center my-12 lg:my-36 px-4">
+      <section className="max-w-7xl mx-auto text-center my-12 lg:my-24 px-4">
         <H3>Trusted By the Following</H3>
         <LittleWhiteBar />
         <div className="grid grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 gap-8 lg:gap-20 mt-12 items-center">

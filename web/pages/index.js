@@ -27,7 +27,7 @@ function Home({ homePage }) {
       heroVideoHeightInPixels={homePage.reelVideoHeightInPixels}
       heroVideoWidthInPixels={homePage.reelVideoWidthInPixels}
     >
-      <div className="container px-4 lg:mx-auto text-white text-center my-12 lg:mt-36">
+      <div className="container px-4 lg:mx-auto text-white text-center my-12 lg:mt-20">
         <H2>{homePage.section1Title}</H2>
         <div className="mt-16 mb-8 prose-lg lg:max-w-5xl text-center mx-auto">
           <BlockContent blocks={homePage.section1Body} />

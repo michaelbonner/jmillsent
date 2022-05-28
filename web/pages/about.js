@@ -182,7 +182,9 @@ function About({ aboutPage }) {
       {/* team section */}
       <section className="max-w-7xl mx-auto text-center my-12 lg:my-24 px-4">
         <H3>MEET THE WORLD CLASS</H3>
-        <p className="font-outline text-4xl">JME TEAM</p>
+        <p className="border border-white max-w-max px-4 mx-auto font-outline text-4xl">
+          JME TEAM
+        </p>
         <div className="grid grid-cols-1 lg:grid-cols-3 gap-8 lg:gap-20 mt-12">
           {aboutPage.teamMembers.map((teamMember) => {
             const width = 400

@@ -15,7 +15,7 @@ function Work({ workPage, workItems }) {
         })}
       </div>
       <div className="container px-4 lg:mx-auto text-white text-center my-12">
-        <div className="prose-lg max-w-3xl text-center mx-auto">
+        <div className="border prose-lg max-w-lg py-1 text-center mx-auto">
           <BlockContent blocks={workPage.workPageDescription} />
         </div>
         <MediumWhiteBar />

@@ -99,6 +99,14 @@ function About({ aboutPage }) {
 
         {/* company 3 */}
         <section>
+          <div className="my-12 lg:my-24">
+            <H3>{aboutPage.company3Title}</H3>
+            {aboutPage.company3Body && (
+              <div className="mt-4 mb-8 prose-lg max-w-3xl text-center mx-auto text-white">
+                <BlockContent blocks={aboutPage.company3Body} />
+              </div>
+            )}
+          </div>
           <div className="mt-12 lg:mt-24 border border-white py-8 px-8 container lg:mx-auto max-w-7xl">
             <VideoPlayer
               poster={aboutPage.company3VideoPoster}
@@ -110,14 +118,6 @@ function About({ aboutPage }) {
               videoWidthAspectRatio={aboutPage.company3VideoWidthAspectRatio}
               autoPlay={true}
             />
-          </div>
-          <div className="mt-12 lg:mt-24">
-            <H3>{aboutPage.company3Title}</H3>
-            {aboutPage.company3Body && (
-              <div className="mt-4 mb-8 prose-lg max-w-3xl text-center mx-auto text-white">
-                <BlockContent blocks={aboutPage.company3Body} />
-              </div>
-            )}
           </div>
           <Link href={aboutPage.company3Link || 'https://www.company3.com/'}>
             <a

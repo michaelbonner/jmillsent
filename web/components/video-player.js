@@ -351,11 +351,7 @@ const VideoPlayer = ({
             >
               <div
                 className={classNames(
-                  `flex bpd-white-icon transition-opacity duration-500 border-2 border-white rounded-full h-14 w-14 xl:h-20 xl:w-20 items-center justify-center`,
-                  {
-                    'opacity-0': videoPlaying,
-                    'opacity-100': !videoPlaying,
-                  }
+                  `flex bpd-white-icon transition-opacity duration-500 border-2 border-white rounded-full h-14 w-14 xl:h-20 xl:w-20 items-center justify-center`
                 )}
               >
                 <GrPlay className="p-2 pr-0" />

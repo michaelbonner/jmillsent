@@ -16,6 +16,7 @@ import * as Yup from 'yup'
 import { getClient } from '../lib/sanity'
 import urlForSanitySource from '../lib/urlForSanitySource'
 import { GrInstagram, GrVimeo } from 'react-icons/gr'
+import EmailSignupForm from '@/components/email-signup-form'
 
 const phoneRegExp =
   /^((\\+[1-9]{1,4}[ \\-]*)|(\\([0-9]{2,3}\\)[ \\-]*)|([0-9]{2,4})[ \\-]*)*?[0-9]{3,4}?[ \\-]*[0-9]{3,4}?$/
@@ -234,21 +235,24 @@ function Contact({ contact }) {
               </p>
             </div>
           </div>
-          <div className="flex gap-12 mt-8 items-center justify-center">
+          <div className="flex gap-16 mt-8 items-center justify-center">
             <a
               href="https://www.instagram.com/jmillsent/"
               target="_blank"
               rel="noreferrer"
             >
-              <GrInstagram size={20} />
+              <GrInstagram size={24} />
             </a>
             <a
               href="https://vimeo.com/jmillsent"
               target="_blank"
               rel="noreferrer"
             >
-              <GrVimeo size={20} />
+              <GrVimeo size={24} />
             </a>
+          </div>
+          <div className="py-12">
+            <EmailSignupForm />
           </div>
           <LargeWhiteBar yMargin="my-8" />
         </div>

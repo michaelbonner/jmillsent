@@ -25,7 +25,7 @@ const EmailSignupForm = () => {
               <input
                 type="email"
                 name="EMAIL"
-                className="rounded-l-md flex-1 py-2 px-4 bg-transparent text-white border-2 border-r-0 border-white -mr-1 focus:bg-gray-800"
+                className="rounded-l-md flex-1 py-2 px-4 bg-black bg-opacity-70 text-white border-2 border-r-0 border-white -mr-1 focus:bg-gray-800"
                 id="mce-EMAIL"
                 placeholder="EMAIL ADDRESS"
                 required

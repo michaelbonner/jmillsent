@@ -219,24 +219,6 @@ const VideoPlayer = ({
               volume={volume}
               width={`100%`}
             ></ReactPlayer>
-            {!isIpad && (
-              <button
-                className="z-10 bg-transparent flex items-center justify-center xl:justify-start xl:ml-14 cursor-pointer text-4xl xl:text-6xl"
-                onClick={() => setVideoPlaying(!videoPlaying)}
-              >
-                <div
-                  className={classNames(
-                    `flex bpd-white-icon transition-opacity duration-500 border-2 border-white rounded-full h-14 w-14 xl:h-20 xl:w-20 items-center justify-center`,
-                    {
-                      'opacity-0': videoPlaying,
-                      'opacity-100': !videoPlaying,
-                    }
-                  )}
-                >
-                  <GrPlay className="p-2 pr-0" />
-                </div>
-              </button>
-            )}
           </div>
 
           {!isIos ? (
@@ -361,8 +343,26 @@ const VideoPlayer = ({
         }}
       >
         <div className="absolute inset-0 h-full bg-gradient-to-r from-black via-transparent to-transparent opacity-80"></div>
-        <div className="absolute -inset-y-7 pl-0.5 ml-0.5 flex flex-col h-full items-start justify-center">
-          <div className="border-l-4 border-gold pl-4 ml-28 xl:ml-36">
+        <div className="absolute inset-0 pl-0.5 ml-0.5 flex h-full items-center justify-start gap-6 lg:pl-12">
+          {!isIpad && (
+            <div
+              className="z-10 bg-transparent flex items-center justify-center xl:justify-start cursor-pointer text-4xl xl:text-6xl"
+              onClick={() => setVideoPlaying(!videoPlaying)}
+            >
+              <div
+                className={classNames(
+                  `flex bpd-white-icon transition-opacity duration-500 border-2 border-white rounded-full h-14 w-14 xl:h-20 xl:w-20 items-center justify-center`,
+                  {
+                    'opacity-0': videoPlaying,
+                    'opacity-100': !videoPlaying,
+                  }
+                )}
+              >
+                <GrPlay className="p-2 pr-0" />
+              </div>
+            </div>
+          )}
+          <div className="lg:border-l-4 lg:border-gold lg:pl-6">
             <div className="font-bold uppercase text-4xl">{client}</div>
             <div className="font-outline uppercase text-4xl">{title}</div>
             {description && (

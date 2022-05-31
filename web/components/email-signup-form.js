@@ -25,7 +25,7 @@ const EmailSignupForm = () => {
               <input
                 type="email"
                 name="EMAIL"
-                className="rounded-l-md flex-1 py-2 px-4 bg-black bg-opacity-70 text-white border-2 border-r-0 border-white -mr-1 focus:bg-gray-800"
+                className="rounded-l-md flex-1 py-2 px-4 bg-black bg-opacity-70 text-white border-2 border-r-0 border-white -mr-1 focus:bg-opacity-90"
                 id="mce-EMAIL"
                 placeholder="EMAIL ADDRESS"
                 required
@@ -42,7 +42,7 @@ const EmailSignupForm = () => {
                 />
               </div>
               <button
-                className="flex gap-x-2 px-4 py-2 border-2 border-white rounded-md hover:bg-gray-800 transition-colors"
+                className="flex gap-x-2 px-4 py-2 border-2 border-white rounded-md hover:bg-gray-900 transition-colors"
                 type="submit"
                 name="subscribe"
                 id="mc-embedded-subscribe"

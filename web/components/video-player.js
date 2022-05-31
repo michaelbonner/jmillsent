@@ -233,7 +233,7 @@ const VideoPlayer = ({
                     }
                   )}
                 >
-                  <GrPlay className="ml-2 xl:ml-4" />
+                  <GrPlay className="p-2 pr-0" />
                 </div>
               </button>
             )}

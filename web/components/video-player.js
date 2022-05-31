@@ -221,18 +221,20 @@ const VideoPlayer = ({
             ></ReactPlayer>
             {!isIpad && (
               <button
-                className="absolute z-10 inset-x-0 bg-transparent flex items-center justify-center cursor-pointer text-6xl"
+                className="z-10 bg-transparent flex items-center justify-center xl:justify-start xl:ml-14 cursor-pointer text-4xl xl:text-6xl"
                 onClick={() => setVideoPlaying(!videoPlaying)}
               >
-                <GrPlay
+                <div
                   className={classNames(
-                    `bpd-white-icon transition-opacity duration-500`,
+                    `flex bpd-white-icon transition-opacity duration-500 border-2 border-white rounded-full h-14 w-14 xl:h-20 xl:w-20 items-center justify-center`,
                     {
                       'opacity-0': videoPlaying,
                       'opacity-100': !videoPlaying,
                     }
                   )}
-                />
+                >
+                  <GrPlay className="ml-2 xl:ml-4" />
+                </div>
               </button>
             )}
           </div>
@@ -359,17 +361,19 @@ const VideoPlayer = ({
         }}
       >
         <div className="absolute inset-0 h-full bg-gradient-to-r from-black via-transparent to-transparent opacity-80"></div>
-        <div className="absolute inset-0 pl-16 flex flex-col gap-y-3 h-full items-start justify-center">
-          <div className="font-bold uppercase text-6xl">{client}</div>
-          <div className="font-outline uppercase text-4xl">{title}</div>
-          {description && (
-            <>
-              <LittleGoldBar />
-              <div className="w-full uppercase text-base tracking-wide max-w-sm max-h-[300px] overflow-y-scroll whitespace-pre-wrap">
-                {description}
+        <div className="absolute -inset-y-7 pl-0.5 ml-0.5 flex flex-col h-full items-start justify-center">
+          <div className="border-l-4 border-gold pl-4 ml-28 xl:ml-36">
+            <div className="font-bold uppercase text-4xl">{client}</div>
+            <div className="font-outline uppercase text-4xl">{title}</div>
+            {description && (
+              <div className="w-64">
+                <LittleGoldBar />
+                <div className="w-full uppercase text-base tracking-wide max-w-sm max-h-[300px] overflow-y-scroll whitespace-pre-wrap">
+                  {description}
+                </div>
               </div>
-            </>
-          )}
+            )}
+          </div>
         </div>
       </button>
 
@@ -379,7 +383,7 @@ const VideoPlayer = ({
       >
         <div className="h-full bg-gradient-to-r from-black via-black to-transparent opacity-80"></div>
         <div className="pl-1 flex flex-col gap-y-3 h-full items-center justify-center">
-          <div className="font-bold uppercase text-2xl">{client}</div>
+          <div className="font-bold uppercase text-4xl">{client}</div>
           <div className="font-outline uppercase text-4xl">{title}</div>
           {description && (
             <>

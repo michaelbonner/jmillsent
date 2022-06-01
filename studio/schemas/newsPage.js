@@ -31,6 +31,16 @@ export default {
       },
     },
     {
+      name: 'posterHeightInPixels',
+      title: 'Poster height in pixels',
+      type: 'number',
+    },
+    {
+      name: 'posterWidthInPixels',
+      title: 'Poster width in pixels',
+      type: 'number',
+    },
+    {
       name: 'newsItems',
       title: 'News Articles',
       type: 'array',

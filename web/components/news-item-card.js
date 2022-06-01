@@ -8,14 +8,14 @@ import LargeWhiteBar from './large-white-bar'
 const NewsItemCard = ({ newsItem, index, hideAfterCount = 999 }) => {
   return (
     <>
-      <div className="z-10 w-full max-w-5xl my-12">
+      <div className="z-10 w-full sm:max-w-xl lg:max-w-3xl xl:max-w-5xl px-2 sm:px-0 my-12">
         <Link href={`/news/${newsItem.slug.current}`} key={newsItem._id}>
           <a
             className={classNames(
               {
                 'lg:hidden': index >= hideAfterCount,
               },
-              `bpd-project-tile relative text-white `,
+              `bpd-news-tile relative text-white`,
               `flex flex-col items-center justify-center space-y-2 lg:space-y-0`
             )}
             key={newsItem._id}
@@ -29,7 +29,7 @@ const NewsItemCard = ({ newsItem, index, hideAfterCount = 999 }) => {
             }}
           ></a>
         </Link>
-        <div className="flex justify-between text-3xl uppercase z-10 mt-4">
+        <div className="flex justify-between text-2xl sm:text-3xl uppercase z-10 mt-4">
           <h2 className="font-extrabold">{newsItem.title}</h2>
           <Date dateString={newsItem.date} />
         </div>

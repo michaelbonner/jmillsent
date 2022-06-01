@@ -9,7 +9,7 @@ import LargeWhiteBar from '@/components/large-white-bar'
 function News({ newsPage, newsItems }) {
   const heroContent = (
     <div className="h-full w-full text-white flex items-center justify-center">
-      <div className="w-screen px-4 flex flex-col items-center justify-center text-center">
+      <div className="w-screen px-4 pt-28 flex flex-col items-center justify-center text-center">
         <H1>{newsPage.seoTitle}</H1>
         <h2 className="uppercase font-outline text-2xl lg:text-5xl">
           {newsPage.seoDescription}

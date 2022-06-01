@@ -53,6 +53,10 @@ body {
   }
 }
 
+.bpd-news-tile {
+  min-height: 40vh;
+}
+
 header {
   max-width: 100%;
   overflow-x: hidden;

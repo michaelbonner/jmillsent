@@ -108,6 +108,13 @@ const VideoPlayer = ({
     if (autoPlay) {
       if (!videoPlaying && !hasClicked) {
         setHasClicked(true)
+        setMuted(false)
+        setVolume(1)
+        setTimeout(() => {
+          player.current.seekTo(0, 'fraction')
+          setScrubberPosition(0)
+          setVideoPlaying(true)
+        }, 200)
       }
       return
     }

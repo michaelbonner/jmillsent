@@ -92,22 +92,21 @@ function About({ aboutPage }) {
             </div>
           )}
         </section>
-        <div className="mt-12 lg:mt-24">
+        <div className="my-12 lg:my-24">
           <MediumWhiteBar />
         </div>
         {/* end: services */}
 
         {/* company 3 */}
         <section>
-          <div className="my-12 lg:my-24">
-            <H3>{aboutPage.company3Title}</H3>
-            {aboutPage.company3Body && (
-              <div className="mt-4 mb-8 prose-lg max-w-3xl text-center mx-auto text-white">
-                <BlockContent blocks={aboutPage.company3Body} />
-              </div>
-            )}
-          </div>
-          <div className="mt-12 lg:mt-24 border border-white py-8 px-8 container lg:mx-auto max-w-7xl">
+          <H3>{aboutPage.company3Title}</H3>
+          {aboutPage.company3Body && (
+            <div className="prose-lg max-w-3xl text-center mx-auto text-white">
+              <BlockContent blocks={aboutPage.company3Body} />
+            </div>
+          )}
+
+          <div className="mt-10 border border-white py-8 px-8 container lg:mx-auto max-w-7xl">
             <VideoPlayer
               poster={aboutPage.company3VideoPoster}
               title={aboutPage.company3VideoTitle}
@@ -141,7 +140,9 @@ function About({ aboutPage }) {
             </a>
           </Link>
         </section>
-        <MediumWhiteBar />
+        <div className="my-12 lg:my-24">
+          <MediumWhiteBar />
+        </div>
       </div>
       {/* end: company 3 */}
 
@@ -176,11 +177,13 @@ function About({ aboutPage }) {
           </Link>
         </div>
       </section>
-      <MediumWhiteBar />
+      <div className="my-12 lg:my-24">
+        <MediumWhiteBar />
+      </div>
       {/* end: director section */}
 
       {/* team section */}
-      <section className="max-w-7xl mx-auto text-center my-12 lg:my-24 px-4">
+      <section className="max-w-7xl mx-auto text-center px-4">
         <H3>MEET THE WORLD CLASS</H3>
         <p className="border border-white max-w-max py-2 px-6 mx-auto font-outline text-5xl">
           JME TEAM

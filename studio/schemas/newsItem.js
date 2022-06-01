@@ -52,6 +52,16 @@ export default {
       },
     },
     {
+      name: 'body',
+      title: 'Body',
+      type: 'array',
+      of: [
+        {
+          type: 'block',
+        },
+      ],
+    },
+    {
       name: 'order',
       title: 'Order',
       type: 'number',
@@ -60,16 +70,13 @@ export default {
   ],
   preview: {
     select: {
-      clientName: 'clientName',
       title: 'title',
       date: 'date',
       media: 'poster',
     },
     prepare(selection) {
       return {
-        title: `${selection.clientName ? `${selection.clientName} | ` : ''}${
-          selection.title || ''
-        }`,
+        title: selection.title,
         date: selection.date,
         subtitle: selection.date,
         media: selection.media,

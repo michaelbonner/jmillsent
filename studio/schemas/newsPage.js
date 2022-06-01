@@ -30,6 +30,17 @@ export default {
         hotspot: true,
       },
     },
+    {
+      name: 'newsItems',
+      title: 'News Articles',
+      type: 'array',
+      of: [
+        {
+          type: 'reference',
+          to: [{ type: 'newsItem' }],
+        },
+      ],
+    },
   ],
   preview: {
     select: {},

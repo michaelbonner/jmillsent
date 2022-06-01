@@ -360,7 +360,7 @@ const VideoPlayer = ({
           )}
           <div className="lg:border-l-4 lg:border-gold lg:pl-6">
             <div className="font-bold uppercase text-4xl">{client}</div>
-            <div className="font-outline uppercase text-4xl">{title}</div>
+            <div className="font-outline uppercase text-5xl">{title}</div>
             {description && (
               <div className="w-64">
                 <LittleGoldBar />

@@ -108,6 +108,13 @@ const VideoPlayer = ({
     if (autoPlay) {
       if (!videoPlaying && !hasClicked) {
         setHasClicked(true)
+        setMuted(false)
+        setVolume(1)
+        setTimeout(() => {
+          player.current.seekTo(0, 'fraction')
+          setScrubberPosition(0)
+          setVideoPlaying(true)
+        }, 200)
       }
       return
     }
@@ -360,7 +367,7 @@ const VideoPlayer = ({
           )}
           <div className="lg:border-l-4 lg:border-gold lg:pl-6">
             <div className="font-bold uppercase text-4xl">{client}</div>
-            <div className="font-outline uppercase text-4xl">{title}</div>
+            <div className="font-outline uppercase text-5xl">{title}</div>
             {description && (
               <div className="w-64">
                 <LittleGoldBar />

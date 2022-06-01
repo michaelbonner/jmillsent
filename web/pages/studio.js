@@ -14,7 +14,7 @@ function Studio({ studioPage }) {
     <div className="h-full w-full flex flex-col lg:gap-4 items-center justify-around text-white">
       <div className="flex flex-col lg:mt-12 items-center justify-center">
         <H1>{studioPage.title}</H1>
-        <h2 className="uppercase font-outline text-2xl lg:text-5xl">
+        <h2 className="uppercase font-outline text-2xl lg:text-6xl">
           {studioPage.subtitle}
         </h2>
       </div>
@@ -63,7 +63,7 @@ function Studio({ studioPage }) {
               <p className="text-4xl font-extrabold tracking-widest">
                 {studioPage.section2Title}
               </p>
-              <p className="mt-2 text-3xl font-outline">
+              <p className="mt-2 text-4xl font-outline">
                 {studioPage.section2Subtitle}
               </p>
             </div>

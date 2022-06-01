@@ -63,7 +63,7 @@ function Moments({ momentsPage }) {
   const heroContent = (
     <div className="h-full w-full flex flex-col items-center justify-center text-white">
       <H1>{momentsPage.title}</H1>
-      <h2 className="uppercase font-outline text-2xl lg:text-5xl">
+      <h2 className="uppercase font-outline text-2xl lg:text-6xl">
         {momentsPage.subtitle}
       </h2>
     </div>

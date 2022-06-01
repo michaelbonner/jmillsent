@@ -42,7 +42,7 @@ const BackgroundText = ({
         <div
           className={`lg:absolute ${styles[leftOrRight].containerPosition} top-0 bottom-0 ${styles[leftOrRight].textAlign} flex flex-col justify-center items-start gap-y-2`}
         >
-          <h3 className="font-bold text-3xl mt-8 font-outline w-full uppercase">
+          <h3 className="text-4xl mt-8 font-outline w-full uppercase">
             {title}
           </h3>
           {description && (

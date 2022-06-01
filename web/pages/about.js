@@ -38,7 +38,7 @@ function About({ aboutPage }) {
     <div className="h-full w-full text-white flex items-center justify-center">
       <div className="w-screen px-4 flex flex-col items-center justify-center text-center">
         <H1>{aboutPage.title}</H1>
-        <h2 className="uppercase font-outline text-2xl lg:text-5xl">
+        <h2 className="uppercase font-outline text-2xl lg:text-6xl">
           {aboutPage.subtitle}
         </h2>
       </div>
@@ -67,7 +67,7 @@ function About({ aboutPage }) {
           <p className="text-4xl font-extrabold tracking-widest">
             {aboutPage.section2Title}
           </p>
-          <p className="mt-2 text-3xl font-outline">
+          <p className="mt-2 text-4xl font-outline">
             {aboutPage.section2Subtitle}
           </p>
         </div>
@@ -168,7 +168,7 @@ function About({ aboutPage }) {
               <span className="uppercase font-extrabold text-xl lg:text-3xl">
                 View Director&apos;s
               </span>{' '}
-              <span className="uppercase font-outline text-xl lg:text-3xl">
+              <span className="uppercase font-outline text-2xl lg:text-4xl">
                 SITE
               </span>{' '}
               <span className="font-bold text-xl lg:text-2xl">&gt;</span>
@@ -182,7 +182,7 @@ function About({ aboutPage }) {
       {/* team section */}
       <section className="max-w-7xl mx-auto text-center my-12 lg:my-24 px-4">
         <H3>MEET THE WORLD CLASS</H3>
-        <p className="border border-white max-w-max px-4 mx-auto font-outline text-4xl">
+        <p className="border border-white max-w-max py-2 px-6 mx-auto font-outline text-5xl">
           JME TEAM
         </p>
         <div className="grid grid-cols-1 lg:grid-cols-3 gap-8 lg:gap-20 mt-12">
@@ -206,7 +206,7 @@ function About({ aboutPage }) {
                   {teamMember.name}
                 </p>
                 <LittleWhiteBar yMargin={'my-2'} />
-                <p className="uppercase font-outline text-xl">
+                <p className="uppercase font-outline text-2xl">
                   {teamMember.title}
                 </p>
               </div>
@@ -311,7 +311,7 @@ function About({ aboutPage }) {
           })}
         </div>
         <H2>{aboutPage.ravensCardsTitle}</H2>
-        <p className="mt-2 text-3xl font-outline">
+        <p className="mt-2 text-4xl font-outline">
           {aboutPage.ravensCardsSubtitle}
         </p>
         {aboutPage.ravensCardsContent && (
@@ -324,7 +324,7 @@ function About({ aboutPage }) {
             <span className="uppercase font-extrabold text-xl lg:text-3xl">
               View
             </span>{' '}
-            <span className="uppercase font-outline text-xl lg:text-3xl">
+            <span className="uppercase font-outline text-2xl lg:text-4xl">
               SITE
             </span>{' '}
             <span className="font-bold text-xl lg:text-2xl">&gt;</span>

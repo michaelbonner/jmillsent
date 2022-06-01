@@ -11,7 +11,7 @@ function Home({ homePage }) {
   const heroContent = (
     <div className="h-full w-full flex flex-col items-center justify-center text-white">
       <H1>{homePage.mainTitle}</H1>
-      <h2 className="uppercase font-outline text-2xl lg:text-5xl">
+      <h2 className="uppercase font-outline text-2xl lg:text-6xl">
         {homePage.subtitle}
       </h2>
     </div>
@@ -52,7 +52,7 @@ function Home({ homePage }) {
         <p className="text-4xl font-extrabold tracking-widest">
           {homePage.footerTitle}
         </p>
-        <p className="mt-2 text-3xl font-outline">{homePage.footerSubtitle}</p>
+        <p className="mt-2 text-4xl font-outline">{homePage.footerSubtitle}</p>
       </div>
       <MediumWhiteBar />
     </Layout>

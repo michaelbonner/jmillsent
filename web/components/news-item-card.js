@@ -34,10 +34,16 @@ const NewsItemCard = ({ newsItem, index, hideAfterCount = 999 }) => {
           <Date dateString={newsItem.date} />
         </div>
         <LargeGoldBar yMargin="my-4" />
-        <div>
-          <p className="prose lg:prose-lg text-center text-white max-w-5xl mx-auto">
-            {newsItem.description}
-          </p>
+        <p className="prose lg:prose-lg text-center text-white max-w-5xl mx-auto">
+          {newsItem.description}
+        </p>
+        <div className="mx-auto text-center pt-8">
+          <Link href={`/news/${newsItem.slug.current}`} key={newsItem._id}>
+            <a className="text-2xl font-bold uppercase tracking-wide">
+              Read{' '}
+              <span className="font-outline tracking-wider">More &gt;</span>
+            </a>
+          </Link>
         </div>
       </div>
       <LargeWhiteBar yMargin="my-0" />

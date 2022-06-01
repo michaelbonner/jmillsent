@@ -1,10 +1,9 @@
 import Layout from '@/components/layout'
-import { H1, H2, H3 } from '@/components/headings'
+import { H1 } from '@/components/headings'
 import groq from 'groq'
 import { getClient } from '@/lib/sanity'
 import NewsItemCard from '@/components/news-item-card'
 import MediumWhiteBar from '@/components/medium-white-bar'
-import LargeWhiteBar from '@/components/large-white-bar'
 
 function News({ newsPage, newsItems }) {
   const heroContent = (

@@ -86,7 +86,7 @@ const WorkItemTile = ({ workItem, index, hideAfterCount = 999 }) => {
           <h2 className="uppercase font-extrabold text-3xl lg:text-2xl">
             {workItem.clientName}
           </h2>
-          <h3 className="uppercase font-outline text-2xl lg:text-xl">
+          <h3 className="uppercase font-outline text-3xl lg:text-2xl">
             {workItem.title}
           </h3>
         </div>

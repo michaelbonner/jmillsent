@@ -26,6 +26,10 @@ const navItems = [
     href: '/studio',
   },
   {
+    name: 'News',
+    href: '/news',
+  },
+  {
     name: 'Contact',
     href: '/contact',
   },

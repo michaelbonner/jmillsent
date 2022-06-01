@@ -30,6 +30,10 @@ const navItems = [
     href: '/contact',
   },
   {
+    name: 'News',
+    href: '/news',
+  },
+  {
     name: 'Moments',
     href: '/moments',
   },

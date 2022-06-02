@@ -58,24 +58,51 @@ function About({ aboutPage }) {
       <div className="container px-4 lg:mx-auto text-white text-center my-12 lg:my-16 2xl:my-20">
         <H2>{aboutPage.section1Title}</H2>
         {aboutPage.section1Body && (
-          <div className="mt-16 mb-8 prose-lg max-w-5xl text-center mx-auto">
+          <div className="mt-16 prose-lg max-w-5xl text-center mx-auto">
             <BlockContent blocks={aboutPage.section1Body} />
           </div>
         )}
-        <MediumWhiteBar />
+        <div className="my-12 lg:my-24">
+          <MediumWhiteBar />
+        </div>
         <div className="px-8 pt-8 container lg:mx-auto text-center break-all">
           <p className="text-4xl font-extrabold tracking-widest">
-            {aboutPage.section2Title}
+            {aboutPage.reelVideoSectionTitle}
           </p>
           <p className="mt-2 text-4xl font-outline">
-            {aboutPage.section2Subtitle}
+            {aboutPage.reelVideoSectionSubtitle}
           </p>
+        </div>
+        <div className="px-4 mt-10">
+          <div className="border border-white py-8 px-8 container lg:mx-auto">
+            <VideoPlayer
+              poster={aboutPage.reelVideoPoster}
+              title={aboutPage.reelVideoTitle}
+              videoId={aboutPage.reelVideoId}
+              client={aboutPage.reelVideoClient}
+              description={aboutPage.reelVideoDescription}
+              videoHeightAspectRatio={aboutPage.reelVideoHeightAspectRatio}
+              videoWidthAspectRatio={aboutPage.reelVideoWidthAspectRatio}
+              autoPlay={true}
+            />
+          </div>
+        </div>
+        <div className="my-12 lg:my-24">
+          <MediumWhiteBar />
         </div>
 
         {/* services */}
         <section>
+          <div className="px-8 pt-8 container lg:mx-auto text-center break-all">
+            <p className="text-4xl font-extrabold tracking-widest">
+              {aboutPage.section2Title}
+            </p>
+            <p className="mt-2 text-4xl font-outline">
+              {aboutPage.section2Subtitle}
+            </p>
+          </div>
           {aboutPage.services.length > 0 && (
-            <div className="grid grid-cols-1 gap-y-12 mt-12 max-w-7xl mx-auto">
+            <div className="grid grid-cols-1 gap-y-12 mt-10 max-w-7xl mx-auto">
               {aboutPage.services.map((service, index) => {
                 const leftOrRight = service.rightAlign ? 'right' : 'left'
                 return (
@@ -380,6 +407,17 @@ export async function getStaticProps() {
 			seoDescription,
 			seoTitle,
 			subtitle,
+      reelVideoSectionTitle,
+      reelVideoSectionSubtitle,
+      reelVideoClient,
+			reelVideoDescription,
+			reelVideoHeightAspectRatio,
+      reelVideoHeightInPixels,
+      reelVideoWidthInPixels,
+			reelVideoId,
+			reelVideoPoster,
+			reelVideoTitle,
+			reelVideoWidthAspectRatio,
 			videoClient,
 			videoId,
       headerVideoWidthInPixels,

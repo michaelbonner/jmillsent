@@ -447,7 +447,7 @@ const Layout = ({
                     {
                       'border-b': router.route === navItem.href,
                     },
-                    `font-bold text-white uppercase text-lg lg:text-2xl pb-4`
+                    `font-bold text-white uppercase text-lg lg:text-2xl`
                   )}
                 >
                   {navItem.name}

@@ -6,6 +6,7 @@ import { getClient } from '@/lib/sanity'
 import BlockContent from '@sanity/block-content-to-react'
 import groq from 'groq'
 import Image from 'next/image'
+import footerGraphic from '../public/images/JME-film-prod-co-white.svg'
 
 function Home({ homePage }) {
   const heroContent = (
@@ -56,11 +57,8 @@ function Home({ homePage }) {
           />
         </div>
       </div>
-      <div className="px-8 container lg:mx-auto text-center mt-16">
-        <p className="text-4xl font-extrabold tracking-widest">
-          {homePage.footerTitle}
-        </p>
-        <p className="mt-2 text-4xl font-outline">{homePage.footerSubtitle}</p>
+      <div className="mx-auto max-w-lg my-10">
+        <Image src={footerGraphic} alt="JME Film Production Company" />
       </div>
       <MediumWhiteBar />
     </Layout>

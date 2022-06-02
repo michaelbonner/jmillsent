@@ -275,12 +275,23 @@ function About({ aboutPage }) {
           })}
         </div>
       </section>
-      <MediumWhiteBar />
+      <div className="my-12 lg:my-24">
+        <MediumWhiteBar />
+      </div>
       {/* end: utah locations */}
 
       {/* ravens */}
-      <section className="max-w-7xl mx-auto text-center my-12 lg:my-24 px-4">
-        <div className="mt-12 grid grid-cols-1 lg:grid-cols-3 gap-8 my-12 lg:my-24">
+      <section className="max-w-7xl mx-auto text-center px-4">
+        <H2>{aboutPage.ravensCardsTitle}</H2>
+        <p className="mt-2 text-4xl font-outline">
+          {aboutPage.ravensCardsSubtitle}
+        </p>
+        {aboutPage.ravensCardsContent && (
+          <div className="my-8 prose-lg max-w-3xl text-center mx-auto">
+            <BlockContent blocks={aboutPage.ravensCardsContent} />
+          </div>
+        )}
+        <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
           {aboutPage.ravensCards.map((ravensCard, index) => {
             return (
               <div
@@ -313,15 +324,6 @@ function About({ aboutPage }) {
             )
           })}
         </div>
-        <H2>{aboutPage.ravensCardsTitle}</H2>
-        <p className="mt-2 text-4xl font-outline">
-          {aboutPage.ravensCardsSubtitle}
-        </p>
-        {aboutPage.ravensCardsContent && (
-          <div className="mt-8 mb-8 prose-lg max-w-3xl text-center mx-auto">
-            <BlockContent blocks={aboutPage.ravensCardsContent} />
-          </div>
-        )}
         <Link href="https://ravensfilmworks.com/">
           <a className="flex items-end justify-center space-x-4 mt-12 transform transition-all hover:translate-x-1">
             <span className="uppercase font-extrabold text-xl lg:text-3xl">
@@ -334,11 +336,13 @@ function About({ aboutPage }) {
           </a>
         </Link>
       </section>
-      <MediumWhiteBar />
+      <div className="my-12 lg:my-24">
+        <MediumWhiteBar />
+      </div>
       {/* end: ravens */}
 
       {/* trusted by */}
-      <section className="max-w-7xl mx-auto text-center my-12 lg:my-24 px-4">
+      <section className="max-w-7xl mx-auto text-center px-4">
         <H3>Trusted By the Following</H3>
         <LittleWhiteBar />
         <div className="grid grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 gap-8 lg:gap-20 mt-12 items-center">

@@ -50,16 +50,26 @@ function Studio({ studioPage }) {
       <div className="container px-4 lg:mx-auto text-white text-center my-14 lg:my-16 2xl:my-20">
         <H2>{studioPage.section1Title}</H2>
         {studioPage.section1Body && (
-          <div className="mt-16 mb-8 prose-lg max-w-5xl text-center mx-auto">
+          <div className="mt-16 prose-lg max-w-5xl text-center mx-auto">
             <BlockContent blocks={studioPage.section1Body} />
           </div>
         )}
-        <MediumWhiteBar />
+        <div className="my-12 lg:my-24">
+          <MediumWhiteBar />
+        </div>
+        <div className="pb-10 px-8 container lg:mx-auto text-center uppercase">
+          <p className="text-4xl font-extrabold tracking-widest">
+            {studioPage.section3Title}
+          </p>
+          <p className="mt-2 text-4xl font-outline">
+            {studioPage.section3Subtitle}
+          </p>
+        </div>
 
         {/* Ternary to remove hero video & video player if no videoId found. */}
         {studioPage.tourVideoId && (
           <>
-            <div className="pt-24 px-8 container lg:mx-auto text-center">
+            <div className="px-8 container lg:mx-auto text-center">
               <p className="text-4xl font-extrabold tracking-widest">
                 {studioPage.section2Title}
               </p>
@@ -131,6 +141,8 @@ export async function getStaticProps() {
 			tourVideoWidthAspectRatio,
 			section1Body,
 			section1Title,
+      section3Title,
+      section3Subtitle,
 			seoDescription,
 			seoTitle,
 			subtitle,

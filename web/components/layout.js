@@ -22,12 +22,12 @@ const navItems = [
     href: '/about',
   },
   {
-    name: 'Studio',
-    href: '/studio',
-  },
-  {
     name: 'Contact',
     href: '/contact',
+  },
+  {
+    name: 'Studio',
+    href: '/studio',
   },
   {
     name: 'News',
@@ -447,7 +447,7 @@ const Layout = ({
                     {
                       'border-b': router.route === navItem.href,
                     },
-                    `font-bold text-white uppercase text-lg lg:text-2xl`
+                    `font-bold text-white uppercase pb-1 text-lg lg:text-2xl`
                   )}
                 >
                   {navItem.name}

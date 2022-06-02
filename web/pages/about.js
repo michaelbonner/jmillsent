@@ -217,7 +217,9 @@ function About({ aboutPage }) {
           })}
         </div>
       </section>
-      <MediumWhiteBar />
+      <div className="my-12 lg:my-24">
+        <MediumWhiteBar />
+      </div>
       {/* end: team section */}
 
       {/* utah locations */}
@@ -248,7 +250,7 @@ function About({ aboutPage }) {
       <section className="max-w-7xl mx-auto text-center my-12 lg:my-24 px-4">
         <H2>{aboutPage.utahLocationsTitle}</H2>
         {aboutPage.utahLocationsDescription && (
-          <div className="mt-8 mb-8 prose-lg max-w-3xl text-center mx-auto">
+          <div className="my-8 prose-lg max-w-3xl text-center mx-auto">
             <BlockContent blocks={aboutPage.utahLocationsDescription} />
           </div>
         )}
@@ -291,7 +293,7 @@ function About({ aboutPage }) {
             <BlockContent blocks={aboutPage.ravensCardsContent} />
           </div>
         )}
-        <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
+        <div className="grid grid-cols-1 lg:grid-cols-3 gap-8 mt-12">
           {aboutPage.ravensCards.map((ravensCard, index) => {
             return (
               <div

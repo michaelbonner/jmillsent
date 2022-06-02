@@ -34,6 +34,14 @@ function Home({ homePage }) {
         </div>
       </div>
       <MediumWhiteBar />
+      <div className="pb-10 px-8 mt-12 container lg:mx-auto text-center uppercase">
+        <p className="text-4xl font-extrabold tracking-widest">
+          {homePage.section2Title}
+        </p>
+        <p className="mt-2 text-4xl font-outline">
+          {homePage.section2Subtitle}
+        </p>
+      </div>
       <div className="px-4">
         <div className="border border-white py-8 px-8 container lg:mx-auto">
           <VideoPlayer
@@ -78,6 +86,8 @@ export async function getStaticProps() {
 			reelVideoWidthAspectRatio,
 			section1Body,
 			section1Title,
+      section2Title,
+      section2Subtitle,
 			seoDescription,
 			seoTitle,
 			subtitle,

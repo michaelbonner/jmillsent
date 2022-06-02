@@ -4,6 +4,7 @@ export default {
   name: 'studioItem',
   title: 'Studio Spaces',
   type: 'document',
+  icon,
   fields: [
     {
       name: 'title',

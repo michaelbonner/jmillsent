@@ -16,6 +16,10 @@
       format('svg');
 }
 
+.font-outline {
+  letter-spacing: 0.1em;
+}
+
 .bpd-fade-in {
   animation: fadeInAnimation ease 3s;
   animation-iteration-count: 1;

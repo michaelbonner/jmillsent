@@ -47,21 +47,17 @@ function Studio({ studioPage }) {
       heroVideoHeightInPixels={studioPage.headerVideoHeightInPixels}
       heroVideoWidthInPixels={studioPage.headerVideoWidthInPixels}
     >
-      <div className="container px-4 lg:mx-auto text-white text-center my-14 lg:my-16 2xl:my-20">
+      <div className="container px-4 lg:mx-auto text-white text-center mt-12 lg:mt-24">
         <H2>{studioPage.section1Title}</H2>
         {studioPage.section1Body && (
-          <div className="mt-16 prose-lg max-w-5xl text-center mx-auto">
+          <div className="mt-10 prose-lg max-w-5xl text-center mx-auto">
             <BlockContent blocks={studioPage.section1Body} />
           </div>
         )}
-        <div className="my-12 lg:my-24">
-          <MediumWhiteBar />
-        </div>
-        <div className="pb-10 px-8 container lg:mx-auto text-center uppercase">
-          <p className="text-4xl font-extrabold tracking-widest">
-            {studioPage.section3Title}
-          </p>
-          <p className="mt-2 text-4xl font-outline">
+        <MediumWhiteBar yMargin="my-12 lg:my-24" />
+        <div className="px-8 container lg:mx-auto text-center uppercase">
+          <p className="text-4xl font-extrabold">{studioPage.section3Title}</p>
+          <p className="mt-2 text-4xl font-outline tracking-wide">
             {studioPage.section3Subtitle}
           </p>
         </div>
@@ -79,7 +75,7 @@ function Studio({ studioPage }) {
             </div>
             <div
               id="tour"
-              className="border border-white py-8 px-8 container max-w-7xl lg:mx-auto"
+              className="border border-white mt-10 py-8 px-8 container max-w-7xl lg:mx-auto"
             >
               <VideoPlayer
                 poster={studioPage.tourVideoPoster}
@@ -92,16 +88,14 @@ function Studio({ studioPage }) {
                 autoPlay={true}
               />
             </div>
-            <div className="my-12 lg:my-24">
-              <MediumWhiteBar />
-            </div>
+            <MediumWhiteBar yMargin="my-12 lg:my-24" />
           </>
         )}
 
         {/* studioItems */}
         <section>
           {studioPage.studioItems?.length > 0 && (
-            <div className="grid grid-cols-1 gap-y-16 mt-12 max-w-7xl mx-auto">
+            <div className="grid grid-cols-1 gap-y-16 mt-10 max-w-7xl mx-auto">
               {studioPage.studioItems.map((service, index) => {
                 const leftOrRight = service.rightAlign ? 'right' : 'left'
                 return (
@@ -120,7 +114,7 @@ function Studio({ studioPage }) {
         </section>
         {/* end: studioItems */}
       </div>
-      <MediumWhiteBar />
+      <MediumWhiteBar yMargin="mb-8 mt-12 lg:mt-24" />
     </Layout>
   )
 }

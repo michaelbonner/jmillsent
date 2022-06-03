@@ -344,13 +344,13 @@ const VideoPlayer = ({
       <button
         className={`${
           !hasClicked || !isPlaying ? 'opacity-100' : 'opacity-0'
-        } invisible lg:visible absolute inset-0 bg-transparent cursor-pointer text-3xl text-left transition-all duration-500`}
+        } absolute inset-0 bg-transparent cursor-pointer text-3xl text-left transition-all duration-500`}
         onClick={() => {
           setVideoPlaying(!videoPlaying)
         }}
       >
         <div className="absolute inset-0 h-full bg-gradient-to-r from-black via-transparent to-transparent opacity-80"></div>
-        <div className="absolute inset-0 pl-0.5 ml-0.5 flex h-full items-center justify-start gap-6 lg:pl-12">
+        <div className="absolute -inset-y-11 -inset-x-1 xs:-inset-x-2 sm:inset-x-2.5 md:inset-x-2 lg:-inset-x-3.5 lg:inset-y-0 xl:-inset-x-1 2xl:-inset-x-0.5 pl-0.5 ml-0.5 flex h-full items-center justify-start gap-1 2xs:gap-1.5 xs:gap-2 md:gap-4 lg:pl-12">
           {!isIpad && (
             <div
               className="z-10 bg-transparent flex items-center justify-center xl:justify-start cursor-pointer text-4xl xl:text-6xl"
@@ -358,16 +358,20 @@ const VideoPlayer = ({
             >
               <div
                 className={classNames(
-                  `flex bpd-white-icon transition-opacity duration-500 border-2 border-white rounded-full h-14 w-14 xl:h-20 xl:w-20 items-center justify-center`
+                  `flex bpd-white-icon transition-opacity duration-500 border md:border-2 border-white ml-1 rounded-full h-5 w-5 2xs:h-6 2xs:w-6 xs:h-8 xs:w-8 sm:h-10 sm:w-10 md:h-12 md:w-12 lg:h-14 lg:w-14 xl:h-20 xl:w-20 items-center justify-center`
                 )}
               >
-                <GrPlay className="p-2 pr-0" />
+                <GrPlay className="py-2 pl-1 lg:py-1" />
               </div>
             </div>
           )}
-          <div className="lg:border-l-4 lg:border-gold lg:pl-6">
-            <div className="font-bold uppercase text-4xl">{client}</div>
-            <div className="font-outline uppercase text-5xl">{title}</div>
+          <div className="border-l-2 md:border-l-4 border-gold pl-2 lg:pl-6">
+            <div className="font-bold uppercase text-base md:text-2xl lg:text-4xl">
+              {client}
+            </div>
+            <div className="font-outline uppercase text-lg md:text-3xl lg:text-5xl">
+              {title}
+            </div>
             {description && (
               <div className="w-64">
                 <LittleGoldBar />
@@ -379,25 +383,6 @@ const VideoPlayer = ({
           </div>
         </div>
       </button>
-
-      <div
-        className={`py-4 block lg:hidden text-3xl text-center transition-all duration-500`}
-        onClick={() => setVideoPlaying(!videoPlaying)}
-      >
-        <div className="h-full bg-gradient-to-r from-black via-black to-transparent opacity-80"></div>
-        <div className="pl-1 flex flex-col gap-y-3 h-full items-center justify-center">
-          <div className="font-bold uppercase text-4xl">{client}</div>
-          <div className="font-outline uppercase text-4xl">{title}</div>
-          {description && (
-            <>
-              <div className="h-1 w-32 bg-gold my-1" />
-              <div className="w-full uppercase text-lg tracking-wide max-w-sm max-h-[300px] overflow-y-scroll">
-                {description}
-              </div>
-            </>
-          )}
-        </div>
-      </div>
     </article>
   )
 }

@@ -195,13 +195,13 @@ function Contact({ contact }) {
             <Map />
           </div>
         </div>
-        <div className="mt-12">
+        <div className="mt-10">
           <div className="text-center">
             <h2 className="text-3xl font-semibold uppercase tracking-wider">
               {contact.representationTitle}
             </h2>
           </div>
-          <LargeWhiteBar />
+          <LargeWhiteBar yMargin="my-12 lg:my-24" />
           <div className="max-w-7xl mx-auto text-center grid lg:grid-cols-3 gap-y-16 text-gray-200 mt-8">
             {contact.representationCards.map((card) => {
               return (
@@ -235,7 +235,7 @@ function Contact({ contact }) {
               </p>
             </div>
           </div>
-          <div className="flex gap-16 mt-8 items-center justify-center">
+          <div className="flex gap-16 mt-10 items-center justify-center">
             <a
               href="https://www.instagram.com/jmillsent/"
               target="_blank"
@@ -251,10 +251,10 @@ function Contact({ contact }) {
               <GrVimeo size={24} />
             </a>
           </div>
-          <div className="py-12">
+          <div className="mt-10">
             <EmailSignupForm />
           </div>
-          <LargeWhiteBar yMargin="my-8" />
+          <LargeWhiteBar yMargin="mb-8 mt-12 lg:mt-24" />
         </div>
       </div>
     </Layout>

@@ -4,6 +4,7 @@ import groq from 'groq'
 import { getClient } from '@/lib/sanity'
 import NewsItemCard from '@/components/news-item-card'
 import MediumWhiteBar from '@/components/medium-white-bar'
+import Link from 'next/link'
 
 function News({ newsPage, newsItems }) {
   const heroContent = (
@@ -27,14 +28,12 @@ function News({ newsPage, newsItems }) {
       heroVideoWidthInPixels={newsPage.posterWidthInPixels}
     >
       <div className="max-w-7xl mx-auto">
-        <div className="flex flex-col items-center py-8">
+        <div className="flex flex-col items-center">
           {newsItems.map((newsItem, index) => {
             return <NewsItemCard newsItem={newsItem} key={index} />
           })}
         </div>
-        <div className="mx-auto text-white text-center">
-          <MediumWhiteBar />
-        </div>
+        <MediumWhiteBar yMargin="mb-8 mt-12 lg:mt-24" />
       </div>
     </Layout>
   )

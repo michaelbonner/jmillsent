@@ -3,7 +3,7 @@ import groq from 'groq'
 import { getClient } from '@/lib/sanity'
 import BlockContent from '@sanity/block-content-to-react'
 import WorkItemTile from '@/components/work-item-tile'
-import Image from 'next/image'
+//import Image from 'next/image'
 import MediumWhiteBar from '@/components/medium-white-bar'
 
 function Work({ workPage, workItems }) {
@@ -14,11 +14,11 @@ function Work({ workPage, workItems }) {
           return <WorkItemTile workItem={workItem} key={index} />
         })}
       </div>
-      <div className="container px-4 lg:mx-auto text-white text-center my-12">
+      <div className="container px-4 lg:mx-auto text-white text-center mt-10">
         <div className="border prose-lg max-w-lg py-1 text-center mx-auto">
           <BlockContent blocks={workPage.workPageDescription} />
         </div>
-        <MediumWhiteBar />
+        <MediumWhiteBar yMargin="mb-8 mt-12 lg:mt-24" />
       </div>
     </Layout>
   )

@@ -6,6 +6,7 @@ import { getClient } from '@/lib/sanity'
 import BlockContent from '@sanity/block-content-to-react'
 import groq from 'groq'
 import Image from 'next/image'
+import footerGraphic from '../public/images/JME-film-prod-co-white.svg'
 
 function Home({ homePage }) {
   const heroContent = (
@@ -27,22 +28,20 @@ function Home({ homePage }) {
       heroVideoHeightInPixels={homePage.reelVideoHeightInPixels}
       heroVideoWidthInPixels={homePage.reelVideoWidthInPixels}
     >
-      <div className="container px-4 lg:mx-auto text-white text-center my-12 lg:mt-20">
+      <div className="container px-4 lg:mx-auto text-white text-center mt-12 lg:mt-24">
         <H2>{homePage.section1Title}</H2>
-        <div className="mt-16 mb-8 prose-lg lg:max-w-5xl text-center mx-auto">
+        <div className="mt-10 prose-lg lg:max-w-5xl text-center mx-auto">
           <BlockContent blocks={homePage.section1Body} />
         </div>
       </div>
-      <MediumWhiteBar />
-      <div className="pb-10 px-8 mt-12 container lg:mx-auto text-center uppercase">
-        <p className="text-4xl font-extrabold tracking-widest">
-          {homePage.section2Title}
-        </p>
+      <MediumWhiteBar yMargin="my-12 lg:my-24" />
+      <div className="px-8 container lg:mx-auto text-center tracking-wide uppercase">
+        <p className="text-4xl font-extrabold">{homePage.section2Title}</p>
         <p className="mt-2 text-4xl font-outline">
           {homePage.section2Subtitle}
         </p>
       </div>
-      <div className="px-4">
+      <div className="px-4 mt-10">
         <div className="border border-white py-8 px-8 container lg:mx-auto">
           <VideoPlayer
             poster={homePage.reelVideoPoster}
@@ -56,13 +55,10 @@ function Home({ homePage }) {
           />
         </div>
       </div>
-      <div className="px-8 container lg:mx-auto text-center mt-16">
-        <p className="text-4xl font-extrabold tracking-widest">
-          {homePage.footerTitle}
-        </p>
-        <p className="mt-2 text-4xl font-outline">{homePage.footerSubtitle}</p>
+      <div className="mx-auto max-w-lg mt-10">
+        <Image src={footerGraphic} alt="JME Film Production Company" />
       </div>
-      <MediumWhiteBar />
+      <MediumWhiteBar yMargin="mb-8 mt-12 lg:mt-24" />
     </Layout>
   )
 }

@@ -8,7 +8,7 @@ import LargeWhiteBar from './large-white-bar'
 const NewsItemCard = ({ newsItem, index, hideAfterCount = 999 }) => {
   return (
     <>
-      <div className="z-10 w-full sm:max-w-xl lg:max-w-3xl xl:max-w-5xl px-2 sm:px-0 my-12">
+      <div className="z-10 w-full sm:max-w-xl lg:max-w-3xl xl:max-w-5xl px-2 sm:px-0 mt-10">
         <Link href={`/news/${newsItem.slug.current}`} key={newsItem._id}>
           <a
             className={classNames(
@@ -29,7 +29,7 @@ const NewsItemCard = ({ newsItem, index, hideAfterCount = 999 }) => {
             }}
           ></a>
         </Link>
-        <div className="flex justify-between text-2xl sm:text-3xl uppercase z-10 mt-4">
+        <div className="flex justify-between text-2xl sm:text-3xl uppercase z-10 mt-10">
           <h2 className="font-extrabold">{newsItem.title}</h2>
           <Date dateString={newsItem.date} />
         </div>
@@ -37,7 +37,7 @@ const NewsItemCard = ({ newsItem, index, hideAfterCount = 999 }) => {
         <p className="prose lg:prose-lg text-center text-white max-w-5xl mx-auto">
           {newsItem.description}
         </p>
-        <div className="mx-auto text-center pt-8">
+        <div className="mx-auto text-center mt-8">
           <Link href={`/news/${newsItem.slug.current}`} key={newsItem._id}>
             <a className="text-2xl font-bold uppercase tracking-wide">
               Read{' '}
@@ -46,7 +46,7 @@ const NewsItemCard = ({ newsItem, index, hideAfterCount = 999 }) => {
           </Link>
         </div>
       </div>
-      <LargeWhiteBar yMargin="my-0" />
+      <LargeWhiteBar yMargin="my-10" />
     </>
   )
 }

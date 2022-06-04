@@ -5,6 +5,8 @@ import { getClient } from '@/lib/sanity'
 import VideoPlayer from '@/components/video-player'
 import MediumWhiteBar from '@/components/medium-white-bar'
 import { H3 } from '@/components/headings'
+import { useState } from 'react'
+import { GrNext } from 'react-icons/gr'
 
 const workItemQuery = groq`
 *[_type == "workItem" && slug.current == $slug][0]{
@@ -45,6 +47,8 @@ aspect-w-16	aspect-h-16
 */
 
 const WorkItem = ({ workItem = {} }) => {
+  const [isOpen, setIsOpen] = useState(false)
+
   const fullTitle = workItem.clientName
     ? `${workItem.clientName} | ${workItem.title}`
     : workItem.title
@@ -85,38 +89,54 @@ const WorkItem = ({ workItem = {} }) => {
       <div className="container px-4 md:px-0 mx-auto mt-4">
         {workItem.credits && workItem.credits.length > 0 && (
           <div className="my-12 max-w-9xl mx-auto">
-            <H3>Credits</H3>
-            <div className="lg:text-xl h-auto transition-all overflow-hidden xl:mt-12">
-              <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-2 gap-x-20 gap-y-4 mb-12">
-                <div>
-                  {column1Credits.map((credit, index) => {
-                    return (
-                      <div
-                        className="grid grid-cols-2 gap-2 items-center pt-4"
-                        key={index}
-                      >
-                        <div className="font-bold uppercase">{credit.role}</div>
-                        <div className="uppercase space-x-4 font-outline tracking-wide text-2xl">
-                          {credit.value}
+            <button
+              onClick={(e) => {
+                setIsOpen(!isOpen)
+              }}
+              className="flex items-center space-x-4"
+            >
+              <H3>Credits</H3>
+              <div className={`${isOpen ? 'rotate-90' : ''}`}>
+                <p className="text-4xl mb-4 font-outline">&gt;</p>
+              </div>
+            </button>
+            <div className={`${isOpen ? 'visible' : 'hidden'}`}>
+              <div className="lg:text-xl h-auto transition-all overflow-hidden xl:mt-12">
+                <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-2 gap-x-20 gap-y-4 mb-12">
+                  <div>
+                    {column1Credits.map((credit, index) => {
+                      return (
+                        <div
+                          className="grid grid-cols-2 gap-2 items-center pt-4"
+                          key={index}
+                        >
+                          <div className="font-bold uppercase">
+                            {credit.role}
+                          </div>
+                          <div className="uppercase space-x-4 font-outline tracking-wide text-2xl">
+                            {credit.value}
+                          </div>
                         </div>
-                      </div>
-                    )
-                  })}
-                </div>
-                <div>
-                  {column2Credits.map((credit, index) => {
-                    return (
-                      <div
-                        className="grid grid-cols-2 gap-2 items-center pt-4"
-                        key={index}
-                      >
-                        <div className="font-bold uppercase">{credit.role}</div>
-                        <div className="uppercase space-x-4 font-outline tracking-wide text-2xl">
-                          {credit.value}
+                      )
+                    })}
+                  </div>
+                  <div>
+                    {column2Credits.map((credit, index) => {
+                      return (
+                        <div
+                          className="grid grid-cols-2 gap-2 items-center pt-4"
+                          key={index}
+                        >
+                          <div className="font-bold uppercase">
+                            {credit.role}
+                          </div>
+                          <div className="uppercase space-x-4 font-outline tracking-wide text-2xl">
+                            {credit.value}
+                          </div>
                         </div>
-                      </div>
-                    )
-                  })}
+                      )
+                    })}
+                  </div>
                 </div>
               </div>
             </div>

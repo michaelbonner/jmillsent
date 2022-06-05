@@ -6,7 +6,6 @@ import VideoPlayer from '@/components/video-player'
 import MediumWhiteBar from '@/components/medium-white-bar'
 import { H3 } from '@/components/headings'
 import { useState } from 'react'
-import { GrNext } from 'react-icons/gr'
 
 const workItemQuery = groq`
 *[_type == "workItem" && slug.current == $slug][0]{

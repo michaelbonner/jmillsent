@@ -55,7 +55,7 @@ function Home({ homePage }) {
           />
         </div>
       </div>
-      <div className="mx-auto max-w-lg mt-10">
+      <div className="mx-auto w-1/2 max-w-lg mt-10">
         <Image src={footerGraphic} alt="JME Film Production Company" />
       </div>
       <MediumWhiteBar yMargin="mb-8 mt-12 lg:mt-24" />

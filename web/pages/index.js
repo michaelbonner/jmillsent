@@ -36,8 +36,8 @@ function Home({ homePage }) {
       </div>
       <MediumWhiteBar yMargin="my-12 lg:my-24" />
       <div className="px-8 container lg:mx-auto text-center tracking-wide uppercase">
-        <p className="text-4xl font-extrabold">{homePage.section2Title}</p>
-        <p className="mt-2 text-4xl font-outline">
+        <H2>{homePage.section2Title}</H2>
+        <p className="uppercase font-outline text-xl lg:text-5xl">
           {homePage.section2Subtitle}
         </p>
       </div>

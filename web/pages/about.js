@@ -169,7 +169,7 @@ function About({ aboutPage }) {
 
       {/* director section */}
       <section className="grid grid-cols-1 lg:grid-cols-3 max-w-7xl mx-auto items-center px-4">
-        <div className="w-full">
+        <div className="w-1/2 lg:w-full mx-auto">
           <SanityImage
             image={aboutPage.directorImage}
             alt={aboutPage.directorName}
@@ -211,8 +211,8 @@ function About({ aboutPage }) {
         </p>
         <div className="grid grid-cols-1 lg:grid-cols-3 gap-8 lg:gap-20 mt-10">
           {aboutPage.teamMembers.map((teamMember) => {
-            const width = 400
-            const height = isDesktop ? 644 : 500
+            const width = isDesktop ? 400 : 200
+            const height = isDesktop ? 644 : 250
             return (
               <div key={teamMember._id}>
                 <div className="px-8">

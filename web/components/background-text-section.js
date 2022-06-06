@@ -37,7 +37,7 @@ const BackgroundText = ({
           width={1246}
         />
         <div
-          className={`lg:absolute w-full ${styles[leftOrRight].containerPosition} top-0 bottom-0 h-full ${styles[leftOrRight].gradientDirection} from-black to-transparent opacity-80 group-hover:opacity-100 transition-all duration-500`}
+          className={`lg:absolute w-full ${styles[leftOrRight].containerPosition} top-0 bottom-0 h-full ${styles[leftOrRight].gradientDirection} from-black to-transparent opacity-70 group-hover:opacity-80 transition-all duration-500`}
         />
         <div
           className={`lg:absolute ${styles[leftOrRight].containerPosition} top-0 bottom-0 ${styles[leftOrRight].textAlign} flex flex-col justify-center items-start gap-y-2`}

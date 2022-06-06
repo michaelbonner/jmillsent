@@ -15,6 +15,7 @@ const newsItemQuery = groq`
   seoDescription,
   description,
   poster,
+  heroImage,
   slug,
   title,
   date,
@@ -27,7 +28,7 @@ const NewsItem = ({ newsItem = {} }) => {
     <Layout
       title={newsItem.seoTitle}
       description={newsItem.seoDescription}
-      heroImageUrl={newsItem.poster || null}
+      heroImageUrl={newsItem.heroImage || null}
     >
       <div className="mx-auto lg:max-w-7xl px-4 py-6">
         <div className="flex justify-around text-3xl uppercase">
@@ -87,6 +88,7 @@ export async function getStaticProps({ params }) {
         description,
         title,
         poster,
+        heroImage,
         date,
         body,
       }

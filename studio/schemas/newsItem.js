@@ -1,4 +1,4 @@
-import { BiNews as icon } from 'react-icons/bi';
+import { BiNews as icon } from 'react-icons/bi'
 
 export default {
   name: 'newsItem',
@@ -46,6 +46,16 @@ export default {
     {
       name: 'poster',
       title: 'Poster Image',
+      description: 'Poster image for news item on full news page.',
+      type: 'image',
+      options: {
+        hotspot: true,
+      },
+    },
+    {
+      name: 'heroImage',
+      title: 'Hero Image',
+      description: 'Hero image on the individual news page.',
       type: 'image',
       options: {
         hotspot: true,
@@ -80,7 +90,7 @@ export default {
         date: selection.date,
         subtitle: selection.date,
         media: selection.media,
-      };
+      }
     },
   },
-};
+}

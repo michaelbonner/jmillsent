@@ -22,10 +22,6 @@ const navItems = [
     href: '/about',
   },
   {
-    name: 'Contact',
-    href: '/contact',
-  },
-  {
     name: 'Studio',
     href: '/studio',
   },
@@ -36,6 +32,10 @@ const navItems = [
   {
     name: 'Moments',
     href: '/moments',
+  },
+  {
+    name: 'Contact',
+    href: '/contact',
   },
 ]
 

@@ -63,11 +63,9 @@ function About({ aboutPage }) {
           </div>
         )}
         <MediumWhiteBar yMargin="my-12 lg:my-24" />
-        <div className="px-8 container lg:mx-auto text-center break-all">
-          <p className="text-4xl font-extrabold tracking-widest">
-            {aboutPage.reelVideoSectionTitle}
-          </p>
-          <p className="mt-2 text-4xl font-outline">
+        <div className="px-8 container lg:mx-auto text-center">
+          <H2>{aboutPage.reelVideoSectionTitle}</H2>
+          <p className="uppercase font-outline text-xl lg:text-5xl">
             {aboutPage.reelVideoSectionSubtitle}
           </p>
         </div>
@@ -89,11 +87,9 @@ function About({ aboutPage }) {
 
         {/* services */}
         <section>
-          <div className="px-8 container lg:mx-auto text-center break-all">
-            <p className="text-4xl font-extrabold tracking-widest">
-              {aboutPage.section2Title}
-            </p>
-            <p className="mt-2 text-4xl font-outline">
+          <div className="px-8 container lg:mx-auto text-center">
+            <H2>{aboutPage.section2Title}</H2>
+            <p className="uppercase font-outline text-xl lg:text-5xl">
               {aboutPage.section2Subtitle}
             </p>
           </div>

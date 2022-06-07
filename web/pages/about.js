@@ -310,10 +310,10 @@ function About({ aboutPage }) {
           {aboutPage.ravensCards.map((ravensCard, index) => {
             return (
               <div
-                className="flex flex-col justify-between space-y-12 border-2 border-gold py-8 px-12"
+                className="flex flex-col justify-between space-y-2 lg:space-y-12 border-2 border-gold py-4 lg:py-8 lg:px-12"
                 key={index}
               >
-                <div>
+                <div className="w-4/5 mx-auto lg:w-full">
                   <Image
                     className="block filter grayscale hover:filter-none transition-all duration-500"
                     src={`/images/ravens-logo-white.svg`}
@@ -321,18 +321,18 @@ function About({ aboutPage }) {
                     width="646"
                     alt={ravensCard.caption}
                   />
-                  <h4 className="font-bold text-4xl uppercase mt-12">
+                  <h4 className="font-bold text-lg sm:text-2xl lg:text-3xl xl:text-4xl uppercase mt-2 lg:mt-12">
                     {ravensCard.title}
                   </h4>
                 </div>
-                <div>
+                <div className="w-3/5 mx-auto lg:w-full">
                   <SanityImage
                     image={ravensCard.image}
                     className="block filter grayscale hover:filter-none transition-all duration-500"
                     alt={ravensCard.caption}
                   />
                 </div>
-                <div className="prose-lg">
+                <div className="prose text-white lg:prose-lg mx-auto">
                   <BlockContent blocks={ravensCard.body} />
                 </div>
               </div>
@@ -344,7 +344,7 @@ function About({ aboutPage }) {
             <span className="uppercase font-extrabold text-xl lg:text-3xl">
               View
             </span>{' '}
-            <span className="uppercase font-outline tracking-wide text-2xl lg:text-4xl">
+            <span className="uppercase font-outline tracking-wide text-xl lg:text-3xl">
               SITE
             </span>{' '}
             <span className="font-bold text-xl lg:text-2xl">&gt;</span>

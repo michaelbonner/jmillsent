@@ -110,8 +110,8 @@ const WorkItem = ({ workItem = {} }) => {
                   <h3 className="uppercase font-extrabold text-xl lg:text-5xl">
                     Credits
                   </h3>
-                  <div className={`${isOpen ? 'rotate-90' : ''}`}>
-                    <p className="text-2xl lg:text-4xl font-outline place-self-center px-2">
+                  <div className={`${isOpen ? 'rotate-90 pl-0 pr-1' : ''}`}>
+                    <p className="text-2xl lg:text-4xl font-outline place-self-center pl-2">
                       &gt;
                     </p>
                   </div>

@@ -196,7 +196,7 @@ function About({ aboutPage }) {
         <p className="max-w-max py-2 px-6 mx-auto font-outline text-5xl">
           JME TEAM
         </p>
-        <div className="grid grid-cols-1 lg:grid-cols-3 gap-8 lg:gap-20 mt-10">
+        <div className="grid grid-cols-1 lg:grid-cols-3 gap-8 lg:gap-x-10 lg:gap-y-20 mt-10">
           {aboutPage.teamMembers.map((teamMember) => {
             const width = isDesktop ? 400 : 200
             const height = isDesktop ? 644 : 250

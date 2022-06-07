@@ -6,6 +6,7 @@ import MediumWhiteBar from '@/components/medium-white-bar'
 import Date from '@/components/date'
 import LargeGoldBar from '@/components/large-gold-bar'
 import Link from 'next/link'
+import Image from 'next/image'
 import BlockContent from '@sanity/block-content-to-react'
 
 const newsItemQuery = groq`
@@ -41,16 +42,19 @@ const NewsItem = ({ newsItem = {} }) => {
             <BlockContent blocks={newsItem.body} />
           </div>
         )}
-        <div className="mx-auto text-center pt-8">
+        <div className="mx-auto mt-12 w-40 max-w-xs sm:w-full">
           <Link href="/news">
-            <a className="text-3xl font-bold uppercase tracking-wide">
-              More{' '}
-              <span className="font-outline tracking-wider">News &gt;</span>
+            <a className="flex justify-center transform transition-all hover:translate-x-1">
+              <Image
+                alt="Read Full Story"
+                height="108"
+                src="/images/JME-more-news-link.svg"
+                width="500"
+              />
             </a>
           </Link>
         </div>
       </div>
-
       <MediumWhiteBar />
     </Layout>
   )

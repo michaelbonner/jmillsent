@@ -11,7 +11,7 @@ import { getClient } from '../lib/sanity'
 
 function Studio({ studioPage }) {
   const heroContent = (
-    <div className="h-full w-full flex flex-col lg:gap-4 items-center justify-around text-white">
+    <div className="h-full w-full flex flex-col lg:gap-y-4 items-center justify-around text-white">
       <div className="flex flex-col lg:mt-12 items-center justify-center">
         <H1>{studioPage.title}</H1>
         <h2 className="uppercase font-outline text-2xl lg:text-6xl">
@@ -22,16 +22,17 @@ function Studio({ studioPage }) {
       {studioPage.tourVideoId && (
         <SmoothScrollLink
           to="tour"
-          className="flex space-x-2 items-center cursor-pointer"
+          className="flex justify-center cursor-pointer w-1/3 lg:w-full"
           smooth={true}
           offset={-100}
           duration={500}
         >
-          <span className="text-2xl lg:text-4xl uppercase font-bold">Play</span>
-          <span className="text-2xl lg:text-4xl uppercase font-outline">
-            Tour
-          </span>
-          <span className="text-xl lg:text-2xl font-bold">&gt;</span>
+          <Image
+            alt="Play Studio Tour"
+            height="100"
+            src="/images/JME-studio-tour-link.svg"
+            width="500"
+          />
         </SmoothScrollLink>
       )}
     </div>

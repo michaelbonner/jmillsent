@@ -56,8 +56,8 @@ function Studio({ studioPage }) {
         )}
         <MediumWhiteBar yMargin="my-12 lg:my-24" />
         <div className="px-8 container lg:mx-auto text-center uppercase">
-          <p className="text-4xl font-extrabold">{studioPage.section3Title}</p>
-          <p className="mt-2 text-4xl font-outline tracking-wide">
+          <H2>{studioPage.section3Title}</H2>
+          <p className="uppercase font-outline text-xl lg:text-5xl">
             {studioPage.section3Subtitle}
           </p>
         </div>
@@ -66,10 +66,8 @@ function Studio({ studioPage }) {
         {studioPage.tourVideoId && (
           <>
             <div className="px-8 container lg:mx-auto text-center">
-              <p className="text-4xl font-extrabold tracking-widest">
-                {studioPage.section2Title}
-              </p>
-              <p className="mt-2 text-4xl font-outline">
+              <H2>{studioPage.section2Title}</H2>
+              <p className="uppercase font-outline text-xl lg:text-5xl">
                 {studioPage.section2Subtitle}
               </p>
             </div>

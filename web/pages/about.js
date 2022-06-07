@@ -94,7 +94,7 @@ function About({ aboutPage }) {
             </p>
           </div>
           {aboutPage.services.length > 0 && (
-            <div className="grid grid-cols-1 gap-y-12 mt-10 max-w-7xl mx-auto">
+            <div className="grid grid-cols-1 gap-y-6 lg:gap-y-12 mt-4 lg:mt-10 max-w-7xl mx-auto">
               {aboutPage.services.map((service, index) => {
                 const leftOrRight = service.rightAlign ? 'right' : 'left'
                 return (
@@ -357,8 +357,8 @@ function About({ aboutPage }) {
       {/* trusted by */}
       <section className="max-w-7xl mx-auto text-center px-4">
         <H3>Trusted By the Following</H3>
-        <LittleWhiteBar />
-        <div className="grid grid-cols-4 xl:grid-cols-5 gap-8 lg:gap-20 mt-10 items-center">
+        <LittleWhiteBar yMargin="my-6 lg:my-12" />
+        <div className="grid grid-cols-4 xl:grid-cols-5 gap-8 lg:gap-20 lg:mt-10 items-center">
           {aboutPage.brands.map((brand) => {
             return (
               <div key={brand._id}>
@@ -368,7 +368,7 @@ function About({ aboutPage }) {
           })}
         </div>
       </section>
-      <MediumWhiteBar yMargin="mb-8 mt-12 lg:mt-24" />
+      <MediumWhiteBar yMargin="my-8 sm:mt-12 lg:mt-24" />
       {/* end: trusted by */}
     </Layout>
   )

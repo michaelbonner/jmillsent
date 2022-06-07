@@ -93,7 +93,7 @@ function Studio({ studioPage }) {
         {/* studioItems */}
         <section>
           {studioPage.studioItems?.length > 0 && (
-            <div className="grid grid-cols-1 gap-y-16 mt-10 max-w-7xl mx-auto">
+            <div className="grid grid-cols-1 gap-y-4 sm:gap-y-8 lg:gap-y-12 mt-10 max-w-7xl mx-auto">
               {studioPage.studioItems.map((service, index) => {
                 const leftOrRight = service.rightAlign ? 'right' : 'left'
                 return (

@@ -10,7 +10,7 @@ import footerGraphic from '../public/images/JME-film-prod-co-white.svg'
 
 function Home({ homePage }) {
   const heroContent = (
-    <div className="h-full w-full flex flex-col items-center justify-center text-white">
+    <div className="h-full w-full flex flex-col items-center justify-center text-white text-center">
       <H1>{homePage.mainTitle}</H1>
       <h2 className="uppercase font-outline text-2xl lg:text-6xl">
         {homePage.subtitle}

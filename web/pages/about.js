@@ -358,7 +358,7 @@ function About({ aboutPage }) {
       <section className="max-w-7xl mx-auto text-center px-4">
         <H3>Trusted By the Following</H3>
         <LittleWhiteBar />
-        <div className="grid grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 gap-8 lg:gap-20 mt-10 items-center">
+        <div className="grid grid-cols-4 xl:grid-cols-5 gap-8 lg:gap-20 mt-10 items-center">
           {aboutPage.brands.map((brand) => {
             return (
               <div key={brand._id}>

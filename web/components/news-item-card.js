@@ -1,5 +1,6 @@
 import classNames from 'classnames'
 import Link from 'next/link'
+import Image from 'next/image'
 import urlForSanitySource from '../lib/urlForSanitySource'
 import Date from './date'
 import LargeGoldBar from './large-gold-bar'
@@ -8,7 +9,7 @@ import LargeWhiteBar from './large-white-bar'
 const NewsItemCard = ({ newsItem, index, hideAfterCount = 999 }) => {
   return (
     <>
-      <div className="z-10 w-full sm:max-w-xl lg:max-w-3xl xl:max-w-5xl px-2 sm:px-0 mt-10">
+      <div className="z-10 w-full sm:max-w-xl lg:max-w-3xl xl:max-w-5xl px-2 sm:px-0">
         <Link href={`/news/${newsItem.slug.current}`} key={newsItem._id}>
           <a
             className={classNames(
@@ -37,16 +38,20 @@ const NewsItemCard = ({ newsItem, index, hideAfterCount = 999 }) => {
         <p className="prose lg:prose-lg text-center text-white max-w-5xl mx-auto">
           {newsItem.description}
         </p>
-        <div className="mx-auto text-center mt-8">
+        <div className="mx-auto mt-8 w-2/3 lg:w-full lg:max-w-sm">
           <Link href={`/news/${newsItem.slug.current}`} key={newsItem._id}>
-            <a className="text-2xl font-bold uppercase tracking-wide">
-              Read{' '}
-              <span className="font-outline tracking-wider">More &gt;</span>
+            <a className="flex justify-center sm:w-full transform transition-all hover:translate-x-1">
+              <Image
+                alt="Read Full Story"
+                height="108"
+                src="/images/JME-news-story-link.svg"
+                width="500"
+              />
             </a>
           </Link>
         </div>
       </div>
-      <LargeWhiteBar yMargin="my-10" />
+      <LargeWhiteBar yMargin="my-12 lg:my-24" />
     </>
   )
 }

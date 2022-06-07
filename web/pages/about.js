@@ -139,23 +139,15 @@ function About({ aboutPage }) {
           </div>
           <Link href={aboutPage.company3Link || 'https://www.company3.com/'}>
             <a
-              className="mt-10 flex items-center justify-center text-4xl font-outline uppercase space-x-6 max-w-3xl mx-auto group"
+              className="mt-4 sm:mt-10 flex items-center justify-center text-4xl font-outline uppercase space-x-6 max-w-3xl mx-auto group transform transition-all hover:translate-x-1"
               target="_blank"
             >
-              <span className="group-hover:-translate-x-2 transform transition-all">
-                View
-              </span>
-              <div>
-                <Image
-                  alt="Company 3"
-                  height="100"
-                  src="/images/company-3-center.svg"
-                  width="50"
-                />
-              </div>
-              <span className="group-hover:translate-x-2 transform transition-all">
-                Site
-              </span>
+              <Image
+                alt="Visit Company 3 Site"
+                height="100"
+                src="/images/JME-CO3-link.svg"
+                width="500"
+              />
             </a>
           </Link>
         </section>
@@ -179,19 +171,18 @@ function About({ aboutPage }) {
             {aboutPage.directorName}
           </p>
           {aboutPage.directorDescription && (
-            <div className="prose prose-lg text-gray-300 mx-auto mt-10">
+            <div className="prose prose-lg text-gray-300 mx-auto mt-6 sm:mt-10">
               <BlockContent blocks={aboutPage.directorDescription} />
             </div>
           )}
           <Link href="https://jeremymillerdirector.com/">
-            <a className="flex items-end justify-center space-x-4 mt-10 transform transition-all hover:translate-x-1">
-              <span className="uppercase font-extrabold text-xl lg:text-3xl">
-                View Director&apos;s
-              </span>{' '}
-              <span className="uppercase font-outline tracking-wide text-2xl lg:text-4xl">
-                SITE
-              </span>{' '}
-              <span className="font-bold text-xl lg:text-2xl">&gt;</span>
+            <a className="flex items-end justify-center space-x-4 mt-4 sm:mt-10 transform transition-all hover:translate-x-1">
+              <Image
+                alt="Visit Director Site"
+                height="100"
+                src="/images/JME-Director-link.svg"
+                width="500"
+              />
             </a>
           </Link>
         </div>
@@ -202,7 +193,7 @@ function About({ aboutPage }) {
       {/* team section */}
       <section className="max-w-7xl mx-auto text-center px-4">
         <H3>MEET THE WORLD CLASS</H3>
-        <p className="border border-white max-w-max py-2 px-6 mx-auto font-outline text-5xl">
+        <p className="max-w-max py-2 px-6 mx-auto font-outline text-5xl">
           JME TEAM
         </p>
         <div className="grid grid-cols-1 lg:grid-cols-3 gap-8 lg:gap-20 mt-10">
@@ -340,14 +331,13 @@ function About({ aboutPage }) {
           })}
         </div>
         <Link href="https://ravensfilmworks.com/">
-          <a className="flex items-end justify-center space-x-4 mt-10 transform transition-all hover:translate-x-1">
-            <span className="uppercase font-extrabold text-xl lg:text-3xl">
-              View
-            </span>{' '}
-            <span className="uppercase font-outline tracking-wide text-xl lg:text-3xl">
-              SITE
-            </span>{' '}
-            <span className="font-bold text-xl lg:text-2xl">&gt;</span>
+          <a className="flex justify-center mt-4 sm:mt-10 w-4/5 sm:w-full mx-auto transform transition-all hover:translate-x-1">
+            <Image
+              alt="Visit Ravens Site"
+              height="100"
+              src="/images/JME-Ravens-link.svg"
+              width="500"
+            />
           </a>
         </Link>
       </section>

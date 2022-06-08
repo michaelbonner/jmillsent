@@ -366,10 +366,10 @@ const VideoPlayer = ({
             </div>
           )}
           <div className="border-l-2 md:border-l-4 border-gold pl-2 lg:pl-6">
-            <div className="font-bold uppercase text-base md:text-2xl lg:text-4xl">
+            <div className="font-bold uppercase text-xl lg:text-4xl">
               {client}
             </div>
-            <div className="font-outline uppercase text-lg md:text-3xl lg:text-5xl">
+            <div className="font-outline uppercase text-2xl lg:text-5xl">
               {title}
             </div>
             {description && (

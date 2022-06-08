@@ -297,14 +297,14 @@ function About({ aboutPage }) {
             <BlockContent blocks={aboutPage.ravensCardsContent} />
           </div>
         )}
-        <div className="grid grid-cols-1 lg:grid-cols-3 gap-8 mt-10">
+        <div className="mt-12 grid grid-cols-1 lg:grid-cols-3 gap-8 my-12 lg:my-24 px-8">
           {aboutPage.ravensCards.map((ravensCard, index) => {
             return (
               <div
-                className="flex flex-col justify-between space-y-2 lg:space-y-12 border-2 border-gold py-4 lg:py-8 lg:px-12"
+                className="flex flex-col justify-between space-y-12 border-2 border-gold py-8 px-8"
                 key={index}
               >
-                <div className="w-4/5 mx-auto lg:w-full">
+                <div>
                   <Image
                     className="block filter grayscale hover:filter-none transition-all duration-500"
                     src={`/images/ravens-logo-white.svg`}
@@ -312,18 +312,18 @@ function About({ aboutPage }) {
                     width="646"
                     alt={ravensCard.caption}
                   />
-                  <h4 className="font-bold text-lg sm:text-2xl lg:text-3xl xl:text-4xl uppercase mt-2 lg:mt-12">
+                  <h4 className="font-bold text-2xl lg:text-4xl uppercase mt-12">
                     {ravensCard.title}
                   </h4>
                 </div>
-                <div className="w-3/5 mx-auto lg:w-full">
+                <div>
                   <SanityImage
                     image={ravensCard.image}
                     className="block filter grayscale hover:filter-none transition-all duration-500"
                     alt={ravensCard.caption}
                   />
                 </div>
-                <div className="prose text-white lg:prose-lg mx-auto">
+                <div className="prose-sm lg:prose-lg">
                   <BlockContent blocks={ravensCard.body} />
                 </div>
               </div>

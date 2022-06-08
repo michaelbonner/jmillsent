@@ -26,7 +26,7 @@ const BackgroundText = ({
     },
   }
   return (
-    <div className="border p-4 lg:p-6 border-white">
+    <div className="lg:border p-4 lg:p-6 border-white">
       <div className="w-full relative group" style={{ lineHeight: 0 }}>
         <Image
           alt={imageAlt}

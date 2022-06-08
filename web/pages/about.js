@@ -179,7 +179,7 @@ function About({ aboutPage }) {
             <a className="flex items-end justify-center space-x-4 mt-4 sm:mt-10 transform transition-all hover:translate-x-1">
               <Image
                 alt="Visit Director Site"
-                height="100"
+                height="108"
                 src="/images/JME-Director-link.svg"
                 width="500"
               />

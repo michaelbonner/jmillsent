@@ -9,21 +9,21 @@ const H1 = ({ children }) => {
 }
 const H2 = ({ children }) => {
   return (
-    <h2 className="uppercase font-extrabold text-2xl lg:text-5xl mb-4">
+    <h2 className="uppercase font-extrabold text-2xl lg:text-5xl mb-2">
       {children}
     </h2>
   )
 }
 const H3 = ({ children }) => {
   return (
-    <h3 className="uppercase font-extrabold text-xl lg:text-5xl mb-4">
+    <h3 className="uppercase font-extrabold text-xl lg:text-5xl mb-2">
       {children}
     </h3>
   )
 }
 const H4 = ({ children }) => {
   return (
-    <h4 className="uppercase font-extrabold text-lg lg:text-3xl mb-4">
+    <h4 className="uppercase font-extrabold text-lg lg:text-3xl mb-2">
       {children}
     </h4>
   )

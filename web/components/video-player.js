@@ -182,7 +182,7 @@ const VideoPlayer = ({
         >
           <div
             className={classNames(
-              `my-12 lg:my-0 relative`,
+              `lg:my-0 relative`,
               `aspect-w-${videoWidthAspectRatio} aspect-h-${videoHeightAspectRatio}`,
               `transition-all duration-700`,
               {

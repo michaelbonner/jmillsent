@@ -37,7 +37,7 @@ const NewsItemCard = ({ newsItem, index, hideAfterCount = 999 }) => {
           <Date dateString={newsItem.date} />
         </div>
         <LargeGoldBar yMargin="my-4" />
-        <p className="prose prose-sm sm:prose-lg text-center text-white max-w-5xl mx-auto px-8">
+        <p className="prose sm:prose-lg text-center text-white max-w-5xl mx-auto px-8">
           {newsItem.description}
         </p>
         <div className="mx-auto mt-8 w-2/3 lg:w-full lg:max-w-sm">

@@ -28,16 +28,16 @@ function Home({ homePage }) {
       heroVideoHeightInPixels={homePage.reelVideoHeightInPixels}
       heroVideoWidthInPixels={homePage.reelVideoWidthInPixels}
     >
-      <div className="container px-8 mx-auto text-white text-center mt-12 lg:mt-24">
+      <div className="container px-4 mx-auto text-white text-center mt-12 lg:mt-24">
         <H2>{homePage.section1Title}</H2>
-        <div className="mt-10 prose text-white lg:prose-lg lg:max-w-5xl text-center mx-auto">
+        <div className="mt-4 sm:mt-10 prose text-white lg:prose-lg lg:max-w-5xl text-center mx-auto">
           <BlockContent blocks={homePage.section1Body} />
         </div>
       </div>
       <MediumWhiteBar yMargin="my-12 lg:my-24" />
-      <div className="px-8 container lg:mx-auto text-center tracking-wide uppercase">
+      <div className="px-8 container lg:mx-auto text-center uppercase">
         <H2>{homePage.section2Title}</H2>
-        <p className="uppercase font-outline text-xl lg:text-5xl">
+        <p className="uppercase font-outline text-2xl lg:text-6xl">
           {homePage.section2Subtitle}
         </p>
       </div>

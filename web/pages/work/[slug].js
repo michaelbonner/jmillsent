@@ -204,7 +204,7 @@ const WorkItem = ({ workItem = {} }) => {
         )}
       </div>
 
-      <div className="pt-12 lg:pt-24 px-8 container lg:mx-auto text-center uppercase">
+      <div className="pt-12 lg:pt-24 px-8 container mx-auto text-center uppercase">
         <p className="prose-lg lg:text-4xl font-extrabold tracking-widest">
           Production Company
         </p>

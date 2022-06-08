@@ -31,14 +31,16 @@ const NewsItem = ({ newsItem = {} }) => {
       description={newsItem.seoDescription}
       heroImageUrl={newsItem.heroImage || null}
     >
-      <div className="mx-auto lg:max-w-7xl px-4 py-6">
-        <div className="flex justify-around text-3xl uppercase">
-          <h1 className="font-extrabold">{newsItem.title}</h1>
+      <div className="mx-auto lg:max-w-7xl px-8 py-6">
+        <div className="grid grid-cols-2 items-center px-8 text-lg gap-x-4 sm:text-3xl uppercase">
+          <h1 className="font-extrabold justify-self-end text-right">
+            {newsItem.title}
+          </h1>
           <Date dateString={newsItem.date} />
         </div>
         <LargeGoldBar yMargin="my-4" />
         {newsItem.body && (
-          <div className="text-white text-center mx-auto max-w-lg md:max-w-4xl lg:max-w-7xl prose lg:prose-lg">
+          <div className="text-white text-center mx-auto max-w-lg md:max-w-4xl lg:max-w-7xl prose prose-sm lg:prose-lg">
             <BlockContent blocks={newsItem.body} />
           </div>
         )}

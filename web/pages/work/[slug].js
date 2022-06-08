@@ -107,9 +107,7 @@ const WorkItem = ({ workItem = {} }) => {
                   }}
                   className="flex place-items-center"
                 >
-                  <h3 className="uppercase font-extrabold text-xl lg:text-5xl">
-                    Credits
-                  </h3>
+                  <h3 className="uppercase font-extrabold text-xl">Credits</h3>
                   <div className={`${isOpen ? 'rotate-90 pl-0 pr-1' : ''}`}>
                     <p className="text-2xl lg:text-4xl font-outline place-self-center pl-2">
                       &gt;
@@ -117,16 +115,16 @@ const WorkItem = ({ workItem = {} }) => {
                   </div>
                 </button>
                 <div className={`${isOpen ? 'visible' : 'hidden'}`}>
-                  <div className="lg:text-xl h-auto transition-all overflow-hidden xl:mt-12">
-                    <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-2 gap-x-20 gap-y-4 mb-12">
+                  <div className="h-auto transition-all overflow-hidden">
+                    <div className="grid grid-cols-1">
                       <div>
                         {column1Credits.map((credit, index) => {
                           return (
                             <div
-                              className="grid grid-cols-2 gap-2 items-center pt-4"
+                              className="grid grid-cols-2 gap-x-4 items-center pt-4"
                               key={index}
                             >
-                              <div className="font-bold uppercase">
+                              <div className="font-bold uppercase justify-self-end text-right">
                                 {credit.role}
                               </div>
                               <div className="uppercase space-x-4 font-outline tracking-wide text-2xl">
@@ -140,10 +138,10 @@ const WorkItem = ({ workItem = {} }) => {
                         {column2Credits.map((credit, index) => {
                           return (
                             <div
-                              className="grid grid-cols-2 gap-2 items-center pt-4"
+                              className="grid grid-cols-2 gap-x-4 items-center pt-4"
                               key={index}
                             >
-                              <div className="font-bold uppercase">
+                              <div className="font-bold uppercase justify-self-end text-right">
                                 {credit.role}
                               </div>
                               <div className="uppercase space-x-4 font-outline tracking-wide text-2xl">
@@ -206,11 +204,13 @@ const WorkItem = ({ workItem = {} }) => {
         )}
       </div>
 
-      <div className="pt-24 px-8 container lg:mx-auto text-center uppercase">
-        <p className="text-4xl font-extrabold tracking-widest">
+      <div className="pt-12 lg:pt-24 px-8 container lg:mx-auto text-center uppercase">
+        <p className="prose-lg lg:text-4xl font-extrabold tracking-widest">
           Production Company
         </p>
-        <p className="mt-2 text-3xl font-outline">JMills Entertainment</p>
+        <p className="mt-2 prose-lg lg:text-3xl font-outline">
+          JMills Entertainment
+        </p>
       </div>
 
       <MediumWhiteBar />

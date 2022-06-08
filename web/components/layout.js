@@ -242,7 +242,7 @@ const Layout = ({
             <a>
               <Image
                 alt="JMills Logo"
-                src="/images/jme_film_co_x_white.svg"
+                src="/images/jme_film_co_x_white.png"
                 width={Math.floor(192 * 0.6)}
                 height={Math.floor(150 * 0.6)}
               />
@@ -330,9 +330,9 @@ const Layout = ({
               <a className="flex items-center">
                 <Image
                   alt="JMills Logo"
-                  src="/images/jme_film_co_x_white.svg"
-                  width={Math.floor(192 * 0.6)}
-                  height={Math.floor(150 * 0.6)}
+                  src="/images/jme_film_co_x_white.png"
+                  width={Math.floor(202 * 0.6)}
+                  height={Math.floor(158 * 0.6)}
                 />
               </a>
             </Link>

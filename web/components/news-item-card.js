@@ -9,7 +9,7 @@ import LargeWhiteBar from './large-white-bar'
 const NewsItemCard = ({ newsItem, index, hideAfterCount = 999 }) => {
   return (
     <>
-      <div className="z-10 w-full sm:max-w-xl lg:max-w-3xl xl:max-w-5xl px-2 sm:px-0">
+      <div className="z-10 w-full sm:max-w-xl lg:max-w-3xl xl:max-w-5xl">
         <Link href={`/news/${newsItem.slug.current}`} key={newsItem._id}>
           <a
             className={classNames(
@@ -30,12 +30,14 @@ const NewsItemCard = ({ newsItem, index, hideAfterCount = 999 }) => {
             }}
           ></a>
         </Link>
-        <div className="flex justify-between text-2xl sm:text-3xl uppercase z-10 mt-10">
-          <h2 className="font-extrabold">{newsItem.title}</h2>
+        <div className="grid grid-cols-2 items-center px-8 text-lg gap-x-4 sm:text-3xl uppercase z-10 mt-10">
+          <h2 className="font-extrabold justify-self-end text-right">
+            {newsItem.title}
+          </h2>
           <Date dateString={newsItem.date} />
         </div>
         <LargeGoldBar yMargin="my-4" />
-        <p className="prose lg:prose-lg text-center text-white max-w-5xl mx-auto">
+        <p className="prose prose-sm sm:prose-lg text-center text-white max-w-5xl mx-auto px-8">
           {newsItem.description}
         </p>
         <div className="mx-auto mt-8 w-2/3 lg:w-full lg:max-w-sm">

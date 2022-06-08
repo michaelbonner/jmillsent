@@ -58,7 +58,7 @@ function About({ aboutPage }) {
       <div className="container px-4 lg:mx-auto text-white text-center mt-12 lg:mt-24">
         <H2>{aboutPage.section1Title}</H2>
         {aboutPage.section1Body && (
-          <div className="mt-10 prose-lg max-w-5xl text-center mx-auto">
+          <div className="mt-10 px-4 text-white prose sm:prose-lg max-w-5xl text-center mx-auto">
             <BlockContent blocks={aboutPage.section1Body} />
           </div>
         )}
@@ -120,7 +120,7 @@ function About({ aboutPage }) {
         <section>
           <H3>{aboutPage.company3Title}</H3>
           {aboutPage.company3Body && (
-            <div className="prose-lg max-w-3xl text-center mx-auto text-white">
+            <div className="px-4 prose prose-lg max-w-3xl text-center mx-auto text-white">
               <BlockContent blocks={aboutPage.company3Body} />
             </div>
           )}
@@ -171,7 +171,7 @@ function About({ aboutPage }) {
             {aboutPage.directorName}
           </p>
           {aboutPage.directorDescription && (
-            <div className="prose prose-lg text-gray-300 mx-auto mt-6 sm:mt-10">
+            <div className="px-4 prose prose-lg text-gray-300 mx-auto mt-6 sm:mt-10">
               <BlockContent blocks={aboutPage.directorDescription} />
             </div>
           )}
@@ -256,7 +256,7 @@ function About({ aboutPage }) {
       <section className="max-w-7xl mx-auto text-center px-4">
         <H2>{aboutPage.utahLocationsTitle}</H2>
         {aboutPage.utahLocationsDescription && (
-          <div className="prose-lg max-w-3xl text-center mx-auto">
+          <div className="text-white px-4 prose prose-lg max-w-3xl text-center mx-auto">
             <BlockContent blocks={aboutPage.utahLocationsDescription} />
           </div>
         )}
@@ -293,7 +293,7 @@ function About({ aboutPage }) {
           {aboutPage.ravensCardsSubtitle}
         </p>
         {aboutPage.ravensCardsContent && (
-          <div className="mt-6 prose-lg max-w-3xl text-center mx-auto">
+          <div className="mt-6 text-white px-4 prose prose-lg max-w-3xl text-center mx-auto">
             <BlockContent blocks={aboutPage.ravensCardsContent} />
           </div>
         )}

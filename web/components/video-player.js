@@ -182,7 +182,7 @@ const VideoPlayer = ({
         >
           <div
             className={classNames(
-              `my-12 lg:my-0 relative`,
+              `lg:my-0 relative`,
               `aspect-w-${videoWidthAspectRatio} aspect-h-${videoHeightAspectRatio}`,
               `transition-all duration-700`,
               {
@@ -350,7 +350,7 @@ const VideoPlayer = ({
         }}
       >
         <div className="absolute inset-0 h-full bg-gradient-to-r from-black via-transparent to-transparent opacity-80"></div>
-        <div className="absolute -inset-y-11 -inset-x-1 xs:-inset-x-2 sm:inset-x-2.5 md:inset-x-2 lg:-inset-x-3.5 lg:inset-y-0 xl:-inset-x-1 2xl:-inset-x-0.5 pl-0.5 ml-0.5 flex h-full items-center justify-start gap-1 2xs:gap-1.5 xs:gap-2 md:gap-4 lg:pl-12">
+        <div className="absolute inset-0 pb-12 pl-0.5 ml-0.5 flex h-full items-center justify-start gap-1 2xs:gap-1.5 xs:gap-2 md:gap-4 lg:pl-12">
           {!isIpad && (
             <div
               className="z-10 bg-transparent flex items-center justify-center xl:justify-start cursor-pointer text-4xl xl:text-6xl"
@@ -366,10 +366,10 @@ const VideoPlayer = ({
             </div>
           )}
           <div className="border-l-2 md:border-l-4 border-gold pl-2 lg:pl-6">
-            <div className="font-bold uppercase text-base md:text-2xl lg:text-4xl">
+            <div className="font-bold uppercase text-xl lg:text-4xl">
               {client}
             </div>
-            <div className="font-outline uppercase text-lg md:text-3xl lg:text-5xl">
+            <div className="font-outline uppercase text-2xl lg:text-5xl">
               {title}
             </div>
             {description && (

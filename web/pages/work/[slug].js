@@ -127,7 +127,7 @@ const WorkItem = ({ workItem = {} }) => {
                               <div className="font-bold uppercase justify-self-end text-right">
                                 {credit.role}
                               </div>
-                              <div className="uppercase space-x-4 font-outline tracking-wide text-xl lg:text-2xl">
+                              <div className="uppercase space-x-4 font-light text-lg lg:text-xl">
                                 {credit.value}
                               </div>
                             </div>
@@ -144,7 +144,7 @@ const WorkItem = ({ workItem = {} }) => {
                               <div className="font-bold uppercase justify-self-end text-right">
                                 {credit.role}
                               </div>
-                              <div className="uppercase space-x-4 font-outline tracking-wide text-xl lg:text-2xl">
+                              <div className="uppercase space-x-4 font-light text-lg lg:text-xl">
                                 {credit.value}
                               </div>
                             </div>
@@ -172,7 +172,7 @@ const WorkItem = ({ workItem = {} }) => {
                             <div className="font-bold uppercase">
                               {credit.role}
                             </div>
-                            <div className="uppercase space-x-4 font-outline tracking-wide text-2xl">
+                            <div className="uppercase space-x-4 font-light text-xl">
                               {credit.value}
                             </div>
                           </div>
@@ -189,7 +189,7 @@ const WorkItem = ({ workItem = {} }) => {
                             <div className="font-bold uppercase">
                               {credit.role}
                             </div>
-                            <div className="uppercase space-x-4 font-outline tracking-wide text-2xl">
+                            <div className="uppercase space-x-4 font-light text-xl">
                               {credit.value}
                             </div>
                           </div>

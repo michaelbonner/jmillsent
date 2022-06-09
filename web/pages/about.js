@@ -295,7 +295,7 @@ function About({ aboutPage }) {
             <BlockContent blocks={aboutPage.ravensCardsContent} />
           </div>
         )}
-        <div className="grid grid-cols-1 lg:grid-cols-3 gap-8 px-8 mt-4 lg:mt-10">
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-8 px-8 mt-4 lg:mt-10">
           {aboutPage.ravensCards.map((ravensCard, index) => {
             return (
               <div
@@ -310,7 +310,7 @@ function About({ aboutPage }) {
                     width="646"
                     alt={ravensCard.caption}
                   />
-                  <h4 className="font-bold text-2xl lg:text-4xl uppercase mt-12">
+                  <h4 className="font-bold text-2xl md:text-xl lg:text-4xl uppercase mt-12">
                     {ravensCard.title}
                   </h4>
                 </div>

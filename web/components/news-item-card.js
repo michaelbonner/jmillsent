@@ -29,17 +29,17 @@ const NewsItemCard = ({ newsItem, index, hideAfterCount = 999 }) => {
             }}
           ></a>
         </Link>
-        <div className="grid grid-cols-2 items-center px-8 text-lg gap-x-4 sm:text-3xl uppercase z-10 mt-10">
-          <h2 className="font-extrabold justify-self-end text-right">
-            {newsItem.title}
-          </h2>
-          <Date dateString={newsItem.date} />
+        <div className="mx-auto lg:max-w-2xl xl:max-w-4xl">
+          <div className="flex flex-nowrap justify-center items-center px-10 text-lg gap-x-4 sm:text-3xl uppercase z-10 mt-10">
+            <h2 className="font-extrabold tracking-wide">{newsItem.title}</h2>
+            <Date dateString={newsItem.date} />
+          </div>
+          <LargeGoldBar yMargin="my-4" />
+          <p className="text-center max-w-5xl mx-auto px-8">
+            {newsItem.description}
+          </p>
         </div>
-        <LargeGoldBar yMargin="my-4" />
-        <p className="prose sm:prose-lg text-center text-white max-w-5xl mx-auto px-8">
-          {newsItem.description}
-        </p>
-        <div className="mt-8 px-24 lg:max-w-sm transform transition-all hover:translate-x-1">
+        <div className="mt-8 px-24 mx-auto lg:max-w-sm transform transition-all hover:translate-x-1">
           <Link href={`/news/${newsItem.slug.current}`} key={newsItem._id}>
             <a>
               <Image

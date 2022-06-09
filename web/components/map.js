@@ -24,13 +24,21 @@ const Map = () => {
     >
       {/* JME */}
       <Marker
-        icon="https://jmillsent.vercel.app/images/jme-pin.png"
+        animation={'DROP'}
+        icon={{
+          url: 'https://jmillsent.vercel.app/images/jme-pin.png',
+          scaledSize: new google.maps.Size(47, 65),
+        }}
         position={{ lat: 40.8664457, lng: -111.9247221 }}
       />
       {/* Airport */}
       <Marker
-        icon={`https://jmillsent.vercel.app/images/pin-slc-airport.png`}
+        icon={{
+          url: `https://jmillsent.vercel.app/images/pin-slc-airport.png`,
+          scaledSize: new google.maps.Size(33, 35),
+        }}
         position={{ lat: 40.7899404, lng: -111.9790706 }}
+        size={{ width: 33, height: 35 }}
       />
     </GoogleMap>
   ) : (

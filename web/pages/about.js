@@ -58,18 +58,18 @@ function About({ aboutPage }) {
       <div className="container px-4 lg:mx-auto text-white text-center mt-12 lg:mt-24">
         <H2>{aboutPage.section1Title}</H2>
         {aboutPage.section1Body && (
-          <div className="mt-10 px-4 text-white prose sm:prose-lg max-w-5xl text-center mx-auto">
+          <div className="mt-4 lg:mt-10 px-4 text-white prose-lg max-w-5xl text-center mx-auto -mb-2">
             <BlockContent blocks={aboutPage.section1Body} />
           </div>
         )}
         <MediumWhiteBar yMargin="my-12 lg:my-24" />
-        <div className="px-8 container lg:mx-auto text-center">
+        <div className="px-8 container lg:mx-auto text-center -mt-1.5">
           <H2>{aboutPage.reelVideoSectionTitle}</H2>
-          <p className="uppercase font-outline text-xl lg:text-5xl">
+          <p className="uppercase font-outline text-xl lg:text-5xl leading-4">
             {aboutPage.reelVideoSectionSubtitle}
           </p>
         </div>
-        <div className="px-4 mt-10">
+        <div className="px-4 mt-4 lg:mt-10">
           <div className="border border-white py-8 px-8 container lg:mx-auto">
             <VideoPlayer
               poster={aboutPage.reelVideoPoster}
@@ -86,10 +86,10 @@ function About({ aboutPage }) {
         <MediumWhiteBar yMargin="my-12 lg:my-24" />
 
         {/* services */}
-        <section>
+        <section className="-mt-1.5">
           <div className="px-8 container lg:mx-auto text-center">
             <H2>{aboutPage.section2Title}</H2>
-            <p className="uppercase font-outline text-xl lg:text-5xl">
+            <p className="uppercase font-outline text-xl lg:text-5xl -mt-1.5">
               {aboutPage.section2Subtitle}
             </p>
           </div>
@@ -117,15 +117,15 @@ function About({ aboutPage }) {
         {/* end: services */}
 
         {/* company 3 */}
-        <section>
+        <section className="-mt-1.5">
           <H3>{aboutPage.company3Title}</H3>
           {aboutPage.company3Body && (
-            <div className="px-4 prose prose-lg max-w-3xl text-center mx-auto text-white">
+            <div className="px-4 prose-lg max-w-3xl text-center mx-auto text-white">
               <BlockContent blocks={aboutPage.company3Body} />
             </div>
           )}
 
-          <div className="mt-10 border border-white py-8 px-8 container lg:mx-auto max-w-7xl">
+          <div className="mt-4 lg:mt-10 border border-white py-8 px-8 container lg:mx-auto max-w-7xl">
             <VideoPlayer
               poster={aboutPage.company3VideoPoster}
               title={aboutPage.company3VideoTitle}
@@ -139,14 +139,14 @@ function About({ aboutPage }) {
           </div>
           <Link href={aboutPage.company3Link || 'https://www.company3.com/'}>
             <a
-              className="mt-4 sm:mt-10 flex items-center justify-center text-4xl font-outline uppercase space-x-6 max-w-3xl mx-auto group transform transition-all hover:translate-x-1"
+              className="mt-4 sm:mt-10 px-12 flex items-center justify-center max-w-3xl mx-auto transform transition-all hover:translate-x-1"
               target="_blank"
             >
               <Image
                 alt="Visit Company 3 Site"
-                height="100"
+                height="64"
                 src="/images/JME-CO3-link.svg"
-                width="500"
+                width="300"
               />
             </a>
           </Link>
@@ -167,21 +167,19 @@ function About({ aboutPage }) {
           <p className="uppercase font-extrabold text-xl lg:text-4xl mt-8 lg:mt-0 mb-4">
             {aboutPage.directorTitle}
           </p>
-          <p className="font-outline tracking-wide text-4xl">
-            {aboutPage.directorName}
-          </p>
+          <p className="font-outline text-4xl">{aboutPage.directorName}</p>
           {aboutPage.directorDescription && (
-            <div className="px-4 prose prose-lg text-gray-300 mx-auto mt-6 sm:mt-10">
+            <div className="px-4 prose-lg mx-auto mt-4 sm:mt-10">
               <BlockContent blocks={aboutPage.directorDescription} />
             </div>
           )}
           <Link href="https://jeremymillerdirector.com/">
-            <a className="flex items-end justify-center space-x-4 mt-4 sm:mt-10 transform transition-all hover:translate-x-1">
+            <a className="flex items-end justify-center px-12 mt-4 sm:mt-10 transform transition-all hover:translate-x-1">
               <Image
                 alt="Visit Director Site"
-                height="100"
+                height="51"
                 src="/images/JME-Director-link.svg"
-                width="500"
+                width="300"
               />
             </a>
           </Link>
@@ -191,7 +189,7 @@ function About({ aboutPage }) {
       {/* end: director section */}
 
       {/* team section */}
-      <section className="max-w-7xl mx-auto text-center px-4">
+      <section className="max-w-7xl mx-auto text-center px-4 -mt-1.5">
         <H3>MEET THE WORLD CLASS</H3>
         <p className="max-w-max py-2 px-6 mx-auto font-outline text-5xl">
           JME TEAM
@@ -253,14 +251,14 @@ function About({ aboutPage }) {
           }
         />
       )}
-      <section className="max-w-7xl mx-auto text-center px-4">
+      <section className="max-w-7xl mx-auto text-center px-4 -mt-1.5">
         <H2>{aboutPage.utahLocationsTitle}</H2>
         {aboutPage.utahLocationsDescription && (
-          <div className="text-white px-4 prose prose-lg max-w-3xl text-center mx-auto">
+          <div className="px-4 prose-lg max-w-3xl text-center mx-auto">
             <BlockContent blocks={aboutPage.utahLocationsDescription} />
           </div>
         )}
-        <div className="mt-10 grid grid-cols-1 lg:grid-cols-3 gap-1">
+        <div className="mt-4 lg:mt-10 grid grid-cols-1 lg:grid-cols-3 gap-1">
           {aboutPage.utahLocations.map((utahLocation, index) => {
             return (
               <button
@@ -287,17 +285,17 @@ function About({ aboutPage }) {
       {/* end: utah locations */}
 
       {/* ravens */}
-      <section className="max-w-7xl mx-auto text-center px-4">
+      <section className="max-w-7xl mx-auto text-center px-4 -mt-1.5">
         <H2>{aboutPage.ravensCardsTitle}</H2>
-        <p className="mt-2 text-4xl font-outline">
+        <p className="text-2xl lg:text-4xl font-outline">
           {aboutPage.ravensCardsSubtitle}
         </p>
         {aboutPage.ravensCardsContent && (
-          <div className="mt-6 text-white px-4 prose prose-lg max-w-3xl text-center mx-auto">
+          <div className="mt-4 lg:mt-10 text-white px-4 prose prose-lg max-w-3xl text-center mx-auto">
             <BlockContent blocks={aboutPage.ravensCardsContent} />
           </div>
         )}
-        <div className="mt-12 grid grid-cols-1 lg:grid-cols-3 gap-8 my-12 lg:my-24 px-8">
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-8 px-8 mt-4 lg:mt-10">
           {aboutPage.ravensCards.map((ravensCard, index) => {
             return (
               <div
@@ -312,7 +310,7 @@ function About({ aboutPage }) {
                     width="646"
                     alt={ravensCard.caption}
                   />
-                  <h4 className="font-bold text-2xl lg:text-4xl uppercase mt-12">
+                  <h4 className="font-bold text-2xl md:text-xl lg:text-4xl uppercase mt-12">
                     {ravensCard.title}
                   </h4>
                 </div>
@@ -331,12 +329,12 @@ function About({ aboutPage }) {
           })}
         </div>
         <Link href="https://ravensfilmworks.com/">
-          <a className="flex justify-center mt-4 sm:mt-10 w-4/5 sm:w-full mx-auto transform transition-all hover:translate-x-1">
+          <a className="flex justify-center mt-4 px-14 sm:mt-10 mx-auto transform transition-all hover:translate-x-1">
             <Image
               alt="Visit Ravens Site"
-              height="100"
+              height="49"
               src="/images/JME-Ravens-link.svg"
-              width="500"
+              width="300"
             />
           </a>
         </Link>
@@ -345,10 +343,10 @@ function About({ aboutPage }) {
       {/* end: ravens */}
 
       {/* trusted by */}
-      <section className="max-w-7xl mx-auto text-center px-4">
+      <section className="max-w-7xl mx-auto text-center px-4 -mt-1.5">
         <H3>Trusted By the Following</H3>
-        <LittleWhiteBar yMargin="my-6 lg:my-12" />
-        <div className="grid grid-cols-4 xl:grid-cols-5 gap-8 lg:gap-20 lg:mt-10 items-center">
+        <LittleWhiteBar yMargin="my-4 lg:my-10" />
+        <div className="grid grid-cols-4 xl:grid-cols-5 gap-8 lg:gap-20 items-center">
           {aboutPage.brands.map((brand) => {
             return (
               <div key={brand._id}>
@@ -358,7 +356,7 @@ function About({ aboutPage }) {
           })}
         </div>
       </section>
-      <MediumWhiteBar yMargin="my-8 sm:mt-12 lg:mt-24" />
+      <MediumWhiteBar yMargin="mb-8 mt-12 lg:mt-24" />
       {/* end: trusted by */}
     </Layout>
   )

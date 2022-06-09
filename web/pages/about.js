@@ -55,7 +55,7 @@ function About({ aboutPage }) {
       heroVideoHeightInPixels={aboutPage.headerVideoHeightInPixels}
       heroVideoWidthInPixels={aboutPage.headerVideoWidthInPixels}
     >
-      <div className="container px-4 lg:mx-auto text-white text-center mt-12 lg:mt-24">
+      <div className="container px-4 mx-auto text-white text-center mt-12 lg:mt-24">
         <H2>{aboutPage.section1Title}</H2>
         {aboutPage.section1Body && (
           <div className="mt-4 lg:mt-10 px-4 text-white prose-lg max-w-5xl text-center mx-auto -mb-2">
@@ -63,14 +63,14 @@ function About({ aboutPage }) {
           </div>
         )}
         <MediumWhiteBar yMargin="my-12 lg:my-24" />
-        <div className="px-8 container lg:mx-auto text-center -mt-1.5">
+        <div className="px-8 container mx-auto text-center -mt-1.5">
           <H2>{aboutPage.reelVideoSectionTitle}</H2>
           <p className="uppercase font-outline text-xl lg:text-5xl leading-4">
             {aboutPage.reelVideoSectionSubtitle}
           </p>
         </div>
-        <div className="px-4 mt-4 lg:mt-10">
-          <div className="border border-white py-8 px-8 container lg:mx-auto">
+        <div className="mt-4 lg:mt-10">
+          <div className="border border-white py-8 px-8 container mx-auto">
             <VideoPlayer
               poster={aboutPage.reelVideoPoster}
               title={aboutPage.reelVideoTitle}
@@ -87,7 +87,7 @@ function About({ aboutPage }) {
 
         {/* services */}
         <section className="-mt-1.5">
-          <div className="px-8 container lg:mx-auto text-center">
+          <div className="px-8 container mx-auto text-center">
             <H2>{aboutPage.section2Title}</H2>
             <p className="uppercase font-outline text-xl lg:text-5xl -mt-1.5">
               {aboutPage.section2Subtitle}
@@ -125,7 +125,7 @@ function About({ aboutPage }) {
             </div>
           )}
 
-          <div className="mt-4 lg:mt-10 border border-white py-8 px-8 container lg:mx-auto max-w-7xl">
+          <div className="mt-4 lg:mt-10 border border-white py-8 px-8 container mx-auto max-w-7xl">
             <VideoPlayer
               poster={aboutPage.company3VideoPoster}
               title={aboutPage.company3VideoTitle}
@@ -258,7 +258,7 @@ function About({ aboutPage }) {
             <PortableText value={aboutPage.utahLocationsDescription} />
           </div>
         )}
-        <div className="mt-4 lg:mt-10 grid grid-cols-1 lg:grid-cols-3 gap-1">
+        <div className="mt-4 lg:mt-10 grid grid-cols-1 lg:grid-cols-3 gap-1 px-4">
           {aboutPage.utahLocations.map((utahLocation, index) => {
             return (
               <button
@@ -346,7 +346,7 @@ function About({ aboutPage }) {
       <section className="max-w-7xl mx-auto text-center px-4 -mt-1.5">
         <H3>Trusted By the Following</H3>
         <LittleWhiteBar yMargin="my-4 lg:my-10" />
-        <div className="grid grid-cols-4 xl:grid-cols-5 gap-8 lg:gap-20 items-center">
+        <div className="grid grid-cols-4 xl:grid-cols-5 gap-6 lg:gap-20 items-center px-4">
           {aboutPage.brands.map((brand) => {
             return (
               <div key={brand._id}>

@@ -15,7 +15,7 @@ function Work({ workPage, workItems }) {
           return <WorkItemTile workItem={workItem} key={index} />
         })}
       </div>
-      <div className="container px-12 lg:mx-auto text-white text-center mt-12">
+      <div className="container px-12 mx-auto text-white text-center mt-12">
         {workPage.workPageDescription && (
           <div className="border prose-lg max-w-lg py-1 text-center mx-auto">
             <PortableText value={workPage.workPageDescription} />

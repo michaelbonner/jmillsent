@@ -15,13 +15,13 @@ const BackgroundText = ({
     left: {
       textAlign: 'text-center lg:text-left',
       barPosition: 'mx-auto lg:ml-0 lg:mr-auto',
-      containerPosition: 'left-0 lg:pl-12',
+      containerPosition: 'left-0 lg:pl-20',
       gradientDirection: 'bg-gradient-to-r',
     },
     right: {
       textAlign: 'text-center lg:text-right',
       barPosition: 'mx-auto lg:mr-0 lg:ml-auto',
-      containerPosition: 'right-0 lg:pr-12',
+      containerPosition: 'right-0 lg:pr-20',
       gradientDirection: 'bg-gradient-to-l',
     },
   }
@@ -42,7 +42,7 @@ const BackgroundText = ({
         <div
           className={`lg:absolute ${styles[leftOrRight].containerPosition} top-0 bottom-0 ${styles[leftOrRight].textAlign} flex flex-col justify-center items-start gap-y-2`}
         >
-          <h3 className="text-4xl mt-8 font-outline w-full uppercase">
+          <h3 className="text-4xl mt-8 font-extrabold w-full uppercase">
             {title}
           </h3>
           {description && (
@@ -50,7 +50,7 @@ const BackgroundText = ({
               <div className={`${styles[leftOrRight].barPosition}`}>
                 <LittleGoldBar />
               </div>
-              <div className="mt-4 max-w-lg prose-lg mx-auto text-white font-light leading-normal">
+              <div className="max-w-lg prose-lg mx-auto text-white font-light leading-normal">
                 <BlockContent blocks={description} />
               </div>
             </>

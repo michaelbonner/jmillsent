@@ -55,7 +55,7 @@ function About({ aboutPage }) {
       heroVideoHeightInPixels={aboutPage.headerVideoHeightInPixels}
       heroVideoWidthInPixels={aboutPage.headerVideoWidthInPixels}
     >
-      <div className="container px-4 lg:mx-auto text-white text-center mt-12 lg:mt-24">
+      <div className="container px-4 mx-auto text-white text-center mt-12 lg:mt-24">
         <H2>{aboutPage.section1Title}</H2>
         {aboutPage.section1Body && (
           <div className="mt-4 lg:mt-10 px-4 text-white prose-lg max-w-5xl text-center mx-auto -mb-2">

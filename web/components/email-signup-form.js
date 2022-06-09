@@ -1,7 +1,7 @@
 import Image from 'next/image'
 import React from 'react'
 
-const EmailSignupForm = () => {
+const EmailSignupForm = ({ title = '' }) => {
   return (
     <div className="mx-auto text-center">
       <form
@@ -14,9 +14,7 @@ const EmailSignupForm = () => {
         noValidate
       >
         <div>
-          <h2 className="uppercase text-gray-100 font-light">
-            Be the first to see fresh cuts
-          </h2>
+          <h2 className="uppercase text-gray-100 font-light">{title}</h2>
           <div className="flex justify-center mx-auto w-full max-w-lg mt-4">
             <div className="flex justify-center items-center w-full rounded">
               <label className="sr-only" htmlFor="mce-EMAIL">

@@ -15,7 +15,7 @@ const EmailSignupForm = () => {
       >
         <div>
           <h2 className="uppercase text-gray-100 font-light">
-            Be the first to see deep cuts
+            Be the first to see fresh cuts
           </h2>
           <div className="flex justify-center mx-auto w-full max-w-lg mt-4">
             <div className="flex justify-center items-center w-full rounded">

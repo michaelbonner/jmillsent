@@ -1,4 +1,5 @@
 import BackgroundText from '@/components/background-text-section'
+import DividerBar from '@/components/divider-bar'
 import { H1, H2 } from '@/components/headings'
 import Layout from '@/components/layout'
 import MediumWhiteBar from '@/components/medium-white-bar'
@@ -55,7 +56,7 @@ function Studio({ studioPage }) {
             <PortableText value={studioPage.section1Body} />
           </div>
         )}
-        <MediumWhiteBar yMargin="my-12 lg:my-24" />
+        <DividerBar />
         <div className="px-8 container mx-auto text-center uppercase -mt-1.5">
           <H2>{studioPage.section3Title}</H2>
           <p className="uppercase font-outline text-xl lg:text-5xl leading-4">
@@ -87,7 +88,7 @@ function Studio({ studioPage }) {
                 autoPlay={true}
               />
             </div>
-            <MediumWhiteBar yMargin="my-12 lg:my-24" />
+            <DividerBar />
           </>
         )}
 

@@ -1,3 +1,4 @@
+import DividerBar from '@/components/divider-bar'
 import { H1, H2 } from '@/components/headings'
 import Layout from '@/components/layout'
 import MediumWhiteBar from '@/components/medium-white-bar'
@@ -34,7 +35,9 @@ function Home({ homePage }) {
           <PortableText value={homePage.section1Body} />
         </div>
       </div>
-      <MediumWhiteBar yMargin="my-12 lg:my-24" />
+
+      <DividerBar />
+
       <div className="px-8 container mx-auto text-center uppercase">
         <H2>{homePage.section2Title}</H2>
         <p className="uppercase font-outline text-2xl lg:text-6xl">
@@ -55,7 +58,7 @@ function Home({ homePage }) {
           />
         </div>
       </div>
-      <div className="mx-auto px-12 mt-10 max-w-lg">
+      <div className="mx-auto px-12 mt-24 max-w-lg">
         <Image src={footerGraphic} alt="JME Film Production Company" />
       </div>
       <MediumWhiteBar yMargin="mb-8 mt-12 lg:mt-24" />

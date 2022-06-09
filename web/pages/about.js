@@ -1,4 +1,5 @@
 import BackgroundText from '@/components/background-text-section'
+import DividerBar from '@/components/divider-bar'
 import { H1, H2, H3 } from '@/components/headings'
 import Layout from '@/components/layout'
 import LittleWhiteBar from '@/components/little-white-bar'
@@ -62,7 +63,9 @@ function About({ aboutPage }) {
             <PortableText value={aboutPage.section1Body} />
           </div>
         )}
-        <MediumWhiteBar yMargin="my-12 lg:my-24" />
+
+        <DividerBar />
+
         <div className="px-8 container mx-auto text-center -mt-1.5">
           <H2>{aboutPage.reelVideoSectionTitle}</H2>
           <p className="uppercase font-outline text-xl lg:text-5xl leading-4">
@@ -83,7 +86,8 @@ function About({ aboutPage }) {
             />
           </div>
         </div>
-        <MediumWhiteBar yMargin="my-12 lg:my-24" />
+
+        <DividerBar />
 
         {/* services */}
         <section className="-mt-1.5">
@@ -111,10 +115,9 @@ function About({ aboutPage }) {
             </div>
           )}
         </section>
-        <div className="my-12 lg:my-24">
-          <MediumWhiteBar />
-        </div>
         {/* end: services */}
+
+        <DividerBar />
 
         {/* company 3 */}
         <section className="-mt-1.5">
@@ -151,9 +154,10 @@ function About({ aboutPage }) {
             </a>
           </Link>
         </section>
-        <MediumWhiteBar yMargin="my-12 lg:my-24" />
       </div>
       {/* end: company 3 */}
+
+      <DividerBar />
 
       {/* director section */}
       <section className="grid grid-cols-1 lg:grid-cols-3 max-w-7xl mx-auto items-center px-4">
@@ -185,8 +189,9 @@ function About({ aboutPage }) {
           </Link>
         </div>
       </section>
-      <MediumWhiteBar yMargin="my-12 lg:my-24" />
       {/* end: director section */}
+
+      <DividerBar />
 
       {/* team section */}
       <section className="max-w-7xl mx-auto text-center px-4 -mt-1.5">
@@ -223,8 +228,9 @@ function About({ aboutPage }) {
           })}
         </div>
       </section>
-      <MediumWhiteBar yMargin="my-12 lg:my-24" />
       {/* end: team section */}
+
+      <DividerBar />
 
       {/* utah locations */}
       {isGalleryModelOpen && (
@@ -281,8 +287,9 @@ function About({ aboutPage }) {
           })}
         </div>
       </section>
-      <MediumWhiteBar yMargin="my-12 lg:my-24" />
       {/* end: utah locations */}
+
+      <DividerBar />
 
       {/* ravens */}
       <section className="max-w-7xl mx-auto text-center px-4 -mt-1.5">
@@ -339,8 +346,9 @@ function About({ aboutPage }) {
           </a>
         </Link>
       </section>
-      <MediumWhiteBar yMargin="my-12 lg:my-24" />
       {/* end: ravens */}
+
+      <DividerBar />
 
       {/* trusted by */}
       <section className="max-w-7xl mx-auto text-center px-4 -mt-1.5">
@@ -356,8 +364,9 @@ function About({ aboutPage }) {
           })}
         </div>
       </section>
-      <MediumWhiteBar yMargin="mb-8 mt-12 lg:mt-24" />
       {/* end: trusted by */}
+
+      <MediumWhiteBar yMargin="mb-12 mt-12 lg:mt-24" />
     </Layout>
   )
 }

@@ -1,5 +1,5 @@
 import urlForSanitySource from '@/lib/urlForSanitySource'
-import BlockContent from '@sanity/block-content-to-react'
+import { PortableText } from '@portabletext/react'
 import Image from 'next/image'
 import React from 'react'
 import LittleGoldBar from './little-gold-bar'
@@ -51,7 +51,7 @@ const BackgroundText = ({
                 <LittleGoldBar />
               </div>
               <div className="max-w-lg prose-lg mx-auto text-white font-light leading-normal">
-                <BlockContent blocks={description} />
+                <PortableText value={description} />
               </div>
             </>
           )}

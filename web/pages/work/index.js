@@ -1,7 +1,7 @@
 import Layout from '@/components/layout'
 import groq from 'groq'
 import { getClient } from '@/lib/sanity'
-import BlockContent from '@sanity/block-content-to-react'
+import { PortableText } from '@portabletext/react'
 import WorkItemTile from '@/components/work-item-tile'
 //import Image from 'next/image'
 import MediumWhiteBar from '@/components/medium-white-bar'
@@ -16,7 +16,7 @@ function Work({ workPage, workItems }) {
       </div>
       <div className="container px-12 lg:mx-auto text-white text-center mt-12">
         <div className="border prose-lg max-w-lg py-1 text-center mx-auto">
-          <BlockContent blocks={workPage.workPageDescription} />
+          <PortableText value={workPage.workPageDescription} />
         </div>
         <MediumWhiteBar yMargin="mb-8 mt-12 lg:mt-24" />
       </div>

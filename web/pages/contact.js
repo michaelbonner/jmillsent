@@ -5,7 +5,7 @@ import Layout from '@/components/layout'
 import LittleWhiteBar from '@/components/little-white-bar'
 import Map from '@/components/map'
 import MediumWhiteBar from '@/components/medium-white-bar'
-import BlockContent from '@sanity/block-content-to-react'
+import { PortableText } from '@portabletext/react'
 import classNames from 'classnames'
 import { ErrorMessage, Field, Form, Formik } from 'formik'
 import groq from 'groq'
@@ -211,7 +211,7 @@ function Contact({ contact }) {
                   </h3>
                   <LittleWhiteBar yMargin="my-4" />
                   <div className="mx-auto text-lg leading-9 prose prose-white text-gray-300">
-                    <BlockContent blocks={card.body} />
+                    <PortableText value={card.body} />
                   </div>
                 </div>
               )

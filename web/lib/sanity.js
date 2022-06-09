@@ -23,14 +23,6 @@ export const urlFor = (source) => createImageUrlBuilder(config).image(source)
 // Set up the live preview subscription hook
 export const usePreviewSubscription = createPreviewSubscriptionHook(config)
 
-// Set up Portable Text serialization
-export const PortableText = createPortableTextComponent({
-  ...config,
-  // Serializers passed to @sanity/block-content-to-react
-  // (https://github.com/sanity-io/block-content-to-react)
-  serializers: {},
-})
-
 // Set up the client for fetching data in the getProps page functions
 export const sanityClient = createClient(config)
 // Set up a preview client with serverless authentication for drafts

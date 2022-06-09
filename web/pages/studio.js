@@ -3,7 +3,7 @@ import { H1, H2 } from '@/components/headings'
 import Layout from '@/components/layout'
 import MediumWhiteBar from '@/components/medium-white-bar'
 import VideoPlayer from '@/components/video-player'
-import BlockContent from '@sanity/block-content-to-react'
+import { PortableText } from '@portabletext/react'
 import groq from 'groq'
 import Image from 'next/image'
 import { Link as SmoothScrollLink } from 'react-scroll'
@@ -52,7 +52,7 @@ function Studio({ studioPage }) {
         <H2>{studioPage.section1Title}</H2>
         {studioPage.section1Body && (
           <div className="mt-4 lg:mt-10 px-4 prose-lg max-w-5xl text-center mx-auto -mb-2">
-            <BlockContent blocks={studioPage.section1Body} />
+            <PortableText value={studioPage.section1Body} />
           </div>
         )}
         <MediumWhiteBar yMargin="my-12 lg:my-24" />

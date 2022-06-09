@@ -5,7 +5,7 @@ import LittleWhiteBar from '@/components/little-white-bar'
 import MediumWhiteBar from '@/components/medium-white-bar'
 import SanityImage from '@/components/sanity-image'
 import VideoPlayer from '@/components/video-player'
-import BlockContent from '@sanity/block-content-to-react'
+import { PortableText } from '@portabletext/react'
 import groq from 'groq'
 import Image from 'next/image'
 import Link from 'next/link'
@@ -59,7 +59,7 @@ function About({ aboutPage }) {
         <H2>{aboutPage.section1Title}</H2>
         {aboutPage.section1Body && (
           <div className="mt-4 lg:mt-10 px-4 text-white prose-lg max-w-5xl text-center mx-auto -mb-2">
-            <BlockContent blocks={aboutPage.section1Body} />
+            <PortableText value={aboutPage.section1Body} />
           </div>
         )}
         <MediumWhiteBar yMargin="my-12 lg:my-24" />
@@ -121,7 +121,7 @@ function About({ aboutPage }) {
           <H3>{aboutPage.company3Title}</H3>
           {aboutPage.company3Body && (
             <div className="px-4 prose-lg max-w-3xl text-center mx-auto text-white">
-              <BlockContent blocks={aboutPage.company3Body} />
+              <PortableText value={aboutPage.company3Body} />
             </div>
           )}
 
@@ -170,7 +170,7 @@ function About({ aboutPage }) {
           <p className="font-outline text-4xl">{aboutPage.directorName}</p>
           {aboutPage.directorDescription && (
             <div className="px-4 prose-lg mx-auto mt-4 sm:mt-10">
-              <BlockContent blocks={aboutPage.directorDescription} />
+              <PortableText value={aboutPage.directorDescription} />
             </div>
           )}
           <Link href="https://jeremymillerdirector.com/">
@@ -255,7 +255,7 @@ function About({ aboutPage }) {
         <H2>{aboutPage.utahLocationsTitle}</H2>
         {aboutPage.utahLocationsDescription && (
           <div className="px-4 prose-lg max-w-3xl text-center mx-auto">
-            <BlockContent blocks={aboutPage.utahLocationsDescription} />
+            <PortableText value={aboutPage.utahLocationsDescription} />
           </div>
         )}
         <div className="mt-4 lg:mt-10 grid grid-cols-1 lg:grid-cols-3 gap-1">
@@ -292,7 +292,7 @@ function About({ aboutPage }) {
         </p>
         {aboutPage.ravensCardsContent && (
           <div className="mt-4 lg:mt-10 text-white px-4 prose prose-lg max-w-3xl text-center mx-auto">
-            <BlockContent blocks={aboutPage.ravensCardsContent} />
+            <PortableText value={aboutPage.ravensCardsContent} />
           </div>
         )}
         <div className="grid grid-cols-1 md:grid-cols-3 gap-8 px-8 mt-4 lg:mt-10">
@@ -322,7 +322,7 @@ function About({ aboutPage }) {
                   />
                 </div>
                 <div className="prose-sm lg:prose-lg">
-                  <BlockContent blocks={ravensCard.body} />
+                  <PortableText value={ravensCard.body} />
                 </div>
               </div>
             )

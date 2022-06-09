@@ -3,7 +3,7 @@ import Layout from '@/components/layout'
 import MediumWhiteBar from '@/components/medium-white-bar'
 import VideoPlayer from '@/components/video-player'
 import { getClient } from '@/lib/sanity'
-import BlockContent from '@sanity/block-content-to-react'
+import { PortableText } from '@portabletext/react'
 import groq from 'groq'
 import Image from 'next/image'
 import footerGraphic from '../public/images/JME-film-prod-co-white.svg'
@@ -31,7 +31,7 @@ function Home({ homePage }) {
       <div className="container px-4 mx-auto text-white text-center mt-12 lg:mt-24">
         <H2>{homePage.section1Title}</H2>
         <div className="mt-4 sm:mt-10 prose text-white lg:prose-lg lg:max-w-5xl text-center mx-auto">
-          <BlockContent blocks={homePage.section1Body} />
+          <PortableText value={homePage.section1Body} />
         </div>
       </div>
       <MediumWhiteBar yMargin="my-12 lg:my-24" />

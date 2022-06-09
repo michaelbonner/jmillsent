@@ -35,14 +35,14 @@ function Home({ homePage }) {
         </div>
       </div>
       <MediumWhiteBar yMargin="my-12 lg:my-24" />
-      <div className="px-8 container lg:mx-auto text-center uppercase">
+      <div className="px-8 container mx-auto text-center uppercase">
         <H2>{homePage.section2Title}</H2>
         <p className="uppercase font-outline text-2xl lg:text-6xl">
           {homePage.section2Subtitle}
         </p>
       </div>
-      <div className="px-4 mt-10">
-        <div className="border border-white py-8 px-8 container lg:mx-auto">
+      <div className="px-8 lg:px-4 mt-10">
+        <div className="border border-white py-8 px-8 container mx-auto">
           <VideoPlayer
             poster={homePage.reelVideoPoster}
             title={homePage.reelVideoTitle}

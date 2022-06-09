@@ -437,7 +437,7 @@ const Layout = ({
       <main className="bg-black text-white relative z-10 w-full">
         {children}
       </main>
-      <footer className="bg-black relative z-10 text-center">
+      <footer className="bg-black relative z-10 text-center -mt-1.5">
         <nav className="w-full container max-w-5xl px-12 lg:px-4 pb-8 lg:mx-auto flex flex-wrap justify-center lg:justify-around gap-4">
           {navItems.map((navItem, index) => {
             return (

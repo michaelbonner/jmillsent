@@ -205,14 +205,13 @@ const WorkItem = ({ workItem = {} }) => {
       </div>
 
       <div className="pt-12 lg:pt-24 px-8 container mx-auto text-center uppercase">
-        <p className="prose-lg lg:text-4xl font-extrabold tracking-widest">
+        <p className="text-xl lg:text-4xl font-extrabold tracking-widest">
           Production Company
         </p>
-        <p className="mt-2 prose-lg lg:text-3xl font-outline">
+        <p className="mt-2 text-2xl lg:text-5xl font-outline">
           JMills Entertainment
         </p>
       </div>
-
       <MediumWhiteBar />
     </Layout>
   )

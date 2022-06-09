@@ -4,11 +4,10 @@ import groq from 'groq'
 import { getClient } from '@/lib/sanity'
 import NewsItemCard from '@/components/news-item-card'
 import MediumWhiteBar from '@/components/medium-white-bar'
-import Link from 'next/link'
 
 function News({ newsPage, newsItems }) {
   const heroContent = (
-    <div className="mb-10 sm:my-10 w-full text-white flex items-center justify-center">
+    <div className="mb-10 -my-2 sm:my-10 w-full text-white flex items-center justify-center">
       <div className="w-screen px-4 flex flex-col items-center justify-center text-center">
         <H1>{newsPage.seoTitle}</H1>
         <h2 className="uppercase font-outline sm:text-2xl lg:text-5xl">
@@ -27,14 +26,14 @@ function News({ newsPage, newsItems }) {
       heroVideoHeightInPixels={newsPage.posterHeightInPixels}
       heroVideoWidthInPixels={newsPage.posterWidthInPixels}
     >
-      <div className="max-w-7xl mt-12">
+      <div className="max-w-7xl mt-12 mx-auto">
         <div className="flex flex-col items-center">
           {newsItems.map((newsItem, index) => {
             return <NewsItemCard newsItem={newsItem} key={index} />
           })}
         </div>
-        <MediumWhiteBar yMargin="mb-8 mt-12 lg:mt-24" />
       </div>
+      <MediumWhiteBar yMargin="mb-8 mt-12 lg:mt-24" />
     </Layout>
   )
 }

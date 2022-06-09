@@ -8,6 +8,7 @@ import LargeGoldBar from '@/components/large-gold-bar'
 import Link from 'next/link'
 import Image from 'next/image'
 import BlockContent from '@sanity/block-content-to-react'
+import urlForSanitySource from '../../lib/urlForSanitySource'
 
 const newsItemQuery = groq`
 *[_type == "newsItem" && slug.current == $slug][0]{
@@ -26,13 +27,13 @@ const newsItemQuery = groq`
 
 const NewsItem = ({ newsItem = {} }) => {
   return (
-    <Layout
-      title={newsItem.seoTitle}
-      description={newsItem.seoDescription}
-      heroImageUrl={newsItem.heroImage || null}
-    >
-      <div className="mx-auto lg:max-w-7xl px-8 py-6">
-        <div className="grid grid-cols-2 items-center px-8 text-lg gap-x-4 sm:text-3xl uppercase">
+    <Layout title={newsItem.seoTitle} description={newsItem.seoDescription}>
+      <div className="mx-auto lg:max-w-7xl">
+        <img
+          alt={newsItem.seoTitle}
+          src={`${urlForSanitySource(newsItem.heroImage)}`}
+        />
+        <div className="flex justify-between px-8 text-lg sm:text-3xl uppercase mt-4 lg:mt-10">
           <h1 className="font-extrabold justify-self-end text-right">
             {newsItem.title}
           </h1>
@@ -40,24 +41,24 @@ const NewsItem = ({ newsItem = {} }) => {
         </div>
         <LargeGoldBar yMargin="my-4" />
         {newsItem.body && (
-          <div className="text-white text-center mx-auto max-w-lg md:max-w-4xl lg:max-w-7xl prose prose-sm lg:prose-lg">
+          <div className="text-center px-8 -mb-2 lg:max-w-7xl prose-lg">
             <BlockContent blocks={newsItem.body} />
           </div>
         )}
-        <div className="mx-auto mt-12 w-40 max-w-xs sm:w-full">
+        <div className="mt-10 px-24">
           <Link href="/news">
             <a className="flex justify-center transform transition-all hover:translate-x-1">
               <Image
                 alt="Read Full Story"
-                height="108"
+                height="65"
                 src="/images/JME-more-news-link.svg"
-                width="500"
+                width="300"
               />
             </a>
           </Link>
         </div>
       </div>
-      <MediumWhiteBar />
+      <MediumWhiteBar yMargin="mb-8 mt-12 lg:mt-24" />
     </Layout>
   )
 }

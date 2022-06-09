@@ -252,7 +252,7 @@ function Contact({ contact }) {
             </a>
           </div>
           <div className="mt-10">
-            <EmailSignupForm />
+            <EmailSignupForm title={contact.subscribeFormTitle} />
           </div>
           <LargeWhiteBar yMargin="mb-8 mt-12 lg:mt-24" />
         </div>
@@ -272,6 +272,7 @@ export async function getStaticProps() {
             seoDescription,
             representationTitle,
             representationCards,
+            subscribeFormTitle,
           }
         `),
     },

@@ -14,7 +14,7 @@ function Work({ workPage, workItems }) {
           return <WorkItemTile workItem={workItem} key={index} />
         })}
       </div>
-      <div className="container px-4 lg:mx-auto text-white text-center mt-10">
+      <div className="container px-12 lg:mx-auto text-white text-center mt-12">
         <div className="border prose-lg max-w-lg py-1 text-center mx-auto">
           <BlockContent blocks={workPage.workPageDescription} />
         </div>

@@ -350,7 +350,14 @@ const VideoPlayer = ({
         }}
       >
         <div className="absolute inset-0 h-full bg-gradient-to-r from-black via-transparent to-transparent opacity-80"></div>
-        <div className="absolute inset-0 pb-12 pl-0.5 ml-0.5 flex h-full items-center justify-start gap-1 2xs:gap-1.5 xs:gap-2 md:gap-4 lg:pl-12">
+        <div
+          className={classNames(
+            `absolute inset-0 flex h-full items-center justify-start gap-2`,
+            `md:gap-4`,
+            `lg:pl-12`,
+            !isIos && 'pb-12'
+          )}
+        >
           {!isIpad && (
             <div
               className="z-10 bg-transparent flex items-center justify-center xl:justify-start cursor-pointer text-4xl xl:text-6xl"

@@ -325,14 +325,26 @@ const Layout = ({
 
       <header className="overflow-hidden">
         <div className="relative flex items-center justify-between py-4 px-6 z-10 bg-black">
-          <div>
+          <div className="hidden lg:flex">
             <Link href={`/`}>
               <a className="flex items-center">
                 <Image
                   alt="JMills Logo"
                   src="/images/jme_film_co_x_white.png"
-                  width={Math.floor(202 * 0.6)}
-                  height={Math.floor(158 * 0.6)}
+                  width={Math.floor(202 * 0.5)}
+                  height={Math.floor(158 * 0.5)}
+                />
+              </a>
+            </Link>
+          </div>
+          <div className="flex lg:hidden">
+            <Link className="hidden lg:flex" href={`/`}>
+              <a className="flex items-center">
+                <Image
+                  alt="JMills Logo"
+                  src="/images/jme_x_white.png"
+                  width={Math.floor(256 * 0.3)}
+                  height={Math.floor(141 * 0.3)}
                 />
               </a>
             </Link>

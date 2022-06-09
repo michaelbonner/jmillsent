@@ -1,7 +1,7 @@
 import Image from 'next/image'
 import React from 'react'
 
-const EmailSignupForm = ({ title = '' }) => {
+const EmailSignupForm = ({ title = '', mailchimpTagId = '' }) => {
   return (
     <div className="mx-auto text-center">
       <form
@@ -13,6 +13,7 @@ const EmailSignupForm = ({ title = '' }) => {
         target="_blank"
         noValidate
       >
+        <input type="hidden" name="tags" value={mailchimpTagId} />
         <div>
           <h2 className="uppercase text-gray-100 font-light">{title}</h2>
           <div className="flex justify-center mx-auto w-full max-w-lg mt-4">

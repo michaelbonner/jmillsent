@@ -26,11 +26,13 @@ const Map = () => {
       <Marker
         icon="https://jmillsent.vercel.app/images/jme-pin.png"
         position={{ lat: 40.8664457, lng: -111.9247221 }}
+        size={{ width: 47, height: 65 }}
       />
       {/* Airport */}
       <Marker
         icon={`https://jmillsent.vercel.app/images/pin-slc-airport.png`}
         position={{ lat: 40.7899404, lng: -111.9790706 }}
+        size={{ width: 33, height: 35 }}
       />
     </GoogleMap>
   ) : (

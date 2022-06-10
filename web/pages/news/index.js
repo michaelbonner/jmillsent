@@ -3,7 +3,6 @@ import { H1 } from '@/components/headings'
 import groq from 'groq'
 import { getClient } from '@/lib/sanity'
 import NewsItemCard from '@/components/news-item-card'
-import MediumWhiteBar from '@/components/medium-white-bar'
 import DividerBar from '@/components/divider-bar'
 
 function News({ newsPage, newsItems }) {

@@ -2,12 +2,8 @@ import DividerBar from '@/components/divider-bar'
 import { H1 } from '@/components/headings'
 import Layout from '@/components/layout'
 import NewsItemCard from '@/components/news-item-card'
-<<<<<<< HEAD
-import DividerBar from '@/components/divider-bar'
-=======
 import { getClient } from '@/lib/sanity'
 import groq from 'groq'
->>>>>>> 1c0b7bcb73f37ee1b0125dad9910aa20d321fe68
 
 function News({ newsPage, newsItems }) {
   const heroContent = (

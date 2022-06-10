@@ -157,7 +157,9 @@ function About({ aboutPage }) {
       </div>
       {/* end: company 3 */}
 
-      <DividerBar />
+      <div className="px-8">
+        <DividerBar />
+      </div>
 
       {/* director section */}
       <section className="grid grid-cols-1 lg:grid-cols-3 max-w-7xl mx-auto items-center px-4">
@@ -191,7 +193,9 @@ function About({ aboutPage }) {
       </section>
       {/* end: director section */}
 
-      <DividerBar />
+      <div className="px-8">
+        <DividerBar />
+      </div>
 
       {/* team section */}
       <section className="max-w-7xl mx-auto text-center px-4 -mt-1.5">
@@ -230,7 +234,9 @@ function About({ aboutPage }) {
       </section>
       {/* end: team section */}
 
-      <DividerBar />
+      <div className="px-8">
+        <DividerBar />
+      </div>
 
       {/* utah locations */}
       {isGalleryModelOpen && (
@@ -289,7 +295,9 @@ function About({ aboutPage }) {
       </section>
       {/* end: utah locations */}
 
-      <DividerBar />
+      <div className="px-8">
+        <DividerBar />
+      </div>
 
       {/* ravens */}
       <section className="max-w-7xl mx-auto text-center px-4 -mt-1.5">
@@ -348,7 +356,9 @@ function About({ aboutPage }) {
       </section>
       {/* end: ravens */}
 
-      <DividerBar />
+      <div className="px-8">
+        <DividerBar />
+      </div>
 
       {/* trusted by */}
       <section className="max-w-7xl mx-auto text-center px-4 -mt-1.5">

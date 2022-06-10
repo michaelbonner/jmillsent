@@ -251,7 +251,7 @@ function Contact({ contact }) {
               <GrVimeo size={24} />
             </a>
           </div>
-          <div className="mt-10">
+          <div className="mt-10 px-8">
             <EmailSignupForm title={contact.subscribeFormTitle} />
           </div>
           <LargeWhiteBar yMargin="mb-8 mt-12 lg:mt-24" />

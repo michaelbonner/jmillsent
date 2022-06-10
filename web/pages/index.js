@@ -36,7 +36,7 @@ function Home({ homePage }) {
         </div>
       </div>
 
-      <DividerBar />
+      <DividerBar yMargin="my-16 lg:my-24" />
 
       <div className="px-8 container mx-auto text-center uppercase">
         <H2>{homePage.section2Title}</H2>

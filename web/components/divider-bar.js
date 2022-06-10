@@ -4,7 +4,7 @@ import Image from 'next/image'
 const DividerBar = ({ yMargin = 'my-24 lg:my-36' }) => {
   return (
     <div
-      className={`flex w-full max-w-5xl mx-auto px-12 lg:px-0 gap-4 lg:gap-8 items-center justify-center ${yMargin}`}
+      className={`flex w-full max-w-5xl mx-auto px-4 lg:px-0 gap-4 lg:gap-8 items-center justify-center ${yMargin}`}
     >
       <div className="w-full lg:max-w-7xl h-[2px] bg-gray-400"></div>
       <svg

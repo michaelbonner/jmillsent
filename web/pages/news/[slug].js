@@ -48,17 +48,22 @@ const NewsItem = ({ newsItem = {} }) => {
               </div>
             )}
           </div>
-          <div className="mt-10 px-24 max-w-sm mx-auto">
-            <Link href="/news">
-              <a className="flex justify-center transform transition-all hover:translate-x-1">
-                <Image
-                  alt="Read Full Story"
-                  height="65"
-                  src="/images/JME-more-news-link.svg"
-                  width="300"
-                />
-              </a>
-            </Link>
+          <div className="mt-10">
+            <div className="text-center">
+              <Link href="/news">
+                <a className="inline-flex gap-3 items-center justify-center px-3 py-1 mt-4 text-xl uppercase hover:bg-gold transition-colors border-2 border-gray-300">
+                  <span className="font-outline tracking-tighter text-gray-300">
+                    More
+                  </span>
+
+                  <span className="font-bold tracking-wide">News</span>
+
+                  <span className="font-outline tracking-tighter text-gray-300">
+                    Stories
+                  </span>
+                </a>
+              </Link>
+            </div>
           </div>
         </div>
         <MediumWhiteBar yMargin="mb-8 mt-12 lg:mt-24" />

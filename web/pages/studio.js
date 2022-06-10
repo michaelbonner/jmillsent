@@ -28,12 +28,22 @@ function Studio({ studioPage }) {
           offset={-100}
           duration={500}
         >
-          <Image
-            alt="Play Studio Tour"
-            height="65"
-            src="/images/JME-studio-tour-link.svg"
-            width="300"
-          />
+          <div className="inline-block">
+            <div
+              className="flex gap-4 items-center justify-center px-3 py-2 mt-4 sm:mt-10 uppercase hover:bg-gold transition-colors border-2 border-white text-3xl"
+              target="_blank"
+            >
+              <span className="font-outline tracking-tighter text-gray-300">
+                Play
+              </span>
+
+              <span className="font-bold tracking-wide">Studio</span>
+
+              <span className="font-outline tracking-tighter text-gray-300">
+                Tour
+              </span>
+            </div>
+          </div>
         </SmoothScrollLink>
       )}
     </div>

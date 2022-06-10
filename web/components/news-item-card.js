@@ -41,14 +41,16 @@ const NewsItemCard = ({ newsItem, index, hideAfterCount = 999 }) => {
 
         <div className="text-center mt-2">
           <Link href={`/news/${newsItem.slug.current}`} key={newsItem._id}>
-            <a className="inline-flex gap-3 items-center justify-center px-3 py-1 mt-4 text-2xl uppercase hover:bg-gold transition-colors border-2 border-gray-300">
-              <span className="font-outline tracking-tighter text-gray-300">
+            <a className="inline-flex gap-3 items-center justify-center px-3 py-1 mt-4 text-2xl uppercase hover:bg-gold transition-colors border-2 border-gray-300 group">
+              <span className="font-outline tracking-tighter text-gray-300 group-hover:text-black">
                 Read
               </span>
 
-              <span className="font-bold tracking-wide">Full</span>
+              <span className="font-bold tracking-wide group-hover:text-black">
+                Full
+              </span>
 
-              <span className="font-outline tracking-tighter text-gray-300">
+              <span className="font-outline tracking-tighter text-gray-300 group-hover:text-black">
                 Story
               </span>
             </a>

@@ -31,14 +31,14 @@ function Home({ homePage }) {
     >
       <div className="container px-4 mx-auto text-white text-center mt-12 lg:mt-24">
         <H2>{homePage.section1Title}</H2>
-        <div className="mt-4 sm:mt-10 prose text-white lg:prose-lg lg:max-w-5xl text-center mx-auto">
+        <div className="mt-4 -mb-2 lg:mt-10 prose-lg lg:max-w-5xl text-center mx-auto">
           <PortableText value={homePage.section1Body} />
         </div>
       </div>
 
       <DividerBar yMargin="my-16 lg:my-24" />
 
-      <div className="px-8 container mx-auto text-center uppercase">
+      <div className="px-8 container mx-auto text-center uppercase -mt-1.5">
         <H2>{homePage.section2Title}</H2>
         <p className="uppercase font-outline text-2xl lg:text-6xl">
           {homePage.section2Subtitle}
@@ -58,7 +58,7 @@ function Home({ homePage }) {
           />
         </div>
       </div>
-      <div className="mx-auto px-12 mt-12 lg:mt-24 max-w-lg">
+      <div className="mx-auto -mb-5 w-full max-w-xs mt-12 lg:mt-24 lg:max-w-3xl">
         <Image src={footerGraphic} alt="JME Film Production Company" />
       </div>
       <MediumWhiteBar yMargin="mb-8 mt-12 lg:mt-24" />

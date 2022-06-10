@@ -165,7 +165,7 @@ function Contact({ contact }) {
                     <button
                       type="submit"
                       className={classNames(
-                        `inline-block rounded-full font-bold uppercase`,
+                        `inline-block rounded-md font-bold uppercase`,
                         `tracking-wider border border-white py-2 px-8`,
                         `bg-black bg-opacity-50 hover:bg-gold`,
                         `hover:text-black transition-all`,

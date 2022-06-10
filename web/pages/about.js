@@ -74,7 +74,7 @@ function About({ aboutPage }) {
           </p>
         </div>
         <div className="mt-4 lg:mt-10">
-          <div className="border border-white py-8 px-8 container mx-auto">
+          <div className="border border-white p-4 lg:p-8 container mx-auto">
             <VideoPlayer
               poster={aboutPage.reelVideoPoster}
               title={aboutPage.reelVideoTitle}
@@ -129,7 +129,7 @@ function About({ aboutPage }) {
             </div>
           )}
 
-          <div className="mt-4 lg:mt-10 border border-white py-8 px-8 container mx-auto max-w-7xl">
+          <div className="mt-4 lg:mt-10 border border-white p-4 lg:p-8 container mx-auto max-w-7xl">
             <VideoPlayer
               poster={aboutPage.company3VideoPoster}
               title={aboutPage.company3VideoTitle}

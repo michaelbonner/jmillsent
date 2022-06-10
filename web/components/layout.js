@@ -26,12 +26,12 @@ const navItems = [
     href: '/studio',
   },
   {
-    name: 'News',
-    href: '/news',
-  },
-  {
     name: 'Moments',
     href: '/moments',
+  },
+  {
+    name: 'News',
+    href: '/news',
   },
   {
     name: 'Contact',

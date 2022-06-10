@@ -1,3 +1,4 @@
+import classNames from 'classnames'
 import Image from 'next/image'
 import React from 'react'
 
@@ -41,7 +42,10 @@ const EmailSignupForm = ({ title = '', mailchimpTagId = '' }) => {
                 />
               </div>
               <button
-                className="flex gap-x-2 px-4 py-2 border-2 border-white rounded-md hover:bg-gray-900 transition-colors"
+                className={classNames(
+                  'flex gap-x-2 px-4 py-2 border-2 border-white rounded-md transition-colors',
+                  'hover:bg-gold'
+                )}
                 type="submit"
                 name="subscribe"
                 id="mc-embedded-subscribe"

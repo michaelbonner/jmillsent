@@ -206,7 +206,7 @@ const WorkItem = ({ workItem = {} }) => {
         )}
       </div>
 
-      <div className="mx-auto px-12 -mb-5 w-full max-w-lg lg:max-w-xl mt-12 lg:mt-24">
+      <div className="mx-auto px-12 -mb-5 w-full max-w-md lg:max-w-lg mt-12 lg:mt-24">
         <Image src={footerGraphic} alt="JME Film Production Company" />
       </div>
       <MediumWhiteBar yMargin="mb-8 mt-12 lg:mt-24" />

@@ -200,7 +200,9 @@ function Contact({ contact }) {
           <div className="text-center">
             <H3>{contact.representationTitle}</H3>
           </div>
-          <LargeWhiteBar yMargin="my-12 lg:my-24" />
+
+          <DividerBar />
+
           <div className="max-w-7xl mx-auto text-center grid lg:grid-cols-3 gap-y-10 sm:gap-y-16 text-gray-200 mt-8">
             {contact.representationCards.map((card) => {
               return (

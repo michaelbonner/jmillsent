@@ -1,10 +1,7 @@
 import {
-  groq,
   createClient,
-  createImageUrlBuilder,
-  createPortableTextComponent,
-  createPreviewSubscriptionHook,
   createCurrentUserHook,
+  createPreviewSubscriptionHook,
 } from 'next-sanity'
 
 const config = {
@@ -13,12 +10,6 @@ const config = {
   useCdn: process.env.NODE_ENV === 'production',
   apiVersion: '2021-03-25',
 }
-
-/**
- * Set up a helper function for generating Image URLs with only the asset reference data in your documents.
- * Read more: https://www.sanity.io/docs/image-url
- **/
-export const urlFor = (source) => createImageUrlBuilder(config).image(source)
 
 // Set up the live preview subscription hook
 export const usePreviewSubscription = createPreviewSubscriptionHook(config)

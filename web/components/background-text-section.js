@@ -54,7 +54,7 @@ const BackgroundText = ({
               <div className={`${styles[leftOrRight].barPosition}`}>
                 <LittleGoldBar />
               </div>
-              <div className="max-w-lg prose-lg mx-auto text-white font-light leading-normal">
+              <div className="max-w-lg prose-lg mx-auto text-white font-light leading-normal mt-2.5">
                 <PortableText value={description} />
               </div>
             </>

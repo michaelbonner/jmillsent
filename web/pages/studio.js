@@ -104,7 +104,7 @@ function Studio({ studioPage }) {
                     image={service.image}
                     imageAlt={service.title}
                     title={service.title}
-                    // description={service.description}
+                    description={service.description}
                     key={service._id}
                   />
                 )

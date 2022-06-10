@@ -63,7 +63,7 @@ function Contact({ contact }) {
           <H1>{contact.title}</H1>
         </div>
         <div className="max-w-7xl w-full mx-auto lg:flex lg:space-x-16 pb-24 px-4">
-          <div className="max-w-lg lg:w-1/3">
+          <div className="mx-auto max-w-lg lg:w-1/3">
             {state === 'initial' && (
               <Formik
                 initialValues={contactForm}

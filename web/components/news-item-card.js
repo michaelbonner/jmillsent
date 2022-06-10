@@ -1,6 +1,5 @@
 import classNames from 'classnames'
 import Link from 'next/link'
-import Image from 'next/image'
 import urlForSanitySource from '../lib/urlForSanitySource'
 import Date from './date'
 import LargeGoldBar from './large-gold-bar'
@@ -40,9 +39,9 @@ const NewsItemCard = ({ newsItem, index, hideAfterCount = 999 }) => {
           </p>
         </div>
 
-        <div className="text-center">
+        <div className="text-center mt-2">
           <Link href={`/news/${newsItem.slug.current}`} key={newsItem._id}>
-            <a className="inline-flex gap-3 items-center justify-center px-3 py-1 mt-4 text-xl uppercase hover:bg-gold transition-colors border-2 border-gray-300">
+            <a className="inline-flex gap-3 items-center justify-center px-3 py-1 mt-4 text-2xl uppercase hover:bg-gold transition-colors border-2 border-gray-300">
               <span className="font-outline tracking-tighter text-gray-300">
                 Read
               </span>

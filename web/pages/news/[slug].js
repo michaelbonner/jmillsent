@@ -51,7 +51,7 @@ const NewsItem = ({ newsItem = {} }) => {
           <div className="mt-10">
             <div className="text-center">
               <Link href="/news">
-                <a className="inline-flex gap-3 items-center justify-center px-3 py-1 mt-4 text-xl uppercase hover:bg-gold transition-colors border-2 border-gray-300">
+                <a className="inline-flex gap-3 items-center justify-center px-3 py-1 mt-4 text-2xl uppercase hover:bg-gold transition-colors border-2 border-gray-300">
                   <span className="font-outline tracking-tighter text-gray-300">
                     More
                   </span>

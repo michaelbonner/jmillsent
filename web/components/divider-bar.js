@@ -1,5 +1,4 @@
 import React from 'react'
-import Image from 'next/image'
 
 const DividerBar = ({ yMargin = 'my-24 lg:my-36' }) => {
   return (

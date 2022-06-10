@@ -30,16 +30,18 @@ function Studio({ studioPage }) {
         >
           <div className="inline-block">
             <div
-              className="flex gap-4 items-center justify-center px-3 py-2 mt-4 sm:mt-10 uppercase hover:bg-gold transition-colors border-2 border-white text-3xl"
+              className="flex gap-4 items-center justify-center px-3 py-2 mt-4 sm:mt-10 uppercase hover:bg-gold transition-colors border-2 border-white text-2xl lg:text-3xl group"
               target="_blank"
             >
-              <span className="font-outline tracking-tighter text-gray-300">
+              <span className="font-outline tracking-tighter text-gray-300 group-hover:text-black">
                 Play
               </span>
 
-              <span className="font-bold tracking-wide">Studio</span>
+              <span className="font-bold tracking-wide group-hover:text-black">
+                Studio
+              </span>
 
-              <span className="font-outline tracking-tighter text-gray-300">
+              <span className="font-outline tracking-tighter text-gray-300 group-hover:text-black">
                 Tour
               </span>
             </div>
@@ -85,7 +87,7 @@ function Studio({ studioPage }) {
             </div>
             <div
               id="tour"
-              className="border border-white mt-4 lg:mt-10 py-8 px-8 container max-w-7xl mx-auto"
+              className="border border-white mt-4 lg:mt-10 p-4 lg:p-8 container max-w-7xl mx-auto"
             >
               <VideoPlayer
                 poster={studioPage.tourVideoPoster}

@@ -45,7 +45,7 @@ function Home({ homePage }) {
         </p>
       </div>
       <div className="px-8 lg:px-4 mt-10">
-        <div className="border border-white py-8 px-8 container mx-auto">
+        <div className="border border-white p-4 lg:py-8 lg:px-8 container mx-auto">
           <VideoPlayer
             poster={homePage.reelVideoPoster}
             title={homePage.reelVideoTitle}
@@ -58,7 +58,7 @@ function Home({ homePage }) {
           />
         </div>
       </div>
-      <div className="mx-auto -mb-5 px-12 w-full max-w-lg lg:max-w-2xl mt-12 lg:mt-24">
+      <div className="mx-auto -mb-5 px-12 w-full max-w-md lg:max-w-xl mt-12 lg:mt-24">
         <Image src={footerGraphic} alt="JME Film Production Company" />
       </div>
       <MediumWhiteBar yMargin="mb-8 mt-12 lg:mt-24" />

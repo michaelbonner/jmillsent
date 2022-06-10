@@ -1,7 +1,7 @@
 /* eslint-disable @next/next/no-img-element */
 import DividerBar from '@/components/divider-bar'
 import EmailSignupForm from '@/components/email-signup-form'
-import { H1, H3 } from '@/components/headings'
+import { H1, H3, H4 } from '@/components/headings'
 import LargeWhiteBar from '@/components/large-white-bar'
 import Layout from '@/components/layout'
 import LittleWhiteBar from '@/components/little-white-bar'
@@ -205,9 +205,7 @@ function Contact({ contact }) {
             {contact.representationCards.map((card) => {
               return (
                 <div key={card.title}>
-                  <h3 className="font-outline uppercase text-2xl">
-                    {card.title}
-                  </h3>
+                  <H4>{card.title}</H4>
                   <LittleWhiteBar yMargin="my-4" />
                   <div className="mx-auto text-lg leading-9 prose prose-white text-gray-300">
                     <PortableText value={card.body} />

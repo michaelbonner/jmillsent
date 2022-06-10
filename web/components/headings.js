@@ -30,7 +30,7 @@ const H3 = ({ children, className = '' }) => {
     <h3
       className={classNames(
         className,
-        'uppercase font-extrabold text-xl lg:text-4xl mb-2'
+        'uppercase font-extrabold text-xl lg:text-3xl mb-2'
       )}
     >
       {children}

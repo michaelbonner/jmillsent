@@ -1,7 +1,7 @@
 import Image from 'next/image'
 import React from 'react'
 
-const EmailSignupForm = () => {
+const EmailSignupForm = ({ title = '', mailchimpTagId = '' }) => {
   return (
     <div className="mx-auto text-center">
       <form
@@ -13,10 +13,9 @@ const EmailSignupForm = () => {
         target="_blank"
         noValidate
       >
+        <input type="hidden" name="tags" value={mailchimpTagId} readOnly />
         <div>
-          <h2 className="uppercase text-gray-100 font-light">
-            Be the first to see deep cuts
-          </h2>
+          <h2 className="uppercase text-gray-100 font-light">{title}</h2>
           <div className="flex justify-center mx-auto w-full max-w-lg mt-4">
             <div className="flex justify-center items-center w-full rounded">
               <label className="sr-only" htmlFor="mce-EMAIL">
@@ -38,7 +37,7 @@ const EmailSignupForm = () => {
                   type="text"
                   name="b_c9523cc3e6ec26fbfdc141bc5_3cb22c24eb"
                   tabIndex="-1"
-                  value=""
+                  defaultValue=""
                 />
               </div>
               <button

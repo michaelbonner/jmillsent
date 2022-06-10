@@ -1,7 +1,8 @@
 import urlForSanitySource from '@/lib/urlForSanitySource'
-import BlockContent from '@sanity/block-content-to-react'
+import { PortableText } from '@portabletext/react'
 import Image from 'next/image'
 import React from 'react'
+import { H3 } from './headings'
 import LittleGoldBar from './little-gold-bar'
 
 const BackgroundText = ({
@@ -25,6 +26,7 @@ const BackgroundText = ({
       gradientDirection: 'bg-gradient-to-l',
     },
   }
+  const titleStyle = leftOrRight === 'left' ? 'lg:text-left' : 'lg:text-right'
   return (
     <div className="border p-4 lg:p-6 border-white">
       <div className="w-full relative group" style={{ lineHeight: 0 }}>
@@ -42,16 +44,18 @@ const BackgroundText = ({
         <div
           className={`lg:absolute ${styles[leftOrRight].containerPosition} top-0 bottom-0 ${styles[leftOrRight].textAlign} flex flex-col justify-center items-start gap-y-2`}
         >
-          <h3 className="text-3xl mt-8 font-extrabold w-full uppercase">
+          <H3
+            className={`${titleStyle} inline mt-6 w-full uppercase text-center mb-0`}
+          >
             {title}
-          </h3>
+          </H3>
           {description && (
             <>
               <div className={`${styles[leftOrRight].barPosition}`}>
                 <LittleGoldBar />
               </div>
               <div className="max-w-lg prose-lg mx-auto text-white font-light leading-normal">
-                <BlockContent blocks={description} />
+                <PortableText value={description} />
               </div>
             </>
           )}

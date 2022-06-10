@@ -368,7 +368,7 @@ const VideoPlayer = ({
                   `flex bpd-white-icon transition-opacity duration-500 border md:border-2 border-white ml-1 rounded-full h-5 w-5 2xs:h-6 2xs:w-6 xs:h-8 xs:w-8 sm:h-10 sm:w-10 md:h-12 md:w-12 lg:h-14 lg:w-14 xl:h-20 xl:w-20 items-center justify-center`
                 )}
               >
-                <GrPlay className="py-2 pl-1 lg:py-1" />
+                <GrPlay className="py-3 pl-1 lg:pl-2" />
               </div>
             </div>
           )}

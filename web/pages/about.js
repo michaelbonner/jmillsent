@@ -1,11 +1,12 @@
 import BackgroundText from '@/components/background-text-section'
+import DividerBar from '@/components/divider-bar'
 import { H1, H2, H3 } from '@/components/headings'
 import Layout from '@/components/layout'
 import LittleWhiteBar from '@/components/little-white-bar'
 import MediumWhiteBar from '@/components/medium-white-bar'
 import SanityImage from '@/components/sanity-image'
 import VideoPlayer from '@/components/video-player'
-import BlockContent from '@sanity/block-content-to-react'
+import { PortableText } from '@portabletext/react'
 import groq from 'groq'
 import Image from 'next/image'
 import Link from 'next/link'
@@ -59,18 +60,20 @@ function About({ aboutPage }) {
         <H2>{aboutPage.section1Title}</H2>
         {aboutPage.section1Body && (
           <div className="mt-4 lg:mt-10 px-4 text-white prose-lg max-w-5xl text-center mx-auto -mb-2">
-            <BlockContent blocks={aboutPage.section1Body} />
+            <PortableText value={aboutPage.section1Body} />
           </div>
         )}
-        <MediumWhiteBar yMargin="my-12 lg:my-24" />
-        <div className="px-8 container lg:mx-auto text-center -mt-1.5">
+
+        <DividerBar />
+
+        <div className="px-8 container mx-auto text-center -mt-1.5">
           <H2>{aboutPage.reelVideoSectionTitle}</H2>
           <p className="uppercase font-outline text-xl lg:text-5xl leading-4">
             {aboutPage.reelVideoSectionSubtitle}
           </p>
         </div>
-        <div className="px-4 mt-4 lg:mt-10">
-          <div className="border border-white py-8 px-8 container lg:mx-auto">
+        <div className="mt-4 lg:mt-10">
+          <div className="border border-white py-8 px-8 container mx-auto">
             <VideoPlayer
               poster={aboutPage.reelVideoPoster}
               title={aboutPage.reelVideoTitle}
@@ -83,11 +86,12 @@ function About({ aboutPage }) {
             />
           </div>
         </div>
-        <MediumWhiteBar yMargin="my-12 lg:my-24" />
+
+        <DividerBar />
 
         {/* services */}
         <section className="-mt-1.5">
-          <div className="px-8 container lg:mx-auto text-center">
+          <div className="px-8 container mx-auto text-center">
             <H2>{aboutPage.section2Title}</H2>
             <p className="uppercase font-outline text-xl lg:text-5xl -mt-1.5">
               {aboutPage.section2Subtitle}
@@ -111,21 +115,20 @@ function About({ aboutPage }) {
             </div>
           )}
         </section>
-        <div className="my-12 lg:my-24">
-          <MediumWhiteBar />
-        </div>
         {/* end: services */}
+
+        <DividerBar />
 
         {/* company 3 */}
         <section className="-mt-1.5">
           <H3>{aboutPage.company3Title}</H3>
           {aboutPage.company3Body && (
             <div className="px-4 prose-lg max-w-3xl text-center mx-auto text-white">
-              <BlockContent blocks={aboutPage.company3Body} />
+              <PortableText value={aboutPage.company3Body} />
             </div>
           )}
 
-          <div className="mt-4 lg:mt-10 border border-white py-8 px-8 container lg:mx-auto max-w-7xl">
+          <div className="mt-4 lg:mt-10 border border-white py-8 px-8 container mx-auto max-w-7xl">
             <VideoPlayer
               poster={aboutPage.company3VideoPoster}
               title={aboutPage.company3VideoTitle}
@@ -151,9 +154,12 @@ function About({ aboutPage }) {
             </a>
           </Link>
         </section>
-        <MediumWhiteBar yMargin="my-12 lg:my-24" />
       </div>
       {/* end: company 3 */}
+
+      <div className="px-8">
+        <DividerBar />
+      </div>
 
       {/* director section */}
       <section className="grid grid-cols-1 lg:grid-cols-3 max-w-7xl mx-auto items-center px-4">
@@ -170,7 +176,7 @@ function About({ aboutPage }) {
           <p className="font-outline text-4xl">{aboutPage.directorName}</p>
           {aboutPage.directorDescription && (
             <div className="px-4 prose-lg mx-auto mt-4 sm:mt-10">
-              <BlockContent blocks={aboutPage.directorDescription} />
+              <PortableText value={aboutPage.directorDescription} />
             </div>
           )}
           <Link href="https://jeremymillerdirector.com/">
@@ -185,8 +191,11 @@ function About({ aboutPage }) {
           </Link>
         </div>
       </section>
-      <MediumWhiteBar yMargin="my-12 lg:my-24" />
       {/* end: director section */}
+
+      <div className="px-8">
+        <DividerBar />
+      </div>
 
       {/* team section */}
       <section className="max-w-7xl mx-auto text-center px-4 -mt-1.5">
@@ -223,8 +232,11 @@ function About({ aboutPage }) {
           })}
         </div>
       </section>
-      <MediumWhiteBar yMargin="my-12 lg:my-24" />
       {/* end: team section */}
+
+      <div className="px-8">
+        <DividerBar />
+      </div>
 
       {/* utah locations */}
       {isGalleryModelOpen && (
@@ -255,10 +267,10 @@ function About({ aboutPage }) {
         <H2>{aboutPage.utahLocationsTitle}</H2>
         {aboutPage.utahLocationsDescription && (
           <div className="px-4 prose-lg max-w-3xl text-center mx-auto">
-            <BlockContent blocks={aboutPage.utahLocationsDescription} />
+            <PortableText value={aboutPage.utahLocationsDescription} />
           </div>
         )}
-        <div className="mt-4 lg:mt-10 grid grid-cols-1 lg:grid-cols-3 gap-1">
+        <div className="mt-4 lg:mt-10 grid grid-cols-1 lg:grid-cols-3 gap-1 px-4">
           {aboutPage.utahLocations.map((utahLocation, index) => {
             return (
               <button
@@ -281,8 +293,11 @@ function About({ aboutPage }) {
           })}
         </div>
       </section>
-      <MediumWhiteBar yMargin="my-12 lg:my-24" />
       {/* end: utah locations */}
+
+      <div className="px-8">
+        <DividerBar />
+      </div>
 
       {/* ravens */}
       <section className="max-w-7xl mx-auto text-center px-4 -mt-1.5">
@@ -292,7 +307,7 @@ function About({ aboutPage }) {
         </p>
         {aboutPage.ravensCardsContent && (
           <div className="mt-4 lg:mt-10 text-white px-4 prose prose-lg max-w-3xl text-center mx-auto">
-            <BlockContent blocks={aboutPage.ravensCardsContent} />
+            <PortableText value={aboutPage.ravensCardsContent} />
           </div>
         )}
         <div className="grid grid-cols-1 md:grid-cols-3 gap-8 px-8 mt-4 lg:mt-10">
@@ -322,7 +337,7 @@ function About({ aboutPage }) {
                   />
                 </div>
                 <div className="prose-sm lg:prose-lg">
-                  <BlockContent blocks={ravensCard.body} />
+                  <PortableText value={ravensCard.body} />
                 </div>
               </div>
             )
@@ -339,14 +354,17 @@ function About({ aboutPage }) {
           </a>
         </Link>
       </section>
-      <MediumWhiteBar yMargin="my-12 lg:my-24" />
       {/* end: ravens */}
+
+      <div className="px-8">
+        <DividerBar />
+      </div>
 
       {/* trusted by */}
       <section className="max-w-7xl mx-auto text-center px-4 -mt-1.5">
         <H3>Trusted By the Following</H3>
         <LittleWhiteBar yMargin="my-4 lg:my-10" />
-        <div className="grid grid-cols-4 xl:grid-cols-5 gap-8 lg:gap-20 items-center">
+        <div className="grid grid-cols-4 xl:grid-cols-5 gap-6 lg:gap-20 items-center px-4">
           {aboutPage.brands.map((brand) => {
             return (
               <div key={brand._id}>
@@ -356,8 +374,9 @@ function About({ aboutPage }) {
           })}
         </div>
       </section>
-      <MediumWhiteBar yMargin="mb-8 mt-12 lg:mt-24" />
       {/* end: trusted by */}
+
+      <MediumWhiteBar yMargin="mb-12 mt-12 lg:mt-24" />
     </Layout>
   )
 }

@@ -7,6 +7,8 @@ import MediumWhiteBar from '@/components/medium-white-bar'
 import { H3 } from '@/components/headings'
 import { useState, useEffect } from 'react'
 import useWindowSize from '../../hooks/useWindowSize'
+import Image from 'next/image'
+import footerGraphic from '../../public/images/JME-film-prod-co-white.svg'
 
 const workItemQuery = groq`
 *[_type == "workItem" && slug.current == $slug][0]{
@@ -127,7 +129,7 @@ const WorkItem = ({ workItem = {} }) => {
                               <div className="font-bold uppercase justify-self-end text-right">
                                 {credit.role}
                               </div>
-                              <div className="uppercase space-x-4 font-outline tracking-wide text-xl lg:text-2xl">
+                              <div className="uppercase space-x-4 font-light text-lg lg:text-xl">
                                 {credit.value}
                               </div>
                             </div>
@@ -144,7 +146,7 @@ const WorkItem = ({ workItem = {} }) => {
                               <div className="font-bold uppercase justify-self-end text-right">
                                 {credit.role}
                               </div>
-                              <div className="uppercase space-x-4 font-outline tracking-wide text-xl lg:text-2xl">
+                              <div className="uppercase space-x-4 font-light text-lg lg:text-xl">
                                 {credit.value}
                               </div>
                             </div>
@@ -172,7 +174,7 @@ const WorkItem = ({ workItem = {} }) => {
                             <div className="font-bold uppercase">
                               {credit.role}
                             </div>
-                            <div className="uppercase space-x-4 font-outline tracking-wide text-2xl">
+                            <div className="uppercase space-x-4 font-light text-xl">
                               {credit.value}
                             </div>
                           </div>
@@ -189,7 +191,7 @@ const WorkItem = ({ workItem = {} }) => {
                             <div className="font-bold uppercase">
                               {credit.role}
                             </div>
-                            <div className="uppercase space-x-4 font-outline tracking-wide text-2xl">
+                            <div className="uppercase space-x-4 font-light text-xl">
                               {credit.value}
                             </div>
                           </div>
@@ -204,15 +206,10 @@ const WorkItem = ({ workItem = {} }) => {
         )}
       </div>
 
-      <div className="pt-12 lg:pt-24 px-8 container mx-auto text-center uppercase">
-        <p className="text-xl lg:text-4xl font-extrabold tracking-widest">
-          Production Company
-        </p>
-        <p className="mt-2 text-2xl lg:text-5xl font-outline">
-          JMills Entertainment
-        </p>
+      <div className="mx-auto -mb-5 w-full max-w-xs mt-12 lg:mt-24 lg:max-w-3xl">
+        <Image src={footerGraphic} alt="JME Film Production Company" />
       </div>
-      <MediumWhiteBar />
+      <MediumWhiteBar yMargin="mb-8 mt-12 lg:mt-24" />
     </Layout>
   )
 }

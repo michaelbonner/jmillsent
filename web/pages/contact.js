@@ -1,22 +1,23 @@
 /* eslint-disable @next/next/no-img-element */
-import { H1 } from '@/components/headings'
+import DividerBar from '@/components/divider-bar'
+import EmailSignupForm from '@/components/email-signup-form'
+import { H1, H3 } from '@/components/headings'
 import LargeWhiteBar from '@/components/large-white-bar'
 import Layout from '@/components/layout'
 import LittleWhiteBar from '@/components/little-white-bar'
 import Map from '@/components/map'
 import MediumWhiteBar from '@/components/medium-white-bar'
-import BlockContent from '@sanity/block-content-to-react'
+import { PortableText } from '@portabletext/react'
 import classNames from 'classnames'
 import { ErrorMessage, Field, Form, Formik } from 'formik'
 import groq from 'groq'
 import { useState } from 'react'
+import { GrInstagram, GrVimeo } from 'react-icons/gr'
 import TextareaAutosize from 'react-textarea-autosize'
 import { toast } from 'react-toastify'
 import * as Yup from 'yup'
 import { getClient } from '../lib/sanity'
 import urlForSanitySource from '../lib/urlForSanitySource'
-import { GrInstagram, GrVimeo } from 'react-icons/gr'
-import EmailSignupForm from '@/components/email-signup-form'
 
 const phoneRegExp =
   /^((\\+[1-9]{1,4}[ \\-]*)|(\\([0-9]{2,3}\\)[ \\-]*)|([0-9]{2,4})[ \\-]*)*?[0-9]{3,4}?[ \\-]*[0-9]{3,4}?$/
@@ -197,9 +198,7 @@ function Contact({ contact }) {
         </div>
         <div className="mt-10">
           <div className="text-center">
-            <h2 className="text-3xl font-semibold uppercase tracking-wider">
-              {contact.representationTitle}
-            </h2>
+            <H3>{contact.representationTitle}</H3>
           </div>
           <LargeWhiteBar yMargin="my-12 lg:my-24" />
           <div className="max-w-7xl mx-auto text-center grid lg:grid-cols-3 gap-y-10 sm:gap-y-16 text-gray-200 mt-8">
@@ -211,14 +210,14 @@ function Contact({ contact }) {
                   </h3>
                   <LittleWhiteBar yMargin="my-4" />
                   <div className="mx-auto text-lg leading-9 prose prose-white text-gray-300">
-                    <BlockContent blocks={card.body} />
+                    <PortableText value={card.body} />
                   </div>
                 </div>
               )
             })}
           </div>
 
-          <MediumWhiteBar />
+          <MediumWhiteBar yMargin="mt-16 mb-12" />
 
           <div className="flex gap-x-16 max-w-3xl mx-auto px-4 lg:px-0 items-center justify-center text-center lg:text-left prose prose-white text-gray-300 font-light text-lg">
             <div className="leading-9 text-gray-300 text-center">
@@ -251,8 +250,8 @@ function Contact({ contact }) {
               <GrVimeo size={24} />
             </a>
           </div>
-          <div className="mt-10">
-            <EmailSignupForm />
+          <div className="mt-10 px-8">
+            <EmailSignupForm title={contact.subscribeFormTitle} />
           </div>
           <LargeWhiteBar yMargin="mb-8 mt-12 lg:mt-24" />
         </div>
@@ -272,6 +271,7 @@ export async function getStaticProps() {
             seoDescription,
             representationTitle,
             representationCards,
+            subscribeFormTitle,
           }
         `),
     },

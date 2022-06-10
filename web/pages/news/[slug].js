@@ -7,7 +7,7 @@ import Date from '@/components/date'
 import LargeGoldBar from '@/components/large-gold-bar'
 import Link from 'next/link'
 import Image from 'next/image'
-import BlockContent from '@sanity/block-content-to-react'
+import { PortableText } from '@portabletext/react'
 import urlForSanitySource from '../../lib/urlForSanitySource'
 
 const newsItemQuery = groq`
@@ -44,7 +44,7 @@ const NewsItem = ({ newsItem = {} }) => {
             <LargeGoldBar yMargin="my-4" />
             {newsItem.body && (
               <div className="text-center px-8 sm:px-12 -mb-2 prose-lg">
-                <BlockContent blocks={newsItem.body} />
+                <PortableText value={newsItem.body} />
               </div>
             )}
           </div>

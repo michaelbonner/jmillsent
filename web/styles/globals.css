@@ -71,28 +71,6 @@ body {
   }
 }
 
-.bpd-news-tile {
-  min-height: 15vh;
-}
-
-@media screen and (min-width: 1024px) {
-  .bpd-news-tile {
-    min-height: 180px;
-  }
-}
-
-@media screen and (min-width: 1400px) {
-  .bpd-news-tile {
-    min-height: 22vh;
-  }
-}
-
-@media screen and (min-width: 1800px) {
-  .bpd-news-tile {
-    min-height: 20vh;
-  }
-}
-
 header {
   max-width: 100%;
   overflow-x: hidden;

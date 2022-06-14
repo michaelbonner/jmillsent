@@ -20,9 +20,9 @@ function Studio({ studioPage }) {
 
   const heroContent = (
     <div className="h-full w-full grid lg:gap-y-4 items-center text-white">
-      <div className="grid text-center lg:mt-16 items-center justify-center">
-        <H1 className="!text-2xl">{studioPage.title}</H1>
-        <h2 className="uppercase font-outline text-2xl lg:text-6xl">
+      <div className="grid text-center lg:mt-16 items-center justify-center pt-4">
+        <H1 className="!text-2xl !mb-0">{studioPage.title}</H1>
+        <h2 className="uppercase font-outline text-2xl lg:text-7xl">
           {studioPage.subtitle}
         </h2>
       </div>

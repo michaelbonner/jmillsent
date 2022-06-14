@@ -4,6 +4,7 @@ import Layout from '@/components/layout'
 import NewsItemCard from '@/components/news-item-card'
 import { getClient } from '@/lib/sanity'
 import groq from 'groq'
+import { Fragment } from 'react'
 
 function News({ newsPage, newsItems }) {
   const heroContent = (
@@ -27,15 +28,15 @@ function News({ newsPage, newsItems }) {
       heroVideoWidthInPixels={newsPage.posterWidthInPixels}
     >
       <div className="max-w-7xl mt-12 mx-auto pb-8">
-        <div className="flex flex-col items-center">
+        <div className="grid gap-y-12 lg:gap-y-0 justify-center">
           {newsItems.map((newsItem, index) => {
             return (
-              <div key={index}>
+              <Fragment key={index}>
                 <NewsItemCard newsItem={newsItem} />
-                <div className="px-12">
+                <div className="px-12 sm:px-24">
                   <DividerBar yMargin="my-12 lg:my-24" />
                 </div>
-              </div>
+              </Fragment>
             )
           })}
         </div>

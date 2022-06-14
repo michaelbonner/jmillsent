@@ -32,7 +32,7 @@ const NewsItem = ({ newsItem = {} }) => {
   return (
     <>
       <Layout title={newsItem.seoTitle} description={newsItem.seoDescription}>
-        <div className="mx-auto lg:max-w-7xl">
+        <div className="mx-auto lg:max-w-7xl grid gap-y-8">
           {!newsItem.videoId && (
             <Image
               alt={newsItem.seoTitle}
@@ -54,20 +54,20 @@ const NewsItem = ({ newsItem = {} }) => {
               />
             </div>
           )}
-          <div className="mx-auto md:max-w-4xl xl:max-w-5xl">
-            <div className="flex justify-center items-center px-10 gap-x-4 sm:gap-x-32 text-lg sm:text-3xl uppercase mt-4 lg:mt-10">
-              <h1 className="font-extrabold justify-self-end text-right">
-                {newsItem.title}
-              </h1>
-              <Date dateString={newsItem.date} />
-            </div>
-            <LargeGoldBar yMargin="my-4" />
-            {newsItem.body && (
-              <div className="text-center px-8 sm:px-12 -mb-2 prose-lg">
-                <PortableText value={newsItem.body} />
-              </div>
-            )}
+          <div className="w-full max-w-5xl mx-auto px-8 flex justify-between items-center gap-x-4 sm:gap-x-32 text-lg sm:text-3xl uppercase">
+            <h1 className="font-extrabold justify-self-end text-right">
+              {newsItem.title}
+            </h1>
+            <Date dateString={newsItem.date} />
           </div>
+          <div className="w-full max-w-5xl mx-auto sm:px-8">
+            <LargeGoldBar yMargin="my-0" />
+          </div>
+          {newsItem.body && (
+            <div className="w-full max-w-5xl mx-auto px-8 text-center prose prose-invert prose-lg">
+              <PortableText value={newsItem.body} />
+            </div>
+          )}
           <div className="mt-10">
             <div className="text-center">
               <Link href="/news">

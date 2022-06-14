@@ -62,8 +62,8 @@ function Contact({ contact }) {
         <div className="max-w-5xl mx-auto px-4 lg:px-0 py-12 lg:py-24 text-center">
           <H1>{contact.title}</H1>
         </div>
-        <div className="max-w-7xl w-full mx-auto lg:flex lg:space-x-16 pb-24 px-4">
-          <div className="max-w-lg lg:w-1/3">
+        <div className="max-w-7xl w-full mx-auto lg:flex lg:space-x-16 px-4">
+          <div className="mx-auto max-w-lg lg:w-1/3">
             {state === 'initial' && (
               <Formik
                 initialValues={contactForm}
@@ -203,7 +203,7 @@ function Contact({ contact }) {
 
           <DividerBar />
 
-          <div className="max-w-7xl mx-auto text-center grid lg:grid-cols-3 gap-y-10 sm:gap-y-16 text-gray-200 mt-8">
+          <div className="max-w-7xl mx-auto text-center grid lg:grid-cols-3 gap-y-10 sm:gap-y-16 text-gray-200 mt-8 -mt-2">
             {contact.representationCards.map((card) => {
               return (
                 <div key={card.title}>

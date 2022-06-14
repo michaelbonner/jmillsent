@@ -33,7 +33,7 @@ function News({ newsPage, newsItems }) {
               <div key={index}>
                 <NewsItemCard newsItem={newsItem} />
                 <div className="px-12">
-                  <DividerBar yMargin="my-8" />
+                  <DividerBar yMargin="my-12 lg:my-24" />
                 </div>
               </div>
             )

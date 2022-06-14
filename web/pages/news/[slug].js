@@ -9,19 +9,22 @@ import Link from 'next/link'
 import Image from 'next/image'
 import { PortableText } from '@portabletext/react'
 import urlForSanitySource from '../../lib/urlForSanitySource'
+import VideoPlayer from '@/components/video-player'
 
 const newsItemQuery = groq`
 *[_type == "newsItem" && slug.current == $slug][0]{
   _id,
   seoTitle,
   seoDescription,
-  description,
-  poster,
   heroImage,
+  poster,
   slug,
   title,
   date,
   body,
+  videoId,
+  videoHeightAspectRatio,
+  videoWidthAspectRatio,
 }
 `
 
@@ -30,10 +33,27 @@ const NewsItem = ({ newsItem = {} }) => {
     <>
       <Layout title={newsItem.seoTitle} description={newsItem.seoDescription}>
         <div className="mx-auto lg:max-w-7xl">
-          <img
-            alt={newsItem.seoTitle}
-            src={`${urlForSanitySource(newsItem.heroImage)}`}
-          />
+          {!newsItem.videoId && (
+            <Image
+              alt={newsItem.seoTitle}
+              src={`${urlForSanitySource(
+                newsItem.heroImage || newsItem.poster
+              )}?w=1440&h=600&auto=format&fit=crop&crop=focalpoint`}
+              height={600}
+              width={1440}
+            />
+          )}
+          {newsItem.videoId && (
+            <div className="border border-white py-8 px-8 container max-w-7xl mx-auto">
+              <VideoPlayer
+                poster={newsItem.heroImage}
+                title={newsItem.title}
+                videoId={newsItem.videoId}
+                videoHeightAspectRatio={newsItem.videoHeightAspectRatio}
+                videoWidthAspectRatio={newsItem.videoWidthAspectRatio}
+              />
+            </div>
+          )}
           <div className="mx-auto md:max-w-4xl xl:max-w-5xl">
             <div className="flex justify-center items-center px-10 gap-x-4 sm:gap-x-32 text-lg sm:text-3xl uppercase mt-4 lg:mt-10">
               <h1 className="font-extrabold justify-self-end text-right">
@@ -103,10 +123,9 @@ export async function getStaticProps({ params }) {
       *[_type == "newsItem"][!(_id in path('drafts.**'))]|order(order asc){
         _id,
         slug,
-        description,
         title,
-        poster,
         heroImage,
+        poster,
         date,
         body,
       }

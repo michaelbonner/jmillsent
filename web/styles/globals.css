@@ -107,3 +107,17 @@ header {
   @apply block;
   border: thin solid white !important;
 }
+
+.ril__toolbarItemChild {
+  @apply font-bold;
+  @apply text-2xl;
+  @apply tracking-wider;
+}
+
+.ril__captionContent {
+  width: 100%;
+  font-size: 16px;
+  background-color: black;
+  @apply !py-4;
+  @apply !px-8;
+}

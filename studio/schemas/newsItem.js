@@ -20,6 +20,11 @@ export default {
       name: 'slug',
       title: 'Slug',
       type: 'slug',
+      validation: (Rule) =>
+        Rule.required()
+          .min(4)
+          .max(100)
+          .error('A slug of min. 4 characters is required'),
       options: {
         source: 'title',
         maxLength: 100,

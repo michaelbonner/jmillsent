@@ -6,7 +6,7 @@ const H1 = ({ children, className = '' }) => {
     <h1
       className={classNames(
         className,
-        'uppercase font-extrabold text-3xl lg:text-7xl mb-2 lg:mb-4'
+        'uppercase font-extrabold text-2xl lg:text-7xl lg:mb-4'
       )}
     >
       {children}

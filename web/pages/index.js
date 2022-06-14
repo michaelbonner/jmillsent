@@ -37,13 +37,16 @@ function Home({ homePage }) {
 
       <DividerBar yMargin="my-16 lg:my-24" />
 
-      <div className="px-8 container mx-auto text-center uppercase -mt-1.5">
+      <div
+        className="px-8 container mx-auto text-center uppercase -mt-1.5"
+        id="section2"
+      >
         <H2>{homePage.section2Title}</H2>
         <p className="uppercase font-outline text-2xl lg:text-6xl">
           {homePage.section2Subtitle}
         </p>
       </div>
-      <div className="px-8 lg:px-4 mt-10">
+      <div className="px-8 lg:px-4 mt-10" id="featured">
         <div className="border border-white p-4 lg:py-8 lg:px-8 container mx-auto">
           <VideoPlayer
             poster={homePage.reelVideoPoster}

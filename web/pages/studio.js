@@ -113,7 +113,7 @@ function Studio({ studioPage }) {
         {/* Ternary to remove hero video & video player if no videoId found. */}
         {studioPage.tourVideoId && (
           <>
-            <div className="px-8 container mx-auto text-center">
+            <div className="px-8 container mx-auto text-center" id="tour">
               <H2>{studioPage.section2Title}</H2>
               <p className="uppercase font-outline text-xl lg:text-5xl">
                 {studioPage.section2Subtitle}
@@ -139,7 +139,7 @@ function Studio({ studioPage }) {
         )}
 
         {/* studioItems */}
-        <section>
+        <section id="studio-items">
           {studioPage.studioItems?.length > 0 && (
             <div className="grid gap-y-4 sm:gap-y-8 lg:gap-y-12 mt-10 max-w-7xl mx-auto">
               {studioPage.studioItems.map((service, index) => {

@@ -39,7 +39,7 @@ function About({ aboutPage }) {
   const heroContent = (
     <div className="h-full w-full text-white flex items-center justify-center">
       <div className="w-screen px-4 flex flex-col items-center justify-center text-center">
-        <H1>{aboutPage.title}</H1>
+        <H1 className="!text-2xl">{aboutPage.title}</H1>
         <h2 className="uppercase font-outline text-2xl lg:text-6xl">
           {aboutPage.subtitle}
         </h2>

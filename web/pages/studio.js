@@ -63,7 +63,7 @@ function Studio({ studioPage }) {
       caption: toPlainText(service.description),
       src: `${urlForSanitySource(
         service.image
-      )}?w=1246&h=600&auto=format&fit=crop&crop=focalpoint`,
+      )}?w=2400&h=1600&auto=format&fit=crop&crop=focalpoint`,
       title: service.title,
     }
   })

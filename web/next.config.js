@@ -189,6 +189,11 @@ module.exports = {
       { source: '/roster', destination: '/about', permanent: true },
       { source: '/sample-page', destination: '/', permanent: true },
       { source: '/services', destination: '/about', permanent: true },
+      {
+        source: '/work/lincoln-aviator',
+        destination: '/work/lincoln-sunday-drive',
+        permanent: true,
+      },
     ]
   },
 }

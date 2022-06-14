@@ -55,9 +55,7 @@ const NewsItem = ({ newsItem = {} }) => {
             </div>
           )}
           <div className="w-full max-w-5xl mx-auto px-8 flex justify-between items-center gap-x-4 sm:gap-x-32 text-lg sm:text-3xl uppercase">
-            <h1 className="font-extrabold justify-self-end text-right">
-              {newsItem.title}
-            </h1>
+            <h1 className="font-extrabold">{newsItem.title}</h1>
             <Date dateString={newsItem.date} />
           </div>
           <div className="w-full max-w-5xl mx-auto sm:px-8">

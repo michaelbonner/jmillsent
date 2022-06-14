@@ -1,4 +1,4 @@
-import { MdGridOn as icon } from 'react-icons/md';
+import { MdGridOn as icon } from 'react-icons/md'
 
 export default {
   name: 'workPage',
@@ -22,13 +22,23 @@ export default {
       type: 'array',
       of: [{ type: 'block' }],
     },
+    {
+      name: 'subscribeFormTitle',
+      title: 'Subscribe form title',
+      type: 'string',
+    },
+    {
+      name: 'mailchimpTagId',
+      title: 'Mailchimp Tag Id',
+      type: 'string',
+    },
   ],
   preview: {
     select: {},
     prepare(selection) {
       return {
         title: `Work Page`,
-      };
+      }
     },
   },
-};
+}

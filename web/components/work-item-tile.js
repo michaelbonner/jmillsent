@@ -8,7 +8,7 @@ const WorkItemTile = ({ workItem, index, hideAfterCount = 999 }) => {
   const [hasHovered, setHasHovered] = useState(false)
 
   return (
-    <Link href={`/work/${workItem.slug.current}`} key={workItem._id}>
+    <Link href={`/work/${workItem.slug?.current}`} key={workItem._id}>
       <a
         className={classNames(
           {

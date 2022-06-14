@@ -20,6 +20,7 @@ export default {
       name: 'slug',
       title: 'Slug',
       type: 'slug',
+      validation: (Rule) => Rule.required(),
       options: {
         source: 'title',
         maxLength: 100,
@@ -46,7 +47,7 @@ export default {
     {
       name: 'poster',
       title: 'Poster Image',
-      description: 'Poster image for news item on full news page.',
+      description: 'Poster image for news item on news page.',
       type: 'image',
       options: {
         hotspot: true,
@@ -55,7 +56,7 @@ export default {
     {
       name: 'heroImage',
       title: 'Hero Image',
-      description: 'Hero image on the individual news page.',
+      description: 'Hero image on the individual story page.',
       type: 'image',
       options: {
         hotspot: true,
@@ -70,6 +71,67 @@ export default {
           type: 'block',
         },
       ],
+    },
+    {
+      name: 'videoId',
+      title: 'Video ID',
+      type: 'string',
+      description:
+        'Enter the ID ( {{video_id}} ) of the video, not the whole url. https://player.vimeo.com/video/{{video_id}}?badge=0&autopause=0&player_id=0&app_id=58479',
+    },
+    {
+      name: 'videoWidthAspectRatio',
+      title: 'Video aspect ratio for width',
+      type: 'string',
+      description: 'What is the width of the aspect ratio',
+      options: {
+        list: [
+          '1',
+          '2',
+          '3',
+          '4',
+          '5',
+          '6',
+          '7',
+          '8',
+          '9',
+          '10',
+          '11',
+          '12',
+          '13',
+          '14',
+          '15',
+          '16',
+        ],
+        layout: 'dropdown',
+      },
+    },
+    {
+      name: 'videoHeightAspectRatio',
+      title: 'Video aspect ratio for height',
+      type: 'string',
+      description: 'What is the height of the aspect ratio',
+      options: {
+        list: [
+          '1',
+          '2',
+          '3',
+          '4',
+          '5',
+          '6',
+          '7',
+          '8',
+          '9',
+          '10',
+          '11',
+          '12',
+          '13',
+          '14',
+          '15',
+          '16',
+        ],
+        layout: 'dropdown',
+      },
     },
     {
       name: 'order',

@@ -1,56 +1,61 @@
-import { MdEmail as icon } from "react-icons/md";
+import { MdEmail as icon } from 'react-icons/md'
 
 export default {
-  name: "contactPage",
-  title: "Contact Page",
-  type: "document",
+  name: 'contactPage',
+  title: 'Contact Page',
+  type: 'document',
   icon,
   fields: [
     {
-      name: "title",
-      title: "Title",
-      type: "string",
+      name: 'title',
+      title: 'Title',
+      type: 'string',
     },
     {
-      name: "slug",
-      title: "Slug",
-      type: "slug",
+      name: 'slug',
+      title: 'Slug',
+      type: 'slug',
       options: {
-        source: "title",
+        source: 'title',
         maxLength: 100,
       },
     },
     {
-      name: "seoTitle",
-      title: "Seo title",
-      type: "string",
+      name: 'seoTitle',
+      title: 'Seo title',
+      type: 'string',
     },
     {
-      name: "seoDescription",
-      title: "Seo description",
-      type: "text",
+      name: 'seoDescription',
+      title: 'Seo description',
+      type: 'text',
     },
     {
-      name: "backgroundImage",
-      title: "Background image",
-      type: "image",
+      name: 'backgroundImage',
+      title: 'Background image',
+      type: 'image',
       options: {
         hotspot: true,
       },
     },
     {
-      name: "representationTitle",
-      title: "Representation title",
-      type: "string",
+      name: 'representationTitle',
+      title: 'Representation title',
+      type: 'string',
     },
     {
-      name: "representationCards",
-      title: "Representation cards",
-      type: "array",
-      of: [{ type: "representationCard" }],
+      name: 'representationCards',
+      title: 'Representation cards',
+      type: 'array',
+      of: [{ type: 'representationCard' }],
+    },
+    {
+      name: 'subscribeFormTitle',
+      title: 'Subscribe form title',
+      type: 'string',
     },
   ],
   preview: {
-    select: { title: "title", media: "backgroundImage" },
+    select: { title: 'title', media: 'backgroundImage' },
   },
-};
+}

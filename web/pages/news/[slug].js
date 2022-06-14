@@ -7,59 +7,90 @@ import Date from '@/components/date'
 import LargeGoldBar from '@/components/large-gold-bar'
 import Link from 'next/link'
 import Image from 'next/image'
-import BlockContent from '@sanity/block-content-to-react'
+import { PortableText } from '@portabletext/react'
 import urlForSanitySource from '../../lib/urlForSanitySource'
+import VideoPlayer from '@/components/video-player'
 
 const newsItemQuery = groq`
 *[_type == "newsItem" && slug.current == $slug][0]{
   _id,
   seoTitle,
   seoDescription,
-  description,
-  poster,
   heroImage,
+  poster,
   slug,
   title,
   date,
   body,
+  videoId,
+  videoHeightAspectRatio,
+  videoWidthAspectRatio,
 }
 `
 
 const NewsItem = ({ newsItem = {} }) => {
   return (
-    <Layout title={newsItem.seoTitle} description={newsItem.seoDescription}>
-      <div className="mx-auto lg:max-w-7xl">
-        <img
-          alt={newsItem.seoTitle}
-          src={`${urlForSanitySource(newsItem.heroImage)}`}
-        />
-        <div className="flex justify-between px-8 text-lg sm:text-3xl uppercase mt-4 lg:mt-10">
-          <h1 className="font-extrabold justify-self-end text-right">
-            {newsItem.title}
-          </h1>
-          <Date dateString={newsItem.date} />
-        </div>
-        <LargeGoldBar yMargin="my-4" />
-        {newsItem.body && (
-          <div className="text-center px-8 -mb-2 lg:max-w-7xl prose-lg">
-            <BlockContent blocks={newsItem.body} />
-          </div>
-        )}
-        <div className="mt-10 px-24">
-          <Link href="/news">
-            <a className="flex justify-center transform transition-all hover:translate-x-1">
-              <Image
-                alt="Read Full Story"
-                height="65"
-                src="/images/JME-more-news-link.svg"
-                width="300"
+    <>
+      <Layout title={newsItem.seoTitle} description={newsItem.seoDescription}>
+        <div className="mx-auto lg:max-w-7xl">
+          {!newsItem.videoId && (
+            <Image
+              alt={newsItem.seoTitle}
+              src={`${urlForSanitySource(
+                newsItem.heroImage || newsItem.poster
+              )}?w=1440&h=600&auto=format&fit=crop&crop=focalpoint`}
+              height={600}
+              width={1440}
+            />
+          )}
+          {newsItem.videoId && (
+            <div className="border border-white py-8 px-8 container max-w-7xl mx-auto">
+              <VideoPlayer
+                poster={newsItem.heroImage}
+                title={newsItem.title}
+                videoId={newsItem.videoId}
+                videoHeightAspectRatio={newsItem.videoHeightAspectRatio}
+                videoWidthAspectRatio={newsItem.videoWidthAspectRatio}
               />
-            </a>
-          </Link>
+            </div>
+          )}
+          <div className="mx-auto md:max-w-4xl xl:max-w-5xl">
+            <div className="flex justify-center items-center px-10 gap-x-4 sm:gap-x-32 text-lg sm:text-3xl uppercase mt-4 lg:mt-10">
+              <h1 className="font-extrabold justify-self-end text-right">
+                {newsItem.title}
+              </h1>
+              <Date dateString={newsItem.date} />
+            </div>
+            <LargeGoldBar yMargin="my-4" />
+            {newsItem.body && (
+              <div className="text-center px-8 sm:px-12 -mb-2 prose-lg">
+                <PortableText value={newsItem.body} />
+              </div>
+            )}
+          </div>
+          <div className="mt-10">
+            <div className="text-center">
+              <Link href="/news">
+                <a className="inline-flex gap-3 items-center justify-center px-3 py-1 mt-4 text-2xl uppercase hover:bg-gold transition-colors border-2 border-gray-300 group">
+                  <span className="font-outline tracking-tighter text-gray-300 group-hover:text-black">
+                    More
+                  </span>
+
+                  <span className="font-bold tracking-wide group-hover:text-black">
+                    News
+                  </span>
+
+                  <span className="font-outline tracking-tighter text-gray-300 group-hover:text-black">
+                    Stories
+                  </span>
+                </a>
+              </Link>
+            </div>
+          </div>
         </div>
-      </div>
-      <MediumWhiteBar yMargin="mb-8 mt-12 lg:mt-24" />
-    </Layout>
+        <MediumWhiteBar yMargin="mb-8 mt-12 lg:mt-24" />
+      </Layout>
+    </>
   )
 }
 
@@ -73,7 +104,7 @@ export async function getStaticPaths() {
   return {
     paths: paths
       .filter((path) => {
-        return path
+        return path?.slug?.current
       })
       .map((path) => {
         return { params: { slug: path.slug.current } }
@@ -92,10 +123,9 @@ export async function getStaticProps({ params }) {
       *[_type == "newsItem"][!(_id in path('drafts.**'))]|order(order asc){
         _id,
         slug,
-        description,
         title,
-        poster,
         heroImage,
+        poster,
         date,
         body,
       }

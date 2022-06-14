@@ -1,9 +1,10 @@
 import BackgroundText from '@/components/background-text-section'
+import DividerBar from '@/components/divider-bar'
 import { H1, H2 } from '@/components/headings'
 import Layout from '@/components/layout'
 import MediumWhiteBar from '@/components/medium-white-bar'
 import VideoPlayer from '@/components/video-player'
-import BlockContent from '@sanity/block-content-to-react'
+import { PortableText } from '@portabletext/react'
 import groq from 'groq'
 import Image from 'next/image'
 import { Link as SmoothScrollLink } from 'react-scroll'
@@ -27,12 +28,24 @@ function Studio({ studioPage }) {
           offset={-100}
           duration={500}
         >
-          <Image
-            alt="Play Studio Tour"
-            height="65"
-            src="/images/JME-studio-tour-link.svg"
-            width="300"
-          />
+          <div className="inline-block">
+            <div
+              className="flex gap-4 items-center justify-center px-3 py-2 mt-4 sm:mt-10 uppercase hover:bg-gold transition-colors border-2 border-white text-2xl lg:text-3xl group"
+              target="_blank"
+            >
+              <span className="font-outline tracking-tighter text-gray-300 group-hover:text-black">
+                Play
+              </span>
+
+              <span className="font-bold tracking-wide group-hover:text-black">
+                Studio
+              </span>
+
+              <span className="font-outline tracking-tighter text-gray-300 group-hover:text-black">
+                Tour
+              </span>
+            </div>
+          </div>
         </SmoothScrollLink>
       )}
     </div>
@@ -48,15 +61,15 @@ function Studio({ studioPage }) {
       heroVideoHeightInPixels={studioPage.headerVideoHeightInPixels}
       heroVideoWidthInPixels={studioPage.headerVideoWidthInPixels}
     >
-      <div className="container px-4 sm:px-6 lg:mx-auto text-white text-center mt-12 lg:mt-24">
+      <div className="container px-4 sm:px-6 mx-auto text-white text-center mt-12 lg:mt-24">
         <H2>{studioPage.section1Title}</H2>
         {studioPage.section1Body && (
           <div className="mt-4 lg:mt-10 px-4 prose-lg max-w-5xl text-center mx-auto -mb-2">
-            <BlockContent blocks={studioPage.section1Body} />
+            <PortableText value={studioPage.section1Body} />
           </div>
         )}
-        <MediumWhiteBar yMargin="my-12 lg:my-24" />
-        <div className="px-8 container lg:mx-auto text-center uppercase -mt-1.5">
+        <DividerBar />
+        <div className="px-8 container mx-auto text-center uppercase -mt-1.5">
           <H2>{studioPage.section3Title}</H2>
           <p className="uppercase font-outline text-xl lg:text-5xl leading-4">
             {studioPage.section3Subtitle}
@@ -66,7 +79,7 @@ function Studio({ studioPage }) {
         {/* Ternary to remove hero video & video player if no videoId found. */}
         {studioPage.tourVideoId && (
           <>
-            <div className="px-8 container lg:mx-auto text-center">
+            <div className="px-8 container mx-auto text-center">
               <H2>{studioPage.section2Title}</H2>
               <p className="uppercase font-outline text-xl lg:text-5xl">
                 {studioPage.section2Subtitle}
@@ -74,7 +87,7 @@ function Studio({ studioPage }) {
             </div>
             <div
               id="tour"
-              className="border border-white mt-4 lg:mt-10 py-8 px-8 container max-w-7xl lg:mx-auto"
+              className="border border-white mt-4 lg:mt-10 p-4 lg:p-8 container max-w-7xl mx-auto"
             >
               <VideoPlayer
                 poster={studioPage.tourVideoPoster}
@@ -87,7 +100,7 @@ function Studio({ studioPage }) {
                 autoPlay={true}
               />
             </div>
-            <MediumWhiteBar yMargin="my-12 lg:my-24" />
+            <DividerBar />
           </>
         )}
 
@@ -103,7 +116,7 @@ function Studio({ studioPage }) {
                     image={service.image}
                     imageAlt={service.title}
                     title={service.title}
-                    // description={service.description}
+                    description={service.description}
                     key={service._id}
                   />
                 )

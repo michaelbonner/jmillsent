@@ -1,9 +1,9 @@
-import Layout from '@/components/layout'
+import DividerBar from '@/components/divider-bar'
 import { H1 } from '@/components/headings'
-import groq from 'groq'
-import { getClient } from '@/lib/sanity'
+import Layout from '@/components/layout'
 import NewsItemCard from '@/components/news-item-card'
-import MediumWhiteBar from '@/components/medium-white-bar'
+import { getClient } from '@/lib/sanity'
+import groq from 'groq'
 
 function News({ newsPage, newsItems }) {
   const heroContent = (
@@ -26,14 +26,20 @@ function News({ newsPage, newsItems }) {
       heroVideoHeightInPixels={newsPage.posterHeightInPixels}
       heroVideoWidthInPixels={newsPage.posterWidthInPixels}
     >
-      <div className="max-w-7xl mt-12 mx-auto">
+      <div className="max-w-7xl mt-12 mx-auto pb-8">
         <div className="flex flex-col items-center">
           {newsItems.map((newsItem, index) => {
-            return <NewsItemCard newsItem={newsItem} key={index} />
+            return (
+              <div key={index}>
+                <NewsItemCard newsItem={newsItem} />
+                <div className="px-12">
+                  <DividerBar yMargin="my-12 lg:my-24" />
+                </div>
+              </div>
+            )
           })}
         </div>
       </div>
-      <MediumWhiteBar yMargin="mb-8 mt-12 lg:mt-24" />
     </Layout>
   )
 }

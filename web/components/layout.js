@@ -235,21 +235,35 @@ const Layout = ({
               hidden: !menuVisible,
             },
             'w-full transition-all ease-in delay-500 duration-300',
-            'z-50 flex justify-between items-center overflow-visible text-white py-4 px-6'
+            'z-50 flex justify-between items-start overflow-visible text-white py-4 px-6'
           )}
         >
-          <Link href={`/`}>
-            <a>
-              <Image
-                alt="JMills Logo"
-                src="/images/jme_film_co_x_white.png"
-                width={Math.floor(192 * 0.6)}
-                height={Math.floor(150 * 0.6)}
-              />
-            </a>
-          </Link>
+          <div className="hidden lg:flex">
+            <Link href={`/`}>
+              <a>
+                <Image
+                  alt="JMills Logo"
+                  src="/images/jme_film_co_x_white.png"
+                  width={Math.floor(192 * 0.5)}
+                  height={Math.floor(150 * 0.5)}
+                />
+              </a>
+            </Link>
+          </div>
+          <div className="flex lg:hidden">
+            <Link href={`/`}>
+              <a>
+                <Image
+                  alt="JMills Logo"
+                  src="/images/jme_x_white.png"
+                  width={Math.floor(256 * 0.3)}
+                  height={Math.floor(141 * 0.3)}
+                />
+              </a>
+            </Link>
+          </div>
           <button
-            className="w-12 h-8 focus:outline-none absolute top-8 right-6"
+            className="w-12 h-8 focus:outline-none absolute top-5 lg:top-10 right-6"
             onClick={() => toggleMenu(!menuOpen)}
             aria-label="Close menu"
           >
@@ -325,14 +339,26 @@ const Layout = ({
 
       <header className="overflow-hidden">
         <div className="relative flex items-center justify-between py-4 px-6 z-10 bg-black">
-          <div>
+          <div className="hidden lg:flex">
             <Link href={`/`}>
               <a className="flex items-center">
                 <Image
                   alt="JMills Logo"
                   src="/images/jme_film_co_x_white.png"
-                  width={Math.floor(202 * 0.6)}
-                  height={Math.floor(158 * 0.6)}
+                  width={Math.floor(202 * 0.5)}
+                  height={Math.floor(158 * 0.5)}
+                />
+              </a>
+            </Link>
+          </div>
+          <div className="flex lg:hidden">
+            <Link className="hidden lg:flex" href={`/`}>
+              <a className="flex items-center">
+                <Image
+                  alt="JMills Logo"
+                  src="/images/jme_x_white.png"
+                  width={Math.floor(256 * 0.3)}
+                  height={Math.floor(141 * 0.3)}
                 />
               </a>
             </Link>

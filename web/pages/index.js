@@ -7,7 +7,6 @@ import { getClient } from '@/lib/sanity'
 import { PortableText } from '@portabletext/react'
 import groq from 'groq'
 import Image from 'next/image'
-import footerGraphic from '../public/images/JME-film-prod-co-white.svg'
 
 function Home({ homePage }) {
   const heroContent = (
@@ -59,7 +58,12 @@ function Home({ homePage }) {
         </div>
       </div>
       <div className="mx-auto -mb-5 px-12 w-full max-w-md lg:max-w-xl mt-12 lg:mt-24">
-        <Image src={footerGraphic} alt="JME Film Production Company" />
+        <Image
+          alt="JME Film Production Company"
+          height={202}
+          src={`/images/JME-film-prod-co-white.svg`}
+          width={600}
+        />
       </div>
       <MediumWhiteBar yMargin="mb-8 mt-12 lg:mt-24" />
     </Layout>

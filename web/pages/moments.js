@@ -8,9 +8,10 @@ import shuffle from 'just-shuffle'
 import Image from 'next/image'
 import { useEffect, useState } from 'react'
 import Lightbox from 'react-image-lightbox'
-import 'react-image-lightbox/style.css'
 import useWindowSize from '../hooks/useWindowSize'
 import { getClient } from '../lib/sanity'
+
+import 'react-image-lightbox/style.css'
 
 function Moments({ momentsPage }) {
   const [isGalleryModelOpen, setIsGalleryModelOpen] = useState(false)

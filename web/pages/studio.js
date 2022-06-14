@@ -4,13 +4,20 @@ import { H1, H2 } from '@/components/headings'
 import Layout from '@/components/layout'
 import MediumWhiteBar from '@/components/medium-white-bar'
 import VideoPlayer from '@/components/video-player'
-import { PortableText } from '@portabletext/react'
+import { PortableText, toPlainText } from '@portabletext/react'
 import groq from 'groq'
-import Image from 'next/image'
+import { useState } from 'react'
+import Lightbox from 'react-image-lightbox'
 import { Link as SmoothScrollLink } from 'react-scroll'
 import { getClient } from '../lib/sanity'
 
+import 'react-image-lightbox/style.css'
+import urlForSanitySource from '@/lib/urlForSanitySource'
+
 function Studio({ studioPage }) {
+  const [isLightBoxOpen, setIsLightBoxOpen] = useState(false)
+  const [photoIndex, setPhotoIndex] = useState(0)
+
   const heroContent = (
     <div className="h-full w-full flex flex-col lg:gap-y-4 items-center justify-around text-white">
       <div className="flex flex-col lg:mt-12 items-center justify-center">
@@ -51,6 +58,16 @@ function Studio({ studioPage }) {
     </div>
   )
 
+  const images = studioPage.studioItems.map((service) => {
+    return {
+      caption: toPlainText(service.description),
+      src: `${urlForSanitySource(
+        service.image
+      )}?w=1246&h=600&auto=format&fit=crop&crop=focalpoint`,
+      title: service.title,
+    }
+  })
+
   return (
     <Layout
       title={studioPage.seoTitle}
@@ -61,6 +78,23 @@ function Studio({ studioPage }) {
       heroVideoHeightInPixels={studioPage.headerVideoHeightInPixels}
       heroVideoWidthInPixels={studioPage.headerVideoWidthInPixels}
     >
+      {isLightBoxOpen && (
+        <Lightbox
+          imageCaption={images[photoIndex].caption}
+          imageTitle={images[photoIndex].title}
+          mainSrc={images[photoIndex].src}
+          nextSrc={images[(photoIndex + 1) % images.length].src}
+          prevSrc={images[(photoIndex + images.length - 1) % images.length].src}
+          onCloseRequest={() => setIsLightBoxOpen(false)}
+          onMovePrevRequest={() =>
+            setPhotoIndex((photoIndex + images.length - 1) % images.length)
+          }
+          onMoveNextRequest={() =>
+            setPhotoIndex((photoIndex + 1) % images.length)
+          }
+        />
+      )}
+
       <div className="container px-4 sm:px-6 mx-auto text-white text-center mt-12 lg:mt-24">
         <H2>{studioPage.section1Title}</H2>
         {studioPage.section1Body && (
@@ -111,14 +145,22 @@ function Studio({ studioPage }) {
               {studioPage.studioItems.map((service, index) => {
                 const leftOrRight = service.rightAlign ? 'right' : 'left'
                 return (
-                  <BackgroundText
-                    leftOrRight={leftOrRight}
-                    image={service.image}
-                    imageAlt={service.title}
-                    title={service.title}
-                    description={service.description}
+                  <button
+                    onClick={() => {
+                      setIsLightBoxOpen(true)
+                      setPhotoIndex(index)
+                    }}
+                    type="button"
                     key={service._id}
-                  />
+                  >
+                    <BackgroundText
+                      leftOrRight={leftOrRight}
+                      image={service.image}
+                      imageAlt={service.title}
+                      title={service.title}
+                      description={service.description}
+                    />
+                  </button>
                 )
               })}
             </div>

@@ -9,7 +9,10 @@ const NewsItemCard = ({ newsItem }) => {
     <>
       <div className="z-10 w-full lg:max-w-2xl xl:max-w-4xl">
         <Link href={`/news/${newsItem.slug?.current}`} key={newsItem._id}>
-          <a key={newsItem._id}>
+          <a
+            key={newsItem._id}
+            className="w-full px-12 lg:px-0 flex items-center justify-center"
+          >
             <Image
               alt={newsItem.seoTitle}
               src={`${urlForSanitySource(

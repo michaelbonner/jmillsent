@@ -64,7 +64,7 @@ function Studio({ studioPage }) {
       src: `${urlForSanitySource(
         service.image
       )}?w=2400&h=1600&auto=format&fit=crop&crop=focalpoint`,
-      title: service.title,
+      title: service.title.toUpperCase(),
     }
   })
 

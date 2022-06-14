@@ -58,7 +58,7 @@ const Layout = ({
   const [videoPlaying, setVideoPlaying] = useState(false)
   const { width: windowWidth, height: windowHeight } = useWindowSize()
   const heroContainerRef = React.createRef()
-  const [heroVideoHeight, setHeroVideoHeight] = useState('70vh')
+  const [heroVideoHeight, setHeroVideoHeight] = useState('30vh')
   const [heroVideoWidth, setHeroVideoWidth] = useState('100vw')
 
   const toggleMenu = () => {

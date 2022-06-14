@@ -73,7 +73,7 @@ function About({ aboutPage }) {
             {aboutPage.reelVideoSectionSubtitle}
           </p>
         </div>
-        <div className="mt-4 lg:mt-10">
+        <div className="mt-4 lg:mt-10" id="reel">
           <div className="border border-white p-4 lg:p-8 container mx-auto">
             <VideoPlayer
               poster={aboutPage.reelVideoPoster}
@@ -91,7 +91,7 @@ function About({ aboutPage }) {
         <DividerBar />
 
         {/* services */}
-        <section className="-mt-1.5">
+        <section className="-mt-1.5" id="services">
           <div className="px-8 container mx-auto text-center">
             <H2>{aboutPage.section2Title}</H2>
             <p className="uppercase font-outline text-xl lg:text-5xl -mt-1.5">
@@ -121,7 +121,7 @@ function About({ aboutPage }) {
         <DividerBar />
 
         {/* company 3 */}
-        <section className="-mt-1.5">
+        <section className="-mt-1.5" id="company3">
           <H3>{aboutPage.company3Title}</H3>
           {aboutPage.company3Body && (
             <div className="px-4 prose-lg max-w-3xl text-center mx-auto text-white">
@@ -175,7 +175,10 @@ function About({ aboutPage }) {
       </div>
 
       {/* director section */}
-      <section className="grid grid-cols-1 lg:grid-cols-3 max-w-7xl mx-auto items-center px-4">
+      <section
+        className="grid grid-cols-1 lg:grid-cols-3 max-w-7xl mx-auto items-center px-4"
+        id="director"
+      >
         <div className="w-1/2 lg:w-full mx-auto">
           <SanityImage
             image={aboutPage.directorImage}
@@ -219,7 +222,7 @@ function About({ aboutPage }) {
       </div>
 
       {/* team section */}
-      <section className="max-w-7xl mx-auto text-center px-4 -mt-1.5">
+      <section className="max-w-7xl mx-auto text-center px-4 -mt-1.5" id="team">
         <H3>MEET THE WORLD CLASS</H3>
         <p className="max-w-max py-2 px-6 mx-auto font-outline text-5xl">
           JME TEAM
@@ -284,7 +287,10 @@ function About({ aboutPage }) {
           }
         />
       )}
-      <section className="max-w-7xl mx-auto text-center px-4 -mt-1.5">
+      <section
+        className="max-w-7xl mx-auto text-center px-4 -mt-1.5"
+        id="locations"
+      >
         <H2>{aboutPage.utahLocationsTitle}</H2>
         {aboutPage.utahLocationsDescription && (
           <div className="px-4 prose-lg max-w-3xl text-center mx-auto">
@@ -321,7 +327,10 @@ function About({ aboutPage }) {
       </div>
 
       {/* ravens */}
-      <section className="max-w-7xl mx-auto text-center px-4 -mt-1.5">
+      <section
+        className="max-w-7xl mx-auto text-center px-4 -mt-1.5"
+        id="ravens"
+      >
         <H2>{aboutPage.ravensCardsTitle}</H2>
         <p className="text-2xl lg:text-4xl font-outline">
           {aboutPage.ravensCardsSubtitle}
@@ -411,7 +420,10 @@ function About({ aboutPage }) {
       </div>
 
       {/* trusted by */}
-      <section className="max-w-7xl mx-auto text-center px-4 -mt-1.5">
+      <section
+        className="max-w-7xl mx-auto text-center px-4 -mt-1.5"
+        id="brands"
+      >
         <H3>Trusted By the Following</H3>
         <LittleWhiteBar yMargin="my-4 lg:my-10" />
         <div className="grid grid-cols-4 xl:grid-cols-5 gap-6 lg:gap-20 items-center px-4">

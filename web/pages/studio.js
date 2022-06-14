@@ -19,10 +19,10 @@ function Studio({ studioPage }) {
   const [photoIndex, setPhotoIndex] = useState(0)
 
   const heroContent = (
-    <div className="h-full w-full flex flex-col lg:gap-y-4 items-center justify-around text-white">
-      <div className="flex flex-col lg:mt-12 items-center justify-center">
-        <H1>{studioPage.title}</H1>
-        <h2 className="uppercase font-outline text-2xl lg:text-6xl">
+    <div className="h-full w-full grid lg:gap-y-4 items-center text-white">
+      <div className="grid text-center lg:mt-16 items-center justify-center pt-4">
+        <H1 className="mb-0">{studioPage.title}</H1>
+        <h2 className="uppercase font-outline text-3xl lg:text-7xl">
           {studioPage.subtitle}
         </h2>
       </div>
@@ -30,14 +30,14 @@ function Studio({ studioPage }) {
       {studioPage.tourVideoId && (
         <SmoothScrollLink
           to="tour"
-          className="flex justify-center cursor-pointer w-1/3 lg:w-full"
+          className="flex justify-center cursor-pointer lg:w-full mx-auto"
           smooth={true}
           offset={-100}
           duration={500}
         >
           <div className="inline-block">
             <div
-              className="flex gap-4 items-center justify-center px-3 py-2 mt-4 sm:mt-10 uppercase hover:bg-gold transition-colors border-2 border-white text-2xl lg:text-3xl group"
+              className="flex gap-4 items-center justify-center px-2 sm:px-3 py-1 sm:py-2 sm:mt-10 uppercase hover:bg-gold transition-colors border-2 border-white text-xl lg:text-3xl group"
               target="_blank"
             >
               <span className="font-outline tracking-tighter text-gray-300 group-hover:text-black">
@@ -64,7 +64,7 @@ function Studio({ studioPage }) {
       src: `${urlForSanitySource(
         service.image
       )}?w=2400&h=1600&auto=format&fit=crop&crop=focalpoint`,
-      title: service.title,
+      title: service.title.toUpperCase(),
     }
   })
 
@@ -113,7 +113,7 @@ function Studio({ studioPage }) {
         {/* Ternary to remove hero video & video player if no videoId found. */}
         {studioPage.tourVideoId && (
           <>
-            <div className="px-8 container mx-auto text-center">
+            <div className="px-8 container mx-auto text-center" id="tour">
               <H2>{studioPage.section2Title}</H2>
               <p className="uppercase font-outline text-xl lg:text-5xl">
                 {studioPage.section2Subtitle}
@@ -139,9 +139,9 @@ function Studio({ studioPage }) {
         )}
 
         {/* studioItems */}
-        <section>
+        <section id="studio-items">
           {studioPage.studioItems?.length > 0 && (
-            <div className="grid grid-cols-1 gap-y-4 sm:gap-y-8 lg:gap-y-12 mt-10 max-w-7xl mx-auto">
+            <div className="grid gap-y-4 sm:gap-y-8 lg:gap-y-12 mt-10 max-w-7xl mx-auto">
               {studioPage.studioItems.map((service, index) => {
                 const leftOrRight = service.rightAlign ? 'right' : 'left'
                 return (

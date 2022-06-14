@@ -42,10 +42,10 @@ const BackgroundText = ({
           className={`lg:absolute w-full ${styles[leftOrRight].containerPosition} top-0 bottom-0 h-full ${styles[leftOrRight].gradientDirection} from-black to-transparent opacity-70 group-hover:opacity-80 transition-all duration-500`}
         />
         <div
-          className={`lg:absolute ${styles[leftOrRight].containerPosition} top-0 bottom-0 ${styles[leftOrRight].textAlign} flex flex-col justify-center items-start gap-y-2`}
+          className={`lg:absolute ${styles[leftOrRight].containerPosition} top-0 bottom-0 ${styles[leftOrRight].textAlign} flex flex-col justify-center items-start sm:gap-y-2`}
         >
           <H3
-            className={`${titleStyle} inline mt-6 w-full uppercase text-center mb-0`}
+            className={`${titleStyle} inline !mt-3 w-full uppercase text-center !mb-0 py-1`}
           >
             {title}
           </H3>
@@ -54,7 +54,7 @@ const BackgroundText = ({
               <div className={`${styles[leftOrRight].barPosition}`}>
                 <LittleGoldBar />
               </div>
-              <div className="max-w-lg prose-lg mx-auto text-white font-light leading-normal mt-2.5">
+              <div className="max-w-lg prose-lg mx-auto text-white font-light leading-normal mt-1.5">
                 <PortableText value={description} />
               </div>
             </>

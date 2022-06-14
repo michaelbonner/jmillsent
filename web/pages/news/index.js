@@ -1,5 +1,5 @@
 import DividerBar from '@/components/divider-bar'
-import { H1 } from '@/components/headings'
+import { H1, H2 } from '@/components/headings'
 import Layout from '@/components/layout'
 import NewsItemCard from '@/components/news-item-card'
 import { getClient } from '@/lib/sanity'
@@ -8,12 +8,12 @@ import { Fragment } from 'react'
 
 function News({ newsPage, newsItems }) {
   const heroContent = (
-    <div className="mb-10 -my-2 sm:my-10 w-full text-white flex items-center justify-center">
+    <div className="sm:mb-10 -my-2 sm:my-10 w-full text-white flex items-center justify-center">
       <div className="w-screen px-4 flex flex-col items-center justify-center text-center">
         <H1>{newsPage.seoTitle}</H1>
-        <h2 className="uppercase font-outline sm:text-2xl lg:text-5xl">
+        <H2 className="uppercase font-outline sm:text-2xl lg:text-5xl">
           {newsPage.seoDescription}
-        </h2>
+        </H2>
       </div>
     </div>
   )

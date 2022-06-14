@@ -8,7 +8,7 @@ const NewsItemCard = ({ newsItem }) => {
   return (
     <>
       <div className="z-10 w-full lg:max-w-2xl xl:max-w-4xl">
-        <Link href={`/news/${newsItem.slug.current}`} key={newsItem._id}>
+        <Link href={`/news/${newsItem.slug?.current}`} key={newsItem._id}>
           <a key={newsItem._id}>
             <Image
               alt={newsItem.seoTitle}
@@ -32,7 +32,7 @@ const NewsItemCard = ({ newsItem }) => {
         </div>
 
         <div className="text-center mt-2">
-          <Link href={`/news/${newsItem.slug.current}`} key={newsItem._id}>
+          <Link href={`/news/${newsItem.slug?.current}`} key={newsItem._id}>
             <a className="inline-flex gap-3 items-center justify-center px-3 py-1 mt-4 text-2xl uppercase hover:bg-gold transition-colors border-2 border-gray-300 group">
               <span className="font-outline tracking-tighter text-gray-300 group-hover:text-black">
                 Read

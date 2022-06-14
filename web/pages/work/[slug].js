@@ -224,7 +224,7 @@ export async function getStaticPaths() {
   return {
     paths: paths
       .filter((path) => {
-        return path
+        return path?.slug?.current
       })
       .map((path) => {
         return { params: { slug: path.slug.current } }

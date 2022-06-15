@@ -114,15 +114,30 @@ header {
   @apply px-4;
   @apply bg-black;
   @apply bg-opacity-70;
-  height: 70px;
+  height: 80px;
+}
+
+.ril-outer .ril__toolbarItem,
+.ril-outer .ril__toolbarSide {
+  @apply h-full;
 }
 
 .ril-outer .ril__toolbarItemChild {
   @apply font-bold;
   @apply text-2xl;
   @apply tracking-wider;
-  @apply border-b-2;
-  @apply border-gold;
+  @apply relative;
+}
+
+.ril-outer .ril-toolbar-left .ril__toolbarItemChild:after {
+  content: '';
+  @apply bg-gold;
+  @apply h-1;
+  @apply absolute;
+  @apply -bottom-2;
+  @apply left-0;
+  @apply right-16;
+  min-width: 60px;
 }
 
 .ril-outer .ril__caption {

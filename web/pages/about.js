@@ -89,7 +89,97 @@ function About({ aboutPage }) {
           </div>
         </div>
 
-        <DividerBar />
+        <div className="px-8">
+          <DividerBar />
+        </div>
+
+        {/* director section */}
+        <section
+          className="grid max-w-7xl mx-auto items-center px-8 gap-y-10 text-center"
+          id="director"
+        >
+          <div>
+            <p className="text-4xl lg:text-5xl font-bold">
+              {aboutPage.directorName}
+            </p>
+            <p className="font-outline uppercase text-4xl lg:text-5xl mt-8 lg:mt-4">
+              {aboutPage.directorTitle}
+            </p>
+          </div>
+          {aboutPage.directorDescription && (
+            <div className="px-4 prose-lg mx-auto max-w-5xl">
+              <PortableText value={aboutPage.directorDescription} />
+            </div>
+          )}
+          <div className="py-4 px-6 border border-white">
+            <SanityImage
+              image={aboutPage.directorImage}
+              alt={aboutPage.directorName}
+            />
+          </div>
+          <div className="flex justify-center">
+            <Link href="https://jeremymillerdirector.com/">
+              <a
+                className="flex gap-4 items-center justify-center px-3 py-2 uppercase hover:bg-gold transition-colors border-2 border-white group"
+                target="_blank"
+              >
+                <span className="text-2xl lg:text-3xl font-outline tracking-tighter text-gray-300 group-hover:text-black">
+                  View
+                </span>
+                <span className="text-2xl lg:text-3xl font-bold tracking-wide group-hover:text-black">
+                  Director&apos;s
+                </span>
+                <span className="text-2xl lg:text-3xl font-outline tracking-tighter text-gray-300 group-hover:text-black">
+                  Site
+                </span>
+              </a>
+            </Link>
+          </div>
+        </section>
+        {/* end: director section */}
+
+        <div className="px-8">
+          <DividerBar />
+        </div>
+
+        {/* team section */}
+        <section
+          className="max-w-7xl mx-auto text-center px-4 -mt-1.5"
+          id="team"
+        >
+          <H2>MEET THE TEAM</H2>
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8 lg:gap-12 mt-10 px-8">
+            {aboutPage.teamMembers.map((teamMember) => {
+              const width = isDesktop ? 400 : 200
+              const height = isDesktop ? 644 : 250
+              return (
+                <div key={teamMember._id}>
+                  <Image
+                    src={urlForSanitySource(teamMember.image)
+                      .width(width)
+                      .height(height)
+                      .url()}
+                    height={height}
+                    width={width}
+                    alt={teamMember.name}
+                  />
+                  <p className="mt-4 uppercase font-extrabold text-xl lg:text-2xl">
+                    {teamMember.name}
+                  </p>
+                  <LittleWhiteBar yMargin={'my-2'} />
+                  <p className="uppercase font-outline text-2xl">
+                    {teamMember.title}
+                  </p>
+                </div>
+              )
+            })}
+          </div>
+        </section>
+        {/* end: team section */}
+
+        <div className="px-8">
+          <DividerBar />
+        </div>
 
         {/* services */}
         <section className="-mt-1.5" id="services">
@@ -120,6 +210,70 @@ function About({ aboutPage }) {
         {/* end: services */}
 
         <DividerBar />
+
+        {/* utah locations */}
+        {isGalleryModelOpen && (
+          <Lightbox
+            mainSrc={utahLocationsImages[photoIndex]}
+            nextSrc={
+              utahLocationsImages[(photoIndex + 1) % utahLocationsImages.length]
+            }
+            prevSrc={
+              utahLocationsImages[
+                (photoIndex + utahLocationsImages.length - 1) %
+                  utahLocationsImages.length
+              ]
+            }
+            onCloseRequest={() => setIsGalleryModelOpen(false)}
+            onMovePrevRequest={() =>
+              setPhotoIndex(
+                (photoIndex + utahLocationsImages.length - 1) %
+                  utahLocationsImages.length
+              )
+            }
+            onMoveNextRequest={() =>
+              setPhotoIndex((photoIndex + 1) % utahLocationsImages.length)
+            }
+          />
+        )}
+        <section
+          className="max-w-7xl mx-auto text-center px-4 -mt-1.5"
+          id="locations"
+        >
+          <H2>{aboutPage.utahLocationsTitle}</H2>
+          {aboutPage.utahLocationsDescription && (
+            <div className="px-4 prose-lg max-w-3xl text-center mx-auto">
+              <PortableText value={aboutPage.utahLocationsDescription} />
+            </div>
+          )}
+          <div className="mt-4 lg:mt-10 grid grid-cols-1 lg:grid-cols-3 gap-1 px-4">
+            {aboutPage.utahLocations.map((utahLocation, index) => {
+              return (
+                <button
+                  className="w-full h-full"
+                  key={index}
+                  onClick={() => {
+                    setIsGalleryModelOpen(true)
+                    setPhotoIndex(index)
+                  }}
+                  style={{
+                    backgroundImage: `url(${urlForSanitySource(
+                      utahLocation.asset
+                    ).size(600, 400)})`,
+                    backgroundSize: 'cover',
+                    backgroundPosition: 'center',
+                    height: 'min(25vh, 300px)',
+                  }}
+                ></button>
+              )
+            })}
+          </div>
+        </section>
+        {/* end: utah locations */}
+
+        <div className="px-8">
+          <DividerBar />
+        </div>
 
         {/* company 3 */}
         <section className="-mt-1.5 grid gap-y-4 items-center" id="company3">
@@ -175,158 +329,7 @@ function About({ aboutPage }) {
       </div>
       {/* end: company 3 */}
 
-      <div className="px-8">
-        <DividerBar />
-      </div>
-
-      {/* director section */}
-      <section
-        className="grid max-w-7xl mx-auto items-center px-8 gap-y-10 text-center"
-        id="director"
-      >
-        <div>
-          <p className="text-4xl lg:text-5xl font-bold">
-            {aboutPage.directorName}
-          </p>
-          <p className="font-outline uppercase text-4xl lg:text-5xl mt-8 lg:mt-4">
-            {aboutPage.directorTitle}
-          </p>
-        </div>
-        {aboutPage.directorDescription && (
-          <div className="px-4 prose-lg mx-auto max-w-5xl">
-            <PortableText value={aboutPage.directorDescription} />
-          </div>
-        )}
-        <div className="py-4 px-6 border border-white">
-          <SanityImage
-            image={aboutPage.directorImage}
-            alt={aboutPage.directorName}
-          />
-        </div>
-        <div className="flex justify-center">
-          <Link href="https://jeremymillerdirector.com/">
-            <a
-              className="flex gap-4 items-center justify-center px-3 py-2 uppercase hover:bg-gold transition-colors border-2 border-white group"
-              target="_blank"
-            >
-              <span className="text-2xl lg:text-3xl font-outline tracking-tighter text-gray-300 group-hover:text-black">
-                View
-              </span>
-              <span className="text-2xl lg:text-3xl font-bold tracking-wide group-hover:text-black">
-                Director&apos;s
-              </span>
-              <span className="text-2xl lg:text-3xl font-outline tracking-tighter text-gray-300 group-hover:text-black">
-                Site
-              </span>
-            </a>
-          </Link>
-        </div>
-      </section>
-      {/* end: director section */}
-
-      <div className="px-8">
-        <DividerBar />
-      </div>
-
-      {/* team section */}
-      <section className="max-w-7xl mx-auto text-center px-4 -mt-1.5" id="team">
-        <H2>MEET THE TEAM</H2>
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8 lg:gap-12 mt-10 px-8">
-          {aboutPage.teamMembers.map((teamMember) => {
-            const width = isDesktop ? 400 : 200
-            const height = isDesktop ? 644 : 250
-            return (
-              <div key={teamMember._id}>
-                <Image
-                  src={urlForSanitySource(teamMember.image)
-                    .width(width)
-                    .height(height)
-                    .url()}
-                  height={height}
-                  width={width}
-                  alt={teamMember.name}
-                />
-                <p className="mt-4 uppercase font-extrabold text-xl lg:text-2xl">
-                  {teamMember.name}
-                </p>
-                <LittleWhiteBar yMargin={'my-2'} />
-                <p className="uppercase font-outline text-2xl">
-                  {teamMember.title}
-                </p>
-              </div>
-            )
-          })}
-        </div>
-      </section>
-      {/* end: team section */}
-
-      <div className="px-8">
-        <DividerBar />
-      </div>
-
-      {/* utah locations */}
-      {isGalleryModelOpen && (
-        <Lightbox
-          mainSrc={utahLocationsImages[photoIndex]}
-          nextSrc={
-            utahLocationsImages[(photoIndex + 1) % utahLocationsImages.length]
-          }
-          prevSrc={
-            utahLocationsImages[
-              (photoIndex + utahLocationsImages.length - 1) %
-                utahLocationsImages.length
-            ]
-          }
-          onCloseRequest={() => setIsGalleryModelOpen(false)}
-          onMovePrevRequest={() =>
-            setPhotoIndex(
-              (photoIndex + utahLocationsImages.length - 1) %
-                utahLocationsImages.length
-            )
-          }
-          onMoveNextRequest={() =>
-            setPhotoIndex((photoIndex + 1) % utahLocationsImages.length)
-          }
-        />
-      )}
-      <section
-        className="max-w-7xl mx-auto text-center px-4 -mt-1.5"
-        id="locations"
-      >
-        <H2>{aboutPage.utahLocationsTitle}</H2>
-        {aboutPage.utahLocationsDescription && (
-          <div className="px-4 prose-lg max-w-3xl text-center mx-auto">
-            <PortableText value={aboutPage.utahLocationsDescription} />
-          </div>
-        )}
-        <div className="mt-4 lg:mt-10 grid grid-cols-1 lg:grid-cols-3 gap-1 px-4">
-          {aboutPage.utahLocations.map((utahLocation, index) => {
-            return (
-              <button
-                className="w-full h-full"
-                key={index}
-                onClick={() => {
-                  setIsGalleryModelOpen(true)
-                  setPhotoIndex(index)
-                }}
-                style={{
-                  backgroundImage: `url(${urlForSanitySource(
-                    utahLocation.asset
-                  ).size(600, 400)})`,
-                  backgroundSize: 'cover',
-                  backgroundPosition: 'center',
-                  height: 'min(25vh, 300px)',
-                }}
-              ></button>
-            )
-          })}
-        </div>
-      </section>
-      {/* end: utah locations */}
-
-      <div className="px-8">
-        <DividerBar />
-      </div>
+      <DividerBar />
 
       {/* ravens */}
       <section

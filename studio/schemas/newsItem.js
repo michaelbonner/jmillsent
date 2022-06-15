@@ -134,6 +134,27 @@ export default {
       },
     },
     {
+      name: 'customButtonTextSection1',
+      description: 'Leave blank to use default',
+      placeholder: 'READ',
+      title: 'Custom button text section 1',
+      type: 'string',
+    },
+    {
+      name: 'customButtonTextSection2',
+      description: 'Leave blank to use default',
+      placeholder: 'FULL',
+      title: 'Custom button text section 2',
+      type: 'string',
+    },
+    {
+      name: 'customButtonTextSection3',
+      description: 'Leave blank to use default',
+      placeholder: 'STORY',
+      title: 'Custom button text section 3',
+      type: 'string',
+    },
+    {
       name: 'order',
       title: 'Order',
       type: 'number',

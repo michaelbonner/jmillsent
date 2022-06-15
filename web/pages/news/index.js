@@ -67,6 +67,9 @@ export async function getStaticProps() {
         description,
         poster,
         date,
+        customButtonTextSection1,
+        customButtonTextSection2,
+        customButtonTextSection3,
       }
     `
   )

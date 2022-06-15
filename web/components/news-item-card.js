@@ -39,15 +39,15 @@ const NewsItemCard = ({ newsItem }) => {
         <Link href={`/news/${newsItem.slug?.current}`} key={newsItem._id}>
           <a className="inline-flex gap-3 items-center justify-center px-3 py-1 mt-4 text-2xl uppercase hover:bg-gold transition-colors border-2 border-gray-300 group">
             <span className="font-outline tracking-tighter text-gray-300 group-hover:text-black">
-              Read
+              {newsItem.customButtonTextSection1 || `Read`}
             </span>
 
             <span className="font-bold tracking-wide group-hover:text-black">
-              Full
+              {newsItem.customButtonTextSection2 || `Full`}
             </span>
 
             <span className="font-outline tracking-tighter text-gray-300 group-hover:text-black">
-              Story
+              {newsItem.customButtonTextSection3 || `Story`}
             </span>
           </a>
         </Link>

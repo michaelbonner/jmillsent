@@ -230,27 +230,22 @@ function About({ aboutPage }) {
 
       {/* team section */}
       <section className="max-w-7xl mx-auto text-center px-4 -mt-1.5" id="team">
-        <H3>MEET THE WORLD CLASS</H3>
-        <p className="max-w-max py-2 px-6 mx-auto font-outline text-5xl">
-          JME TEAM
-        </p>
-        <div className="grid grid-cols-1 lg:grid-cols-3 gap-8 lg:gap-x-10 lg:gap-y-20 mt-10">
+        <H2>MEET THE TEAM</H2>
+        <div className="grid grid-cols-1 lg:grid-cols-4 gap-8 lg:gap-12 mt-10 px-8">
           {aboutPage.teamMembers.map((teamMember) => {
             const width = isDesktop ? 400 : 200
             const height = isDesktop ? 644 : 250
             return (
               <div key={teamMember._id}>
-                <div className="px-8">
-                  <Image
-                    src={urlForSanitySource(teamMember.image)
-                      .width(width)
-                      .height(height)
-                      .url()}
-                    height={height}
-                    width={width}
-                    alt={teamMember.name}
-                  />
-                </div>
+                <Image
+                  src={urlForSanitySource(teamMember.image)
+                    .width(width)
+                    .height(height)
+                    .url()}
+                  height={height}
+                  width={width}
+                  alt={teamMember.name}
+                />
                 <p className="mt-4 uppercase font-extrabold text-xl lg:text-2xl">
                   {teamMember.name}
                 </p>

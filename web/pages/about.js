@@ -338,10 +338,10 @@ function About({ aboutPage }) {
       >
         <div className="w-full max-w-sm mx-auto">
           <Image
-            src="/images/ravens-logo-white.svg"
+            src="/images/ravens-official-logo-simple-white.svg"
             alt="Ravens"
-            width={1200}
-            height="400"
+            width={900}
+            height="102"
           />
         </div>
         {aboutPage.ravensCardsTitle && <H2>{aboutPage.ravensCardsTitle}</H2>}

@@ -1,4 +1,5 @@
 import BackgroundText from '@/components/background-text-section'
+import BackgroundTextSectionHalf from '@/components/background-text-section-half'
 import DividerBar from '@/components/divider-bar'
 import { H1, H2, H3 } from '@/components/headings'
 import Layout from '@/components/layout'
@@ -99,11 +100,11 @@ function About({ aboutPage }) {
             </p>
           </div>
           {aboutPage.services.length > 0 && (
-            <div className="grid grid-cols-1 gap-y-6 lg:gap-y-12 mt-4 lg:mt-10 max-w-7xl mx-auto">
+            <div className="grid grid-cols-1 lg:grid-cols-2 gap-6 mt-4 lg:mt-10 max-w-7xl mx-auto">
               {aboutPage.services.map((service, index) => {
                 const leftOrRight = service.rightAlign ? 'right' : 'left'
                 return (
-                  <BackgroundText
+                  <BackgroundTextSectionHalf
                     leftOrRight={leftOrRight}
                     image={service.image}
                     imageAlt={service.name}

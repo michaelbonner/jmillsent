@@ -345,7 +345,7 @@ const VideoPlayer = ({
         <button
           className={`${
             !hasClicked || !isPlaying ? 'opacity-100' : 'opacity-0'
-          } absolute inset-0 bg-transparent cursor-pointer text-3xl text-left transition-all duration-500`}
+          } absolute inset-0 bottom-12 bg-transparent cursor-pointer text-3xl text-left transition-all duration-500`}
           onClick={() => {
             setVideoPlaying(!videoPlaying)
           }}
@@ -356,7 +356,7 @@ const VideoPlayer = ({
               `absolute inset-0 flex h-full items-center justify-start gap-2`,
               `md:gap-4`,
               `lg:pl-12`,
-              !isIos && 'pb-12'
+              !isIos && 'bottom-12'
             )}
           >
             {!isIpad && (

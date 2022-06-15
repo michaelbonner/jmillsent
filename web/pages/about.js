@@ -121,10 +121,20 @@ function About({ aboutPage }) {
         <DividerBar />
 
         {/* company 3 */}
-        <section className="-mt-1.5" id="company3">
-          <H3>{aboutPage.company3Title}</H3>
+        <section className="-mt-1.5 grid gap-y-4 items-center" id="company3">
+          <div className="w-full max-w-sm mx-auto">
+            <Image
+              src="/images/company-3.svg"
+              alt="company3"
+              width="1020"
+              height="170"
+            />
+          </div>
+          <H2 className="font-outline font-thin !mb-0">
+            {aboutPage.company3Title}
+          </H2>
           {aboutPage.company3Body && (
-            <div className="px-4 prose-lg max-w-3xl text-center mx-auto text-white">
+            <div className="px-4 prose-lg max-w-5xl text-center mx-auto text-white font-light">
               <PortableText value={aboutPage.company3Body} />
             </div>
           )}
@@ -141,27 +151,21 @@ function About({ aboutPage }) {
               autoPlay={true}
             />
           </div>
-          <div className="inline-block">
+          <div className="flex justify-center">
             <Link href={aboutPage.company3Link || 'https://www.company3.com/'}>
               <a
                 className="flex gap-4 items-center justify-center px-3 py-2 mt-4 sm:mt-10 uppercase hover:bg-gold transition-colors border-2 border-white group"
                 target="_blank"
               >
-                <span className="text-2xl font-outline tracking-tighter text-gray-300 group-hover:text-black">
-                  View
+                <span className="text-2xl lg:text-3xl font-outline tracking-tighter text-gray-300 group-hover:text-black">
+                  Book
                 </span>
-                <svg
-                  className="fill-current group-hover:text-black"
-                  enableBackground="new 0 0 150 25"
-                  viewBox="0 0 150 25"
-                  xmlns="http://www.w3.org/2000/svg"
-                  height={22}
-                >
-                  <path d="m95.3 12.8v-11.3h7.7c.3 0 .6.4.8.6 2 3.3 4.1 6.5 6.1 9.8.2.3.4.5.7 1v-11.4h2.4 7.2c.7-.1 1.4.3 1.7.9 1.2 2.1 2.6 4.1 3.9 6.2 1.4-2.2 2.7-4.3 4.1-6.4.3-.4.7-.6 1.2-.7 1.3-.1 2.6 0 3.8 0 1.4-.1 2.8-.3 4.3-.4 3.1-.2 6 .4 8.2 2.8 2.6 2.9 1.6 6.7-2.3 8.7 1.7.5 3.1 1.3 3.8 3.1.7 1.6.5 3.4-.5 4.8-1.3 2-3.4 3-5.7 3.4-3 .4-6 .4-8.6-1.4-2-1.3-3.1-3.1-3.5-5.6h5.8c.2 0 .5.4.6.6 1 1.9 3.6 2.6 5.3 1.2.5-.4.9-1.5.8-2.2-.2-1.2-1.2-1.7-2.3-1.7-.8-.1-1.7 0-2.7 0v-4.3h2.5c1.4 0 2.4-1.1 2.4-2.4 0-1.4-.9-2.2-2.4-2.2-2 0-2.9.6-3.4 2.6-1 0-1.9.1-2.9 0s-1.5.3-2 1.1c-.7 1.2-1.4 2.3-2.1 3.4-.8 1.1-1.1 2.4-1.1 3.8.1 2.3 0 4.6 0 6.9h-6.4c0-1.5-.1-3.1 0-4.6.4-3.1-.5-5.6-2.4-8.1-1.1-1.5-2-3.1-3.2-4.7v17.4c-2.2 0-4.3 0-6.4 0-.3 0-.6-.4-.8-.8-2.5-4-5-8-7.5-12-.2-.3-.4-.6-.8-1.2v14c-2.8 0-5.5 0-8.1 0-.3 0-.7-.4-.8-.7-.5-1.1-.9-2.3-1.4-3.5-2.6 0-5.2 0-7.9 0-.3 0-.8.4-.9.7-.6 1.1-.7 2.8-1.6 3.3-1 .6-2.6.2-4 .3-.8 0-1.5 0-2.4 0 1-2.5 1.9-4.9 2.9-7.2l-8.8.4v6.7h-6.1v-13.8l-.2-.1c-1.1 2.8-2.3 5.7-3.4 8.5-.6 1.5-1.1 3-1.8 4.4-.3.4-.7.7-1.2.8-1.3.1-2.8.4-3.7-.2-.8-.5-1-2.1-1.5-3.2-1.4-3.4-2.7-6.8-4.3-10.2v13.5h-6.1v-4.2c-2.6 3.1-5.7 4.8-9.5 4.7-3.8 0-6.9-1.7-9.3-4.8-1.6 2.7-3.9 4.2-6.7 4.6-3.4.5-6.8.1-9.6-2.1-5.2-4-5-12.6-1.5-16.9 3.9-4.7 14-5.5 17.8.9 2.4-3 5.5-4.6 9.2-4.6s6.8 1.6 9.4 4.7v-4.1h9.6c.7 1.8 1.5 3.8 2.2 5.7.8 1.9 1.5 3.8 2.4 5.9 1.4-3.6 2.8-7.2 4.2-10.7.3-.7.7-1 1.5-1 4.9 0 9.7-.1 14.6.1 2.9.1 5.5 1.2 7 4.1.5-1.2 1.1-2.2 1.4-3.3.2-.8.6-.9 1.3-.9 1.8 0 3.7.1 5.5 0 .8 0 1.2.3 1.5 1 1.4 3.5 2.7 6.9 4.1 10.4zm-79.3-3.6c-.8-2.2-1.7-3-3.2-3.1-2.6-.1-3.9.5-4.6 2.5-1 2.7-1 5.5.2 8.1 1 2.2 4.1 3.1 6 1.6.8-.6 1.2-1.7 2-2.7h2.8v-6.4z" />
-                </svg>
+                <span className="text-2xl lg:text-3xl font-bold tracking-wide group-hover:text-black">
+                  Session
+                </span>
 
-                <span className="text-2xl font-outline tracking-tighter text-gray-300 group-hover:text-black">
-                  Site
+                <span className="text-2xl lg:text-3xl font-outline tracking-tighter text-gray-300 group-hover:text-black">
+                  Now
                 </span>
               </a>
             </Link>

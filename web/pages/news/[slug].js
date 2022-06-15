@@ -1,7 +1,7 @@
 /* eslint-disable @next/next/no-img-element */
 import groq from 'groq'
 import Layout from '@/components/layout'
-import { getClient } from '@/lib/sanity'
+import { getClient, portableTextComponents } from '@/lib/sanity'
 import MediumWhiteBar from '@/components/medium-white-bar'
 import Date from '@/components/date'
 import LargeGoldBar from '@/components/large-gold-bar'
@@ -63,7 +63,10 @@ const NewsItem = ({ newsItem = {} }) => {
           </div>
           {newsItem.body && (
             <div className="w-full max-w-5xl mx-auto px-8 text-center prose prose-invert prose-lg">
-              <PortableText value={newsItem.body} />
+              <PortableText
+                components={portableTextComponents}
+                value={newsItem.body}
+              />
             </div>
           )}
           <div className="mt-10">

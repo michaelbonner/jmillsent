@@ -1,3 +1,4 @@
+import SanityImage from '@/components/sanity-image'
 import {
   createClient,
   createCurrentUserHook,
@@ -29,3 +30,24 @@ export const getClient = (usePreview) =>
 
 // Helper function for using the current logged in user account
 export const useCurrentUser = createCurrentUserHook(config)
+
+export const portableTextComponents = {
+  types: {
+    image: ({ value }) => {
+      return <SanityImage image={value} />
+    },
+  },
+
+  marks: {
+    link: ({ children, value }) => {
+      const rel = !value.href.startsWith('/')
+        ? 'noreferrer noopener'
+        : undefined
+      return (
+        <a href={value.href} rel={rel}>
+          {children}
+        </a>
+      )
+    },
+  },
+}

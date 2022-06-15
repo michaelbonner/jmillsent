@@ -4,6 +4,7 @@ import LittleWhiteBar from '@/components/little-white-bar'
 import MediumWhiteBar from '@/components/medium-white-bar'
 import classNames from 'classnames'
 import groq from 'groq'
+import capitalize from 'just-capitalize'
 import shuffle from 'just-shuffle'
 import Image from 'next/image'
 import { useEffect, useState } from 'react'
@@ -113,6 +114,14 @@ function Moments({ momentsPage }) {
             const width = isDesktop ? imageType.width : 800
 
             const height = isDesktop ? imageType.height : 600
+            const altText =
+              image.caption ||
+              capitalize(
+                image.name
+                  .replace(/-/g, ' ')
+                  .replace(/_/g, ' ')
+                  .replace('.jpg', '')
+              )
 
             return (
               <div
@@ -123,7 +132,7 @@ function Moments({ momentsPage }) {
                 key={index}
               >
                 <Image
-                  alt={image.caption}
+                  alt={altText}
                   className={`cursor-pointer bpd-gallery-image`}
                   height={height}
                   onClick={() => {
@@ -163,7 +172,8 @@ export async function getStaticProps() {
       title,
       images[]{
           caption,
-          "imageUrl": asset->url
+          "imageUrl": asset->url,
+          "name": asset->originalFilename,
       },
     }
     `

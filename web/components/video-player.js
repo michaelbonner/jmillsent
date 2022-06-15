@@ -26,6 +26,9 @@ const VideoPlayer = ({
   autoPlay = false,
 }) => {
   const [showVideo, setShowVideo] = useState(false)
+  const [showVideoOverlay, setShowVideoOverlay] = useState(
+    autoPlay && (title || client)
+  )
   const [videoPlaying, setVideoPlaying] = useState(autoPlay)
   const player = useRef(null)
   const scrubber = useRef(null)
@@ -105,24 +108,11 @@ const VideoPlayer = ({
   }, [scrubber])
 
   useEffect(() => {
-    if (autoPlay) {
-      if (!videoPlaying && !hasClicked) {
-        setHasClicked(true)
-        setMuted(false)
-        setVolume(1)
-        setTimeout(() => {
-          player.current.seekTo(0, 'fraction')
-          setScrubberPosition(0)
-          setVideoPlaying(true)
-        }, 200)
-      }
-      return
+    if (hasClicked) {
+      setMuted(false)
+      setVolume(1)
     }
-
-    if (videoPlaying) {
-      setHasClicked(true)
-    }
-  }, [autoPlay, hasClicked, videoPlaying])
+  }, [hasClicked])
 
   useInterval(
     () => {
@@ -159,6 +149,14 @@ const VideoPlayer = ({
       player.current.muted = false
     }
   }, [muted])
+
+  useEffect(() => {
+    if (!title || !client) {
+      setShowVideoOverlay(false)
+      return
+    }
+    setShowVideoOverlay(!hasClicked || !isPlaying)
+  }, [client, hasClicked, isPlaying, title])
 
   return (
     <article
@@ -232,7 +230,10 @@ const VideoPlayer = ({
             <div className="relative z-10 container mx-auto pt-3 flex space-x-8 bg-black">
               <button
                 className="relative text-4xl w-8 h-8"
-                onClick={() => setVideoPlaying(!videoPlaying)}
+                onClick={() => {
+                  setHasClicked(true)
+                  setVideoPlaying(!videoPlaying)
+                }}
                 title="Play/Pause"
               >
                 <GrPause
@@ -259,6 +260,7 @@ const VideoPlayer = ({
               <button
                 className="relative w-full border-2 border-white rounded"
                 onClick={(e) => {
+                  setHasClicked(true)
                   const scrubberBoundingClientRect =
                     scrubber.current.getBoundingClientRect()
 
@@ -285,6 +287,7 @@ const VideoPlayer = ({
                   <button
                     className="bpd-white-icon"
                     onClick={() => {
+                      setHasClicked(true)
                       setMuted(false)
                       setVolume(1)
                     }}
@@ -295,6 +298,7 @@ const VideoPlayer = ({
                   <button
                     className="bpd-white-icon"
                     onClick={() => {
+                      setHasClicked(true)
                       setMuted(true)
                       setVolume(0)
                     }}
@@ -305,14 +309,20 @@ const VideoPlayer = ({
                 {isFullscreen ? (
                   <button
                     className="bpd-white-icon"
-                    onClick={() => toggleFullScreen(false)}
+                    onClick={() => {
+                      setHasClicked(true)
+                      toggleFullScreen(false)
+                    }}
                   >
                     <GrContract />
                   </button>
                 ) : (
                   <button
                     className="bpd-white-icon"
-                    onClick={() => toggleFullScreen(true)}
+                    onClick={() => {
+                      setHasClicked(true)
+                      toggleFullScreen(true)
+                    }}
                   >
                     <GrExpand />
                   </button>
@@ -341,57 +351,71 @@ const VideoPlayer = ({
         </div>
       )}
 
-      {(client || title) && (
-        <button
-          className={`${
-            !hasClicked || !isPlaying ? 'opacity-100' : 'opacity-0'
-          } absolute inset-0 bottom-12 bg-transparent cursor-pointer text-3xl text-left transition-all duration-500`}
-          onClick={() => {
-            setVideoPlaying(!videoPlaying)
-          }}
+      <button
+        className={`${
+          showVideoOverlay ? 'opacity-100' : 'opacity-0'
+        } absolute inset-0 bottom-12 bg-transparent cursor-pointer text-3xl text-left transition-all duration-500`}
+        onClick={() => {
+          if (autoPlay) {
+            if (videoPlaying && !hasClicked) {
+              setMuted(false)
+              setVolume(1)
+              setTimeout(() => {
+                player.current.seekTo(0, 'fraction')
+                setScrubberPosition(0)
+                setVideoPlaying(true)
+              }, 200)
+            } else {
+              setVideoPlaying(!videoPlaying)
+            }
+          }
+          setHasClicked(true)
+        }}
+      >
+        <div className="absolute inset-0 h-full bg-gradient-to-r from-black via-transparent to-transparent opacity-80"></div>
+        <div
+          className={classNames(
+            `absolute inset-0 flex h-full items-center justify-start gap-2`,
+            `md:gap-4`,
+            `lg:pl-12`,
+            !isIos && 'bottom-12'
+          )}
         >
-          <div className="absolute inset-0 h-full bg-gradient-to-r from-black via-transparent to-transparent opacity-80"></div>
-          <div
-            className={classNames(
-              `absolute inset-0 flex h-full items-center justify-start gap-2`,
-              `md:gap-4`,
-              `lg:pl-12`,
-              !isIos && 'bottom-12'
-            )}
-          >
-            {!isIpad && (
+          {!isIpad && (
+            <div
+              className="z-10 bg-transparent flex items-center justify-center xl:justify-start cursor-pointer text-4xl xl:text-6xl"
+              onClick={() => {
+                setHasClicked(true)
+                setVideoPlaying(!videoPlaying)
+              }}
+            >
               <div
-                className="z-10 bg-transparent flex items-center justify-center xl:justify-start cursor-pointer text-4xl xl:text-6xl"
-                onClick={() => setVideoPlaying(!videoPlaying)}
+                className={classNames(
+                  `flex bpd-white-icon transition-opacity duration-500 border md:border-2 border-white ml-1 rounded-full h-5 w-5 2xs:h-6 2xs:w-6 xs:h-8 xs:w-8 sm:h-10 sm:w-10 md:h-12 md:w-12 lg:h-14 lg:w-14 xl:h-20 xl:w-20 items-center justify-center`
+                )}
               >
-                <div
-                  className={classNames(
-                    `flex bpd-white-icon transition-opacity duration-500 border md:border-2 border-white ml-1 rounded-full h-5 w-5 2xs:h-6 2xs:w-6 xs:h-8 xs:w-8 sm:h-10 sm:w-10 md:h-12 md:w-12 lg:h-14 lg:w-14 xl:h-20 xl:w-20 items-center justify-center`
-                  )}
-                >
-                  <GrPlay className="py-3 pl-1 lg:pl-2" />
+                <GrPlay className="py-3 pl-1 lg:pl-2" />
+              </div>
+            </div>
+          )}
+          <div className="border-l-2 md:border-l-4 border-gold pl-2 lg:pl-6">
+            <div className="font-bold uppercase text-xl lg:text-4xl">
+              {client}
+            </div>
+            <div className="font-outline uppercase text-2xl lg:text-5xl">
+              {title}
+            </div>
+            {description && (
+              <div className="w-64">
+                <LittleGoldBar />
+                <div className="w-full uppercase text-base tracking-wide max-w-sm max-h-[300px] overflow-y-scroll whitespace-pre-wrap">
+                  {description}
                 </div>
               </div>
             )}
-            <div className="border-l-2 md:border-l-4 border-gold pl-2 lg:pl-6">
-              <div className="font-bold uppercase text-xl lg:text-4xl">
-                {client}
-              </div>
-              <div className="font-outline uppercase text-2xl lg:text-5xl">
-                {title}
-              </div>
-              {description && (
-                <div className="w-64">
-                  <LittleGoldBar />
-                  <div className="w-full uppercase text-base tracking-wide max-w-sm max-h-[300px] overflow-y-scroll whitespace-pre-wrap">
-                    {description}
-                  </div>
-                </div>
-              )}
-            </div>
           </div>
-        </button>
-      )}
+        </div>
+      </button>
     </article>
   )
 }

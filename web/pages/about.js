@@ -181,43 +181,45 @@ function About({ aboutPage }) {
 
       {/* director section */}
       <section
-        className="grid grid-cols-1 lg:grid-cols-3 max-w-7xl mx-auto items-center px-4"
+        className="grid max-w-7xl mx-auto items-center px-8 gap-y-10 text-center"
         id="director"
       >
-        <div className="w-1/2 lg:w-full mx-auto">
+        <div>
+          <p className="text-4xl lg:text-5xl font-bold">
+            {aboutPage.directorName}
+          </p>
+          <p className="font-outline uppercase text-4xl lg:text-5xl mt-8 lg:mt-4">
+            {aboutPage.directorTitle}
+          </p>
+        </div>
+        {aboutPage.directorDescription && (
+          <div className="px-4 prose-lg mx-auto max-w-5xl">
+            <PortableText value={aboutPage.directorDescription} />
+          </div>
+        )}
+        <div className="py-4 px-6 border border-white">
           <SanityImage
             image={aboutPage.directorImage}
             alt={aboutPage.directorName}
           />
         </div>
-        <div className="lg:col-span-2 text-center">
-          <p className="uppercase font-extrabold text-xl lg:text-4xl mt-8 lg:mt-0 mb-4">
-            {aboutPage.directorTitle}
-          </p>
-          <p className="font-outline text-4xl">{aboutPage.directorName}</p>
-          {aboutPage.directorDescription && (
-            <div className="px-4 prose-lg mx-auto mt-4 sm:mt-10">
-              <PortableText value={aboutPage.directorDescription} />
-            </div>
-          )}
-          <div className="inline-block">
-            <Link href="https://jeremymillerdirector.com/">
-              <a
-                className="flex gap-4 items-center justify-center px-3 py-2 mt-4 sm:mt-10 uppercase hover:bg-gold transition-colors border-2 border-white group"
-                target="_blank"
-              >
-                <span className="text-2xl font-outline tracking-tighter text-gray-300 group-hover:text-black">
-                  View
-                </span>
-                <span className="text-2xl font-bold tracking-wide group-hover:text-black">
-                  Director&apos;s
-                </span>
-                <span className="text-2xl font-outline tracking-tighter text-gray-300 group-hover:text-black">
-                  Site
-                </span>
-              </a>
-            </Link>
-          </div>
+        <div className="flex justify-center">
+          <Link href="https://jeremymillerdirector.com/">
+            <a
+              className="flex gap-4 items-center justify-center px-3 py-2 uppercase hover:bg-gold transition-colors border-2 border-white group"
+              target="_blank"
+            >
+              <span className="text-2xl lg:text-3xl font-outline tracking-tighter text-gray-300 group-hover:text-black">
+                View
+              </span>
+              <span className="text-2xl lg:text-3xl font-bold tracking-wide group-hover:text-black">
+                Director&apos;s
+              </span>
+              <span className="text-2xl lg:text-3xl font-outline tracking-tighter text-gray-300 group-hover:text-black">
+                Site
+              </span>
+            </a>
+          </Link>
         </div>
       </section>
       {/* end: director section */}

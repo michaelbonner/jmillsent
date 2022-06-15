@@ -231,7 +231,7 @@ function About({ aboutPage }) {
       {/* team section */}
       <section className="max-w-7xl mx-auto text-center px-4 -mt-1.5" id="team">
         <H2>MEET THE TEAM</H2>
-        <div className="grid grid-cols-1 lg:grid-cols-4 gap-8 lg:gap-12 mt-10 px-8">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8 lg:gap-12 mt-10 px-8">
           {aboutPage.teamMembers.map((teamMember) => {
             const width = isDesktop ? 400 : 200
             const height = isDesktop ? 644 : 250
@@ -330,15 +330,25 @@ function About({ aboutPage }) {
 
       {/* ravens */}
       <section
-        className="max-w-7xl mx-auto text-center px-4 -mt-1.5"
+        className="max-w-7xl mx-auto text-center px-4 grid gap-y-6"
         id="ravens"
       >
-        <H2>{aboutPage.ravensCardsTitle}</H2>
-        <p className="text-2xl lg:text-4xl font-outline">
-          {aboutPage.ravensCardsSubtitle}
-        </p>
+        <div className="w-full max-w-sm mx-auto">
+          <Image
+            src="/images/ravens-logo-white.svg"
+            alt="Ravens"
+            width={1200}
+            height="400"
+          />
+        </div>
+        {aboutPage.ravensCardsTitle && <H2>{aboutPage.ravensCardsTitle}</H2>}
+        {aboutPage.ravensCardsSubtitle && (
+          <p className="text-2xl lg:text-4xl font-outline">
+            {aboutPage.ravensCardsSubtitle}
+          </p>
+        )}
         {aboutPage.ravensCardsContent && (
-          <div className="mt-4 lg:mt-10 text-white px-4 prose prose-lg max-w-3xl text-center mx-auto">
+          <div className="mt-4 lg:mt-10 text-white px-4 prose prose-lg max-w-5xl text-center mx-auto">
             <PortableText value={aboutPage.ravensCardsContent} />
           </div>
         )}
@@ -346,18 +356,11 @@ function About({ aboutPage }) {
           {aboutPage.ravensCards.map((ravensCard, index) => {
             return (
               <div
-                className="flex flex-col justify-between space-y-12 border-2 border-gold py-8 px-8"
+                className="flex flex-col justify-between space-y-12 border-2 border-white pt-12 pb-8 px-8"
                 key={index}
               >
                 <div>
-                  <Image
-                    className="block filter grayscale hover:filter-none transition-all duration-500"
-                    src={`/images/ravens-logo-white.svg`}
-                    height="197"
-                    width="646"
-                    alt={ravensCard.caption}
-                  />
-                  <h4 className="font-bold text-2xl md:text-xl lg:text-4xl uppercase mt-12">
+                  <h4 className="font-bold text-2xl lg:text-3xl uppercase">
                     {ravensCard.title}
                   </h4>
                 </div>
@@ -375,20 +378,19 @@ function About({ aboutPage }) {
             )
           })}
         </div>
-        <div className="inline-block">
+        <div className="flex justify-center">
           <Link href="https://ravensfilmworks.com/">
             <a
               className="flex gap-4 items-center justify-center px-3 py-2 mt-4 sm:mt-10 uppercase hover:bg-gold transition-colors border-2 border-white group"
               target="_blank"
             >
-              <span className="text-2xl font-outline tracking-tighter text-gray-300 group-hover:text-black">
+              <span className="text-2xl lg:text-3xl font-outline tracking-tighter text-gray-300 group-hover:text-black">
                 View
               </span>
 
               <svg
-                className="fill-current group-hover:text-black"
+                className="fill-current group-hover:text-black h-4 lg:h-5"
                 enableBackground="new 0 0 6098.1 642.5"
-                height={17}
                 viewBox="0 0 6098.1 642.5"
                 xmlns="http://www.w3.org/2000/svg"
               >
@@ -408,7 +410,7 @@ function About({ aboutPage }) {
                 </g>
               </svg>
 
-              <span className="text-2xl font-outline tracking-tighter text-gray-300 group-hover:text-black">
+              <span className="text-2xl lg:text-3xl font-outline tracking-tighter text-gray-300 group-hover:text-black">
                 Site
               </span>
             </a>

@@ -108,8 +108,11 @@ header {
   border: thin solid white !important;
 }
 
-.ril__toolbar {
-  @apply !top-2;
+.ril-outer .ril__toolbar {
+  @apply pt-2;
+  @apply pb-4;
+  @apply px-4;
+  height: 70px;
 }
 
 .ril__toolbarItemChild {

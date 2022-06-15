@@ -112,6 +112,8 @@ header {
   @apply pt-2;
   @apply pb-4;
   @apply px-4;
+  @apply bg-black;
+  @apply bg-opacity-70;
   height: 70px;
 }
 

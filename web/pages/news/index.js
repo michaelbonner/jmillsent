@@ -27,7 +27,7 @@ function News({ newsPage, newsItems }) {
       heroVideoHeightInPixels={newsPage.posterHeightInPixels}
       heroVideoWidthInPixels={newsPage.posterWidthInPixels}
     >
-      <div className="max-w-7xl mt-12 mx-auto pb-8">
+      <div className="max-w-7xl mt-12 lg:mt-24 mx-auto pb-8">
         <div className="grid gap-y-12 lg:gap-y-0 justify-center">
           {newsItems.map((newsItem, index) => {
             return (

@@ -183,7 +183,7 @@ function About({ aboutPage }) {
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8 lg:gap-x-12 lg:gap-y-8 mt-10 px-8 lg:px-0">
             {aboutPage.teamMembers.map((teamMember) => {
               const width = isDesktop ? 400 : 200
-              const height = isDesktop ? 540 : 250
+              const height = isDesktop ? 400 : 250
               return (
                 <div key={teamMember._id}>
                   <Image

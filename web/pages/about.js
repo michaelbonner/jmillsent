@@ -136,17 +136,17 @@ function About({ aboutPage }) {
               {aboutPage.directorTitle}
             </p>
           </div>
-          {aboutPage.directorDescription && (
-            <div className="px-4 prose-lg mx-auto max-w-5xl">
-              <PortableText value={aboutPage.directorDescription} />
-            </div>
-          )}
           <div className="py-4 px-6 border border-white">
             <SanityImage
               image={aboutPage.directorImage}
               alt={aboutPage.directorName}
             />
           </div>
+          {aboutPage.directorDescription && (
+            <div className="px-4 prose-lg mx-auto max-w-5xl">
+              <PortableText value={aboutPage.directorDescription} />
+            </div>
+          )}
           <div className="flex justify-center">
             <Link href="https://jeremymillerdirector.com/">
               <a
@@ -237,16 +237,11 @@ function About({ aboutPage }) {
           />
         )}
         <section
-          className="max-w-7xl mx-auto text-center px-4 lg:px-0"
+          className="max-w-7xl mx-auto text-center px-4 lg:px-0 grid gap-y-10"
           id="locations"
         >
-          <H2>{aboutPage.utahLocationsTitle}</H2>
-          {aboutPage.utahLocationsDescription && (
-            <div className="px-4 prose-lg max-w-3xl text-center mx-auto">
-              <PortableText value={aboutPage.utahLocationsDescription} />
-            </div>
-          )}
-          <div className="mt-4 lg:mt-10 grid grid-cols-1 lg:grid-cols-3 gap-1 px-4 lg:px-0">
+          <H2 className="!mb-0">{aboutPage.utahLocationsTitle}</H2>
+          <div className="grid grid-cols-1 lg:grid-cols-3 gap-1 px-4 lg:px-0">
             {aboutPage.utahLocations.map((utahLocation, index) => {
               return (
                 <button
@@ -268,6 +263,11 @@ function About({ aboutPage }) {
               )
             })}
           </div>
+          {aboutPage.utahLocationsDescription && (
+            <div className="px-4 prose-lg max-w-3xl text-center mx-auto">
+              <PortableText value={aboutPage.utahLocationsDescription} />
+            </div>
+          )}
         </section>
         {/* end: utah locations */}
 
@@ -288,11 +288,6 @@ function About({ aboutPage }) {
           <H2 className="font-outline font-thin !mb-0">
             {aboutPage.company3Title}
           </H2>
-          {aboutPage.company3Body && (
-            <div className="px-4 prose-lg max-w-5xl text-center mx-auto text-white font-light">
-              <PortableText value={aboutPage.company3Body} />
-            </div>
-          )}
 
           <div className="mt-4 lg:mt-10 border border-white p-4 lg:p-8 container mx-auto max-w-7xl">
             <VideoPlayer
@@ -306,6 +301,11 @@ function About({ aboutPage }) {
               autoPlay={true}
             />
           </div>
+          {aboutPage.company3Body && (
+            <div className="mt-6 px-4 prose-lg max-w-5xl text-center mx-auto text-white font-light">
+              <PortableText value={aboutPage.company3Body} />
+            </div>
+          )}
           <div className="flex justify-center">
             <Link href={aboutPage.company3Link || 'https://www.company3.com/'}>
               <a
@@ -333,7 +333,7 @@ function About({ aboutPage }) {
 
       {/* ravens */}
       <section
-        className="max-w-7xl mx-auto text-center px-4 grid gap-y-6"
+        className="max-w-7xl mx-auto text-center px-4 grid gap-y-4"
         id="ravens"
       >
         <div className="w-full max-w-sm mx-auto">
@@ -349,11 +349,6 @@ function About({ aboutPage }) {
           <p className="text-2xl lg:text-4xl font-outline">
             {aboutPage.ravensCardsSubtitle}
           </p>
-        )}
-        {aboutPage.ravensCardsContent && (
-          <div className="mt-4 lg:mt-10 text-white px-4 prose prose-lg max-w-5xl text-center mx-auto">
-            <PortableText value={aboutPage.ravensCardsContent} />
-          </div>
         )}
         <div className="grid grid-cols-1 md:grid-cols-3 gap-8 px-8 mt-4 lg:mt-10">
           {aboutPage.ravensCards.map((ravensCard, index) => {
@@ -381,6 +376,11 @@ function About({ aboutPage }) {
             )
           })}
         </div>
+        {aboutPage.ravensCardsContent && (
+          <div className="mt-4 lg:mt-10 text-white px-4 prose prose-lg max-w-5xl text-center mx-auto">
+            <PortableText value={aboutPage.ravensCardsContent} />
+          </div>
+        )}
         <div className="flex justify-center">
           <Link href="https://ravensfilmworks.com/">
             <a

@@ -121,7 +121,9 @@ function About({ aboutPage }) {
         </section>
         {/* end: services */}
 
-        <DividerBar />
+        <div className="px-8">
+          <DividerBar />
+        </div>
 
         {/* director section */}
         <section

@@ -342,6 +342,16 @@ export default {
       },
     },
     {
+      name: 'directorImageTitle',
+      title: 'Director image title',
+      type: 'string',
+    },
+    {
+      name: 'directorImageSubtitle',
+      title: 'Director image subtitle',
+      type: 'string',
+    },
+    {
       name: 'directorTitle',
       title: 'Director title',
       type: 'string',

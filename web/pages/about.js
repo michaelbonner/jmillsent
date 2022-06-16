@@ -202,11 +202,28 @@ function About({ aboutPage }) {
               {aboutPage.directorTitle}
             </p>
           </div>
-          <div className="py-4 px-6 border border-white">
+          <div className="relative py-4 px-6 border border-white">
             <SanityImage
               image={aboutPage.directorImage}
               alt={aboutPage.directorName}
             />
+            {(aboutPage.directorImageTitle ||
+              aboutPage.directorImageSubtitle) && (
+              <div className="absolute inset-0 pr-24 flex flex-col items-end justify-center gap-y-6">
+                <p className="text-3xl lg:text-4xl uppercase font-bold tracking-wider">
+                  {aboutPage.directorImageTitle}
+                </p>
+                {aboutPage.directorImageTitle &&
+                  aboutPage.directorImageSubtitle && (
+                    <div className="w-48 h-1 bg-gold"></div>
+                  )}
+                {aboutPage.directorImageSubtitle && (
+                  <p className="font-outline text-3xl lg:text-4xl uppercase">
+                    {aboutPage.directorImageSubtitle}
+                  </p>
+                )}
+              </div>
+            )}
           </div>
           {aboutPage.directorDescription && (
             <div className="px-4 prose-lg mx-auto max-w-5xl">
@@ -567,6 +584,8 @@ export async function getStaticProps() {
       company3VideoDescription,
       directorDescription,
       directorImage,
+      directorImageTitle,
+      directorImageSubtitle,
       directorName,
       directorTitle,
       section2Subtitle,

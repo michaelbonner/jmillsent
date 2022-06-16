@@ -237,7 +237,7 @@ function About({ aboutPage }) {
           />
         )}
         <section
-          className="max-w-7xl mx-auto text-center px-4 -mt-1.5"
+          className="max-w-7xl mx-auto text-center px-4 lg:px-0"
           id="locations"
         >
           <H2>{aboutPage.utahLocationsTitle}</H2>
@@ -246,7 +246,7 @@ function About({ aboutPage }) {
               <PortableText value={aboutPage.utahLocationsDescription} />
             </div>
           )}
-          <div className="mt-4 lg:mt-10 grid grid-cols-1 lg:grid-cols-3 gap-1 px-4">
+          <div className="mt-4 lg:mt-10 grid grid-cols-1 lg:grid-cols-3 gap-1 px-4 lg:px-0">
             {aboutPage.utahLocations.map((utahLocation, index) => {
               return (
                 <button
@@ -428,7 +428,7 @@ function About({ aboutPage }) {
 
       {/* trusted by */}
       <section
-        className="max-w-7xl mx-auto text-center px-4 -mt-1.5"
+        className="max-w-7xl mx-auto text-center px-4 lg:px-0"
         id="brands"
       >
         <H3>Trusted By the Following</H3>

@@ -125,7 +125,7 @@ function About({ aboutPage }) {
 
         {/* director section */}
         <section
-          className="grid max-w-7xl mx-auto items-center px-8 gap-y-10 text-center"
+          className="grid max-w-7xl mx-auto items-center px-8 lg:px-0 gap-y-10 text-center"
           id="director"
         >
           <div>
@@ -174,14 +174,14 @@ function About({ aboutPage }) {
 
         {/* team section */}
         <section
-          className="max-w-7xl mx-auto text-center px-4 -mt-1.5"
+          className="max-w-7xl mx-auto text-center px-4 lg:px-0"
           id="team"
         >
           <H2>MEET THE TEAM</H2>
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8 lg:gap-12 mt-10 px-8">
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8 lg:gap-x-12 lg:gap-y-8 mt-10 px-8 lg:px-0">
             {aboutPage.teamMembers.map((teamMember) => {
               const width = isDesktop ? 400 : 200
-              const height = isDesktop ? 644 : 250
+              const height = isDesktop ? 540 : 250
               return (
                 <div key={teamMember._id}>
                   <Image
@@ -193,7 +193,7 @@ function About({ aboutPage }) {
                     width={width}
                     alt={teamMember.name}
                   />
-                  <p className="mt-4 uppercase font-extrabold text-xl lg:text-2xl">
+                  <p className="mt-2 uppercase font-extrabold text-xl lg:text-2xl">
                     {teamMember.name}
                   </p>
                   <LittleWhiteBar yMargin={'my-2'} />

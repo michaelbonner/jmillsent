@@ -1,4 +1,3 @@
-import BackgroundText from '@/components/background-text-section'
 import BackgroundTextSectionHalf from '@/components/background-text-section-half'
 import DividerBar from '@/components/divider-bar'
 import { H1, H2, H3 } from '@/components/headings'
@@ -14,10 +13,11 @@ import Image from 'next/image'
 import Link from 'next/link'
 import { useEffect, useState } from 'react'
 import Lightbox from 'react-image-lightbox'
-import 'react-image-lightbox/style.css'
 import useWindowSize from '../hooks/useWindowSize'
 import { getClient } from '../lib/sanity'
 import urlForSanitySource from '../lib/urlForSanitySource'
+
+import 'react-image-lightbox/style.css'
 
 function About({ aboutPage }) {
   const [isGalleryModelOpen, setIsGalleryModelOpen] = useState(false)

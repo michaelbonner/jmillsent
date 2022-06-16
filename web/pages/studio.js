@@ -4,16 +4,16 @@ import { H1, H2 } from '@/components/headings'
 import Layout from '@/components/layout'
 import MediumWhiteBar from '@/components/medium-white-bar'
 import VideoPlayer from '@/components/video-player'
+import urlForSanitySource from '@/lib/urlForSanitySource'
 import { PortableText, toPlainText } from '@portabletext/react'
 import groq from 'groq'
+import useWindowSize from 'hooks/useWindowSize'
 import { useEffect, useState } from 'react'
 import Lightbox from 'react-image-lightbox'
 import { Link as SmoothScrollLink } from 'react-scroll'
 import { getClient } from '../lib/sanity'
 
 import 'react-image-lightbox/style.css'
-import urlForSanitySource from '@/lib/urlForSanitySource'
-import useWindowSize from 'hooks/useWindowSize'
 
 function Studio({ studioPage }) {
   const [isLightBoxOpen, setIsLightBoxOpen] = useState(false)

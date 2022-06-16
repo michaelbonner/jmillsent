@@ -353,26 +353,31 @@ function About({ aboutPage }) {
         <div className="grid grid-cols-1 md:grid-cols-3 gap-8 px-8 mt-4 lg:mt-10">
           {aboutPage.ravensCards.map((ravensCard, index) => {
             return (
-              <div
-                className="flex flex-col justify-between space-y-12 border-2 border-white pt-12 pb-8 px-8"
-                key={index}
-              >
-                <div>
-                  <h4 className="font-bold text-2xl lg:text-3xl uppercase">
-                    {ravensCard.title}
-                  </h4>
-                </div>
-                <div>
-                  <SanityImage
-                    image={ravensCard.image}
-                    className="block filter grayscale hover:filter-none transition-all duration-500"
-                    alt={ravensCard.caption}
-                  />
-                </div>
-                <div className="prose-sm lg:prose-lg">
-                  <PortableText value={ravensCard.body} />
-                </div>
-              </div>
+              <Link key={index} href={ravensCard.link}>
+                <a
+                  className={classNames(
+                    'flex flex-col justify-between space-y-12 border-2 border-white pt-12 pb-8 px-8 transition-colors',
+                    'hover:bg-gradient-to-b hover:from-gray-900 hover:to-black'
+                  )}
+                  target="_blank"
+                >
+                  <div>
+                    <h4 className="font-bold text-2xl lg:text-3xl uppercase">
+                      {ravensCard.title}
+                    </h4>
+                  </div>
+                  <div>
+                    <SanityImage
+                      image={ravensCard.image}
+                      className="block filter grayscale hover:filter-none transition-all duration-500"
+                      alt={ravensCard.caption}
+                    />
+                  </div>
+                  <div className="prose-sm lg:prose-lg">
+                    <PortableText value={ravensCard.body} />
+                  </div>
+                </a>
+              </Link>
             )
           })}
         </div>
@@ -506,7 +511,8 @@ export async function getStaticProps() {
       ravensCards[]{
           title,
           image,
-          body
+          body,
+          link,
       },
       ravensCardsTitle,
       ravensCardsSubtitle,

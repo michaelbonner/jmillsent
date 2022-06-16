@@ -17,7 +17,7 @@ import useWindowSize from 'hooks/useWindowSize'
 
 function Studio({ studioPage }) {
   const [isLightBoxOpen, setIsLightBoxOpen] = useState(false)
-  const [isDesktop, setIsDesktop] = useState(false)
+  const [isDesktop, setIsDesktop] = useState(true)
   const [photoIndex, setPhotoIndex] = useState(0)
   const size = useWindowSize()
 

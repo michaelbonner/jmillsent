@@ -21,7 +21,7 @@ import urlForSanitySource from '../lib/urlForSanitySource'
 
 function About({ aboutPage }) {
   const [isGalleryModelOpen, setIsGalleryModelOpen] = useState(false)
-  const [isDesktop, setIsDesktop] = useState(false)
+  const [isDesktop, setIsDesktop] = useState(true)
   const [photoIndex, setPhotoIndex] = useState(0)
   const size = useWindowSize()
 

@@ -12,7 +12,7 @@ import useWindowSize from '../hooks/useWindowSize'
 
 function Home({ homePage }) {
   const size = useWindowSize()
-  const [isDesktop, setIsDesktop] = useState(false)
+  const [isDesktop, setIsDesktop] = useState(null)
 
   useLayoutEffect(() => {
     if (size.width > 1024) {

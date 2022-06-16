@@ -21,7 +21,7 @@ import 'react-image-lightbox/style.css'
 
 function About({ aboutPage }) {
   const [isGalleryModelOpen, setIsGalleryModelOpen] = useState(false)
-  const [isDesktop, setIsDesktop] = useState(false)
+  const [isDesktop, setIsDesktop] = useState(null)
   const [photoIndex, setPhotoIndex] = useState(0)
   const size = useWindowSize()
 

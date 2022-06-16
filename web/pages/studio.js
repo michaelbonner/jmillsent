@@ -17,7 +17,7 @@ import 'react-image-lightbox/style.css'
 
 function Studio({ studioPage }) {
   const [isLightBoxOpen, setIsLightBoxOpen] = useState(false)
-  const [isDesktop, setIsDesktop] = useState(false)
+  const [isDesktop, setIsDesktop] = useState(null)
   const [photoIndex, setPhotoIndex] = useState(0)
   const size = useWindowSize()
 

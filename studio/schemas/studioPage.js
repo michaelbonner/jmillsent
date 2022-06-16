@@ -1,4 +1,4 @@
-import { MdBusiness as icon } from 'react-icons/md';
+import { MdBusiness as icon } from 'react-icons/md'
 
 export default {
   name: 'studioPage',
@@ -58,6 +58,23 @@ export default {
     {
       name: 'headerVideoHeightInPixels',
       title: 'Header video height in pixels',
+      type: 'number',
+    },
+    {
+      name: 'videoIdMobile',
+      title: 'Video ID (mobile)',
+      type: 'string',
+      description:
+        'Video ID to use on mobile. Leave blank to user the "Video ID" above on mobile',
+    },
+    {
+      name: 'headerVideoWidthInPixelsMobile',
+      title: 'Header video width in pixels (mobile)',
+      type: 'number',
+    },
+    {
+      name: 'headerVideoHeightInPixelsMobile',
+      title: 'Header video height in pixels (mobile)',
       type: 'number',
     },
     {
@@ -183,7 +200,7 @@ export default {
     prepare(selection) {
       return {
         title: `${selection.title}`,
-      };
+      }
     },
   },
-};
+}

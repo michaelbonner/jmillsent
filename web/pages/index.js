@@ -12,13 +12,13 @@ import useWindowSize from '../hooks/useWindowSize'
 
 function Home({ homePage }) {
   const size = useWindowSize()
-  const [isMobile, setIsMobile] = useState(false)
+  const [isDesktop, setIsDesktop] = useState(false)
 
   useEffect(() => {
-    if (size.width <= 425) {
-      setIsMobile(true)
+    if (size.width > 1024) {
+      setIsDesktop(true)
     } else {
-      setIsMobile(false)
+      setIsDesktop(false)
     }
   }, [size.width])
 
@@ -36,10 +36,23 @@ function Home({ homePage }) {
       title={homePage.seoTitle}
       description={homePage.seoDescription}
       heroImageUrl={homePage.poster || null}
-      heroVideoId={homePage.videoId}
       heroContent={heroContent}
-      heroVideoHeightInPixels={homePage.reelVideoHeightInPixels}
-      heroVideoWidthInPixels={homePage.reelVideoWidthInPixels}
+      heroVideoId={
+        (isDesktop ? homePage.videoId : homePage.videoIdMobile) ||
+        homePage.videoId
+      }
+      heroVideoHeightInPixels={
+        (isDesktop
+          ? homePage.reelVideoHeightInPixels
+          : homePage.headerVideoHeightInPixelsMobile) ||
+        homePage.reelVideoHeightInPixels
+      }
+      heroVideoWidthInPixels={
+        (isDesktop
+          ? homePage.reelVideoWidthInPixels
+          : homePage.headerVideoWidthInPixelsMobile) ||
+        homePage.reelVideoWidthInPixels
+      }
     >
       <div className="container px-4 mx-auto text-white text-center mt-12 lg:mt-24">
         <H2>{homePage.section1Title}</H2>
@@ -73,7 +86,7 @@ function Home({ homePage }) {
           />
         </div>
       </div>
-      {isMobile && (
+      {!isDesktop && (
         <div className="flex justify-center mx-auto -mb-5 px-12 w-full max-w-md lg:max-w-xl mt-12 lg:mt-24">
           <Image
             alt="JME Film Production Company"
@@ -83,7 +96,7 @@ function Home({ homePage }) {
           />
         </div>
       )}
-      {!isMobile && (
+      {isDesktop && (
         <div className="mx-auto -mb-5 px-12 w-full max-w-md lg:max-w-xl mt-12 lg:mt-24">
           <Image
             alt="JME Film Production Company"
@@ -124,6 +137,9 @@ export async function getStaticProps() {
 			subtitle,
 			videoClient,
 			videoId,
+      videoIdMobile,
+      headerVideoWidthInPixelsMobile,
+      headerVideoHeightInPixelsMobile
   		}
   		`
   )

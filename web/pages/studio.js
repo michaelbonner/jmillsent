@@ -6,17 +6,28 @@ import MediumWhiteBar from '@/components/medium-white-bar'
 import VideoPlayer from '@/components/video-player'
 import { PortableText, toPlainText } from '@portabletext/react'
 import groq from 'groq'
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
 import Lightbox from 'react-image-lightbox'
 import { Link as SmoothScrollLink } from 'react-scroll'
 import { getClient } from '../lib/sanity'
 
 import 'react-image-lightbox/style.css'
 import urlForSanitySource from '@/lib/urlForSanitySource'
+import useWindowSize from 'hooks/useWindowSize'
 
 function Studio({ studioPage }) {
   const [isLightBoxOpen, setIsLightBoxOpen] = useState(false)
+  const [isDesktop, setIsDesktop] = useState(false)
   const [photoIndex, setPhotoIndex] = useState(0)
+  const size = useWindowSize()
+
+  useEffect(() => {
+    if (size.width > 1024) {
+      setIsDesktop(true)
+    } else {
+      setIsDesktop(false)
+    }
+  }, [size.width])
 
   const heroContent = (
     <div className="h-full w-full grid lg:gap-y-4 items-center text-white">
@@ -73,10 +84,23 @@ function Studio({ studioPage }) {
       title={studioPage.seoTitle}
       description={studioPage.seoDescription}
       heroImageUrl={studioPage.poster || null}
-      heroVideoId={studioPage.videoId}
       heroContent={heroContent}
-      heroVideoHeightInPixels={studioPage.headerVideoHeightInPixels}
-      heroVideoWidthInPixels={studioPage.headerVideoWidthInPixels}
+      heroVideoId={
+        (isDesktop ? studioPage.videoId : studioPage.videoIdMobile) ||
+        studioPage.videoId
+      }
+      heroVideoHeightInPixels={
+        (isDesktop
+          ? studioPage.headerVideoHeightInPixels
+          : studioPage.headerVideoHeightInPixelsMobile) ||
+        studioPage.headerVideoHeightInPixels
+      }
+      heroVideoWidthInPixels={
+        (isDesktop
+          ? studioPage.headerVideoWidthInPixels
+          : studioPage.headerVideoWidthInPixelsMobile) ||
+        studioPage.headerVideoWidthInPixels
+      }
     >
       {isLightBoxOpen && (
         <Lightbox
@@ -198,6 +222,9 @@ export async function getStaticProps() {
 			videoId,
       headerVideoWidthInPixels,
       headerVideoHeightInPixels,
+      videoIdMobile,
+      headerVideoWidthInPixelsMobile,
+      headerVideoHeightInPixelsMobile,
       brands[]->,
         company3Body,
         company3Link,

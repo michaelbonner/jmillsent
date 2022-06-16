@@ -56,6 +56,23 @@ export default {
       type: 'number',
     },
     {
+      name: 'videoIdMobile',
+      title: 'Video ID (mobile)',
+      type: 'string',
+      description:
+        'Video ID to use on mobile. Leave blank to user the "Video ID" above on mobile',
+    },
+    {
+      name: 'headerVideoWidthInPixelsMobile',
+      title: 'Header video width in pixels (mobile)',
+      type: 'number',
+    },
+    {
+      name: 'headerVideoHeightInPixelsMobile',
+      title: 'Header video height in pixels (mobile)',
+      type: 'number',
+    },
+    {
       name: 'subtitle',
       title: 'Subtitle',
       type: 'string',

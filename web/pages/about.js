@@ -53,10 +53,23 @@ function About({ aboutPage }) {
       title={aboutPage.seoTitle}
       description={aboutPage.seoDescription}
       heroImageUrl={aboutPage.poster || null}
-      heroVideoId={aboutPage.videoId}
       heroContent={heroContent}
-      heroVideoHeightInPixels={aboutPage.headerVideoHeightInPixels}
-      heroVideoWidthInPixels={aboutPage.headerVideoWidthInPixels}
+      heroVideoId={
+        (isDesktop ? aboutPage.videoId : aboutPage.videoIdMobile) ||
+        aboutPage.videoId
+      }
+      heroVideoHeightInPixels={
+        (isDesktop
+          ? aboutPage.headerVideoHeightInPixels
+          : aboutPage.headerVideoHeightInPixelsMobile) ||
+        aboutPage.headerVideoHeightInPixels
+      }
+      heroVideoWidthInPixels={
+        (isDesktop
+          ? aboutPage.headerVideoWidthInPixels
+          : aboutPage.headerVideoWidthInPixelsMobile) ||
+        aboutPage.headerVideoWidthInPixels
+      }
     >
       <div className="container px-4 mx-auto text-white text-center mt-12 lg:mt-24">
         <H2>{aboutPage.section1Title}</H2>
@@ -543,6 +556,9 @@ export async function getStaticProps() {
 			videoId,
       headerVideoWidthInPixels,
       headerVideoHeightInPixels,
+			videoIdMobile,
+      headerVideoWidthInPixelsMobile,
+      headerVideoHeightInPixelsMobile,
       brands[]->,
       company3Body,
       company3Link,

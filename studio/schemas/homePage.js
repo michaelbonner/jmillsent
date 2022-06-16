@@ -1,4 +1,4 @@
-import { MdImportantDevices as icon } from 'react-icons/md';
+import { MdImportantDevices as icon } from 'react-icons/md'
 
 export default {
   name: 'homePage',
@@ -36,10 +36,27 @@ export default {
     },
     {
       name: 'videoId',
-      title: 'Video id',
+      title: 'Video ID',
       type: 'string',
       description:
         'Enter the ID ( {{video_id}} ) of the video, not the whole url. https://player.vimeo.com/video/{{video_id}}?badge=0&autopause=0&player_id=0&app_id=58479',
+    },
+    {
+      name: 'videoIdMobile',
+      title: 'Video ID (mobile)',
+      type: 'string',
+      description:
+        'Video ID to use on mobile. Leave blank to user the "Video ID" above on mobile',
+    },
+    {
+      name: 'headerVideoWidthInPixelsMobile',
+      title: 'Header video width in pixels (mobile)',
+      type: 'number',
+    },
+    {
+      name: 'headerVideoHeightInPixelsMobile',
+      title: 'Header video height in pixels (mobile)',
+      type: 'number',
     },
     {
       name: 'section1Title',
@@ -170,7 +187,7 @@ export default {
     prepare(selection) {
       return {
         title: `Home Page`,
-      };
+      }
     },
   },
-};
+}

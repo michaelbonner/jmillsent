@@ -123,10 +123,7 @@ const Layout = ({
 
   useEffect(() => {
     if (heroVideoWidthInPixels && heroVideoHeightInPixels) {
-      let scaleFactor = windowWidth / heroVideoWidthInPixels
-      if (windowWidth < 800) {
-        scaleFactor = scaleFactor * 1.4
-      }
+      const scaleFactor = windowWidth / heroVideoWidthInPixels
 
       setHeroVideoHeight(`${heroVideoHeightInPixels * scaleFactor}px`)
       setHeroVideoWidth(`${heroVideoWidthInPixels * scaleFactor}px`)

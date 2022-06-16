@@ -352,9 +352,11 @@ const VideoPlayer = ({
       )}
 
       <button
-        className={`${
-          showVideoOverlay ? 'opacity-100' : 'opacity-0'
-        } absolute inset-0 bottom-12 bg-transparent cursor-pointer text-3xl text-left transition-all duration-500`}
+        className={classNames(
+          showVideoOverlay ? 'opacity-100' : 'opacity-0',
+          'absolute inset-0 bg-transparent cursor-pointer text-3xl text-left transition-all duration-500',
+          isIos && !isIpad ? '' : 'bottom-12'
+        )}
         onClick={() => {
           if (autoPlay) {
             if (videoPlaying && !hasClicked) {

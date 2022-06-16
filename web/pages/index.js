@@ -14,6 +14,14 @@ function Home({ homePage }) {
   const size = useWindowSize()
   const [isMobile, setIsMobile] = useState(false)
 
+  useEffect(() => {
+    if (size.width <= 425) {
+      setIsMobile(true)
+    } else {
+      setIsMobile(false)
+    }
+  }, [size.width])
+
   const heroContent = (
     <div className="h-full w-full flex flex-col items-center justify-center text-white text-center">
       <H1>{homePage.mainTitle}</H1>
@@ -22,14 +30,6 @@ function Home({ homePage }) {
       </h2>
     </div>
   )
-
-  useEffect(() => {
-    if (size.width <= 425) {
-      setIsMobile(true)
-    } else {
-      setIsMobile(false)
-    }
-  }, [size.width])
 
   return (
     <Layout
@@ -77,9 +77,9 @@ function Home({ homePage }) {
         <div className="flex justify-center mx-auto -mb-5 px-12 w-full max-w-md lg:max-w-xl mt-12 lg:mt-24">
           <Image
             alt="JME Film Production Company"
-            height={150}
-            src={`/images/jmills-raven-white.svg`}
-            width={150}
+            height={100}
+            src={`/images/jmills-raven-gold.svg`}
+            width={100}
           />
         </div>
       )}

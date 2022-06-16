@@ -121,6 +121,57 @@ function About({ aboutPage }) {
         </section>
         {/* end: services */}
 
+        <DividerBar />
+
+        {/* Ad Formats */}
+        <section
+          className="max-w-7xl mx-auto text-center px-4 lg:px-0 grid gap-y-4"
+          id="ad-formats"
+        >
+          {aboutPage.adFormatsTitle && <H2>{aboutPage.adFormatsTitle}</H2>}
+          {aboutPage.adFormatsSubtitle && (
+            <p className="text-2xl lg:text-4xl font-outline">
+              {aboutPage.adFormatsSubtitle}
+            </p>
+          )}
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-8 mt-4 lg:mt-10">
+            {aboutPage.adFormats.map((adFormatsCard, index) => {
+              return (
+                <div
+                  key={index}
+                  className={classNames(
+                    'flex flex-col justify-between space-y-12 border-2 border-white pt-12 pb-8 px-8'
+                  )}
+                  target="_blank"
+                >
+                  <div>
+                    <SanityImage
+                      image={adFormatsCard.image}
+                      className="block filter grayscale hover:filter-none transition-all duration-500"
+                      alt={adFormatsCard.caption}
+                    />
+                  </div>
+                  <div>
+                    <h4 className="font-bold text-2xl lg:text-3xl uppercase">
+                      {adFormatsCard.title}
+                    </h4>
+                    <div className="mt-4 w-40 h-1 bg-gold mx-auto"></div>
+                  </div>
+                  <div className="prose-sm lg:prose-lg">
+                    <PortableText value={adFormatsCard.body} />
+                  </div>
+                </div>
+              )
+            })}
+          </div>
+          {aboutPage.adFormatsContent && (
+            <div className="mt-4 lg:mt-10 text-white px-4 prose prose-lg max-w-5xl text-center mx-auto">
+              <PortableText value={aboutPage.adFormatsContent} />
+            </div>
+          )}
+        </section>
+        {/* end: Ad Formats */}
+
         <div className="px-8">
           <DividerBar />
         </div>
@@ -519,6 +570,14 @@ export async function getStaticProps() {
       ravensCardsTitle,
       ravensCardsSubtitle,
       ravensCardsContent,
+      adFormats[]{
+          title,
+          image,
+          body,
+      },
+      adFormatsTitle,
+      adFormatsSubtitle,
+      adFormatsContent,
   		}
   		`
   )

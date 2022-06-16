@@ -1,26 +1,27 @@
 // First, we must import the schema creator
-import createSchema from 'part:@sanity/base/schema-creator';
+import createSchema from 'part:@sanity/base/schema-creator'
 // Then import schema types from any plugins that might expose them
-import schemaTypes from 'all:part:@sanity/base/schema-type';
+import schemaTypes from 'all:part:@sanity/base/schema-type'
 
 // We import object and document schemas
-import blockContent from './blockContent';
-import aboutPage from './aboutPage';
-import homePage from './homePage';
-import workItem from './workItem';
-import workPage from './workPage';
-import service from './service';
-import teamMember from './teamMember';
-import brand from './brand';
-import photo from './photo';
-import contactPage from './contactPage';
-import studioItem from './studioItem';
-import studioPage from './studioPage';
-import momentsPage from './momentsPage';
-import ravensCard from './ravensCard';
-import representationCard from './representationCard';
-import newsItem from './newsItem';
-import newsPage from './newsPage';
+import blockContent from './blockContent'
+import aboutPage from './aboutPage'
+import homePage from './homePage'
+import workItem from './workItem'
+import workPage from './workPage'
+import service from './service'
+import teamMember from './teamMember'
+import brand from './brand'
+import photo from './photo'
+import contactPage from './contactPage'
+import studioItem from './studioItem'
+import studioPage from './studioPage'
+import momentsPage from './momentsPage'
+import ravensCard from './ravensCard'
+import representationCard from './representationCard'
+import newsItem from './newsItem'
+import newsPage from './newsPage'
+import adFormat from './adFormat'
 
 // Then we give our schema to the builder and provide the result to Sanity
 export default createSchema({
@@ -44,9 +45,10 @@ export default createSchema({
     photo,
     momentsPage,
     blockContent,
+    adFormat,
     ravensCard,
     representationCard,
     newsItem,
     newsPage,
   ]),
-});
+})

@@ -197,6 +197,28 @@ export default {
       ],
     },
     {
+      name: 'adFormatsTitle',
+      title: 'Ad Formats Section Title',
+      type: 'string',
+    },
+    {
+      name: 'adFormatsSubtitle',
+      title: 'Ad Formats Section Subtitle',
+      type: 'string',
+    },
+    {
+      name: 'adFormatsContent',
+      title: 'Ad Formats Section Content',
+      type: 'array',
+      of: [{ type: 'block' }],
+    },
+    {
+      name: 'adFormats',
+      title: 'Ad Formats',
+      type: 'array',
+      of: [{ type: 'adFormat' }],
+    },
+    {
       name: 'company3VideoTitle',
       title: 'Company 3 video title',
       type: 'string',

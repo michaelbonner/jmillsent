@@ -355,7 +355,7 @@ const VideoPlayer = ({
         className={classNames(
           showVideoOverlay ? 'opacity-100' : 'opacity-0',
           'absolute inset-0 bg-transparent cursor-pointer text-3xl text-left transition-all duration-500',
-          isIos && !isIpad ? '' : 'bottom-12'
+          isIos && !isIpad ? '' : 'bottom-[40px]'
         )}
         onClick={() => {
           if (autoPlay) {

@@ -7,14 +7,14 @@ import { getClient } from '@/lib/sanity'
 import { PortableText } from '@portabletext/react'
 import groq from 'groq'
 import Image from 'next/image'
-import { useEffect, useState } from 'react'
+import { useLayoutEffect, useState } from 'react'
 import useWindowSize from '../hooks/useWindowSize'
 
 function Home({ homePage }) {
   const size = useWindowSize()
-  const [isDesktop, setIsDesktop] = useState(true)
+  const [isDesktop, setIsDesktop] = useState(false)
 
-  useEffect(() => {
+  useLayoutEffect(() => {
     if (size.width > 1024) {
       setIsDesktop(true)
     } else {

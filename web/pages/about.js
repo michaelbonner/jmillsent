@@ -11,7 +11,7 @@ import classNames from 'classnames'
 import groq from 'groq'
 import Image from 'next/image'
 import Link from 'next/link'
-import { useEffect, useState } from 'react'
+import { useLayoutEffect, useState } from 'react'
 import Lightbox from 'react-image-lightbox'
 import useWindowSize from '../hooks/useWindowSize'
 import { getClient } from '../lib/sanity'
@@ -21,11 +21,11 @@ import 'react-image-lightbox/style.css'
 
 function About({ aboutPage }) {
   const [isGalleryModelOpen, setIsGalleryModelOpen] = useState(false)
-  const [isDesktop, setIsDesktop] = useState(true)
+  const [isDesktop, setIsDesktop] = useState(false)
   const [photoIndex, setPhotoIndex] = useState(0)
   const size = useWindowSize()
 
-  useEffect(() => {
+  useLayoutEffect(() => {
     if (size.width > 1024) {
       setIsDesktop(true)
     } else {

@@ -8,7 +8,7 @@ import urlForSanitySource from '@/lib/urlForSanitySource'
 import { PortableText, toPlainText } from '@portabletext/react'
 import groq from 'groq'
 import useWindowSize from 'hooks/useWindowSize'
-import { useEffect, useState } from 'react'
+import { useLayoutEffect, useState } from 'react'
 import Lightbox from 'react-image-lightbox'
 import { Link as SmoothScrollLink } from 'react-scroll'
 import { getClient } from '../lib/sanity'
@@ -17,11 +17,11 @@ import 'react-image-lightbox/style.css'
 
 function Studio({ studioPage }) {
   const [isLightBoxOpen, setIsLightBoxOpen] = useState(false)
-  const [isDesktop, setIsDesktop] = useState(true)
+  const [isDesktop, setIsDesktop] = useState(false)
   const [photoIndex, setPhotoIndex] = useState(0)
   const size = useWindowSize()
 
-  useEffect(() => {
+  useLayoutEffect(() => {
     if (size.width > 1024) {
       setIsDesktop(true)
     } else {

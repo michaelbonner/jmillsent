@@ -123,7 +123,10 @@ const Layout = ({
 
   useEffect(() => {
     if (heroVideoWidthInPixels && heroVideoHeightInPixels) {
-      const scaleFactor = windowWidth / heroVideoWidthInPixels
+      let scaleFactor = windowWidth / heroVideoWidthInPixels
+      if (windowWidth < 800) {
+        scaleFactor = scaleFactor * 1.4
+      }
 
       setHeroVideoHeight(`${heroVideoHeightInPixels * scaleFactor}px`)
       setHeroVideoWidth(`${heroVideoWidthInPixels * scaleFactor}px`)
@@ -443,7 +446,7 @@ const Layout = ({
                 width={heroVideoWidth}
               />
               {heroContent && (
-                <div className="z-30 h-full w-full text-white relative">
+                <div className="z-30 h-full w-screen text-white relative">
                   {heroContent}
                 </div>
               )}
@@ -451,7 +454,7 @@ const Layout = ({
           ) : (
             heroContent && (
               <div
-                className="flex items-center z-30 h-full w-full text-white relative"
+                className="flex items-center z-30 h-full w-screen text-white relative"
                 style={{ minHeight: `20vh` }}
               >
                 {heroContent}

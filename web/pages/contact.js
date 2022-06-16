@@ -52,6 +52,7 @@ function Contact({ contact }) {
   return (
     <Layout title={contact.seoTitle} description={contact.seoDescription}>
       <div
+        className="px-4 lg:px-0"
         style={{
           backgroundColor: '#ccc',
           backgroundImage: `url(${backgroundImageUrl})`,

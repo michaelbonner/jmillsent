@@ -93,6 +93,36 @@ function About({ aboutPage }) {
           <DividerBar />
         </div>
 
+        {/* services */}
+        <section className="-mt-1.5" id="services">
+          <div className="px-8 container mx-auto text-center">
+            <H2>{aboutPage.section2Title}</H2>
+            <p className="uppercase font-outline text-xl lg:text-5xl -mt-1.5">
+              {aboutPage.section2Subtitle}
+            </p>
+          </div>
+          {aboutPage.services.length > 0 && (
+            <div className="grid grid-cols-1 lg:grid-cols-2 gap-6 mt-4 lg:mt-10 max-w-7xl mx-auto">
+              {aboutPage.services.map((service, index) => {
+                const leftOrRight = service.rightAlign ? 'right' : 'left'
+                return (
+                  <BackgroundTextSectionHalf
+                    leftOrRight={leftOrRight}
+                    image={service.image}
+                    imageAlt={service.name}
+                    title={service.name}
+                    description={service.description}
+                    key={service._id}
+                  />
+                )
+              })}
+            </div>
+          )}
+        </section>
+        {/* end: services */}
+
+        <DividerBar />
+
         {/* director section */}
         <section
           className="grid max-w-7xl mx-auto items-center px-8 gap-y-10 text-center"
@@ -180,36 +210,6 @@ function About({ aboutPage }) {
         <div className="px-8">
           <DividerBar />
         </div>
-
-        {/* services */}
-        <section className="-mt-1.5" id="services">
-          <div className="px-8 container mx-auto text-center">
-            <H2>{aboutPage.section2Title}</H2>
-            <p className="uppercase font-outline text-xl lg:text-5xl -mt-1.5">
-              {aboutPage.section2Subtitle}
-            </p>
-          </div>
-          {aboutPage.services.length > 0 && (
-            <div className="grid grid-cols-1 lg:grid-cols-2 gap-6 mt-4 lg:mt-10 max-w-7xl mx-auto">
-              {aboutPage.services.map((service, index) => {
-                const leftOrRight = service.rightAlign ? 'right' : 'left'
-                return (
-                  <BackgroundTextSectionHalf
-                    leftOrRight={leftOrRight}
-                    image={service.image}
-                    imageAlt={service.name}
-                    title={service.name}
-                    description={service.description}
-                    key={service._id}
-                  />
-                )
-              })}
-            </div>
-          )}
-        </section>
-        {/* end: services */}
-
-        <DividerBar />
 
         {/* utah locations */}
         {isGalleryModelOpen && (

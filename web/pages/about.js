@@ -125,7 +125,7 @@ function About({ aboutPage }) {
 
         {/* Ad Formats */}
         <section
-          className="max-w-7xl mx-auto text-center px-4 lg:px-0 grid gap-y-4"
+          className="max-w-7xl mx-auto text-center grid gap-y-4"
           id="ad-formats"
         >
           {aboutPage.adFormatsTitle && <H2>{aboutPage.adFormatsTitle}</H2>}

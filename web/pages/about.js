@@ -127,7 +127,7 @@ function About({ aboutPage }) {
 
         {/* director section */}
         <section
-          className="grid max-w-7xl mx-auto items-center px-8 lg:px-0 gap-y-10 text-center"
+          className="grid max-w-7xl mx-auto items-center lg:px-0 gap-y-10 text-center"
           id="director"
         >
           <div>
@@ -239,11 +239,11 @@ function About({ aboutPage }) {
           />
         )}
         <section
-          className="max-w-7xl mx-auto text-center px-4 lg:px-0 grid gap-y-10"
+          className="max-w-7xl mx-auto text-center grid gap-y-10"
           id="locations"
         >
           <H2 className="!mb-0">{aboutPage.utahLocationsTitle}</H2>
-          <div className="grid grid-cols-1 lg:grid-cols-3 gap-1 px-4 lg:px-0">
+          <div className="grid grid-cols-1 lg:grid-cols-3 gap-1 px-0 lg:px-0">
             {aboutPage.utahLocations.map((utahLocation, index) => {
               return (
                 <button
@@ -338,7 +338,7 @@ function About({ aboutPage }) {
         className="max-w-7xl mx-auto text-center px-4 grid gap-y-4"
         id="ravens"
       >
-        <div className="w-full max-w-sm mx-auto">
+        <div className="w-full max-w-sm mx-auto px-4 lg:px-0">
           <Image
             src="/images/ravens-official-logo-simple-white.svg"
             alt="Ravens"

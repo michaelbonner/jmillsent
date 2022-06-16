@@ -230,7 +230,10 @@ function About({ aboutPage }) {
           className="max-w-7xl mx-auto text-center px-4 lg:px-0"
           id="team"
         >
-          <H2>MEET THE TEAM</H2>
+          <H2>{aboutPage.teamTitle}</H2>
+          <p className="uppercase font-outline text-xl lg:text-5xl -mt-1.5">
+            {aboutPage.teamSubtitle}
+          </p>
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8 lg:gap-x-12 lg:gap-y-6 mt-10 px-8 lg:px-0">
             {aboutPage.teamMembers.map((teamMember) => {
               const width = isDesktop ? 400 : 200
@@ -553,6 +556,8 @@ export async function getStaticProps() {
       section2Subtitle,
       section2Title,
       services[]->,
+      teamTitle,
+      teamSubtitle,
       teamMembers[]->,
       title,
       utahLocationsTitle,

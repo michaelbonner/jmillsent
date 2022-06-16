@@ -341,6 +341,16 @@ export default {
       of: [{ type: 'block' }],
     },
     {
+      name: 'teamTitle',
+      title: 'Team title',
+      type: 'string',
+    },
+    {
+      name: 'teamSubtitle',
+      title: 'Team Subtitle',
+      type: 'string',
+    },
+    {
       name: 'teamMembers',
       title: 'Team members',
       type: 'array',

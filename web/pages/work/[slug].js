@@ -8,7 +8,6 @@ import { H3 } from '@/components/headings'
 import { useState, useEffect } from 'react'
 import useWindowSize from '../../hooks/useWindowSize'
 import Image from 'next/image'
-import footerGraphic from '../../public/images/JME-film-prod-co-white.svg'
 
 const workItemQuery = groq`
 *[_type == "workItem" && slug.current == $slug][0]{
@@ -51,7 +50,16 @@ aspect-w-16	aspect-h-16
 const WorkItem = ({ workItem = {} }) => {
   const [isOpen, setIsOpen] = useState(false)
   const [isDesktop, setIsDesktop] = useState(false)
+  const [isMobile, setIsMobile] = useState(false)
   const size = useWindowSize()
+
+  useEffect(() => {
+    if (size.width <= 425) {
+      setIsMobile(true)
+    } else {
+      setIsMobile(false)
+    }
+  }, [size.width])
 
   useEffect(() => {
     if (size.width >= 1024) {
@@ -206,9 +214,26 @@ const WorkItem = ({ workItem = {} }) => {
         )}
       </div>
 
-      <div className="mx-auto px-12 -mb-5 w-full max-w-md lg:max-w-lg mt-12 lg:mt-24">
-        <Image src={footerGraphic} alt="JME Film Production Company" />
-      </div>
+      {isMobile && (
+        <div className="flex justify-center mx-auto -mb-5 px-12 w-full max-w-md lg:max-w-xl mt-12 lg:mt-24">
+          <Image
+            alt="JME Film Production Company"
+            height={100}
+            src={`/images/jmills-raven-gold.svg`}
+            width={100}
+          />
+        </div>
+      )}
+      {!isMobile && (
+        <div className="mx-auto -mb-5 px-12 w-full max-w-md lg:max-w-xl mt-12 lg:mt-24">
+          <Image
+            alt="JME Film Production Company"
+            height={202}
+            src={`/images/JME-film-prod-co-white.svg`}
+            width={600}
+          />
+        </div>
+      )}
       <MediumWhiteBar yMargin="mb-8 mt-12 lg:mt-24" />
     </Layout>
   )

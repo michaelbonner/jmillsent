@@ -151,7 +151,7 @@ const VideoPlayer = ({
   }, [muted])
 
   useEffect(() => {
-    if (!title || !client) {
+    if (!title && !client) {
       setShowVideoOverlay(false)
       return
     }
@@ -192,7 +192,7 @@ const VideoPlayer = ({
             <ReactPlayer
               allow="autoplay; fullscreen; picture-in-picture"
               allowFullScreen={true}
-              controls={isIpad}
+              controls={isIpad || (isIos && !isIpad && !showVideoOverlay)}
               frameBorder="0"
               height={`100%`}
               muted={muted}

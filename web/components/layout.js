@@ -1,5 +1,4 @@
 import classNames from 'classnames'
-import useClientOnly from 'hooks/useClientOnly'
 import useIsDesktop from 'hooks/useIsDesktop'
 import useWindowSize from 'hooks/useWindowSize'
 import { useRouter } from 'next/dist/client/router'
@@ -63,10 +62,6 @@ const Layout = ({
   const [heroVideoHeight, setHeroVideoHeight] = useState('30vh')
   const [heroVideoWidth, setHeroVideoWidth] = useState('100vw')
   const isDesktop = useIsDesktop()
-
-  useEffect(() => {
-    console.log('isDesktop', isDesktop)
-  }, [isDesktop])
 
   const toggleMenu = () => {
     if (menuOpen) {

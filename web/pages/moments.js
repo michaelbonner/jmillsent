@@ -4,21 +4,20 @@ import LittleWhiteBar from '@/components/little-white-bar'
 import MediumWhiteBar from '@/components/medium-white-bar'
 import classNames from 'classnames'
 import groq from 'groq'
+import useIsDesktop from 'hooks/useIsDesktop'
 import capitalize from 'just-capitalize'
 import shuffle from 'just-shuffle'
 import Image from 'next/image'
-import { useEffect, useState } from 'react'
+import { useState } from 'react'
 import Lightbox from 'react-image-lightbox'
-import useWindowSize from '../hooks/useWindowSize'
 import { getClient } from '../lib/sanity'
 
 import 'react-image-lightbox/style.css'
 
 function Moments({ momentsPage }) {
   const [isGalleryModelOpen, setIsGalleryModelOpen] = useState(false)
-  const [isDesktop, setIsDesktop] = useState(false)
   const [photoIndex, setPhotoIndex] = useState(0)
-  const size = useWindowSize()
+  const isDesktop = useIsDesktop()
 
   const imageTypeMap = [
     {
@@ -53,14 +52,6 @@ function Moments({ momentsPage }) {
     // row 3
     0, 1, 1, 0, 0,
   ]
-
-  useEffect(() => {
-    if (size.width > 1024) {
-      setIsDesktop(true)
-    } else {
-      setIsDesktop(false)
-    }
-  }, [size.width])
 
   const heroContent = (
     <div className="h-full w-full flex flex-col items-center justify-center text-white">

@@ -1,13 +1,13 @@
 /* eslint-disable @next/next/no-img-element */
-import groq from 'groq'
-import Layout from '@/components/layout'
-import { getClient } from '@/lib/sanity'
-import VideoPlayer from '@/components/video-player'
-import MediumWhiteBar from '@/components/medium-white-bar'
 import { H3 } from '@/components/headings'
-import { useState, useEffect } from 'react'
-import useWindowSize from '../../hooks/useWindowSize'
+import Layout from '@/components/layout'
+import MediumWhiteBar from '@/components/medium-white-bar'
+import VideoPlayer from '@/components/video-player'
+import { getClient } from '@/lib/sanity'
+import groq from 'groq'
+import useIsDesktop from 'hooks/useIsDesktop'
 import Image from 'next/image'
+import { useState } from 'react'
 
 const workItemQuery = groq`
 *[_type == "workItem" && slug.current == $slug][0]{
@@ -49,25 +49,8 @@ aspect-w-16	aspect-h-16
 
 const WorkItem = ({ workItem = {} }) => {
   const [isOpen, setIsOpen] = useState(false)
-  const [isDesktop, setIsDesktop] = useState(false)
-  const [isMobile, setIsMobile] = useState(false)
-  const size = useWindowSize()
 
-  useEffect(() => {
-    if (size.width <= 425) {
-      setIsMobile(true)
-    } else {
-      setIsMobile(false)
-    }
-  }, [size.width])
-
-  useEffect(() => {
-    if (size.width >= 1024) {
-      setIsDesktop(true)
-    } else {
-      setIsDesktop(false)
-    }
-  }, [size.width])
+  const isDesktop = useIsDesktop()
 
   const fullTitle = workItem.clientName
     ? `${workItem.clientName} | ${workItem.title}`
@@ -214,7 +197,7 @@ const WorkItem = ({ workItem = {} }) => {
         )}
       </div>
 
-      {isMobile && (
+      {!isDesktop && (
         <div className="flex justify-center mx-auto -mb-5 px-12 w-full max-w-md lg:max-w-xl mt-12 lg:mt-24">
           <Image
             alt="JME Film Production Company"
@@ -224,7 +207,7 @@ const WorkItem = ({ workItem = {} }) => {
           />
         </div>
       )}
-      {!isMobile && (
+      {isDesktop && (
         <div className="mx-auto -mb-5 px-12 w-full max-w-md lg:max-w-xl mt-12 lg:mt-24">
           <Image
             alt="JME Film Production Company"

@@ -18,20 +18,12 @@ import { getClient } from '../lib/sanity'
 import urlForSanitySource from '../lib/urlForSanitySource'
 
 import 'react-image-lightbox/style.css'
+import useIsDesktop from 'hooks/useIsDesktop'
 
 function About({ aboutPage }) {
   const [isGalleryModelOpen, setIsGalleryModelOpen] = useState(false)
-  const [isDesktop, setIsDesktop] = useState(null)
+  const isDesktop = useIsDesktop()
   const [photoIndex, setPhotoIndex] = useState(0)
-  const size = useWindowSize()
-
-  useLayoutEffect(() => {
-    if (size.width > 1024) {
-      setIsDesktop(true)
-    } else {
-      setIsDesktop(false)
-    }
-  }, [size.width])
 
   const utahLocationsImages = aboutPage.utahLocations.map(
     (image) => `${urlForSanitySource(image)}?w=1800&auto=format`

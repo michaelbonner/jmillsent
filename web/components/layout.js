@@ -1,4 +1,6 @@
 import classNames from 'classnames'
+import useClientOnly from 'hooks/useClientOnly'
+import useIsDesktop from 'hooks/useIsDesktop'
 import useWindowSize from 'hooks/useWindowSize'
 import { useRouter } from 'next/dist/client/router'
 import Head from 'next/head'
@@ -60,6 +62,11 @@ const Layout = ({
   const heroContainerRef = React.createRef()
   const [heroVideoHeight, setHeroVideoHeight] = useState('30vh')
   const [heroVideoWidth, setHeroVideoWidth] = useState('100vw')
+  const isDesktop = useIsDesktop()
+
+  useEffect(() => {
+    console.log('isDesktop', isDesktop)
+  }, [isDesktop])
 
   const toggleMenu = () => {
     if (menuOpen) {
@@ -395,70 +402,72 @@ const Layout = ({
           </div>
         </div>
 
-        <div
-          className={classNames(
-            {
-              'lg:bg-gradient-to-b from-gray-700 to-black via-gray-800 lg:bg-opacity-25':
-                heroVideoId,
-            },
-            `relative h-full bg-black`
-          )}
-          style={headerStyles}
-        >
-          {heroVideoId ? (
-            <div
-              className={classNames(
-                {
-                  'opacity-100': videoPlaying,
-                  'opacity-0': !videoPlaying,
-                },
-                `absolute z-0 inset-0`
-              )}
-              height={heroVideoHeight}
-              width={heroVideoWidth}
-              ref={heroContainerRef}
-            >
-              <ReactPlayer
-                allow="autoplay; fullscreen; picture-in-picture"
-                controls={false}
-                frameBorder="0"
+        {isDesktop !== null && (
+          <div
+            className={classNames(
+              {
+                'lg:bg-gradient-to-b from-gray-700 to-black via-gray-800 lg:bg-opacity-25':
+                  heroVideoId,
+              },
+              `relative h-full bg-black`
+            )}
+            style={headerStyles}
+          >
+            {heroVideoId ? (
+              <div
+                className={classNames(
+                  {
+                    'opacity-100': videoPlaying,
+                    'opacity-0': !videoPlaying,
+                  },
+                  `absolute z-0 inset-0`
+                )}
                 height={heroVideoHeight}
-                loop={true}
-                muted={true}
-                playing={true}
-                playsinline={true}
-                style={{
-                  position: 'absolute',
-                  top: 0,
-                  right: 0,
-                  bottom: 0,
-                  left: 0,
-                  pointerEvents: 'none',
-                  width: heroVideoWidth,
-                  height: heroVideoHeight,
-                }}
-                onPlay={() => setVideoPlaying(true)}
-                title="Ravens Film Works"
-                url={`https://player.vimeo.com/video/${heroVideoId}?badge=0&autopause=0&player_id=0&app_id=58479&autoplay=true&background=true`}
                 width={heroVideoWidth}
-              />
-              {heroContent && (
-                <div className="z-30 h-full w-screen text-white relative">
+                ref={heroContainerRef}
+              >
+                <ReactPlayer
+                  allow="autoplay; fullscreen; picture-in-picture"
+                  controls={false}
+                  frameBorder="0"
+                  height={heroVideoHeight}
+                  loop={true}
+                  muted={true}
+                  playing={true}
+                  playsinline={true}
+                  style={{
+                    position: 'absolute',
+                    top: 0,
+                    right: 0,
+                    bottom: 0,
+                    left: 0,
+                    pointerEvents: 'none',
+                    width: heroVideoWidth,
+                    height: heroVideoHeight,
+                  }}
+                  onPlay={() => setVideoPlaying(true)}
+                  title="Ravens Film Works"
+                  url={`https://player.vimeo.com/video/${heroVideoId}?badge=0&autopause=0&player_id=0&app_id=58479&autoplay=true&background=true`}
+                  width={heroVideoWidth}
+                />
+                {heroContent && (
+                  <div className="z-30 h-full w-screen text-white relative">
+                    {heroContent}
+                  </div>
+                )}
+              </div>
+            ) : (
+              heroContent && (
+                <div
+                  className="flex items-center z-30 h-full w-screen text-white relative"
+                  style={{ minHeight: `20vh` }}
+                >
                   {heroContent}
                 </div>
-              )}
-            </div>
-          ) : (
-            heroContent && (
-              <div
-                className="flex items-center z-30 h-full w-screen text-white relative"
-                style={{ minHeight: `20vh` }}
-              >
-                {heroContent}
-              </div>
-            )
-          )}
-        </div>
+              )
+            )}
+          </div>
+        )}
       </header>
       <main className="bg-black text-white relative z-10 w-full">
         {children}

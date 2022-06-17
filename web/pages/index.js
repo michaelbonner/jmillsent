@@ -6,21 +6,11 @@ import VideoPlayer from '@/components/video-player'
 import { getClient } from '@/lib/sanity'
 import { PortableText } from '@portabletext/react'
 import groq from 'groq'
+import useIsDesktop from 'hooks/useIsDesktop'
 import Image from 'next/image'
-import { useLayoutEffect, useState } from 'react'
-import useWindowSize from '../hooks/useWindowSize'
 
 function Home({ homePage }) {
-  const size = useWindowSize()
-  const [isDesktop, setIsDesktop] = useState(null)
-
-  useLayoutEffect(() => {
-    if (size.width > 1024) {
-      setIsDesktop(true)
-    } else {
-      setIsDesktop(false)
-    }
-  }, [size.width])
+  const isDesktop = useIsDesktop()
 
   const heroContent = (
     <div className="h-full w-screen flex flex-col items-center justify-center text-white text-center">

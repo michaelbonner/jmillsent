@@ -7,8 +7,8 @@ import VideoPlayer from '@/components/video-player'
 import urlForSanitySource from '@/lib/urlForSanitySource'
 import { PortableText, toPlainText } from '@portabletext/react'
 import groq from 'groq'
-import useWindowSize from 'hooks/useWindowSize'
-import { useLayoutEffect, useState } from 'react'
+import useIsDesktop from 'hooks/useIsDesktop'
+import { useState } from 'react'
 import Lightbox from 'react-image-lightbox'
 import { Link as SmoothScrollLink } from 'react-scroll'
 import { getClient } from '../lib/sanity'
@@ -17,17 +17,8 @@ import 'react-image-lightbox/style.css'
 
 function Studio({ studioPage }) {
   const [isLightBoxOpen, setIsLightBoxOpen] = useState(false)
-  const [isDesktop, setIsDesktop] = useState(null)
   const [photoIndex, setPhotoIndex] = useState(0)
-  const size = useWindowSize()
-
-  useLayoutEffect(() => {
-    if (size.width > 1024) {
-      setIsDesktop(true)
-    } else {
-      setIsDesktop(false)
-    }
-  }, [size.width])
+  const isDesktop = useIsDesktop()
 
   const heroContent = (
     <div className="h-full w-full grid lg:gap-y-4 items-center text-white">

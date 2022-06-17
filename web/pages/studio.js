@@ -146,7 +146,7 @@ function Studio({ studioPage }) {
                 description={studioPage.tourVideoDescription}
                 videoHeightAspectRatio={studioPage.tourVideoHeightAspectRatio}
                 videoWidthAspectRatio={studioPage.tourVideoWidthAspectRatio}
-                autoPlay={true}
+                autoPlay={false}
               />
             </div>
             <DividerBar />

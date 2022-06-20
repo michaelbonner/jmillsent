@@ -90,12 +90,12 @@ export default {
     },
     {
       name: 'section3Title',
-      title: 'Section 3 title',
+      title: 'Reel Section Title',
       type: 'string',
     },
     {
       name: 'section3Subtitle',
-      title: 'Section 3 subtitle',
+      title: 'Reel Section Subtitle',
       type: 'string',
     },
     {
@@ -179,6 +179,16 @@ export default {
       options: {
         hotspot: true,
       },
+    },
+    {
+      name: 'studioItemSectionTitle',
+      title: 'Studio Items Section Title',
+      type: 'string',
+    },
+    {
+      name: 'studioItemSectionSubtitle',
+      title: 'Studio Items Section Subtitle',
+      type: 'string',
     },
     {
       name: 'studioItems',

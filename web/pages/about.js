@@ -107,16 +107,15 @@ function About({ aboutPage }) {
             </p>
           </div>
           {aboutPage.services.length > 0 && (
-            <div className="grid grid-cols-1 lg:grid-cols-2 gap-6 mt-4 lg:mt-10 max-w-7xl mx-auto">
+            <div className="grid grid-cols-1 lg:grid-cols-3 gap-6 mt-4 lg:mt-10 max-w-7xl mx-auto">
               {aboutPage.services.map((service, index) => {
-                const leftOrRight = service.rightAlign ? 'right' : 'left'
                 return (
                   <BackgroundTextSectionHalf
-                    leftOrRight={leftOrRight}
                     image={service.image}
                     imageAlt={service.name}
                     title={service.name}
                     description={service.description}
+                    step={index + 1}
                     key={service._id}
                   />
                 )

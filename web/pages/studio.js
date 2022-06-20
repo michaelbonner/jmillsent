@@ -155,6 +155,12 @@ function Studio({ studioPage }) {
 
         {/* studioItems */}
         <section id="studio-items">
+          <div className="px-8 container mx-auto text-center uppercase -mt-1.5">
+            <H2>{studioPage.studioItemSectionTitle}</H2>
+            <p className="uppercase font-outline text-xl lg:text-5xl leading-4">
+              {studioPage.studioItemSectionSubtitle}
+            </p>
+          </div>
           {studioPage.studioItems?.length > 0 && (
             <div className="grid gap-y-4 sm:gap-y-8 lg:gap-y-12 mt-10 max-w-7xl mx-auto">
               {studioPage.studioItems.map((service, index) => {
@@ -209,6 +215,8 @@ export async function getStaticProps() {
 			seoDescription,
 			seoTitle,
 			subtitle,
+      studioItemSectionTitle,
+      studioItemSectionSubtitle,
 			videoClient,
 			videoId,
       headerVideoWidthInPixels,

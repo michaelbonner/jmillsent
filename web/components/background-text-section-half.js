@@ -19,7 +19,7 @@ const BackgroundTextSectionHalf = ({
           <Image
             src="/images/simple-badge-gold.svg"
             alt="Service Step"
-            width={Math.floor(125 * 0.45)}
+            width={Math.floor(135 * 0.45)}
             height={Math.floor(150 * 0.45)}
           />
           <p className="absolute text-black text-3xl font-extrabold">{step}</p>
@@ -34,7 +34,7 @@ const BackgroundTextSectionHalf = ({
           )}?w=1246&h=800&auto=format&fit=crop&crop=focalpoint`}
           width={1246}
         />
-        <div className="flex flex-col justify-center mx-auto gap-y-2 lg:max-w-[80%]">
+        <div className="flex flex-col justify-center mx-auto gap-y-2">
           <H3 className="inline !mt-3 w-full uppercase text-center !mb-0 py-1">
             {title}
           </H3>

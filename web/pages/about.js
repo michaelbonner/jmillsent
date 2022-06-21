@@ -200,16 +200,16 @@ function About({ aboutPage }) {
             />
             {(aboutPage.directorImageTitle ||
               aboutPage.directorImageSubtitle) && (
-              <div className="absolute inset-0 pr-24 flex flex-col items-end justify-center gap-y-6">
-                <p className="text-3xl lg:text-4xl uppercase font-bold tracking-wider">
+              <div className="absolute inset-0 pr-8 lg:pr-24 flex flex-col items-end justify-center gap-y-2 md:gap-y-6">
+                <p className="text-sm md:text-3xl lg:text-4xl uppercase font-bold tracking-wider">
                   {aboutPage.directorImageTitle}
                 </p>
                 {aboutPage.directorImageTitle &&
                   aboutPage.directorImageSubtitle && (
-                    <div className="w-48 h-1 bg-gold"></div>
+                    <div className="w-24 md:w-48 h-1 bg-gold"></div>
                   )}
                 {aboutPage.directorImageSubtitle && (
-                  <p className="font-outline text-3xl lg:text-4xl uppercase">
+                  <p className="font-outline text-sm md:text-3xl lg:text-4xl uppercase">
                     {aboutPage.directorImageSubtitle}
                   </p>
                 )}

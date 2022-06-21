@@ -19,10 +19,10 @@ const BackgroundTextSectionHalf = ({
           <Image
             src="/images/simple-badge-gold.svg"
             alt="Service Step"
-            width={50}
-            height={75}
+            width={Math.floor(125 * 0.45)}
+            height={Math.floor(150 * 0.45)}
           />
-          <p className="absolute text-black text-2xl font-extrabold">{step}</p>
+          <p className="absolute text-black text-3xl font-extrabold">{step}</p>
         </div>
       </div>
       <div className="w-full group" style={{ lineHeight: 0 }}>

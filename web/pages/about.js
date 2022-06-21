@@ -11,14 +11,13 @@ import classNames from 'classnames'
 import groq from 'groq'
 import Image from 'next/image'
 import Link from 'next/link'
-import { useLayoutEffect, useState } from 'react'
+import { useState } from 'react'
 import Lightbox from 'react-image-lightbox'
-import useWindowSize from '../hooks/useWindowSize'
 import { getClient } from '../lib/sanity'
 import urlForSanitySource from '../lib/urlForSanitySource'
 
-import 'react-image-lightbox/style.css'
 import useIsDesktop from 'hooks/useIsDesktop'
+import 'react-image-lightbox/style.css'
 
 function About({ aboutPage }) {
   const [isGalleryModelOpen, setIsGalleryModelOpen] = useState(false)
@@ -160,9 +159,9 @@ function About({ aboutPage }) {
                       {adFormatsCard.title}
                     </h4>
                     <div className="mt-4 w-40 h-1 bg-gold mx-auto"></div>
-                  </div>
-                  <div className="prose-sm lg:prose-lg">
-                    <PortableText value={adFormatsCard.body} />
+                    <div className="prose-sm lg:prose-lg mt-4">
+                      <PortableText value={adFormatsCard.body} />
+                    </div>
                   </div>
                 </div>
               )

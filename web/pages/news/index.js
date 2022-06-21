@@ -5,8 +5,6 @@ import NewsItemCard from '@/components/news-item-card'
 import { getClient } from '@/lib/sanity'
 import groq from 'groq'
 import { Fragment } from 'react'
-import Image from 'next/image'
-import urlForSanitySource from '../../lib/urlForSanitySource'
 
 function News({ newsPage, newsItems }) {
   const heroContent = (

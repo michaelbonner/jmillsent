@@ -108,7 +108,7 @@ function Moments({ momentsPage }) {
             const altText =
               image.caption ||
               capitalize(
-                image.name
+                (image.name || `image-${index}`)
                   .replace(/-/g, ' ')
                   .replace(/_/g, ' ')
                   .replace('.jpg', '')

@@ -12,8 +12,7 @@ const Map = () => {
     <GoogleMap
       mapContainerStyle={{
         width: '100%',
-        height: '500px',
-        maxHeight: `800px`,
+        height: '600px',
       }}
       mapContainerClassName="rounded-lg"
       center={{ lat: 40.8309715, lng: -111.9024321 }}

@@ -220,7 +220,7 @@ function Contact({ contact }) {
 
             <DividerBar yMargin="my-12 lg:my-24" />
 
-            <div className="mx-auto max-w-5xl border border-gray-500 rounded-lg">
+            <div className="mx-auto max-w-7xl border border-gray-500 rounded-lg">
               <Map />
             </div>
 

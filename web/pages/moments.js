@@ -98,44 +98,46 @@ function Moments({ momentsPage }) {
             'mt-0 grid grid-cols-2 lg:grid-cols-12 gap-4 px-1'
           )}
         >
-          {momentsPage.images.map((image, index) => {
-            const desktopIndex = index % 17
-            const imageType =
-              imageTypeMap[desktopImageTypeSequence[desktopIndex]]
-            const width = isDesktop ? imageType.width : 800
+          {momentsPage.images
+            .filter((image) => image.imageUrl)
+            .map((image, index) => {
+              const desktopIndex = index % 17
+              const imageType =
+                imageTypeMap[desktopImageTypeSequence[desktopIndex]]
+              const width = isDesktop ? imageType.width : 800
 
-            const height = isDesktop ? imageType.height : 600
-            const altText =
-              image.caption ||
-              capitalize(
-                (image.name || `image-${index}`)
-                  .replace(/-/g, ' ')
-                  .replace(/_/g, ' ')
-                  .replace('.jpg', '')
+              const height = isDesktop ? imageType.height : 600
+              const altText =
+                image.caption ||
+                capitalize(
+                  (image.name || `image-${index}`)
+                    .replace(/-/g, ' ')
+                    .replace(/_/g, ' ')
+                    .replace('.jpg', '')
+                )
+
+              return (
+                <div
+                  className={classNames(
+                    isDesktop ? imageType.colSpan : '',
+                    'bpd-gallery-image-container'
+                  )}
+                  key={index}
+                >
+                  <Image
+                    alt={altText}
+                    className={`cursor-pointer bpd-gallery-image`}
+                    height={height}
+                    onClick={() => {
+                      setIsGalleryModelOpen(true)
+                      setPhotoIndex(index)
+                    }}
+                    src={`${image.imageUrl}?w=${width}&h=${height}&auto=format&fit=crop&crop=focalpoint`}
+                    width={width}
+                  />
+                </div>
               )
-
-            return (
-              <div
-                className={classNames(
-                  isDesktop ? imageType.colSpan : '',
-                  'bpd-gallery-image-container'
-                )}
-                key={index}
-              >
-                <Image
-                  alt={altText}
-                  className={`cursor-pointer bpd-gallery-image`}
-                  height={height}
-                  onClick={() => {
-                    setIsGalleryModelOpen(true)
-                    setPhotoIndex(index)
-                  }}
-                  src={`${image.imageUrl}?w=${width}&h=${height}&auto=format&fit=crop&crop=focalpoint`}
-                  width={width}
-                />
-              </div>
-            )
-          })}
+            })}
         </div>
       </section>
       <MediumWhiteBar yMargin="mb-8 mt-12 lg:mt-24" />

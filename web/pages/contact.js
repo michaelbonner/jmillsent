@@ -104,13 +104,13 @@ function Contact({ contact }) {
                     handleBlur,
                     values,
                   }) => (
-                    <Form className="grid grid-cols-1 gap-y-6 max-w-4xl mx-auto">
-                      <div className="border-gray-300 rounded-md bg-white bg-opacity-90 relative">
+                    <Form className="grid grid-cols-1 gap-y-6 mx-auto">
+                      <div className="border-gray-300 rounded-md bg-white bg-opacity-100 relative">
                         <Field
                           as="input"
                           name="name"
                           placeholder="FULL NAME"
-                          className="bg-transparent block w-full shadow-sm py-3 px-4 text-gray-500 placeholder-black focus:ring-indigo-500 focus:border-indigo-500"
+                          className="bg-transparent block w-full shadow-sm py-3 px-4 lg:px-8 text-gray-500 placeholder-black focus:ring-indigo-500 focus:border-indigo-500"
                         />
                         <ErrorMessage
                           name="name"
@@ -119,12 +119,12 @@ function Contact({ contact }) {
                         />
                       </div>
 
-                      <div className="border-gray-300 rounded-md bg-white bg-opacity-90 relative">
+                      <div className="border-gray-300 rounded-md bg-white bg-opacity-100 relative">
                         <Field
                           as="input"
                           name="emailAddress"
                           placeholder="EMAIL ADDRESS"
-                          className="bg-transparent block w-full shadow-sm py-3 px-4 text-gray-500 placeholder-black focus:ring-indigo-500 focus:border-indigo-500"
+                          className="bg-transparent block w-full shadow-sm py-3 px-4 lg:px-8 text-gray-500 placeholder-black focus:ring-indigo-500 focus:border-indigo-500"
                         />
                         <ErrorMessage
                           name="emailAddress"
@@ -133,12 +133,12 @@ function Contact({ contact }) {
                         />
                       </div>
 
-                      <div className="border-gray-300 rounded-md bg-white bg-opacity-90 relative">
+                      <div className="border-gray-300 rounded-md bg-white bg-opacity-100 relative">
                         <Field
                           as="input"
                           name="phoneNumber"
                           placeholder="PHONE NUMBER"
-                          className="bg-transparent block w-full shadow-sm py-3 px-4 text-gray-500 placeholder-black focus:ring-indigo-500 focus:border-indigo-500"
+                          className="bg-transparent block w-full shadow-sm py-3 px-4 lg:px-8 text-gray-500 placeholder-black focus:ring-indigo-500 focus:border-indigo-500"
                         />
                         <ErrorMessage
                           name="phoneNumber"
@@ -146,9 +146,9 @@ function Contact({ contact }) {
                           component="div"
                         />
                       </div>
-                      <div className="border-gray-300 rounded-md bg-white bg-opacity-90 relative">
+                      <div className="border-gray-300 rounded-md bg-white bg-opacity-100 relative">
                         <TextareaAutosize
-                          className="py-3 px-4 block w-full shadow-sm focus:ring-indigo-500 text-gray-500 placeholder-black focus:border-indigo-500 border-gray-300 rounded-md bg-transparent"
+                          className="py-3 px-4 lg:px-8 block w-full shadow-sm focus:ring-indigo-500 text-gray-500 placeholder-black focus:border-indigo-500 border-gray-300 rounded-md bg-transparent"
                           minRows={4}
                           onChange={handleChange}
                           onBlur={handleBlur}
@@ -165,8 +165,8 @@ function Contact({ contact }) {
                       <button
                         type="submit"
                         className={classNames(
-                          `inline-block rounded-md font-bold uppercase w-1/2 mx-auto`,
-                          `tracking-wider border border-gray-300 py-2 px-8`,
+                          `inline-block rounded-md text-lg font-bold uppercase w-full max-w-[450px] mx-auto`,
+                          `tracking-wider border border-gray-500 py-2.5 px-8`,
                           `bg-black bg-opacity-50 hover:bg-gold`,
                           `hover:text-black transition-all`,
                           {
@@ -197,16 +197,20 @@ function Contact({ contact }) {
 
           <div>
             <div
-              className="flex flex-wrap max-w-5xl justify-center gap-6 mx-auto text-center"
+              className="flex flex-wrap max-w-7xl justify-center mx-auto text-center"
               id="contacts"
             >
               {contact.representationCards.map((card) => {
                 return (
-                  <div className="border p-8 w-80" key={card.title}>
-                    <H4>{card.title}</H4>
-                    <LittleWhiteBar yMargin="my-4" />
-                    <div className="leading-9 prose prose-white text-gray-300">
-                      <PortableText value={card.body} />
+                  <div className="w-full lg:w-1/3" key={card.title}>
+                    <div className="border border-gray-500 p-8 m-3">
+                      <p className="tracking-wider font-bold text-xl">
+                        {card.title}
+                      </p>
+                      <LittleWhiteBar yMargin="my-4" />
+                      <div className="leading-9 prose prose-lg prose-white text-gray-400">
+                        <PortableText value={card.body} />
+                      </div>
                     </div>
                   </div>
                 )
@@ -215,27 +219,34 @@ function Contact({ contact }) {
 
             <DividerBar yMargin="my-12 lg:my-24" />
 
-            <div className="mx-auto max-w-5xl border border-gray-300 rounded-lg">
+            <div className="mx-auto max-w-5xl border border-gray-500 rounded-lg">
               <Map />
             </div>
 
-            <div className="flex mx-auto mt-12 lg:mt-24 items-center justify-center text-center prose-lg">
-              <div className="leading-9 text-gray-300 text-center border px-16">
-                <p className="font-extrabold text-2xl">
-                  STUDIO ADDRESS
+            <div
+              className="flex flex-wrap max-w-7xl justify-center mx-auto text-center mt-12"
+              id="contacts"
+            >
+              <div className="w-full lg:w-1/3">
+                <div className="border border-gray-500 p-8 m-3">
+                  <p className="tracking-wider font-bold text-xl uppercase">
+                    Studio Address
+                  </p>
                   <LittleWhiteBar yMargin="my-4" />
-                  <a
-                    className="no-underline font-light text-xl"
-                    href="https://g.page/jmillsent?share"
-                    target="_blank"
-                    rel="noopener noreferrer"
-                  >
-                    Jmills Entertainment
-                    <br />
-                    1589 W 2225 S<br />
-                    Woods Cross, UT 84087
-                  </a>
-                </p>
+                  <div className="leading-9 prose prose-lg prose-white text-gray-400">
+                    <a
+                      className="no-underline"
+                      href="https://g.page/jmillsent?share"
+                      target="_blank"
+                      rel="noopener noreferrer"
+                    >
+                      Jmills Entertainment
+                      <br />
+                      1589 W 2225 S<br />
+                      Woods Cross, UT 84087
+                    </a>
+                  </div>
+                </div>
               </div>
             </div>
           </div>

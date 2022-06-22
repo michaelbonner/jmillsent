@@ -192,15 +192,18 @@ function About({ aboutPage }) {
               {aboutPage.directorTitle}
             </p>
           </div>
-          <div className="relative py-4 px-6 border border-white">
+          <div className="relative py-4 px-4 lg:px-6 border border-white">
             <SanityImage
               image={aboutPage.directorImage}
               alt={aboutPage.directorName}
             />
+            <div
+              className={`absolute w-full right-0 lg:pr-20 top-0 bottom-0 h-full bg-gradient-to-l from-black to-transparent opacity-70 group-hover:opacity-80 transition-all duration-500`}
+            />
             {(aboutPage.directorImageTitle ||
               aboutPage.directorImageSubtitle) && (
-              <div className="absolute inset-0 pr-8 lg:pr-24 flex flex-col items-end justify-center gap-y-2 md:gap-y-6">
-                <p className="text-sm md:text-3xl lg:text-4xl uppercase font-bold tracking-wider">
+              <div className="absolute inset-0 pr-8 lg:pr-24 flex flex-col items-end justify-center gap-y-1 md:gap-y-6">
+                <p className="text-base md:text-3xl lg:text-4xl uppercase font-bold tracking-wider">
                   {aboutPage.directorImageTitle}
                 </p>
                 {aboutPage.directorImageTitle &&
@@ -208,7 +211,7 @@ function About({ aboutPage }) {
                     <div className="w-24 md:w-48 h-1 bg-gold"></div>
                   )}
                 {aboutPage.directorImageSubtitle && (
-                  <p className="font-outline text-sm md:text-3xl lg:text-4xl uppercase">
+                  <p className="font-outline text-lg md:text-3xl lg:text-4xl uppercase">
                     {aboutPage.directorImageSubtitle}
                   </p>
                 )}

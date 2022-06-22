@@ -283,7 +283,7 @@ const VideoPlayer = ({
             ></ReactPlayer>
           </div>
 
-          {!isIos && (
+          {!isIos && !isIpad && (
             <VideoPlayerControlBar
               isFullscreen={isFullscreen}
               muted={muted}

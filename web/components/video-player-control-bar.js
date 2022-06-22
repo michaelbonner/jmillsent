@@ -24,7 +24,7 @@ export const VideoPlayerControlBar = ({
   videoPlaying,
 }) => {
   return (
-    <div className="hidden lg:flex space-x-8 relative z-10 container mx-auto pt-3 bg-black">
+    <div className="flex space-x-8 relative z-10 container mx-auto pt-3 bg-black">
       <button
         className="relative text-4xl w-8 h-8"
         onClick={() => {
@@ -58,6 +58,9 @@ export const VideoPlayerControlBar = ({
         className="relative w-full border-2 border-gray-300 rounded"
         onClick={(e) => {
           setHasClicked(true)
+          if (!scrubber.current || !player.current) {
+            return
+          }
           const scrubberBoundingClientRect =
             scrubber.current.getBoundingClientRect()
 

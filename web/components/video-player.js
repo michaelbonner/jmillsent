@@ -207,6 +207,7 @@ const VideoPlayer = ({
             ) : null}
           </div>
         </div>
+
         <VideoPlayerOverlayButton
           autoPlay={autoPlay}
           client={client}
@@ -252,7 +253,14 @@ const VideoPlayer = ({
               <ReactPlayer
                 allow="autoplay; fullscreen; picture-in-picture"
                 allowFullScreen={true}
-                controls={isDesktop === false && isPlaying}
+                controls={!isIos && !isDesktop}
+                config={{
+                  vimeo: {
+                    playerOptions: {
+                      playsinline: false,
+                    },
+                  },
+                }}
                 frameBorder="0"
                 height={`100%`}
                 muted={muted}
@@ -289,7 +297,7 @@ const VideoPlayer = ({
             )}
           </div>
 
-          {!isIos && !isIpad && (
+          {!isIos && !isIpad && isDesktop && (
             <VideoPlayerControlBar
               isFullscreen={isFullscreen}
               muted={muted}
@@ -311,6 +319,7 @@ const VideoPlayer = ({
           autoPlay={autoPlay}
           client={client}
           description={description}
+          disableMobilePointerEvents={true}
           hasClicked={hasClicked}
           isIos={isIos}
           isIpad={isIpad}

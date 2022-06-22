@@ -60,12 +60,12 @@ function Contact({ contact }) {
           backgroundPosition: 'center center',
         }}
       >
-        <div className="grid gap-y-12 lg:gap-y-20">
+        <div className="grid">
           <div className="max-w-5xl mx-auto px-4 lg:px-0 pt-12 text-center">
             <H1>{contact.title}</H1>
           </div>
-          <div className="max-w-7xl w-full mx-auto lg:flex lg:space-x-16 px-4">
-            <div className="mx-auto max-w-lg lg:w-1/3">
+          <div className="max-w-7xl w-full mx-auto px-4 mt-8 lg:mt-16">
+            <div>
               {state === 'initial' && (
                 <Formik
                   initialValues={contactForm}
@@ -104,7 +104,7 @@ function Contact({ contact }) {
                     handleBlur,
                     values,
                   }) => (
-                    <Form className="grid grid-cols-1 gap-y-6 max-w-3xl mx-auto">
+                    <Form className="grid grid-cols-1 gap-y-6 max-w-4xl mx-auto">
                       <div className="border-gray-300 rounded-md bg-white bg-opacity-90 relative">
                         <Field
                           as="input"
@@ -146,7 +146,6 @@ function Contact({ contact }) {
                           component="div"
                         />
                       </div>
-
                       <div className="border-gray-300 rounded-md bg-white bg-opacity-90 relative">
                         <TextareaAutosize
                           className="py-3 px-4 block w-full shadow-sm focus:ring-indigo-500 text-gray-500 placeholder-black focus:border-indigo-500 border-gray-300 rounded-md bg-transparent"
@@ -163,11 +162,10 @@ function Contact({ contact }) {
                           component="div"
                         />
                       </div>
-
                       <button
                         type="submit"
                         className={classNames(
-                          `inline-block rounded-md font-bold uppercase`,
+                          `inline-block rounded-md font-bold uppercase w-1/2 mx-auto`,
                           `tracking-wider border border-gray-300 py-2 px-8`,
                           `bg-black bg-opacity-50 hover:bg-gold`,
                           `hover:text-black transition-all`,
@@ -183,7 +181,6 @@ function Contact({ contact }) {
                   )}
                 </Formik>
               )}
-
               {state === 'submitted' && (
                 <div className="relative h-full flex flex-col justify-center items-center text-center bg-white rounded-md shadow-md py-24 px-8 text-gray-900">
                   <h2 className="font-medium text-2xl relative z-20">
@@ -194,54 +191,53 @@ function Contact({ contact }) {
                 </div>
               )}
             </div>
-            <div className="w-full lg:w-2/3 mt-20 lg:mt-0 border border-gray-300 rounded-lg">
-              <Map />
-            </div>
-          </div>
-          <div className="flex gap-x-16 max-w-3xl mx-auto px-4 lg:px-0 items-center justify-center text-center lg:text-left prose prose-white text-gray-300 font-light text-lg">
-            <div className="leading-9 text-gray-300 text-center">
-              <p>
-                JME STUDIO ADDRESS
-                <br />
-                <a
-                  className="text-gray-300 no-underline border-b border-gray-500 font-light"
-                  href="https://g.page/jmillsent?share"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                >
-                  1589 W 2225 S<br />
-                  WOODS CROSS, UT 84087
-                </a>
-              </p>
-            </div>
-          </div>
-        </div>
-        <div className="mt-10">
-          <div className="text-center">
-            <H3>{contact.representationTitle}</H3>
           </div>
 
           <DividerBar yMargin="my-12 lg:my-24" />
 
-          <div
-            className="max-w-7xl mx-auto text-center grid md:grid-cols-2 xl:grid-cols-4 gap-y-10 sm:gap-y-16 text-gray-200 mt-8"
-            id="contacts"
-          >
-            {contact.representationCards.map((card) => {
-              return (
-                <div key={card.title}>
-                  <H4>{card.title}</H4>
-                  <LittleWhiteBar yMargin="my-4" />
-                  <div className="mx-auto text-lg leading-9 prose prose-white text-gray-300">
-                    <PortableText value={card.body} />
+          <div>
+            <div
+              className="flex flex-wrap max-w-5xl justify-center gap-6 mx-auto text-center"
+              id="contacts"
+            >
+              {contact.representationCards.map((card) => {
+                return (
+                  <div className="border p-8 w-80" key={card.title}>
+                    <H4>{card.title}</H4>
+                    <LittleWhiteBar yMargin="my-4" />
+                    <div className="leading-9 prose prose-white text-gray-300">
+                      <PortableText value={card.body} />
+                    </div>
                   </div>
-                </div>
-              )
-            })}
-          </div>
+                )
+              })}
+            </div>
 
-          <div className="max-w-5xl mx-auto">
-            <LargeWhiteBar yMargin="my-12 lg:my-24" />
+            <DividerBar yMargin="my-12 lg:my-24" />
+
+            <div className="mx-auto max-w-5xl border border-gray-300 rounded-lg">
+              <Map />
+            </div>
+
+            <div className="flex mx-auto mt-12 lg:mt-24 items-center justify-center text-center prose-lg">
+              <div className="leading-9 text-gray-300 text-center border px-16">
+                <p className="font-extrabold text-2xl">
+                  STUDIO ADDRESS
+                  <LittleWhiteBar yMargin="my-4" />
+                  <a
+                    className="no-underline font-light text-xl"
+                    href="https://g.page/jmillsent?share"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                  >
+                    Jmills Entertainment
+                    <br />
+                    1589 W 2225 S<br />
+                    Woods Cross, UT 84087
+                  </a>
+                </p>
+              </div>
+            </div>
           </div>
 
           <div className="my-12 lg:my-16 grid gap-y-12">
@@ -272,7 +268,7 @@ function Contact({ contact }) {
           <div className="px-8">
             <EmailSignupForm title={contact.subscribeFormTitle} />
           </div>
-          <MediumWhiteBar yMargin="my-12 lg:mt-24" />
+          <MediumWhiteBar yMargin="my-12" />
         </div>
       </div>
     </Layout>

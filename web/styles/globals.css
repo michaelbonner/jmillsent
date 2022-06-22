@@ -20,6 +20,13 @@
   letter-spacing: 0.1em;
 }
 
+@media (prefers-contrast: more) {
+  .font-outline {
+    @apply font-sans;
+    @apply font-bold;
+  }
+}
+
 .bpd-fade-in {
   animation: fadeInAnimation ease 3s;
   animation-iteration-count: 1;

@@ -199,11 +199,11 @@ function About({ aboutPage }) {
               alt={aboutPage.directorName}
             />
             <div
-              className={`absolute w-full right-0 lg:pr-20 top-0 bottom-0 h-full bg-gradient-to-l from-black to-transparent opacity-70 group-hover:opacity-80 transition-all duration-500`}
+              className={`hidden lg:block absolute w-1/2 right-0 lg:pr-20 top-0 bottom-0 h-full bg-gradient-to-l from-black to-transparent opacity-70 group-hover:opacity-80 transition-all duration-500`}
             />
             {(aboutPage.directorImageTitle ||
               aboutPage.directorImageSubtitle) && (
-              <div className="absolute inset-0 pr-8 lg:pr-24 flex flex-col items-end justify-center gap-y-1 sm:gap-y-2 lg:gap-y-6">
+              <div className="mt-4 lg:mt-0 lg:absolute inset-0 lg:pr-24 flex flex-col items-center lg:items-end justify-center gap-y-1 sm:gap-y-2 lg:gap-y-6">
                 <p className="text-lg sm:text-3xl lg:text-4xl uppercase font-bold tracking-wider">
                   {aboutPage.directorImageTitle}
                 </p>

@@ -171,6 +171,8 @@ const VideoPlayer = ({
   useEffect(() => {
     if (hasClicked && playingVideoId) {
       setPlayerState('playing')
+    } else if (!playingVideoId) {
+      setPlayerState('poster')
     }
   }, [hasClicked, playingVideoId])
 
@@ -183,139 +185,7 @@ const VideoPlayer = ({
         'bpd-player-container relative z-20'
       )}
     >
-      {playerState === 'initial' && (
-        <div>
-          <div className="container mx-auto">
-            <div
-              className={classNames(
-                `aspect-w-${videoWidthAspectRatio}`,
-                `aspect-h-${videoHeightAspectRatio}`,
-                `transition-all duration-700`
-              )}
-            >
-              {poster ? (
-                <img
-                  alt="Poster image"
-                  className="w-full h-full"
-                  src={urlForSanitySource(poster).width(1200).url()}
-                />
-              ) : null}
-            </div>
-          </div>
-          <VideoPlayerOverlayButton
-            autoPlay={autoPlay}
-            client={client}
-            description={description}
-            hasClicked={hasClicked}
-            isIos={isIos}
-            isIpad={isIpad}
-            player={player}
-            setHasClicked={setHasClicked}
-            setMuted={setMuted}
-            setScrubberPosition={setScrubberPosition}
-            setVideoPlaying={setVideoPlaying}
-            setVolume={setVolume}
-            showVideoOverlay={showVideoOverlay}
-            title={title}
-            videoPlaying={videoPlaying}
-          />
-        </div>
-      )}
-      {playerState === 'playing' && (
-        <>
-          <div
-            className={classNames(
-              {
-                'w-full': isFullscreen,
-                container: !isFullscreen,
-                'bg-gray-900': !showVideo,
-              },
-              'mx-auto transition-all duration-700'
-            )}
-          >
-            <div
-              className={classNames(
-                `lg:my-0 relative`,
-                `aspect-w-${videoWidthAspectRatio} aspect-h-${videoHeightAspectRatio}`,
-                `transition-all duration-700`,
-                {
-                  'opacity-100': showVideo,
-                  'opacity-0': !showVideo,
-                }
-              )}
-            >
-              <ReactPlayer
-                allow="autoplay; fullscreen; picture-in-picture"
-                allowFullScreen={true}
-                controls={!isDesktop && isPlaying}
-                frameBorder="0"
-                height={`100%`}
-                muted={muted}
-                loop={autoPlay}
-                onReady={() => {
-                  setTimeout(() => {
-                    if (
-                      player?.current &&
-                      typeof player?.current?.getDuration === 'function'
-                    ) {
-                      setTotalPlaySeconds(player?.current?.getDuration() || 0)
-                      setShowVideo(true)
-                    }
-                  }, [500])
-                }}
-                onEnded={() => {
-                  setVideoPlaying(false)
-                }}
-                onPlay={async () => {
-                  setIsPlaying(true)
-                }}
-                onPause={() => {
-                  setIsPlaying(false)
-                }}
-                playing={videoPlaying}
-                ref={player}
-                title={title}
-                url={`https://player.vimeo.com/video/${playingVideoId}?badge=0&amp;autopause=0&amp;player_id=0&amp;app_id=58479`}
-                volume={volume}
-                width={`100%`}
-              ></ReactPlayer>
-            </div>
-
-            {!isIos && (
-              <VideoPlayerControlBar
-                isFullscreen={isFullscreen}
-                muted={muted}
-                setMuted={setMuted}
-                setVolume={setVolume}
-                scrubber={scrubber}
-                scrubberPosition={scrubberPosition}
-                setHasClicked={setHasClicked}
-                setVideoPlaying={setVideoPlaying}
-                toggleFullScreen={toggleFullScreen}
-                videoPlaying={videoPlaying}
-              />
-            )}
-          </div>
-          <VideoPlayerOverlayButton
-            autoPlay={autoPlay}
-            client={client}
-            description={description}
-            hasClicked={hasClicked}
-            isIos={isIos}
-            isIpad={isIpad}
-            player={player}
-            setHasClicked={setHasClicked}
-            setMuted={setMuted}
-            setScrubberPosition={setScrubberPosition}
-            setVideoPlaying={setVideoPlaying}
-            setVolume={setVolume}
-            showVideoOverlay={showVideoOverlay}
-            title={title}
-            videoPlaying={videoPlaying}
-          />
-        </>
-      )}
-      {playerState === 'poster' && (
+      <div className={playerState === 'initial' ? 'block' : 'hidden'}>
         <div className="container mx-auto">
           <div
             className={classNames(
@@ -333,7 +203,137 @@ const VideoPlayer = ({
             ) : null}
           </div>
         </div>
-      )}
+        <VideoPlayerOverlayButton
+          autoPlay={autoPlay}
+          client={client}
+          description={description}
+          hasClicked={hasClicked}
+          isIos={isIos}
+          isIpad={isIpad}
+          player={player}
+          setHasClicked={setHasClicked}
+          setMuted={setMuted}
+          setScrubberPosition={setScrubberPosition}
+          setVideoPlaying={setVideoPlaying}
+          setVolume={setVolume}
+          showVideoOverlay={showVideoOverlay}
+          title={title}
+          videoPlaying={videoPlaying}
+        />
+      </div>
+
+      <div className={playerState === 'playing' ? 'block' : 'hidden'}>
+        <div
+          className={classNames(
+            {
+              'w-full': isFullscreen,
+              container: !isFullscreen,
+              'bg-gray-900': !showVideo,
+            },
+            'mx-auto transition-all duration-700'
+          )}
+        >
+          <div
+            className={classNames(
+              `lg:my-0 relative`,
+              `aspect-w-${videoWidthAspectRatio} aspect-h-${videoHeightAspectRatio}`,
+              `transition-all duration-700`,
+              {
+                'opacity-100': showVideo,
+                'opacity-0': !showVideo,
+              }
+            )}
+          >
+            <ReactPlayer
+              allow="autoplay; fullscreen; picture-in-picture"
+              allowFullScreen={true}
+              controls={!isDesktop && isPlaying}
+              frameBorder="0"
+              height={`100%`}
+              muted={muted}
+              loop={autoPlay}
+              onReady={() => {
+                setTimeout(() => {
+                  if (
+                    player?.current &&
+                    typeof player?.current?.getDuration === 'function'
+                  ) {
+                    setTotalPlaySeconds(player?.current?.getDuration() || 0)
+                    setShowVideo(true)
+                  }
+                }, [500])
+              }}
+              onEnded={() => {
+                setVideoPlaying(false)
+              }}
+              onPlay={async () => {
+                setIsPlaying(true)
+              }}
+              onPause={() => {
+                setIsPlaying(false)
+              }}
+              playing={videoPlaying}
+              ref={player}
+              title={title}
+              url={`https://player.vimeo.com/video/${playingVideoId}?badge=0&amp;autopause=0&amp;player_id=0&amp;app_id=58479`}
+              volume={volume}
+              width={`100%`}
+            ></ReactPlayer>
+          </div>
+
+          {!isIos && (
+            <VideoPlayerControlBar
+              isFullscreen={isFullscreen}
+              muted={muted}
+              setMuted={setMuted}
+              setVolume={setVolume}
+              scrubber={scrubber}
+              scrubberPosition={scrubberPosition}
+              setHasClicked={setHasClicked}
+              setVideoPlaying={setVideoPlaying}
+              toggleFullScreen={toggleFullScreen}
+              videoPlaying={videoPlaying}
+            />
+          )}
+        </div>
+        <VideoPlayerOverlayButton
+          autoPlay={autoPlay}
+          client={client}
+          description={description}
+          hasClicked={hasClicked}
+          isIos={isIos}
+          isIpad={isIpad}
+          player={player}
+          setHasClicked={setHasClicked}
+          setMuted={setMuted}
+          setScrubberPosition={setScrubberPosition}
+          setVideoPlaying={setVideoPlaying}
+          setVolume={setVolume}
+          showVideoOverlay={showVideoOverlay}
+          title={title}
+          videoPlaying={videoPlaying}
+        />
+      </div>
+
+      <div className={playerState === 'poster' ? 'block' : 'hidden'}>
+        <div className="container mx-auto">
+          <div
+            className={classNames(
+              `aspect-w-${videoWidthAspectRatio}`,
+              `aspect-h-${videoHeightAspectRatio}`,
+              `transition-all duration-700`
+            )}
+          >
+            {poster ? (
+              <img
+                alt="Poster image"
+                className="w-full h-full"
+                src={urlForSanitySource(poster).width(1200).url()}
+              />
+            ) : null}
+          </div>
+        </div>
+      </div>
     </article>
   )
 }

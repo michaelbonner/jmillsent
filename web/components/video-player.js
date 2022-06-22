@@ -285,6 +285,8 @@ const VideoPlayer = ({
               <VideoPlayerControlBar
                 isFullscreen={isFullscreen}
                 muted={muted}
+                setMuted={setMuted}
+                setVolume={setVolume}
                 scrubber={scrubber}
                 scrubberPosition={scrubberPosition}
                 setHasClicked={setHasClicked}

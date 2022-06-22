@@ -119,6 +119,11 @@ export default {
       type: 'string',
     },
     {
+      name: 'tourVideoIdShort',
+      title: 'Tour video id (short)',
+      type: 'string',
+    },
+    {
       name: 'tourVideoWidthAspectRatio',
       title: 'Tour video aspect ratio for width',
       type: 'string',

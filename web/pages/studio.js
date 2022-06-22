@@ -142,11 +142,12 @@ function Studio({ studioPage }) {
                 poster={studioPage.tourVideoPoster}
                 title={studioPage.tourVideoTitle}
                 videoId={studioPage.tourVideoId}
+                videoIdShort={studioPage.tourVideoIdShort}
                 client={studioPage.tourVideoClient}
                 description={studioPage.tourVideoDescription}
                 videoHeightAspectRatio={studioPage.tourVideoHeightAspectRatio}
                 videoWidthAspectRatio={studioPage.tourVideoWidthAspectRatio}
-                autoPlay={false}
+                autoPlay={true}
               />
             </div>
             <DividerBar />
@@ -204,6 +205,7 @@ export async function getStaticProps() {
 			tourVideoClient,
 			tourVideoHeightAspectRatio,
 			tourVideoId,
+      tourVideoIdShort,
 			tourVideoPoster,
 			tourVideoTitle,
 			tourVideoDescription,

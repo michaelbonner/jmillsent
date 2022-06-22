@@ -113,6 +113,7 @@ const Layout = ({
         backgroundRepeat: 'no-repeat',
         height: heroVideoHeight,
         width: heroVideoWidth,
+        maxHeight: `70vh`,
       })
     }
   }, [heroVideoId, heroImageUrl, heroVideoHeight, heroVideoWidth])

@@ -1,5 +1,6 @@
 /* eslint-disable @next/next/no-img-element */
 import classNames from 'classnames'
+import useClientOnly from 'hooks/useClientOnly'
 import useIsDesktop from 'hooks/useIsDesktop'
 import { useEffect, useLayoutEffect, useRef, useState } from 'react'
 import ReactPlayer from 'react-player'
@@ -40,6 +41,7 @@ const VideoPlayer = ({
   const [volume, setVolume] = useState(1)
   const [hasClicked, setHasClicked] = useState(false)
   const [playingVideoId, setPlayingVideoId] = useState(videoIdShort || videoId)
+  const isClient = useClientOnly()
 
   const checkIfIos = (navigator) => {
     return (
@@ -177,6 +179,10 @@ const VideoPlayer = ({
       setPlayerState('poster')
     }
   }, [hasClicked, playingVideoId])
+
+  if (!isClient) {
+    return <article>Loading video</article>
+  }
 
   return (
     <article

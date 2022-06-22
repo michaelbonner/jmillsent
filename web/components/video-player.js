@@ -1,19 +1,13 @@
 /* eslint-disable @next/next/no-img-element */
 import classNames from 'classnames'
+import useIsDesktop from 'hooks/useIsDesktop'
 import { useEffect, useLayoutEffect, useRef, useState } from 'react'
-import {
-  GrContract,
-  GrExpand,
-  GrPause,
-  GrPlay,
-  GrVolume,
-  GrVolumeMute,
-} from 'react-icons/gr'
 import ReactPlayer from 'react-player'
 import screenfull from 'screenfull'
 import useInterval from '../hooks/useInterval'
 import urlForSanitySource from '../lib/urlForSanitySource'
-import LittleGoldBar from './little-gold-bar'
+import { VideoPlayerControlBar } from './video-player-control-bar'
+import { VideoPlayerOverlayButton } from './video-player-overlay-button'
 
 const VideoPlayer = ({
   poster,
@@ -26,6 +20,8 @@ const VideoPlayer = ({
   videoWidthAspectRatio = '16',
   autoPlay = false,
 }) => {
+  const isDesktop = useIsDesktop()
+  const [playerState, setPlayerState] = useState('initial')
   const [showVideo, setShowVideo] = useState(false)
   const [showVideoOverlay, setShowVideoOverlay] = useState(
     autoPlay && (title || client)
@@ -166,6 +162,18 @@ const VideoPlayer = ({
     }
   }, [hasClicked, videoId])
 
+  useEffect(() => {
+    if (isDesktop) {
+      setPlayerState('playing')
+    }
+  }, [isDesktop])
+
+  useEffect(() => {
+    if (hasClicked && playingVideoId) {
+      setPlayerState('playing')
+    }
+  }, [hasClicked, playingVideoId])
+
   return (
     <article
       className={classNames(
@@ -175,171 +183,137 @@ const VideoPlayer = ({
         'bpd-player-container relative z-20'
       )}
     >
-      {videoId ? (
-        <div
-          className={classNames(
-            {
-              'w-full': isFullscreen,
-              container: !isFullscreen,
-              'bg-gray-900': !showVideo,
-            },
-            'mx-auto transition-all duration-700'
-          )}
-        >
+      {playerState === 'initial' && (
+        <div>
+          <div className="container mx-auto">
+            <div
+              className={classNames(
+                `aspect-w-${videoWidthAspectRatio}`,
+                `aspect-h-${videoHeightAspectRatio}`,
+                `transition-all duration-700`
+              )}
+            >
+              {poster ? (
+                <img
+                  alt="Poster image"
+                  className="w-full h-full"
+                  src={urlForSanitySource(poster).width(1200).url()}
+                />
+              ) : null}
+            </div>
+          </div>
+          <VideoPlayerOverlayButton
+            autoPlay={autoPlay}
+            client={client}
+            description={description}
+            hasClicked={hasClicked}
+            isIos={isIos}
+            isIpad={isIpad}
+            player={player}
+            setHasClicked={setHasClicked}
+            setMuted={setMuted}
+            setScrubberPosition={setScrubberPosition}
+            setVideoPlaying={setVideoPlaying}
+            setVolume={setVolume}
+            showVideoOverlay={showVideoOverlay}
+            title={title}
+            videoPlaying={videoPlaying}
+          />
+        </div>
+      )}
+      {playerState === 'playing' && (
+        <>
           <div
             className={classNames(
-              `lg:my-0 relative`,
-              `aspect-w-${videoWidthAspectRatio} aspect-h-${videoHeightAspectRatio}`,
-              `transition-all duration-700`,
               {
-                'opacity-100': showVideo,
-                'opacity-0': !showVideo,
-              }
+                'w-full': isFullscreen,
+                container: !isFullscreen,
+                'bg-gray-900': !showVideo,
+              },
+              'mx-auto transition-all duration-700'
             )}
           >
-            <ReactPlayer
-              allow="autoplay; fullscreen; picture-in-picture"
-              allowFullScreen={true}
-              controls={isIpad || (isIos && !isIpad && !showVideoOverlay)}
-              frameBorder="0"
-              height={`100%`}
-              muted={muted}
-              loop={autoPlay}
-              onReady={() => {
-                setTimeout(() => {
-                  if (
-                    player?.current &&
-                    typeof player?.current?.getDuration === 'function'
-                  ) {
-                    setTotalPlaySeconds(player?.current?.getDuration() || 0)
-                    setShowVideo(true)
-                  }
-                }, [500])
-              }}
-              onEnded={() => {
-                setVideoPlaying(false)
-              }}
-              onPlay={async () => {
-                setIsPlaying(true)
-              }}
-              onPause={() => {
-                setIsPlaying(false)
-              }}
-              playing={videoPlaying}
-              ref={player}
-              title={title}
-              url={`https://player.vimeo.com/video/${playingVideoId}?badge=0&amp;autopause=0&amp;player_id=0&amp;app_id=58479`}
-              volume={volume}
-              width={`100%`}
-            ></ReactPlayer>
-          </div>
-
-          {!isIos ? (
-            <div className="relative z-10 container mx-auto pt-3 flex space-x-8 bg-black">
-              <button
-                className="relative text-4xl w-8 h-8"
-                onClick={() => {
-                  setHasClicked(true)
-                  setVideoPlaying(!videoPlaying)
+            <div
+              className={classNames(
+                `lg:my-0 relative`,
+                `aspect-w-${videoWidthAspectRatio} aspect-h-${videoHeightAspectRatio}`,
+                `transition-all duration-700`,
+                {
+                  'opacity-100': showVideo,
+                  'opacity-0': !showVideo,
+                }
+              )}
+            >
+              <ReactPlayer
+                allow="autoplay; fullscreen; picture-in-picture"
+                allowFullScreen={true}
+                controls={!isDesktop}
+                frameBorder="0"
+                height={`100%`}
+                muted={muted}
+                loop={autoPlay}
+                onReady={() => {
+                  setTimeout(() => {
+                    if (
+                      player?.current &&
+                      typeof player?.current?.getDuration === 'function'
+                    ) {
+                      setTotalPlaySeconds(player?.current?.getDuration() || 0)
+                      setShowVideo(true)
+                    }
+                  }, [500])
                 }}
-                title="Play/Pause"
-              >
-                <GrPause
-                  className={classNames(
-                    `bpd-white-icon`,
-                    {
-                      'opacity-100': videoPlaying,
-                      'opacity-0': !videoPlaying,
-                    },
-                    `absolute inset-0 transition-all duration-500 fill-current`
-                  )}
-                />
-                <GrPlay
-                  className={classNames(
-                    `bpd-white-icon`,
-                    {
-                      'opacity-100': !videoPlaying,
-                      'opacity-0': videoPlaying,
-                    },
-                    `absolute inset-0 transition-all duration-500 fill-current`
-                  )}
-                />
-              </button>
-              <button
-                className="relative w-full border-2 border-white rounded"
-                onClick={(e) => {
-                  setHasClicked(true)
-                  const scrubberBoundingClientRect =
-                    scrubber.current.getBoundingClientRect()
-
-                  const zeroBasedClickPosition =
-                    e.clientX - scrubberBoundingClientRect.left
-
-                  const xPercentageClicked =
-                    zeroBasedClickPosition / scrubber.current.clientWidth
-
-                  player.current.seekTo(xPercentageClicked, 'fraction')
-                  setScrubberPosition(xPercentageClicked * scrubberWidth)
+                onEnded={() => {
+                  setVideoPlaying(false)
                 }}
-                ref={scrubber}
-              >
-                <div
-                  className="h-full w-1 bg-gray-500 absolute top-0"
-                  style={{
-                    transform: `translate3d(${scrubberPosition}px,0, 0)`,
-                  }}
-                ></div>
-              </button>
-              <div className="text-2xl flex items-center space-x-6">
-                {muted === true ? (
-                  <button
-                    className="bpd-white-icon"
-                    onClick={() => {
-                      setHasClicked(true)
-                      setMuted(false)
-                      setVolume(1)
-                    }}
-                  >
-                    <GrVolumeMute />
-                  </button>
-                ) : (
-                  <button
-                    className="bpd-white-icon"
-                    onClick={() => {
-                      setHasClicked(true)
-                      setMuted(true)
-                      setVolume(0)
-                    }}
-                  >
-                    <GrVolume />
-                  </button>
-                )}
-                {isFullscreen ? (
-                  <button
-                    className="bpd-white-icon"
-                    onClick={() => {
-                      setHasClicked(true)
-                      toggleFullScreen(false)
-                    }}
-                  >
-                    <GrContract />
-                  </button>
-                ) : (
-                  <button
-                    className="bpd-white-icon"
-                    onClick={() => {
-                      setHasClicked(true)
-                      toggleFullScreen(true)
-                    }}
-                  >
-                    <GrExpand />
-                  </button>
-                )}
-              </div>
+                onPlay={async () => {
+                  setIsPlaying(true)
+                }}
+                onPause={() => {
+                  setIsPlaying(false)
+                }}
+                playing={videoPlaying}
+                ref={player}
+                title={title}
+                url={`https://player.vimeo.com/video/${playingVideoId}?badge=0&amp;autopause=0&amp;player_id=0&amp;app_id=58479`}
+                volume={volume}
+                width={`100%`}
+              ></ReactPlayer>
             </div>
-          ) : null}
-        </div>
-      ) : (
+
+            {!isIos && (
+              <VideoPlayerControlBar
+                isFullscreen={isFullscreen}
+                muted={muted}
+                scrubber={scrubber}
+                scrubberPosition={scrubberPosition}
+                setHasClicked={setHasClicked}
+                setVideoPlaying={setVideoPlaying}
+                toggleFullScreen={toggleFullScreen}
+                videoPlaying={videoPlaying}
+              />
+            )}
+          </div>
+          <VideoPlayerOverlayButton
+            autoPlay={autoPlay}
+            client={client}
+            description={description}
+            hasClicked={hasClicked}
+            isIos={isIos}
+            isIpad={isIpad}
+            player={player}
+            setHasClicked={setHasClicked}
+            setMuted={setMuted}
+            setScrubberPosition={setScrubberPosition}
+            setVideoPlaying={setVideoPlaying}
+            setVolume={setVolume}
+            showVideoOverlay={showVideoOverlay}
+            title={title}
+            videoPlaying={videoPlaying}
+          />
+        </>
+      )}
+      {playerState === 'poster' && (
         <div className="container mx-auto">
           <div
             className={classNames(
@@ -358,74 +332,6 @@ const VideoPlayer = ({
           </div>
         </div>
       )}
-
-      <button
-        className={classNames(
-          showVideoOverlay ? 'opacity-100' : 'opacity-0',
-          'absolute inset-0 bg-transparent cursor-pointer text-3xl text-left transition-all duration-500',
-          isIos && !isIpad ? '' : 'bottom-[40px]'
-        )}
-        onClick={() => {
-          if (autoPlay) {
-            if (videoPlaying && !hasClicked) {
-              setMuted(false)
-              setVolume(1)
-              setTimeout(() => {
-                player.current.seekTo(0, 'fraction')
-                setScrubberPosition(0)
-                setVideoPlaying(true)
-              }, 200)
-            } else {
-              setVideoPlaying(!videoPlaying)
-            }
-          }
-          setHasClicked(true)
-        }}
-      >
-        <div className="absolute inset-0 h-full bg-gradient-to-r from-black via-transparent to-transparent opacity-80"></div>
-        <div
-          className={classNames(
-            `absolute inset-0 flex h-full items-center justify-start gap-2`,
-            `md:gap-4`,
-            `lg:pl-12`,
-            !isIos && 'bottom-12'
-          )}
-        >
-          {!isIpad && (
-            <div
-              className="z-10 bg-transparent flex items-center justify-center xl:justify-start cursor-pointer text-4xl xl:text-6xl"
-              onClick={() => {
-                setHasClicked(true)
-                setVideoPlaying(!videoPlaying)
-              }}
-            >
-              <div
-                className={classNames(
-                  `flex bpd-white-icon transition-opacity duration-500 border md:border-2 border-white ml-1 rounded-full items-center justify-center`
-                )}
-              >
-                <GrPlay className="w-10 h-10 lg:w-14 lg:h-14 py-3 pl-1 lg:pl-2" />
-              </div>
-            </div>
-          )}
-          <div className="border-l-2 md:border-l-4 border-gold pl-2 lg:pl-6">
-            <div className="font-bold uppercase text-xl lg:text-4xl">
-              {client}
-            </div>
-            <div className="font-outline uppercase text-2xl lg:text-5xl">
-              {title}
-            </div>
-            {description && (
-              <div className="w-64">
-                <LittleGoldBar />
-                <div className="w-full uppercase text-base tracking-wide max-w-sm max-h-[300px] overflow-y-scroll whitespace-pre-wrap">
-                  {description}
-                </div>
-              </div>
-            )}
-          </div>
-        </div>
-      </button>
     </article>
   )
 }

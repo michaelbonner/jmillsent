@@ -28,7 +28,7 @@ const BackgroundText = ({
   }
   const titleStyle = leftOrRight === 'left' ? 'lg:text-left' : 'lg:text-right'
   return (
-    <div className="border p-4 lg:p-6 border-white">
+    <div className="border p-4 lg:p-6 border-gray-300">
       <div className="w-full relative group" style={{ lineHeight: 0 }}>
         <Image
           alt={imageAlt}

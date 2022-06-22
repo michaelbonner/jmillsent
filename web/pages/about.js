@@ -79,7 +79,7 @@ function About({ aboutPage }) {
           </p>
         </div>
         <div className="mt-4 lg:mt-10" id="reel">
-          <div className="border border-white p-4 lg:p-8 container mx-auto">
+          <div className="border border-gray-300 p-4 lg:p-8 container mx-auto">
             <VideoPlayer
               poster={aboutPage.reelVideoPoster}
               title={aboutPage.reelVideoTitle}
@@ -143,7 +143,7 @@ function About({ aboutPage }) {
                 <div
                   key={index}
                   className={classNames(
-                    'flex flex-col justify-between space-y-12 border-2 border-white pt-12 pb-8 px-8'
+                    'flex flex-col justify-between space-y-12 border-2 border-gray-300 pt-12 pb-8 px-8'
                   )}
                   target="_blank"
                 >
@@ -192,7 +192,7 @@ function About({ aboutPage }) {
               {aboutPage.directorTitle}
             </p>
           </div>
-          <div className="relative py-4 px-4 lg:px-6 border border-white">
+          <div className="relative py-4 px-4 lg:px-6 border border-gray-300">
             <SanityImage
               image={aboutPage.directorImage}
               alt={aboutPage.directorName}
@@ -226,7 +226,7 @@ function About({ aboutPage }) {
           <div className="flex justify-center">
             <Link href="https://jeremymillerdirector.com/">
               <a
-                className="flex gap-4 items-center justify-center px-3 py-2 uppercase hover:bg-gold transition-colors border-2 border-white group"
+                className="flex gap-4 items-center justify-center px-3 py-2 uppercase hover:bg-gold transition-colors border-2 border-gray-300 group"
                 target="_blank"
               >
                 <span className="text-2xl lg:text-3xl font-outline tracking-tighter text-gray-300 group-hover:text-black">
@@ -368,7 +368,7 @@ function About({ aboutPage }) {
             {aboutPage.company3Title}
           </H2>
 
-          <div className="mt-4 lg:mt-10 border border-white p-4 lg:p-8 container mx-auto max-w-7xl">
+          <div className="mt-4 lg:mt-10 border border-gray-300 p-4 lg:p-8 container mx-auto max-w-7xl">
             <VideoPlayer
               poster={aboutPage.company3VideoPoster}
               title={aboutPage.company3VideoTitle}
@@ -388,7 +388,7 @@ function About({ aboutPage }) {
           <div className="flex justify-center">
             <Link href={aboutPage.company3Link || 'https://www.company3.com/'}>
               <a
-                className="flex gap-4 items-center justify-center px-3 py-2 mt-4 sm:mt-10 uppercase hover:bg-gold transition-colors border-2 border-white group"
+                className="flex gap-4 items-center justify-center px-3 py-2 mt-4 sm:mt-10 uppercase hover:bg-gold transition-colors border-2 border-gray-300 group"
                 target="_blank"
               >
                 <span className="text-2xl lg:text-3xl font-outline tracking-tighter text-gray-300 group-hover:text-black">
@@ -435,7 +435,7 @@ function About({ aboutPage }) {
               <Link key={index} href={ravensCard.link}>
                 <a
                   className={classNames(
-                    'flex flex-col justify-between space-y-12 border-2 border-white pt-12 pb-8 px-8 transition-colors',
+                    'flex flex-col justify-between space-y-12 border-2 border-gray-300 pt-12 pb-8 px-8 transition-colors',
                     'hover:bg-gradient-to-b hover:from-gray-900 hover:to-black'
                   )}
                   target="_blank"
@@ -468,7 +468,7 @@ function About({ aboutPage }) {
         <div className="flex justify-center">
           <Link href="https://ravensfilmworks.com/">
             <a
-              className="flex gap-4 items-center justify-center px-3 py-2 mt-4 sm:mt-10 uppercase hover:bg-gold transition-colors border-2 border-white group"
+              className="flex gap-4 items-center justify-center px-3 py-2 mt-4 sm:mt-10 uppercase hover:bg-gold transition-colors border-2 border-gray-300 group"
               target="_blank"
             >
               <span className="text-2xl lg:text-3xl font-outline tracking-tighter text-gray-300 group-hover:text-black">

@@ -25,7 +25,7 @@ const EmailSignupForm = ({ title = '', mailchimpTagId = '' }) => {
               <input
                 type="email"
                 name="EMAIL"
-                className="rounded-l-md flex-1 py-2 px-4 bg-black bg-opacity-70 text-white border-2 border-r-0 border-white -mr-1 focus:bg-opacity-90"
+                className="rounded-l-md flex-1 py-2 px-4 bg-black bg-opacity-70 text-white border-2 border-r-0 border-gray-300 -mr-1 focus:bg-opacity-90"
                 id="mce-EMAIL"
                 placeholder="EMAIL ADDRESS"
                 required
@@ -43,7 +43,7 @@ const EmailSignupForm = ({ title = '', mailchimpTagId = '' }) => {
               </div>
               <button
                 className={classNames(
-                  'flex items-center gap-x-2 px-4 py-2 border-2 border-white rounded-md transition-colors group',
+                  'flex items-center gap-x-2 px-4 py-2 border-2 border-gray-300 rounded-md transition-colors group',
                   'hover:bg-gold hover:text-black'
                 )}
                 type="submit"

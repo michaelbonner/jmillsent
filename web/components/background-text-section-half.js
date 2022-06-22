@@ -13,7 +13,7 @@ const BackgroundTextSectionHalf = ({
   step,
 }) => {
   return (
-    <div className="border relative p-4 lg:p-6 border-white">
+    <div className="border relative p-4 lg:p-6 border-gray-300">
       <div className="absolute z-10 left-0 top-0 pl-10 text-center">
         <div className="flex flex-col items-center justify-center">
           <Image

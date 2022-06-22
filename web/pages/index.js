@@ -63,7 +63,7 @@ function Home({ homePage }) {
         </p>
       </div>
       <div className="px-8 lg:px-4 mt-10" id="featured">
-        <div className="border border-white p-4 lg:py-8 lg:px-8 container mx-auto">
+        <div className="border border-gray-300 p-4 lg:py-8 lg:px-8 container mx-auto">
           <VideoPlayer
             poster={homePage.reelVideoPoster}
             title={homePage.reelVideoTitle}

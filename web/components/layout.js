@@ -138,6 +138,12 @@ const Layout = ({
     windowWidth,
   ])
 
+  useEffect(() => {
+    if (isDesktop === false && !heroVideoId) {
+      setHeroVideoHeight(`27.5vh`)
+    }
+  }, [heroVideoId, isDesktop])
+
   return (
     <div>
       <Head>

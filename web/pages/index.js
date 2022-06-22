@@ -77,7 +77,7 @@ function Home({ homePage }) {
           />
         </div>
       </div>
-      {!isDesktop && (
+      {isDesktop === false && (
         <div className="flex justify-center mx-auto -mb-5 px-12 w-full max-w-md lg:max-w-xl mt-12 lg:mt-24">
           <Image
             alt="JME Film Production Company"

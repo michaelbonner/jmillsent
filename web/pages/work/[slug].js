@@ -92,7 +92,7 @@ const WorkItem = ({ workItem = {} }) => {
       <div className="container px-4 3xl:px-0 mx-auto mt-4">
         {workItem.credits && workItem.credits.length > 0 && (
           <div className="my-12 max-w-9xl mx-auto">
-            {!isDesktop && (
+            {isDesktop === false && (
               <>
                 <button
                   onClick={(e) => {
@@ -197,7 +197,7 @@ const WorkItem = ({ workItem = {} }) => {
         )}
       </div>
 
-      {!isDesktop && (
+      {isDesktop === false && (
         <div className="flex justify-center mx-auto -mb-5 px-12 w-full max-w-md lg:max-w-xl mt-12 lg:mt-24">
           <Image
             alt="JME Film Production Company"

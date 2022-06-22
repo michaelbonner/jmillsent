@@ -252,7 +252,7 @@ const VideoPlayer = ({
               <ReactPlayer
                 allow="autoplay; fullscreen; picture-in-picture"
                 allowFullScreen={true}
-                controls={!isDesktop && isPlaying}
+                controls={isDesktop === false && isPlaying}
                 frameBorder="0"
                 height={`100%`}
                 muted={muted}

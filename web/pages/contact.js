@@ -208,7 +208,9 @@ function Contact({ contact }) {
                       <p className="tracking-wider font-bold text-xl">
                         {card.title}
                       </p>
-                      <LittleWhiteBar yMargin="my-4" />
+                      <div className="w-32 mx-auto">
+                        <LittleWhiteBar yMargin="my-4" />
+                      </div>
                       <div className="leading-9 prose prose-lg prose-white text-gray-400">
                         <PortableText value={card.body} />
                       </div>
@@ -233,7 +235,9 @@ function Contact({ contact }) {
                   <p className="tracking-wider font-bold text-xl uppercase">
                     Studio Address
                   </p>
-                  <LittleWhiteBar yMargin="my-4" />
+                  <div className="w-32 mx-auto">
+                    <LittleWhiteBar yMargin="my-4" />
+                  </div>
                   <div className="leading-9 prose prose-lg prose-white text-gray-400">
                     <a
                       className="no-underline"

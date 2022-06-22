@@ -180,10 +180,6 @@ const VideoPlayer = ({
     }
   }, [hasClicked, playingVideoId])
 
-  if (!isClient) {
-    return <article>Loading video</article>
-  }
-
   return (
     <article
       className={classNames(
@@ -252,41 +248,45 @@ const VideoPlayer = ({
               }
             )}
           >
-            <ReactPlayer
-              allow="autoplay; fullscreen; picture-in-picture"
-              allowFullScreen={true}
-              controls={!isDesktop && isPlaying}
-              frameBorder="0"
-              height={`100%`}
-              muted={muted}
-              loop={autoPlay}
-              onReady={() => {
-                setTimeout(() => {
-                  if (
-                    player?.current &&
-                    typeof player?.current?.getDuration === 'function'
-                  ) {
-                    setTotalPlaySeconds(player?.current?.getDuration() || 0)
-                    setShowVideo(true)
-                  }
-                }, [500])
-              }}
-              onEnded={() => {
-                setVideoPlaying(false)
-              }}
-              onPlay={async () => {
-                setIsPlaying(true)
-              }}
-              onPause={() => {
-                setIsPlaying(false)
-              }}
-              playing={videoPlaying}
-              ref={player}
-              title={title}
-              url={`https://player.vimeo.com/video/${playingVideoId}?badge=0&amp;autopause=0&amp;player_id=0&amp;app_id=58479`}
-              volume={volume}
-              width={`100%`}
-            ></ReactPlayer>
+            {isClient ? (
+              <ReactPlayer
+                allow="autoplay; fullscreen; picture-in-picture"
+                allowFullScreen={true}
+                controls={!isDesktop && isPlaying}
+                frameBorder="0"
+                height={`100%`}
+                muted={muted}
+                loop={autoPlay}
+                onReady={() => {
+                  setTimeout(() => {
+                    if (
+                      player?.current &&
+                      typeof player?.current?.getDuration === 'function'
+                    ) {
+                      setTotalPlaySeconds(player?.current?.getDuration() || 0)
+                      setShowVideo(true)
+                    }
+                  }, [500])
+                }}
+                onEnded={() => {
+                  setVideoPlaying(false)
+                }}
+                onPlay={async () => {
+                  setIsPlaying(true)
+                }}
+                onPause={() => {
+                  setIsPlaying(false)
+                }}
+                playing={videoPlaying}
+                ref={player}
+                title={title}
+                url={`https://player.vimeo.com/video/${playingVideoId}?badge=0&amp;autopause=0&amp;player_id=0&amp;app_id=58479`}
+                volume={volume}
+                width={`100%`}
+              ></ReactPlayer>
+            ) : (
+              <div>Loading video</div>
+            )}
           </div>
 
           {!isIos && !isIpad && (

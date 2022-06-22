@@ -12,7 +12,7 @@ function useIsDesktop() {
       return
     }
 
-    if (size.width > 1024) {
+    if (size.width >= 1024) {
       setIsDesktop(true)
     } else if (size.width > 0) {
       setIsDesktop(false)

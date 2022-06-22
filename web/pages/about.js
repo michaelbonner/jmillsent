@@ -79,7 +79,7 @@ function About({ aboutPage }) {
           </p>
         </div>
         <div className="mt-4 lg:mt-10" id="reel">
-          <div className="border border-white p-4 lg:p-8 container mx-auto">
+          <div className="border border-gray-300 p-4 lg:p-8 container mx-auto">
             <VideoPlayer
               poster={aboutPage.reelVideoPoster}
               title={aboutPage.reelVideoTitle}
@@ -144,7 +144,7 @@ function About({ aboutPage }) {
                 <div
                   key={index}
                   className={classNames(
-                    'flex flex-col justify-between space-y-12 border-2 border-white pt-12 pb-8 px-8'
+                    'flex flex-col justify-between space-y-12 border-2 border-gray-300 pt-12 pb-8 px-8'
                   )}
                   target="_blank"
                 >
@@ -193,23 +193,26 @@ function About({ aboutPage }) {
               {aboutPage.directorTitle}
             </p>
           </div>
-          <div className="relative py-4 px-6 border border-white">
+          <div className="relative py-4 px-4 lg:px-6 border border-gray-300">
             <SanityImage
               image={aboutPage.directorImage}
               alt={aboutPage.directorName}
             />
+            <div
+              className={`absolute w-full right-0 lg:pr-20 top-0 bottom-0 h-full bg-gradient-to-l from-black to-transparent opacity-70 group-hover:opacity-80 transition-all duration-500`}
+            />
             {(aboutPage.directorImageTitle ||
               aboutPage.directorImageSubtitle) && (
-              <div className="absolute inset-0 pr-8 lg:pr-24 flex flex-col items-end justify-center gap-y-2 md:gap-y-6">
-                <p className="text-sm md:text-3xl lg:text-4xl uppercase font-bold tracking-wider">
+              <div className="absolute inset-0 pr-8 lg:pr-24 flex flex-col items-end justify-center gap-y-1 sm:gap-y-2 lg:gap-y-6">
+                <p className="text-lg sm:text-3xl lg:text-4xl uppercase font-bold tracking-wider">
                   {aboutPage.directorImageTitle}
                 </p>
                 {aboutPage.directorImageTitle &&
                   aboutPage.directorImageSubtitle && (
-                    <div className="w-24 md:w-48 h-1 bg-gold"></div>
+                    <div className="w-24 md:w-48 h-[2px] md:h-1 bg-gold"></div>
                   )}
                 {aboutPage.directorImageSubtitle && (
-                  <p className="font-outline text-sm md:text-3xl lg:text-4xl uppercase">
+                  <p className="font-outline text-xl sm:text-3xl lg:text-4xl uppercase">
                     {aboutPage.directorImageSubtitle}
                   </p>
                 )}
@@ -224,7 +227,7 @@ function About({ aboutPage }) {
           <div className="flex justify-center">
             <Link href="https://jeremymillerdirector.com/">
               <a
-                className="flex gap-4 items-center justify-center px-3 py-2 uppercase hover:bg-gold transition-colors border-2 border-white group"
+                className="flex gap-4 items-center justify-center px-3 py-2 uppercase hover:bg-gold transition-colors border-2 border-gray-300 group"
                 target="_blank"
               >
                 <span className="text-2xl lg:text-3xl font-outline tracking-tighter text-gray-300 group-hover:text-black">
@@ -366,7 +369,7 @@ function About({ aboutPage }) {
             {aboutPage.company3Title}
           </H2>
 
-          <div className="mt-4 lg:mt-10 border border-white p-4 lg:p-8 container mx-auto max-w-7xl">
+          <div className="mt-4 lg:mt-10 border border-gray-300 p-4 lg:p-8 container mx-auto max-w-7xl">
             <VideoPlayer
               poster={aboutPage.company3VideoPoster}
               title={aboutPage.company3VideoTitle}
@@ -387,7 +390,7 @@ function About({ aboutPage }) {
           <div className="flex justify-center">
             <Link href={aboutPage.company3Link || 'https://www.company3.com/'}>
               <a
-                className="flex gap-4 items-center justify-center px-3 py-2 mt-4 sm:mt-10 uppercase hover:bg-gold transition-colors border-2 border-white group"
+                className="flex gap-4 items-center justify-center px-3 py-2 mt-4 sm:mt-10 uppercase hover:bg-gold transition-colors border-2 border-gray-300 group"
                 target="_blank"
               >
                 <span className="text-2xl lg:text-3xl font-outline tracking-tighter text-gray-300 group-hover:text-black">
@@ -434,7 +437,7 @@ function About({ aboutPage }) {
               <Link key={index} href={ravensCard.link}>
                 <a
                   className={classNames(
-                    'flex flex-col justify-between space-y-12 border-2 border-white pt-12 pb-8 px-8 transition-colors',
+                    'flex flex-col justify-between space-y-12 border-2 border-gray-300 pt-12 pb-8 px-8 transition-colors',
                     'hover:bg-gradient-to-b hover:from-gray-900 hover:to-black'
                   )}
                   target="_blank"
@@ -467,7 +470,7 @@ function About({ aboutPage }) {
         <div className="flex justify-center">
           <Link href="https://ravensfilmworks.com/">
             <a
-              className="flex gap-4 items-center justify-center px-3 py-2 mt-4 sm:mt-10 uppercase hover:bg-gold transition-colors border-2 border-white group"
+              className="flex gap-4 items-center justify-center px-3 py-2 mt-4 sm:mt-10 uppercase hover:bg-gold transition-colors border-2 border-gray-300 group"
               target="_blank"
             >
               <span className="text-2xl lg:text-3xl font-outline tracking-tighter text-gray-300 group-hover:text-black">

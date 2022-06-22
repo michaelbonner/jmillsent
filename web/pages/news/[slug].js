@@ -44,7 +44,7 @@ const NewsItem = ({ newsItem = {} }) => {
             />
           )}
           {newsItem.videoId && (
-            <div className="border border-white py-8 px-8 container max-w-7xl mx-auto">
+            <div className="border border-gray-300 py-8 px-8 container max-w-7xl mx-auto">
               <VideoPlayer
                 poster={newsItem.heroImage}
                 title={newsItem.title}

@@ -62,7 +62,7 @@ export const VideoPlayerOverlayButton = ({
           >
             <div
               className={classNames(
-                `flex bpd-white-icon transition-opacity duration-500 border md:border-2 border-white ml-1 rounded-full items-center justify-center`
+                `flex bpd-white-icon transition-opacity duration-500 border md:border-2 border-gray-300 ml-1 rounded-full items-center justify-center`
               )}
             >
               <GrPlay className="w-10 h-10 lg:w-14 lg:h-14 py-3 pl-1 lg:pl-2" />

@@ -168,7 +168,7 @@ function Contact({ contact }) {
                         type="submit"
                         className={classNames(
                           `inline-block rounded-md font-bold uppercase`,
-                          `tracking-wider border border-white py-2 px-8`,
+                          `tracking-wider border border-gray-300 py-2 px-8`,
                           `bg-black bg-opacity-50 hover:bg-gold`,
                           `hover:text-black transition-all`,
                           {
@@ -194,7 +194,7 @@ function Contact({ contact }) {
                 </div>
               )}
             </div>
-            <div className="w-full lg:w-2/3 mt-20 lg:mt-0 border border-white rounded-lg">
+            <div className="w-full lg:w-2/3 mt-20 lg:mt-0 border border-gray-300 rounded-lg">
               <Map />
             </div>
           </div>

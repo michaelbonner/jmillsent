@@ -52,7 +52,7 @@ export const VideoPlayerControlBar = ({
         />
       </button>
       <button
-        className="relative w-full border-2 border-white rounded"
+        className="relative w-full border-2 border-gray-300 rounded"
         onClick={(e) => {
           setHasClicked(true)
           const scrubberBoundingClientRect =

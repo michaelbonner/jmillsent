@@ -110,7 +110,7 @@ function Contact({ contact }) {
                           as="input"
                           name="name"
                           placeholder="FULL NAME"
-                          className="bg-transparent block w-full shadow-sm py-3 px-4 lg:px-8 text-gray-500 placeholder-black focus:ring-indigo-500 focus:border-indigo-500"
+                          className="bg-transparent block w-full shadow-sm py-3 px-4 lg:px-8 text-gray-900 text-lg placeholder-black focus:ring-indigo-500 focus:border-indigo-500"
                         />
                         <ErrorMessage
                           name="name"
@@ -124,7 +124,7 @@ function Contact({ contact }) {
                           as="input"
                           name="emailAddress"
                           placeholder="EMAIL ADDRESS"
-                          className="bg-transparent block w-full shadow-sm py-3 px-4 lg:px-8 text-gray-500 placeholder-black focus:ring-indigo-500 focus:border-indigo-500"
+                          className="bg-transparent block w-full shadow-sm py-3 px-4 lg:px-8 text-gray-900 text-lg placeholder-black focus:ring-indigo-500 focus:border-indigo-500"
                         />
                         <ErrorMessage
                           name="emailAddress"
@@ -138,7 +138,7 @@ function Contact({ contact }) {
                           as="input"
                           name="phoneNumber"
                           placeholder="PHONE NUMBER"
-                          className="bg-transparent block w-full shadow-sm py-3 px-4 lg:px-8 text-gray-500 placeholder-black focus:ring-indigo-500 focus:border-indigo-500"
+                          className="bg-transparent block w-full shadow-sm py-3 px-4 lg:px-8 text-gray-900 text-lg placeholder-black focus:ring-indigo-500 focus:border-indigo-500"
                         />
                         <ErrorMessage
                           name="phoneNumber"
@@ -148,7 +148,7 @@ function Contact({ contact }) {
                       </div>
                       <div className="border-gray-300 rounded-md bg-white bg-opacity-100 relative">
                         <TextareaAutosize
-                          className="py-3 px-4 lg:px-8 block w-full shadow-sm focus:ring-indigo-500 text-gray-500 placeholder-black focus:border-indigo-500 border-gray-300 rounded-md bg-transparent"
+                          className="py-3 px-4 lg:px-8 block w-full shadow-sm focus:ring-indigo-500 text-gray-900 text-lg placeholder-black focus:border-indigo-500 border-gray-300 rounded-md bg-transparent"
                           minRows={4}
                           onChange={handleChange}
                           onBlur={handleBlur}
@@ -211,7 +211,7 @@ function Contact({ contact }) {
                       <div className="w-32 mx-auto">
                         <LittleWhiteBar yMargin="my-4" />
                       </div>
-                      <div className="leading-9 prose prose-lg prose-white text-gray-400">
+                      <div className="leading-9 prose prose-lg prose-white text-gray-300">
                         <PortableText value={card.body} />
                       </div>
                     </div>
@@ -238,7 +238,7 @@ function Contact({ contact }) {
                   <div className="w-32 mx-auto">
                     <LittleWhiteBar yMargin="my-4" />
                   </div>
-                  <div className="leading-9 prose prose-lg prose-white text-gray-400">
+                  <div className="leading-9 prose prose-lg prose-white text-gray-300">
                     <a
                       className="no-underline"
                       href="https://g.page/jmillsent?share"

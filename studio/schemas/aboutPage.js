@@ -60,7 +60,7 @@ export default {
       title: 'Video ID (mobile)',
       type: 'string',
       description:
-        'Video ID to use on mobile. Leave blank to user the "Video ID" above on mobile',
+        'Video ID to use on mobile. Leave blank to use the "Video ID" above on mobile',
     },
     {
       name: 'headerVideoWidthInPixelsMobile',
@@ -107,6 +107,11 @@ export default {
     {
       name: 'reelVideoId',
       title: 'Reel video id',
+      type: 'string',
+    },
+    {
+      name: 'reelVideoIdShort',
+      title: 'Reel video id (short)',
       type: 'string',
     },
     {
@@ -253,6 +258,11 @@ export default {
     {
       name: 'company3VideoId',
       title: 'Company 3 video id',
+      type: 'string',
+    },
+    {
+      name: 'company3VideoIdShort',
+      title: 'Company 3 video id (short)',
       type: 'string',
     },
     {

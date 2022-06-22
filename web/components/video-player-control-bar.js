@@ -11,12 +11,15 @@ import {
 export const VideoPlayerControlBar = ({
   isFullscreen,
   muted,
-  setMuted,
-  setVolume,
+  player,
   scrubber,
   scrubberPosition,
+  scrubberWidth,
   setHasClicked,
+  setMuted,
+  setScrubberPosition,
   setVideoPlaying,
+  setVolume,
   toggleFullScreen,
   videoPlaying,
 }) => {

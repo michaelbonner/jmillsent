@@ -441,7 +441,7 @@ const Layout = ({
                     height: heroVideoHeight,
                   }}
                   onPlay={() => setVideoPlaying(true)}
-                  title="Ravens Film Works"
+                  title="JME Film Studio"
                   url={`https://player.vimeo.com/video/${heroVideoId}?badge=0&autopause=0&player_id=0&app_id=58479&autoplay=true&background=true`}
                   width={heroVideoWidth}
                 />

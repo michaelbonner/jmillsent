@@ -167,8 +167,9 @@ function Contact({ contact }) {
                         className={classNames(
                           `inline-block rounded-md text-lg font-bold uppercase w-full max-w-[450px] mx-auto`,
                           `tracking-wider border border-gray-500 py-2.5 px-8`,
-                          `bg-black bg-opacity-50 hover:bg-gold`,
-                          `hover:text-black transition-all`,
+                          `bg-black bg-opacity-50 transition-all`,
+                          `hover:bg-gold hover:text-black`,
+                          `focus:bg-gold focus:text-black`,
                           {
                             'opacity-50': isSubmitting || !isValid,
                           }

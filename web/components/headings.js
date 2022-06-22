@@ -42,7 +42,7 @@ const H4 = ({ children, className = '' }) => {
     <h4
       className={classNames(
         className,
-        'uppercase font-extrabold text-lg lg:text-2xl mb-2'
+        'uppercase font-extrabold text-lg lg:text-xl mb-2'
       )}
     >
       {children}

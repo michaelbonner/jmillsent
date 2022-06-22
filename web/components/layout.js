@@ -59,7 +59,7 @@ const Layout = ({
   const [videoPlaying, setVideoPlaying] = useState(false)
   const { width: windowWidth, height: windowHeight } = useWindowSize()
   const heroContainerRef = React.createRef()
-  const [heroVideoHeight, setHeroVideoHeight] = useState('30vh')
+  const [heroVideoHeight, setHeroVideoHeight] = useState('42vw')
   const [heroVideoWidth, setHeroVideoWidth] = useState('100vw')
   const isDesktop = useIsDesktop()
 

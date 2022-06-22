@@ -84,6 +84,7 @@ function About({ aboutPage }) {
               poster={aboutPage.reelVideoPoster}
               title={aboutPage.reelVideoTitle}
               videoId={aboutPage.reelVideoId}
+              videoIdShort={aboutPage.reelVideoIdShort}
               client={aboutPage.reelVideoClient}
               description={aboutPage.reelVideoDescription}
               videoHeightAspectRatio={aboutPage.reelVideoHeightAspectRatio}
@@ -370,6 +371,7 @@ function About({ aboutPage }) {
               poster={aboutPage.company3VideoPoster}
               title={aboutPage.company3VideoTitle}
               videoId={aboutPage.company3VideoId}
+              videoIdShort={aboutPage.company3VideoIdShort}
               client={aboutPage.company3VideoClient}
               description={aboutPage.company3VideoDescription}
               videoHeightAspectRatio={aboutPage.company3VideoHeightAspectRatio}
@@ -537,6 +539,7 @@ export async function getStaticProps() {
 		*[_type == "aboutPage"][0]{
 			company3VideoHeightAspectRatio,
 			company3VideoId,
+      company3VideoIdShort,
 			company3VideoPoster,
 			company3VideoTitle,
 			company3VideoWidthAspectRatio,
@@ -556,6 +559,7 @@ export async function getStaticProps() {
       reelVideoHeightInPixels,
       reelVideoWidthInPixels,
 			reelVideoId,
+      reelVideoIdShort,
 			reelVideoPoster,
 			reelVideoTitle,
 			reelVideoWidthAspectRatio,

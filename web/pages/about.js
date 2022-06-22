@@ -199,7 +199,7 @@ function About({ aboutPage }) {
               alt={aboutPage.directorName}
             />
             <div
-              className={`lg:absolute w-full right-0 lg:pr-20 top-0 bottom-0 h-full bg-gradient-to-l from-black to-transparent opacity-70 group-hover:opacity-80 transition-all duration-500`}
+              className={`hidden lg:block absolute w-1/2 right-0 lg:pr-20 top-0 bottom-0 h-full bg-gradient-to-l from-black to-transparent opacity-70 group-hover:opacity-80 transition-all duration-500`}
             />
             {(aboutPage.directorImageTitle ||
               aboutPage.directorImageSubtitle) && (

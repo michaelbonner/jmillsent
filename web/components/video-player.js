@@ -165,8 +165,10 @@ const VideoPlayer = ({
   useEffect(() => {
     if (isDesktop) {
       setPlayerState('playing')
+    } else {
+      setPlayingVideoId(videoId)
     }
-  }, [isDesktop])
+  }, [isDesktop, videoId])
 
   useEffect(() => {
     if (hasClicked && playingVideoId) {

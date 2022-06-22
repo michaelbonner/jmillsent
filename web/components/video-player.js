@@ -1,5 +1,6 @@
 /* eslint-disable @next/next/no-img-element */
 import classNames from 'classnames'
+import useClientOnly from 'hooks/useClientOnly'
 import useIsDesktop from 'hooks/useIsDesktop'
 import { useEffect, useLayoutEffect, useRef, useState } from 'react'
 import ReactPlayer from 'react-player'
@@ -40,6 +41,7 @@ const VideoPlayer = ({
   const [volume, setVolume] = useState(1)
   const [hasClicked, setHasClicked] = useState(false)
   const [playingVideoId, setPlayingVideoId] = useState(videoIdShort || videoId)
+  const isClient = useClientOnly()
 
   const checkIfIos = (navigator) => {
     return (
@@ -165,12 +167,16 @@ const VideoPlayer = ({
   useEffect(() => {
     if (isDesktop) {
       setPlayerState('playing')
+    } else {
+      setPlayingVideoId(videoId)
     }
-  }, [isDesktop])
+  }, [isDesktop, videoId])
 
   useEffect(() => {
     if (hasClicked && playingVideoId) {
       setPlayerState('playing')
+    } else if (!playingVideoId) {
+      setPlayerState('poster')
     }
   }, [hasClicked, playingVideoId])
 
@@ -183,71 +189,70 @@ const VideoPlayer = ({
         'bpd-player-container relative z-20'
       )}
     >
-      {playerState === 'initial' && (
-        <div>
-          <div className="container mx-auto">
-            <div
-              className={classNames(
-                `aspect-w-${videoWidthAspectRatio}`,
-                `aspect-h-${videoHeightAspectRatio}`,
-                `transition-all duration-700`
-              )}
-            >
-              {poster ? (
-                <img
-                  alt="Poster image"
-                  className="w-full h-full"
-                  src={urlForSanitySource(poster).width(1200).url()}
-                />
-              ) : null}
-            </div>
-          </div>
-          <VideoPlayerOverlayButton
-            autoPlay={autoPlay}
-            client={client}
-            description={description}
-            hasClicked={hasClicked}
-            isIos={isIos}
-            isIpad={isIpad}
-            player={player}
-            setHasClicked={setHasClicked}
-            setMuted={setMuted}
-            setScrubberPosition={setScrubberPosition}
-            setVideoPlaying={setVideoPlaying}
-            setVolume={setVolume}
-            showVideoOverlay={showVideoOverlay}
-            title={title}
-            videoPlaying={videoPlaying}
-          />
-        </div>
-      )}
-      {playerState === 'playing' && (
-        <>
+      <div className={playerState === 'initial' ? 'block' : 'hidden'}>
+        <div className="container mx-auto">
           <div
             className={classNames(
-              {
-                'w-full': isFullscreen,
-                container: !isFullscreen,
-                'bg-gray-900': !showVideo,
-              },
-              'mx-auto transition-all duration-700'
+              `aspect-w-${videoWidthAspectRatio}`,
+              `aspect-h-${videoHeightAspectRatio}`,
+              `transition-all duration-700`
             )}
           >
-            <div
-              className={classNames(
-                `lg:my-0 relative`,
-                `aspect-w-${videoWidthAspectRatio} aspect-h-${videoHeightAspectRatio}`,
-                `transition-all duration-700`,
-                {
-                  'opacity-100': showVideo,
-                  'opacity-0': !showVideo,
-                }
-              )}
-            >
+            {poster ? (
+              <img
+                alt="Poster image"
+                className="w-full h-full"
+                src={urlForSanitySource(poster).width(1200).url()}
+              />
+            ) : null}
+          </div>
+        </div>
+        <VideoPlayerOverlayButton
+          autoPlay={autoPlay}
+          client={client}
+          description={description}
+          hasClicked={hasClicked}
+          isIos={isIos}
+          isIpad={isIpad}
+          player={player}
+          setHasClicked={setHasClicked}
+          setMuted={setMuted}
+          setScrubberPosition={setScrubberPosition}
+          setVideoPlaying={setVideoPlaying}
+          setVolume={setVolume}
+          showVideoOverlay={showVideoOverlay}
+          title={title}
+          videoPlaying={videoPlaying}
+        />
+      </div>
+
+      <div className={playerState === 'playing' ? 'block' : 'hidden'}>
+        <div
+          className={classNames(
+            {
+              'w-full': isFullscreen,
+              container: !isFullscreen,
+              'bg-gray-900': !showVideo,
+            },
+            'mx-auto transition-all duration-700'
+          )}
+        >
+          <div
+            className={classNames(
+              `lg:my-0 relative`,
+              `aspect-w-${videoWidthAspectRatio} aspect-h-${videoHeightAspectRatio}`,
+              `transition-all duration-700`,
+              {
+                'opacity-100': showVideo,
+                'opacity-0': !showVideo,
+              }
+            )}
+          >
+            {isClient ? (
               <ReactPlayer
                 allow="autoplay; fullscreen; picture-in-picture"
                 allowFullScreen={true}
-                controls={!isDesktop && isPlaying}
+                controls={isDesktop === false && isPlaying}
                 frameBorder="0"
                 height={`100%`}
                 muted={muted}
@@ -279,43 +284,49 @@ const VideoPlayer = ({
                 volume={volume}
                 width={`100%`}
               ></ReactPlayer>
-            </div>
-
-            {!isIos && (
-              <VideoPlayerControlBar
-                isFullscreen={isFullscreen}
-                muted={muted}
-                setMuted={setMuted}
-                setVolume={setVolume}
-                scrubber={scrubber}
-                scrubberPosition={scrubberPosition}
-                setHasClicked={setHasClicked}
-                setVideoPlaying={setVideoPlaying}
-                toggleFullScreen={toggleFullScreen}
-                videoPlaying={videoPlaying}
-              />
+            ) : (
+              <div>Loading video</div>
             )}
           </div>
-          <VideoPlayerOverlayButton
-            autoPlay={autoPlay}
-            client={client}
-            description={description}
-            hasClicked={hasClicked}
-            isIos={isIos}
-            isIpad={isIpad}
-            player={player}
-            setHasClicked={setHasClicked}
-            setMuted={setMuted}
-            setScrubberPosition={setScrubberPosition}
-            setVideoPlaying={setVideoPlaying}
-            setVolume={setVolume}
-            showVideoOverlay={showVideoOverlay}
-            title={title}
-            videoPlaying={videoPlaying}
-          />
-        </>
-      )}
-      {playerState === 'poster' && (
+
+          {!isIos && !isIpad && (
+            <VideoPlayerControlBar
+              isFullscreen={isFullscreen}
+              muted={muted}
+              player={player}
+              scrubber={scrubber}
+              scrubberPosition={scrubberPosition}
+              scrubberWidth={scrubberWidth}
+              setHasClicked={setHasClicked}
+              setMuted={setMuted}
+              setScrubberPosition={setScrubberPosition}
+              setVideoPlaying={setVideoPlaying}
+              setVolume={setVolume}
+              toggleFullScreen={toggleFullScreen}
+              videoPlaying={videoPlaying}
+            />
+          )}
+        </div>
+        <VideoPlayerOverlayButton
+          autoPlay={autoPlay}
+          client={client}
+          description={description}
+          hasClicked={hasClicked}
+          isIos={isIos}
+          isIpad={isIpad}
+          player={player}
+          setHasClicked={setHasClicked}
+          setMuted={setMuted}
+          setScrubberPosition={setScrubberPosition}
+          setVideoPlaying={setVideoPlaying}
+          setVolume={setVolume}
+          showVideoOverlay={showVideoOverlay}
+          title={title}
+          videoPlaying={videoPlaying}
+        />
+      </div>
+
+      <div className={playerState === 'poster' ? 'block' : 'hidden'}>
         <div className="container mx-auto">
           <div
             className={classNames(
@@ -333,7 +344,7 @@ const VideoPlayer = ({
             ) : null}
           </div>
         </div>
-      )}
+      </div>
     </article>
   )
 }

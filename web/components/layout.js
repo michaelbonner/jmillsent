@@ -59,7 +59,7 @@ const Layout = ({
   const [videoPlaying, setVideoPlaying] = useState(false)
   const { width: windowWidth, height: windowHeight } = useWindowSize()
   const heroContainerRef = React.createRef()
-  const [heroVideoHeight, setHeroVideoHeight] = useState('30vh')
+  const [heroVideoHeight, setHeroVideoHeight] = useState('42vw')
   const [heroVideoWidth, setHeroVideoWidth] = useState('100vw')
   const isDesktop = useIsDesktop()
 
@@ -113,6 +113,7 @@ const Layout = ({
         backgroundRepeat: 'no-repeat',
         height: heroVideoHeight,
         width: heroVideoWidth,
+        maxHeight: `70vh`,
       })
     }
   }, [heroVideoId, heroImageUrl, heroVideoHeight, heroVideoWidth])
@@ -137,6 +138,12 @@ const Layout = ({
     windowHeight,
     windowWidth,
   ])
+
+  useEffect(() => {
+    if (isDesktop === false && !heroVideoId) {
+      setHeroVideoHeight(`27.5vh`)
+    }
+  }, [heroVideoId, isDesktop])
 
   return (
     <div>

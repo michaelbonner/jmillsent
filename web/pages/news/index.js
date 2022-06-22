@@ -24,8 +24,6 @@ function News({ newsPage, newsItems }) {
       description={newsPage.seoDescription}
       heroImageUrl={newsPage.poster}
       heroContent={heroContent}
-      heroVideoHeightInPixels={788}
-      heroVideoWidthInPixels={1400}
     >
       <div className="max-w-7xl mt-12 lg:mt-24 mx-auto pb-8">
         <div className="grid gap-y-12 lg:gap-y-0 justify-center">

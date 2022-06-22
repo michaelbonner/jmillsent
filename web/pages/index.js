@@ -68,6 +68,7 @@ function Home({ homePage }) {
             poster={homePage.reelVideoPoster}
             title={homePage.reelVideoTitle}
             videoId={homePage.reelVideoId}
+            videoIdShort={homePage.reelVideoIdShort}
             client={homePage.reelVideoClient}
             description={homePage.reelVideoDescription}
             videoHeightAspectRatio={homePage.reelVideoHeightAspectRatio}
@@ -115,6 +116,7 @@ export async function getStaticProps() {
       reelVideoHeightInPixels,
       reelVideoWidthInPixels,
 			reelVideoId,
+      reelVideoIdShort,
 			reelVideoPoster,
 			reelVideoTitle,
 			reelVideoWidthAspectRatio,

@@ -100,6 +100,11 @@ export default {
       type: 'string',
     },
     {
+      name: 'reelVideoIdShort',
+      title: 'Reel video id (short)',
+      type: 'string',
+    },
+    {
       name: 'reelVideoWidthInPixels',
       title: 'Reel video width in pixels',
       type: 'number',

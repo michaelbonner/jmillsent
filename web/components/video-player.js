@@ -20,7 +20,8 @@ const VideoPlayer = ({
   client = '',
   title,
   description = '',
-  videoId,
+  videoId = '',
+  videoIdShort = '',
   videoHeightAspectRatio = '9',
   videoWidthAspectRatio = '16',
   autoPlay = false,
@@ -42,6 +43,7 @@ const VideoPlayer = ({
   const [muted, setMuted] = useState(autoPlay)
   const [volume, setVolume] = useState(1)
   const [hasClicked, setHasClicked] = useState(false)
+  const [playingVideoId, setPlayingVideoId] = useState(videoIdShort || videoId)
 
   const checkIfIos = (navigator) => {
     return (
@@ -158,6 +160,12 @@ const VideoPlayer = ({
     setShowVideoOverlay(!hasClicked || !isPlaying)
   }, [client, hasClicked, isPlaying, title])
 
+  useEffect(() => {
+    if (hasClicked) {
+      setPlayingVideoId(videoId)
+    }
+  }, [hasClicked, videoId])
+
   return (
     <article
       className={classNames(
@@ -220,7 +228,7 @@ const VideoPlayer = ({
               playing={videoPlaying}
               ref={player}
               title={title}
-              url={`https://player.vimeo.com/video/${videoId}?badge=0&amp;autopause=0&amp;player_id=0&amp;app_id=58479`}
+              url={`https://player.vimeo.com/video/${playingVideoId}?badge=0&amp;autopause=0&amp;player_id=0&amp;app_id=58479`}
               volume={volume}
               width={`100%`}
             ></ReactPlayer>

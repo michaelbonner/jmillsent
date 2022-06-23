@@ -198,13 +198,13 @@ function Contact({ contact }) {
 
           <div>
             <div
-              className="flex flex-wrap max-w-7xl justify-center mx-auto text-center"
+              className="flex flex-wrap max-w-7xl justify-center mx-auto text-center gap-y-10"
               id="contacts"
             >
               {contact.representationCards.map((card) => {
                 return (
                   <div className="w-full lg:w-1/3" key={card.title}>
-                    <div className="border border-gray-500 p-8 m-5">
+                    <div className="border border-gray-500 p-8 mx-5">
                       <p className="tracking-wider font-bold text-xl">
                         {card.title}
                       </p>
@@ -231,7 +231,7 @@ function Contact({ contact }) {
               id="contacts"
             >
               <div className="w-full lg:w-1/3">
-                <div className="border border-gray-500 p-8 m-5">
+                <div className="border border-gray-500 p-8 mx-5">
                   <p className="tracking-wider font-bold text-xl uppercase">
                     Studio Address
                   </p>

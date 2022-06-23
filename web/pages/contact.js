@@ -227,7 +227,7 @@ function Contact({ contact }) {
             </div>
 
             <div
-              className="flex flex-wrap max-w-7xl justify-center mx-auto text-center mt-12"
+              className="flex flex-wrap max-w-7xl justify-center mx-auto text-center mt-12 lg:mt-16"
               id="contacts"
             >
               <div className="w-full lg:w-1/3">

@@ -325,6 +325,7 @@ function About({ aboutPage }) {
             {aboutPage.utahLocations.map((utahLocation, index) => {
               return (
                 <button
+                  aria-label={`Utah location ${index + 1}`}
                   className="w-full h-full"
                   key={index}
                   onClick={() => {

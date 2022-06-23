@@ -152,7 +152,7 @@ function About({ aboutPage }) {
                     <SanityImage
                       image={adFormatsCard.image}
                       className="block filter grayscale hover:filter-none transition-all duration-500"
-                      alt={adFormatsCard.caption}
+                      alt={adFormatsCard.title}
                     />
                   </div>
                   <div>

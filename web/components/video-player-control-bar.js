@@ -26,6 +26,7 @@ export const VideoPlayerControlBar = ({
   return (
     <div className="flex space-x-8 relative z-10 container mx-auto pt-3 bg-black">
       <button
+        aria-label="Play/Pause"
         className="relative text-4xl w-8 h-8"
         onClick={() => {
           setHasClicked(true)
@@ -55,6 +56,7 @@ export const VideoPlayerControlBar = ({
         />
       </button>
       <button
+        aria-label="Player scrubber bar"
         className="relative w-full border-2 border-gray-300 rounded"
         onClick={(e) => {
           setHasClicked(true)
@@ -85,6 +87,7 @@ export const VideoPlayerControlBar = ({
       <div className="text-2xl flex items-center space-x-6">
         {muted === true ? (
           <button
+            aria-label="Unmute"
             className="bpd-white-icon"
             onClick={() => {
               setHasClicked(true)
@@ -96,6 +99,7 @@ export const VideoPlayerControlBar = ({
           </button>
         ) : (
           <button
+            aria-label="Mute"
             className="bpd-white-icon"
             onClick={() => {
               setHasClicked(true)
@@ -108,6 +112,7 @@ export const VideoPlayerControlBar = ({
         )}
         {isFullscreen ? (
           <button
+            aria-label="Exit fullscreen"
             className="bpd-white-icon"
             onClick={() => {
               setHasClicked(true)
@@ -118,6 +123,7 @@ export const VideoPlayerControlBar = ({
           </button>
         ) : (
           <button
+            aria-label="Enter fullscreen"
             className="bpd-white-icon"
             onClick={() => {
               setHasClicked(true)

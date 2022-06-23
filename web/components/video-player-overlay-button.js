@@ -30,19 +30,18 @@ export const VideoPlayerOverlayButton = ({
           'pointer-events-none lg:pointer-events-auto'
       )}
       onClick={() => {
-        if (autoPlay) {
-          if (videoPlaying && !hasClicked) {
-            setMuted(false)
-            setVolume(1)
-            setTimeout(() => {
-              player?.current?.seekTo(0, 'fraction')
-              setScrubberPosition(0)
-              setVideoPlaying(true)
-            }, 200)
-          } else {
-            setVideoPlaying(!videoPlaying)
-          }
+        if (autoPlay && videoPlaying && !hasClicked) {
+          setMuted(false)
+          setVolume(1)
+          setTimeout(() => {
+            player?.current?.seekTo(0, 'fraction')
+            setScrubberPosition(0)
+            setVideoPlaying(true)
+          }, 200)
+        } else {
+          setVideoPlaying(!videoPlaying)
         }
+
         setHasClicked(true)
       }}
     >

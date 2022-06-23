@@ -7,6 +7,7 @@ import ReactPlayer from 'react-player'
 import screenfull from 'screenfull'
 import useInterval from '../hooks/useInterval'
 import urlForSanitySource from '../lib/urlForSanitySource'
+import SanityImage from './sanity-image'
 import { VideoPlayerControlBar } from './video-player-control-bar'
 import { VideoPlayerOverlayButton } from './video-player-overlay-button'
 
@@ -199,11 +200,13 @@ const VideoPlayer = ({
             )}
           >
             {poster ? (
-              <img
-                alt="Poster image"
-                className="w-full h-full"
-                src={urlForSanitySource(poster).width(1200).url()}
-              />
+              <div className="w-full h-full">
+                <SanityImage
+                  alt={`Video poster`}
+                  className="w-full h-full"
+                  image={poster}
+                />
+              </div>
             ) : null}
           </div>
         </div>

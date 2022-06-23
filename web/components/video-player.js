@@ -200,7 +200,7 @@ const VideoPlayer = ({
             )}
           >
             {poster ? (
-              <div className="w-full h-full">
+              <div className="w-full h-full overflow-hidden">
                 <SanityImage
                   alt={`Video poster`}
                   className="w-full h-full"

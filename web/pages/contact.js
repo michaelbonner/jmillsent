@@ -104,10 +104,11 @@ function Contact({ contact }) {
                     handleBlur,
                     values,
                   }) => (
-                    <Form className="grid grid-cols-1 gap-y-6 mx-auto">
+                    <Form className="grid grid-cols-1 gap-y-6 mx-auto max-w-3xl">
                       <div className="border-gray-300 rounded-md bg-white bg-opacity-100 relative">
                         <Field
                           as="input"
+                          autocomplete="name"
                           name="name"
                           placeholder="FULL NAME"
                           className="bg-transparent block w-full shadow-sm py-3 px-4 lg:px-8 text-gray-900 text-lg placeholder-black focus:ring-indigo-500 focus:border-indigo-500"
@@ -122,6 +123,7 @@ function Contact({ contact }) {
                       <div className="border-gray-300 rounded-md bg-white bg-opacity-100 relative">
                         <Field
                           as="input"
+                          autocomplete="name"
                           name="emailAddress"
                           placeholder="EMAIL ADDRESS"
                           className="bg-transparent block w-full shadow-sm py-3 px-4 lg:px-8 text-gray-900 text-lg placeholder-black focus:ring-indigo-500 focus:border-indigo-500"
@@ -136,6 +138,7 @@ function Contact({ contact }) {
                       <div className="border-gray-300 rounded-md bg-white bg-opacity-100 relative">
                         <Field
                           as="input"
+                          autocomplete="tel"
                           name="phoneNumber"
                           placeholder="PHONE NUMBER"
                           className="bg-transparent block w-full shadow-sm py-3 px-4 lg:px-8 text-gray-900 text-lg placeholder-black focus:ring-indigo-500 focus:border-indigo-500"

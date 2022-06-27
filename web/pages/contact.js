@@ -205,7 +205,7 @@ function Contact({ contact }) {
           >
             {contact.representationCards.map((card) => {
               return (
-                <div className="w-full lg:w-1/3" key={card.title}>
+                <div className="w-full sm:w-1/2 lg:w-1/3" key={card.title}>
                   <div className="border border-gray-500 p-8 mx-5 h-full flex flex-col justify-center">
                     <p className="tracking-wider font-bold text-xl">
                       {card.title}
@@ -213,7 +213,7 @@ function Contact({ contact }) {
                     <div className="w-32 mx-auto">
                       <LittleWhiteBar yMargin="my-4" />
                     </div>
-                    <div className="leading-9 prose prose-lg prose-white text-gray-300">
+                    <div className="leading-9 prose prose-lg prose-white text-gray-300 mx-auto">
                       <PortableText value={card.body} />
                     </div>
                   </div>
@@ -234,7 +234,7 @@ function Contact({ contact }) {
             className="flex flex-wrap max-w-7xl justify-center mx-auto text-center mt-12 lg:mt-16"
             id="contacts"
           >
-            <div className="w-full lg:w-1/3">
+            <div className="w-full sm:w-1/2 lg:w-1/3">
               <div className="border border-gray-500 p-8 mx-5">
                 <p className="tracking-wider font-bold text-xl uppercase">
                   Studio Address

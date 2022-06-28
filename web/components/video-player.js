@@ -230,7 +230,13 @@ const VideoPlayer = ({
         />
       </div>
 
-      <div className={playerState === 'playing' ? 'block' : 'hidden'}>
+      <div
+        className={
+          playerState === 'playing'
+            ? 'flex items-center w-full h-full'
+            : 'hidden'
+        }
+      >
         <div
           className={classNames(
             {

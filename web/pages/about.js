@@ -144,7 +144,7 @@ function About({ aboutPage }) {
                 <div
                   key={index}
                   className={classNames(
-                    'flex flex-col justify-between space-y-12 border-2 border-gray-300 pt-12 pb-8 px-8'
+                    'flex flex-col justify-start space-y-12 border-2 border-gray-300 pt-12 pb-8 px-8'
                   )}
                   target="_blank"
                 >

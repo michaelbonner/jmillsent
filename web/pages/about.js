@@ -250,15 +250,12 @@ function About({ aboutPage }) {
         </div>
 
         {/* team section */}
-        <section
-          className="max-w-7xl mx-auto text-center px-4 lg:px-0"
-          id="team"
-        >
+        <section className="max-w-7xl mx-auto text-center lg:px-0" id="team">
           <H2>{aboutPage.teamTitle}</H2>
           <p className="uppercase font-outline text-xl lg:text-5xl -mt-1.5">
             {aboutPage.teamSubtitle}
           </p>
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8 lg:gap-x-12 lg:gap-y-6 mt-10 px-8 lg:px-0">
+          <div className="grid grid-cols-2 lg:grid-cols-4 gap-x-2 gap-y-6 sm:gap-8 lg:gap-x-12 lg:gap-y-6 mt-10">
             {aboutPage.teamMembers.map((teamMember) => {
               const width = isDesktop ? 400 : 200
               const height = isDesktop ? 460 : 250
@@ -273,11 +270,13 @@ function About({ aboutPage }) {
                     width={width}
                     alt={teamMember.name}
                   />
-                  <p className="mt-2 uppercase font-extrabold text-xl lg:text-2xl">
+                  <p className="mt-2 uppercase font-extrabold text-sm lg:text-2xl">
                     {teamMember.name}
                   </p>
-                  <LittleWhiteBar yMargin={'my-2'} />
-                  <p className="uppercase font-outline text-2xl">
+                  <div className="px-4">
+                    <LittleWhiteBar yMargin={'my-2'} />
+                  </div>
+                  <p className="uppercase font-bold lg:font-outline text-sm lg:text-2xl">
                     {teamMember.title}
                   </p>
                 </div>

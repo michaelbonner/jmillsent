@@ -166,7 +166,11 @@ const VideoPlayer = ({
   }, [hasClicked, videoId])
 
   useEffect(() => {
-    if (isDesktop) {
+    if (isDesktop === null) {
+      return
+    }
+
+    if (isDesktop === true) {
       setPlayerState('playing')
     } else {
       setPlayingVideoId(videoId)
@@ -262,7 +266,7 @@ const VideoPlayer = ({
               <ReactPlayer
                 allow="autoplay; fullscreen; picture-in-picture"
                 allowFullScreen={true}
-                controls={!isIos && !isDesktop}
+                controls={!isIos && isDesktop === false}
                 config={{
                   vimeo: {
                     playerOptions: {
@@ -306,7 +310,7 @@ const VideoPlayer = ({
             )}
           </div>
 
-          {!isIos && !isIpad && isDesktop && (
+          {!isIos && !isIpad && isDesktop === true && (
             <VideoPlayerControlBar
               isFullscreen={isFullscreen}
               muted={muted}

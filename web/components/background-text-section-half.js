@@ -1,9 +1,9 @@
 import urlForSanitySource from '@/lib/urlForSanitySource'
 import { PortableText } from '@portabletext/react'
+import classNames from 'classnames'
 import useIsDesktop from 'hooks/useIsDesktop'
 import Image from 'next/image'
-import React from 'react'
-import { GrCheckbox, GrCheckboxSelected } from 'react-icons/gr'
+import { Link as SmoothScrollLink } from 'react-scroll'
 import { H3 } from './headings'
 import LittleGoldBar from './little-gold-bar'
 
@@ -11,17 +11,26 @@ const BackgroundTextSectionHalf = ({
   image,
   imageAlt,
   title,
+  shortName,
   description,
   step,
   serviceShortNames,
 }) => {
   const isDesktop = useIsDesktop()
   return (
-    <div className="border relative p-4 lg:p-6 border-gray-300">
+    <div
+      className="border relative p-4 lg:p-6 border-gray-300"
+      id={`service-${shortName}`}
+    >
       <div className="w-full group" style={{ lineHeight: 0 }}>
         <div className="relative">
           <div className="absolute inset-0 z-10 bg-gradient-to-l from-black via-transparent to-transparent bg-opacity-40" />
-          <div className="absolute top-0 right-4 bottom-0 left-auto flex flex-col justify-center gap-y-2 z-10 text-right text-xs lg:text-sm">
+          <div
+            className={classNames(
+              `absolute top-0 right-4 bottom-0 left-auto flex flex-col justify-center gap-y-2 z-10 text-right text-xs`,
+              `lg:top-12 lg:justify-start lg:text-sm`
+            )}
+          >
             <div className="hidden lg:block">
               <h3 className="text-3xl font-bold">{title}</h3>
               <div className="flex justify-end py-1">
@@ -32,8 +41,12 @@ const BackgroundTextSectionHalf = ({
               const isChecked = index + 1 < step
               const isCurrent = index + 1 === step
               return (
-                <div
-                  className={`flex items-center gap-x-2 lg:gap-x-4 justify-end ${
+                <SmoothScrollLink
+                  to={`service-${serviceShortName}`}
+                  smooth={true}
+                  offset={-20}
+                  duration={500}
+                  className={`flex items-center gap-x-2 lg:gap-x-4 justify-end cursor-pointer ${
                     isCurrent ? 'text-white font-bold' : 'text-gray-200'
                   }`}
                   key={index}
@@ -77,7 +90,7 @@ const BackgroundTextSectionHalf = ({
                       />
                     </svg>
                   )}
-                </div>
+                </SmoothScrollLink>
               )
             })}
           </div>

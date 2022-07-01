@@ -114,6 +114,7 @@ function About({ aboutPage, serviceShortNames }) {
                     image={service.image}
                     imageAlt={service.name}
                     title={service.name}
+                    shortName={service.shortName}
                     description={service.description}
                     step={index + 1}
                     key={service._id}

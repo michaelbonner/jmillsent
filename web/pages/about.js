@@ -19,7 +19,7 @@ import urlForSanitySource from '../lib/urlForSanitySource'
 import useIsDesktop from 'hooks/useIsDesktop'
 import 'react-image-lightbox/style.css'
 
-function About({ aboutPage }) {
+function About({ aboutPage, serviceShortNames }) {
   const [isGalleryModelOpen, setIsGalleryModelOpen] = useState(false)
   const isDesktop = useIsDesktop()
   const [photoIndex, setPhotoIndex] = useState(0)
@@ -117,6 +117,7 @@ function About({ aboutPage }) {
                     description={service.description}
                     step={index + 1}
                     key={service._id}
+                    serviceShortNames={serviceShortNames}
                   />
                 )
               })}
@@ -618,9 +619,15 @@ export async function getStaticProps() {
   		}
   		`
   )
+
+  const serviceShortNames = aboutPage.services?.map(
+    (service) => service.shortName
+  )
+
   return {
     props: {
       aboutPage,
+      serviceShortNames,
     },
   }
 }

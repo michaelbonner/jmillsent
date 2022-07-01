@@ -9,14 +9,15 @@ import VideoPlayer from '@/components/video-player'
 import { PortableText } from '@portabletext/react'
 import classNames from 'classnames'
 import groq from 'groq'
+import useIsDesktop from 'hooks/useIsDesktop'
 import Image from 'next/image'
 import Link from 'next/link'
 import { useState } from 'react'
 import Lightbox from 'react-image-lightbox'
 import { getClient } from '../lib/sanity'
 import urlForSanitySource from '../lib/urlForSanitySource'
+import { Link as SmoothScrollLink } from 'react-scroll'
 
-import useIsDesktop from 'hooks/useIsDesktop'
 import 'react-image-lightbox/style.css'
 
 function About({ aboutPage, serviceShortNames }) {
@@ -99,15 +100,74 @@ function About({ aboutPage, serviceShortNames }) {
         </div>
 
         {/* services */}
-        <section className="-mt-1.5" id="services">
+        <section className="-mt-1.5 relative" id="services">
           <div className="px-8 container mx-auto text-center">
             <H2>{aboutPage.section2Title}</H2>
             <p className="uppercase font-outline text-xl lg:text-5xl -mt-1.5">
               {aboutPage.section2Subtitle}
             </p>
           </div>
+
+          <div className="lg:sticky z-20 bg-black top-0 mt-6 py-3">
+            <div
+              className={`hidden max-w-5xl mx-auto lg:grid grid-cols-${
+                aboutPage?.services?.length || 1
+              }`}
+            >
+              {aboutPage.services.length > 0 &&
+                aboutPage.services.map((service, index) => {
+                  // center
+                  let clipPath =
+                    'polygon(100% 50%, 91% 75%, 91% 100%, 0% 100%, 0% 75%, 8% 50%, 0% 24%, 0% 0%, 91% 0%, 91% 25%)'
+
+                  // left edge
+                  if (index === 0) {
+                    clipPath =
+                      'polygon(100% 50%, 91% 75%, 91% 100%, 0% 100%, 0% 0%, 91% 0%, 91% 25%)'
+                  }
+
+                  // right edge
+                  if (index + 1 === aboutPage.services.length) {
+                    clipPath =
+                      'polygon(100% 0%, 100% 100%, 0% 100%, 0% 75%, 8% 50%, 0% 24%, 0% 0%)'
+                  }
+                  return (
+                    <SmoothScrollLink
+                      to={`service-${service.shortName}`}
+                      smooth={true}
+                      offset={-132}
+                      duration={500}
+                      className="relative bg-gold p-px cursor-pointer opacity-60 hover:opacity-100 transition-opacity duration-500"
+                      key={service._id}
+                      style={{
+                        clipPath,
+                      }}
+                    >
+                      {/* eslint-disable-next-line @next/next/no-img-element */}
+                      <img
+                        alt={service.name}
+                        height={150}
+                        src={`${urlForSanitySource(
+                          service.image
+                        )}?w=239&h=150&auto=format&fit=crop&crop=focalpoint`}
+                        width={239}
+                        style={{
+                          clipPath,
+                        }}
+                      />
+                      <div className="absolute inset-0 flex items-end justify-center pb-1">
+                        <div className="text-white text-center text-sm font-bold uppercase">
+                          {service.name}
+                        </div>
+                      </div>
+                    </SmoothScrollLink>
+                  )
+                })}
+            </div>
+          </div>
+
           {aboutPage.services.length > 0 && (
-            <div className="grid grid-cols-1 gap-6 mt-4 lg:mt-10 max-w-7xl mx-auto">
+            <div className="grid grid-cols-1 gap-6 mt-4 lg:px-2 lg:mt-10 max-w-7xl mx-auto">
               {aboutPage.services.map((service, index) => {
                 return (
                   <BackgroundTextSectionHalf
@@ -125,6 +185,7 @@ function About({ aboutPage, serviceShortNames }) {
             </div>
           )}
         </section>
+
         {/* end: services */}
 
         <DividerBar />

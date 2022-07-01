@@ -107,7 +107,7 @@ function About({ aboutPage, serviceShortNames }) {
             </p>
           </div>
           {aboutPage.services.length > 0 && (
-            <div className="grid grid-cols-1 gap-6 mt-4 lg:mt-10 max-w-7xl mx-auto">
+            <div className="grid grid-cols-1 lg:grid-cols-2 gap-6 mt-4 lg:mt-10 max-w-7xl mx-auto">
               {aboutPage.services.map((service, index) => {
                 return (
                   <BackgroundTextSectionHalf

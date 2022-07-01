@@ -28,7 +28,7 @@ const BackgroundTextSectionHalf = ({
           <div
             className={classNames(
               `absolute top-0 right-4 bottom-0 left-auto flex flex-col justify-center gap-y-2 z-10 text-right text-xs`,
-              `lg:top-12 lg:justify-start lg:text-sm`
+              `lg:top-6 lg:justify-start lg:text-sm`
             )}
           >
             <div className="hidden lg:block">
@@ -109,9 +109,9 @@ const BackgroundTextSectionHalf = ({
           </div>
           <Image
             alt={imageAlt}
-            height={isDesktop ? 500 : 800}
+            height={isDesktop ? 700 : 800}
             src={`${urlForSanitySource(image)}?w=1200&h=${
-              isDesktop ? 500 : 800
+              isDesktop ? 700 : 800
             }&auto=format&fit=crop&crop=focalpoint`}
             width={1200}
           />

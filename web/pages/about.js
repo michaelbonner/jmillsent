@@ -5,6 +5,7 @@ import Layout from '@/components/layout'
 import LittleWhiteBar from '@/components/little-white-bar'
 import MediumWhiteBar from '@/components/medium-white-bar'
 import SanityImage from '@/components/sanity-image'
+import ServicesThumbnails from '@/components/services-thumbnails'
 import VideoPlayer from '@/components/video-player'
 import { PortableText } from '@portabletext/react'
 import classNames from 'classnames'
@@ -16,7 +17,6 @@ import { useState } from 'react'
 import Lightbox from 'react-image-lightbox'
 import { getClient } from '../lib/sanity'
 import urlForSanitySource from '../lib/urlForSanitySource'
-import { Link as SmoothScrollLink } from 'react-scroll'
 
 import 'react-image-lightbox/style.css'
 
@@ -24,6 +24,7 @@ function About({ aboutPage, serviceShortNames }) {
   const [isGalleryModelOpen, setIsGalleryModelOpen] = useState(false)
   const isDesktop = useIsDesktop()
   const [photoIndex, setPhotoIndex] = useState(0)
+  const [serviceCurrentlyVisible, setServiceCurrentlyVisible] = useState('')
 
   const utahLocationsImages = aboutPage.utahLocations.map(
     (image) => `${urlForSanitySource(image)}?w=1800&auto=format`
@@ -108,63 +109,10 @@ function About({ aboutPage, serviceShortNames }) {
             </p>
           </div>
 
-          <div className="lg:sticky z-20 bg-black top-0 mt-6 py-3">
-            <div
-              className={`hidden max-w-5xl mx-auto lg:grid grid-cols-${
-                aboutPage?.services?.length || 1
-              }`}
-            >
-              {aboutPage.services.length > 0 &&
-                aboutPage.services.map((service, index) => {
-                  // center
-                  let clipPath =
-                    'polygon(100% 50%, 91% 75%, 91% 100%, 0% 100%, 0% 75%, 8% 50%, 0% 24%, 0% 0%, 91% 0%, 91% 25%)'
-
-                  // left edge
-                  if (index === 0) {
-                    clipPath =
-                      'polygon(100% 50%, 91% 75%, 91% 100%, 0% 100%, 0% 0%, 91% 0%, 91% 25%)'
-                  }
-
-                  // right edge
-                  if (index + 1 === aboutPage.services.length) {
-                    clipPath =
-                      'polygon(100% 0%, 100% 100%, 0% 100%, 0% 75%, 8% 50%, 0% 24%, 0% 0%)'
-                  }
-                  return (
-                    <SmoothScrollLink
-                      to={`service-${service.shortName}`}
-                      smooth={true}
-                      offset={-132}
-                      duration={500}
-                      className="relative bg-gold p-px cursor-pointer opacity-60 hover:opacity-100 transition-opacity duration-500"
-                      key={service._id}
-                      style={{
-                        clipPath,
-                      }}
-                    >
-                      {/* eslint-disable-next-line @next/next/no-img-element */}
-                      <img
-                        alt={service.name}
-                        height={150}
-                        src={`${urlForSanitySource(
-                          service.image
-                        )}?w=239&h=150&auto=format&fit=crop&crop=focalpoint`}
-                        width={239}
-                        style={{
-                          clipPath,
-                        }}
-                      />
-                      <div className="absolute inset-0 flex items-end justify-center pb-1">
-                        <div className="text-white text-center text-sm font-bold uppercase">
-                          {service.name}
-                        </div>
-                      </div>
-                    </SmoothScrollLink>
-                  )
-                })}
-            </div>
-          </div>
+          <ServicesThumbnails
+            serviceCurrentlyVisible={serviceCurrentlyVisible}
+            services={aboutPage.services || []}
+          />
 
           {aboutPage.services.length > 0 && (
             <div className="grid grid-cols-1 gap-6 mt-4 lg:px-2 lg:mt-10 max-w-7xl mx-auto">
@@ -179,6 +127,8 @@ function About({ aboutPage, serviceShortNames }) {
                     step={index + 1}
                     key={service._id}
                     serviceShortNames={serviceShortNames}
+                    serviceCurrentlyVisible={serviceCurrentlyVisible}
+                    setServiceCurrentlyVisible={setServiceCurrentlyVisible}
                   />
                 )
               })}

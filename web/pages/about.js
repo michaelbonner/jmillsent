@@ -24,7 +24,6 @@ function About({ aboutPage, serviceShortNames }) {
   const [isGalleryModelOpen, setIsGalleryModelOpen] = useState(false)
   const isDesktop = useIsDesktop()
   const [photoIndex, setPhotoIndex] = useState(0)
-  const [serviceCurrentlyVisible, setServiceCurrentlyVisible] = useState('')
 
   const utahLocationsImages = aboutPage.utahLocations.map(
     (image) => `${urlForSanitySource(image)}?w=1800&auto=format`
@@ -109,13 +108,10 @@ function About({ aboutPage, serviceShortNames }) {
             </p>
           </div>
 
-          <ServicesThumbnails
-            serviceCurrentlyVisible={serviceCurrentlyVisible}
-            services={aboutPage.services || []}
-          />
+          <ServicesThumbnails services={aboutPage.services || []} />
 
           {aboutPage.services.length > 0 && (
-            <div className="grid grid-cols-1 gap-6 mt-4 lg:px-2 lg:mt-10 max-w-7xl mx-auto">
+            <div className="grid lg:grid-cols-2 gap-6 mt-4 lg:mt-10 max-w-7xl mx-auto">
               {aboutPage.services.map((service, index) => {
                 return (
                   <BackgroundTextSectionHalf
@@ -127,8 +123,6 @@ function About({ aboutPage, serviceShortNames }) {
                     step={index + 1}
                     key={service._id}
                     serviceShortNames={serviceShortNames}
-                    serviceCurrentlyVisible={serviceCurrentlyVisible}
-                    setServiceCurrentlyVisible={setServiceCurrentlyVisible}
                   />
                 )
               })}

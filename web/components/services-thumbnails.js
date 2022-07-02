@@ -1,10 +1,10 @@
 import urlForSanitySource from '@/lib/urlForSanitySource'
 import { Link as SmoothScrollLink } from 'react-scroll'
 
-const ServicesThumbnails = ({ services, serviceCurrentlyVisible }) => {
+const ServicesThumbnails = ({ services }) => {
   // grid-cols-1 grid-cols-2 grid-cols-3 grid-cols-4 grid-cols-5 grid-cols-6 grid-cols-7 grid-cols-8 grid-cols-9 grid-cols-10 grid-cols-11 grid-cols-12
   return (
-    <div className="lg:sticky z-20 top-0 mt-6">
+    <div className="lg:block z-20 top-0 mt-6">
       <div
         className={`hidden max-w-5xl bg-black bg-opacity-80 p-3 mx-auto lg:grid grid-cols-${
           services?.length || 1
@@ -31,13 +31,9 @@ const ServicesThumbnails = ({ services, serviceCurrentlyVisible }) => {
               <SmoothScrollLink
                 to={`service-${service.shortName}`}
                 smooth={true}
-                offset={-132}
+                offset={-20}
                 duration={500}
-                className={`relative bg-gold p-px cursor-pointer ${
-                  serviceCurrentlyVisible === `service-${service.shortName}`
-                    ? 'opacity-100'
-                    : 'opacity-60'
-                } opacity-60 hover:opacity-100 transition-opacity duration-500`}
+                className={`relative bg-gold p-px cursor-pointer opacity-60 hover:opacity-100 transition-opacity duration-500 -mx-1`}
                 key={service._id}
                 style={{
                   clipPath,

@@ -2,9 +2,7 @@ import urlForSanitySource from '@/lib/urlForSanitySource'
 import { PortableText } from '@portabletext/react'
 import classNames from 'classnames'
 import useIsDesktop from 'hooks/useIsDesktop'
-import { useIsInViewport } from 'hooks/useIsInViewport'
 import Image from 'next/image'
-import { useEffect, useRef } from 'react'
 import { Link as SmoothScrollLink } from 'react-scroll'
 import { H3 } from './headings'
 import LittleGoldBar from './little-gold-bar'
@@ -17,24 +15,13 @@ const BackgroundTextSectionHalf = ({
   description,
   step,
   serviceShortNames,
-  serviceCurrentlyVisible,
-  setServiceCurrentlyVisible,
 }) => {
   const isDesktop = useIsDesktop()
-  const ref = useRef(null)
-  const isInViewport = useIsInViewport(ref)
-
-  useEffect(() => {
-    if (isInViewport) {
-      setServiceCurrentlyVisible(`service-${shortName}`)
-    }
-  }, [isInViewport, setServiceCurrentlyVisible, shortName])
 
   return (
     <div
       className="border relative p-4 lg:p-6 border-gray-300"
       id={`service-${shortName}`}
-      ref={ref}
     >
       <div className="w-full group" style={{ lineHeight: 0 }}>
         <div className="relative">
@@ -42,7 +29,7 @@ const BackgroundTextSectionHalf = ({
           <div
             className={classNames(
               `absolute top-0 right-4 bottom-0 left-auto flex flex-col justify-center gap-y-2 z-10 text-right text-xs`,
-              `lg:top-12 lg:justify-start lg:text-sm`
+              `lg:top-6 lg:justify-start lg:text-sm`
             )}
           >
             <div className="hidden lg:block">
@@ -123,9 +110,9 @@ const BackgroundTextSectionHalf = ({
           </div>
           <Image
             alt={imageAlt}
-            height={isDesktop ? 500 : 800}
+            height={isDesktop ? 700 : 800}
             src={`${urlForSanitySource(image)}?w=1200&h=${
-              isDesktop ? 500 : 800
+              isDesktop ? 700 : 800
             }&auto=format&fit=crop&crop=focalpoint`}
             width={1200}
           />

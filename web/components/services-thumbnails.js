@@ -6,7 +6,7 @@ const ServicesThumbnails = ({ services }) => {
   return (
     <div className="lg:block z-20 top-0 mt-6">
       <div
-        className={`hidden max-w-5xl bg-black bg-opacity-80 p-3 mx-auto lg:grid grid-cols-${
+        className={`hidden max-w-7xl bg-black bg-opacity-80 my-6 p-1 mx-auto lg:grid grid-cols-${
           services?.length || 1
         }`}
       >

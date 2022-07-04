@@ -35,8 +35,8 @@ const ServicesThumbnails = ({ services }) => {
                 offset={-20}
                 duration={500}
                 className={classNames(
-                  `relative bg-gold p-[2px] cursor-pointer group transition-all duration-500 -mx-1 bg-opacity-80`,
-                  `hover:bg-opacity-100`
+                  `relative bg-gray-200 p-[2px] cursor-pointer group transition-all duration-500 -mx-1 bg-opacity-20`,
+                  `hover:bg-opacity-80 hover:bg-gold`
                 )}
                 key={service._id}
                 style={{
@@ -47,7 +47,7 @@ const ServicesThumbnails = ({ services }) => {
                 <img
                   alt={service.name}
                   className={classNames(
-                    `opacity-70 transition-opacity duration-500`,
+                    `opacity-50 transition-opacity duration-500`,
                     `group-hover:opacity-100`
                   )}
                   height={150}

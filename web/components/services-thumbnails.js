@@ -1,4 +1,5 @@
 import urlForSanitySource from '@/lib/urlForSanitySource'
+import classNames from 'classnames'
 import { Link as SmoothScrollLink } from 'react-scroll'
 
 const ServicesThumbnails = ({ services }) => {
@@ -33,7 +34,10 @@ const ServicesThumbnails = ({ services }) => {
                 smooth={true}
                 offset={-20}
                 duration={500}
-                className={`relative bg-gold p-px cursor-pointer opacity-60 hover:opacity-100 transition-opacity duration-500 -mx-1`}
+                className={classNames(
+                  `relative bg-gold p-[2px] cursor-pointer group transition-all duration-500 -mx-1 bg-opacity-80`,
+                  `hover:bg-opacity-100`
+                )}
                 key={service._id}
                 style={{
                   clipPath,
@@ -42,6 +46,10 @@ const ServicesThumbnails = ({ services }) => {
                 {/* eslint-disable-next-line @next/next/no-img-element */}
                 <img
                   alt={service.name}
+                  className={classNames(
+                    `opacity-70 transition-opacity duration-500`,
+                    `group-hover:opacity-100`
+                  )}
                   height={150}
                   src={`${urlForSanitySource(
                     service.image

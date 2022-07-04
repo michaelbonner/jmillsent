@@ -52,7 +52,7 @@ const ServicesThumbnails = ({ services }) => {
                   }}
                 />
                 <div className="absolute inset-0 flex items-end justify-center pb-1.5">
-                  <div className="text-white text-center text-sm font-bold uppercase tracking-wider">
+                  <div className="text-white text-center text-sm font-bold uppercase tracking-wider text-shadow-md">
                     {service.name}
                   </div>
                 </div>

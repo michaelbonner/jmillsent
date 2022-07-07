@@ -162,18 +162,16 @@ header {
 }
 
 @layer utilities {
-  @variants responsive {
-    .text-shadow {
-      text-shadow: 0 0 4px #1f2937;
-    }
-    .text-shadow-md {
-      text-shadow: 0 0 8px #1f2937;
-    }
-    .text-shadow-lg {
-      text-shadow: 0 0 30px #1f2937;
-    }
-    .text-shadow-none {
-      text-shadow: none;
-    }
+  .text-shadow {
+    text-shadow: 0 0 4px #1f2937;
+  }
+  .text-shadow-md {
+    text-shadow: 0 0 8px #1f2937;
+  }
+  .text-shadow-lg {
+    text-shadow: 0 0 30px #1f2937;
+  }
+  .text-shadow-none {
+    text-shadow: none;
   }
 }

@@ -1,4 +1,4 @@
-import { BsNewspaper as icon } from 'react-icons/bs';
+import { BsNewspaper as icon } from 'react-icons/bs'
 
 export default {
   name: 'newsPage',
@@ -57,7 +57,7 @@ export default {
     prepare(selection) {
       return {
         title: `News Page`,
-      };
+      }
     },
   },
-};
+}

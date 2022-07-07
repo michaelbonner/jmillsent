@@ -31,6 +31,7 @@ const VideoPlayer = ({
   const [videoPlaying, setVideoPlaying] = useState(autoPlay)
   const player = useRef(null)
   const scrubber = useRef(null)
+  const playerContainer = useRef(null)
   const [scrubberWidth, setScrubberWidth] = useState(0)
   const [scrubberPosition, setScrubberPosition] = useState(0)
   const [totalPlaySeconds, setTotalPlaySeconds] = useState(0)
@@ -68,7 +69,7 @@ const VideoPlayer = ({
   }
 
   const toggleFullScreen = (onOff) => {
-    const element = document.querySelector('.bpd-player-container')
+    const element = playerContainer.current
     if (onOff) {
       if (screenfull.isEnabled) {
         screenfull.request(element)
@@ -193,6 +194,7 @@ const VideoPlayer = ({
         },
         'bpd-player-container relative z-20'
       )}
+      ref={playerContainer}
     >
       <div className={playerState === 'initial' ? 'block' : 'hidden'}>
         <div className="container mx-auto">

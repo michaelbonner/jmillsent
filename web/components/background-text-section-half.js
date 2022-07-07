@@ -39,7 +39,7 @@ const BackgroundTextSectionHalf = ({
               </div>
             </div>
             {serviceShortNames?.map((serviceShortName, index) => {
-              const isChecked = index + 1 < step
+              const isChecked = index + 1 <= step
               const isCurrent = index + 1 === step
               return (
                 <SmoothScrollLink

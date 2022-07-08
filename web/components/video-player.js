@@ -69,17 +69,21 @@ const VideoPlayer = ({
   }
 
   const toggleFullScreen = (onOff) => {
-    const element = playerContainer.current
-    if (onOff) {
-      if (screenfull.isEnabled) {
-        screenfull.request(element)
+    try {
+      const element = playerContainer.current
+      if (onOff) {
+        if (screenfull.isEnabled) {
+          screenfull.request(element)
+        }
+        setIsFullscreen(true)
+      } else {
+        if (screenfull.isEnabled) {
+          screenfull.exit()
+        }
+        setIsFullscreen(false)
       }
-      setIsFullscreen(true)
-    } else {
-      if (screenfull.isEnabled) {
-        screenfull.exit()
-      }
-      setIsFullscreen(false)
+    } catch (error) {
+      console.error('toggleFullScreen error', error)
     }
   }
 

@@ -1,3 +1,4 @@
+/* eslint-disable react/jsx-no-target-blank */
 import BackgroundTextSectionHalf from '@/components/background-text-section-half'
 import DividerBar from '@/components/divider-bar'
 import { H1, H2, H3 } from '@/components/headings'
@@ -365,12 +366,14 @@ function About({ aboutPage, serviceShortNames }) {
         {/* company 3 */}
         <section className="-mt-1.5 grid gap-y-4 items-center" id="company3">
           <div className="w-full max-w-sm mx-auto">
-            <Image
-              src="/images/company-3.svg"
-              alt="company3"
-              width="1020"
-              height="170"
-            />
+            <a href="https://www.company3.com/" target="_blank">
+              <Image
+                src="/images/company-3.svg"
+                alt="company3"
+                width="1020"
+                height="170"
+              />
+            </a>
           </div>
           <H2 className="font-outline font-thin !mb-0">
             {aboutPage.company3Title}
@@ -439,7 +442,7 @@ function About({ aboutPage, serviceShortNames }) {
           </p>
         )}
         <div className="grid grid-cols-1 md:grid-cols-3 gap-8 px-8 mt-4 lg:mt-10">
-          {aboutPage.ravensCards.map((ravensCard, index) => {
+          {aboutPage.ravensCards?.map((ravensCard, index) => {
             return (
               <Link key={index} href={ravensCard.link}>
                 <a

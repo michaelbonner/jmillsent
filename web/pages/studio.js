@@ -28,35 +28,6 @@ function Studio({ studioPage }) {
           {studioPage.subtitle}
         </h2>
       </div>
-      {/* Ternary to remove hero video & video player if no videoId found. */}
-      {studioPage.tourVideoId && (
-        <SmoothScrollLink
-          to="tour"
-          className="flex justify-center cursor-pointer lg:w-full mx-auto"
-          smooth={true}
-          offset={-100}
-          duration={500}
-        >
-          <div className="inline-block">
-            <div
-              className="flex gap-4 items-center justify-center px-2 sm:px-3 py-1 sm:py-2 sm:mt-10 uppercase hover:bg-gold transition-colors border-2 border-gray-300 text-xl lg:text-3xl group"
-              target="_blank"
-            >
-              <span className="font-outline tracking-tighter text-gray-300 group-hover:text-black">
-                Play
-              </span>
-
-              <span className="font-bold tracking-wide group-hover:text-black">
-                Studio
-              </span>
-
-              <span className="font-outline tracking-tighter text-gray-300 group-hover:text-black">
-                Tour
-              </span>
-            </div>
-          </div>
-        </SmoothScrollLink>
-      )}
     </div>
   )
 

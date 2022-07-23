@@ -17,9 +17,9 @@ module.exports = {
       { source: '/rentals-request', destination: '/contact', permanent: true },
       { source: '/sample-page', destination: '/', permanent: true },
       { source: '/front-page/films', destination: '/work', permanent: true },
-      { source: '/roster', destination: '/about', permanent: true },
-      { source: '/services', destination: '/about', permanent: true },
-      { source: '/reel', destination: '/about', permanent: true },
+      { source: '/roster', destination: '/about#team', permanent: true },
+      { source: '/services', destination: '/about#services', permanent: true },
+      { source: '/reel', destination: '/about#reel', permanent: true },
       {
         source: '/casestudies/webb-who-we-are',
         destination: '/work/webb-who-we-are',
@@ -198,7 +198,7 @@ module.exports = {
       },
       {
         source: '/2017/06/15/hello-world',
-        destination: '/about',
+        destination: '/news',
         permanent: true,
       },
       {

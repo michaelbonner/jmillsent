@@ -364,6 +364,7 @@ const VideoPlayer = ({
             {isDesktop === null && <div>Loading video</div>}
             {isDesktop !== null && (
               <iframe
+                allow="autoplay; fullscreen"
                 frameBorder="0"
                 webkitallowfullscreen="true"
                 mozallowfullscreen="true"

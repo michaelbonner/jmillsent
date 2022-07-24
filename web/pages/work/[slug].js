@@ -5,6 +5,7 @@ import MediumWhiteBar from '@/components/medium-white-bar'
 import VideoPlayer from '@/components/video-player'
 import { getClient } from '@/lib/sanity'
 import groq from 'groq'
+import useClientOnly from 'hooks/useClientOnly'
 import useIsDesktop from 'hooks/useIsDesktop'
 import Image from 'next/image'
 import { useState } from 'react'
@@ -49,8 +50,8 @@ aspect-w-16	aspect-h-16
 
 const WorkItem = ({ workItem = {} }) => {
   const [isOpen, setIsOpen] = useState(false)
-
   const isDesktop = useIsDesktop()
+  const isClient = useClientOnly()
 
   const fullTitle = workItem.clientName
     ? `${workItem.clientName} | ${workItem.title}`
@@ -76,16 +77,18 @@ const WorkItem = ({ workItem = {} }) => {
     >
       <div className="px-4 lg:px-8">
         <div className="my-12 p-4 xl:p-8 border border-gray-300 px-4 xl:mx-auto max-w-9xl">
-          <VideoPlayer
-            client={workItem.clientName}
-            description={workItem.description}
-            poster={workItem.poster}
-            title={workItem.title}
-            videoId={workItem.videoId}
-            clientName={workItem.clientName}
-            videoHeightAspectRatio={workItem.videoHeightAspectRatio || '9'}
-            videoWidthAspectRatio={workItem.videoWidthAspectRatio || '16'}
-          />
+          {isClient && (
+            <VideoPlayer
+              client={workItem.clientName}
+              description={workItem.description}
+              poster={workItem.poster}
+              title={workItem.title}
+              videoId={workItem.videoId}
+              clientName={workItem.clientName}
+              videoHeightAspectRatio={workItem.videoHeightAspectRatio || '9'}
+              videoWidthAspectRatio={workItem.videoWidthAspectRatio || '16'}
+            />
+          )}
         </div>
       </div>
 

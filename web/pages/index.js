@@ -6,11 +6,13 @@ import VideoPlayer from '@/components/video-player'
 import { getClient } from '@/lib/sanity'
 import { PortableText } from '@portabletext/react'
 import groq from 'groq'
+import useClientOnly from 'hooks/useClientOnly'
 import useIsDesktop from 'hooks/useIsDesktop'
 import Image from 'next/image'
 
 function Home({ homePage }) {
   const isDesktop = useIsDesktop()
+  const isClient = useClientOnly()
 
   const heroContent = (
     <div className="h-full w-screen flex flex-col items-center justify-center text-white text-center">
@@ -64,17 +66,19 @@ function Home({ homePage }) {
       </div>
       <div className="px-8 lg:px-4 mt-10" id="featured">
         <div className="border border-gray-300 p-4 lg:py-8 lg:px-8 container mx-auto">
-          <VideoPlayer
-            poster={homePage.reelVideoPoster}
-            title={homePage.reelVideoTitle}
-            videoId={homePage.reelVideoId}
-            videoIdShort={homePage.reelVideoIdShort}
-            client={homePage.reelVideoClient}
-            description={homePage.reelVideoDescription}
-            videoHeightAspectRatio={homePage.reelVideoHeightAspectRatio}
-            videoWidthAspectRatio={homePage.reelVideoWidthAspectRatio}
-            autoPlay={true}
-          />
+          {isClient && (
+            <VideoPlayer
+              poster={homePage.reelVideoPoster}
+              title={homePage.reelVideoTitle}
+              videoId={homePage.reelVideoId}
+              videoIdShort={homePage.reelVideoIdShort}
+              client={homePage.reelVideoClient}
+              description={homePage.reelVideoDescription}
+              videoHeightAspectRatio={homePage.reelVideoHeightAspectRatio}
+              videoWidthAspectRatio={homePage.reelVideoWidthAspectRatio}
+              autoPlay={true}
+            />
+          )}
         </div>
       </div>
       {isDesktop === false && (

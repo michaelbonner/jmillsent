@@ -12,15 +12,15 @@ import { VideoPlayerControlBar } from './video-player-control-bar'
 import { VideoPlayerOverlayButton } from './video-player-overlay-button'
 
 const VideoPlayer = ({
-  poster,
+  autoPlay = false,
   client = '',
-  title,
   description = '',
+  poster,
+  title,
+  videoHeightAspectRatio = '9',
   videoId = '',
   videoIdShort = '',
-  videoHeightAspectRatio = '9',
   videoWidthAspectRatio = '16',
-  autoPlay = false,
 }) => {
   const isDesktop = useIsDesktop()
   const [playerState, setPlayerState] = useState('initial')
@@ -45,29 +45,6 @@ const VideoPlayer = ({
   const [playingVideoId, setPlayingVideoId] = useState(videoIdShort || videoId)
   const isClient = useClientOnly()
 
-  const checkIfIos = (navigator) => {
-    return (
-      [
-        'iPad Simulator',
-        'iPhone Simulator',
-        'iPod Simulator',
-        'iPad',
-        'iPhone',
-        'iPod',
-      ].includes(navigator.platform) ||
-      // iPad on iOS 13 detection
-      (navigator.userAgent.includes('Mac') && 'ontouchend' in document)
-    )
-  }
-
-  const checkIfIpad = (navigator) => {
-    return (
-      !['iPhone', 'iPod'].includes(navigator.platform) &&
-      navigator.userAgent.includes('Mac') &&
-      'ontouchend' in document
-    )
-  }
-
   const toggleFullScreen = (onOff) => {
     try {
       const element = playerContainer.current
@@ -87,7 +64,7 @@ const VideoPlayer = ({
     }
   }
 
-  const handleFullScreenChange = (event) => {
+  const handleFullScreenChange = () => {
     if (screenfull.isFullscreen) {
       setIsFullscreen(true)
     } else {
@@ -135,9 +112,33 @@ const VideoPlayer = ({
   )
 
   useLayoutEffect(() => {
+    const checkIfIos = (navigator) => {
+      return (
+        [
+          'iPad Simulator',
+          'iPhone Simulator',
+          'iPod Simulator',
+          'iPad',
+          'iPhone',
+          'iPod',
+        ].includes(navigator.platform) ||
+        // iPad on iOS 13 detection
+        (navigator.userAgent.includes('Mac') && 'ontouchend' in document)
+      )
+    }
+
+    const checkIfIpad = (navigator) => {
+      return (
+        !['iPhone', 'iPod'].includes(navigator.platform) &&
+        navigator.userAgent.includes('Mac') &&
+        'ontouchend' in document
+      )
+    }
+
     if (checkIfIos(window.navigator)) {
       setVideoPlaying(false)
       setMuted(false)
+      setVolume(1)
       setIsIos(true)
     }
     if (checkIfIpad(window.navigator)) {
@@ -293,6 +294,7 @@ const VideoPlayer = ({
                 controls={!isIos && isDesktop === false}
                 config={{
                   vimeo: {
+                    title,
                     playerOptions: {
                       playsinline: false,
                     },
@@ -328,7 +330,7 @@ const VideoPlayer = ({
                 url={`https://player.vimeo.com/video/${playingVideoId}?badge=0&amp;autopause=0&amp;player_id=0&amp;app_id=58479`}
                 volume={volume}
                 width={`100%`}
-              ></ReactPlayer>
+              />
             )}
           </div>
 

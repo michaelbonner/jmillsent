@@ -2,30 +2,14 @@
 import { H3 } from '@/components/headings'
 import Layout from '@/components/layout'
 import MediumWhiteBar from '@/components/medium-white-bar'
-import VideoPlayer from '@/components/video-player'
 import { getClient } from '@/lib/sanity'
 import groq from 'groq'
 import useIsDesktop from 'hooks/useIsDesktop'
+import dynamic from 'next/dynamic'
 import Image from 'next/image'
 import { useState } from 'react'
 
-const workItemQuery = groq`
-*[_type == "workItem" && slug.current == $slug][0]{
-  _id,
-  behindTheScenes,
-  clientName,
-  description,
-  credits,
-  extraPaddingOnVideo,
-  frames,
-  poster,
-  slug,
-  title,
-  videoId,
-  videoHeightAspectRatio,
-  videoWidthAspectRatio,
-}
-`
+const VideoPlayer = dynamic(() => import('@/components/video-player'), {})
 
 /*
 prevent purging of aspect ratio
@@ -244,7 +228,26 @@ export async function getStaticProps({ params }) {
   // It's important to default the slug so that it doesn't return "undefined"
   const { slug = '' } = params
   try {
-    const workItem = await getClient().fetch(workItemQuery, { slug })
+    const workItem = await getClient().fetch(
+      groq`
+      *[_type == "workItem" && slug.current == $slug][0]{
+        _id,
+        behindTheScenes,
+        clientName,
+        description,
+        credits,
+        extraPaddingOnVideo,
+        frames,
+        poster,
+        slug,
+        title,
+        videoId,
+        videoHeightAspectRatio,
+        videoWidthAspectRatio,
+      }
+      `,
+      { slug }
+    )
     const workItems = await getClient().fetch(
       groq`
       *[_type == "workItem"][!(_id in path('drafts.**'))]|order(order asc){

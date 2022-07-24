@@ -2,12 +2,14 @@ import DividerBar from '@/components/divider-bar'
 import { H1, H2 } from '@/components/headings'
 import Layout from '@/components/layout'
 import MediumWhiteBar from '@/components/medium-white-bar'
-import VideoPlayer from '@/components/video-player'
 import { getClient } from '@/lib/sanity'
 import { PortableText } from '@portabletext/react'
 import groq from 'groq'
 import useIsDesktop from 'hooks/useIsDesktop'
+import dynamic from 'next/dynamic'
 import Image from 'next/image'
+
+const VideoPlayer = dynamic(() => import('@/components/video-player'), {})
 
 function Home({ homePage }) {
   const isDesktop = useIsDesktop()

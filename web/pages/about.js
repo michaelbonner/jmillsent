@@ -7,7 +7,6 @@ import LittleWhiteBar from '@/components/little-white-bar'
 import MediumWhiteBar from '@/components/medium-white-bar'
 import SanityImage from '@/components/sanity-image'
 import ServicesThumbnails from '@/components/services-thumbnails'
-import VideoPlayer from '@/components/video-player'
 import { PortableText } from '@portabletext/react'
 import classNames from 'classnames'
 import groq from 'groq'
@@ -19,7 +18,10 @@ import Lightbox from 'react-image-lightbox'
 import { getClient } from '../lib/sanity'
 import urlForSanitySource from '../lib/urlForSanitySource'
 
+const VideoPlayer = dynamic(() => import('@/components/video-player'), {})
+
 import 'react-image-lightbox/style.css'
+import dynamic from 'next/dynamic'
 
 function About({ aboutPage, serviceShortNames }) {
   const [isGalleryModelOpen, setIsGalleryModelOpen] = useState(false)

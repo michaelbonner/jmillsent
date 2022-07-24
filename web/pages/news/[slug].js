@@ -3,30 +3,15 @@ import Date from '@/components/date'
 import LargeGoldBar from '@/components/large-gold-bar'
 import Layout from '@/components/layout'
 import MediumWhiteBar from '@/components/medium-white-bar'
-import VideoPlayer from '@/components/video-player'
 import { getClient, portableTextComponents } from '@/lib/sanity'
 import { PortableText } from '@portabletext/react'
 import groq from 'groq'
+import dynamic from 'next/dynamic'
 import Image from 'next/image'
 import Link from 'next/link'
 import urlForSanitySource from '../../lib/urlForSanitySource'
 
-const newsItemQuery = groq`
-*[_type == "newsItem" && slug.current == $slug][0]{
-  _id,
-  seoTitle,
-  seoDescription,
-  heroImage,
-  poster,
-  slug,
-  title,
-  date,
-  body,
-  videoId,
-  videoHeightAspectRatio,
-  videoWidthAspectRatio,
-}
-`
+const VideoPlayer = dynamic(() => import('@/components/video-player'), {})
 
 const NewsItem = ({ newsItem = {} }) => {
   return (
@@ -118,7 +103,25 @@ export async function getStaticProps({ params }) {
   // It's important to default the slug so that it doesn't return "undefined"
   const { slug = '' } = params
   try {
-    const newsItem = await getClient().fetch(newsItemQuery, { slug })
+    const newsItem = await getClient().fetch(
+      groq`
+      *[_type == "newsItem" && slug.current == $slug][0]{
+        _id,
+        seoTitle,
+        seoDescription,
+        heroImage,
+        poster,
+        slug,
+        title,
+        date,
+        body,
+        videoId,
+        videoHeightAspectRatio,
+        videoWidthAspectRatio,
+      }
+      `,
+      { slug }
+    )
     const newsItems = await getClient().fetch(
       groq`
       *[_type == "newsItem"][!(_id in path('drafts.**'))]|order(order asc){

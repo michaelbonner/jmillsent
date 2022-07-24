@@ -3,16 +3,18 @@ import DividerBar from '@/components/divider-bar'
 import { H1, H2 } from '@/components/headings'
 import Layout from '@/components/layout'
 import MediumWhiteBar from '@/components/medium-white-bar'
-import VideoPlayer from '@/components/video-player'
 import urlForSanitySource from '@/lib/urlForSanitySource'
 import { PortableText, toPlainText } from '@portabletext/react'
 import groq from 'groq'
 import useIsDesktop from 'hooks/useIsDesktop'
+import dynamic from 'next/dynamic'
 import { useState } from 'react'
 import Lightbox from 'react-image-lightbox'
 import { getClient } from '../lib/sanity'
 
 import 'react-image-lightbox/style.css'
+
+const VideoPlayer = dynamic(() => import('@/components/video-player'), {})
 
 function Studio({ studioPage }) {
   const [isLightBoxOpen, setIsLightBoxOpen] = useState(false)

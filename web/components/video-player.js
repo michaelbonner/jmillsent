@@ -327,6 +327,7 @@ const VideoPlayer = ({
               setHasClicked={setHasClicked}
               setMuted={setMuted}
               setScrubberPosition={setScrubberPosition}
+              setScrubberWidth={setScrubberWidth}
               setVideoPlaying={setVideoPlaying}
               setVolume={setVolume}
               toggleFullScreen={toggleFullScreen}

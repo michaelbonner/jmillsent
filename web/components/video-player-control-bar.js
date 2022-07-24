@@ -1,4 +1,5 @@
 import classNames from 'classnames'
+import { useEffect, useRef } from 'react'
 import {
   GrContract,
   GrExpand,
@@ -12,17 +13,27 @@ export const VideoPlayerControlBar = ({
   isFullscreen,
   muted,
   player,
-  scrubber,
   scrubberPosition,
   scrubberWidth,
   setHasClicked,
   setMuted,
   setScrubberPosition,
+  setScrubberWidth,
   setVideoPlaying,
   setVolume,
   toggleFullScreen,
   videoPlaying,
 }) => {
+  const scrubber = useRef(null)
+
+  useEffect(() => {
+    const timeout = setTimeout(() => {
+      setScrubberWidth(scrubber?.current?.clientWidth || 100)
+    }, 1000)
+
+    return () => clearTimeout(timeout)
+  }, [setScrubberWidth])
+
   return (
     <div className="flex space-x-8 relative z-10 container mx-auto pt-3 bg-black">
       <button
@@ -72,7 +83,7 @@ export const VideoPlayerControlBar = ({
           const xPercentageClicked =
             zeroBasedClickPosition / scrubber.current.clientWidth
 
-          player.current.seekTo(xPercentageClicked, 'fraction')
+          player?.current?.seekTo(xPercentageClicked, 'fraction')
           setScrubberPosition(xPercentageClicked * scrubberWidth)
         }}
         ref={scrubber}

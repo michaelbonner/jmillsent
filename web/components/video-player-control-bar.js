@@ -115,7 +115,7 @@ export const VideoPlayerControlBar = ({
         {isFullscreen ? (
           <button
             aria-label="Exit fullscreen"
-            className="bpd-white-icon"
+            className="bpd-white-icon hidden md:block"
             onClick={() => {
               setHasClicked(true)
               toggleFullScreen(false)
@@ -126,7 +126,7 @@ export const VideoPlayerControlBar = ({
         ) : (
           <button
             aria-label="Enter fullscreen"
-            className="bpd-white-icon"
+            className="bpd-white-icon hidden md:block"
             onClick={() => {
               setHasClicked(true)
               toggleFullScreen(true)

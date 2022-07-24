@@ -369,7 +369,7 @@ const VideoPlayer = ({
                 webkitallowfullscreen="true"
                 mozallowfullscreen="true"
                 allowFullScreen={true}
-                src={`https://player.vimeo.com/video/${playingVideoId}?badge=0&amp;autopause=0&amp;player_id=0&amp;app_id=58479&controls=0&autopause=1&transparent=1`}
+                src={`https://player.vimeo.com/video/${playingVideoId}?badge=0&amp;autopause=0&amp;player_id=0&amp;app_id=58479&controls=0&autopause=1&transparent=1&playsinline=0`}
                 ref={vimeoPlayerRef}
               />
             )}

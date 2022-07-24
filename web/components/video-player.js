@@ -178,6 +178,7 @@ const VideoPlayer = ({
     if (isDesktop === true) {
       setPlayerState('playing')
     } else {
+      setShowVideo(true)
       setPlayingVideoId(videoId)
     }
   }, [isDesktop, videoId])
@@ -189,6 +190,22 @@ const VideoPlayer = ({
       setPlayerState('poster')
     }
   }, [hasClicked, playingVideoId])
+
+  if (isDesktop === null) {
+    return (
+      <article
+        className={classNames(
+          {
+            'h-screen flex flex-col justify-center items-center': isFullscreen,
+          },
+          'bpd-player-container relative z-20'
+        )}
+        ref={playerContainer}
+      >
+        Loading Video
+      </article>
+    )
+  }
 
   return (
     <article
@@ -268,7 +285,8 @@ const VideoPlayer = ({
               }
             )}
           >
-            {isClient ? (
+            {!isClient && <div>Loading video</div>}
+            {isClient && (
               <ReactPlayer
                 allow="autoplay; fullscreen; picture-in-picture"
                 allowFullScreen={true}
@@ -311,8 +329,6 @@ const VideoPlayer = ({
                 volume={volume}
                 width={`100%`}
               ></ReactPlayer>
-            ) : (
-              <div>Loading video</div>
             )}
           </div>
 

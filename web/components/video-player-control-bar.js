@@ -10,19 +10,17 @@ import {
 } from 'react-icons/gr'
 
 export const VideoPlayerControlBar = ({
+  handleScrubberClick,
+  handleTogglePlay,
   isFullscreen,
+  isPlaying,
   muted,
-  player,
   scrubberPosition,
   scrubberWidth,
   setHasClicked,
   setMuted,
-  setScrubberPosition,
   setScrubberWidth,
-  setVideoPlaying,
-  setVolume,
   toggleFullScreen,
-  videoPlaying,
 }) => {
   const scrubber = useRef(null)
 
@@ -35,43 +33,39 @@ export const VideoPlayerControlBar = ({
   }, [setScrubberWidth])
 
   return (
-    <div className="flex space-x-8 relative z-10 container mx-auto pt-3 bg-black">
+    <div className="flex gap-x-2 md:gap-x-8 relative z-10 container mx-auto pt-3 bg-black">
       <button
         aria-label="Play/Pause"
-        className="relative text-4xl w-8 h-8"
-        onClick={() => {
-          setHasClicked(true)
-          setVideoPlaying(!videoPlaying)
-        }}
+        className="relative text-4xl w-6 h-6 md:w-8 md:h-8 outline-0"
+        onClick={handleTogglePlay}
         title="Play/Pause"
       >
         <GrPause
           className={classNames(
             `bpd-white-icon`,
             {
-              'opacity-100': videoPlaying,
-              'opacity-0': !videoPlaying,
+              'opacity-100': isPlaying,
+              'opacity-0': !isPlaying,
             },
-            `absolute inset-0 transition-all duration-500 fill-current`
+            `absolute inset-0 transition-all duration-500 fill-current w-6 h-6 md:w-8 md:h-8`
           )}
         />
         <GrPlay
           className={classNames(
             `bpd-white-icon`,
             {
-              'opacity-100': !videoPlaying,
-              'opacity-0': videoPlaying,
+              'opacity-100': !isPlaying,
+              'opacity-0': isPlaying,
             },
-            `absolute inset-0 transition-all duration-500 fill-current`
+            `absolute inset-0 transition-all duration-500 fill-current w-6 h-6 md:w-8 md:h-8`
           )}
         />
       </button>
       <button
         aria-label="Player scrubber bar"
-        className="relative w-full border-2 border-gray-300 rounded"
+        className="relative flex-grow border-2 border-gray-300 rounded overflow-hidden"
         onClick={(e) => {
-          setHasClicked(true)
-          if (!scrubber.current || !player.current) {
+          if (!scrubber.current) {
             return
           }
           const scrubberBoundingClientRect =
@@ -83,8 +77,7 @@ export const VideoPlayerControlBar = ({
           const xPercentageClicked =
             zeroBasedClickPosition / scrubber.current.clientWidth
 
-          player?.current?.seekTo(xPercentageClicked, 'fraction')
-          setScrubberPosition(xPercentageClicked * scrubberWidth)
+          handleScrubberClick(xPercentageClicked * scrubberWidth)
         }}
         ref={scrubber}
       >
@@ -95,7 +88,7 @@ export const VideoPlayerControlBar = ({
           }}
         ></div>
       </button>
-      <div className="text-2xl flex items-center space-x-6">
+      <div className="text-2xl flex items-center gap-x-2 md:gap-x-6">
         {muted === true ? (
           <button
             aria-label="Unmute"
@@ -103,7 +96,6 @@ export const VideoPlayerControlBar = ({
             onClick={() => {
               setHasClicked(true)
               setMuted(false)
-              setVolume(1)
             }}
           >
             <GrVolumeMute />
@@ -115,7 +107,6 @@ export const VideoPlayerControlBar = ({
             onClick={() => {
               setHasClicked(true)
               setMuted(true)
-              setVolume(0)
             }}
           >
             <GrVolume />

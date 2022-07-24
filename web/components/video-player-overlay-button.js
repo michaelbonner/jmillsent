@@ -15,7 +15,7 @@ export const VideoPlayerOverlayButton = ({
     <button
       className={classNames(
         showVideoOverlay ? 'opacity-100' : 'opacity-0',
-        'absolute inset-0 w-full h-full bg-transparent cursor-pointer text-3xl text-left transition-all duration-500',
+        'absolute inset-0 w-full h-full bg-transparent cursor-pointer text-3xl text-left transition-all duration-500 outline-0',
         'lg:bottom-[40px]'
       )}
       onClick={handleOverlayClick}

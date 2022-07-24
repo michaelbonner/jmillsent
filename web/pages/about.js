@@ -11,6 +11,7 @@ import { PortableText } from '@portabletext/react'
 import classNames from 'classnames'
 import groq from 'groq'
 import useIsDesktop from 'hooks/useIsDesktop'
+import dynamic from 'next/dynamic'
 import Image from 'next/image'
 import Link from 'next/link'
 import { useState } from 'react'
@@ -18,10 +19,9 @@ import Lightbox from 'react-image-lightbox'
 import { getClient } from '../lib/sanity'
 import urlForSanitySource from '../lib/urlForSanitySource'
 
-const VideoPlayer = dynamic(() => import('@/components/video-player'), {})
-
 import 'react-image-lightbox/style.css'
-import dynamic from 'next/dynamic'
+
+const VideoPlayer = dynamic(() => import('@/components/video-player'), {})
 
 function About({ aboutPage, serviceShortNames }) {
   const [isGalleryModelOpen, setIsGalleryModelOpen] = useState(false)

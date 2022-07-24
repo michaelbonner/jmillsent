@@ -48,20 +48,24 @@ const VideoPlayer = ({
     var iframe = vimeoPlayerRef?.current
     var player = new Vimeo(iframe)
     setVimeoPlayer(player)
-  }, [autoPlay, hasClicked, isDesktop, vimeoPlayerRef])
+  }, [autoPlay, hasClicked, isDesktop, vimeoPlayerRef, vimeoPlayer])
 
   useEffect(() => {
     if (!vimeoPlayer) {
       return
     }
 
+    vimeoPlayer.setLoop(autoPlay)
+
     const getVideoDetails = async (player) => {
       const duration = await player.getDuration()
+      console.info('player: duration', duration)
       setTotalPlaySeconds(duration)
     }
 
     const onLoaded = async () => {
-      console.log('player: onLoaded')
+      console.info('player: onLoaded')
+      getVideoDetails(vimeoPlayer)
       if (isDesktop && autoPlay) {
         await vimeoPlayer.play()
       }
@@ -69,13 +73,13 @@ const VideoPlayer = ({
     vimeoPlayer.on('loaded', onLoaded)
 
     const onPlay = function () {
-      console.log('player: play')
+      console.info('player: play')
       setIsPlaying(true)
     }
     vimeoPlayer.on('play', onPlay)
 
     const onPause = function () {
-      console.log('player: pause')
+      console.info('player: pause')
       setIsPlaying(false)
     }
     vimeoPlayer.on('pause', onPause)
@@ -85,8 +89,6 @@ const VideoPlayer = ({
     }
     vimeoPlayer.on('timeupdate', onTimeupdate)
 
-    getVideoDetails(vimeoPlayer)
-
     return () => {
       vimeoPlayer.off('loaded')
       vimeoPlayer.off('play')
@@ -94,6 +96,13 @@ const VideoPlayer = ({
       vimeoPlayer.off('timeupdate')
     }
   }, [autoPlay, isDesktop, scrubberWidth, vimeoPlayer])
+
+  // switch to full video if we need to on first click
+  useEffect(() => {
+    if (hasClicked && isDesktop && playingVideoId !== videoId) {
+      vimeoPlayer.loadVideo(videoId)
+    }
+  }, [hasClicked, isDesktop, playingVideoId, videoId, vimeoPlayer])
 
   const handleOverlayClick = (e) => {
     e.preventDefault()
@@ -104,6 +113,7 @@ const VideoPlayer = ({
     }
 
     if (autoPlay && isPlaying && !hasClicked) {
+      vimeoPlayer.pause()
       vimeoPlayer.setVolume(1)
       vimeoPlayer.setCurrentTime(0)
       setScrubberPosition(0)
@@ -167,8 +177,8 @@ const VideoPlayer = ({
   }
 
   useEffect(() => {
-    setShowVideo(!!setPlayingVideoId)
-  }, [setPlayingVideoId])
+    setShowVideo(!!playingVideoId)
+  }, [playingVideoId])
 
   useEffect(() => {
     try {
@@ -250,12 +260,6 @@ const VideoPlayer = ({
     }
     toggleVideoOverlay()
   }, [client, hasClicked, isPlaying, title, vimeoPlayer])
-
-  useEffect(() => {
-    if (hasClicked) {
-      setPlayingVideoId(videoId)
-    }
-  }, [hasClicked, videoId])
 
   useEffect(() => {
     if (isDesktop === null) {

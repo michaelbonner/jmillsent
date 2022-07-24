@@ -7,7 +7,6 @@ import VideoPlayer from '@/components/video-player'
 import urlForSanitySource from '@/lib/urlForSanitySource'
 import { PortableText, toPlainText } from '@portabletext/react'
 import groq from 'groq'
-import useClientOnly from 'hooks/useClientOnly'
 import useIsDesktop from 'hooks/useIsDesktop'
 import { useState } from 'react'
 import Lightbox from 'react-image-lightbox'
@@ -19,7 +18,6 @@ function Studio({ studioPage }) {
   const [isLightBoxOpen, setIsLightBoxOpen] = useState(false)
   const [photoIndex, setPhotoIndex] = useState(0)
   const isDesktop = useIsDesktop()
-  const isClient = useClientOnly()
 
   const heroContent = (
     <div className="h-full w-full grid lg:gap-y-4 items-center text-white">
@@ -110,19 +108,17 @@ function Studio({ studioPage }) {
               id="tour"
               className="border border-gray-300 mt-4 lg:mt-10 p-4 lg:p-8 container max-w-7xl mx-auto"
             >
-              {isClient && (
-                <VideoPlayer
-                  poster={studioPage.tourVideoPoster}
-                  title={studioPage.tourVideoTitle}
-                  videoId={studioPage.tourVideoId}
-                  videoIdShort={studioPage.tourVideoIdShort}
-                  client={studioPage.tourVideoClient}
-                  description={studioPage.tourVideoDescription}
-                  videoHeightAspectRatio={studioPage.tourVideoHeightAspectRatio}
-                  videoWidthAspectRatio={studioPage.tourVideoWidthAspectRatio}
-                  autoPlay={true}
-                />
-              )}
+              <VideoPlayer
+                poster={studioPage.tourVideoPoster}
+                title={studioPage.tourVideoTitle}
+                videoId={studioPage.tourVideoId}
+                videoIdShort={studioPage.tourVideoIdShort}
+                client={studioPage.tourVideoClient}
+                description={studioPage.tourVideoDescription}
+                videoHeightAspectRatio={studioPage.tourVideoHeightAspectRatio}
+                videoWidthAspectRatio={studioPage.tourVideoWidthAspectRatio}
+                autoPlay={true}
+              />
             </div>
             <DividerBar />
           </>

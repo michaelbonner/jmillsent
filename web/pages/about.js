@@ -11,7 +11,6 @@ import VideoPlayer from '@/components/video-player'
 import { PortableText } from '@portabletext/react'
 import classNames from 'classnames'
 import groq from 'groq'
-import useClientOnly from 'hooks/useClientOnly'
 import useIsDesktop from 'hooks/useIsDesktop'
 import Image from 'next/image'
 import Link from 'next/link'
@@ -26,7 +25,6 @@ function About({ aboutPage, serviceShortNames }) {
   const [isGalleryModelOpen, setIsGalleryModelOpen] = useState(false)
   const isDesktop = useIsDesktop()
   const [photoIndex, setPhotoIndex] = useState(0)
-  const isClient = useClientOnly()
 
   const utahLocationsImages = aboutPage.utahLocations.map(
     (image) => `${urlForSanitySource(image)}?w=1800&auto=format`
@@ -84,19 +82,17 @@ function About({ aboutPage, serviceShortNames }) {
         </div>
         <div className="mt-4 lg:mt-10" id="reel">
           <div className="border border-gray-300 p-4 lg:p-8 container mx-auto">
-            {isClient && (
-              <VideoPlayer
-                poster={aboutPage.reelVideoPoster}
-                title={aboutPage.reelVideoTitle}
-                videoId={aboutPage.reelVideoId}
-                videoIdShort={aboutPage.reelVideoIdShort}
-                client={aboutPage.reelVideoClient}
-                description={aboutPage.reelVideoDescription}
-                videoHeightAspectRatio={aboutPage.reelVideoHeightAspectRatio}
-                videoWidthAspectRatio={aboutPage.reelVideoWidthAspectRatio}
-                autoPlay={true}
-              />
-            )}
+            <VideoPlayer
+              poster={aboutPage.reelVideoPoster}
+              title={aboutPage.reelVideoTitle}
+              videoId={aboutPage.reelVideoId}
+              videoIdShort={aboutPage.reelVideoIdShort}
+              client={aboutPage.reelVideoClient}
+              description={aboutPage.reelVideoDescription}
+              videoHeightAspectRatio={aboutPage.reelVideoHeightAspectRatio}
+              videoWidthAspectRatio={aboutPage.reelVideoWidthAspectRatio}
+              autoPlay={true}
+            />
           </div>
         </div>
 
@@ -384,21 +380,17 @@ function About({ aboutPage, serviceShortNames }) {
           </H2>
 
           <div className="mt-4 lg:mt-10 border border-gray-300 p-4 lg:p-8 container mx-auto max-w-7xl">
-            {isClient && (
-              <VideoPlayer
-                poster={aboutPage.company3VideoPoster}
-                title={aboutPage.company3VideoTitle}
-                videoId={aboutPage.company3VideoId}
-                videoIdShort={aboutPage.company3VideoIdShort}
-                client={aboutPage.company3VideoClient}
-                description={aboutPage.company3VideoDescription}
-                videoHeightAspectRatio={
-                  aboutPage.company3VideoHeightAspectRatio
-                }
-                videoWidthAspectRatio={aboutPage.company3VideoWidthAspectRatio}
-                autoPlay={true}
-              />
-            )}
+            <VideoPlayer
+              poster={aboutPage.company3VideoPoster}
+              title={aboutPage.company3VideoTitle}
+              videoId={aboutPage.company3VideoId}
+              videoIdShort={aboutPage.company3VideoIdShort}
+              client={aboutPage.company3VideoClient}
+              description={aboutPage.company3VideoDescription}
+              videoHeightAspectRatio={aboutPage.company3VideoHeightAspectRatio}
+              videoWidthAspectRatio={aboutPage.company3VideoWidthAspectRatio}
+              autoPlay={true}
+            />
           </div>
           {aboutPage.company3Body && (
             <div className="mt-6 px-4 prose-lg max-w-5xl text-center mx-auto text-white font-light">

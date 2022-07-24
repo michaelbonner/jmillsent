@@ -1,16 +1,15 @@
 /* eslint-disable @next/next/no-img-element */
-import groq from 'groq'
-import Layout from '@/components/layout'
-import { getClient, portableTextComponents } from '@/lib/sanity'
-import MediumWhiteBar from '@/components/medium-white-bar'
 import Date from '@/components/date'
 import LargeGoldBar from '@/components/large-gold-bar'
-import Link from 'next/link'
-import Image from 'next/image'
-import { PortableText } from '@portabletext/react'
-import urlForSanitySource from '../../lib/urlForSanitySource'
+import Layout from '@/components/layout'
+import MediumWhiteBar from '@/components/medium-white-bar'
 import VideoPlayer from '@/components/video-player'
-import useClientOnly from 'hooks/useClientOnly'
+import { getClient, portableTextComponents } from '@/lib/sanity'
+import { PortableText } from '@portabletext/react'
+import groq from 'groq'
+import Image from 'next/image'
+import Link from 'next/link'
+import urlForSanitySource from '../../lib/urlForSanitySource'
 
 const newsItemQuery = groq`
 *[_type == "newsItem" && slug.current == $slug][0]{
@@ -30,8 +29,6 @@ const newsItemQuery = groq`
 `
 
 const NewsItem = ({ newsItem = {} }) => {
-  const isClient = useClientOnly()
-
   return (
     <>
       <Layout title={newsItem.seoTitle} description={newsItem.seoDescription}>
@@ -48,15 +45,13 @@ const NewsItem = ({ newsItem = {} }) => {
           )}
           {newsItem.videoId && (
             <div className="border border-gray-300 py-8 px-8 container max-w-7xl mx-auto">
-              {isClient && (
-                <VideoPlayer
-                  poster={newsItem.heroImage}
-                  title={newsItem.title}
-                  videoId={newsItem.videoId}
-                  videoHeightAspectRatio={newsItem.videoHeightAspectRatio}
-                  videoWidthAspectRatio={newsItem.videoWidthAspectRatio}
-                />
-              )}
+              <VideoPlayer
+                poster={newsItem.heroImage}
+                title={newsItem.title}
+                videoId={newsItem.videoId}
+                videoHeightAspectRatio={newsItem.videoHeightAspectRatio}
+                videoWidthAspectRatio={newsItem.videoWidthAspectRatio}
+              />
             </div>
           )}
           <div className="w-full max-w-5xl mx-auto px-8 flex justify-between items-center gap-x-4 sm:gap-x-32 text-lg sm:text-3xl uppercase">

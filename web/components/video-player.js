@@ -355,7 +355,6 @@ const VideoPlayer = ({
           autoPlay={autoPlay}
           client={client}
           description={description}
-          disableMobilePointerEvents={true}
           hasClicked={hasClicked}
           isIos={isIos}
           isIpad={isIpad}

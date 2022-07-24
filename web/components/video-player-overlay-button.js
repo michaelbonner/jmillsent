@@ -6,7 +6,6 @@ export const VideoPlayerOverlayButton = ({
   autoPlay,
   client,
   description,
-  disableMobilePointerEvents = false,
   hasClicked,
   isIos,
   isIpad,
@@ -25,9 +24,7 @@ export const VideoPlayerOverlayButton = ({
       className={classNames(
         showVideoOverlay ? 'opacity-100' : 'opacity-0',
         'absolute inset-0 w-full h-full bg-transparent cursor-pointer text-3xl text-left transition-all duration-500',
-        'lg:bottom-[40px]',
-        disableMobilePointerEvents &&
-          'pointer-events-none lg:pointer-events-auto'
+        'lg:bottom-[40px]'
       )}
       onClick={() => {
         if (autoPlay && videoPlaying && !hasClicked) {

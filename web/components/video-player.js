@@ -45,6 +45,23 @@ const VideoPlayer = ({
   const [playingVideoId, setPlayingVideoId] = useState(videoIdShort || videoId)
   const isClient = useClientOnly()
 
+  const handleOverlayClick = (e) => {
+    e.preventDefault()
+    if (autoPlay && videoPlaying && !hasClicked) {
+      setMuted(false)
+      setVolume(1)
+      setTimeout(() => {
+        player?.current?.seekTo(0, 'fraction')
+        setScrubberPosition(0)
+        setVideoPlaying(true)
+      }, 200)
+    } else {
+      setVideoPlaying(!videoPlaying)
+    }
+
+    setHasClicked(true)
+  }
+
   const toggleFullScreen = (onOff) => {
     try {
       const element = playerContainer.current
@@ -60,15 +77,19 @@ const VideoPlayer = ({
         setIsFullscreen(false)
       }
     } catch (error) {
-      console.error('toggleFullScreen error', error)
+      console.warn('toggleFullScreen error', error)
     }
   }
 
   const handleFullScreenChange = () => {
-    if (screenfull.isFullscreen) {
-      setIsFullscreen(true)
-    } else {
-      setIsFullscreen(false)
+    try {
+      if (screenfull.isFullscreen) {
+        setIsFullscreen(true)
+      } else {
+        setIsFullscreen(false)
+      }
+    } catch (error) {
+      console.warn(error)
     }
   }
 
@@ -77,8 +98,12 @@ const VideoPlayer = ({
   }, [setPlayingVideoId])
 
   useEffect(() => {
-    if (screenfull.isEnabled) {
-      screenfull.on('change', handleFullScreenChange)
+    try {
+      if (screenfull.isEnabled) {
+        screenfull.on('change', handleFullScreenChange)
+      }
+    } catch (error) {
+      console.warn(error)
     }
 
     return () => {
@@ -196,19 +221,7 @@ const VideoPlayer = ({
   }, [hasClicked, playingVideoId])
 
   if (isDesktop === null) {
-    return (
-      <article
-        className={classNames(
-          {
-            'h-screen flex flex-col justify-center items-center': isFullscreen,
-          },
-          'bpd-player-container relative z-20'
-        )}
-        ref={playerContainer}
-      >
-        Loading Video
-      </article>
-    )
+    return <></>
   }
 
   return (
@@ -243,21 +256,13 @@ const VideoPlayer = ({
         </div>
 
         <VideoPlayerOverlayButton
-          autoPlay={autoPlay}
           client={client}
           description={description}
-          hasClicked={hasClicked}
+          handleOverlayClick={handleOverlayClick}
           isIos={isIos}
           isIpad={isIpad}
-          player={player}
-          setHasClicked={setHasClicked}
-          setMuted={setMuted}
-          setScrubberPosition={setScrubberPosition}
-          setVideoPlaying={setVideoPlaying}
-          setVolume={setVolume}
           showVideoOverlay={showVideoOverlay}
           title={title}
-          videoPlaying={videoPlaying}
         />
       </div>
 
@@ -293,7 +298,6 @@ const VideoPlayer = ({
             {isClient && (
               <ReactPlayer
                 allow="autoplay; fullscreen; picture-in-picture"
-                allowFullScreen={true}
                 controls={!isIos && isDesktop === false}
                 config={{
                   vimeo: {
@@ -356,21 +360,13 @@ const VideoPlayer = ({
           )}
         </div>
         <VideoPlayerOverlayButton
-          autoPlay={autoPlay}
           client={client}
           description={description}
-          hasClicked={hasClicked}
+          handleOverlayClick={handleOverlayClick}
           isIos={isIos}
           isIpad={isIpad}
-          player={player}
-          setHasClicked={setHasClicked}
-          setMuted={setMuted}
-          setScrubberPosition={setScrubberPosition}
-          setVideoPlaying={setVideoPlaying}
-          setVolume={setVolume}
           showVideoOverlay={showVideoOverlay}
           title={title}
-          videoPlaying={videoPlaying}
         />
       </div>
 

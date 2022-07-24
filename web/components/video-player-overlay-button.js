@@ -3,21 +3,13 @@ import { GrPlay } from 'react-icons/gr'
 import LittleGoldBar from './little-gold-bar'
 
 export const VideoPlayerOverlayButton = ({
-  autoPlay,
   client,
   description,
-  hasClicked,
+  handleOverlayClick,
   isIos,
   isIpad,
-  player,
-  setScrubberPosition,
-  setHasClicked,
-  setMuted,
-  setVolume,
-  setVideoPlaying,
   showVideoOverlay,
   title,
-  videoPlaying,
 }) => {
   return (
     <button
@@ -26,21 +18,7 @@ export const VideoPlayerOverlayButton = ({
         'absolute inset-0 w-full h-full bg-transparent cursor-pointer text-3xl text-left transition-all duration-500',
         'lg:bottom-[40px]'
       )}
-      onClick={() => {
-        if (autoPlay && videoPlaying && !hasClicked) {
-          setMuted(false)
-          setVolume(1)
-          setTimeout(() => {
-            player?.current?.seekTo(0, 'fraction')
-            setScrubberPosition(0)
-            setVideoPlaying(true)
-          }, 200)
-        } else {
-          setVideoPlaying(!videoPlaying)
-        }
-
-        setHasClicked(true)
-      }}
+      onClick={handleOverlayClick}
     >
       <div className="absolute inset-0 h-full w-full bg-gradient-to-r from-black via-transparent to-transparent opacity-80"></div>
       <div
@@ -52,13 +30,7 @@ export const VideoPlayerOverlayButton = ({
         )}
       >
         {!isIpad && (
-          <div
-            className="z-10 bg-transparent flex items-center justify-center xl:justify-start cursor-pointer text-4xl xl:text-6xl"
-            onClick={() => {
-              setHasClicked(true)
-              setVideoPlaying(!videoPlaying)
-            }}
-          >
+          <div className="z-10 bg-transparent flex items-center justify-center xl:justify-start cursor-pointer text-4xl xl:text-6xl">
             <div
               className={classNames(
                 `flex bpd-white-icon transition-opacity duration-500 border md:border-2 border-gray-300 ml-1 rounded-full items-center justify-center`

@@ -1,8 +1,7 @@
 /* eslint-disable @next/next/no-img-element */
 import DividerBar from '@/components/divider-bar'
 import EmailSignupForm from '@/components/email-signup-form'
-import { H1, H3, H4 } from '@/components/headings'
-import LargeWhiteBar from '@/components/large-white-bar'
+import { H1 } from '@/components/headings'
 import Layout from '@/components/layout'
 import LittleWhiteBar from '@/components/little-white-bar'
 import Map from '@/components/map'

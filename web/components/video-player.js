@@ -63,11 +63,13 @@ const VideoPlayer = ({
       setTotalPlaySeconds(duration)
     }
 
-    const onLoaded = async () => {
+    const onLoaded = () => {
       console.info('player: onLoaded')
       getVideoDetails(vimeoPlayer)
       if (isDesktop && autoPlay) {
-        await vimeoPlayer.play()
+        setTimeout(async () => {
+          await vimeoPlayer.play()
+        }, 500)
       }
     }
     vimeoPlayer.on('loaded', onLoaded)
@@ -80,6 +82,7 @@ const VideoPlayer = ({
 
     const onPause = function () {
       console.info('player: pause')
+      setHasClicked(true)
       setIsPlaying(false)
     }
     vimeoPlayer.on('pause', onPause)
@@ -88,6 +91,10 @@ const VideoPlayer = ({
       setScrubberPosition(data.percent * scrubberWidth)
     }
     vimeoPlayer.on('timeupdate', onTimeupdate)
+
+    vimeoPlayer.on('seeked', function () {
+      setHasClicked(true)
+    })
 
     return () => {
       vimeoPlayer.off('loaded')
@@ -104,9 +111,7 @@ const VideoPlayer = ({
     }
   }, [hasClicked, isDesktop, playingVideoId, videoId, vimeoPlayer])
 
-  const handleOverlayClick = (e) => {
-    e.preventDefault()
-
+  const handleOverlayClick = () => {
     if (!vimeoPlayer) {
       setHasClicked(true)
       return
@@ -363,7 +368,7 @@ const VideoPlayer = ({
                 webkitallowfullscreen="true"
                 mozallowfullscreen="true"
                 allowFullScreen={true}
-                src={`https://player.vimeo.com/video/${playingVideoId}?badge=0&amp;autopause=0&amp;player_id=0&amp;app_id=58479&controls=0`}
+                src={`https://player.vimeo.com/video/${playingVideoId}?badge=0&amp;autopause=0&amp;player_id=0&amp;app_id=58479&controls=0&autopause=1&transparent=1`}
                 ref={vimeoPlayerRef}
               />
             )}

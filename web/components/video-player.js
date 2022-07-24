@@ -2,14 +2,16 @@
 import classNames from 'classnames'
 import useClientOnly from 'hooks/useClientOnly'
 import useIsDesktop from 'hooks/useIsDesktop'
+import dynamic from 'next/dynamic'
 import { useEffect, useLayoutEffect, useRef, useState } from 'react'
-import ReactPlayer from 'react-player'
 import screenfull from 'screenfull'
 import useInterval from '../hooks/useInterval'
 import urlForSanitySource from '../lib/urlForSanitySource'
 import SanityImage from './sanity-image'
 import { VideoPlayerControlBar } from './video-player-control-bar'
 import { VideoPlayerOverlayButton } from './video-player-overlay-button'
+
+const ReactPlayer = dynamic(() => import('react-player'), {})
 
 const VideoPlayer = ({
   autoPlay = false,

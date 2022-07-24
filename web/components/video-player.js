@@ -2,16 +2,14 @@
 import classNames from 'classnames'
 import useClientOnly from 'hooks/useClientOnly'
 import useIsDesktop from 'hooks/useIsDesktop'
-import dynamic from 'next/dynamic'
 import { useEffect, useLayoutEffect, useRef, useState } from 'react'
+import ReactPlayer from 'react-player'
 import screenfull from 'screenfull'
 import useInterval from '../hooks/useInterval'
 import urlForSanitySource from '../lib/urlForSanitySource'
 import SanityImage from './sanity-image'
 import { VideoPlayerControlBar } from './video-player-control-bar'
 import { VideoPlayerOverlayButton } from './video-player-overlay-button'
-
-const ReactPlayer = dynamic(() => import('react-player'), {})
 
 const VideoPlayer = ({
   autoPlay = false,
@@ -26,7 +24,7 @@ const VideoPlayer = ({
 }) => {
   const isDesktop = useIsDesktop()
   const [playerState, setPlayerState] = useState('initial')
-  const [showVideo, setShowVideo] = useState(false)
+  const [showVideo, setShowVideo] = useState(true)
   const [showVideoOverlay, setShowVideoOverlay] = useState(
     autoPlay && (title || client)
   )
@@ -73,6 +71,10 @@ const VideoPlayer = ({
       setIsFullscreen(false)
     }
   }
+
+  useEffect(() => {
+    setShowVideo(!!setPlayingVideoId)
+  }, [setPlayingVideoId])
 
   useEffect(() => {
     if (screenfull.isEnabled) {
@@ -181,7 +183,6 @@ const VideoPlayer = ({
     if (isDesktop === true) {
       setPlayerState('playing')
     } else {
-      setShowVideo(true)
       setPlayingVideoId(videoId)
     }
   }, [isDesktop, videoId])
@@ -313,7 +314,6 @@ const VideoPlayer = ({
                       typeof player?.current?.getDuration === 'function'
                     ) {
                       setTotalPlaySeconds(player?.current?.getDuration() || 0)
-                      setShowVideo(true)
                     }
                   }, [500])
                 }}

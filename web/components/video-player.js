@@ -49,7 +49,7 @@ const VideoPlayer = ({
     vimeoParams.append('app_id', '58479')
     vimeoParams.append('controls', isDesktop === true ? '0' : '1')
     vimeoParams.append('transparent', '1')
-    vimeoParams.append('playsinline', '0')
+    vimeoParams.append('playsinline', '1')
     vimeoParams.append('allowfullscreen', '1')
 
     setVimeoIframeParams(vimeoParams.toString())

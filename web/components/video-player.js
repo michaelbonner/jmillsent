@@ -91,7 +91,6 @@ const VideoPlayer = ({
 
     const onPause = function () {
       console.info('player: pause')
-      setHasClicked(true)
       setIsPlaying(false)
     }
     vimeoPlayer.on('pause', onPause)
@@ -101,8 +100,11 @@ const VideoPlayer = ({
     }
     vimeoPlayer.on('timeupdate', onTimeupdate)
 
-    vimeoPlayer.on('seeked', function () {
-      setHasClicked(true)
+    vimeoPlayer.on('seeked', function (data) {
+      console.info('player: seeked', data)
+      if (data.percent !== 0) {
+        setHasClicked(true)
+      }
     })
 
     return () => {

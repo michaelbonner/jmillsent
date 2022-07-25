@@ -9,6 +9,15 @@ import SanityImage from './sanity-image'
 import { VideoPlayerControlBar } from './video-player-control-bar'
 import { VideoPlayerOverlayButton } from './video-player-overlay-button'
 
+const vimeoIframeParams = new URLSearchParams()
+vimeoIframeParams.append('badge', '0')
+vimeoIframeParams.append('autopause', '0')
+vimeoIframeParams.append('player_id', '0')
+vimeoIframeParams.append('app_id', '58479')
+vimeoIframeParams.append('controls', '0')
+vimeoIframeParams.append('transparent', '1')
+vimeoIframeParams.append('playsinline', '0')
+
 const VideoPlayer = ({
   autoPlay = false,
   client = '',
@@ -369,7 +378,7 @@ const VideoPlayer = ({
                 webkitallowfullscreen="true"
                 mozallowfullscreen="true"
                 allowFullScreen={true}
-                src={`https://player.vimeo.com/video/${playingVideoId}?badge=0&amp;autopause=0&amp;player_id=0&amp;app_id=58479&controls=0&autopause=1&transparent=1&playsinline=0`}
+                src={`https://player.vimeo.com/video/${playingVideoId}?${vimeoIframeParams.toString()}`}
                 ref={vimeoPlayerRef}
               />
             )}

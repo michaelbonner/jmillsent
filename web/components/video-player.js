@@ -1,11 +1,9 @@
 /* eslint-disable @next/next/no-img-element */
+import Vimeo from '@vimeo/player'
 import classNames from 'classnames'
-import useClientOnly from 'hooks/useClientOnly'
 import useIsDesktop from 'hooks/useIsDesktop'
 import { useEffect, useLayoutEffect, useRef, useState } from 'react'
-import ReactPlayer from 'react-player'
 import screenfull from 'screenfull'
-import useInterval from '../hooks/useInterval'
 import urlForSanitySource from '../lib/urlForSanitySource'
 import SanityImage from './sanity-image'
 import { VideoPlayerControlBar } from './video-player-control-bar'
@@ -28,9 +26,7 @@ const VideoPlayer = ({
   const [showVideoOverlay, setShowVideoOverlay] = useState(
     autoPlay && (title || client)
   )
-  const [videoPlaying, setVideoPlaying] = useState(autoPlay)
-  const player = useRef(null)
-  const scrubber = useRef(null)
+  const vimeoPlayerRef = useRef(null)
   const playerContainer = useRef(null)
   const [scrubberWidth, setScrubberWidth] = useState(0)
   const [scrubberPosition, setScrubberPosition] = useState(0)
@@ -39,27 +35,119 @@ const VideoPlayer = ({
   const [isFullscreen, setIsFullscreen] = useState(false)
   const [isIos, setIsIos] = useState(false)
   const [isIpad, setIsIpad] = useState(false)
-  const [muted, setMuted] = useState(autoPlay)
-  const [volume, setVolume] = useState(1)
+  const [muted, setMuted] = useState(true)
   const [hasClicked, setHasClicked] = useState(false)
   const [playingVideoId, setPlayingVideoId] = useState(videoIdShort || videoId)
-  const isClient = useClientOnly()
+  const [vimeoPlayer, setVimeoPlayer] = useState(null)
 
-  const handleOverlayClick = (e) => {
-    e.preventDefault()
-    if (autoPlay && videoPlaying && !hasClicked) {
-      setMuted(false)
-      setVolume(1)
+  useEffect(() => {
+    if (!vimeoPlayerRef?.current) {
+      return
+    }
+
+    var iframe = vimeoPlayerRef?.current
+    var player = new Vimeo(iframe)
+    setVimeoPlayer(player)
+  }, [autoPlay, hasClicked, isDesktop, vimeoPlayerRef, vimeoPlayer])
+
+  useEffect(() => {
+    if (!vimeoPlayer) {
+      return
+    }
+
+    vimeoPlayer.setLoop(autoPlay)
+
+    const getVideoDetails = async (player) => {
+      const duration = await player.getDuration()
+      console.info('player: duration', duration)
+      setTotalPlaySeconds(duration)
+    }
+
+    const onLoaded = () => {
+      console.info('player: onLoaded')
+      getVideoDetails(vimeoPlayer)
+      if (isDesktop && autoPlay) {
+        setTimeout(async () => {
+          await vimeoPlayer.play()
+        }, 500)
+      }
+    }
+    vimeoPlayer.on('loaded', onLoaded)
+
+    const onPlay = function () {
+      console.info('player: play')
+      setIsPlaying(true)
+    }
+    vimeoPlayer.on('play', onPlay)
+
+    const onPause = function () {
+      console.info('player: pause')
+      setHasClicked(true)
+      setIsPlaying(false)
+    }
+    vimeoPlayer.on('pause', onPause)
+
+    const onTimeupdate = function (data) {
+      setScrubberPosition(data.percent * scrubberWidth)
+    }
+    vimeoPlayer.on('timeupdate', onTimeupdate)
+
+    vimeoPlayer.on('seeked', function () {
+      setHasClicked(true)
+    })
+
+    return () => {
+      vimeoPlayer.off('loaded')
+      vimeoPlayer.off('play')
+      vimeoPlayer.off('pause')
+      vimeoPlayer.off('timeupdate')
+    }
+  }, [autoPlay, isDesktop, scrubberWidth, vimeoPlayer])
+
+  // switch to full video if we need to on first click
+  useEffect(() => {
+    if (hasClicked && isDesktop && playingVideoId !== videoId) {
+      vimeoPlayer.loadVideo(videoId)
+    }
+  }, [hasClicked, isDesktop, playingVideoId, videoId, vimeoPlayer])
+
+  const handleOverlayClick = () => {
+    if (!vimeoPlayer) {
+      setHasClicked(true)
+      return
+    }
+
+    if (autoPlay && isPlaying && !hasClicked) {
+      vimeoPlayer.pause()
+      vimeoPlayer.setVolume(1)
+      vimeoPlayer.setCurrentTime(0)
+      setScrubberPosition(0)
       setTimeout(() => {
-        player?.current?.seekTo(0, 'fraction')
-        setScrubberPosition(0)
-        setVideoPlaying(true)
-      }, 200)
+        vimeoPlayer.play()
+      }, 100)
     } else {
-      setVideoPlaying(!videoPlaying)
+      handleTogglePlay()
     }
 
     setHasClicked(true)
+  }
+
+  const handleTogglePlay = async () => {
+    setHasClicked(true)
+    const isPaused = await vimeoPlayer.getPaused()
+    if (isPaused) {
+      vimeoPlayer.play()
+    } else {
+      vimeoPlayer.pause()
+    }
+  }
+
+  const handleScrubberClick = (position) => {
+    setScrubberPosition(position)
+    setHasClicked(true)
+    vimeoPlayer.setCurrentTime(
+      Math.min(totalPlaySeconds, totalPlaySeconds * (position / scrubberWidth))
+    )
   }
 
   const toggleFullScreen = (onOff) => {
@@ -94,8 +182,8 @@ const VideoPlayer = ({
   }
 
   useEffect(() => {
-    setShowVideo(!!setPlayingVideoId)
-  }, [setPlayingVideoId])
+    setShowVideo(!!playingVideoId)
+  }, [playingVideoId])
 
   useEffect(() => {
     try {
@@ -114,31 +202,11 @@ const VideoPlayer = ({
   }, [])
 
   useEffect(() => {
-    setTimeout(() => {
-      setScrubberWidth(scrubber?.current?.clientWidth || 100)
-    }, 1000)
-  }, [scrubber])
-
-  useEffect(() => {
     if (hasClicked) {
       setMuted(false)
-      setVolume(1)
+      vimeoPlayer?.setVolume(1)
     }
-  }, [hasClicked])
-
-  useInterval(
-    () => {
-      if (
-        player.current &&
-        typeof player.current.getCurrentTime === 'function'
-      ) {
-        setScrubberPosition(
-          (player.current.getCurrentTime() / totalPlaySeconds) * scrubberWidth
-        )
-      }
-    },
-    isPlaying ? 75 : null
-  )
+  }, [hasClicked, vimeoPlayer])
 
   useLayoutEffect(() => {
     const checkIfIos = (navigator) => {
@@ -165,9 +233,7 @@ const VideoPlayer = ({
     }
 
     if (checkIfIos(window.navigator)) {
-      setVideoPlaying(false)
       setMuted(false)
-      setVolume(1)
       setIsIos(true)
     }
     if (checkIfIpad(window.navigator)) {
@@ -176,29 +242,29 @@ const VideoPlayer = ({
   }, [])
 
   useLayoutEffect(() => {
-    if (!player.current) {
+    if (!vimeoPlayer) {
       return
     }
     if (muted) {
-      player.current.muted = true
+      vimeoPlayer.setVolume(0)
     } else {
-      player.current.muted = false
+      vimeoPlayer.setVolume(1)
     }
-  }, [muted])
+  }, [muted, vimeoPlayer])
 
   useEffect(() => {
-    if (!title && !client) {
-      setShowVideoOverlay(false)
-      return
+    const toggleVideoOverlay = async () => {
+      const isPaused = await vimeoPlayer?.getPaused()
+      const hasTitleOrClient = title || client
+      const isPausedOrInitial = !hasClicked || isPaused
+      if (hasTitleOrClient && isPausedOrInitial) {
+        setShowVideoOverlay(true)
+      } else {
+        setShowVideoOverlay(false)
+      }
     }
-    setShowVideoOverlay(!hasClicked || !isPlaying)
-  }, [client, hasClicked, isPlaying, title])
-
-  useEffect(() => {
-    if (hasClicked) {
-      setPlayingVideoId(videoId)
-    }
-  }, [hasClicked, videoId])
+    toggleVideoOverlay()
+  }, [client, hasClicked, isPlaying, title, vimeoPlayer])
 
   useEffect(() => {
     if (isDesktop === null) {
@@ -259,6 +325,7 @@ const VideoPlayer = ({
           client={client}
           description={description}
           handleOverlayClick={handleOverlayClick}
+          hasClicked={hasClicked}
           isIos={isIos}
           isIpad={isIpad}
           showVideoOverlay={showVideoOverlay}
@@ -294,81 +361,47 @@ const VideoPlayer = ({
               }
             )}
           >
-            {!isClient && <div>Loading video</div>}
-            {isClient && (
-              <ReactPlayer
-                allow="autoplay; fullscreen; picture-in-picture"
-                controls={!isIos && isDesktop === false}
-                config={{
-                  vimeo: {
-                    title,
-                    playerOptions: {
-                      playsinline: false,
-                    },
-                  },
-                }}
+            {isDesktop === null && <div>Loading video</div>}
+            {isDesktop !== null && (
+              <iframe
+                allow="autoplay; fullscreen"
                 frameBorder="0"
-                height={`100%`}
-                muted={muted}
-                loop={autoPlay}
-                onReady={() => {
-                  setTimeout(() => {
-                    if (
-                      player?.current &&
-                      typeof player?.current?.getDuration === 'function'
-                    ) {
-                      setTotalPlaySeconds(player?.current?.getDuration() || 0)
-                    }
-                  }, [500])
-                }}
-                onEnded={() => {
-                  setVideoPlaying(false)
-                }}
-                onPlay={async () => {
-                  setIsPlaying(true)
-                }}
-                onPause={() => {
-                  setIsPlaying(false)
-                }}
-                playing={videoPlaying}
-                ref={player}
-                title={title}
-                url={`https://player.vimeo.com/video/${playingVideoId}?badge=0&amp;autopause=0&amp;player_id=0&amp;app_id=58479`}
-                volume={volume}
-                width={`100%`}
+                webkitallowfullscreen="true"
+                mozallowfullscreen="true"
+                allowFullScreen={true}
+                src={`https://player.vimeo.com/video/${playingVideoId}?badge=0&amp;autopause=0&amp;player_id=0&amp;app_id=58479&controls=0&autopause=1&transparent=1&playsinline=0`}
+                ref={vimeoPlayerRef}
               />
             )}
           </div>
-
-          {!isIos && !isIpad && isDesktop === true && (
-            <VideoPlayerControlBar
-              isFullscreen={isFullscreen}
-              muted={muted}
-              player={player}
-              scrubber={scrubber}
-              scrubberPosition={scrubberPosition}
-              scrubberWidth={scrubberWidth}
-              setHasClicked={setHasClicked}
-              setMuted={setMuted}
-              setScrubberPosition={setScrubberPosition}
-              setScrubberWidth={setScrubberWidth}
-              setVideoPlaying={setVideoPlaying}
-              setVolume={setVolume}
-              toggleFullScreen={toggleFullScreen}
-              videoPlaying={videoPlaying}
-            />
-          )}
         </div>
         <VideoPlayerOverlayButton
           client={client}
           description={description}
           handleOverlayClick={handleOverlayClick}
+          hasClicked={hasClicked}
           isIos={isIos}
           isIpad={isIpad}
           showVideoOverlay={showVideoOverlay}
           title={title}
         />
       </div>
+
+      {playerState !== 'poster' && (
+        <VideoPlayerControlBar
+          handleScrubberClick={handleScrubberClick}
+          handleTogglePlay={handleTogglePlay}
+          isFullscreen={isFullscreen}
+          isPlaying={isPlaying}
+          muted={muted}
+          scrubberPosition={scrubberPosition}
+          scrubberWidth={scrubberWidth}
+          setHasClicked={setHasClicked}
+          setMuted={setMuted}
+          setScrubberWidth={setScrubberWidth}
+          toggleFullScreen={toggleFullScreen}
+        />
+      )}
 
       <div className={playerState === 'poster' ? 'block' : 'hidden'}>
         <div className="container mx-auto">

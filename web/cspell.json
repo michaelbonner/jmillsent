@@ -9,6 +9,7 @@
     "headshot",
     "jmills",
     "mailchimp",
+    "mozallowfullscreen",
     "packsize",
     "playsinline",
     "pluralsight",
@@ -21,6 +22,7 @@
     "ummc",
     "uncategorized",
     "viruserv",
+    "webkitallowfullscreen",
     "workfront"
   ]
 }

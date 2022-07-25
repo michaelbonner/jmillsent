@@ -14,17 +14,18 @@ export const VideoPlayerOverlayButton = ({
     <button
       className={classNames(
         showVideoOverlay ? 'opacity-100' : 'opacity-0',
-        'absolute inset-0 w-full h-full bg-transparent cursor-pointer text-3xl text-left transition-all duration-500 outline-0 pb-[40px] bottom-[40px]'
+        'absolute inset-0 w-full h-full bg-transparent cursor-pointer text-3xl text-left transition-all duration-500 outline-0 pb-[40px] bottom-[40px]',
+        !showVideoOverlay && 'pointer-events-none'
       )}
       onClick={handleOverlayClick}
     >
       <div className="absolute inset-0 h-full w-full bg-gradient-to-r from-black via-transparent to-transparent opacity-80"></div>
       <div
         className={classNames(
-          `absolute inset-0 flex h-full w-full items-center justify-start gap-2`,
+          `absolute inset-0 flex h-full w-full items-center justify-start gap-2 pl-2`,
           `md:gap-4`,
           `lg:pl-12`,
-          'pb-[40px]'
+          'md:pb-[40px]'
         )}
       >
         {!isIpad && (

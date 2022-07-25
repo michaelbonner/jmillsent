@@ -213,7 +213,7 @@ const Layout = ({
 
       <div
         className={`
-        bg-black pointer-events-none fixed inset-0 transition-opacity duration-[3000ms] z-20
+        bg-black pointer-events-none fixed inset-0 transition-opacity duration-[3000ms] z-30
           ${heroVideoId && !videoPlaying ? `opacity-100` : `opacity-0`}
             `}
       >
@@ -301,7 +301,7 @@ const Layout = ({
             fixed: menuVisible,
             hidden: !menuVisible,
           },
-          'bg-black inset-0 top-[83px] transform transition-all ease-in',
+          'bg-black inset-0 top-[83px] pb-[20px] transform transition-all ease-in',
           'duration-300 z-40 text-right flex flex-col justify-center items-center overflow-y-scroll'
         )}
       >
@@ -315,7 +315,7 @@ const Layout = ({
                       ? 'text-white'
                       : 'text-gray-500'
                   }`,
-                  `font-bold relative group py-[3vh] lg:py-6 uppercase`,
+                  `font-bold relative group py-[3vh] lg:py-6 uppercase max-w-[80vw]`,
                   `text-2xl md:text-4xl xl:text-6xl tracking-wider`,
                   `transition-all duration-700 w-96 text-center`
                 )}

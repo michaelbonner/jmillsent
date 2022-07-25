@@ -9,15 +9,6 @@ import SanityImage from './sanity-image'
 import { VideoPlayerControlBar } from './video-player-control-bar'
 import { VideoPlayerOverlayButton } from './video-player-overlay-button'
 
-const vimeoIframeParams = new URLSearchParams()
-vimeoIframeParams.append('badge', '0')
-vimeoIframeParams.append('autopause', '0')
-vimeoIframeParams.append('player_id', '0')
-vimeoIframeParams.append('app_id', '58479')
-vimeoIframeParams.append('controls', '0')
-vimeoIframeParams.append('transparent', '1')
-vimeoIframeParams.append('playsinline', '0')
-
 const VideoPlayer = ({
   autoPlay = false,
   client = '',
@@ -48,6 +39,21 @@ const VideoPlayer = ({
   const [hasClicked, setHasClicked] = useState(false)
   const [playingVideoId, setPlayingVideoId] = useState(videoIdShort || videoId)
   const [vimeoPlayer, setVimeoPlayer] = useState(null)
+  const [vimeoIframeParams, setVimeoIframeParams] = useState('')
+
+  useEffect(() => {
+    const vimeoParams = new URLSearchParams()
+    vimeoParams.append('badge', '0')
+    vimeoParams.append('autopause', '0')
+    vimeoParams.append('player_id', '0')
+    vimeoParams.append('app_id', '58479')
+    vimeoParams.append('controls', isDesktop === true ? '0' : '1')
+    vimeoParams.append('transparent', '1')
+    vimeoParams.append('playsinline', '0')
+    vimeoParams.append('allowfullscreen', '1')
+
+    setVimeoIframeParams(vimeoParams.toString())
+  }, [isDesktop])
 
   useEffect(() => {
     if (!vimeoPlayerRef?.current) {
@@ -373,14 +379,14 @@ const VideoPlayer = ({
             )}
           >
             {isDesktop === null && <div>Loading video</div>}
-            {isDesktop !== null && (
+            {isDesktop !== null && vimeoIframeParams && (
               <iframe
-                allow="autoplay; fullscreen"
+                allow="autoplay; fullscreen;"
                 frameBorder="0"
                 webkitallowfullscreen="true"
                 mozallowfullscreen="true"
                 allowFullScreen={true}
-                src={`https://player.vimeo.com/video/${playingVideoId}?${vimeoIframeParams.toString()}`}
+                src={`https://player.vimeo.com/video/${playingVideoId}?${vimeoIframeParams}`}
                 ref={vimeoPlayerRef}
               />
             )}
@@ -398,7 +404,7 @@ const VideoPlayer = ({
         />
       </div>
 
-      {playerState !== 'poster' && (
+      {playerState !== 'poster' && isDesktop === true && (
         <VideoPlayerControlBar
           handleScrubberClick={handleScrubberClick}
           handleTogglePlay={handleTogglePlay}

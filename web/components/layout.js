@@ -146,7 +146,7 @@ const Layout = ({
   }, [heroVideoId, isDesktop])
 
   return (
-    <div>
+    <div className="relative">
       <Head>
         <title>
           {title || 'JmillsENT | Motion Picture Studio + Film Agency'}
@@ -234,7 +234,13 @@ const Layout = ({
         </div>
       </div>
 
-      <div className="bg-black absolute w-full">
+      <div
+        className={classNames(
+          'bg-black lg:absolute w-full z-50 top-0',
+          !menuOpen && 'absolute',
+          menuOpen && 'sticky'
+        )}
+      >
         <div
           className={classNames(
             {
@@ -249,7 +255,7 @@ const Layout = ({
         >
           <div className="hidden lg:flex">
             <Link href={`/`}>
-              <a>
+              <a className="flex items-center">
                 <Image
                   alt="JMills Logo"
                   src="/images/jme_film_co_x_white.png"
@@ -261,7 +267,7 @@ const Layout = ({
           </div>
           <div className="flex lg:hidden">
             <Link href={`/`}>
-              <a>
+              <a className="flex items-center">
                 <Image
                   alt="JMills Logo"
                   src="/images/jme-film-co-horizontal-white.png"
@@ -295,8 +301,8 @@ const Layout = ({
             fixed: menuVisible,
             hidden: !menuVisible,
           },
-          'bg-black inset-0 transform transition-all ease-in',
-          'duration-300 z-40 text-right flex flex-col justify-center items-center'
+          'bg-black inset-0 top-[83px] transform transition-all ease-in',
+          'duration-300 z-40 text-right flex flex-col justify-center items-center overflow-y-scroll'
         )}
       >
         {navItems.map((navItem, index) => {
@@ -309,7 +315,7 @@ const Layout = ({
                       ? 'text-white'
                       : 'text-gray-500'
                   }`,
-                  `font-bold relative group py-6 uppercase`,
+                  `font-bold relative group py-[3vh] lg:py-6 uppercase`,
                   `text-2xl md:text-4xl xl:text-6xl tracking-wider`,
                   `transition-all duration-700 w-96 text-center`
                 )}
@@ -346,64 +352,68 @@ const Layout = ({
         })}
       </nav>
 
-      <header className="overflow-hidden">
-        <div className="relative flex items-center justify-between py-4 px-6 z-10 bg-black">
-          <div className="hidden lg:flex">
-            <Link href={`/`}>
-              <a className="flex items-center">
-                <Image
-                  alt="JMills Logo"
-                  src="/images/jme_film_co_x_white.png"
-                  width={Math.floor(202 * 0.5)}
-                  height={Math.floor(158 * 0.5)}
-                />
-              </a>
-            </Link>
-          </div>
-          <div className="flex lg:hidden">
-            <Link className="hidden lg:flex" href={`/`}>
-              <a className="flex items-center">
-                <Image
-                  alt="JMills Logo"
-                  src="/images/jme-film-co-horizontal-white.png"
-                  width={Math.floor(1200 * 0.13)}
-                  height={Math.floor(395 * 0.13)}
-                />
-              </a>
-            </Link>
-          </div>
-          <div className="flex justify-end items-center">
-            <div className="relative lg:ml-8 lg:mr-0">
-              <button
-                className="w-12 h-8 focus:outline-none relative"
-                onClick={() => toggleMenu(!menuOpen)}
-                aria-label="Open menu"
+      <div
+        className={classNames(
+          'lg:relative z-20 top-0 flex items-center justify-between py-4 px-6 bg-black w-full',
+          menuOpen && 'fixed',
+          !menuOpen && 'sticky'
+        )}
+      >
+        <div className="hidden lg:flex">
+          <Link href={`/`}>
+            <a className="flex items-center">
+              <Image
+                alt="JMills Logo"
+                src="/images/jme_film_co_x_white.png"
+                width={Math.floor(202 * 0.5)}
+                height={Math.floor(158 * 0.5)}
+              />
+            </a>
+          </Link>
+        </div>
+        <div className="flex lg:hidden">
+          <Link className="hidden lg:flex" href={`/`}>
+            <a className="flex items-center">
+              <Image
+                alt="JMills Logo"
+                src="/images/jme-film-co-horizontal-white.png"
+                width={Math.floor(1200 * 0.13)}
+                height={Math.floor(395 * 0.13)}
+              />
+            </a>
+          </Link>
+        </div>
+        <div className="flex justify-end items-center">
+          <div className="relative lg:ml-8 lg:mr-0">
+            <button
+              className="w-12 h-8 focus:outline-none relative hover:animate-pulse"
+              onClick={() => toggleMenu(!menuOpen)}
+              aria-label="Open menu"
+            >
+              <span
+                className={classNames(
+                  {
+                    'opacity-100': !menuOpen,
+                    'opacity-0': menuOpen,
+                    absolute: !menuVisible,
+                    hidden: menuVisible,
+                  },
+                  'top-0 right-0 w-12 h-8 transform transition-all ease-in duration-300'
+                )}
               >
-                <span
-                  className={classNames(
-                    {
-                      'opacity-100': !menuOpen,
-                      'opacity-0': menuOpen,
-                      absolute: !menuVisible,
-                      hidden: menuVisible,
-                    },
-                    'top-0 right-0 w-12 h-8 transform transition-all ease-in duration-300'
-                  )}
-                >
-                  <Image
-                    alt="Open menu"
-                    className="w-12 h-8 fill-current text-white stroke-2 stroke-current"
-                    src={
-                      showHero ? `/images/menu-white.svg` : `/images/menu.svg`
-                    }
-                    layout="fill"
-                  />
-                </span>
-              </button>
-            </div>
+                <Image
+                  alt="Open menu"
+                  className="w-12 h-8 fill-current text-white stroke-2 stroke-current"
+                  src={showHero ? `/images/menu-white.svg` : `/images/menu.svg`}
+                  layout="fill"
+                />
+              </span>
+            </button>
           </div>
         </div>
+      </div>
 
+      <header className="overflow-hidden">
         {isDesktop !== null && (
           <div
             className={classNames(

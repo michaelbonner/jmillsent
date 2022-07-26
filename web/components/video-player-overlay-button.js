@@ -6,6 +6,7 @@ export const VideoPlayerOverlayButton = ({
   client,
   description,
   handleOverlayClick,
+  hasClicked,
   isIpad,
   showVideoOverlay,
   title,
@@ -13,9 +14,12 @@ export const VideoPlayerOverlayButton = ({
   return (
     <button
       className={classNames(
-        showVideoOverlay ? 'opacity-100' : 'opacity-0',
-        'absolute inset-0 w-full h-full bg-transparent cursor-pointer text-3xl text-left transition-all duration-500 outline-0 pb-[40px] bottom-[40px]',
-        !showVideoOverlay && 'pointer-events-none'
+        showVideoOverlay && 'opacity-100',
+        !showVideoOverlay && 'opacity-0 pointer-events-none',
+        hasClicked &&
+          showVideoOverlay &&
+          'pointer-events-none md:pointer-events-auto',
+        'absolute inset-0 w-full h-full bg-transparent cursor-pointer text-3xl text-left transition-all duration-500 outline-0 pb-[40px] bottom-[40px]'
       )}
       onClick={handleOverlayClick}
     >

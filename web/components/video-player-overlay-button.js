@@ -16,7 +16,7 @@ export const VideoPlayerOverlayButton = ({
       className={classNames(
         showVideoOverlay && 'opacity-100',
         !showVideoOverlay && 'opacity-0 pointer-events-none',
-        !hasClicked &&
+        hasClicked &&
           showVideoOverlay &&
           'pointer-events-none md:pointer-events-auto',
         'absolute inset-0 w-full h-full bg-transparent cursor-pointer text-3xl text-left transition-all duration-500 outline-0 pb-[40px] bottom-[40px]'

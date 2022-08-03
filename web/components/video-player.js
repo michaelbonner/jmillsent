@@ -433,7 +433,12 @@ const VideoPlayer = ({
               <Image
                 alt={`${client || ''} ${description || ''} poster`}
                 className="w-full h-full"
-                src={urlForSanitySource(poster).width(1200).url()}
+                src={urlForSanitySource(poster)
+                  .width(1200)
+                  .height(
+                    1200 * (videoHeightAspectRatio / videoWidthAspectRatio)
+                  )
+                  .url()}
                 width="1200"
                 height={1200 * (videoHeightAspectRatio / videoWidthAspectRatio)}
               />

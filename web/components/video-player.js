@@ -1,7 +1,7 @@
-/* eslint-disable @next/next/no-img-element */
 import Vimeo from '@vimeo/player'
 import classNames from 'classnames'
 import useIsDesktop from 'hooks/useIsDesktop'
+import Image from 'next/image'
 import { useEffect, useLayoutEffect, useRef, useState } from 'react'
 import screenfull from 'screenfull'
 import urlForSanitySource from '../lib/urlForSanitySource'
@@ -430,10 +430,12 @@ const VideoPlayer = ({
             )}
           >
             {poster ? (
-              <img
-                alt="Poster image"
+              <Image
+                alt={`${client || ''} ${description || ''} poster`}
                 className="w-full h-full"
                 src={urlForSanitySource(poster).width(1200).url()}
+                width="1200"
+                height={1200 * (videoHeightAspectRatio / videoWidthAspectRatio)}
               />
             ) : null}
           </div>

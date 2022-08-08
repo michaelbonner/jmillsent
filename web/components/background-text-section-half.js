@@ -47,50 +47,39 @@ const BackgroundTextSectionHalf = ({
                   smooth={true}
                   offset={-20}
                   duration={500}
-                  className={`flex items-center gap-x-2 lg:gap-x-4 justify-end cursor-pointer ${
+                  className={classNames(
+                    'flex items-center gap-x-2 lg:gap-x-4 justify-end cursor-pointer',
                     isCurrent ? 'text-white font-bold' : 'text-gray-200'
-                  }`}
+                  )}
                   key={index}
                 >
                   <p
-                    className={`uppercase tracking-wider ${
-                      !isCurrent && 'opacity-60'
-                    }`}
+                    className={classNames(
+                      'uppercase tracking-wider',
+                      !isCurrent && 'opacity-60',
+                      isCurrent && 'scale-110 tracking-widest'
+                    )}
                   >
                     {serviceShortName}
                   </p>
-                  {isChecked ? (
-                    <svg
-                      className="w-4 h-4 lg:w-6 lg:h-6"
-                      enableBackground="new 0 0 120 120"
-                      viewBox="0 0 120 120"
-                      xmlns="http://www.w3.org/2000/svg"
-                    >
-                      {/* box */}
+                  <svg
+                    className="w-4 h-4 lg:w-6 lg:h-6"
+                    enableBackground="new 0 0 120 120"
+                    viewBox="0 0 120 120"
+                    xmlns="http://www.w3.org/2000/svg"
+                  >
+                    {isChecked && (
                       <path
                         className="text-gold fill-current"
                         d="m5 5h110v110h-110z"
                       />
-                      {/* outline */}
-                      <path
-                        className={`fill-current ${!isCurrent && 'opacity-60'}`}
-                        d="m110 10v100h-100v-100zm10-10h-10-100-10v10 100 10h10 100 10v-10-100z"
-                      />
-                    </svg>
-                  ) : (
-                    <svg
-                      className="w-4 h-4 lg:w-6 lg:h-6"
-                      enableBackground="new 0 0 120 120"
-                      viewBox="0 0 120 120"
-                      xmlns="http://www.w3.org/2000/svg"
-                    >
-                      {/* outline */}
-                      <path
-                        className="fill-current"
-                        d="m110 10v100h-100v-100zm10-10h-10-100-10v10 100 10h10 100 10v-10-100z"
-                      />
-                    </svg>
-                  )}
+                    )}
+                    {/* outline */}
+                    <path
+                      className="fill-current"
+                      d="m110 10v100h-100v-100zm10-10h-10-100-10v10 100 10h10 100 10v-10-100z"
+                    />
+                  </svg>
                 </SmoothScrollLink>
               )
             })}

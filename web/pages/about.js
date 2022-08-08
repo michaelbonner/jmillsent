@@ -33,10 +33,10 @@ function About({ aboutPage, serviceShortNames }) {
   )
 
   const heroContent = (
-    <div className="h-full w-screen text-white flex items-center justify-center">
-      <div className="w-screen px-4 flex flex-col items-center justify-center text-center">
+    <div className="flex h-full w-screen items-center justify-center text-white">
+      <div className="flex w-screen flex-col items-center justify-center px-4 text-center">
         <H1>{aboutPage.title}</H1>
-        <h2 className="uppercase font-outline text-2xl lg:text-6xl">
+        <h2 className="font-outline text-2xl uppercase lg:text-6xl">
           {aboutPage.subtitle}
         </h2>
       </div>
@@ -66,24 +66,24 @@ function About({ aboutPage, serviceShortNames }) {
         aboutPage.headerVideoWidthInPixels
       }
     >
-      <div className="container px-4 mx-auto text-white text-center mt-12 lg:mt-24">
+      <div className="container mx-auto mt-12 px-4 text-center text-white lg:mt-24">
         <H2>{aboutPage.section1Title}</H2>
         {aboutPage.section1Body && (
-          <div className="mt-4 lg:mt-10 px-4 text-white prose-lg max-w-5xl text-center mx-auto -mb-2">
+          <div className="prose-lg mx-auto mt-4 -mb-2 max-w-5xl px-4 text-center text-white lg:mt-10">
             <PortableText value={aboutPage.section1Body} />
           </div>
         )}
 
         <DividerBar />
 
-        <div className="px-8 container mx-auto text-center -mt-1.5">
+        <div className="container mx-auto -mt-1.5 px-8 text-center">
           <H2>{aboutPage.reelVideoSectionTitle}</H2>
-          <p className="uppercase font-outline text-xl lg:text-5xl leading-4">
+          <p className="font-outline text-xl uppercase leading-4 lg:text-5xl">
             {aboutPage.reelVideoSectionSubtitle}
           </p>
         </div>
         <div className="mt-4 lg:mt-10" id="reel">
-          <div className="border border-gray-300 p-4 lg:p-8 container mx-auto">
+          <div className="container mx-auto border border-gray-300 p-4 lg:p-8">
             <VideoPlayer
               poster={aboutPage.reelVideoPoster}
               title={aboutPage.reelVideoTitle}
@@ -103,10 +103,10 @@ function About({ aboutPage, serviceShortNames }) {
         </div>
 
         {/* services */}
-        <section className="-mt-1.5 relative" id="services">
-          <div className="px-8 container mx-auto text-center">
+        <section className="relative -mt-1.5" id="services">
+          <div className="container mx-auto px-8 text-center">
             <H2>{aboutPage.section2Title}</H2>
-            <p className="uppercase font-outline text-xl lg:text-5xl -mt-1.5">
+            <p className="-mt-1.5 font-outline text-xl uppercase lg:text-5xl">
               {aboutPage.section2Subtitle}
             </p>
           </div>
@@ -114,7 +114,7 @@ function About({ aboutPage, serviceShortNames }) {
           <ServicesThumbnails services={aboutPage.services || []} />
 
           {aboutPage.services.length > 0 && (
-            <div className="grid lg:grid-cols-2 gap-6 mt-4 lg:mt-10 max-w-7xl mx-auto">
+            <div className="mx-auto mt-4 grid max-w-7xl gap-6 lg:mt-10 lg:grid-cols-2">
               {aboutPage.services.map((service, index) => {
                 return (
                   <BackgroundTextSectionHalf
@@ -139,38 +139,38 @@ function About({ aboutPage, serviceShortNames }) {
 
         {/* Ad Formats */}
         <section
-          className="max-w-7xl mx-auto text-center grid gap-y-4"
+          className="mx-auto grid max-w-7xl gap-y-4 text-center"
           id="ad-formats"
         >
           {aboutPage.adFormatsTitle && <H2>{aboutPage.adFormatsTitle}</H2>}
           {aboutPage.adFormatsSubtitle && (
-            <p className="text-2xl lg:text-4xl font-outline">
+            <p className="font-outline text-2xl lg:text-4xl">
               {aboutPage.adFormatsSubtitle}
             </p>
           )}
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-8 mt-4 lg:mt-10">
+          <div className="mt-4 grid grid-cols-1 gap-8 md:grid-cols-3 lg:mt-10">
             {aboutPage.adFormats.map((adFormatsCard, index) => {
               return (
                 <div
                   key={index}
                   className={classNames(
-                    'flex flex-col justify-start space-y-12 border-2 border-gray-300 pt-12 pb-8 px-8'
+                    'flex flex-col justify-start space-y-12 border-2 border-gray-300 px-8 pt-12 pb-8'
                   )}
                   target="_blank"
                 >
                   <div>
                     <SanityImage
                       image={adFormatsCard.image}
-                      className="block filter grayscale hover:filter-none transition-all duration-500"
+                      className="block grayscale filter transition-all duration-500 hover:filter-none"
                       alt={adFormatsCard.title}
                     />
                   </div>
                   <div>
-                    <h4 className="font-bold text-2xl lg:text-3xl uppercase">
+                    <h4 className="text-2xl font-bold uppercase lg:text-3xl">
                       {adFormatsCard.title}
                     </h4>
-                    <div className="mt-4 w-40 h-1 bg-gold mx-auto"></div>
-                    <div className="prose-sm lg:prose-lg mt-4">
+                    <div className="mx-auto mt-4 h-1 w-40 bg-gold"></div>
+                    <div className="prose-sm mt-4 lg:prose-lg">
                       <PortableText value={adFormatsCard.body} />
                     </div>
                   </div>
@@ -179,7 +179,7 @@ function About({ aboutPage, serviceShortNames }) {
             })}
           </div>
           {aboutPage.adFormatsContent && (
-            <div className="mt-4 lg:mt-10 text-white px-4 prose prose-lg max-w-5xl text-center mx-auto">
+            <div className="prose prose-lg mx-auto mt-4 max-w-5xl px-4 text-center text-white lg:mt-10">
               <PortableText value={aboutPage.adFormatsContent} />
             </div>
           )}
@@ -192,37 +192,37 @@ function About({ aboutPage, serviceShortNames }) {
 
         {/* director section */}
         <section
-          className="grid max-w-7xl mx-auto items-center lg:px-0 gap-y-10 text-center"
+          className="mx-auto grid max-w-7xl items-center gap-y-10 text-center lg:px-0"
           id="director"
         >
           <div>
-            <p className="text-4xl lg:text-5xl font-bold">
+            <p className="text-4xl font-bold lg:text-5xl">
               {aboutPage.directorName}
             </p>
-            <p className="font-outline uppercase text-4xl lg:text-5xl mt-8 lg:mt-4">
+            <p className="mt-8 font-outline text-4xl uppercase lg:mt-4 lg:text-5xl">
               {aboutPage.directorTitle}
             </p>
           </div>
-          <div className="relative py-4 px-4 lg:px-6 border border-gray-300">
+          <div className="relative border border-gray-300 py-4 px-4 lg:px-6">
             <SanityImage
               image={aboutPage.directorImage}
               alt={aboutPage.directorName}
             />
             <div
-              className={`hidden lg:block absolute w-1/2 right-0 lg:pr-20 top-0 bottom-0 h-full bg-gradient-to-l from-black to-transparent opacity-70 group-hover:opacity-80 transition-all duration-500`}
+              className={`absolute right-0 top-0 bottom-0 hidden h-full w-1/2 bg-gradient-to-l from-black to-transparent opacity-70 transition-all duration-500 group-hover:opacity-80 lg:block lg:pr-20`}
             />
             {(aboutPage.directorImageTitle ||
               aboutPage.directorImageSubtitle) && (
-              <div className="mt-4 lg:mt-0 lg:absolute inset-0 lg:pr-24 flex flex-col items-center lg:items-end justify-center gap-y-1 sm:gap-y-2 lg:gap-y-6">
-                <p className="text-lg sm:text-3xl lg:text-4xl uppercase font-bold tracking-wider">
+              <div className="inset-0 mt-4 flex flex-col items-center justify-center gap-y-1 sm:gap-y-2 lg:absolute lg:mt-0 lg:items-end lg:gap-y-6 lg:pr-24">
+                <p className="text-lg font-bold uppercase tracking-wider sm:text-3xl lg:text-4xl">
                   {aboutPage.directorImageTitle}
                 </p>
                 {aboutPage.directorImageTitle &&
                   aboutPage.directorImageSubtitle && (
-                    <div className="w-24 md:w-48 h-[2px] md:h-1 bg-gold"></div>
+                    <div className="h-[2px] w-24 bg-gold md:h-1 md:w-48"></div>
                   )}
                 {aboutPage.directorImageSubtitle && (
-                  <p className="font-outline text-xl sm:text-3xl lg:text-4xl uppercase">
+                  <p className="font-outline text-xl uppercase sm:text-3xl lg:text-4xl">
                     {aboutPage.directorImageSubtitle}
                   </p>
                 )}
@@ -230,23 +230,23 @@ function About({ aboutPage, serviceShortNames }) {
             )}
           </div>
           {aboutPage.directorDescription && (
-            <div className="px-4 prose-lg mx-auto max-w-5xl">
+            <div className="prose-lg mx-auto max-w-5xl px-4">
               <PortableText value={aboutPage.directorDescription} />
             </div>
           )}
           <div className="flex justify-center">
             <Link href="https://jeremymillerdirector.com/">
               <a
-                className="flex gap-4 items-center justify-center px-3 py-2 uppercase hover:bg-gold transition-colors border-2 border-gray-300 group"
+                className="group flex items-center justify-center gap-4 border-2 border-gray-300 px-3 py-2 uppercase transition-colors hover:bg-gold"
                 target="_blank"
               >
-                <span className="text-2xl lg:text-3xl font-outline tracking-tighter text-gray-300 group-hover:text-black">
+                <span className="font-outline text-2xl tracking-tighter text-gray-300 group-hover:text-black lg:text-3xl">
                   View
                 </span>
-                <span className="text-2xl lg:text-3xl font-bold tracking-wide group-hover:text-black">
+                <span className="text-2xl font-bold tracking-wide group-hover:text-black lg:text-3xl">
                   Director&apos;s
                 </span>
-                <span className="text-2xl lg:text-3xl font-outline tracking-tighter text-gray-300 group-hover:text-black">
+                <span className="font-outline text-2xl tracking-tighter text-gray-300 group-hover:text-black lg:text-3xl">
                   Site
                 </span>
               </a>
@@ -260,12 +260,12 @@ function About({ aboutPage, serviceShortNames }) {
         </div>
 
         {/* team section */}
-        <section className="max-w-7xl mx-auto text-center lg:px-0" id="team">
+        <section className="mx-auto max-w-7xl text-center lg:px-0" id="team">
           <H2>{aboutPage.teamTitle}</H2>
-          <p className="uppercase font-outline text-xl lg:text-5xl -mt-1.5">
+          <p className="-mt-1.5 font-outline text-xl uppercase lg:text-5xl">
             {aboutPage.teamSubtitle}
           </p>
-          <div className="grid grid-cols-2 lg:grid-cols-4 gap-x-2 gap-y-6 sm:gap-8 lg:gap-x-12 lg:gap-y-6 mt-10">
+          <div className="mt-10 grid grid-cols-2 gap-x-2 gap-y-6 sm:gap-8 lg:grid-cols-4 lg:gap-x-12 lg:gap-y-6">
             {aboutPage.teamMembers.map((teamMember) => {
               const width = isDesktop ? 400 : 200
               const height = isDesktop ? 460 : 250
@@ -280,13 +280,13 @@ function About({ aboutPage, serviceShortNames }) {
                     width={width}
                     alt={teamMember.name}
                   />
-                  <p className="mt-2 uppercase font-extrabold text-sm lg:text-2xl">
+                  <p className="mt-2 text-sm font-extrabold uppercase lg:text-2xl">
                     {teamMember.name}
                   </p>
                   <div className="px-4">
                     <LittleWhiteBar yMargin={'my-2'} />
                   </div>
-                  <p className="uppercase font-bold lg:font-outline text-sm lg:text-2xl">
+                  <p className="text-sm font-bold uppercase lg:font-outline lg:text-2xl">
                     {teamMember.title}
                   </p>
                 </div>
@@ -326,16 +326,16 @@ function About({ aboutPage, serviceShortNames }) {
           />
         )}
         <section
-          className="max-w-7xl mx-auto text-center grid gap-y-10"
+          className="mx-auto grid max-w-7xl gap-y-10 text-center"
           id="locations"
         >
           <H2 className="!mb-0">{aboutPage.utahLocationsTitle}</H2>
-          <div className="grid grid-cols-1 lg:grid-cols-3 gap-1 px-0 lg:px-0">
+          <div className="grid grid-cols-1 gap-1 px-0 lg:grid-cols-3 lg:px-0">
             {aboutPage.utahLocations.map((utahLocation, index) => {
               return (
                 <button
                   aria-label={`Utah location ${index + 1}`}
-                  className="w-full h-full"
+                  className="h-full w-full"
                   key={index}
                   onClick={() => {
                     setIsGalleryModelOpen(true)
@@ -354,7 +354,7 @@ function About({ aboutPage, serviceShortNames }) {
             })}
           </div>
           {aboutPage.utahLocationsDescription && (
-            <div className="px-4 prose-lg max-w-3xl text-center mx-auto">
+            <div className="prose-lg mx-auto max-w-3xl px-4 text-center">
               <PortableText value={aboutPage.utahLocationsDescription} />
             </div>
           )}
@@ -366,8 +366,8 @@ function About({ aboutPage, serviceShortNames }) {
         </div>
 
         {/* company 3 */}
-        <section className="-mt-1.5 grid gap-y-4 items-center" id="company3">
-          <div className="w-full max-w-sm mx-auto">
+        <section className="-mt-1.5 grid items-center gap-y-4" id="company3">
+          <div className="mx-auto w-full max-w-sm">
             <a href="https://www.company3.com/" target="_blank">
               <Image
                 src="/images/company-3.svg"
@@ -377,11 +377,11 @@ function About({ aboutPage, serviceShortNames }) {
               />
             </a>
           </div>
-          <H2 className="font-outline font-thin !mb-0">
+          <H2 className="!mb-0 font-outline font-thin">
             {aboutPage.company3Title}
           </H2>
 
-          <div className="mt-4 lg:mt-10 border border-gray-300 p-4 lg:p-8 container mx-auto max-w-7xl">
+          <div className="container mx-auto mt-4 max-w-7xl border border-gray-300 p-4 lg:mt-10 lg:p-8">
             <VideoPlayer
               poster={aboutPage.company3VideoPoster}
               title={aboutPage.company3VideoTitle}
@@ -395,24 +395,24 @@ function About({ aboutPage, serviceShortNames }) {
             />
           </div>
           {aboutPage.company3Body && (
-            <div className="mt-6 px-4 prose-lg max-w-5xl text-center mx-auto text-white font-light">
+            <div className="prose-lg mx-auto mt-6 max-w-5xl px-4 text-center font-light text-white">
               <PortableText value={aboutPage.company3Body} />
             </div>
           )}
           <div className="flex justify-center">
             <Link href={aboutPage.company3Link || 'https://www.company3.com/'}>
               <a
-                className="flex gap-4 items-center justify-center px-3 py-2 mt-4 sm:mt-10 uppercase hover:bg-gold transition-colors border-2 border-gray-300 group"
+                className="group mt-4 flex items-center justify-center gap-4 border-2 border-gray-300 px-3 py-2 uppercase transition-colors hover:bg-gold sm:mt-10"
                 target="_blank"
               >
-                <span className="text-2xl lg:text-3xl font-outline tracking-tighter text-gray-300 group-hover:text-black">
+                <span className="font-outline text-2xl tracking-tighter text-gray-300 group-hover:text-black lg:text-3xl">
                   Book
                 </span>
-                <span className="text-2xl lg:text-3xl font-bold tracking-wide group-hover:text-black">
+                <span className="text-2xl font-bold tracking-wide group-hover:text-black lg:text-3xl">
                   Session
                 </span>
 
-                <span className="text-2xl lg:text-3xl font-outline tracking-tighter text-gray-300 group-hover:text-black">
+                <span className="font-outline text-2xl tracking-tighter text-gray-300 group-hover:text-black lg:text-3xl">
                   Now
                 </span>
               </a>
@@ -430,10 +430,10 @@ function About({ aboutPage, serviceShortNames }) {
         <>
           <DividerBar />
           <section
-            className="max-w-7xl mx-auto text-center px-4 grid gap-y-4"
+            className="mx-auto grid max-w-7xl gap-y-4 px-4 text-center"
             id="ravens"
           >
-            <div className="w-full max-w-sm mx-auto px-4 lg:px-0">
+            <div className="mx-auto w-full max-w-sm px-4 lg:px-0">
               <Image
                 src="/images/ravens-official-logo-simple-white.svg"
                 alt="Ravens"
@@ -445,30 +445,30 @@ function About({ aboutPage, serviceShortNames }) {
               <H2>{aboutPage.ravensCardsTitle}</H2>
             )}
             {aboutPage.ravensCardsSubtitle && (
-              <p className="text-2xl lg:text-4xl font-outline">
+              <p className="font-outline text-2xl lg:text-4xl">
                 {aboutPage.ravensCardsSubtitle}
               </p>
             )}
-            <div className="grid grid-cols-1 md:grid-cols-3 gap-8 px-8 mt-4 lg:mt-10">
+            <div className="mt-4 grid grid-cols-1 gap-8 px-8 md:grid-cols-3 lg:mt-10">
               {aboutPage.ravensCards?.map((ravensCard, index) => {
                 return (
                   <Link key={index} href={ravensCard.link}>
                     <a
                       className={classNames(
-                        'flex flex-col justify-between space-y-12 border-2 border-gray-300 pt-12 pb-8 px-8 transition-colors',
+                        'flex flex-col justify-between space-y-12 border-2 border-gray-300 px-8 pt-12 pb-8 transition-colors',
                         'hover:bg-gradient-to-b hover:from-gray-900 hover:to-black'
                       )}
                       target="_blank"
                     >
                       <div>
-                        <h4 className="font-bold text-2xl lg:text-3xl uppercase">
+                        <h4 className="text-2xl font-bold uppercase lg:text-3xl">
                           {ravensCard.title}
                         </h4>
                       </div>
                       <div>
                         <SanityImage
                           image={ravensCard.image}
-                          className="block filter grayscale hover:filter-none transition-all duration-500"
+                          className="block grayscale filter transition-all duration-500 hover:filter-none"
                           alt={ravensCard.caption}
                         />
                       </div>
@@ -481,22 +481,22 @@ function About({ aboutPage, serviceShortNames }) {
               })}
             </div>
             {aboutPage.ravensCardsContent && (
-              <div className="mt-4 lg:mt-10 text-white px-4 prose prose-lg max-w-5xl text-center mx-auto">
+              <div className="prose prose-lg mx-auto mt-4 max-w-5xl px-4 text-center text-white lg:mt-10">
                 <PortableText value={aboutPage.ravensCardsContent} />
               </div>
             )}
             <div className="flex justify-center">
               <Link href="https://ravensfilmworks.com/">
                 <a
-                  className="flex gap-4 items-center justify-center px-3 py-2 mt-4 sm:mt-10 uppercase hover:bg-gold transition-colors border-2 border-gray-300 group"
+                  className="group mt-4 flex items-center justify-center gap-4 border-2 border-gray-300 px-3 py-2 uppercase transition-colors hover:bg-gold sm:mt-10"
                   target="_blank"
                 >
-                  <span className="text-2xl lg:text-3xl font-outline tracking-tighter text-gray-300 group-hover:text-black">
+                  <span className="font-outline text-2xl tracking-tighter text-gray-300 group-hover:text-black lg:text-3xl">
                     View
                   </span>
 
                   <svg
-                    className="fill-current group-hover:text-black h-4 lg:h-5"
+                    className="h-4 fill-current group-hover:text-black lg:h-5"
                     enableBackground="new 0 0 6098.1 642.5"
                     viewBox="0 0 6098.1 642.5"
                     xmlns="http://www.w3.org/2000/svg"
@@ -517,7 +517,7 @@ function About({ aboutPage, serviceShortNames }) {
                     </g>
                   </svg>
 
-                  <span className="text-2xl lg:text-3xl font-outline tracking-tighter text-gray-300 group-hover:text-black">
+                  <span className="font-outline text-2xl tracking-tighter text-gray-300 group-hover:text-black lg:text-3xl">
                     Site
                   </span>
                 </a>
@@ -534,12 +534,12 @@ function About({ aboutPage, serviceShortNames }) {
 
       {/* trusted by */}
       <section
-        className="max-w-7xl mx-auto text-center px-4 lg:px-0"
+        className="mx-auto max-w-7xl px-4 text-center lg:px-0"
         id="brands"
       >
         <H3>Trusted By the Following</H3>
         <LittleWhiteBar yMargin="my-4 lg:my-10" />
-        <div className="grid grid-cols-4 xl:grid-cols-5 gap-6 lg:gap-20 items-center px-4">
+        <div className="grid grid-cols-4 items-center gap-6 px-4 lg:gap-20 xl:grid-cols-5">
           {aboutPage.brands.map((brand) => {
             return (
               <div key={brand._id}>

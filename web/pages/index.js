@@ -15,9 +15,9 @@ function Home({ homePage }) {
   const isDesktop = useIsDesktop()
 
   const heroContent = (
-    <div className="h-full w-screen flex flex-col items-center justify-center text-white text-center">
+    <div className="flex h-full w-screen flex-col items-center justify-center text-center text-white">
       <H1>{homePage.mainTitle}</H1>
-      <h2 className="uppercase font-outline text-2xl lg:text-6xl">
+      <h2 className="font-outline text-2xl uppercase lg:text-6xl">
         {homePage.subtitle}
       </h2>
     </div>
@@ -46,9 +46,9 @@ function Home({ homePage }) {
         homePage.reelVideoWidthInPixels
       }
     >
-      <div className="container px-4 mx-auto text-white text-center mt-12 lg:mt-24">
+      <div className="container mx-auto mt-12 px-4 text-center text-white lg:mt-24">
         <H2>{homePage.section1Title}</H2>
-        <div className="mt-4 -mb-2 lg:mt-10 prose-lg lg:max-w-5xl text-center mx-auto">
+        <div className="prose-lg mx-auto mt-4 -mb-2 text-center lg:mt-10 lg:max-w-5xl">
           <PortableText value={homePage.section1Body} />
         </div>
       </div>
@@ -56,16 +56,16 @@ function Home({ homePage }) {
       <DividerBar yMargin="my-16 lg:my-24" />
 
       <div
-        className="px-8 container mx-auto text-center uppercase -mt-1.5"
+        className="container mx-auto -mt-1.5 px-8 text-center uppercase"
         id="section2"
       >
         <H2>{homePage.section2Title}</H2>
-        <p className="uppercase font-outline text-2xl lg:text-6xl">
+        <p className="font-outline text-2xl uppercase lg:text-6xl">
           {homePage.section2Subtitle}
         </p>
       </div>
-      <div className="px-8 lg:px-4 mt-10" id="featured">
-        <div className="border border-gray-300 p-4 lg:py-8 lg:px-8 container mx-auto">
+      <div className="mt-10 px-8 lg:px-4" id="featured">
+        <div className="container mx-auto border border-gray-300 p-4 lg:py-8 lg:px-8">
           <VideoPlayer
             poster={homePage.reelVideoPoster}
             title={homePage.reelVideoTitle}
@@ -80,7 +80,7 @@ function Home({ homePage }) {
         </div>
       </div>
       {isDesktop === false && (
-        <div className="flex justify-center mx-auto -mb-5 px-12 w-full max-w-md lg:max-w-xl mt-12 lg:mt-24">
+        <div className="mx-auto -mb-5 mt-12 flex w-full max-w-md justify-center px-12 lg:mt-24 lg:max-w-xl">
           <Image
             alt="JME Film Production Company"
             height={100}
@@ -90,7 +90,7 @@ function Home({ homePage }) {
         </div>
       )}
       {isDesktop && (
-        <div className="mx-auto -mb-5 px-12 w-full max-w-md lg:max-w-xl mt-12 lg:mt-24">
+        <div className="mx-auto -mb-5 mt-12 w-full max-w-md px-12 lg:mt-24 lg:max-w-xl">
           <Image
             alt="JME Film Production Company"
             height={202}

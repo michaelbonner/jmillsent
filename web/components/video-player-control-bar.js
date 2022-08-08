@@ -33,10 +33,10 @@ export const VideoPlayerControlBar = ({
   }, [setScrubberWidth])
 
   return (
-    <div className="flex gap-x-2 md:gap-x-8 relative z-10 container mx-auto pt-3 bg-black">
+    <div className="container relative z-10 mx-auto flex gap-x-2 bg-black pt-3 md:gap-x-8">
       <button
         aria-label="Play/Pause"
-        className="relative text-4xl w-6 h-6 md:w-8 md:h-8 outline-0"
+        className="relative h-6 w-6 text-4xl outline-0 md:h-8 md:w-8"
         onClick={handleTogglePlay}
         title="Play/Pause"
       >
@@ -47,7 +47,7 @@ export const VideoPlayerControlBar = ({
               'opacity-100': isPlaying,
               'opacity-0': !isPlaying,
             },
-            `absolute inset-0 transition-all duration-500 fill-current w-6 h-6 md:w-8 md:h-8`
+            `absolute inset-0 h-6 w-6 fill-current transition-all duration-500 md:h-8 md:w-8`
           )}
         />
         <GrPlay
@@ -57,13 +57,13 @@ export const VideoPlayerControlBar = ({
               'opacity-100': !isPlaying,
               'opacity-0': isPlaying,
             },
-            `absolute inset-0 transition-all duration-500 fill-current w-6 h-6 md:w-8 md:h-8`
+            `absolute inset-0 h-6 w-6 fill-current transition-all duration-500 md:h-8 md:w-8`
           )}
         />
       </button>
       <button
         aria-label="Player scrubber bar"
-        className="relative flex-grow border-2 border-gray-300 rounded overflow-hidden"
+        className="relative flex-grow overflow-hidden rounded border-2 border-gray-300"
         onClick={(e) => {
           if (!scrubber.current) {
             return
@@ -82,13 +82,13 @@ export const VideoPlayerControlBar = ({
         ref={scrubber}
       >
         <div
-          className="h-full w-1 bg-gray-500 absolute top-0"
+          className="absolute top-0 h-full w-1 bg-gray-500"
           style={{
             transform: `translate3d(${scrubberPosition}px,0, 0)`,
           }}
         ></div>
       </button>
-      <div className="text-2xl flex items-center gap-x-2 md:gap-x-6">
+      <div className="flex items-center gap-x-2 text-2xl md:gap-x-6">
         {muted === true ? (
           <button
             aria-label="Unmute"

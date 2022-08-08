@@ -28,8 +28,8 @@ const BackgroundText = ({
   }
   const titleStyle = leftOrRight === 'left' ? 'lg:text-left' : 'lg:text-right'
   return (
-    <div className="border p-4 lg:p-6 border-gray-300">
-      <div className="w-full relative group" style={{ lineHeight: 0 }}>
+    <div className="border border-gray-300 p-4 lg:p-6">
+      <div className="group relative w-full" style={{ lineHeight: 0 }}>
         <Image
           alt={imageAlt}
           height={600}
@@ -39,13 +39,13 @@ const BackgroundText = ({
           width={1246}
         />
         <div
-          className={`lg:absolute w-full ${styles[leftOrRight].containerPosition} top-0 bottom-0 h-full ${styles[leftOrRight].gradientDirection} from-black to-transparent opacity-70 group-hover:opacity-80 transition-all duration-500`}
+          className={`w-full lg:absolute ${styles[leftOrRight].containerPosition} top-0 bottom-0 h-full ${styles[leftOrRight].gradientDirection} from-black to-transparent opacity-70 transition-all duration-500 group-hover:opacity-80`}
         />
         <div
-          className={`lg:absolute ${styles[leftOrRight].containerPosition} top-0 bottom-0 ${styles[leftOrRight].textAlign} flex flex-col justify-center items-start sm:gap-y-2`}
+          className={`lg:absolute ${styles[leftOrRight].containerPosition} top-0 bottom-0 ${styles[leftOrRight].textAlign} flex flex-col items-start justify-center sm:gap-y-2`}
         >
           <H3
-            className={`${titleStyle} inline !mt-3 w-full uppercase text-center !mb-0 py-1`}
+            className={`${titleStyle} !mt-3 !mb-0 inline w-full py-1 text-center uppercase`}
           >
             {title}
           </H3>
@@ -54,7 +54,7 @@ const BackgroundText = ({
               <div className={`${styles[leftOrRight].barPosition}`}>
                 <LittleGoldBar />
               </div>
-              <div className="max-w-lg prose-lg mx-auto text-white font-light leading-normal mt-1.5">
+              <div className="prose-lg mx-auto mt-1.5 max-w-lg font-light leading-normal text-white">
                 <PortableText value={description} />
               </div>
             </>

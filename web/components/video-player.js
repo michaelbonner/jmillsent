@@ -311,7 +311,7 @@ const VideoPlayer = ({
     <article
       className={classNames(
         {
-          'h-screen flex flex-col justify-center items-center': isFullscreen,
+          'flex h-screen flex-col items-center justify-center': isFullscreen,
         },
         'bpd-player-container relative z-20'
       )}
@@ -327,10 +327,10 @@ const VideoPlayer = ({
             )}
           >
             {poster ? (
-              <div className="w-full h-full overflow-hidden">
+              <div className="h-full w-full overflow-hidden">
                 <SanityImage
                   alt={`Video poster`}
-                  className="w-full h-full object-contain object-center"
+                  className="h-full w-full object-contain object-center"
                   image={poster}
                 />
               </div>
@@ -353,7 +353,7 @@ const VideoPlayer = ({
       <div
         className={
           playerState === 'playing'
-            ? 'flex items-center w-full h-full'
+            ? 'flex h-full w-full items-center'
             : 'hidden'
         }
       >
@@ -369,7 +369,7 @@ const VideoPlayer = ({
         >
           <div
             className={classNames(
-              `lg:my-0 relative`,
+              `relative lg:my-0`,
               `aspect-w-${videoWidthAspectRatio} aspect-h-${videoHeightAspectRatio}`,
               `transition-all duration-700`,
               {
@@ -432,7 +432,7 @@ const VideoPlayer = ({
             {poster ? (
               <Image
                 alt={`${client || ''} ${description || ''} poster`}
-                className="w-full h-full"
+                className="h-full w-full"
                 src={urlForSanitySource(poster)
                   .width(1200)
                   .height(

@@ -29,10 +29,10 @@ function Contact({ contact }) {
           backgroundPosition: 'center center',
         }}
       >
-        <div className="max-w-5xl mx-auto px-4 lg:px-0 pt-12 text-center">
+        <div className="mx-auto max-w-5xl px-4 pt-12 text-center lg:px-0">
           <H1>{contact.title}</H1>
         </div>
-        <div className="max-w-7xl w-full mx-auto px-4 mt-8 lg:mt-16">
+        <div className="mx-auto mt-8 w-full max-w-7xl px-4 lg:mt-16">
           <ContactForm />
         </div>
 
@@ -40,20 +40,20 @@ function Contact({ contact }) {
 
         <div>
           <div
-            className="flex flex-wrap max-w-7xl justify-center mx-auto text-center gap-y-10"
+            className="mx-auto flex max-w-7xl flex-wrap justify-center gap-y-10 text-center"
             id="contacts"
           >
             {contact.representationCards.map((card) => {
               return (
                 <div className="w-full sm:w-1/2 lg:w-1/3" key={card.title}>
-                  <div className="border border-gray-500 p-8 mx-5 h-full flex flex-col justify-center">
-                    <p className="tracking-wider font-bold text-xl">
+                  <div className="mx-5 flex h-full flex-col justify-center border border-gray-500 p-8">
+                    <p className="text-xl font-bold tracking-wider">
                       {card.title}
                     </p>
-                    <div className="w-32 mx-auto">
+                    <div className="mx-auto w-32">
                       <LittleWhiteBar yMargin="my-4" />
                     </div>
-                    <div className="leading-9 prose prose-lg prose-white text-gray-300 mx-auto">
+                    <div className="prose-white prose prose-lg mx-auto leading-9 text-gray-300">
                       <PortableText value={card.body} />
                     </div>
                   </div>
@@ -65,24 +65,24 @@ function Contact({ contact }) {
           <DividerBar yMargin="my-12 lg:my-24" />
 
           <div className="px-4">
-            <div className="mx-auto max-w-7xl border border-gray-500 rounded-lg">
+            <div className="mx-auto max-w-7xl rounded-lg border border-gray-500">
               <Map />
             </div>
           </div>
 
           <div
-            className="flex flex-wrap max-w-7xl justify-center mx-auto text-center mt-12 lg:mt-16"
+            className="mx-auto mt-12 flex max-w-7xl flex-wrap justify-center text-center lg:mt-16"
             id="contacts"
           >
             <div className="w-full sm:w-1/2 lg:w-1/3">
-              <div className="border border-gray-500 p-8 mx-5">
-                <p className="tracking-wider font-bold text-xl uppercase">
+              <div className="mx-5 border border-gray-500 p-8">
+                <p className="text-xl font-bold uppercase tracking-wider">
                   Studio Address
                 </p>
-                <div className="w-32 mx-auto">
+                <div className="mx-auto w-32">
                   <LittleWhiteBar yMargin="my-4" />
                 </div>
-                <div className="leading-9 prose prose-lg prose-white text-gray-300">
+                <div className="prose-white prose prose-lg leading-9 text-gray-300">
                   <a
                     className="no-underline"
                     href="https://g.page/jmillsent?share"
@@ -100,8 +100,8 @@ function Contact({ contact }) {
           </div>
         </div>
 
-        <div className="my-12 lg:my-16 grid gap-y-12">
-          <div className="flex gap-16 items-center justify-center">
+        <div className="my-12 grid gap-y-12 lg:my-16">
+          <div className="flex items-center justify-center gap-16">
             <a
               href="https://www.instagram.com/jmillsent/"
               target="_blank"

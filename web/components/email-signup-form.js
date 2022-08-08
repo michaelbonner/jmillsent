@@ -16,16 +16,16 @@ const EmailSignupForm = ({ title = '', mailchimpTagId = '' }) => {
       >
         <input type="hidden" name="tags" value={mailchimpTagId} readOnly />
         <div>
-          <h2 className="uppercase text-gray-100 font-light">{title}</h2>
-          <div className="flex justify-center mx-auto w-full max-w-lg mt-4">
-            <div className="flex justify-center items-center w-full rounded">
+          <h2 className="font-light uppercase text-gray-100">{title}</h2>
+          <div className="mx-auto mt-4 flex w-full max-w-lg justify-center">
+            <div className="flex w-full items-center justify-center rounded">
               <label className="sr-only" htmlFor="mce-EMAIL">
                 Email Address <span className="asterisk">*</span>
               </label>
               <input
                 type="email"
                 name="EMAIL"
-                className="rounded-l-md flex-1 py-2 px-4 bg-black bg-opacity-70 text-white border-2 border-r-0 border-gray-300 -mr-1 focus:bg-opacity-90"
+                className="-mr-1 flex-1 rounded-l-md border-2 border-r-0 border-gray-300 bg-black bg-opacity-70 py-2 px-4 text-white focus:bg-opacity-90"
                 id="mce-EMAIL"
                 placeholder="EMAIL ADDRESS"
                 required
@@ -43,7 +43,7 @@ const EmailSignupForm = ({ title = '', mailchimpTagId = '' }) => {
               </div>
               <button
                 className={classNames(
-                  'flex items-center gap-x-2 px-4 py-2 border-2 border-gray-300 rounded-md transition-colors group',
+                  'group flex items-center gap-x-2 rounded-md border-2 border-gray-300 px-4 py-2 transition-colors',
                   'hover:bg-gold hover:text-black'
                 )}
                 type="submit"
@@ -52,7 +52,7 @@ const EmailSignupForm = ({ title = '', mailchimpTagId = '' }) => {
               >
                 <span>Submit</span>
                 <svg
-                  className="text-white group-hover:text-black fill-current h-6 w-6"
+                  className="h-6 w-6 fill-current text-white group-hover:text-black"
                   enableBackground="new 0 0 100 120"
                   viewBox="0 0 100 120"
                   xmlns="http://www.w3.org/2000/svg"

@@ -15,11 +15,11 @@ export const VideoPlayerOverlayButton = ({
     <button
       className={classNames(
         showVideoOverlay && 'opacity-100',
-        !showVideoOverlay && 'opacity-0 pointer-events-none',
+        !showVideoOverlay && 'pointer-events-none opacity-0',
         hasClicked &&
           showVideoOverlay &&
           'pointer-events-none md:pointer-events-auto',
-        'absolute inset-0 w-full h-full bg-transparent cursor-pointer text-3xl text-left transition-all duration-500 outline-0 pb-[40px] bottom-[40px]'
+        'absolute inset-0 bottom-[40px] h-full w-full cursor-pointer bg-transparent pb-[40px] text-left text-3xl outline-0 transition-all duration-500'
       )}
       onClick={handleOverlayClick}
     >
@@ -33,27 +33,27 @@ export const VideoPlayerOverlayButton = ({
         )}
       >
         {!isIpad && (
-          <div className="z-10 bg-transparent flex items-center justify-center xl:justify-start cursor-pointer text-4xl xl:text-6xl">
+          <div className="z-10 flex cursor-pointer items-center justify-center bg-transparent text-4xl xl:justify-start xl:text-6xl">
             <div
               className={classNames(
-                `flex bpd-white-icon transition-opacity duration-500 border md:border-2 border-gray-300 ml-1 rounded-full items-center justify-center`
+                `bpd-white-icon ml-1 flex items-center justify-center rounded-full border border-gray-300 transition-opacity duration-500 md:border-2`
               )}
             >
-              <GrPlay className="w-10 h-10 lg:w-14 lg:h-14 py-3 pl-1 lg:pl-2" />
+              <GrPlay className="h-10 w-10 py-3 pl-1 lg:h-14 lg:w-14 lg:pl-2" />
             </div>
           </div>
         )}
-        <div className="border-l-2 md:border-l-4 border-gold pl-2 lg:pl-6">
-          <div className="font-bold uppercase text-xl lg:text-4xl">
+        <div className="border-l-2 border-gold pl-2 md:border-l-4 lg:pl-6">
+          <div className="text-xl font-bold uppercase lg:text-4xl">
             {client}
           </div>
-          <div className="font-outline uppercase text-2xl lg:text-5xl">
+          <div className="font-outline text-2xl uppercase lg:text-5xl">
             {title}
           </div>
           {description && (
             <div className="w-64">
               <LittleGoldBar />
-              <div className="w-full uppercase text-base tracking-wide max-w-sm max-h-[300px] overflow-y-scroll whitespace-pre-wrap">
+              <div className="max-h-[300px] w-full max-w-sm overflow-y-scroll whitespace-pre-wrap text-base uppercase tracking-wide">
                 {description}
               </div>
             </div>

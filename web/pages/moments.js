@@ -54,9 +54,9 @@ function Moments({ momentsPage }) {
   ]
 
   const heroContent = (
-    <div className="h-full w-full flex flex-col items-center justify-center text-white">
+    <div className="flex h-full w-full flex-col items-center justify-center text-white">
       <H1>{momentsPage.title}</H1>
-      <h2 className="uppercase font-outline text-2xl lg:text-6xl">
+      <h2 className="font-outline text-2xl uppercase lg:text-6xl">
         {momentsPage.subtitle}
       </h2>
     </div>
@@ -92,10 +92,10 @@ function Moments({ momentsPage }) {
       <LittleWhiteBar />
 
       {/* moments images */}
-      <section className="max-w-13xl mx-auto text-center my-12 lg:mt-16 px-6">
+      <section className="mx-auto my-12 max-w-13xl px-6 text-center lg:mt-16">
         <div
           className={classNames(
-            'mt-0 grid grid-cols-2 lg:grid-cols-12 gap-4 px-1'
+            'mt-0 grid grid-cols-2 gap-4 px-1 lg:grid-cols-12'
           )}
         >
           {momentsPage.images
@@ -126,7 +126,7 @@ function Moments({ momentsPage }) {
                 >
                   <Image
                     alt={altText}
-                    className={`cursor-pointer bpd-gallery-image`}
+                    className={`bpd-gallery-image cursor-pointer`}
                     height={height}
                     onClick={() => {
                       setIsGalleryModelOpen(true)

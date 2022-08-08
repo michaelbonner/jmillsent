@@ -42,7 +42,7 @@ const WorkItemTile = ({ workItem, index, hideAfterCount = 999 }) => {
           (workItem.shortClipOgvURL || workItem.shortClipOgvS3URL) && (
             <video
               className={classNames(
-                `absolute w-full h-full inset-0 object-cover transition-all duration-700`,
+                `absolute inset-0 h-full w-full object-cover transition-all duration-700`,
                 {
                   'opacity-100': workItem.shortClipMp4S3URL && isHovered,
                   'opacity-0': !workItem.shortClipMp4S3URL || !isHovered,
@@ -83,10 +83,10 @@ const WorkItemTile = ({ workItem, index, hideAfterCount = 999 }) => {
             </video>
           )}
         <div className="z-10 text-center">
-          <h2 className="uppercase font-extrabold text-3xl lg:text-2xl">
+          <h2 className="text-3xl font-extrabold uppercase lg:text-2xl">
             {workItem.clientName}
           </h2>
-          <h3 className="uppercase font-outline text-3xl lg:text-2xl">
+          <h3 className="font-outline text-3xl uppercase lg:text-2xl">
             {workItem.title}
           </h3>
         </div>

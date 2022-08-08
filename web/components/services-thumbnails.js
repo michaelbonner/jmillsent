@@ -4,9 +4,9 @@ import { Link as SmoothScrollLink } from 'react-scroll'
 const ServicesThumbnails = ({ services }) => {
   // grid-cols-1 grid-cols-2 grid-cols-3 grid-cols-4 grid-cols-5 grid-cols-6 grid-cols-7 grid-cols-8 grid-cols-9 grid-cols-10 grid-cols-11 grid-cols-12
   return (
-    <div className="lg:block z-20 top-0 mt-6">
+    <div className="top-0 z-20 mt-6 lg:block">
       <div
-        className={`hidden max-w-7xl bg-black bg-opacity-80 my-6 p-1 mx-auto lg:grid grid-cols-${
+        className={`my-6 mx-auto hidden max-w-7xl bg-black bg-opacity-80 p-1 lg:grid grid-cols-${
           services?.length || 1
         }`}
       >
@@ -33,7 +33,7 @@ const ServicesThumbnails = ({ services }) => {
                 smooth={true}
                 offset={-20}
                 duration={500}
-                className={`relative bg-gold p-px cursor-pointer opacity-60 hover:opacity-100 transition-opacity duration-500 -mx-1`}
+                className={`relative -mx-1 cursor-pointer bg-gold p-px opacity-60 transition-opacity duration-500 hover:opacity-100`}
                 key={service._id}
                 style={{
                   clipPath,
@@ -52,7 +52,7 @@ const ServicesThumbnails = ({ services }) => {
                   }}
                 />
                 <div className="absolute inset-0 flex items-end justify-center pb-1.5">
-                  <div className="text-white text-center text-sm font-bold uppercase tracking-wider text-shadow-md">
+                  <div className="text-shadow-md text-center text-sm font-bold uppercase tracking-wider text-white">
                     {service.name}
                   </div>
                 </div>

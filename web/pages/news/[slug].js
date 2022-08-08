@@ -17,7 +17,7 @@ const NewsItem = ({ newsItem = {} }) => {
   return (
     <>
       <Layout title={newsItem.seoTitle} description={newsItem.seoDescription}>
-        <div className="mx-auto lg:max-w-7xl grid gap-y-8">
+        <div className="mx-auto grid gap-y-8 lg:max-w-7xl">
           {!newsItem.videoId && (
             <Image
               alt={newsItem.seoTitle}
@@ -29,7 +29,7 @@ const NewsItem = ({ newsItem = {} }) => {
             />
           )}
           {newsItem.videoId && (
-            <div className="border border-gray-300 py-8 px-8 container max-w-7xl mx-auto">
+            <div className="container mx-auto max-w-7xl border border-gray-300 py-8 px-8">
               <VideoPlayer
                 poster={newsItem.heroImage}
                 title={newsItem.title}
@@ -39,15 +39,15 @@ const NewsItem = ({ newsItem = {} }) => {
               />
             </div>
           )}
-          <div className="w-full max-w-5xl mx-auto px-8 flex justify-between items-center gap-x-4 sm:gap-x-32 text-lg sm:text-3xl uppercase">
+          <div className="mx-auto flex w-full max-w-5xl items-center justify-between gap-x-4 px-8 text-lg uppercase sm:gap-x-32 sm:text-3xl">
             <h1 className="font-extrabold">{newsItem.title}</h1>
             <Date dateString={newsItem.date} />
           </div>
-          <div className="w-full max-w-5xl mx-auto sm:px-8">
+          <div className="mx-auto w-full max-w-5xl sm:px-8">
             <LargeGoldBar yMargin="my-0" />
           </div>
           {newsItem.body && (
-            <div className="w-full max-w-5xl mx-auto px-8 text-center prose prose-invert prose-lg">
+            <div className="prose prose-lg prose-invert mx-auto w-full max-w-5xl px-8 text-center">
               <PortableText
                 components={portableTextComponents}
                 value={newsItem.body}
@@ -57,7 +57,7 @@ const NewsItem = ({ newsItem = {} }) => {
           <div className="mt-10">
             <div className="text-center">
               <Link href="/news">
-                <a className="inline-flex gap-3 items-center justify-center px-3 py-1 mt-4 text-2xl uppercase hover:bg-gold transition-colors border-2 border-gray-300 group">
+                <a className="group mt-4 inline-flex items-center justify-center gap-3 border-2 border-gray-300 px-3 py-1 text-2xl uppercase transition-colors hover:bg-gold">
                   <span className="font-outline tracking-tighter text-gray-300 group-hover:text-black">
                     More
                   </span>

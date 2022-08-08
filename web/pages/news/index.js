@@ -8,10 +8,10 @@ import { Fragment } from 'react'
 
 function News({ newsPage, newsItems }) {
   const heroContent = (
-    <div className="sm:mb-10 -my-2 sm:my-10 w-full text-white flex items-center justify-center">
-      <div className="w-screen px-4 flex flex-col items-center justify-center text-center">
+    <div className="-my-2 flex w-full items-center justify-center text-white sm:my-10 sm:mb-10">
+      <div className="flex w-screen flex-col items-center justify-center px-4 text-center">
         <H1>{newsPage.seoTitle}</H1>
-        <H2 className="uppercase font-outline sm:text-2xl lg:text-5xl">
+        <H2 className="font-outline uppercase sm:text-2xl lg:text-5xl">
           {newsPage.seoDescription}
         </H2>
       </div>
@@ -25,8 +25,8 @@ function News({ newsPage, newsItems }) {
       heroImageUrl={newsPage.poster}
       heroContent={heroContent}
     >
-      <div className="max-w-7xl mt-12 lg:mt-24 mx-auto pb-8">
-        <div className="grid gap-y-12 lg:gap-y-0 justify-center">
+      <div className="mx-auto mt-12 max-w-7xl pb-8 lg:mt-24">
+        <div className="grid justify-center gap-y-12 lg:gap-y-0">
           {newsItems.map((newsItem, index) => {
             return (
               <Fragment key={index}>

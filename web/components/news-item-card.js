@@ -5,11 +5,11 @@ import Date from './date'
 
 const NewsItemCard = ({ newsItem }) => {
   return (
-    <div className="grid gap-y-4 z-10 w-full lg:max-w-2xl xl:max-w-4xl px-8">
+    <div className="z-10 grid w-full gap-y-4 px-8 lg:max-w-2xl xl:max-w-4xl">
       <Link href={`/news/${newsItem.slug?.current}`}>
         <a
           key={newsItem._id}
-          className="w-full flex items-center justify-center"
+          className="flex w-full items-center justify-center"
         >
           <Image
             alt={newsItem.seoTitle}
@@ -22,22 +22,22 @@ const NewsItemCard = ({ newsItem }) => {
         </a>
       </Link>
 
-      <div className="mx-auto w-full my-2 sm:my-4 lg:max-w-2xl xl:max-w-4xl sm:px-8">
+      <div className="mx-auto my-2 w-full sm:my-4 sm:px-8 lg:max-w-2xl xl:max-w-4xl">
         <Link href={`/news/${newsItem.slug?.current}`}>
-          <a className="flex flex-nowrap justify-between items-center text-lg gap-x-4 sm:text-3xl uppercase border-b border-gold pb-4 sm:pb-7">
+          <a className="flex flex-nowrap items-center justify-between gap-x-4 border-b border-gold pb-4 text-lg uppercase sm:pb-7 sm:text-3xl">
             <h2 className="font-extrabold tracking-wide">{newsItem.title}</h2>
             <Date dateString={newsItem.date} />
           </a>
         </Link>
       </div>
 
-      <p className="text-center max-w-5xl mx-auto prose prose-invert sm:px-8 sm:text-lg">
+      <p className="prose prose-invert mx-auto max-w-5xl text-center sm:px-8 sm:text-lg">
         {newsItem.description}
       </p>
 
-      <div className="text-center mt-2">
+      <div className="mt-2 text-center">
         <Link href={`/news/${newsItem.slug?.current}`} key={newsItem._id}>
-          <a className="inline-flex gap-3 items-center justify-center px-3 py-1 mt-4 text-2xl uppercase hover:bg-gold transition-colors border-2 border-gray-300 group">
+          <a className="group mt-4 inline-flex items-center justify-center gap-3 border-2 border-gray-300 px-3 py-1 text-2xl uppercase transition-colors hover:bg-gold">
             <span className="font-outline tracking-tighter text-gray-300 group-hover:text-black">
               {newsItem.customButtonTextSection1 || `Read`}
             </span>

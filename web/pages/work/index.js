@@ -10,14 +10,14 @@ import EmailSignupForm from '@/components/email-signup-form'
 function Work({ workPage, workItems }) {
   return (
     <Layout title={workPage.seoTitle} description={workPage.seoDescription}>
-      <div className="mx-1 grid grid-cols-1 lg:grid-cols-3 gap-1">
+      <div className="mx-1 grid grid-cols-1 gap-1 lg:grid-cols-3">
         {workItems.map((workItem, index) => {
           return <WorkItemTile workItem={workItem} key={index} />
         })}
       </div>
-      <div className="container px-12 mx-auto text-white text-center mt-12">
+      <div className="container mx-auto mt-12 px-12 text-center text-white">
         {workPage.workPageDescription && (
-          <div className="border prose-lg max-w-lg py-1 text-center mx-auto">
+          <div className="prose-lg mx-auto max-w-lg border py-1 text-center">
             <PortableText value={workPage.workPageDescription} />
           </div>
         )}

@@ -22,10 +22,10 @@ function Studio({ studioPage }) {
   const isDesktop = useIsDesktop()
 
   const heroContent = (
-    <div className="h-full w-full grid lg:gap-y-4 items-center text-white">
-      <div className="grid text-center lg:mt-16 items-center justify-center pt-4">
+    <div className="grid h-full w-full items-center text-white lg:gap-y-4">
+      <div className="grid items-center justify-center pt-4 text-center lg:mt-16">
         <H1 className="mb-0">{studioPage.title}</H1>
-        <h2 className="uppercase font-outline text-3xl lg:text-7xl">
+        <h2 className="font-outline text-3xl uppercase lg:text-7xl">
           {studioPage.subtitle}
         </h2>
       </div>
@@ -82,17 +82,17 @@ function Studio({ studioPage }) {
         />
       )}
 
-      <div className="container px-4 sm:px-6 mx-auto text-white text-center mt-12 lg:mt-24">
+      <div className="container mx-auto mt-12 px-4 text-center text-white sm:px-6 lg:mt-24">
         <H2>{studioPage.section1Title}</H2>
         {studioPage.section1Body && (
-          <div className="mt-4 lg:mt-10 px-4 prose-lg max-w-5xl text-center mx-auto -mb-2">
+          <div className="prose-lg mx-auto mt-4 -mb-2 max-w-5xl px-4 text-center lg:mt-10">
             <PortableText value={studioPage.section1Body} />
           </div>
         )}
         <DividerBar />
-        <div className="px-8 container mx-auto text-center uppercase -mt-1.5">
+        <div className="container mx-auto -mt-1.5 px-8 text-center uppercase">
           <H2>{studioPage.section3Title}</H2>
-          <p className="uppercase font-outline text-xl lg:text-5xl leading-4">
+          <p className="font-outline text-xl uppercase leading-4 lg:text-5xl">
             {studioPage.section3Subtitle}
           </p>
         </div>
@@ -100,15 +100,15 @@ function Studio({ studioPage }) {
         {/* Ternary to remove hero video & video player if no videoId found. */}
         {studioPage.tourVideoId && (
           <>
-            <div className="px-8 container mx-auto text-center" id="tour">
+            <div className="container mx-auto px-8 text-center" id="tour">
               <H2>{studioPage.section2Title}</H2>
-              <p className="uppercase font-outline text-xl lg:text-5xl">
+              <p className="font-outline text-xl uppercase lg:text-5xl">
                 {studioPage.section2Subtitle}
               </p>
             </div>
             <div
               id="tour"
-              className="border border-gray-300 mt-4 lg:mt-10 p-4 lg:p-8 container max-w-7xl mx-auto"
+              className="container mx-auto mt-4 max-w-7xl border border-gray-300 p-4 lg:mt-10 lg:p-8"
             >
               <VideoPlayer
                 poster={studioPage.tourVideoPoster}
@@ -128,14 +128,14 @@ function Studio({ studioPage }) {
 
         {/* studioItems */}
         <section id="studio-items">
-          <div className="px-8 container mx-auto text-center uppercase -mt-1.5">
+          <div className="container mx-auto -mt-1.5 px-8 text-center uppercase">
             <H2>{studioPage.studioItemSectionTitle}</H2>
-            <p className="uppercase font-outline text-xl lg:text-5xl leading-4">
+            <p className="font-outline text-xl uppercase leading-4 lg:text-5xl">
               {studioPage.studioItemSectionSubtitle}
             </p>
           </div>
           {studioPage.studioItems?.length > 0 && (
-            <div className="grid gap-y-4 sm:gap-y-8 lg:gap-y-12 mt-10 max-w-7xl mx-auto">
+            <div className="mx-auto mt-10 grid max-w-7xl gap-y-4 sm:gap-y-8 lg:gap-y-12">
               {studioPage.studioItems.map((service, index) => {
                 const leftOrRight = service.rightAlign ? 'right' : 'left'
                 return (

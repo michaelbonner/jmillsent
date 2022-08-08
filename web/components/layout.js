@@ -213,16 +213,16 @@ const Layout = ({
 
       <div
         className={`
-        bg-black pointer-events-none fixed inset-0 transition-opacity duration-[3000ms] z-30
+        pointer-events-none fixed inset-0 z-30 bg-black transition-opacity duration-[3000ms]
           ${heroVideoId && !videoPlaying ? `opacity-100` : `opacity-0`}
             `}
       >
         <div
           className={`${
             heroVideoId && !videoPlaying
-              ? `opacity-100 animate-pulse`
+              ? `animate-pulse opacity-100`
               : `opacity-0`
-          } w-full h-full flex items-center justify-center duration-1500`}
+          } duration-1500 flex h-full w-full items-center justify-center`}
         >
           <Image
             alt="JMills Logo"
@@ -236,7 +236,7 @@ const Layout = ({
 
       <div
         className={classNames(
-          'bg-black lg:absolute w-full z-50 top-0',
+          'top-0 z-50 w-full bg-black lg:absolute',
           !menuOpen && 'absolute',
           menuOpen && 'sticky'
         )}
@@ -249,8 +249,8 @@ const Layout = ({
               relative: menuVisible,
               hidden: !menuVisible,
             },
-            'w-full transition-all ease-in delay-500 duration-300',
-            'z-50 flex justify-between items-start overflow-visible text-white py-4 px-6'
+            'w-full transition-all delay-500 duration-300 ease-in',
+            'z-50 flex items-start justify-between overflow-visible py-4 px-6 text-white'
           )}
         >
           <div className="hidden lg:flex">
@@ -278,14 +278,14 @@ const Layout = ({
             </Link>
           </div>
           <button
-            className="w-12 h-8 focus:outline-none absolute top-5 lg:top-10 right-6"
+            className="absolute top-5 right-6 h-8 w-12 focus:outline-none lg:top-10"
             onClick={() => toggleMenu(!menuOpen)}
             aria-label="Close menu"
           >
             <span style={{ width: '48px', height: '32px' }}>
               <Image
                 alt="Close menu"
-                className="w-12 h-8 fill-current text-white stroke-2 stroke-current"
+                className="h-8 w-12 fill-current stroke-current stroke-2 text-white"
                 src={`/images/menu-close-white.svg`}
                 layout="fill"
               />
@@ -301,8 +301,8 @@ const Layout = ({
             fixed: menuVisible,
             hidden: !menuVisible,
           },
-          'bg-black inset-0 top-[83px] pb-[20px] transform transition-all ease-in',
-          'duration-300 z-40 text-right flex flex-col justify-center items-center overflow-y-scroll'
+          'inset-0 top-[83px] transform bg-black pb-[20px] transition-all ease-in',
+          'z-40 flex flex-col items-center justify-center overflow-y-scroll text-right duration-300'
         )}
       >
         {navItems.map((navItem, index) => {
@@ -315,9 +315,9 @@ const Layout = ({
                       ? 'text-white'
                       : 'text-gray-500'
                   }`,
-                  `font-bold relative group py-[3vh] lg:py-6 uppercase max-w-[80vw]`,
-                  `text-2xl md:text-4xl xl:text-6xl tracking-wider`,
-                  `transition-all duration-700 w-96 text-center`
+                  `group relative max-w-[80vw] py-[3vh] font-bold uppercase lg:py-6`,
+                  `text-2xl tracking-wider md:text-4xl xl:text-6xl`,
+                  `w-96 text-center transition-all duration-700`
                 )}
                 onMouseEnter={() => setHoveredMenuItem(navItem.href)}
                 onMouseLeave={() => setHoveredMenuItem('')}
@@ -339,7 +339,7 @@ const Layout = ({
                       'w-full': hoveredMenuItem === navItem.href,
                       'w-0': hoveredMenuItem !== navItem.href,
                     },
-                    'transition-all duration-500 absolute z-0 left-0 right-0 bg-white'
+                    'absolute left-0 right-0 z-0 bg-white transition-all duration-500'
                   )}
                   style={{
                     bottom: 'calc(50% - 1px)',
@@ -354,7 +354,7 @@ const Layout = ({
 
       <div
         className={classNames(
-          'lg:relative z-20 top-0 flex items-center justify-between py-4 px-6 bg-black w-full',
+          'top-0 z-20 flex w-full items-center justify-between bg-black py-4 px-6 lg:relative',
           menuOpen && 'fixed',
           !menuOpen && 'sticky'
         )}
@@ -383,10 +383,10 @@ const Layout = ({
             </a>
           </Link>
         </div>
-        <div className="flex justify-end items-center">
+        <div className="flex items-center justify-end">
           <div className="relative lg:ml-8 lg:mr-0">
             <button
-              className="w-12 h-8 focus:outline-none relative hover:animate-pulse"
+              className="relative h-8 w-12 hover:animate-pulse focus:outline-none"
               onClick={() => toggleMenu(!menuOpen)}
               aria-label="Open menu"
             >
@@ -398,12 +398,12 @@ const Layout = ({
                     absolute: !menuVisible,
                     hidden: menuVisible,
                   },
-                  'top-0 right-0 w-12 h-8 transform transition-all ease-in duration-300'
+                  'top-0 right-0 h-8 w-12 transform transition-all duration-300 ease-in'
                 )}
               >
                 <Image
                   alt="Open menu"
-                  className="w-12 h-8 fill-current text-white stroke-2 stroke-current"
+                  className="h-8 w-12 fill-current stroke-current stroke-2 text-white"
                   src={showHero ? `/images/menu-white.svg` : `/images/menu.svg`}
                   layout="fill"
                 />
@@ -418,7 +418,7 @@ const Layout = ({
           <div
             className={classNames(
               {
-                'lg:bg-gradient-to-b from-gray-700 to-black via-gray-800 lg:bg-opacity-25':
+                'from-gray-700 via-gray-800 to-black lg:bg-opacity-25 lg:bg-gradient-to-b':
                   heroVideoId,
               },
               `relative h-full bg-black`
@@ -432,7 +432,7 @@ const Layout = ({
                     'opacity-100': videoPlaying,
                     'opacity-0': !videoPlaying,
                   },
-                  `absolute z-0 inset-0`
+                  `absolute inset-0 z-0`
                 )}
                 height={heroVideoHeight}
                 width={heroVideoWidth}
@@ -463,7 +463,7 @@ const Layout = ({
                   width={heroVideoWidth}
                 />
                 {heroContent && (
-                  <div className="z-30 h-full w-screen text-white relative">
+                  <div className="relative z-30 h-full w-screen text-white">
                     {heroContent}
                   </div>
                 )}
@@ -471,7 +471,7 @@ const Layout = ({
             ) : (
               heroContent && (
                 <div
-                  className="flex items-center z-30 h-full w-screen text-white relative"
+                  className="relative z-30 flex h-full w-screen items-center text-white"
                   style={{ minHeight: `20vh` }}
                 >
                   {heroContent}
@@ -481,11 +481,11 @@ const Layout = ({
           </div>
         )}
       </header>
-      <main className="bg-black text-white relative z-10 w-full">
+      <main className="relative z-10 w-full bg-black text-white">
         {children}
       </main>
-      <footer className="bg-black relative z-10 text-center -mt-1.5">
-        <nav className="w-full container max-w-5xl px-12 lg:px-4 pb-8 mx-auto flex flex-wrap justify-center lg:justify-around gap-4">
+      <footer className="relative z-10 -mt-1.5 bg-black text-center">
+        <nav className="container mx-auto flex w-full max-w-5xl flex-wrap justify-center gap-4 px-12 pb-8 lg:justify-around lg:px-4">
           {navItems.map((navItem, index) => {
             return (
               <Link key={index} href={navItem.href}>
@@ -494,7 +494,7 @@ const Layout = ({
                     {
                       'border-b': router.route === navItem.href,
                     },
-                    `font-bold text-white uppercase pb-1 text-lg lg:text-2xl`
+                    `pb-1 text-lg font-bold uppercase text-white lg:text-2xl`
                   )}
                 >
                   {navItem.name}

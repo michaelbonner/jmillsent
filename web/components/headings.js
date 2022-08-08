@@ -6,7 +6,7 @@ const H1 = ({ children, className = '' }) => {
     <h1
       className={classNames(
         className,
-        'uppercase font-extrabold text-2xl lg:text-7xl lg:mb-4'
+        'text-2xl font-extrabold uppercase lg:mb-4 lg:text-7xl'
       )}
     >
       {children}
@@ -18,7 +18,7 @@ const H2 = ({ children, className = '' }) => {
     <h2
       className={classNames(
         className,
-        'uppercase font-extrabold text-2xl lg:text-5xl mb-2'
+        'mb-2 text-2xl font-extrabold uppercase lg:text-5xl'
       )}
     >
       {children}
@@ -30,7 +30,7 @@ const H3 = ({ children, className = '' }) => {
     <h3
       className={classNames(
         className,
-        'uppercase font-extrabold text-xl lg:text-3xl mb-2'
+        'mb-2 text-xl font-extrabold uppercase lg:text-3xl'
       )}
     >
       {children}
@@ -42,7 +42,7 @@ const H4 = ({ children, className = '' }) => {
     <h4
       className={classNames(
         className,
-        'uppercase font-extrabold text-lg lg:text-xl mb-2'
+        'mb-2 text-lg font-extrabold uppercase lg:text-xl'
       )}
     >
       {children}

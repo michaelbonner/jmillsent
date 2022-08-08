@@ -20,15 +20,15 @@ const BackgroundTextSectionHalf = ({
 
   return (
     <div
-      className="border relative p-4 lg:p-6 border-gray-300"
+      className="relative border border-gray-300 p-4 lg:p-6"
       id={`service-${shortName}`}
     >
-      <div className="w-full group" style={{ lineHeight: 0 }}>
+      <div className="group w-full" style={{ lineHeight: 0 }}>
         <div className="relative">
-          <div className="absolute inset-0 z-10 bg-gradient-to-l from-black via-transparent to-transparent bg-opacity-40" />
+          <div className="absolute inset-0 z-10 bg-opacity-40 bg-gradient-to-l from-black via-transparent to-transparent" />
           <div
             className={classNames(
-              `absolute top-0 right-4 bottom-0 left-auto flex flex-col justify-center gap-y-2 z-10 text-right text-xs`,
+              `absolute top-0 right-4 bottom-0 left-auto z-10 flex flex-col justify-center gap-y-2 text-right text-xs`,
               `lg:top-6 lg:justify-start lg:text-sm`
             )}
           >
@@ -48,8 +48,8 @@ const BackgroundTextSectionHalf = ({
                   offset={-20}
                   duration={500}
                   className={classNames(
-                    'flex items-center gap-x-2 lg:gap-x-4 justify-end cursor-pointer',
-                    isCurrent ? 'text-white font-bold' : 'text-gray-200'
+                    'flex cursor-pointer items-center justify-end gap-x-2 lg:gap-x-4',
+                    isCurrent ? 'font-bold text-white' : 'text-gray-200'
                   )}
                   key={index}
                 >
@@ -63,14 +63,14 @@ const BackgroundTextSectionHalf = ({
                     {serviceShortName}
                   </p>
                   <svg
-                    className="w-4 h-4 lg:w-6 lg:h-6"
+                    className="h-4 w-4 lg:h-6 lg:w-6"
                     enableBackground="new 0 0 120 120"
                     viewBox="0 0 120 120"
                     xmlns="http://www.w3.org/2000/svg"
                   >
                     {isChecked && (
                       <path
-                        className="text-gold fill-current"
+                        className="fill-current text-gold"
                         d="m5 5h110v110h-110z"
                       />
                     )}
@@ -84,7 +84,7 @@ const BackgroundTextSectionHalf = ({
               )
             })}
           </div>
-          <div className="absolute z-10 left-0 -top-4 lg:-top-6 pl-4 text-center">
+          <div className="absolute left-0 -top-4 z-10 pl-4 text-center lg:-top-6">
             <div className="flex flex-col items-center justify-center">
               <Image
                 src="/images/simple-badge-gold.svg"
@@ -92,7 +92,7 @@ const BackgroundTextSectionHalf = ({
                 width={Math.floor(150 * (isDesktop ? 0.6 : 0.45))}
                 height={Math.floor(135 * (isDesktop ? 0.6 : 0.45))}
               />
-              <p className="absolute top-0 pt-2.5 lg:pt-4 text-black text-3xl lg:text-4xl font-extrabold">
+              <p className="absolute top-0 pt-2.5 text-3xl font-extrabold text-black lg:pt-4 lg:text-4xl">
                 {step}
               </p>
             </div>
@@ -106,8 +106,8 @@ const BackgroundTextSectionHalf = ({
             width={1200}
           />
         </div>
-        <div className="flex flex-col justify-center mx-auto gap-y-2">
-          <H3 className="inline lg:hidden !mt-3 w-full uppercase text-center !mb-0 py-1">
+        <div className="mx-auto flex flex-col justify-center gap-y-2">
+          <H3 className="!mt-3 !mb-0 inline w-full py-1 text-center uppercase lg:hidden">
             {title}
           </H3>
           {description && (
@@ -115,7 +115,7 @@ const BackgroundTextSectionHalf = ({
               <div className="mx-auto lg:hidden">
                 <LittleGoldBar />
               </div>
-              <div className="lg:pt-3 max-w-5xl prose-lg mx-auto text-white font-light leading-normal mt-1.5">
+              <div className="prose-lg mx-auto mt-1.5 max-w-5xl font-light leading-normal text-white lg:pt-3">
                 <PortableText value={description} />
               </div>
             </>

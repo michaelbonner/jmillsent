@@ -66,54 +66,54 @@ const ContactForm = () => {
           }}
         >
           {({ isSubmitting, isValid, handleChange, handleBlur, values }) => (
-            <Form className="grid grid-cols-1 gap-y-6 mx-auto max-w-3xl">
-              <div className="border-gray-300 rounded-md bg-white bg-opacity-100 relative">
+            <Form className="mx-auto grid max-w-3xl grid-cols-1 gap-y-6">
+              <div className="relative rounded-md border-gray-300 bg-white bg-opacity-100">
                 <Field
                   as="input"
                   autoComplete="name"
                   name="name"
                   placeholder="FULL NAME"
-                  className="bg-transparent block w-full shadow-sm py-3 px-4 lg:px-8 text-gray-900 text-lg placeholder-black focus:ring-indigo-500 focus:border-indigo-500"
+                  className="block w-full bg-transparent py-3 px-4 text-lg text-gray-900 placeholder-black shadow-sm focus:border-indigo-500 focus:ring-indigo-500 lg:px-8"
                 />
                 <ErrorMessage
                   name="name"
-                  className="absolute right-0 -bottom-2 text-left text-xs text-red-700 px-4 py-3 leading-3"
+                  className="absolute right-0 -bottom-2 px-4 py-3 text-left text-xs leading-3 text-red-700"
                   component="div"
                 />
               </div>
 
-              <div className="border-gray-300 rounded-md bg-white bg-opacity-100 relative">
+              <div className="relative rounded-md border-gray-300 bg-white bg-opacity-100">
                 <Field
                   as="input"
                   autoComplete="name"
                   name="emailAddress"
                   placeholder="EMAIL ADDRESS"
-                  className="bg-transparent block w-full shadow-sm py-3 px-4 lg:px-8 text-gray-900 text-lg placeholder-black focus:ring-indigo-500 focus:border-indigo-500"
+                  className="block w-full bg-transparent py-3 px-4 text-lg text-gray-900 placeholder-black shadow-sm focus:border-indigo-500 focus:ring-indigo-500 lg:px-8"
                 />
                 <ErrorMessage
                   name="emailAddress"
-                  className="absolute right-0 -bottom-2 text-left text-xs text-red-700 px-4 py-3 leading-3"
+                  className="absolute right-0 -bottom-2 px-4 py-3 text-left text-xs leading-3 text-red-700"
                   component="div"
                 />
               </div>
 
-              <div className="border-gray-300 rounded-md bg-white bg-opacity-100 relative">
+              <div className="relative rounded-md border-gray-300 bg-white bg-opacity-100">
                 <Field
                   as="input"
                   autoComplete="tel"
                   name="phoneNumber"
                   placeholder="PHONE NUMBER"
-                  className="bg-transparent block w-full shadow-sm py-3 px-4 lg:px-8 text-gray-900 text-lg placeholder-black focus:ring-indigo-500 focus:border-indigo-500"
+                  className="block w-full bg-transparent py-3 px-4 text-lg text-gray-900 placeholder-black shadow-sm focus:border-indigo-500 focus:ring-indigo-500 lg:px-8"
                 />
                 <ErrorMessage
                   name="phoneNumber"
-                  className="absolute right-0 -bottom-2 text-left text-xs text-red-700 px-4 py-3 leading-3"
+                  className="absolute right-0 -bottom-2 px-4 py-3 text-left text-xs leading-3 text-red-700"
                   component="div"
                 />
               </div>
-              <div className="border-gray-300 rounded-md bg-white bg-opacity-100 relative">
+              <div className="relative rounded-md border-gray-300 bg-white bg-opacity-100">
                 <TextareaAutosize
-                  className="py-3 px-4 lg:px-8 block w-full shadow-sm focus:ring-indigo-500 text-gray-900 text-lg placeholder-black focus:border-indigo-500 border-gray-300 rounded-md bg-transparent"
+                  className="block w-full rounded-md border-gray-300 bg-transparent py-3 px-4 text-lg text-gray-900 placeholder-black shadow-sm focus:border-indigo-500 focus:ring-indigo-500 lg:px-8"
                   minRows={4}
                   onChange={handleChange}
                   onBlur={handleBlur}
@@ -123,15 +123,15 @@ const ContactForm = () => {
                 />
                 <ErrorMessage
                   name="message"
-                  className="absolute right-0 -bottom-2 text-left text-xs text-red-700 px-4 py-3 leading-3"
+                  className="absolute right-0 -bottom-2 px-4 py-3 text-left text-xs leading-3 text-red-700"
                   component="div"
                 />
               </div>
               <button
                 type="submit"
                 className={classNames(
-                  `inline-block rounded-md text-lg font-bold uppercase w-full max-w-[450px] mx-auto`,
-                  `tracking-wider border border-gray-500 py-2.5 px-8`,
+                  `mx-auto inline-block w-full max-w-[450px] rounded-md text-lg font-bold uppercase`,
+                  `border border-gray-500 py-2.5 px-8 tracking-wider`,
                   `bg-black bg-opacity-50 transition-all`,
                   `hover:bg-gold hover:text-black`,
                   `focus:bg-gold focus:text-black`,
@@ -148,8 +148,8 @@ const ContactForm = () => {
         </Formik>
       )}
       {state === 'submitted' && (
-        <div className="relative h-full flex flex-col justify-center items-center text-center bg-white rounded-md shadow-md py-24 px-8 text-gray-900">
-          <h2 className="font-medium text-2xl relative z-20">
+        <div className="relative flex h-full flex-col items-center justify-center rounded-md bg-white py-24 px-8 text-center text-gray-900 shadow-md">
+          <h2 className="relative z-20 text-2xl font-medium">
             Thank you for contacting us!
             <br />
             We will be in touch soon.

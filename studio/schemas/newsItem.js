@@ -14,7 +14,15 @@ export default {
     {
       name: 'description',
       title: 'Description',
-      type: 'text',
+      type: 'array',
+      of: [{ type: 'block' }],
+    },
+    {
+      name: 'rightAlign',
+      title: 'Right Align',
+      type: 'boolean',
+      description: 'If checked, the text will be aligned to the right',
+      initialValue: false,
     },
     {
       name: 'slug',

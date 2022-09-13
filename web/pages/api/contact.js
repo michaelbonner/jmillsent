@@ -19,7 +19,7 @@ export default async function handler(req, res) {
     try {
       await sendSesEmail(
         toEmail,
-        `noreply@ravens.works`,
+        `noreply@jmillsent.com`,
         `New Jmills contact submission from ${req.body.name}`,
         `<p>Name: ${req.body.name}</p>
         <p>Email: ${req.body.emailAddress}</p>

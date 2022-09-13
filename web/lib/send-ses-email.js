@@ -4,7 +4,7 @@ AWS.config.update({
   accessKeyId: process.env.AWS_CONFIG_ACCESS_KEY,
   secretAccessKey: process.env.AWS_CONFIG_SECRET_KEY,
   region: process.env.AWS_CONFIG_REGION,
-  domain: 'ravens.works',
+  domain: 'jmillsent.com',
 })
 
 const sendSesEmail = async (to, from, subject, contentHtml, contentTxt) => {

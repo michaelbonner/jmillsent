@@ -3,7 +3,7 @@ import useIsDesktop from 'hooks/useIsDesktop'
 import useWindowSize from 'hooks/useWindowSize'
 import { useRouter } from 'next/dist/client/router'
 import Head from 'next/head'
-import Image from 'next/image'
+import Image from 'next/future/image'
 import Link from 'next/link'
 import React, { useEffect, useState } from 'react'
 import ReactPlayer from 'react-player'
@@ -288,6 +288,8 @@ const Layout = ({
                 className="h-8 w-12 fill-current stroke-current stroke-2 text-white"
                 src={`/images/menu-close-white.svg`}
                 layout="fill"
+                width="48"
+                height="32"
               />
             </span>
           </button>
@@ -406,6 +408,8 @@ const Layout = ({
                   className="h-8 w-12 fill-current stroke-current stroke-2 text-white"
                   src={showHero ? `/images/menu-white.svg` : `/images/menu.svg`}
                   layout="fill"
+                  height="48"
+                  width="32"
                 />
               </span>
             </button>

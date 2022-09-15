@@ -22,7 +22,7 @@
     "groq": "^2.29.3",
     "just-capitalize": "^3.0.1",
     "just-shuffle": "^4.0.1",
-    "next": "^12.1.6",
+    "next": "^12.3.0",
     "next-sanity": "^0.6.0",
     "next-sanity-image": "^3.2.1",
     "react": "^17.0.2",

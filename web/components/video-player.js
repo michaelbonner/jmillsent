@@ -1,7 +1,7 @@
 import Vimeo from '@vimeo/player'
 import classNames from 'classnames'
 import useIsDesktop from 'hooks/useIsDesktop'
-import Image from 'next/image'
+import Image from 'next/future/image'
 import { useEffect, useLayoutEffect, useRef, useState } from 'react'
 import screenfull from 'screenfull'
 import urlForSanitySource from '../lib/urlForSanitySource'

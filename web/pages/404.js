@@ -1,7 +1,7 @@
 import { H1 } from '@/components/headings'
 import Layout from '@/components/layout'
 import LittleWhiteBar from '@/components/little-white-bar'
-import Image from 'next/image'
+import Image from 'next/future/image'
 import { useEffect } from 'react'
 import { useState } from 'react'
 

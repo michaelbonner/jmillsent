@@ -7,7 +7,7 @@ import { getClient, portableTextComponents } from '@/lib/sanity'
 import { PortableText } from '@portabletext/react'
 import groq from 'groq'
 import dynamic from 'next/dynamic'
-import Image from 'next/image'
+import Image from 'next/future/image'
 import Link from 'next/link'
 import urlForSanitySource from '../../lib/urlForSanitySource'
 

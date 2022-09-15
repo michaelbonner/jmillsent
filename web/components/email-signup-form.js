@@ -1,5 +1,4 @@
 import classNames from 'classnames'
-import Image from 'next/image'
 import React from 'react'
 
 const EmailSignupForm = ({ title = '', mailchimpTagId = '' }) => {

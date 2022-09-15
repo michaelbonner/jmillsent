@@ -7,7 +7,7 @@ import { PortableText } from '@portabletext/react'
 import groq from 'groq'
 import useIsDesktop from 'hooks/useIsDesktop'
 import dynamic from 'next/dynamic'
-import Image from 'next/image'
+import Image from 'next/future/image'
 
 const VideoPlayer = dynamic(() => import('@/components/video-player'), {})
 

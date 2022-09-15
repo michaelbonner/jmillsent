@@ -6,7 +6,7 @@ import { getClient } from '@/lib/sanity'
 import groq from 'groq'
 import useIsDesktop from 'hooks/useIsDesktop'
 import dynamic from 'next/dynamic'
-import Image from 'next/image'
+import Image from 'next/future/image'
 import { useState } from 'react'
 
 const VideoPlayer = dynamic(() => import('@/components/video-player'), {})

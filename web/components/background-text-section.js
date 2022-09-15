@@ -1,6 +1,6 @@
 import urlForSanitySource from '@/lib/urlForSanitySource'
 import { PortableText } from '@portabletext/react'
-import Image from 'next/image'
+import Image from 'next/future/image'
 import Link from 'next/link'
 import React from 'react'
 import { H3 } from './headings'

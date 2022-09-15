@@ -3,7 +3,6 @@ import groq from 'groq'
 import { getClient } from '@/lib/sanity'
 import { PortableText } from '@portabletext/react'
 import WorkItemTile from '@/components/work-item-tile'
-//import Image from 'next/image'
 import MediumWhiteBar from '@/components/medium-white-bar'
 import EmailSignupForm from '@/components/email-signup-form'
 

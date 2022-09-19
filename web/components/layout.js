@@ -390,7 +390,7 @@ const Layout = ({
             <button
               className="relative h-8 w-12 hover:animate-pulse focus:outline-none"
               onClick={() => toggleMenu(!menuOpen)}
-              aria-label="Open menu"
+              aria-label="Open the menu"
             >
               <span
                 className={classNames(

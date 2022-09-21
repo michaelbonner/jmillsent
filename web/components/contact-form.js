@@ -148,11 +148,11 @@ const ContactForm = () => {
         </Formik>
       )}
       {state === 'submitted' && (
-        <div className="relative flex h-full flex-col items-center justify-center rounded-md bg-white py-24 px-8 text-center text-gray-900 shadow-md">
-          <h2 className="relative z-20 text-2xl font-medium">
-            Thank you for contacting us!
+        <div className="mx-auto flex w-full max-w-4xl items-center justify-center rounded-md border py-14 text-center shadow-md">
+          <h2 className="text-xl font-bold tracking-wide">
+            We&apos;ve received your message and
             <br />
-            We will be in touch soon.
+            will be in touch shortly. Thanks.
           </h2>
         </div>
       )}

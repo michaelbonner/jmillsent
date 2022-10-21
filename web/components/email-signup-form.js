@@ -20,14 +20,10 @@ const EmailSignupForm = ({ title = '', customReel = false }) => {
       if (response?.status === 201) {
         setState('submitted')
       } else {
-        toast('Save failed', {
-          type: toast.TYPE.ERROR,
-        })
+        toast.error('Save failed')
       }
     } catch (error) {
-      toast('Save failed', {
-        type: toast.TYPE.ERROR,
-      })
+      toast.error('Save failed')
     }
   }
 

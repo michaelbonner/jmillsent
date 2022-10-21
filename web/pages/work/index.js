@@ -23,7 +23,7 @@ function Work({ workPage, workItems }) {
         <div className="mt-10">
           <EmailSignupForm
             title={workPage.subscribeFormTitle}
-            mailchimpTagId={workPage.mailchimpTagId}
+            customReel={true}
           />
         </div>
         <MediumWhiteBar yMargin="mb-8 mt-12 lg:mt-24" />

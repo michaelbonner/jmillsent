@@ -33,7 +33,7 @@ const EmailSignupForm = ({ title = '', customReel = false }) => {
 
   return (
     <div className="mx-auto text-center">
-      {!customReel && (
+      {!customReel && state === 'initial' && (
         <form
           action="https://jmillsent.us20.list-manage.com/subscribe/post?u=c9523cc3e6ec26fbfdc141bc5&amp;id=3cb22c24eb"
           method="post"
@@ -97,6 +97,13 @@ const EmailSignupForm = ({ title = '', customReel = false }) => {
           </div>
         </form>
       )}
+      {!customReel && state === 'submitted' && (
+        <div className="mx-auto flex w-full max-w-xl justify-center border py-4 px-8 lg:mt-20">
+          <p className="font-light uppercase text-gray-100">
+            You have been successfully subscribed to Fresh Cuts. See you soon.
+          </p>
+        </div>
+      )}
 
       {customReel && state === 'initial' && (
         <form onSubmit={submitCustomReel}>
@@ -140,7 +147,7 @@ const EmailSignupForm = ({ title = '', customReel = false }) => {
           </div>
         </form>
       )}
-      {state === 'submitted' && (
+      {customReel && state === 'submitted' && (
         <div className="mx-auto flex w-full max-w-xl justify-center border py-4 px-8 lg:mt-20">
           <p className="font-light uppercase text-gray-100">
             We&apos;ve received your request and will be in touch shortly.

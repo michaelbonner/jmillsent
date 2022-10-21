@@ -27,11 +27,6 @@ export default {
       title: 'Subscribe form title',
       type: 'string',
     },
-    {
-      name: 'mailchimpTagId',
-      title: 'Mailchimp Tag Id',
-      type: 'string',
-    },
   ],
   preview: {
     select: {},

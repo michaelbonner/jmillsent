@@ -14,21 +14,15 @@ export default async function handler(req, res) {
       Item: contact,
     })
 
-    const toEmail = [`mike@bootpackdigital.com`, `jeremy@jmillsent.com`]
+    const toEmail = [`colton@bootpackdigital.com`, `sales@jmillsent.com`]
 
     try {
       await sendSesEmail(
         toEmail,
         `JME Film Co <noreply@jmillsent.com>`,
-        `New Jmills contact submission from ${req.body.name}`,
-        `<p>Name: ${req.body.name}</p>
-        <p>Email: ${req.body.emailAddress}</p>
-        <p>Phone: ${req.body.phoneNumber}</p>
-        <p>Message: ${req.body.message}</p>`,
-        `Name: ${req.body.name}\n
-        Email: ${req.body.emailAddress}\n
-        Phone: ${req.body.phoneNumber}\n
-        Message: ${req.body.message}`
+        `Custom Reel request from ${req.body.email}`,
+        `<p>Email: ${req.body.email}</p>`,
+        `Email: ${req.body.email}`
       )
     } catch (error) {
       console.error('error', error)

@@ -23,7 +23,7 @@ function Work({ workPage, workItems }) {
         <div className="mt-10">
           <EmailSignupForm
             title={workPage.subscribeFormTitle}
-            mailchimpTagId={workPage.mailchimpTagId}
+            customReel={true}
           />
         </div>
         <MediumWhiteBar yMargin="mb-8 mt-12 lg:mt-24" />
@@ -36,7 +36,6 @@ export async function getStaticProps() {
   const workPage = await getClient().fetch(
     groq`
   *[_type == "workPage"][0]{
-    mailchimpTagId,
     poster,
     seoTitle,
     seoDescription,

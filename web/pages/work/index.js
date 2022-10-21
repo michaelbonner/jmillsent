@@ -36,7 +36,6 @@ export async function getStaticProps() {
   const workPage = await getClient().fetch(
     groq`
   *[_type == "workPage"][0]{
-    mailchimpTagId,
     poster,
     seoTitle,
     seoDescription,

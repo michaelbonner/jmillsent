@@ -23,6 +23,7 @@ function Work({ workPage, workItems }) {
         <div className="mt-10">
           <EmailSignupForm
             title={workPage.subscribeFormTitle}
+            successMessage={workPage.subscribeFormSuccessMessage}
             customReel={true}
           />
         </div>
@@ -40,6 +41,7 @@ export async function getStaticProps() {
     seoTitle,
     seoDescription,
     subscribeFormTitle,
+    subscribeFormSuccessMessage,
     videoId,
     workPageDescription,
   }

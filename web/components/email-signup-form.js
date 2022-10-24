@@ -16,7 +16,11 @@ const SkullSvg = () => (
   </svg>
 )
 
-const EmailSignupForm = ({ title = '', customReel = false }) => {
+const EmailSignupForm = ({
+  title = '',
+  customReel = false,
+  successMessage = '',
+}) => {
   const [state, setState] = useState('initial')
 
   const submitCustomReel = async (e) => {
@@ -99,9 +103,7 @@ const EmailSignupForm = ({ title = '', customReel = false }) => {
       )}
       {!customReel && state === 'submitted' && (
         <div className="mx-auto flex w-full max-w-xl justify-center border py-4 px-8 lg:mt-20">
-          <p className="font-light uppercase text-gray-100">
-            You have been successfully subscribed to Fresh Cuts. See you soon.
-          </p>
+          <p className="font-light uppercase text-gray-100">{successMessage}</p>
         </div>
       )}
 
@@ -139,9 +141,7 @@ const EmailSignupForm = ({ title = '', customReel = false }) => {
       )}
       {customReel && state === 'submitted' && (
         <div className="mx-auto flex w-full max-w-xl justify-center border py-4 px-8 lg:mt-20">
-          <p className="font-light uppercase text-gray-100">
-            We&apos;ve received your request and will be in touch shortly.
-          </p>
+          <p className="font-light uppercase text-gray-100">{successMessage}</p>
         </div>
       )}
     </div>

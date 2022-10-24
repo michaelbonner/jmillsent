@@ -50,8 +50,18 @@ export default {
       of: [{ type: 'representationCard' }],
     },
     {
+      name: 'mainFormSuccessMessage',
+      title: 'Main form success message',
+      type: 'string',
+    },
+    {
       name: 'subscribeFormTitle',
       title: 'Subscribe form title',
+      type: 'string',
+    },
+    {
+      name: 'subscribeFormSuccessMessage',
+      title: 'Subscribe form success message',
       type: 'string',
     },
   ],

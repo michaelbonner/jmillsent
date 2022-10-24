@@ -23,7 +23,7 @@ const contactSchema = Yup.object().shape({
   message: Yup.string().min(2, 'Too short').required('Message is Required'),
 })
 
-const ContactForm = () => {
+const ContactForm = ({ successMessage = '' }) => {
   const [state, setState] = useState('initial')
   const contactForm = {
     name: '',
@@ -149,10 +149,8 @@ const ContactForm = () => {
       )}
       {state === 'submitted' && (
         <div className="mx-auto flex w-full max-w-4xl items-center justify-center rounded-md border py-14 text-center shadow-md">
-          <h2 className="text-xl font-bold tracking-wide">
-            We&apos;ve received your message and
-            <br />
-            will be in touch shortly. Thanks.
+          <h2 className="text-xl font-bold tracking-wide text-gray-300">
+            {successMessage}
           </h2>
         </div>
       )}

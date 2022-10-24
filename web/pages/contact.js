@@ -33,7 +33,7 @@ function Contact({ contact }) {
           <H1>{contact.title}</H1>
         </div>
         <div className="mx-auto mt-8 w-full max-w-7xl px-4 lg:mt-16">
-          <ContactForm />
+          <ContactForm successMessage={contact.mainFormSuccessMessage} />
         </div>
 
         <DividerBar yMargin="my-12 lg:my-24" />
@@ -126,7 +126,10 @@ function Contact({ contact }) {
           </div>
         </div>
         <div className="px-8">
-          <EmailSignupForm title={contact.subscribeFormTitle} />
+          <EmailSignupForm
+            title={contact.subscribeFormTitle}
+            successMessage={contact.subscribeFormSuccessMessage}
+          />
         </div>
         <MediumWhiteBar yMargin="my-12" />
       </div>
@@ -145,7 +148,9 @@ export async function getStaticProps() {
             seoDescription,
             representationTitle,
             representationCards,
+            mainFormSuccessMessage,
             subscribeFormTitle,
+            subscribeFormSuccessMessage,
           }
         `),
     },

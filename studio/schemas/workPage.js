@@ -27,6 +27,11 @@ export default {
       title: 'Subscribe form title',
       type: 'string',
     },
+    {
+      name: 'subscribeFormSuccessMessage',
+      title: 'Subscribe form success message',
+      type: 'string',
+    },
   ],
   preview: {
     select: {},

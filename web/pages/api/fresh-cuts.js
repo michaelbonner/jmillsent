@@ -22,6 +22,15 @@ export default async function handler(req, res) {
     )
     return res.status(201).json({ error: '' })
   } catch (error) {
-    return res.status(500).json({ error: error.message || error.toString() })
+    let errorMessage
+    if (error?.response?.body?.title) {
+      errorMessage = error.response.body.title
+    } else {
+      errorMessage =
+        error.message ||
+        'Something went wrong. Please double-check your email and try again.'
+    }
+
+    return res.status(500).json({ error: errorMessage })
   }
 }

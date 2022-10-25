@@ -1,6 +1,5 @@
 import classNames from 'classnames'
-import React, { useState } from 'react'
-import { toast } from 'react-toastify'
+import { useState } from 'react'
 
 const SkullSvg = () => (
   <svg
@@ -16,12 +15,16 @@ const SkullSvg = () => (
   </svg>
 )
 
+const defaultErrorMessage =
+  'Something went wrong. Please double-check your email and try again.'
+
 const EmailSignupForm = ({
   title = '',
   customReel = false,
   successMessage = '',
 }) => {
   const [state, setState] = useState('initial')
+  const [error, setError] = useState('')
 
   const submitCustomReel = async (e) => {
     e.preventDefault()
@@ -38,10 +41,11 @@ const EmailSignupForm = ({
       if (response?.status === 201) {
         setState('submitted')
       } else {
-        toast.error('Save failed')
+        setError(defaultErrorMessage)
       }
     } catch (error) {
-      toast.error('Save failed')
+      console.error(error)
+      setError(defaultErrorMessage)
     }
   }
 
@@ -60,10 +64,11 @@ const EmailSignupForm = ({
       if (response?.status === 201) {
         setState('submitted')
       } else {
-        toast.error('Save failed')
+        const body = await response.json()
+        setError(body?.error || defaultErrorMessage)
       }
     } catch (error) {
-      toast.error('Save failed')
+      setError(defaultErrorMessage)
     }
   }
 
@@ -100,6 +105,7 @@ const EmailSignupForm = ({
               </div>
             </div>
           </div>
+          {error && <div className="mt-4 text-sm text-red-500">{error}</div>}
         </form>
       )}
       {!customReel && state === 'submitted' && (
@@ -139,6 +145,7 @@ const EmailSignupForm = ({
               </div>
             </div>
           </div>
+          {error && <div className="mt-4 text-sm text-red-500">{error}</div>}
         </form>
       )}
       {customReel && state === 'submitted' && (

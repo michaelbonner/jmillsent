@@ -1,6 +1,5 @@
 import classNames from 'classnames'
-import React, { useState } from 'react'
-import { toast } from 'react-toastify'
+import { useState } from 'react'
 
 const SkullSvg = () => (
   <svg
@@ -16,12 +15,16 @@ const SkullSvg = () => (
   </svg>
 )
 
+const defaultErrorMessage =
+  'Something went wrong. Please double-check your email and try again.'
+
 const EmailSignupForm = ({
   title = '',
   customReel = false,
   successMessage = '',
 }) => {
   const [state, setState] = useState('initial')
+  const [error, setError] = useState('')
 
   const submitCustomReel = async (e) => {
     e.preventDefault()
@@ -38,26 +41,41 @@ const EmailSignupForm = ({
       if (response?.status === 201) {
         setState('submitted')
       } else {
-        toast.error('Save failed')
+        setError(defaultErrorMessage)
       }
     } catch (error) {
-      toast.error('Save failed')
+      console.error(error)
+      setError(defaultErrorMessage)
+    }
+  }
+
+  const submitFreshCuts = async (e) => {
+    e.preventDefault()
+
+    try {
+      const response = await fetch('/api/fresh-cuts', {
+        method: 'post',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({ email: e.target.email.value }),
+      })
+
+      if (response?.status === 201) {
+        setState('submitted')
+      } else {
+        const body = await response.json()
+        setError(body?.error || defaultErrorMessage)
+      }
+    } catch (error) {
+      setError(defaultErrorMessage)
     }
   }
 
   return (
     <div className="mx-auto text-center">
       {!customReel && state === 'initial' && (
-        <form
-          action="https://jmillsent.us20.list-manage.com/subscribe/post?u=c9523cc3e6ec26fbfdc141bc5&amp;id=3cb22c24eb"
-          method="post"
-          id="mc-embedded-subscribe-form"
-          name="mc-embedded-subscribe-form"
-          className="validate"
-          target="_blank"
-          noValidate
-        >
-          <input type="hidden" name="tags" readOnly />
+        <form onSubmit={submitFreshCuts}>
           <div>
             <h2 className="font-light uppercase text-gray-100">{title}</h2>
             <div className="mx-auto mt-4 flex w-full max-w-lg justify-center">
@@ -67,23 +85,12 @@ const EmailSignupForm = ({
                 </label>
                 <input
                   type="email"
-                  name="EMAIL"
+                  name="email"
                   className="-mr-1 flex-1 rounded-l-md border-2 border-r-0 border-gray-300 bg-black bg-opacity-70 py-2 px-4 text-white focus:bg-opacity-90"
-                  id="mce-EMAIL"
+                  id="email"
                   placeholder="EMAIL ADDRESS"
                   required
                 />
-                <div
-                  style={{ position: 'absolute', left: '-5000px' }}
-                  aria-hidden="true"
-                >
-                  <input
-                    type="text"
-                    name="b_c9523cc3e6ec26fbfdc141bc5_3cb22c24eb"
-                    tabIndex="-1"
-                    defaultValue=""
-                  />
-                </div>
                 <button
                   className={classNames(
                     'group flex items-center gap-x-2 rounded-md border-2 border-gray-300 px-4 py-2 transition-colors',
@@ -91,7 +98,6 @@ const EmailSignupForm = ({
                   )}
                   type="submit"
                   name="subscribe"
-                  id="mc-embedded-subscribe"
                 >
                   <span>Submit</span>
                   <SkullSvg />
@@ -99,6 +105,7 @@ const EmailSignupForm = ({
               </div>
             </div>
           </div>
+          {error && <div className="mt-4 text-sm text-red-500">{error}</div>}
         </form>
       )}
       {!customReel && state === 'submitted' && (
@@ -130,6 +137,7 @@ const EmailSignupForm = ({
                     'hover:bg-gold hover:text-black'
                   )}
                   type="submit"
+                  name="subscribe"
                 >
                   <span>Submit</span>
                   <SkullSvg />
@@ -137,6 +145,7 @@ const EmailSignupForm = ({
               </div>
             </div>
           </div>
+          {error && <div className="mt-4 text-sm text-red-500">{error}</div>}
         </form>
       )}
       {customReel && state === 'submitted' && (

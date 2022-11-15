@@ -6,6 +6,7 @@ import PortfolioItemTile from '@/components/portfolio-item-tile'
 import MediumWhiteBar from '@/components/medium-white-bar'
 import EmailSignupForm from '@/components/email-signup-form'
 import { useEffect, useState } from 'react'
+import classNames from 'classnames'
 
 function Portfolio({ portfolioPage, portfolioItems }) {
   const [passwordString, setPasswordString] = useState('')
@@ -20,11 +21,12 @@ function Portfolio({ portfolioPage, portfolioItems }) {
 
   function handleSubmit(e) {
     e.preventDefault()
-    console.log('IM WORKING!')
-    // if (passwordString === token) {
-    //   localStorage.setItem('private-portfolio', token)
-    //   setLoggedIn(true)
-    // }
+    setPasswordString(e.target.password.value)
+
+    if (passwordString === token) {
+      localStorage.setItem('private-portfolio', e.target.password.value)
+      setLoggedIn(true)
+    }
   }
 
   return (
@@ -33,12 +35,32 @@ function Portfolio({ portfolioPage, portfolioItems }) {
       description={portfolioPage.seoDescription}
     >
       {!loggedIn && (
-        <div className="mx-auto text-center">
-          <p>You don&apos;t have access, please input the password to view.</p>
-          <form onSubmit={handleSubmit}>
-            <label htmlFor="password">Password</label>
-            <input name="password" type="password" />
-            <button type="submit">Submit</button>
+        <div className="mx-auto max-w-3xl border py-12 text-center">
+          <p className="mb-6 text-lg font-semibold">
+            {portfolioPage.passwordInputPrompt}
+          </p>
+          <form
+            className="mx-auto flex w-1/2 items-center justify-center rounded"
+            onSubmit={handleSubmit}
+          >
+            <label className="sr-only" htmlFor="password">
+              Password
+            </label>
+            <input
+              className="-mr-1 flex-1 rounded-l-md border-2 border-r-0 border-gray-300 bg-black bg-opacity-70 py-2 px-4 text-white focus:bg-opacity-90"
+              name="password"
+              type="password"
+              placeholder="PASSWORD"
+            />
+            <button
+              className={classNames(
+                'group flex items-center gap-x-2 rounded-md border-2 border-gray-300 px-4 py-2 transition-colors',
+                'hover:bg-gold hover:text-black'
+              )}
+              type="submit"
+            >
+              Submit
+            </button>
           </form>
         </div>
       )}
@@ -77,6 +99,7 @@ export async function getStaticProps() {
   *[_type == "portfolioPage"][0]{
     poster,
     password,
+    passwordInputPrompt,
     seoTitle,
     seoDescription,
     subscribeFormTitle,

@@ -12,6 +12,11 @@ export default {
       type: 'string',
     },
     {
+      name: 'passwordInputPrompt',
+      title: 'Password Input Prompt',
+      type: 'string',
+    },
+    {
       name: 'seoTitle',
       title: 'SEO Title',
       type: 'string',

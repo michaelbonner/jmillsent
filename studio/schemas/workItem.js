@@ -157,7 +157,6 @@ export default {
       ],
       options: {
         sortable: true,
-        editModal: 'popover',
       },
     },
     {

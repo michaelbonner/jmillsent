@@ -9,7 +9,6 @@ import { useEffect, useState } from 'react'
 import classNames from 'classnames'
 
 function Portfolio({ portfolioPage, portfolioItems }) {
-  const [passwordString, setPasswordString] = useState('')
   const [loggedIn, setLoggedIn] = useState(false)
   const token = portfolioPage.password
 
@@ -21,9 +20,8 @@ function Portfolio({ portfolioPage, portfolioItems }) {
 
   function handleSubmit(e) {
     e.preventDefault()
-    setPasswordString(e.target.password.value)
 
-    if (passwordString === token) {
+    if (e.target.password.value === token) {
       localStorage.setItem('private-portfolio', e.target.password.value)
       setLoggedIn(true)
     }

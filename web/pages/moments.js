@@ -8,7 +8,7 @@ import useIsDesktop from 'hooks/useIsDesktop'
 import capitalize from 'just-capitalize'
 import shuffle from 'just-shuffle'
 import Image from 'next/future/image'
-import { useState } from 'react'
+import { useMemo, useState } from 'react'
 import Lightbox from 'react-image-lightbox'
 import { getClient } from '../lib/sanity'
 
@@ -18,6 +18,10 @@ function Moments({ momentsPage }) {
   const [isGalleryModelOpen, setIsGalleryModelOpen] = useState(false)
   const [photoIndex, setPhotoIndex] = useState(0)
   const isDesktop = useIsDesktop()
+
+  const shuffledImages = useMemo(() => {
+    return shuffle(momentsPage.images)
+  }, [momentsPage.images])
 
   const imageTypeMap = [
     {
@@ -62,7 +66,7 @@ function Moments({ momentsPage }) {
     </div>
   )
 
-  const images = momentsPage.images.map(
+  const images = shuffledImages.map(
     (image) => `${image.imageUrl}?w=1800&auto=format`
   )
 
@@ -98,7 +102,7 @@ function Moments({ momentsPage }) {
             'mt-0 grid grid-cols-2 gap-4 px-1 lg:grid-cols-12'
           )}
         >
-          {momentsPage.images
+          {shuffledImages
             .filter((image) => image.imageUrl)
             .map((image, index) => {
               const desktopIndex = index % 17
@@ -171,8 +175,6 @@ export async function getStaticProps() {
     }
     `
   )
-
-  momentsPage.images = shuffle(momentsPage.images)
 
   return {
     props: {

@@ -7,9 +7,11 @@ import { getClient } from '@/lib/sanity'
 import { PortableText } from '@portabletext/react'
 import groq from 'groq'
 import useIsLoggedIn from 'hooks/useIsLoggedIn'
+import { useState } from 'react'
 
 function Portfolio({ portfolioPage, portfolioItems }) {
   const [isLoggedIn, setIsLoggedIn] = useIsLoggedIn(portfolioPage.password)
+  const [formError, setFormError] = useState('')
 
   function handleSubmit(e) {
     e.preventDefault()
@@ -17,6 +19,8 @@ function Portfolio({ portfolioPage, portfolioItems }) {
     if (e.target.password.value === portfolioPage.password) {
       localStorage.setItem('private-portfolio', e.target.password.value)
       setIsLoggedIn(true)
+    } else {
+      setFormError('Incorrect password')
     }
   }
 
@@ -28,6 +32,7 @@ function Portfolio({ portfolioPage, portfolioItems }) {
       {!isLoggedIn && (
         <PasswordLoginForm
           handleSubmit={handleSubmit}
+          formError={formError}
           passwordInputPrompt={portfolioPage.passwordInputPrompt}
         />
       )}

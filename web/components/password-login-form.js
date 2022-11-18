@@ -1,6 +1,10 @@
 import classNames from 'classnames'
 
-export const PasswordLoginForm = ({ handleSubmit, passwordInputPrompt }) => {
+export const PasswordLoginForm = ({
+  handleSubmit,
+  formError,
+  passwordInputPrompt,
+}) => {
   return (
     <div className="mx-auto min-h-screen max-w-3xl text-center">
       <div className="border py-12">
@@ -28,6 +32,9 @@ export const PasswordLoginForm = ({ handleSubmit, passwordInputPrompt }) => {
             Submit
           </button>
         </form>
+        {formError && (
+          <p className="mt-6 text-sm font-semibold text-red-500">{formError}</p>
+        )}
       </div>
     </div>
   )

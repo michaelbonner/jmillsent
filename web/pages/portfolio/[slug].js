@@ -34,6 +34,7 @@ aspect-w-16	aspect-h-16
 */
 
 const PortfolioItem = ({ portfolioItem = {}, portfolioPagePassword }) => {
+  const [formError, setFormError] = useState('')
   const [isOpen, setIsOpen] = useState(false)
   const [isLoggedIn, setIsLoggedIn] = useIsLoggedIn(
     portfolioPagePassword.password
@@ -60,6 +61,8 @@ const PortfolioItem = ({ portfolioItem = {}, portfolioPagePassword }) => {
     if (e.target.password.value === portfolioPagePassword.password) {
       localStorage.setItem('private-portfolio', e.target.password.value)
       setIsLoggedIn(true)
+    } else {
+      setFormError('Incorrect password')
     }
   }
 
@@ -77,6 +80,7 @@ const PortfolioItem = ({ portfolioItem = {}, portfolioPagePassword }) => {
       {!isLoggedIn && (
         <PasswordLoginForm
           handleSubmit={handleSubmit}
+          formError={formError}
           passwordInputPrompt={portfolioPagePassword.passwordInputPrompt}
         />
       )}

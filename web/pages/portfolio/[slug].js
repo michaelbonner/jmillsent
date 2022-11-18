@@ -2,14 +2,13 @@
 import { H3 } from '@/components/headings'
 import Layout from '@/components/layout'
 import MediumWhiteBar from '@/components/medium-white-bar'
+import { PasswordLoginForm } from '@/components/password-login-form'
 import { getClient } from '@/lib/sanity'
-import classNames from 'classnames'
 import groq from 'groq'
 import useIsDesktop from 'hooks/useIsDesktop'
 import useIsLoggedIn from 'hooks/useIsLoggedIn'
 import dynamic from 'next/dynamic'
 import Image from 'next/future/image'
-import Link from 'next/link'
 import { useState } from 'react'
 
 const VideoPlayer = dynamic(() => import('@/components/video-player'), {})
@@ -36,7 +35,9 @@ aspect-w-16	aspect-h-16
 
 const PortfolioItem = ({ portfolioItem = {}, portfolioPagePassword }) => {
   const [isOpen, setIsOpen] = useState(false)
-  const [isLoggedIn] = useIsLoggedIn(portfolioPagePassword.password)
+  const [isLoggedIn, setIsLoggedIn] = useIsLoggedIn(
+    portfolioPagePassword.password
+  )
   const isDesktop = useIsDesktop()
 
   const fullTitle = portfolioItem.clientName
@@ -53,6 +54,15 @@ const PortfolioItem = ({ portfolioItem = {}, portfolioPagePassword }) => {
     ? portfolioItem.credits.slice(column1Credits.length)
     : []
 
+  function handleSubmit(e) {
+    e.preventDefault()
+
+    if (e.target.password.value === portfolioPagePassword.password) {
+      localStorage.setItem('private-portfolio', e.target.password.value)
+      setIsLoggedIn(true)
+    }
+  }
+
   return (
     <Layout
       title={
@@ -65,22 +75,12 @@ const PortfolioItem = ({ portfolioItem = {}, portfolioPagePassword }) => {
       }
     >
       {!isLoggedIn && (
-        <div className="mx-auto min-h-screen max-w-3xl text-center">
-          <p className="mb-6 border py-12 px-8 text-lg font-semibold uppercase text-white">
-            {portfolioPagePassword.passwordInputPrompt}
-          </p>
-          <Link href="/portfolio">
-            <a
-              className={classNames(
-                'rounded-md border-2 border-gray-300 px-4 py-2 transition-colors',
-                'hover:bg-gold hover:text-black'
-              )}
-            >
-              LOG IN
-            </a>
-          </Link>
-        </div>
+        <PasswordLoginForm
+          handleSubmit={handleSubmit}
+          passwordInputPrompt={portfolioPagePassword.passwordInputPrompt}
+        />
       )}
+
       {isLoggedIn && (
         <>
           <div className="px-4 lg:px-8">

@@ -1,23 +1,22 @@
+import EmailSignupForm from '@/components/email-signup-form'
 import Layout from '@/components/layout'
-import groq from 'groq'
+import MediumWhiteBar from '@/components/medium-white-bar'
+import { PasswordLoginForm } from '@/components/password-login-form'
+import PortfolioItemTile from '@/components/portfolio-item-tile'
 import { getClient } from '@/lib/sanity'
 import { PortableText } from '@portabletext/react'
-import PortfolioItemTile from '@/components/portfolio-item-tile'
-import MediumWhiteBar from '@/components/medium-white-bar'
-import EmailSignupForm from '@/components/email-signup-form'
-import classNames from 'classnames'
+import groq from 'groq'
 import useIsLoggedIn from 'hooks/useIsLoggedIn'
 
 function Portfolio({ portfolioPage, portfolioItems }) {
-  const token = portfolioPage.password
-  const [isLoggedIn, setIsLoggedIn] = useIsLoggedIn(token)
+  const [isLoggedIn, setIsLoggedIn] = useIsLoggedIn(portfolioPage.password)
 
   function handleSubmit(e) {
     e.preventDefault()
 
-    if (e.target.password.value === token) {
+    if (e.target.password.value === portfolioPage.password) {
       localStorage.setItem('private-portfolio', e.target.password.value)
-      setIsLoggedIn(token)
+      setIsLoggedIn(true)
     }
   }
 
@@ -27,36 +26,10 @@ function Portfolio({ portfolioPage, portfolioItems }) {
       description={portfolioPage.seoDescription}
     >
       {!isLoggedIn && (
-        <div className="mx-auto min-h-screen max-w-3xl text-center">
-          <div className="border py-12">
-            <p className="mb-6 text-lg font-semibold">
-              {portfolioPage.passwordInputPrompt}
-            </p>
-            <form
-              className="mx-auto flex w-1/2 items-center justify-center rounded"
-              onSubmit={handleSubmit}
-            >
-              <label className="sr-only" htmlFor="password">
-                Password
-              </label>
-              <input
-                className="-mr-1 flex-1 rounded-l-md border-2 border-r-0 border-gray-300 bg-black bg-opacity-70 py-2 px-4 text-white focus:bg-opacity-90"
-                name="password"
-                type="text"
-                placeholder="PASSWORD"
-              />
-              <button
-                className={classNames(
-                  'group flex items-center gap-x-2 rounded-md border-2 border-gray-300 px-4 py-2 transition-colors',
-                  'hover:bg-gold hover:text-black'
-                )}
-                type="submit"
-              >
-                Submit
-              </button>
-            </form>
-          </div>
-        </div>
+        <PasswordLoginForm
+          handleSubmit={handleSubmit}
+          passwordInputPrompt={portfolioPage.passwordInputPrompt}
+        />
       )}
 
       {isLoggedIn && (

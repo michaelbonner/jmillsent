@@ -22,6 +22,8 @@ import representationCard from './representationCard'
 import newsItem from './newsItem'
 import newsPage from './newsPage'
 import adFormat from './adFormat'
+import portfolioItem from './portfolioItem'
+import portfolioPage from './portfolioPage'
 
 // Then we give our schema to the builder and provide the result to Sanity
 export default createSchema({
@@ -50,5 +52,7 @@ export default createSchema({
     representationCard,
     newsItem,
     newsPage,
+    portfolioItem,
+    portfolioPage,
   ]),
 })

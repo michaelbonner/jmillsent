@@ -9,7 +9,7 @@ const PortfolioItemTile = ({ portfolioItem, index, hideAfterCount = 999 }) => {
 
   return (
     <Link
-      href={`/portfolio/${portfolioItem.slug?.current}`}
+      href={`/tier-2-work/${portfolioItem.slug?.current}`}
       key={portfolioItem._id}
     >
       <a

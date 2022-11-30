@@ -41,7 +41,7 @@ const NewsItem = ({ newsItem = {} }) => {
           )}
           <div className="mx-auto flex w-full max-w-5xl items-center justify-between gap-x-4 px-8 text-lg uppercase sm:gap-x-32 sm:text-3xl">
             <h1 className="font-extrabold">{newsItem.title}</h1>
-            <Date dateString={newsItem.date} />
+            {newsItem.date && <Date dateString={newsItem.date} />}
           </div>
           <div className="mx-auto w-full max-w-5xl sm:px-8">
             <LargeGoldBar yMargin="my-0" />

@@ -1,4 +1,5 @@
 import { MdLocalMovies as icon } from 'react-icons/md'
+import { slugValidation } from '../functions/slugValidation'
 
 export default {
   name: 'workItem',
@@ -23,9 +24,9 @@ export default {
     },
     {
       name: 'slug',
-      title: 'Slug',
+      title: 'Slug (should-be-kebab-case-like-this)',
       type: 'slug',
-      validation: (Rule) => Rule.required(),
+      validation: slugValidation,
       options: {
         source: 'title',
         maxLength: 100,

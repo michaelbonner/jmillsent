@@ -1,4 +1,5 @@
 import { MdDeveloperBoard as icon } from 'react-icons/md'
+import { slugValidation } from '../functions/slugValidation'
 
 export default {
   name: 'service',
@@ -14,10 +15,11 @@ export default {
     },
     {
       name: 'slug',
-      title: 'Slug',
+      title: 'Slug (should-be-kebab-case-like-this)',
       type: 'slug',
+      validation: slugValidation,
       options: {
-        source: 'name',
+        source: 'title',
         maxLength: 100,
       },
     },

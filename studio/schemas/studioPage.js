@@ -1,4 +1,5 @@
 import { MdBusiness as icon } from 'react-icons/md'
+import { slugValidation } from '../functions/slugValidation'
 
 export default {
   name: 'studioPage',
@@ -18,8 +19,9 @@ export default {
     },
     {
       name: 'slug',
-      title: 'Slug',
+      title: 'Slug (should-be-kebab-case-like-this)',
       type: 'slug',
+      validation: slugValidation,
       options: {
         source: 'title',
         maxLength: 100,

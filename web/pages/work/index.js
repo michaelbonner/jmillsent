@@ -9,7 +9,7 @@ import EmailSignupForm from '@/components/email-signup-form'
 function Work({ workPage, workItems }) {
   return (
     <Layout title={workPage.seoTitle} description={workPage.seoDescription}>
-      <div className="mx-1 grid grid-cols-1 gap-1 lg:grid-cols-3">
+      <div className="mx-1 grid grid-cols-1 gap-1 lg:grid-cols-3 4xl:grid-cols-4 5xl:grid-cols-5">
         {workItems.map((workItem, index) => {
           return <WorkItemTile workItem={workItem} key={index} />
         })}

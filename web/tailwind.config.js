@@ -11,6 +11,9 @@ module.exports = {
       '2xs': '375px',
       xs: '425px',
       ...defaultTheme.screens,
+      '3xl': '1800px',
+      '4xl': '2200px',
+      '5xl': '2600px',
     },
     extend: {
       colors: {

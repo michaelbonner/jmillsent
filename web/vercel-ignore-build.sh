@@ -2,6 +2,9 @@
 
 echo "VERCEL_ENV: $VERCEL_ENV"
 
+# disable code check for builds for now
+exit 1;
+
 # Check if the commit has changes in the current directory
 if [[ $(git diff HEAD^ HEAD .) ]] ; then
 

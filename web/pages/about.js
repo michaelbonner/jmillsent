@@ -11,10 +11,11 @@ import { PortableText } from '@portabletext/react'
 import classNames from 'classnames'
 import groq from 'groq'
 import useIsDesktop from 'hooks/useIsDesktop'
+import useWindowSize from 'hooks/useWindowSize'
 import dynamic from 'next/dynamic'
 import Image from 'next/future/image'
 import Link from 'next/link'
-import { useState } from 'react'
+import { Fragment, useState } from 'react'
 import Lightbox from 'react-image-lightbox'
 import { getClient } from '../lib/sanity'
 import urlForSanitySource from '../lib/urlForSanitySource'
@@ -27,6 +28,8 @@ function About({ aboutPage, serviceShortNames }) {
   const [isGalleryModelOpen, setIsGalleryModelOpen] = useState(false)
   const isDesktop = useIsDesktop()
   const [photoIndex, setPhotoIndex] = useState(0)
+
+  const { width: browserWidth } = useWindowSize()
 
   const utahLocationsImages = aboutPage.utahLocations.map(
     (image) => `${urlForSanitySource(image)}?w=1800&auto=format`
@@ -265,31 +268,43 @@ function About({ aboutPage, serviceShortNames }) {
           <p className="-mt-1.5 font-outline text-xl uppercase lg:text-5xl">
             {aboutPage.teamSubtitle}
           </p>
-          <div className="mt-10 grid grid-cols-2 gap-x-2 gap-y-6 sm:gap-8 lg:grid-cols-4 lg:gap-x-12 lg:gap-y-6">
-            {aboutPage.teamMembers.map((teamMember) => {
+          <div className="mt-10 grid grid-cols-2 gap-x-2 gap-y-6 sm:gap-8 lg:grid-cols-8 lg:gap-x-12 lg:gap-y-6">
+            {aboutPage.teamMembers.map((teamMember, teamMemberIndex) => {
               const width = isDesktop ? 400 : 200
               const height = isDesktop ? 460 : 250
               return (
-                <div key={teamMember._id}>
-                  <Image
-                    src={urlForSanitySource(teamMember.image)
-                      .width(width)
-                      .height(height)
-                      .url()}
-                    height={height}
-                    width={width}
-                    alt={teamMember.name}
-                  />
-                  <p className="mt-2 text-sm font-extrabold uppercase lg:text-2xl">
-                    {teamMember.name}
-                  </p>
-                  <div className="px-4">
-                    <LittleWhiteBar yMargin={'my-2'} />
+                <Fragment key={teamMember._id}>
+                  {aboutPage.teamMembers.length % 4 === 3 &&
+                    teamMemberIndex === aboutPage.teamMembers.length - 3 &&
+                    browserWidth >= 1024 && <div className=""></div>}
+                  {aboutPage.teamMembers.length % 4 === 2 &&
+                    teamMemberIndex === aboutPage.teamMembers.length - 2 &&
+                    browserWidth >= 1024 && <div className="col-span-2"></div>}
+                  {aboutPage.teamMembers.length % 4 === 1 &&
+                    teamMemberIndex === aboutPage.teamMembers.length - 1 &&
+                    browserWidth >= 1024 && <div className="col-span-3"></div>}
+                  <div className="lg:col-span-2">
+                    <Image
+                      alt={teamMember.name}
+                      className="mx-auto"
+                      height={height}
+                      src={urlForSanitySource(teamMember.image)
+                        .width(width)
+                        .height(height)
+                        .url()}
+                      width={width}
+                    />
+                    <p className="mt-2 text-sm font-extrabold uppercase lg:text-2xl">
+                      {teamMember.name}
+                    </p>
+                    <div className="px-4">
+                      <LittleWhiteBar yMargin={'my-2'} />
+                    </div>
+                    <p className="text-sm font-bold uppercase lg:font-outline lg:text-2xl">
+                      {teamMember.title}
+                    </p>
                   </div>
-                  <p className="text-sm font-bold uppercase lg:font-outline lg:text-2xl">
-                    {teamMember.title}
-                  </p>
-                </div>
+                </Fragment>
               )
             })}
           </div>

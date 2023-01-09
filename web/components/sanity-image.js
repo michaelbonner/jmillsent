@@ -1,9 +1,9 @@
 import { useNextSanityImage } from 'next-sanity-image'
-import Image from 'next/future/image'
-import { getClient } from '../lib/sanity'
+import Image from 'next/image'
+import { sanityClient } from '../lib/sanity'
 
 function SanityImage({ alt, className, image }) {
-  const imageProps = useNextSanityImage(getClient(), image)
+  const imageProps = useNextSanityImage(sanityClient, image)
 
   return (
     // eslint-disable-next-line jsx-a11y/alt-text

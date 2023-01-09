@@ -2,7 +2,7 @@ import { H1, H2 } from '@/components/headings'
 import Layout from '@/components/layout'
 import MediumWhiteBar from '@/components/medium-white-bar'
 import NewsItemCard from '@/components/news-item-card'
-import { getClient } from '@/lib/sanity'
+import { sanityClient } from '@/lib/sanity'
 import groq from 'groq'
 import { Fragment } from 'react'
 
@@ -42,7 +42,7 @@ function News({ newsPage }) {
 }
 
 export async function getStaticProps() {
-  const newsPage = await getClient().fetch(
+  const newsPage = await sanityClient.fetch(
     groq`
     *[_type == "newsPage"][0]{
       seoTitle,

@@ -3,7 +3,7 @@ import Layout from '@/components/layout'
 import MediumWhiteBar from '@/components/medium-white-bar'
 import { PasswordLoginForm } from '@/components/password-login-form'
 import PortfolioItemTile from '@/components/portfolio-item-tile'
-import { getClient } from '@/lib/sanity'
+import { sanityClient } from '@/lib/sanity'
 import { PortableText } from '@portabletext/react'
 import groq from 'groq'
 import useIsLoggedIn from 'hooks/useIsLoggedIn'
@@ -68,7 +68,7 @@ function Portfolio({ portfolioPage, portfolioItems }) {
 }
 
 export async function getStaticProps() {
-  const portfolioPage = await getClient().fetch(
+  const portfolioPage = await sanityClient.fetch(
     groq`
   *[_type == "portfolioPage"][0]{
     poster,
@@ -83,7 +83,7 @@ export async function getStaticProps() {
   }
   `
   )
-  const portfolioItems = await getClient().fetch(
+  const portfolioItems = await sanityClient.fetch(
     groq`
     *[_type == "portfolioItem"][!(_id in path('drafts.**'))]|order(order asc){
       _id,

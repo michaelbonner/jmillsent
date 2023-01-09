@@ -3,12 +3,12 @@ import { H3 } from '@/components/headings'
 import Layout from '@/components/layout'
 import MediumWhiteBar from '@/components/medium-white-bar'
 import { PasswordLoginForm } from '@/components/password-login-form'
-import { getClient } from '@/lib/sanity'
+import { sanityClient } from '@/lib/sanity'
 import groq from 'groq'
 import useIsDesktop from 'hooks/useIsDesktop'
 import useIsLoggedIn from 'hooks/useIsLoggedIn'
 import dynamic from 'next/dynamic'
-import Image from 'next/future/image'
+import Image from 'next/image'
 import { useState } from 'react'
 import Link from 'next/link'
 
@@ -109,10 +109,11 @@ const PortfolioItem = ({ portfolioItem = {}, portfolioPagePassword }) => {
 
           <div className="mt-10">
             <div className="text-center">
-              <Link href="/tier-2-work">
-                <a className="inline-flex items-center justify-center border-2 border-gray-300 px-3 py-1 font-outline text-3xl uppercase transition-colors hover:bg-gold hover:text-black">
-                  Back To Portfolio
-                </a>
+              <Link
+                href="/tier-2-work"
+                className="inline-flex items-center justify-center border-2 border-gray-300 px-3 py-1 font-outline text-3xl uppercase transition-colors hover:bg-gold hover:text-black"
+              >
+                Back To Portfolio
               </Link>
             </div>
           </div>
@@ -255,7 +256,7 @@ const PortfolioItem = ({ portfolioItem = {}, portfolioPagePassword }) => {
 }
 
 export async function getStaticPaths() {
-  const paths = await getClient().fetch(
+  const paths = await sanityClient.fetch(
     `
     *[_type == "portfolioItem"]{slug}
   `
@@ -277,7 +278,7 @@ export async function getStaticProps({ params }) {
   // It's important to default the slug so that it doesn't return "undefined"
   const { slug = '' } = params
   try {
-    const portfolioItem = await getClient().fetch(
+    const portfolioItem = await sanityClient.fetch(
       groq`
       *[_type == "portfolioItem" && slug.current == $slug][0]{
         _id,
@@ -297,7 +298,7 @@ export async function getStaticProps({ params }) {
       `,
       { slug }
     )
-    const portfolioItems = await getClient().fetch(
+    const portfolioItems = await sanityClient.fetch(
       groq`
       *[_type == "portfolioItem"][!(_id in path('drafts.**'))]|order(order asc){
         _id,
@@ -313,7 +314,7 @@ export async function getStaticProps({ params }) {
       }
     `
     )
-    const portfolioPagePassword = await getClient().fetch(
+    const portfolioPagePassword = await sanityClient.fetch(
       groq`
       *[_type == "portfolioPage"][0]{
         password,

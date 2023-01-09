@@ -1,7 +1,7 @@
 import { H1 } from '@/components/headings'
 import Layout from '@/components/layout'
 import LittleWhiteBar from '@/components/little-white-bar'
-import Image from 'next/future/image'
+import Image from 'next/image'
 import { useEffect } from 'react'
 import { useState } from 'react'
 
@@ -9,7 +9,7 @@ function NotFound() {
   const [skullColor, setSkullColor] = useState('white')
 
   useEffect(() => {
-    const counter = 0
+    let counter = 0
     const skullColorInterval = setInterval(() => {
       setSkullColor(`hsl(${(counter += 5)}, 100%, 80%)`)
     }, 10)

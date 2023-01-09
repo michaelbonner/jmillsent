@@ -7,12 +7,12 @@ import groq from 'groq'
 import useIsDesktop from 'hooks/useIsDesktop'
 import capitalize from 'just-capitalize'
 import shuffle from 'just-shuffle'
-import Image from 'next/future/image'
+import Image from 'next/image'
 import { useMemo, useState } from 'react'
-import Lightbox from 'react-image-lightbox'
-import { getClient } from '../lib/sanity'
+import Lightbox from 'react-18-image-lightbox'
+import { sanityClient } from '../lib/sanity'
 
-import 'react-image-lightbox/style.css'
+import 'react-18-image-lightbox/style.css'
 
 function Moments({ momentsPage }) {
   const [isGalleryModelOpen, setIsGalleryModelOpen] = useState(false)
@@ -151,7 +151,7 @@ function Moments({ momentsPage }) {
 }
 
 export async function getStaticProps() {
-  const momentsPage = await getClient().fetch(
+  const momentsPage = await sanityClient.fetch(
     groq`
 		*[_type == "momentsPage"][0]{
 			footerSubtitle,

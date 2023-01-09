@@ -3,7 +3,7 @@ import useIsDesktop from 'hooks/useIsDesktop'
 import useWindowSize from 'hooks/useWindowSize'
 import { useRouter } from 'next/dist/client/router'
 import Head from 'next/head'
-import Image from 'next/future/image'
+import Image from 'next/image'
 import Link from 'next/link'
 import React, { useEffect, useState } from 'react'
 import ReactPlayer from 'react-player'
@@ -254,27 +254,23 @@ const Layout = ({
           )}
         >
           <div className="hidden lg:flex">
-            <Link href={`/`}>
-              <a className="flex items-center">
-                <Image
-                  alt="JMills Logo"
-                  src="/images/jme_film_co_x_white.png"
-                  width={Math.floor(192 * 0.5)}
-                  height={Math.floor(150 * 0.5)}
-                />
-              </a>
+            <Link href={`/`} className="flex items-center">
+              <Image
+                alt="JMills Logo"
+                src="/images/jme_film_co_x_white.png"
+                width={Math.floor(192 * 0.5)}
+                height={Math.floor(150 * 0.5)}
+              />
             </Link>
           </div>
           <div className="flex lg:hidden">
-            <Link href={`/`}>
-              <a className="flex items-center">
-                <Image
-                  alt="JMills Logo"
-                  src="/images/jme-film-co-horizontal-white.png"
-                  width={Math.floor(1200 * 0.13)}
-                  height={Math.floor(395 * 0.13)}
-                />
-              </a>
+            <Link href={`/`} className="flex items-center">
+              <Image
+                alt="JMills Logo"
+                src="/images/jme-film-co-horizontal-white.png"
+                width={Math.floor(1200 * 0.13)}
+                height={Math.floor(395 * 0.13)}
+              />
             </Link>
           </div>
           <button
@@ -287,7 +283,6 @@ const Layout = ({
                 alt="Close menu"
                 className="h-8 w-12 fill-current stroke-current stroke-2 text-white"
                 src={`/images/menu-close-white.svg`}
-                layout="fill"
                 width="48"
                 height="32"
               />
@@ -309,46 +304,46 @@ const Layout = ({
       >
         {navItems.map((navItem, index) => {
           return (
-            <Link href={navItem.href} key={index}>
-              <a
+            <Link
+              href={navItem.href}
+              key={index}
+              className={classNames(
+                `${
+                  !hoveredMenuItem || hoveredMenuItem === navItem.href
+                    ? 'text-white'
+                    : 'text-gray-500'
+                }`,
+                `group relative max-w-[80vw] py-[3vh] font-bold uppercase lg:py-6`,
+                `text-2xl tracking-wider md:text-4xl xl:text-6xl`,
+                `w-96 text-center transition-all duration-700`
+              )}
+              onMouseEnter={() => setHoveredMenuItem(navItem.href)}
+              onMouseLeave={() => setHoveredMenuItem('')}
+            >
+              <span
                 className={classNames(
-                  `${
-                    !hoveredMenuItem || hoveredMenuItem === navItem.href
-                      ? 'text-white'
-                      : 'text-gray-500'
-                  }`,
-                  `group relative max-w-[80vw] py-[3vh] font-bold uppercase lg:py-6`,
-                  `text-2xl tracking-wider md:text-4xl xl:text-6xl`,
-                  `w-96 text-center transition-all duration-700`
+                  {
+                    'text-gold': navItem.href === router.pathname,
+                    'text-gold opacity-50': navItem.href === router.pathname,
+                  },
+                  `relative z-10`
                 )}
-                onMouseEnter={() => setHoveredMenuItem(navItem.href)}
-                onMouseLeave={() => setHoveredMenuItem('')}
               >
-                <span
-                  className={classNames(
-                    {
-                      'text-gold': navItem.href === router.pathname,
-                      'text-gold opacity-50': navItem.href === router.pathname,
-                    },
-                    `relative z-10`
-                  )}
-                >
-                  {navItem.name}
-                </span>
-                <span
-                  className={classNames(
-                    {
-                      'w-full': hoveredMenuItem === navItem.href,
-                      'w-0': hoveredMenuItem !== navItem.href,
-                    },
-                    'absolute left-0 right-0 z-0 bg-white transition-all duration-500'
-                  )}
-                  style={{
-                    bottom: 'calc(50% - 1px)',
-                    height: '2px',
-                  }}
-                ></span>
-              </a>
+                {navItem.name}
+              </span>
+              <span
+                className={classNames(
+                  {
+                    'w-full': hoveredMenuItem === navItem.href,
+                    'w-0': hoveredMenuItem !== navItem.href,
+                  },
+                  'absolute left-0 right-0 z-0 bg-white transition-all duration-500'
+                )}
+                style={{
+                  bottom: 'calc(50% - 1px)',
+                  height: '2px',
+                }}
+              ></span>
             </Link>
           )
         })}
@@ -362,27 +357,23 @@ const Layout = ({
         )}
       >
         <div className="hidden lg:flex">
-          <Link href={`/`}>
-            <a className="flex items-center">
-              <Image
-                alt="JMills Logo"
-                src="/images/jme_film_co_x_white.png"
-                width={Math.floor(202 * 0.5)}
-                height={Math.floor(158 * 0.5)}
-              />
-            </a>
+          <Link href={`/`} className="flex items-center">
+            <Image
+              alt="JMills Logo"
+              src="/images/jme_film_co_x_white.png"
+              width={Math.floor(202 * 0.5)}
+              height={Math.floor(158 * 0.5)}
+            />
           </Link>
         </div>
         <div className="flex lg:hidden">
-          <Link className="hidden lg:flex" href={`/`}>
-            <a className="flex items-center">
-              <Image
-                alt="JMills Logo"
-                src="/images/jme-film-co-horizontal-white.png"
-                width={Math.floor(1200 * 0.13)}
-                height={Math.floor(395 * 0.13)}
-              />
-            </a>
+          <Link href={`/`} className="flex items-center">
+            <Image
+              alt="JMills Logo"
+              src="/images/jme-film-co-horizontal-white.png"
+              width={Math.floor(1200 * 0.13)}
+              height={Math.floor(395 * 0.13)}
+            />
           </Link>
         </div>
         <div className="flex items-center justify-end">
@@ -407,7 +398,6 @@ const Layout = ({
                   alt="Open menu"
                   className="h-8 w-12 fill-current stroke-current stroke-2 text-white"
                   src={showHero ? `/images/menu-white.svg` : `/images/menu.svg`}
-                  layout="fill"
                   height="48"
                   width="32"
                 />
@@ -492,17 +482,17 @@ const Layout = ({
         <nav className="container mx-auto flex w-full max-w-5xl flex-wrap justify-center gap-4 px-12 pb-8 lg:justify-around lg:px-4">
           {navItems.map((navItem, index) => {
             return (
-              <Link key={index} href={navItem.href}>
-                <a
-                  className={classNames(
-                    {
-                      'border-b': router.route === navItem.href,
-                    },
-                    `pb-1 text-lg font-bold uppercase text-white lg:text-2xl`
-                  )}
-                >
-                  {navItem.name}
-                </a>
+              <Link
+                key={index}
+                href={navItem.href}
+                className={classNames(
+                  {
+                    'border-b': router.route === navItem.href,
+                  },
+                  `pb-1 text-lg font-bold uppercase text-white lg:text-2xl`
+                )}
+              >
+                {navItem.name}
               </Link>
             )
           })}

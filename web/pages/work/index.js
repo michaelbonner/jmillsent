@@ -1,6 +1,6 @@
 import Layout from '@/components/layout'
 import groq from 'groq'
-import { getClient } from '@/lib/sanity'
+import { sanityClient } from '@/lib/sanity'
 import { PortableText } from '@portabletext/react'
 import WorkItemTile from '@/components/work-item-tile'
 import MediumWhiteBar from '@/components/medium-white-bar'
@@ -34,7 +34,7 @@ function Work({ workPage, workItems }) {
 }
 
 export async function getStaticProps() {
-  const workPage = await getClient().fetch(
+  const workPage = await sanityClient.fetch(
     groq`
   *[_type == "workPage"][0]{
     poster,
@@ -47,7 +47,7 @@ export async function getStaticProps() {
   }
   `
   )
-  const workItems = await getClient().fetch(
+  const workItems = await sanityClient.fetch(
     groq`
     *[_type == "workItem"][!(_id in path('drafts.**'))]|order(order asc){
       _id,

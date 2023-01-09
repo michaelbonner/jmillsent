@@ -9,7 +9,7 @@ import { PortableText } from '@portabletext/react'
 import groq from 'groq'
 import dynamic from 'next/dynamic'
 import { GrInstagram, GrLinkedin, GrVimeo } from 'react-icons/gr'
-import { getClient } from '../lib/sanity'
+import { sanityClient } from '../lib/sanity'
 import urlForSanitySource from '../lib/urlForSanitySource'
 
 const ContactForm = dynamic(() => import('@/components/contact-form'), {})
@@ -140,7 +140,7 @@ function Contact({ contact }) {
 export async function getStaticProps() {
   return {
     props: {
-      contact: await getClient().fetch(groq`
+      contact: await sanityClient.fetch(groq`
           *[_type == "contactPage"][0]{
             title,
             backgroundImage,

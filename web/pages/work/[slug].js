@@ -2,11 +2,11 @@
 import { H3 } from '@/components/headings'
 import Layout from '@/components/layout'
 import MediumWhiteBar from '@/components/medium-white-bar'
-import { getClient } from '@/lib/sanity'
+import { sanityClient } from '@/lib/sanity'
 import groq from 'groq'
 import useIsDesktop from 'hooks/useIsDesktop'
 import dynamic from 'next/dynamic'
-import Image from 'next/future/image'
+import Image from 'next/image'
 import { useState } from 'react'
 
 const VideoPlayer = dynamic(() => import('@/components/video-player'), {})
@@ -206,7 +206,7 @@ const WorkItem = ({ workItem = {} }) => {
 }
 
 export async function getStaticPaths() {
-  const paths = await getClient().fetch(
+  const paths = await sanityClient.fetch(
     `
     *[_type == "workItem"]{slug}
   `
@@ -228,7 +228,7 @@ export async function getStaticProps({ params }) {
   // It's important to default the slug so that it doesn't return "undefined"
   const { slug = '' } = params
   try {
-    const workItem = await getClient().fetch(
+    const workItem = await sanityClient.fetch(
       groq`
       *[_type == "workItem" && slug.current == $slug][0]{
         _id,
@@ -248,7 +248,7 @@ export async function getStaticProps({ params }) {
       `,
       { slug }
     )
-    const workItems = await getClient().fetch(
+    const workItems = await sanityClient.fetch(
       groq`
       *[_type == "workItem"][!(_id in path('drafts.**'))]|order(order asc){
         _id,

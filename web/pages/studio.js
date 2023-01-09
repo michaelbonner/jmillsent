@@ -9,10 +9,10 @@ import groq from 'groq'
 import useIsDesktop from 'hooks/useIsDesktop'
 import dynamic from 'next/dynamic'
 import { useState } from 'react'
-import Lightbox from 'react-image-lightbox'
-import { getClient } from '../lib/sanity'
+import Lightbox from 'react-18-image-lightbox'
+import { sanityClient } from '../lib/sanity'
 
-import 'react-image-lightbox/style.css'
+import 'react-18-image-lightbox/style.css'
 
 const VideoPlayer = dynamic(() => import('@/components/video-player'), {})
 
@@ -168,7 +168,7 @@ function Studio({ studioPage }) {
 }
 
 export async function getStaticProps() {
-  const studioPage = await getClient().fetch(
+  const studioPage = await sanityClient.fetch(
     groq`
 		*[_type == "studioPage"][0]{
 			footerSubtitle,

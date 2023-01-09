@@ -1,6 +1,6 @@
 import urlForSanitySource from '@/lib/urlForSanitySource'
 import { PortableText } from '@portabletext/react'
-import Image from 'next/future/image'
+import Image from 'next/image'
 import Link from 'next/link'
 import React from 'react'
 import { H3 } from './headings'
@@ -75,20 +75,21 @@ const BackgroundText = ({
                 <div
                   className={`self-center ${styles[leftOrRight].buttonPosition}`}
                 >
-                  <Link href={slug}>
-                    <a className="inline-flex items-center justify-center gap-3 border-2 border-gray-300 px-3 py-1 text-2xl uppercase text-gray-300 transition-colors hover:bg-gold hover:text-black">
-                      <span className="font-outline tracking-tighter">
-                        {customButtonText1}
-                      </span>
+                  <Link
+                    href={slug}
+                    className="inline-flex items-center justify-center gap-3 border-2 border-gray-300 px-3 py-1 text-2xl uppercase text-gray-300 transition-colors hover:bg-gold hover:text-black"
+                  >
+                    <span className="font-outline tracking-tighter">
+                      {customButtonText1}
+                    </span>
 
-                      <span className="font-bold tracking-wide">
-                        {customButtonText2}
-                      </span>
+                    <span className="font-bold tracking-wide">
+                      {customButtonText2}
+                    </span>
 
-                      <span className="font-outline tracking-tighter">
-                        {customButtonText3}
-                      </span>
-                    </a>
+                    <span className="font-outline tracking-tighter">
+                      {customButtonText3}
+                    </span>
                   </Link>
                 </div>
               )}

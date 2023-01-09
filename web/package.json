@@ -18,7 +18,7 @@
     "@tailwindcss/aspect-ratio": "^0.4.2",
     "@tailwindcss/typography": "^0.5.8",
     "@vimeo/player": "^2.18.0",
-    "aws-sdk": "^2.1290.0",
+    "aws-sdk": "^2.1291.0",
     "classnames": "^2.3.2",
     "date-fns": "^2.29.3",
     "formik": "^2.2.9",

@@ -13,6 +13,7 @@ function SanityImage({ alt, className, image }) {
       className={className}
       layout="responsive"
       sizes="(max-width: 800px) 100vw, 800px"
+      unoptimized
     />
   )
 }

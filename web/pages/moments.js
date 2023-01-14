@@ -138,6 +138,7 @@ function Moments({ momentsPage }) {
                     }}
                     src={`${image.imageUrl}?w=${width}&h=${height}&auto=format&fit=crop&crop=focalpoint`}
                     width={width}
+                    unoptimized
                   />
                 </div>
               )

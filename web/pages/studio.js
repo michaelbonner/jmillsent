@@ -13,6 +13,7 @@ import Lightbox from 'react-18-image-lightbox'
 import { sanityClient } from '../lib/sanity'
 
 import 'react-18-image-lightbox/style.css'
+import Link from 'next/link'
 
 const VideoPlayer = dynamic(() => import('@/components/video-player'), {})
 
@@ -89,6 +90,43 @@ function Studio({ studioPage }) {
             <PortableText value={studioPage.section1Body} />
           </div>
         )}
+        <div className="mt-10 flex justify-center">
+          <Link
+            href="/contact"
+            className={classNames(
+              'group flex items-center justify-center gap-4 border-2 border-gray-300 px-3 py-2 uppercase transition-colors',
+              'hover:bg-gold'
+            )}
+          >
+            <span
+              className={classNames(
+                'font-outline text-2xl tracking-tighter text-gray-300',
+                'lg:text-3xl',
+                'group-hover:text-black'
+              )}
+            >
+              Book
+            </span>
+            <span
+              className={classNames(
+                'text-2xl font-bold tracking-wide',
+                'lg:text-3xl',
+                'group-hover:text-black'
+              )}
+            >
+              Studio
+            </span>
+            <span
+              className={className(
+                'font-outline text-2xl tracking-tighter text-gray-300',
+                'lg:text-3xl',
+                'group-hover:text-black'
+              )}
+            >
+              Space
+            </span>
+          </Link>
+        </div>
         <DividerBar />
         <div className="container mx-auto -mt-1.5 px-8 text-center uppercase">
           <H2>{studioPage.section3Title}</H2>

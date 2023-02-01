@@ -5,14 +5,15 @@ import Layout from '@/components/layout'
 import MediumWhiteBar from '@/components/medium-white-bar'
 import urlForSanitySource from '@/lib/urlForSanitySource'
 import { PortableText, toPlainText } from '@portabletext/react'
+import classNames from 'classnames'
 import groq from 'groq'
 import useIsDesktop from 'hooks/useIsDesktop'
 import dynamic from 'next/dynamic'
+import Link from 'next/link'
 import { useState } from 'react'
 import Lightbox from 'react-18-image-lightbox'
-import { sanityClient } from '../lib/sanity'
-
 import 'react-18-image-lightbox/style.css'
+import { sanityClient } from '../lib/sanity'
 
 const VideoPlayer = dynamic(() => import('@/components/video-player'), {})
 
@@ -22,10 +23,25 @@ function Studio({ studioPage }) {
   const isDesktop = useIsDesktop()
 
   const heroContent = (
-    <div className="grid h-full w-full items-center text-white lg:gap-y-4">
-      <div className="grid items-center justify-center pt-4 text-center lg:mt-16">
+    <div
+      className={classNames(
+        'grid h-full w-full items-center text-white',
+        'lg:gap-y-4'
+      )}
+    >
+      <div
+        className={classNames(
+          'grid items-center justify-center pt-4 text-center',
+          'lg:mt-16'
+        )}
+      >
         <H1 className="mb-0">{studioPage.title}</H1>
-        <h2 className="font-outline text-3xl uppercase lg:text-7xl">
+        <h2
+          className={classNames(
+            'font-outline text-3xl uppercase',
+            'lg:text-7xl'
+          )}
+        >
           {studioPage.subtitle}
         </h2>
       </div>
@@ -82,17 +98,70 @@ function Studio({ studioPage }) {
         />
       )}
 
-      <div className="container mx-auto mt-12 px-4 text-center text-white sm:px-6 lg:mt-24">
+      <div
+        className={classNames(
+          'container mx-auto mt-12 px-4 text-center text-white',
+          'sm:px-6',
+          'lg:mt-24'
+        )}
+      >
         <H2>{studioPage.section1Title}</H2>
         {studioPage.section1Body && (
-          <div className="prose-lg mx-auto mt-4 -mb-2 max-w-5xl px-4 text-center lg:mt-10">
+          <div
+            className={classNames(
+              'prose-lg mx-auto mt-4 -mb-2 max-w-5xl px-4 text-center',
+              'lg:mt-10'
+            )}
+          >
             <PortableText value={studioPage.section1Body} />
           </div>
         )}
+        <div className="mt-10 flex justify-center">
+          <Link
+            href="/contact"
+            className={classNames(
+              'group flex items-center justify-center gap-4 border-2 border-gray-300 px-3 py-2 uppercase transition-colors',
+              'hover:bg-gold'
+            )}
+          >
+            <span
+              className={classNames(
+                'font-outline text-2xl tracking-tighter text-gray-300',
+                'lg:text-3xl',
+                'group-hover:text-black'
+              )}
+            >
+              Book
+            </span>
+            <span
+              className={classNames(
+                'text-2xl font-bold tracking-wide',
+                'lg:text-3xl',
+                'group-hover:text-black'
+              )}
+            >
+              Studio
+            </span>
+            <span
+              className={classNames(
+                'font-outline text-2xl tracking-tighter text-gray-300',
+                'lg:text-3xl',
+                'group-hover:text-black'
+              )}
+            >
+              Space
+            </span>
+          </Link>
+        </div>
         <DividerBar />
         <div className="container mx-auto -mt-1.5 px-8 text-center uppercase">
           <H2>{studioPage.section3Title}</H2>
-          <p className="font-outline text-xl uppercase leading-4 lg:text-5xl">
+          <p
+            className={classNames(
+              'font-outline text-xl uppercase leading-4',
+              'lg:text-5xl'
+            )}
+          >
             {studioPage.section3Subtitle}
           </p>
         </div>
@@ -102,13 +171,21 @@ function Studio({ studioPage }) {
           <>
             <div className="container mx-auto px-8 text-center" id="tour">
               <H2>{studioPage.section2Title}</H2>
-              <p className="font-outline text-xl uppercase lg:text-5xl">
+              <p
+                className={classNames(
+                  'font-outline text-xl uppercase',
+                  'lg:text-5xl'
+                )}
+              >
                 {studioPage.section2Subtitle}
               </p>
             </div>
             <div
               id="tour"
-              className="container mx-auto mt-4 max-w-7xl border border-gray-300 p-4 lg:mt-10 lg:p-8"
+              className={classNames(
+                'container mx-auto mt-4 max-w-7xl border border-gray-300 p-4',
+                'lg:mt-10 lg:p-8'
+              )}
             >
               <VideoPlayer
                 poster={studioPage.tourVideoPoster}
@@ -130,12 +207,23 @@ function Studio({ studioPage }) {
         <section id="studio-items">
           <div className="container mx-auto -mt-1.5 px-8 text-center uppercase">
             <H2>{studioPage.studioItemSectionTitle}</H2>
-            <p className="font-outline text-xl uppercase leading-4 lg:text-5xl">
+            <p
+              className={classNames(
+                'font-outline text-xl uppercase leading-4',
+                'lg:text-5xl'
+              )}
+            >
               {studioPage.studioItemSectionSubtitle}
             </p>
           </div>
           {studioPage.studioItems?.length > 0 && (
-            <div className="mx-auto mt-10 grid max-w-7xl gap-y-4 sm:gap-y-8 lg:gap-y-12">
+            <div
+              className={classNames(
+                'mx-auto mt-10 grid max-w-7xl gap-y-4',
+                'sm:gap-y-8',
+                'lg:gap-y-12'
+              )}
+            >
               {studioPage.studioItems.map((service, index) => {
                 const leftOrRight = service.rightAlign ? 'right' : 'left'
                 return (

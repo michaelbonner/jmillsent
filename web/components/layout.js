@@ -8,6 +8,8 @@ import Link from 'next/link'
 import React, { useEffect, useState } from 'react'
 import ReactPlayer from 'react-player'
 import urlForSanitySource from '../lib/urlForSanitySource'
+import Lottie from 'lottie-react'
+import jmeAnimation from '../public/animations/JME_Logo_White_V2.json'
 
 const navItems = [
   {
@@ -62,6 +64,7 @@ const Layout = ({
   const [heroVideoHeight, setHeroVideoHeight] = useState('42vw')
   const [heroVideoWidth, setHeroVideoWidth] = useState('100vw')
   const isDesktop = useIsDesktop()
+  const isHomePage = router.pathname === '/'
 
   const toggleMenu = () => {
     if (menuOpen) {
@@ -217,21 +220,28 @@ const Layout = ({
           ${heroVideoId && !videoPlaying ? `opacity-100` : `opacity-0`}
             `}
       >
-        <div
-          className={`${
-            heroVideoId && !videoPlaying
-              ? `animate-pulse opacity-100`
-              : `opacity-0`
-          } duration-1500 flex h-full w-full items-center justify-center`}
-        >
-          <Image
-            alt="JMills Logo"
-            className="max-w-full px-8"
-            src="/images/jme_film_co_x_white.svg"
-            width={Math.floor(192 * 1.4)}
-            height={Math.floor(150 * 1.4)}
-          />
-        </div>
+        {isHomePage && (
+          <div className="mx-auto mt-[33vh] h-[20vh] w-[20vw]">
+            <Lottie animationData={jmeAnimation} loop={true} />
+          </div>
+        )}
+        {!isHomePage && (
+          <div
+            className={`${
+              heroVideoId && !videoPlaying
+                ? `animate-pulse opacity-100`
+                : `opacity-0`
+            } duration-1500 flex h-full w-full items-center justify-center`}
+          >
+            <Image
+              alt="JMills Logo"
+              className="max-w-full px-8"
+              src="/images/jme_film_co_x_white.svg"
+              width={Math.floor(192 * 1.4)}
+              height={Math.floor(150 * 1.4)}
+            />
+          </div>
+        )}
       </div>
 
       <div

@@ -25,7 +25,7 @@ const Map = () => {
       <Marker
         animation={'DROP'}
         icon={{
-          url: 'https://jmillsent.vercel.app/images/jme-pin.png',
+          url: 'https://www.jmillsent.com/images/jme-pin.png',
           scaledSize: new google.maps.Size(47, 65),
         }}
         position={{ lat: 40.8664457, lng: -111.9247221 }}
@@ -33,7 +33,7 @@ const Map = () => {
       {/* Airport */}
       <Marker
         icon={{
-          url: `https://jmillsent.vercel.app/images/pin-slc-airport.png`,
+          url: `https://www.jmillsent.com/images/pin-slc-airport.png`,
           scaledSize: new google.maps.Size(33, 35),
         }}
         position={{ lat: 40.7899404, lng: -111.9790706 }}

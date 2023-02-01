@@ -186,7 +186,7 @@ const Layout = ({
         <meta property="og:description" content={description} />
         <meta
           property="og:image"
-          content="https://jmillsent.vercel.app/og-image.jpg"
+          content="https://www.jmillsent.com/og-image.jpg"
         />
         <meta name="description" content={description} />
         <link

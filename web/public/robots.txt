@@ -3,7 +3,7 @@ User-agent: *
 Allow: /
 
 # Host
-Host: https://jmillsent.vercel.app
+Host: https://www.jmillsent.com
 
 # Sitemaps
-Sitemap: https://jmillsent.vercel.app/sitemap.xml
+Sitemap: https://www.jmillsent.com/sitemap.xml

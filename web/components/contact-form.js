@@ -21,6 +21,11 @@ const contactSchema = Yup.object().shape({
     .matches(phoneRegExp, 'Phone number is not valid')
     .required('Valid Phone number is Required'),
   message: Yup.string().min(2, 'Too short').required('Message is Required'),
+  preference: Yup.object().shape({
+    production: Yup.boolean(),
+    co3Suite: Yup.boolean(),
+    studioRental: Yup.boolean(),
+  }),
 })
 
 const ContactForm = ({ successMessage = '' }) => {
@@ -30,6 +35,11 @@ const ContactForm = ({ successMessage = '' }) => {
     emailAddress: '',
     phoneNumber: '',
     message: '',
+    preference: {
+      production: false,
+      co3Suite: false,
+      studioRental: false,
+    },
   }
 
   return (
@@ -126,6 +136,39 @@ const ContactForm = ({ successMessage = '' }) => {
                   className="absolute right-0 -bottom-2 px-4 py-3 text-left text-xs leading-3 text-red-700"
                   component="div"
                 />
+              </div>
+              <div className="flex justify-evenly text-lg uppercase">
+                <p>I&apos;m interested in:</p>
+                <label className="flex items-center gap-x-3">
+                  <Field
+                    className="border-white bg-black p-2 text-gold focus:ring-1 focus:ring-white"
+                    type="checkbox"
+                    name="production"
+                    onChange={handleChange}
+                    value="production"
+                  />
+                  Production
+                </label>
+                <label className="flex items-center gap-x-3">
+                  <Field
+                    className="border-white bg-black p-2 text-gold focus:ring-1 focus:ring-white"
+                    type="checkbox"
+                    name="co3Suite"
+                    onChange={handleChange}
+                    value="co3Suite"
+                  />
+                  CO3 Suite
+                </label>
+                <label className="flex items-center gap-x-3">
+                  <Field
+                    className="border-white bg-black p-2 text-gold focus:ring-1 focus:ring-white"
+                    type="checkbox"
+                    name="studioRental"
+                    onChange={handleChange}
+                    value="studioRental"
+                  />
+                  Studio Rental
+                </label>
               </div>
               <button
                 type="submit"

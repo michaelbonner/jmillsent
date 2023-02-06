@@ -25,12 +25,12 @@ export default async function handler(req, res) {
         <p>Email: ${req.body.emailAddress}</p>
         <p>Phone: ${req.body.phoneNumber}</p>
         <p>Message: ${req.body.message}</p>
-        <p>Preference: ${req.body.preference}</p>`,
+        <p>Preference: ${req.body.preference.join(', ')}</p>`,
         `Name: ${req.body.name}\n
         Email: ${req.body.emailAddress}\n
         Phone: ${req.body.phoneNumber}\n
         Message: ${req.body.message}\n
-        Preference: ${req.body.preference}`
+        Preference: ${req.body.preference.join(', ')}`
       )
     } catch (error) {
       console.error('error', error)

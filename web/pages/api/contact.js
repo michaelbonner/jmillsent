@@ -14,7 +14,7 @@ export default async function handler(req, res) {
       Item: contact,
     })
 
-    const toEmail = [`mike@bootpackdigital.com`, `jeremy@jmillsent.com`]
+    const toEmail = [`jeremy@jmillsent.com`]
 
     try {
       await sendSesEmail(

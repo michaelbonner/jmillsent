@@ -1,6 +1,7 @@
 import Vimeo from '@vimeo/player'
 import classNames from 'classnames'
 import useIsDesktop from 'hooks/useIsDesktop'
+import useIsResizedWindow from 'hooks/useIsResizedWindow'
 import Image from 'next/image'
 import { useEffect, useLayoutEffect, useRef, useState } from 'react'
 import screenfull from 'screenfull'
@@ -21,6 +22,7 @@ const VideoPlayer = ({
   videoWidthAspectRatio = '16',
 }) => {
   const isDesktop = useIsDesktop()
+  const isResizedWindow = useIsResizedWindow()
   const [playerState, setPlayerState] = useState('initial')
   const [showVideo, setShowVideo] = useState(true)
   const [showVideoOverlay, setShowVideoOverlay] = useState(
@@ -81,7 +83,7 @@ const VideoPlayer = ({
     const onLoaded = () => {
       console.info('player: onLoaded')
       getVideoDetails(vimeoPlayer)
-      if (isDesktop && autoPlay) {
+      if (isDesktop && autoPlay && !isResizedWindow) {
         setTimeout(async () => {
           await vimeoPlayer.play()
         }, 500)
@@ -119,7 +121,7 @@ const VideoPlayer = ({
       vimeoPlayer.off('pause')
       vimeoPlayer.off('timeupdate')
     }
-  }, [autoPlay, isDesktop, scrubberWidth, vimeoPlayer])
+  }, [autoPlay, isDesktop, scrubberWidth, vimeoPlayer, isResizedWindow])
 
   // switch to full video if we need to on first click
   useEffect(() => {

@@ -83,6 +83,7 @@ const VideoPlayer = ({
       getVideoDetails(vimeoPlayer)
       if (isDesktop && autoPlay) {
         setTimeout(async () => {
+          await vimeoPlayer.setVolume(0)
           await vimeoPlayer.play()
         }, 500)
       }

@@ -271,6 +271,7 @@ function About({ aboutPage, serviceShortNames }) {
             className={classNames(
               'mt-10 grid grid-cols-2 gap-x-2 gap-y-6',
               'sm:gap-y-8 sm:gap-x-0',
+              'md:grid-cols-3',
               'lg:grid-cols-8 lg:gap-x-12 lg:gap-y-6'
             )}
           >

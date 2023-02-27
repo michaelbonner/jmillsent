@@ -21,6 +21,7 @@ const contactSchema = Yup.object().shape({
     .matches(phoneRegExp, 'Phone number is not valid')
     .required('Valid Phone number is Required'),
   message: Yup.string().min(2, 'Too short').required('Message is Required'),
+  preference: Yup.array().min(1, 'Please select at least one option'),
 })
 
 const ContactForm = ({ successMessage = '' }) => {
@@ -30,6 +31,7 @@ const ContactForm = ({ successMessage = '' }) => {
     emailAddress: '',
     phoneNumber: '',
     message: '',
+    preference: [],
   }
 
   return (
@@ -124,6 +126,44 @@ const ContactForm = ({ successMessage = '' }) => {
                 <ErrorMessage
                   name="message"
                   className="absolute right-0 -bottom-2 px-4 py-3 text-left text-xs leading-3 text-red-700"
+                  component="div"
+                />
+              </div>
+              <div className="relative flex justify-evenly">
+                <p className="text-lg uppercase">I&apos;m interested in:</p>
+                <label className="flex items-center gap-x-3 text-lg uppercase">
+                  <Field
+                    className="border-white bg-black p-2 text-gold focus:ring-1 focus:ring-white"
+                    type="checkbox"
+                    name="preference"
+                    onChange={handleChange}
+                    value="Production"
+                  />
+                  Production
+                </label>
+                <label className="flex items-center gap-x-3 text-lg uppercase">
+                  <Field
+                    className="border-white bg-black p-2 text-gold focus:ring-1 focus:ring-white"
+                    type="checkbox"
+                    name="preference"
+                    onChange={handleChange}
+                    value="CO3 Suite"
+                  />
+                  CO3 Suite
+                </label>
+                <label className="flex items-center gap-x-3 text-lg uppercase">
+                  <Field
+                    className="border-white bg-black p-2 text-gold focus:ring-1 focus:ring-white"
+                    type="checkbox"
+                    name="preference"
+                    onChange={handleChange}
+                    value="Studio Rental"
+                  />
+                  Studio Rental
+                </label>
+                <ErrorMessage
+                  name="preference"
+                  className="absolute right-0 -bottom-7 px-4 py-3 text-left text-xs leading-3 text-red-700"
                   component="div"
                 />
               </div>

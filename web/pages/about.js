@@ -267,7 +267,14 @@ function About({ aboutPage, serviceShortNames }) {
           <p className="-mt-1.5 font-outline text-xl uppercase lg:text-5xl">
             {aboutPage.teamSubtitle}
           </p>
-          <div className="mt-10 grid grid-cols-2 gap-x-2 gap-y-6 sm:gap-8 lg:grid-cols-8 lg:gap-x-12 lg:gap-y-6">
+          <div
+            className={classNames(
+              'mt-10 grid grid-cols-2 gap-x-2 gap-y-6',
+              'sm:gap-y-8 sm:gap-x-0',
+              'md:grid-cols-3',
+              'lg:grid-cols-8 lg:gap-x-12 lg:gap-y-6'
+            )}
+          >
             {aboutPage.teamMembers.map((teamMember, teamMemberIndex) => {
               const width = isDesktop ? 400 : 200
               const height = isDesktop ? 460 : 250

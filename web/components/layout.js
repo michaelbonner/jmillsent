@@ -218,11 +218,12 @@ const Layout = ({
         className={`
         pointer-events-none fixed inset-0 z-30 bg-black transition-opacity duration-[3000ms]
           ${heroVideoId && !videoPlaying ? `opacity-100` : `opacity-0`}
+          ${isHomePage ? `delay-[1800ms]` : `delay-[0ms]`}
             `}
       >
         {isHomePage && (
-          <div className="mx-auto mt-[33vh] h-[20vh] w-[20vw]">
-            <Lottie animationData={jmeAnimation} loop={true} />
+          <div className="mx-auto mt-[36vh] h-[12vh] w-[12vw]">
+            <Lottie animationData={jmeAnimation} loop={false} />
           </div>
         )}
         {!isHomePage && (

@@ -129,7 +129,7 @@ const ContactForm = ({ successMessage = '' }) => {
                   component="div"
                 />
               </div>
-              <div className="relative flex justify-evenly">
+              <div className="relative mx-auto grid grid-cols-1 md:grid-cols-4">
                 <p className="text-lg uppercase">I&apos;m interested in:</p>
                 <label className="flex items-center gap-x-3 text-lg uppercase">
                   <Field
@@ -163,7 +163,7 @@ const ContactForm = ({ successMessage = '' }) => {
                 </label>
                 <ErrorMessage
                   name="preference"
-                  className="absolute right-0 -bottom-7 px-4 py-3 text-left text-xs leading-3 text-red-700"
+                  className="absolute right-0 -bottom-9 px-4 py-3 text-left text-xs leading-3 text-red-700 md:-bottom-7"
                   component="div"
                 />
               </div>

@@ -247,7 +247,7 @@ const Layout = ({
 
       <div
         className={classNames(
-          'top-0 z-50 w-full bg-black lg:absolute',
+          'top-0 z-50 w-full lg:absolute',
           !menuOpen && 'absolute',
           menuOpen && 'sticky'
         )}
@@ -309,7 +309,7 @@ const Layout = ({
             fixed: menuVisible,
             hidden: !menuVisible,
           },
-          'inset-0 top-[83px] transform bg-black pb-[20px] transition-all ease-in',
+          'inset-0 transform bg-black pb-[20px] transition-all ease-in',
           'z-40 flex flex-col items-center justify-center overflow-y-scroll text-right duration-300'
         )}
       >
@@ -362,9 +362,9 @@ const Layout = ({
 
       <div
         className={classNames(
-          'top-0 z-20 flex w-full items-center justify-between bg-black py-4 px-6 lg:relative',
+          'top-0 z-20 flex w-full items-center justify-between py-4 px-6 lg:absolute',
           menuOpen && 'fixed',
-          !menuOpen && 'sticky'
+          !menuOpen && 'sticky bg-black lg:bg-transparent'
         )}
       >
         <div className="hidden lg:flex">
@@ -476,7 +476,7 @@ const Layout = ({
             ) : (
               heroContent && (
                 <div
-                  className="relative z-30 flex h-full w-screen items-center text-white"
+                  className="relative z-0 flex h-full w-screen items-center text-white"
                   style={{ minHeight: `20vh` }}
                 >
                   {heroContent}

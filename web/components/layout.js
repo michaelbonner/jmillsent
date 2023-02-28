@@ -247,7 +247,7 @@ const Layout = ({
 
       <div
         className={classNames(
-          'top-0 z-50 w-full bg-black lg:absolute',
+          'top-0 z-50 w-full lg:absolute',
           !menuOpen && 'absolute',
           menuOpen && 'sticky'
         )}
@@ -309,7 +309,7 @@ const Layout = ({
             fixed: menuVisible,
             hidden: !menuVisible,
           },
-          'inset-0 top-[83px] transform bg-black pb-[20px] transition-all ease-in',
+          'inset-0 transform bg-black pb-[20px] transition-all ease-in',
           'z-40 flex flex-col items-center justify-center overflow-y-scroll text-right duration-300'
         )}
       >
@@ -364,7 +364,7 @@ const Layout = ({
         className={classNames(
           'top-0 z-20 flex w-full items-center justify-between py-4 px-6 lg:absolute',
           menuOpen && 'fixed',
-          !menuOpen && 'sticky bg-black'
+          !menuOpen && 'sticky bg-black lg:bg-transparent'
         )}
       >
         <div className="hidden lg:flex">

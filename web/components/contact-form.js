@@ -129,41 +129,47 @@ const ContactForm = ({ successMessage = '' }) => {
                   component="div"
                 />
               </div>
-              <div className="relative mx-auto grid grid-cols-1 md:grid-cols-4">
-                <p className="text-lg uppercase">I&apos;m interested in:</p>
-                <label className="flex items-center gap-x-3 text-lg uppercase">
-                  <Field
-                    className="border-white bg-black p-2 text-gold focus:ring-1 focus:ring-white"
-                    type="checkbox"
-                    name="preference"
-                    onChange={handleChange}
-                    value="Production"
-                  />
-                  Production
-                </label>
-                <label className="flex items-center gap-x-3 text-lg uppercase">
-                  <Field
-                    className="border-white bg-black p-2 text-gold focus:ring-1 focus:ring-white"
-                    type="checkbox"
-                    name="preference"
-                    onChange={handleChange}
-                    value="CO3 Suite"
-                  />
-                  CO3 Suite
-                </label>
-                <label className="flex items-center gap-x-3 text-lg uppercase">
-                  <Field
-                    className="border-white bg-black p-2 text-gold focus:ring-1 focus:ring-white"
-                    type="checkbox"
-                    name="preference"
-                    onChange={handleChange}
-                    value="Studio Rental"
-                  />
-                  Studio Rental
-                </label>
+              <div>
+                <div className="relative mx-auto grid gap-4 px-4 sm:flex md:gap-8 md:px-8">
+                  <p className="shrink-0 text-lg uppercase">
+                    I&apos;m interested in:
+                  </p>
+                  <div className="col-span-2 flex flex-wrap gap-4 px-2 md:gap-8">
+                    <label className="flex items-center gap-x-3 uppercase">
+                      <Field
+                        className="border-white bg-black p-2 text-gold focus:ring-1 focus:ring-white"
+                        type="checkbox"
+                        name="preference"
+                        onChange={handleChange}
+                        value="Production"
+                      />
+                      Production
+                    </label>
+                    <label className="flex items-center gap-x-3 uppercase">
+                      <Field
+                        className="border-white bg-black p-2 text-gold focus:ring-1 focus:ring-white"
+                        type="checkbox"
+                        name="preference"
+                        onChange={handleChange}
+                        value="CO3 Suite"
+                      />
+                      CO3 Suite
+                    </label>
+                    <label className="flex items-center gap-x-3 uppercase">
+                      <Field
+                        className="border-white bg-black p-2 text-gold focus:ring-1 focus:ring-white"
+                        type="checkbox"
+                        name="preference"
+                        onChange={handleChange}
+                        value="Studio Rental"
+                      />
+                      Studio Rental
+                    </label>
+                  </div>
+                </div>
                 <ErrorMessage
                   name="preference"
-                  className="absolute right-0 -bottom-9 px-4 py-3 text-left text-xs leading-3 text-red-700 md:-bottom-7"
+                  className="px-4 py-2 text-right text-xs leading-3 text-red-300 md:-bottom-7"
                   component="div"
                 />
               </div>

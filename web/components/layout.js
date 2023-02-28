@@ -218,7 +218,7 @@ const Layout = ({
         className={`
         pointer-events-none fixed inset-0 z-30 bg-black transition-opacity duration-[3000ms]
           ${heroVideoId && !videoPlaying ? `opacity-100` : `opacity-0`}
-          ${isHomePage ? `delay-[1800ms]` : `delay-[0ms]`}
+          ${isHomePage ? `delay-[1400ms]` : `delay-[0ms]`}
             `}
       >
         {isHomePage && (

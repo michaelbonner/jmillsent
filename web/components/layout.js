@@ -222,7 +222,7 @@ const Layout = ({
             `}
       >
         {isHomePage && (
-          <div className="mx-auto mt-[calc(50vh-110px)] h-[220px] w-[220px]">
+          <div className="relative top-[calc(50vh-140px)] mx-auto h-[220px] w-[220px] lg:top-[calc(50vh-110px)]">
             <Lottie animationData={jmeAnimation} loop={false} />
           </div>
         )}

@@ -353,7 +353,7 @@ const Layout = ({
         className={classNames(
           'top-0 z-20 flex w-full items-center justify-between py-4 px-6 lg:absolute',
           menuOpen && 'fixed',
-          !menuOpen && 'sticky'
+          !menuOpen && 'sticky bg-black'
         )}
       >
         <div className="hidden lg:flex">

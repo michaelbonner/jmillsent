@@ -216,9 +216,9 @@ const Layout = ({
 
       <div
         className={`
-        pointer-events-none fixed inset-0 z-30 bg-black transition-opacity duration-[3000ms]
+        pointer-events-none fixed inset-0 z-30 bg-black transition-opacity duration-[2400ms]
           ${heroVideoId && !videoPlaying ? `opacity-100` : `opacity-0`}
-          ${isHomePage ? `delay-[1400ms]` : `delay-[0ms]`}
+          ${isHomePage ? `delay-[1200ms]` : `delay-[0ms]`}
             `}
       >
         {isHomePage && (
@@ -232,7 +232,7 @@ const Layout = ({
               heroVideoId && !videoPlaying
                 ? `animate-pulse opacity-100`
                 : `opacity-0`
-            } duration-1500 flex h-full w-full items-center justify-center`}
+            } duration-1200 flex h-full w-full items-center justify-center`}
           >
             <Image
               alt="JMills Logo"

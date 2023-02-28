@@ -5,11 +5,17 @@ import { PortableText } from '@portabletext/react'
 import WorkItemTile from '@/components/work-item-tile'
 import MediumWhiteBar from '@/components/medium-white-bar'
 import EmailSignupForm from '@/components/email-signup-form'
+import classNames from 'classnames'
 
 function Work({ workPage, workItems }) {
   return (
     <Layout title={workPage.seoTitle} description={workPage.seoDescription}>
-      <div className="mx-1 grid grid-cols-1 gap-1 lg:grid-cols-3">
+      <div
+        className={classNames(
+          'mx-1 grid grid-cols-1 gap-1',
+          'lg:grid-cols-3 lg:pt-28'
+        )}
+      >
         {workItems.map((workItem, index) => {
           return <WorkItemTile workItem={workItem} key={index} />
         })}

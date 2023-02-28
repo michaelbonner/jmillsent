@@ -351,7 +351,7 @@ const Layout = ({
 
       <div
         className={classNames(
-          'top-0 z-20 flex w-full items-center justify-between bg-black py-4 px-6 lg:relative',
+          'top-0 z-20 flex w-full items-center justify-between py-4 px-6 lg:absolute',
           menuOpen && 'fixed',
           !menuOpen && 'sticky'
         )}
@@ -465,7 +465,7 @@ const Layout = ({
             ) : (
               heroContent && (
                 <div
-                  className="relative z-30 flex h-full w-screen items-center text-white"
+                  className="relative z-0 flex h-full w-screen items-center text-white"
                   style={{ minHeight: `20vh` }}
                 >
                   {heroContent}

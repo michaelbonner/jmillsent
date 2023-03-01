@@ -25,7 +25,6 @@ const contactSchema = Yup.object().shape({
 })
 
 const ContactForm = ({ interests, successMessage = '' }) => {
-  console.log('interests', interests)
   const [state, setState] = useState('initial')
   const contactForm = {
     name: '',

@@ -33,7 +33,10 @@ function Contact({ contact }) {
           <H1>{contact.title}</H1>
         </div>
         <div className="mx-auto mt-8 w-full max-w-7xl px-4 lg:mt-16">
-          <ContactForm successMessage={contact.mainFormSuccessMessage} />
+          <ContactForm
+            interests={contact.interests}
+            successMessage={contact.mainFormSuccessMessage}
+          />
         </div>
 
         <DividerBar yMargin="my-12 lg:my-24" />
@@ -151,6 +154,7 @@ export async function getStaticProps() {
             mainFormSuccessMessage,
             subscribeFormTitle,
             subscribeFormSuccessMessage,
+            interests
           }
         `),
     },

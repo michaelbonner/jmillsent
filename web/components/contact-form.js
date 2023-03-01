@@ -24,7 +24,8 @@ const contactSchema = Yup.object().shape({
   preference: Yup.array().min(1, 'Please select at least one option'),
 })
 
-const ContactForm = ({ successMessage = '' }) => {
+const ContactForm = ({ interests, successMessage = '' }) => {
+  console.log('interests', interests)
   const [state, setState] = useState('initial')
   const contactForm = {
     name: '',
@@ -134,37 +135,27 @@ const ContactForm = ({ successMessage = '' }) => {
                   <p className="shrink-0 text-lg uppercase">
                     I&apos;m interested in:
                   </p>
-                  <div className="col-span-2 flex flex-wrap gap-4 px-2 md:gap-8">
-                    <label className="flex items-center gap-x-3 uppercase">
-                      <Field
-                        className="border-white bg-black p-2 text-gold focus:ring-1 focus:ring-white"
-                        type="checkbox"
-                        name="preference"
-                        onChange={handleChange}
-                        value="Production"
-                      />
-                      Production
-                    </label>
-                    <label className="flex items-center gap-x-3 uppercase">
-                      <Field
-                        className="border-white bg-black p-2 text-gold focus:ring-1 focus:ring-white"
-                        type="checkbox"
-                        name="preference"
-                        onChange={handleChange}
-                        value="CO3 Suite"
-                      />
-                      CO3 Suite
-                    </label>
-                    <label className="flex items-center gap-x-3 uppercase">
-                      <Field
-                        className="border-white bg-black p-2 text-gold focus:ring-1 focus:ring-white"
-                        type="checkbox"
-                        name="preference"
-                        onChange={handleChange}
-                        value="Studio Rental"
-                      />
-                      Studio Rental
-                    </label>
+                  <div
+                    className={classNames(
+                      'col-span-2 flex flex-wrap gap-x-4 gap-y-2 px-2',
+                      'md:gap-x-8 md:gap-y-4'
+                    )}
+                  >
+                    {interests.map((interest) => (
+                      <label
+                        key={interest}
+                        className="flex items-center gap-x-3 uppercase"
+                      >
+                        <Field
+                          className="border-white bg-black p-2 text-gold focus:ring-1 focus:ring-white"
+                          type="checkbox"
+                          name="preference"
+                          onChange={handleChange}
+                          value={interest}
+                        />
+                        {interest}
+                      </label>
+                    ))}
                   </div>
                 </div>
                 <ErrorMessage

@@ -57,6 +57,12 @@ export default {
       type: 'string',
     },
     {
+      name: 'interests',
+      title: 'Main form interests',
+      type: 'array',
+      of: [{ type: 'string' }],
+    },
+    {
       name: 'subscribeFormTitle',
       title: 'Subscribe form title',
       type: 'string',

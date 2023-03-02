@@ -136,7 +136,7 @@ const ContactForm = ({ interests, successMessage = '' }) => {
                   </p>
                   <div
                     className={classNames(
-                      'col-span-2 flex flex-wrap gap-x-4 gap-y-2 px-2',
+                      'col-span-2 grid gap-x-4 gap-y-2 px-2',
                       'md:gap-x-8 md:gap-y-4'
                     )}
                   >

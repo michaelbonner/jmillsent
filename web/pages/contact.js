@@ -22,7 +22,7 @@ function Contact({ contact }) {
   return (
     <Layout title={contact.seoTitle} description={contact.seoDescription}>
       <div
-        className="px-4 lg:px-0"
+        className="px-4 lg:px-0 lg:pt-28"
         style={{
           backgroundImage: `url(${backgroundImageUrl})`,
           backgroundSize: 'cover',

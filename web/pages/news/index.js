@@ -26,13 +26,9 @@ function News({ newsPage }) {
       heroContent={heroContent}
     >
       <div className="mx-auto mt-12 max-w-7xl pb-8 lg:mt-24">
-        <div className="mt-10 grid max-w-7xl gap-y-4 sm:gap-y-8 lg:gap-y-12">
+        <div className="mt-10 grid max-w-7xl justify-center gap-y-4 sm:gap-y-8 lg:gap-y-12">
           {newsPage?.newsItems.map((newsItem, index) => {
-            return (
-              <Fragment key={index}>
-                <NewsItemCard newsItem={newsItem} />
-              </Fragment>
-            )
+            return <NewsItemCard key={index} newsItem={newsItem} />
           })}
         </div>
       </div>

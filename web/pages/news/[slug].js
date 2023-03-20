@@ -17,7 +17,7 @@ const NewsItem = ({ newsItem = {} }) => {
   return (
     <>
       <Layout title={newsItem.seoTitle} description={newsItem.seoDescription}>
-        <div className="mx-auto mt-28 grid gap-y-8 lg:max-w-7xl">
+        <div className="mx-auto grid gap-y-8 lg:mt-28 lg:max-w-7xl">
           {!newsItem.videoId && (
             <Image
               alt={newsItem.seoTitle}

@@ -1,7 +1,7 @@
 import urlForSanitySource from '@/lib/urlForSanitySource'
 import { Link as SmoothScrollLink } from 'react-scroll'
 
-const ServicesThumbnails = ({ services }) => {
+const ServicesThumbnails = ({ services, setActiveService }) => {
   // grid-cols-1 grid-cols-2 grid-cols-3 grid-cols-4 grid-cols-5 grid-cols-6 grid-cols-7 grid-cols-8 grid-cols-9 grid-cols-10 grid-cols-11 grid-cols-12
   return (
     <div className="top-0 z-20 mt-6 lg:block">
@@ -35,6 +35,7 @@ const ServicesThumbnails = ({ services }) => {
                 duration={500}
                 className={`relative -mx-1 cursor-pointer bg-gold p-px opacity-60 transition-opacity duration-500 hover:opacity-100`}
                 key={service._id}
+                onClick={() => setActiveService(index)}
                 style={{
                   clipPath,
                 }}

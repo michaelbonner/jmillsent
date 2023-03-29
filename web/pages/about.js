@@ -1,12 +1,11 @@
 /* eslint-disable react/jsx-no-target-blank */
-import BackgroundTextSectionHalf from '@/components/background-text-section-half'
 import DividerBar from '@/components/divider-bar'
+import ServicesInteractiveCard from '@/components/services-interactive-card'
 import { H1, H2, H3 } from '@/components/headings'
 import Layout from '@/components/layout'
 import LittleWhiteBar from '@/components/little-white-bar'
 import MediumWhiteBar from '@/components/medium-white-bar'
 import SanityImage from '@/components/sanity-image'
-import ServicesThumbnails from '@/components/services-thumbnails'
 import { PortableText } from '@portabletext/react'
 import classNames from 'classnames'
 import groq from 'groq'
@@ -107,33 +106,12 @@ function About({ aboutPage, serviceShortNames }) {
 
         {/* services */}
         <section className="relative -mt-1.5" id="services">
-          <div className="container mx-auto px-8 text-center">
-            <H2>{aboutPage.section2Title}</H2>
-            <p className="-mt-1.5 font-outline text-xl uppercase lg:text-5xl">
-              {aboutPage.section2Subtitle}
-            </p>
-          </div>
-
-          <ServicesThumbnails services={aboutPage.services || []} />
-
-          {aboutPage.services.length > 0 && (
-            <div className="mx-auto mt-4 grid max-w-7xl gap-6 lg:mt-10 lg:grid-cols-2">
-              {aboutPage.services.map((service, index) => {
-                return (
-                  <BackgroundTextSectionHalf
-                    image={service.image}
-                    imageAlt={service.name}
-                    title={service.name}
-                    shortName={service.shortName}
-                    description={service.description}
-                    step={index + 1}
-                    key={service._id}
-                    serviceShortNames={serviceShortNames}
-                  />
-                )
-              })}
-            </div>
-          )}
+          <ServicesInteractiveCard
+            title={aboutPage.section2Title}
+            subtitle={aboutPage.section2Subtitle}
+            services={aboutPage.services}
+            serviceShortNames={serviceShortNames}
+          />
         </section>
 
         {/* end: services */}

@@ -6,6 +6,7 @@ import Image from 'next/image'
 import { Link as SmoothScrollLink } from 'react-scroll'
 import { H3 } from './headings'
 import LittleGoldBar from './little-gold-bar'
+import ServicesThumbnails from './services-thumbnails'
 
 const BackgroundTextSectionHalf = ({
   image,
@@ -14,7 +15,9 @@ const BackgroundTextSectionHalf = ({
   shortName,
   description,
   step,
+  services,
   serviceShortNames,
+  setActiveService,
 }) => {
   const isDesktop = useIsDesktop()
 
@@ -43,7 +46,7 @@ const BackgroundTextSectionHalf = ({
               const isCurrent = index + 1 === step
               return (
                 <SmoothScrollLink
-                  to={`service-${serviceShortName}`}
+                  // to={`service-${serviceShortName}`}
                   smooth={true}
                   offset={-20}
                   duration={500}
@@ -51,6 +54,7 @@ const BackgroundTextSectionHalf = ({
                     'flex cursor-pointer items-center justify-end gap-x-2 lg:gap-x-4',
                     isCurrent ? 'font-bold text-white' : 'text-gray-200'
                   )}
+                  onClick={() => setActiveService(index)}
                   key={index}
                 >
                   <p
@@ -106,6 +110,10 @@ const BackgroundTextSectionHalf = ({
             width={1200}
           />
         </div>
+        <ServicesThumbnails
+          services={services || []}
+          setActiveService={setActiveService}
+        />
         <div className="mx-auto flex flex-col justify-center gap-y-2">
           <H3 className="!mt-3 !mb-0 inline w-full py-1 text-center uppercase lg:hidden">
             {title}

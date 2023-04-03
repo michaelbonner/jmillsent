@@ -1,5 +1,4 @@
 import urlForSanitySource from '@/lib/urlForSanitySource'
-import { Link as SmoothScrollLink } from 'react-scroll'
 
 const ServicesThumbnails = ({ services, setActiveService }) => {
   // grid-cols-1 grid-cols-2 grid-cols-3 grid-cols-4 grid-cols-5 grid-cols-6 grid-cols-7 grid-cols-8 grid-cols-9 grid-cols-10 grid-cols-11 grid-cols-12
@@ -28,14 +27,11 @@ const ServicesThumbnails = ({ services, setActiveService }) => {
                 'polygon(100% 0%, 100% 100%, 0% 100%, 0% 75%, 8% 50%, 0% 24%, 0% 0%)'
             }
             return (
-              <SmoothScrollLink
-                to={`service-${service.shortName}`}
-                smooth={true}
-                offset={-20}
-                duration={500}
+              <button
                 className={`relative -mx-1 cursor-pointer bg-gold p-px opacity-60 transition-opacity duration-500 hover:opacity-100`}
                 key={service._id}
                 onClick={() => setActiveService(index)}
+                aria-label={`View ${service.name.toLowerCase()} services`}
                 style={{
                   clipPath,
                 }}
@@ -57,7 +53,7 @@ const ServicesThumbnails = ({ services, setActiveService }) => {
                     {service.name}
                   </div>
                 </div>
-              </SmoothScrollLink>
+              </button>
             )
           })}
       </div>

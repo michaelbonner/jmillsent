@@ -3,7 +3,6 @@ import { PortableText } from '@portabletext/react'
 import classNames from 'classnames'
 import useIsDesktop from 'hooks/useIsDesktop'
 import Image from 'next/image'
-import { Link as SmoothScrollLink } from 'react-scroll'
 import { H3 } from './headings'
 import LittleGoldBar from './little-gold-bar'
 import ServicesThumbnails from './services-thumbnails'
@@ -45,17 +44,14 @@ const BackgroundTextSectionHalf = ({
               const isChecked = index + 1 <= step
               const isCurrent = index + 1 === step
               return (
-                <SmoothScrollLink
-                  // to={`service-${serviceShortName}`}
-                  smooth={true}
-                  offset={-20}
-                  duration={500}
+                <button
                   className={classNames(
                     'flex cursor-pointer items-center justify-end gap-x-2 lg:gap-x-4',
                     isCurrent ? 'font-bold text-white' : 'text-gray-200'
                   )}
                   onClick={() => setActiveService(index)}
                   key={index}
+                  aria-label={`View ${title.toLowerCase()} services`}
                 >
                   <p
                     className={classNames(
@@ -84,7 +80,7 @@ const BackgroundTextSectionHalf = ({
                       d="m110 10v100h-100v-100zm10-10h-10-100-10v10 100 10h10 100 10v-10-100z"
                     />
                   </svg>
-                </SmoothScrollLink>
+                </button>
               )
             })}
           </div>

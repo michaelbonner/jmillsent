@@ -27,8 +27,6 @@ const ServicesThumbnails = ({ services, activeService, setActiveService }) => {
               clipPath =
                 'polygon(100% 0%, 100% 100%, 0% 100%, 0% 75%, 8% 50%, 0% 24%, 0% 0%)'
             }
-            console.log('index', index)
-            console.log('active', activeService)
             return (
               <button
                 className={classNames(

@@ -10,7 +10,6 @@ const ServicesInteractiveCard = ({
   serviceShortNames,
 }) => {
   const [activeService, setActiveService] = useState(0)
-  console.log('active', activeService)
 
   return (
     <div className="">

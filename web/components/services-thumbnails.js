@@ -1,6 +1,7 @@
 import urlForSanitySource from '@/lib/urlForSanitySource'
+import classNames from 'classnames'
 
-const ServicesThumbnails = ({ services, setActiveService }) => {
+const ServicesThumbnails = ({ services, activeService, setActiveService }) => {
   // grid-cols-1 grid-cols-2 grid-cols-3 grid-cols-4 grid-cols-5 grid-cols-6 grid-cols-7 grid-cols-8 grid-cols-9 grid-cols-10 grid-cols-11 grid-cols-12
   return (
     <div className="top-0 z-20 mt-6 lg:block">
@@ -26,9 +27,15 @@ const ServicesThumbnails = ({ services, setActiveService }) => {
               clipPath =
                 'polygon(100% 0%, 100% 100%, 0% 100%, 0% 75%, 8% 50%, 0% 24%, 0% 0%)'
             }
+            console.log('index', index)
+            console.log('active', activeService)
             return (
               <button
-                className={`relative -mx-1 cursor-pointer bg-gold p-px opacity-60 transition-opacity duration-500 hover:opacity-100`}
+                className={classNames(
+                  `relative -mx-1 cursor-pointer bg-gold p-px transition-opacity duration-500`,
+                  'hover:opacity-100',
+                  activeService === index ? 'opacity-100' : 'opacity-60'
+                )}
                 key={service._id}
                 onClick={() => setActiveService(index)}
                 aria-label={`View ${service.name.toLowerCase()} services`}
@@ -42,8 +49,8 @@ const ServicesThumbnails = ({ services, setActiveService }) => {
                   height={150}
                   src={`${urlForSanitySource(
                     service.image
-                  )}?w=239&h=150&auto=format&fit=crop&crop=focalpoint`}
-                  width={239}
+                  )}?w=300&h=150&auto=format&fit=crop&crop=focalpoint`}
+                  width={300}
                   style={{
                     clipPath,
                   }}

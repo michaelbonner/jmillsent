@@ -16,6 +16,7 @@ const BackgroundTextSectionHalf = ({
   step,
   services,
   serviceShortNames,
+  activeService,
   setActiveService,
 }) => {
   const isDesktop = useIsDesktop()
@@ -83,6 +84,7 @@ const BackgroundTextSectionHalf = ({
                 </button>
               )
             })}
+            <p className="font-outline text-xl lg:pt-60 lg:text-5xl">0{step}</p>
           </div>
           <div className="absolute left-0 -top-4 z-10 pl-4 text-center lg:-top-6">
             <div className="flex flex-col items-center justify-center">
@@ -97,17 +99,21 @@ const BackgroundTextSectionHalf = ({
               </p>
             </div>
           </div>
-          <Image
-            alt={imageAlt}
-            height={isDesktop ? 700 : 800}
-            src={`${urlForSanitySource(image)}?w=1200&h=${
-              isDesktop ? 700 : 800
-            }&auto=format&fit=crop&crop=focalpoint`}
-            width={1200}
-          />
+          <div className={classNames(isDesktop && 'h-[600px]', 'w-full')}>
+            <Image
+              alt={imageAlt}
+              src={`${urlForSanitySource(image)}?w=1200&h=${
+                isDesktop ? 600 : 800
+              }&auto=format&fit=crop&crop=focalpoint`}
+              height={isDesktop ? 600 : 800}
+              width={1200}
+            />
+          </div>
         </div>
+        <div className="w-full border-b border-gold" />
         <ServicesThumbnails
           services={services || []}
+          activeService={activeService}
           setActiveService={setActiveService}
         />
         <div className="mx-auto flex flex-col justify-center gap-y-2">
@@ -119,7 +125,7 @@ const BackgroundTextSectionHalf = ({
               <div className="mx-auto lg:hidden">
                 <LittleGoldBar />
               </div>
-              <div className="prose-lg mx-auto mt-1.5 max-w-5xl font-light leading-normal text-white lg:pt-3">
+              <div className="prose-lg mx-auto max-w-5xl font-light leading-normal text-white">
                 <PortableText value={description} />
               </div>
             </>

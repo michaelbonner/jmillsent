@@ -23,7 +23,10 @@ const BackgroundTextSectionHalf = ({
 
   return (
     <div
-      className="relative border border-gray-300 p-4 lg:p-6"
+      className={classNames(
+        'relative border border-gray-300 px-4 pt-4 pb-2',
+        'lg:px-6 lg:pt-6 lg:pb-3'
+      )}
       id={`service-${shortName}`}
     >
       <div className="group w-full" style={{ lineHeight: 0 }}>
@@ -72,6 +75,12 @@ const BackgroundTextSectionHalf = ({
                         xmlns="http://www.w3.org/2000/svg"
                       >
                         {isChecked && (
+                          <path
+                            className="fill-current text-gold"
+                            d="m5 5h110v110h-110z"
+                          />
+                        )}
+                        {isCurrent && (
                           <path
                             className="fill-current text-gold"
                             d="m5 5h110v110h-110z"

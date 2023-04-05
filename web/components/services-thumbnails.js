@@ -1,12 +1,12 @@
 import urlForSanitySource from '@/lib/urlForSanitySource'
-import { Link as SmoothScrollLink } from 'react-scroll'
+import classNames from 'classnames'
 
-const ServicesThumbnails = ({ services }) => {
+const ServicesThumbnails = ({ services, activeService, setActiveService }) => {
   // grid-cols-1 grid-cols-2 grid-cols-3 grid-cols-4 grid-cols-5 grid-cols-6 grid-cols-7 grid-cols-8 grid-cols-9 grid-cols-10 grid-cols-11 grid-cols-12
   return (
-    <div className="top-0 z-20 mt-6 lg:block">
+    <div className="top-0 z-20 mt-2 lg:block">
       <div
-        className={`my-6 mx-auto hidden max-w-7xl bg-black bg-opacity-80 p-1 lg:grid grid-cols-${
+        className={`mx-auto mb-3 hidden max-w-7xl bg-black bg-opacity-80 p-1 pb-0 lg:grid grid-cols-${
           services?.length || 1
         }`}
       >
@@ -28,13 +28,15 @@ const ServicesThumbnails = ({ services }) => {
                 'polygon(100% 0%, 100% 100%, 0% 100%, 0% 75%, 8% 50%, 0% 24%, 0% 0%)'
             }
             return (
-              <SmoothScrollLink
-                to={`service-${service.shortName}`}
-                smooth={true}
-                offset={-20}
-                duration={500}
-                className={`relative -mx-1 cursor-pointer bg-gold p-px opacity-60 transition-opacity duration-500 hover:opacity-100`}
+              <button
+                className={classNames(
+                  `relative -mx-1 cursor-pointer bg-gold p-px transition-opacity duration-500`,
+                  'hover:opacity-100',
+                  activeService === index ? 'opacity-100' : 'opacity-60'
+                )}
                 key={service._id}
+                onClick={() => setActiveService(index)}
+                aria-label={`View ${service.name.toLowerCase()} services`}
                 style={{
                   clipPath,
                 }}
@@ -45,8 +47,8 @@ const ServicesThumbnails = ({ services }) => {
                   height={150}
                   src={`${urlForSanitySource(
                     service.image
-                  )}?w=239&h=150&auto=format&fit=crop&crop=focalpoint`}
-                  width={239}
+                  )}?w=300&h=150&auto=format&fit=crop&crop=focalpoint`}
+                  width={300}
                   style={{
                     clipPath,
                   }}
@@ -56,7 +58,7 @@ const ServicesThumbnails = ({ services }) => {
                     {service.name}
                   </div>
                 </div>
-              </SmoothScrollLink>
+              </button>
             )
           })}
       </div>

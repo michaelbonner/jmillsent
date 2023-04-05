@@ -116,9 +116,9 @@ const BackgroundTextSectionHalf = ({
             <Image
               alt={title}
               src={`${urlForSanitySource(image)}?w=1200&h=${
-                isDesktop ? 600 : 800
+                isDesktop ? 500 : 800
               }&auto=format&fit=crop&crop=focalpoint`}
-              height={isDesktop ? 600 : 800}
+              height={isDesktop ? 500 : 800}
               width={1200}
             />
           </div>

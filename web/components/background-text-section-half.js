@@ -8,18 +8,18 @@ import LittleGoldBar from './little-gold-bar'
 import ServicesThumbnails from './services-thumbnails'
 
 const BackgroundTextSectionHalf = ({
-  image,
-  imageAlt,
-  title,
-  shortName,
-  description,
-  step,
   services,
   serviceShortNames,
   activeService,
   setActiveService,
 }) => {
   const isDesktop = useIsDesktop()
+
+  const service = services.at(activeService)
+
+  const { image, name: title, shortName, description } = service
+
+  const step = activeService + 1
 
   return (
     <div
@@ -101,7 +101,7 @@ const BackgroundTextSectionHalf = ({
           </div>
           <div className={classNames(isDesktop && 'h-[600px]', 'w-full')}>
             <Image
-              alt={imageAlt}
+              alt={title}
               src={`${urlForSanitySource(image)}?w=1200&h=${
                 isDesktop ? 600 : 800
               }&auto=format&fit=crop&crop=focalpoint`}

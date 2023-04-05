@@ -23,13 +23,7 @@ const ServicesInteractiveCard = ({
       {services.length > 0 && (
         <div className="mx-auto mt-4 grid max-w-7xl gap-6 lg:mt-10">
           <BackgroundTextSectionHalf
-            image={services.at(+activeService).image}
-            imageAlt={services.at(+activeService).name}
-            title={services.at(+activeService).name}
-            shortName={services.at(+activeService).shortName}
-            description={services.at(+activeService).description}
             step={+activeService + 1}
-            key={services.at(+activeService)._id}
             serviceShortNames={serviceShortNames}
             services={services || []}
             activeService={activeService}

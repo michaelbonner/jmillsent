@@ -4,9 +4,9 @@ import classNames from 'classnames'
 const ServicesThumbnails = ({ services, activeService, setActiveService }) => {
   // grid-cols-1 grid-cols-2 grid-cols-3 grid-cols-4 grid-cols-5 grid-cols-6 grid-cols-7 grid-cols-8 grid-cols-9 grid-cols-10 grid-cols-11 grid-cols-12
   return (
-    <div className="top-0 z-20 mt-6 lg:block">
+    <div className="top-0 z-20 mt-1 lg:block">
       <div
-        className={`my-6 mx-auto hidden max-w-7xl bg-black bg-opacity-80 p-1 lg:grid grid-cols-${
+        className={`mx-auto mb-6 hidden max-w-7xl bg-black bg-opacity-80 p-1 lg:grid grid-cols-${
           services?.length || 1
         }`}
       >

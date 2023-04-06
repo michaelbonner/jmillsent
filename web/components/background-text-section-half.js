@@ -52,7 +52,9 @@ const BackgroundTextSectionHalf = ({
                   return (
                     <button
                       className={classNames(
-                        'flex cursor-pointer items-center justify-end gap-x-2 lg:gap-x-4',
+                        'flex cursor-pointer items-center justify-end gap-x-2',
+                        'lg:gap-x-4',
+                        'hover:scale-110',
                         isCurrent ? 'font-bold text-white' : 'text-gray-200'
                       )}
                       onClick={() => setActiveService(index)}

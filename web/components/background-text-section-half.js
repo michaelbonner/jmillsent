@@ -21,6 +21,8 @@ const BackgroundTextSectionHalf = ({
 
   const step = activeService + 1
 
+  const stepNumber = '0' + step
+
   return (
     <div
       className={classNames(
@@ -99,29 +101,58 @@ const BackgroundTextSectionHalf = ({
                 })}
               </div>
             </div>
-            <p
-              className={classNames(
-                'pb-2 font-outline text-2xl',
-                'sm:text-3xl',
-                'md:text-4xl',
-                'lg:text-5xl'
-              )}
-            >
-              0{step}
-            </p>
           </div>
           <div className="absolute left-0 -top-4 z-10 pl-4 text-center lg:-top-6">
             <div className="flex flex-col items-center justify-center">
-              <Image
-                src="/images/simple-badge-gold.svg"
-                alt="Service Step"
-                width={Math.floor(150 * (isDesktop ? 0.6 : 0.45))}
-                height={Math.floor(135 * (isDesktop ? 0.6 : 0.45))}
-              />
-              <p className="absolute top-0 pt-2.5 text-3xl font-extrabold text-black lg:pt-4 lg:text-4xl">
-                {step}
+              <p
+                className={classNames(
+                  'pt-6 font-outline text-2xl',
+                  'sm:text-3xl',
+                  'md:text-4xl',
+                  'lg:pt-8 lg:text-5xl'
+                )}
+              >
+                {stepNumber}
               </p>
             </div>
+          </div>
+          <div className="absolute bottom-0 z-10 flex w-full justify-between px-8 pb-1 text-3xl lg:px-2 lg:pb-6">
+            <button
+              aria-label="previous service step"
+              onClick={() => {
+                if (step > 1) {
+                  setActiveService(activeService - 1)
+                } else {
+                  setActiveService(services.length - 1)
+                }
+              }}
+            >
+              <Image
+                className="opacity-50 hover:opacity-100"
+                alt="previous service step"
+                src="/images/left_arrow.svg"
+                width={isDesktop ? 37.8 : 18.9}
+                height={isDesktop ? 85.4 : 42.7}
+              />
+            </button>
+            <button
+              aria-label="next service step"
+              onClick={() => {
+                if (step < services.length) {
+                  setActiveService(activeService + 1)
+                } else {
+                  setActiveService(0)
+                }
+              }}
+            >
+              <Image
+                className="opacity-50 hover:opacity-100"
+                alt="previous service step"
+                src="/images/right_arrow.svg"
+                width={isDesktop ? 37.8 : 18.9}
+                height={isDesktop ? 85.4 : 42.7}
+              />
+            </button>
           </div>
           <div className="w-full">
             <Image

@@ -66,6 +66,8 @@ const Layout = ({
   const isDesktop = useIsDesktop()
   const isHomePage = router.pathname === '/'
 
+  // console.log('router', router.events.on)
+
   const toggleMenu = () => {
     if (menuOpen) {
       setMenuOpen(!menuOpen)
@@ -218,31 +220,12 @@ const Layout = ({
         className={`
         pointer-events-none fixed inset-0 z-30 bg-black transition-opacity duration-[2400ms]
           ${heroVideoId && !videoPlaying ? `opacity-100` : `opacity-0`}
-          ${isHomePage ? `delay-[1200ms]` : `delay-[0ms]`}
+          ${isHomePage ? `delay-[1500ms]` : `delay-[1500ms]`}
             `}
       >
-        {isHomePage && (
-          <div className="relative top-[calc(50vh-140px)] mx-auto h-[220px] w-[220px] lg:top-[calc(50vh-110px)]">
-            <Lottie animationData={jmeAnimation} loop={false} />
-          </div>
-        )}
-        {!isHomePage && (
-          <div
-            className={`${
-              heroVideoId && !videoPlaying
-                ? `animate-pulse opacity-100`
-                : `opacity-0`
-            } duration-1200 flex h-full w-full items-center justify-center`}
-          >
-            <Image
-              alt="JMills Logo"
-              className="max-w-full px-8"
-              src="/images/jme_film_co_x_white.svg"
-              width={Math.floor(192 * 1.4)}
-              height={Math.floor(150 * 1.4)}
-            />
-          </div>
-        )}
+        <div className="relative top-[calc(50vh-140px)] mx-auto h-[220px] w-[220px] lg:top-[calc(50vh-110px)]">
+          <Lottie animationData={jmeAnimation} loop={false} />
+        </div>
       </div>
 
       <div

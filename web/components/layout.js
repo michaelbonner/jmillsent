@@ -220,12 +220,14 @@ const Layout = ({
         className={`
         pointer-events-none fixed inset-0 z-30 bg-black transition-opacity duration-[2400ms]
           ${heroVideoId && !videoPlaying ? `opacity-100` : `opacity-0`}
-          ${isHomePage ? `delay-[1500ms]` : `delay-[1500ms]`}
+          ${isHomePage ? `delay-[2000ms]` : `delay-[0ms]`}
             `}
       >
-        <div className="relative top-[calc(50vh-140px)] mx-auto h-[220px] w-[220px] lg:top-[calc(50vh-110px)]">
-          <Lottie animationData={jmeAnimation} loop={false} />
-        </div>
+        {isHomePage && (
+          <div className="relative top-[calc(50vh-140px)] mx-auto h-[220px] w-[220px] lg:top-[calc(50vh-110px)]">
+            <Lottie animationData={jmeAnimation} loop={false} />
+          </div>
+        )}
       </div>
 
       <div

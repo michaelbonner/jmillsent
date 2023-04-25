@@ -37,7 +37,7 @@ const ServicesInteractiveCard = ({ services, serviceShortNames }) => {
                   <div className="absolute inset-0 z-10 bg-opacity-40 bg-gradient-to-l from-black via-transparent to-transparent" />
                   <div
                     className={classNames(
-                      `absolute top-0 right-4 bottom-0 left-auto z-10 flex flex-col justify-between gap-y-2 text-right text-xs`,
+                      `absolute top-0 right-4 bottom-0 left-auto z-10 flex flex-col justify-between gap-y-2 pr-8 text-right text-xs`,
                       `lg:top-6 lg:text-sm`
                     )}
                   >
@@ -105,21 +105,31 @@ const ServicesInteractiveCard = ({ services, serviceShortNames }) => {
                       </div>
                     </div>
                   </div>
-                  <div className="absolute left-0 -top-4 z-10 pl-4 text-center lg:-top-6">
-                    <div className="flex flex-col items-center justify-center">
+                  <div
+                    className={classNames(
+                      'absolute left-0 -top-4 z-10 flex justify-center text-center',
+                      'lg:-top-6'
+                    )}
+                  >
+                    <div className="pt-9 pl-6">
                       <p
                         className={classNames(
-                          'pt-6 font-outline text-2xl',
+                          'font-outline text-2xl',
                           'sm:text-3xl',
                           'md:text-4xl',
-                          'lg:pt-8 lg:text-5xl'
+                          'lg:text-5xl'
                         )}
                       >
                         {stepNumber}
                       </p>
                     </div>
                   </div>
-                  <div className="absolute bottom-0 z-10 flex w-full justify-between px-8 pb-1 text-3xl lg:px-2 lg:pb-6">
+                  <div
+                    className={classNames(
+                      'absolute bottom-0 z-10 flex w-full justify-between px-8 pb-1 text-3xl',
+                      'lg:px-6 lg:pb-5'
+                    )}
+                  >
                     <button
                       aria-label="previous service step"
                       onClick={() => {

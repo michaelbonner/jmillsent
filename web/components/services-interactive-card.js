@@ -37,8 +37,8 @@ const ServicesInteractiveCard = ({ services, serviceShortNames }) => {
                   <div className="absolute inset-0 z-10 bg-opacity-40 bg-gradient-to-l from-black via-transparent to-transparent" />
                   <div
                     className={classNames(
-                      `absolute top-0 right-4 bottom-0 left-auto z-10 flex flex-col justify-between gap-y-2 pr-8 text-right text-xs`,
-                      `lg:top-6 lg:text-sm`
+                      `absolute top-0 right-0 left-auto z-10 flex flex-col justify-between gap-y-2 pr-7 pt-6 text-right text-xs`,
+                      `lg:text-sm`
                     )}
                   >
                     <div>
@@ -107,11 +107,10 @@ const ServicesInteractiveCard = ({ services, serviceShortNames }) => {
                   </div>
                   <div
                     className={classNames(
-                      'absolute left-0 -top-4 z-10 flex justify-center text-center',
-                      'lg:-top-6'
+                      'absolute left-0 top-0 z-10 flex justify-center text-center'
                     )}
                   >
-                    <div className="pt-9 pl-6">
+                    <div className="pt-6 pl-7">
                       <p
                         className={classNames(
                           'font-outline text-2xl',
@@ -126,8 +125,7 @@ const ServicesInteractiveCard = ({ services, serviceShortNames }) => {
                   </div>
                   <div
                     className={classNames(
-                      'absolute bottom-0 z-10 flex w-full justify-between px-8 pb-1 text-3xl',
-                      'lg:px-6 lg:pb-5'
+                      'absolute bottom-0 z-10 flex w-full justify-between px-7 pb-7 text-3xl'
                     )}
                   >
                     <button

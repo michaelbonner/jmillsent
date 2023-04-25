@@ -30,7 +30,7 @@ const ServicesThumbnails = ({ services, activeService, setActiveService }) => {
             return (
               <button
                 className={classNames(
-                  `relative -mx-1 cursor-pointer bg-gold p-px transition-opacity duration-500`,
+                  `relative -mx-1 cursor-pointer bg-gold p-px transition-opacity duration-300 ease-out`,
                   'hover:opacity-100',
                   activeService === index ? 'opacity-100' : 'opacity-60'
                 )}

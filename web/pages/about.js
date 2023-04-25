@@ -1,4 +1,5 @@
 /* eslint-disable react/jsx-no-target-blank */
+import BackgroundTextSectionHalf from '@/components/background-text-section-half'
 import DividerBar from '@/components/divider-bar'
 import ServicesInteractiveCard from '@/components/services-interactive-card'
 import { H1, H2, H3 } from '@/components/headings'
@@ -106,9 +107,13 @@ function About({ aboutPage, serviceShortNames }) {
 
         {/* services */}
         <section className="relative -mt-1.5" id="services">
+          <div className="container mx-auto px-8 text-center">
+            <H2>{aboutPage.section2Title}</H2>
+            <p className="-mt-1.5 font-outline text-xl uppercase lg:text-5xl">
+              {aboutPage.section2Subtitle}
+            </p>
+          </div>
           <ServicesInteractiveCard
-            title={aboutPage.section2Title}
-            subtitle={aboutPage.section2Subtitle}
             services={aboutPage.services}
             serviceShortNames={serviceShortNames}
           />

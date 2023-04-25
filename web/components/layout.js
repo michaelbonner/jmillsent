@@ -66,8 +66,6 @@ const Layout = ({
   const isDesktop = useIsDesktop()
   const isHomePage = router.pathname === '/'
 
-  // console.log('router', router.events.on)
-
   const toggleMenu = () => {
     if (menuOpen) {
       setMenuOpen(!menuOpen)

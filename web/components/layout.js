@@ -51,6 +51,7 @@ const Layout = ({
   heroContent = '',
   heroVideoHeightInPixels = 0,
   heroVideoWidthInPixels = 0,
+  firstLanding = false,
 }) => {
   const [menuOpen, setMenuOpen] = useState(false)
   const [menuVisible, setMenuVisible] = useState(false)
@@ -218,14 +219,14 @@ const Layout = ({
         className={`
         pointer-events-none fixed inset-0 z-30 bg-black transition-opacity duration-[2400ms]
           ${heroVideoId && !videoPlaying ? `opacity-100` : `opacity-0`}
-          ${isHomePage ? `delay-[2000ms]` : `delay-[0ms]`}
+          ${isHomePage || !firstLanding ? `delay-[2000ms]` : `delay-[0ms]`}
             `}
       >
-        {isHomePage && (
+        {isHomePage || !firstLanding ? (
           <div className="relative top-[calc(50vh-140px)] mx-auto h-[220px] w-[220px] lg:top-[calc(50vh-110px)]">
             <Lottie animationData={jmeAnimation} loop={false} />
           </div>
-        )}
+        ) : null}
       </div>
 
       <div

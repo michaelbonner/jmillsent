@@ -9,7 +9,7 @@ import groq from 'groq'
 import useIsLoggedIn from 'hooks/useIsLoggedIn'
 import { useState } from 'react'
 
-function Portfolio({ portfolioPage, portfolioItems }) {
+function Portfolio({ portfolioPage, portfolioItems, firstLanding }) {
   const [isLoggedIn, setIsLoggedIn] = useIsLoggedIn(portfolioPage.password)
   const [formError, setFormError] = useState('')
 
@@ -28,6 +28,7 @@ function Portfolio({ portfolioPage, portfolioItems }) {
     <Layout
       title={portfolioPage.seoTitle}
       description={portfolioPage.seoDescription}
+      firstLanding={firstLanding}
     >
       {!isLoggedIn && (
         <PasswordLoginForm

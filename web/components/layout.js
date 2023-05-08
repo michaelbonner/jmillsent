@@ -51,6 +51,7 @@ const Layout = ({
   heroContent = '',
   heroVideoHeightInPixels = 0,
   heroVideoWidthInPixels = 0,
+  firstLanding = false,
 }) => {
   const [menuOpen, setMenuOpen] = useState(false)
   const [menuVisible, setMenuVisible] = useState(false)
@@ -218,31 +219,14 @@ const Layout = ({
         className={`
         pointer-events-none fixed inset-0 z-30 bg-black transition-opacity duration-[2400ms]
           ${heroVideoId && !videoPlaying ? `opacity-100` : `opacity-0`}
-          ${isHomePage ? `delay-[1200ms]` : `delay-[0ms]`}
+          ${isHomePage || !firstLanding ? `delay-[1700ms]` : `delay-[0ms]`}
             `}
       >
-        {isHomePage && (
+        {isHomePage || !firstLanding ? (
           <div className="relative top-[calc(50vh-140px)] mx-auto h-[220px] w-[220px] lg:top-[calc(50vh-110px)]">
-            <Lottie animationData={jmeAnimation} loop={false} />
+            <Lottie animationData={jmeAnimation} loop={0} />
           </div>
-        )}
-        {!isHomePage && (
-          <div
-            className={`${
-              heroVideoId && !videoPlaying
-                ? `animate-pulse opacity-100`
-                : `opacity-0`
-            } duration-1200 flex h-full w-full items-center justify-center`}
-          >
-            <Image
-              alt="JMills Logo"
-              className="max-w-full px-8"
-              src="/images/jme_film_co_x_white.svg"
-              width={Math.floor(192 * 1.4)}
-              height={Math.floor(150 * 1.4)}
-            />
-          </div>
-        )}
+        ) : null}
       </div>
 
       <div

@@ -24,7 +24,7 @@ import 'react-18-image-lightbox/style.css'
 
 const VideoPlayer = dynamic(() => import('@/components/video-player'), {})
 
-function About({ aboutPage, serviceShortNames }) {
+function About({ aboutPage, serviceShortNames, firstLanding }) {
   const [isGalleryModelOpen, setIsGalleryModelOpen] = useState(false)
   const isDesktop = useIsDesktop()
   const [photoIndex, setPhotoIndex] = useState(0)
@@ -68,6 +68,7 @@ function About({ aboutPage, serviceShortNames }) {
           : aboutPage.headerVideoWidthInPixelsMobile) ||
         aboutPage.headerVideoWidthInPixels
       }
+      firstLanding={firstLanding}
     >
       <div className="container mx-auto mt-12 px-4 text-center text-white lg:mt-24">
         <H2>{aboutPage.section1Title}</H2>

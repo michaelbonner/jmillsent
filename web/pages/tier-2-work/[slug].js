@@ -34,7 +34,11 @@ aspect-w-15	aspect-h-15
 aspect-w-16	aspect-h-16
 */
 
-const PortfolioItem = ({ portfolioItem = {}, portfolioPagePassword }) => {
+const PortfolioItem = ({
+  portfolioItem = {},
+  portfolioPagePassword,
+  firstLanding,
+}) => {
   const [formError, setFormError] = useState('')
   const [isOpen, setIsOpen] = useState(false)
   const [isLoggedIn, setIsLoggedIn] = useIsLoggedIn(
@@ -77,6 +81,7 @@ const PortfolioItem = ({ portfolioItem = {}, portfolioPagePassword }) => {
         portfolioItem.seoDescription ||
         `${fullTitle} | JmillsENT | Motion Picture Studio + Film Agency`
       }
+      firstLanding={firstLanding}
     >
       {!isLoggedIn && (
         <PasswordLoginForm

@@ -6,7 +6,7 @@ import { sanityClient } from '@/lib/sanity'
 import groq from 'groq'
 import { Fragment } from 'react'
 
-function News({ newsPage }) {
+function News({ newsPage, firstLanding }) {
   const heroContent = (
     <div className="-my-2 flex w-full items-center justify-center text-white sm:my-10 sm:mb-10">
       <div className="flex w-screen flex-col items-center justify-center px-4 text-center">
@@ -24,6 +24,7 @@ function News({ newsPage }) {
       description={newsPage.seoDescription}
       heroImageUrl={newsPage.poster}
       heroContent={heroContent}
+      firstLanding={firstLanding}
     >
       <div className="mx-auto mt-12 max-w-7xl pb-8 lg:mt-24">
         <div className="mt-10 grid max-w-7xl justify-center gap-y-4 sm:gap-y-8 lg:gap-y-12">

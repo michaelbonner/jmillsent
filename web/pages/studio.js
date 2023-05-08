@@ -17,7 +17,7 @@ import { sanityClient } from '../lib/sanity'
 
 const VideoPlayer = dynamic(() => import('@/components/video-player'), {})
 
-function Studio({ studioPage }) {
+function Studio({ studioPage, firstLanding }) {
   const [isLightBoxOpen, setIsLightBoxOpen] = useState(false)
   const [photoIndex, setPhotoIndex] = useState(0)
   const isDesktop = useIsDesktop()
@@ -80,6 +80,7 @@ function Studio({ studioPage }) {
           : studioPage.headerVideoWidthInPixelsMobile) ||
         studioPage.headerVideoWidthInPixels
       }
+      firstLanding={firstLanding}
     >
       {isLightBoxOpen && (
         <Lightbox

@@ -15,12 +15,16 @@ import urlForSanitySource from '../lib/urlForSanitySource'
 const ContactForm = dynamic(() => import('@/components/contact-form'), {})
 const Map = dynamic(() => import('@/components/map'), {})
 
-function Contact({ contact }) {
+function Contact({ contact, firstLanding }) {
   const backgroundImageUrl = urlForSanitySource(contact.backgroundImage)
     .width(1400)
     .url()
   return (
-    <Layout title={contact.seoTitle} description={contact.seoDescription}>
+    <Layout
+      title={contact.seoTitle}
+      description={contact.seoDescription}
+      firstLanding={firstLanding}
+    >
       <div
         className="px-4 lg:px-0 lg:pt-28"
         style={{

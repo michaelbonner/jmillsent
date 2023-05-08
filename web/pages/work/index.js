@@ -7,9 +7,13 @@ import MediumWhiteBar from '@/components/medium-white-bar'
 import EmailSignupForm from '@/components/email-signup-form'
 import classNames from 'classnames'
 
-function Work({ workPage, workItems }) {
+function Work({ workPage, workItems, firstLanding }) {
   return (
-    <Layout title={workPage.seoTitle} description={workPage.seoDescription}>
+    <Layout
+      title={workPage.seoTitle}
+      description={workPage.seoDescription}
+      firstLanding={firstLanding}
+    >
       <div
         className={classNames(
           'mx-1 grid grid-cols-1 gap-1',

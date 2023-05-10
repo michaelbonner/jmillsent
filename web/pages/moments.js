@@ -14,7 +14,7 @@ import { sanityClient } from '../lib/sanity'
 
 import 'react-18-image-lightbox/style.css'
 
-function Moments({ momentsPage, visitSession }) {
+function Moments({ momentsPage }) {
   const [isGalleryModelOpen, setIsGalleryModelOpen] = useState(false)
   const [photoIndex, setPhotoIndex] = useState(0)
   const isDesktop = useIsDesktop()
@@ -77,7 +77,6 @@ function Moments({ momentsPage, visitSession }) {
       heroImageUrl={momentsPage.poster || null}
       heroVideoId={momentsPage.videoId}
       heroContent={heroContent}
-      visitSession={visitSession}
     >
       {isGalleryModelOpen && (
         <Lightbox

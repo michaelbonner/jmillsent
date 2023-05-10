@@ -7,12 +7,12 @@ import MediumWhiteBar from '@/components/medium-white-bar'
 import EmailSignupForm from '@/components/email-signup-form'
 import classNames from 'classnames'
 
-function Work({ workPage, workItems, firstLanding }) {
+function Work({ workPage, workItems, visitSession }) {
   return (
     <Layout
       title={workPage.seoTitle}
       description={workPage.seoDescription}
-      firstLanding={firstLanding}
+      visitSession={visitSession}
     >
       <div
         className={classNames(

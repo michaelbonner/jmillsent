@@ -51,7 +51,7 @@ const Layout = ({
   heroContent = '',
   heroVideoHeightInPixels = 0,
   heroVideoWidthInPixels = 0,
-  firstLanding = false,
+  visitSession = false,
 }) => {
   const [menuOpen, setMenuOpen] = useState(false)
   const [menuVisible, setMenuVisible] = useState(false)
@@ -66,6 +66,7 @@ const Layout = ({
   const [heroVideoWidth, setHeroVideoWidth] = useState('100vw')
   const isDesktop = useIsDesktop()
   const isHomePage = router.pathname === '/'
+  const [pageWillStartFadeIn, setPageWillStartFadeIn] = useState(false)
 
   const toggleMenu = () => {
     if (menuOpen) {
@@ -149,6 +150,14 @@ const Layout = ({
     }
   }, [heroVideoId, isDesktop])
 
+  useEffect(() => {
+    if (heroVideoId && !videoPlaying) {
+      setPageWillStartFadeIn(false)
+    } else {
+      setPageWillStartFadeIn(true)
+    }
+  }, [heroVideoId, videoPlaying])
+
   return (
     <div className="relative">
       <Head>
@@ -218,15 +227,19 @@ const Layout = ({
       <div
         className={`
         pointer-events-none fixed inset-0 z-30 bg-black transition-opacity duration-[2400ms]
-          ${heroVideoId && !videoPlaying ? `opacity-100` : `opacity-0`}
-          ${isHomePage || !firstLanding ? `delay-[1700ms]` : `delay-[0ms]`}
+          ${!pageWillStartFadeIn ? `opacity-100` : `opacity-0`}
+          ${isHomePage || !visitSession ? `delay-[1700ms]` : `delay-[0ms]`}
             `}
       >
-        {isHomePage || !firstLanding ? (
+        {(isHomePage || !visitSession) && (
           <div className="relative top-[calc(50vh-140px)] mx-auto h-[220px] w-[220px] lg:top-[calc(50vh-110px)]">
-            <Lottie animationData={jmeAnimation} loop={0} />
+            <Lottie
+              animationData={jmeAnimation}
+              loop={0}
+              onComplete={() => setPageWillStartFadeIn(true)}
+            />
           </div>
-        ) : null}
+        )}
       </div>
 
       <div

@@ -6,18 +6,18 @@ import '../styles/globals.css'
 
 function MyApp({ Component, pageProps }) {
   const router = useRouter()
-  const [firstLanding, setFirstLanding] = useState(false)
+  const [visitSession, setVisitSession] = useState(false)
   const isClient = useClientOnly()
 
   useEffect(() => {
     if (isClient) {
-      const visit = sessionStorage.getItem('firstLanding')
+      const visit = sessionStorage.getItem('visitSession')
       if (!visit) {
-        sessionStorage.setItem('firstLanding', true)
+        sessionStorage.setItem('visitSession', true)
       }
 
       if (visit) {
-        setFirstLanding(true)
+        setVisitSession(true)
       }
     }
   }, [isClient, router])
@@ -27,7 +27,7 @@ function MyApp({ Component, pageProps }) {
   }, [])
 
   return (
-    <Component {...pageProps} key={router.asPath} firstLanding={firstLanding} />
+    <Component {...pageProps} key={router.asPath} visitSession={visitSession} />
   )
 }
 

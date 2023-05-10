@@ -5,11 +5,12 @@ import { useRouter } from 'next/dist/client/router'
 import Head from 'next/head'
 import Image from 'next/image'
 import Link from 'next/link'
-import React, { useEffect, useState } from 'react'
+import React, { useContext, useEffect, useState } from 'react'
 import ReactPlayer from 'react-player'
 import urlForSanitySource from '../lib/urlForSanitySource'
 import Lottie from 'lottie-react'
 import jmeAnimation from '../public/animations/JME_Logo_White_V2.json'
+import { LoadingAnimationContext } from '../context/LoadingAnimationContext'
 
 const navItems = [
   {
@@ -51,7 +52,6 @@ const Layout = ({
   heroContent = '',
   heroVideoHeightInPixels = 0,
   heroVideoWidthInPixels = 0,
-  firstLanding = false,
 }) => {
   const [menuOpen, setMenuOpen] = useState(false)
   const [menuVisible, setMenuVisible] = useState(false)
@@ -65,7 +65,12 @@ const Layout = ({
   const [heroVideoHeight, setHeroVideoHeight] = useState('42vw')
   const [heroVideoWidth, setHeroVideoWidth] = useState('100vw')
   const isDesktop = useIsDesktop()
-  const isHomePage = router.pathname === '/'
+  const {
+    showLoadingAnimation,
+    setIsAnimationComplete,
+    isOverlayVisible,
+    isAnimationComplete,
+  } = useContext(LoadingAnimationContext)
 
   const toggleMenu = () => {
     if (menuOpen) {
@@ -216,17 +221,23 @@ const Layout = ({
       </Head>
 
       <div
-        className={`
-        pointer-events-none fixed inset-0 z-30 bg-black transition-opacity duration-[2400ms]
-          ${heroVideoId && !videoPlaying ? `opacity-100` : `opacity-0`}
-          ${isHomePage || !firstLanding ? `delay-[1700ms]` : `delay-[0ms]`}
-            `}
+        className={classNames(
+          'pointer-events-none fixed inset-0 z-30 bg-black transition-opacity duration-[2400ms]',
+          isOverlayVisible ? 'opacity-100' : 'opacity-0',
+          showLoadingAnimation ? 'delay-[2700ms]' : 'delay-[700ms]'
+        )}
       >
-        {isHomePage || !firstLanding ? (
+        {showLoadingAnimation && !isAnimationComplete && (
           <div className="relative top-[calc(50vh-140px)] mx-auto h-[220px] w-[220px] lg:top-[calc(50vh-110px)]">
-            <Lottie animationData={jmeAnimation} loop={0} />
+            <Lottie
+              animationData={jmeAnimation}
+              loop={0}
+              onComplete={() => {
+                setIsAnimationComplete(true)
+              }}
+            />
           </div>
-        ) : null}
+        )}
       </div>
 
       <div

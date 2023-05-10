@@ -13,14 +13,10 @@ import urlForSanitySource from '../../lib/urlForSanitySource'
 
 const VideoPlayer = dynamic(() => import('@/components/video-player'), {})
 
-const NewsItem = ({ newsItem = {}, firstLanding }) => {
+const NewsItem = ({ newsItem = {} }) => {
   return (
     <>
-      <Layout
-        title={newsItem.seoTitle}
-        description={newsItem.seoDescription}
-        firstLanding={firstLanding}
-      >
+      <Layout title={newsItem.seoTitle} description={newsItem.seoDescription}>
         <div className="mx-auto grid gap-y-8 lg:mt-28 lg:max-w-7xl">
           {!newsItem.videoId && (
             <Image

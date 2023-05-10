@@ -6,6 +6,8 @@ import React from 'react'
 import { H3 } from './headings'
 import LittleGoldBar from './little-gold-bar'
 import Date from './date'
+import { useRouter } from 'next/router'
+import classNames from 'classnames'
 
 const BackgroundText = ({
   image,
@@ -18,7 +20,9 @@ const BackgroundText = ({
   customButtonText2,
   customButtonText3,
   slug,
+  isLink = false,
 }) => {
+  const router = useRouter()
   const styles = {
     left: {
       textAlign: 'text-center lg:text-left',
@@ -37,7 +41,13 @@ const BackgroundText = ({
   }
   const titleStyle = leftOrRight === 'left' ? 'lg:text-left' : 'lg:text-right'
   return (
-    <div className="border border-gray-300 p-4 lg:p-6">
+    <div
+      className={classNames(
+        'cursor-pointer border border-gray-300 p-4',
+        'lg:p-6'
+      )}
+      onClick={() => isLink && router.push(slug)}
+    >
       <div className="group relative w-full" style={{ lineHeight: 0 }}>
         <Image
           alt={imageAlt}

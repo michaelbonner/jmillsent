@@ -11,7 +11,7 @@ import Image from 'next/image'
 
 const VideoPlayer = dynamic(() => import('@/components/video-player'), {})
 
-function Home({ homePage, firstLanding }) {
+function Home({ homePage }) {
   const isDesktop = useIsDesktop()
 
   const heroContent = (
@@ -45,7 +45,6 @@ function Home({ homePage, firstLanding }) {
           : homePage.headerVideoWidthInPixelsMobile) ||
         homePage.reelVideoWidthInPixels
       }
-      firstLanding={firstLanding}
     >
       <div className="container mx-auto mt-12 px-4 text-center text-white lg:mt-24">
         <H2>{homePage.section1Title}</H2>

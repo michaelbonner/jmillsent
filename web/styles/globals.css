@@ -57,11 +57,12 @@ body {
 }
 
 .bpd-project-tile {
-  min-height: 33vh;
+  aspect-ratio: 2.33 / 1;
 }
 
 @media screen and (min-width: 1024px) {
   .bpd-project-tile {
+    aspect-ratio: unset;
     min-height: 180px;
   }
 }

@@ -15,7 +15,7 @@ const WorkItemTile = ({ workItem, index, hideAfterCount = 999 }) => {
         {
           'lg:hidden': index >= hideAfterCount,
         },
-        `bpd-project-tile relative text-white `,
+        `bpd-project-tile relative text-white`,
         `flex flex-col items-center justify-center space-y-2 lg:space-y-0`
       )}
       style={{

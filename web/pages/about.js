@@ -1,12 +1,11 @@
 /* eslint-disable react/jsx-no-target-blank */
-import BackgroundTextSectionHalf from '@/components/background-text-section-half'
 import DividerBar from '@/components/divider-bar'
-import ServicesInteractiveCard from '@/components/services-interactive-card'
 import { H1, H2, H3 } from '@/components/headings'
 import Layout from '@/components/layout'
 import LittleWhiteBar from '@/components/little-white-bar'
 import MediumWhiteBar from '@/components/medium-white-bar'
 import SanityImage from '@/components/sanity-image'
+import ServicesInteractiveCard from '@/components/services-interactive-card'
 import { PortableText } from '@portabletext/react'
 import classNames from 'classnames'
 import groq from 'groq'

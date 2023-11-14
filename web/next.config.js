@@ -2,7 +2,14 @@ module.exports = {
   swcMinify: true,
   reactStrictMode: true,
   images: {
-    domains: ['cdn.sanity.io'],
+    remotePatterns: [
+      {
+        protocol: 'https',
+        hostname: 'cdn.sanity.io',
+        port: '',
+        pathname: '**',
+      },
+    ],
   },
   i18n: {
     locales: ['en-US'],

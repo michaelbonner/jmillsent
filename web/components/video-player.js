@@ -270,33 +270,16 @@ const VideoPlayer = ({
     }
   }, [muted, vimeoPlayer])
 
-  // useEffect(() => {
-  //   const toggleVideoOverlay = async () => {
-  //     const isPaused = await vimeoPlayer?.getPaused()
-  //     const hasTitleOrClient = title || client
-  //     const isPausedOrInitial = !hasClicked || isPaused
-  //     if (hasTitleOrClient && isPausedOrInitial) {
-  //       setShowVideoOverlay(true)
-  //     } else {
-  //       setShowVideoOverlay(false)
-  //     }
-  //   }
-  //   toggleVideoOverlay()
-  // }, [client, hasClicked, isPlaying, title, vimeoPlayer])
-
   useEffect(() => {
-    //changed 1/4/2023 to always have the overlay (unless in mobile) so user can click anywhere on the video to restart from pause
     const toggleVideoOverlay = async () => {
-      // const isPaused = await vimeoPlayer?.getPaused()
+      const isPaused = await vimeoPlayer?.getPaused()
       const hasTitleOrClient = title || client
-      // const isPausedOrInitial = !hasClicked || isPaused
-      if (hasTitleOrClient && isDesktop) {
-        // || isPausedOrInitial was removed from conditional
+      const isPausedOrInitial = !hasClicked || isPaused
+      if (hasTitleOrClient && isPausedOrInitial) {
         setShowVideoOverlay(true)
+      } else {
+        setShowVideoOverlay(false)
       }
-      // else {
-      //   setShowVideoOverlay(false)
-      // }
     }
     toggleVideoOverlay()
   }, [client, hasClicked, isPlaying, title, vimeoPlayer])

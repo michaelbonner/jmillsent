@@ -33,7 +33,13 @@ export const VideoPlayerControlBar = ({
   }, [setScrubberWidth])
 
   return (
-    <div className="container relative z-10 mx-auto flex gap-x-2 bg-black pt-3 md:gap-x-8">
+    <div
+      className={
+        !isFullscreen
+          ? 'container relative z-10 mx-auto flex gap-x-2 bg-black pt-3 md:gap-x-8'
+          : 'container absolute bottom-4 z-10 mx-auto flex gap-x-2 pt-3 md:gap-x-8'
+      }
+    >
       <button
         aria-label="Play/Pause"
         className="relative h-6 w-6 text-4xl outline-0 md:h-8 md:w-8"

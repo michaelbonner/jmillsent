@@ -23,7 +23,12 @@ export const VideoPlayerOverlayButton = ({
       )}
       onClick={handleOverlayClick}
     >
-      <div className="absolute inset-0 h-full w-full bg-gradient-to-r from-black via-transparent to-transparent opacity-80"></div>
+      <div
+        className={classNames(
+          'absolute inset-0 h-full w-full bg-gradient-to-r from-black via-transparent to-transparent',
+          showVideoOverlay ? 'opacity-80' : 'opacity-0'
+        )}
+      ></div>
       <div
         className={classNames(
           'transition-all duration-500',

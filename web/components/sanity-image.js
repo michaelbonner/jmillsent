@@ -11,7 +11,7 @@ function SanityImage({ alt, className, image }) {
       {...imageProps}
       alt={alt}
       className={className}
-      layout="responsive"
+      fill={imageProps.width ? false : true}
       sizes="(max-width: 800px) 100vw, 800px"
       unoptimized
     />

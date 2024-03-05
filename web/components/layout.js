@@ -161,7 +161,6 @@ const Layout = ({
         <title>
           {title || 'JmillsENT | Motion Picture Studio + Film Agency'}
         </title>
-        <link rel="stylesheet" href="https://use.typekit.net/apl0yxr.css" />
         <link
           rel="preload"
           href="https://player.vimeo.com/api/player.js"

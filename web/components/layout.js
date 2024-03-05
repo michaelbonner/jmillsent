@@ -157,15 +157,6 @@ const Layout = ({
 
   return (
     <div className="relative">
-      <Script
-        async
-        src="https://www.googletagmanager.com/gtag/js?id=G-RZM6Y4557R"
-      />
-      <Script id="ads-gtag">
-        {`
-        window.dataLayer = window.dataLayer || []; function gtag(){dataLayer.push(arguments);} gtag('js', new Date()); gtag('config', 'G-RZM6Y4557R');
-        `}
-      </Script>
       <Head>
         <title>
           {title || 'JmillsENT | Motion Picture Studio + Film Agency'}

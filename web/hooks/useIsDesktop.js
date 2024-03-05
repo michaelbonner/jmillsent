@@ -1,4 +1,4 @@
-import { useLayoutEffect, useState } from 'react'
+import { useEffect, useState } from 'react'
 import useClientOnly from './useClientOnly'
 import useWindowSize from './useWindowSize'
 
@@ -7,7 +7,8 @@ function useIsDesktop() {
   const size = useWindowSize()
   const isClient = useClientOnly()
 
-  useLayoutEffect(() => {
+  useEffect(() => {
+    if (typeof window === 'undefined') return
     if (!isClient) {
       return
     }

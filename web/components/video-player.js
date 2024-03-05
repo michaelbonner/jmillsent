@@ -2,7 +2,7 @@ import Vimeo from '@vimeo/player'
 import classNames from 'classnames'
 import useIsDesktop from 'hooks/useIsDesktop'
 import Image from 'next/image'
-import { useEffect, useLayoutEffect, useRef, useState } from 'react'
+import { useEffect, useRef, useState } from 'react'
 import screenfull from 'screenfull'
 import urlForSanitySource from '../lib/urlForSanitySource'
 import SanityImage from './sanity-image'
@@ -226,7 +226,9 @@ const VideoPlayer = ({
     }
   }, [hasClicked, vimeoPlayer])
 
-  useLayoutEffect(() => {
+  useEffect(() => {
+    if (typeof window === 'undefined') return
+
     const checkIfIos = (navigator) => {
       return (
         [
@@ -259,7 +261,9 @@ const VideoPlayer = ({
     }
   }, [])
 
-  useLayoutEffect(() => {
+  useEffect(() => {
+    if (typeof window === 'undefined') return
+
     if (!vimeoPlayer) {
       return
     }

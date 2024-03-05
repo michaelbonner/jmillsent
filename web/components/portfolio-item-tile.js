@@ -1,6 +1,6 @@
 import classNames from 'classnames'
 import Link from 'next/link'
-import { useLayoutEffect, useState } from 'react'
+import { useState } from 'react'
 import urlForSanitySource from '../lib/urlForSanitySource'
 
 const PortfolioItemTile = ({ portfolioItem, index, hideAfterCount = 999 }) => {

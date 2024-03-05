@@ -155,18 +155,11 @@ export async function getStaticProps() {
   const momentsPage = await sanityClient.fetch(
     groq`
 		*[_type == "momentsPage"][0]{
-			footerSubtitle,
-			footerTitle,
 			poster,
-			section1Body,
-			section1Title,
 			seoDescription,
 			seoTitle,
 			subtitle,
-			videoClient,
 			videoId,
-      section2Subtitle,
-      section2Title,
       title,
       images[]{
           caption,

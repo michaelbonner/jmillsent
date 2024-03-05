@@ -1,16 +1,17 @@
 import classNames from 'classnames'
 import useIsDesktop from 'hooks/useIsDesktop'
 import useWindowSize from 'hooks/useWindowSize'
+import Lottie from 'lottie-react'
 import { useRouter } from 'next/dist/client/router'
 import Head from 'next/head'
 import Image from 'next/image'
 import Link from 'next/link'
+import Script from 'next/script'
 import React, { useContext, useEffect, useState } from 'react'
 import ReactPlayer from 'react-player'
-import urlForSanitySource from '../lib/urlForSanitySource'
-import Lottie from 'lottie-react'
-import jmeAnimation from '../public/animations/JME_Logo_White_V2.json'
 import { LoadingAnimationContext } from '../context/LoadingAnimationContext'
+import urlForSanitySource from '../lib/urlForSanitySource'
+import jmeAnimation from '../public/animations/JME_Logo_White_V2.json'
 
 const navItems = [
   {
@@ -156,6 +157,15 @@ const Layout = ({
 
   return (
     <div className="relative">
+      <Script
+        async
+        src="https://www.googletagmanager.com/gtag/js?id=G-RZM6Y4557R"
+      />
+      <Script id="ads-gtag">
+        {`
+        window.dataLayer = window.dataLayer || []; function gtag(){dataLayer.push(arguments);} gtag('js', new Date()); gtag('config', 'G-RZM6Y4557R');
+        `}
+      </Script>
       <Head>
         <title>
           {title || 'JmillsENT | Motion Picture Studio + Film Agency'}

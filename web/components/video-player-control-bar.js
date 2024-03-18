@@ -21,6 +21,7 @@ export const VideoPlayerControlBar = ({
   setMuted,
   setScrubberWidth,
   toggleFullScreen,
+  videoWidthAspectRatio,
 }) => {
   const scrubber = useRef(null)
 
@@ -37,7 +38,9 @@ export const VideoPlayerControlBar = ({
       className={
         !isFullscreen
           ? 'container relative z-10 mx-auto flex gap-x-2 bg-black pt-3 md:gap-x-8'
-          : 'container absolute bottom-4 z-10 mx-auto flex gap-x-2 pt-3 md:gap-x-8'
+          : isFullscreen && videoWidthAspectRatio == 16
+            ? 'container absolute bottom-14 z-10 mb-14 mx-auto flex gap-x-2 pt-3 md:gap-x-8 opacity-50'
+            : 'container absolute bottom-14 z-10 mx-auto flex gap-x-2 pt-3 md:gap-x-8'
       }
     >
       <button

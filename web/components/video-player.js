@@ -422,6 +422,7 @@ const VideoPlayer = ({
           setMuted={setMuted}
           setScrubberWidth={setScrubberWidth}
           toggleFullScreen={toggleFullScreen}
+          videoWidthAspectRatio={videoWidthAspectRatio}
         />
       )}
 

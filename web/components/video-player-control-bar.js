@@ -25,6 +25,8 @@ export const VideoPlayerControlBar = ({
 }) => {
   const scrubber = useRef(null)
 
+  console.log(videoWidthAspectRatio)
+
   useEffect(() => {
     const timeout = setTimeout(() => {
       setScrubberWidth(scrubber?.current?.clientWidth || 100)
@@ -39,8 +41,8 @@ export const VideoPlayerControlBar = ({
         !isFullscreen
           ? 'container relative z-10 mx-auto flex gap-x-2 bg-black pt-3 md:gap-x-8'
           : isFullscreen && videoWidthAspectRatio == 16
-            ? 'container absolute bottom-14 z-10 mb-14 mx-auto flex gap-x-2 pt-3 md:gap-x-8 opacity-50'
-            : 'container absolute bottom-14 z-10 mx-auto flex gap-x-2 pt-3 md:gap-x-8'
+            ? 'container absolute bottom-0 z-10 mb-10 mx-auto flex gap-x-2 pt-3 md:gap-x-8 opacity-50'
+            : 'container absolute bottom-0 mb-16 z-10 mx-auto flex gap-x-2 pt-3 md:gap-x-8'
       }
     >
       <button

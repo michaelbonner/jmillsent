@@ -81,9 +81,9 @@ const VideoPlayer = ({
     const onLoaded = () => {
       console.info('player: onLoaded')
       getVideoDetails(vimeoPlayer)
-      if (isDesktop && autoPlay) {
+      if (isDesktop && autoPlay && !hasClicked) {
         setTimeout(async () => {
-          await vimeoPlayer.setVolume(0)
+          // await vimeoPlayer.setVolume(0)
           await vimeoPlayer.play()
         }, 500)
       }

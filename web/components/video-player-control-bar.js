@@ -31,22 +31,18 @@ export const VideoPlayerControlBar = ({
     const handleResize = () => {
       const screenWidth = window.innerWidth
       const screenHeight = window.innerHeight
-      console.log('Screen Height:', screenHeight)
 
       let videoHeight =
         (videoHeightApsectRatio / videoWidthAspectRatio) * screenWidth
 
-      console.log('Video Height:', videoHeight)
-
       if (videoHeight >= screenHeight) {
         videoHeight = screenHeight - 200
-        console.log('Video Height Again:', videoHeight)
       }
 
       const blackSpace = (screenHeight - videoHeight) / 2
 
-      const targetMargin = Math.floor(blackSpace / 2)
-      console.log(targetMargin)
+      const targetMargin = Math.floor(blackSpace / 2) - 12
+
       setFsMargin(targetMargin)
     }
 

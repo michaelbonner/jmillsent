@@ -1,5 +1,5 @@
 import classNames from 'classnames'
-import { useEffect, useRef } from 'react'
+import { useEffect, useRef, useState } from 'react'
 import {
   GrContract,
   GrExpand,
@@ -22,10 +22,40 @@ export const VideoPlayerControlBar = ({
   setScrubberWidth,
   toggleFullScreen,
   videoWidthAspectRatio,
+  videoHeightApsectRatio,
 }) => {
+  const [fsMargin, setFsMargin] = useState(0)
   const scrubber = useRef(null)
 
-  console.log(videoWidthAspectRatio)
+  useEffect(() => {
+    const handleResize = () => {
+      const screenWidth = window.innerWidth
+      const screenHeight = window.innerHeight
+      console.log('Screen Height:', screenHeight)
+
+      let videoHeight =
+        (videoHeightApsectRatio / videoWidthAspectRatio) * screenWidth
+
+      console.log('Video Height:', videoHeight)
+
+      if (videoHeight >= screenHeight) {
+        videoHeight = screenHeight - 200
+        console.log('Video Height Again:', videoHeight)
+      }
+
+      const blackSpace = (screenHeight - videoHeight) / 2
+
+      const targetMargin = Math.floor(blackSpace / 2)
+      console.log(targetMargin)
+      setFsMargin(targetMargin)
+    }
+
+    handleResize()
+
+    window.addEventListener('resize', handleResize)
+
+    return () => window.removeEventListener('resize', handleResize)
+  }, [isFullscreen])
 
   useEffect(() => {
     const timeout = setTimeout(() => {
@@ -39,11 +69,12 @@ export const VideoPlayerControlBar = ({
     <div
       className={
         !isFullscreen
-          ? 'container relative z-10 mx-auto flex gap-x-2 bg-black pt-3 md:gap-x-8'
+          ? 'container relative mb-4 z-10 mx-auto flex gap-x-2 bg-black pt-3 md:gap-x-8'
           : isFullscreen && videoWidthAspectRatio == 16
-            ? 'container absolute bottom-0 z-10 mb-10 mx-auto flex gap-x-2 pt-3 md:gap-x-8 opacity-50'
-            : 'container absolute bottom-0 mb-16 z-10 mx-auto flex gap-x-2 pt-3 md:gap-x-8'
+            ? `container absolute bottom-0 z-10 mx-auto flex gap-x-2 pt-3 md:gap-x-8 opacity-50`
+            : `container absolute bottom-0 z-10 mx-auto flex gap-x-2 pt-3 md:gap-x-8`
       }
+      style={isFullscreen ? { marginBottom: `${fsMargin}px` } : {}}
     >
       <button
         aria-label="Play/Pause"

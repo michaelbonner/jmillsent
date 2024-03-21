@@ -1,5 +1,5 @@
 import classNames from 'classnames'
-import { useEffect, useRef } from 'react'
+import { useEffect, useRef, useState } from 'react'
 import {
   GrContract,
   GrExpand,
@@ -21,8 +21,37 @@ export const VideoPlayerControlBar = ({
   setMuted,
   setScrubberWidth,
   toggleFullScreen,
+  videoWidthAspectRatio,
+  videoHeightApsectRatio,
 }) => {
+  const [fsMargin, setFsMargin] = useState(0)
   const scrubber = useRef(null)
+
+  useEffect(() => {
+    const handleResize = () => {
+      const screenWidth = window.innerWidth
+      const screenHeight = window.innerHeight
+
+      let videoHeight =
+        (videoHeightApsectRatio / videoWidthAspectRatio) * screenWidth
+
+      if (videoHeight >= screenHeight) {
+        videoHeight = screenHeight - 200
+      }
+
+      const blackSpace = (screenHeight - videoHeight) / 2
+
+      const targetMargin = Math.floor(blackSpace / 2) - 12
+
+      setFsMargin(targetMargin)
+    }
+
+    handleResize()
+
+    window.addEventListener('resize', handleResize)
+
+    return () => window.removeEventListener('resize', handleResize)
+  }, [isFullscreen])
 
   useEffect(() => {
     const timeout = setTimeout(() => {
@@ -36,9 +65,12 @@ export const VideoPlayerControlBar = ({
     <div
       className={
         !isFullscreen
-          ? 'container relative z-10 mx-auto flex gap-x-2 bg-black pt-3 md:gap-x-8'
-          : 'container absolute bottom-4 z-10 mx-auto flex gap-x-2 pt-3 md:gap-x-8'
+          ? 'container relative mb-4 z-10 mx-auto flex gap-x-2 bg-black pt-3 md:gap-x-8'
+          : isFullscreen && videoWidthAspectRatio == 16
+            ? `container absolute bottom-0 z-10 mx-auto flex gap-x-2 pt-3 md:gap-x-8 opacity-50`
+            : `container absolute bottom-0 z-10 mx-auto flex gap-x-2 pt-3 md:gap-x-8`
       }
+      style={isFullscreen ? { marginBottom: `${fsMargin}px` } : {}}
     >
       <button
         aria-label="Play/Pause"

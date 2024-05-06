@@ -8,13 +8,12 @@ import classNames from 'classnames'
 import groq from 'groq'
 import { useQueryState } from 'nuqs'
 
-const tabs = ['Commercial', 'Narrative']
+const tabs = ['Commercial', 'Narrative', 'Documentary', 'Music Video']
 
 function Work({ workPage, workItems }) {
   const [activeTab, setActiveTab] = useQueryState('work-type', {
     defaultValue: 'Commercial',
     clearOnDefault: true,
-    shallow: true,
   })
 
   const filteredWorkItems = workItems
@@ -36,6 +35,14 @@ function Work({ workPage, workItems }) {
       <div className="lg:pt-24">
         <ul className="pb-8 px-8 flex items-center justify-center gap-8 font-semibold">
           {tabs.map((tab, index) => {
+            const tabHasItems = workItems.some((workItem) =>
+              workItem.categories
+                .map((category) => category?.title)
+                .includes(tab)
+            )
+
+            if (!tabHasItems) return null
+
             return (
               <li key={index} className="">
                 <button

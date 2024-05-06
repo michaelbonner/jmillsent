@@ -28,6 +28,7 @@
     "next": "^14.0.2",
     "next-sanity": "^6.0.1",
     "next-sanity-image": "^6.1.0",
+    "nuqs": "^1.17.2",
     "react": "^18.2.0",
     "react-18-image-lightbox": "^5.1.4",
     "react-dom": "^18.2.0",

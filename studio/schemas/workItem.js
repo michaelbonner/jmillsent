@@ -62,6 +62,8 @@ export default {
         list: [
           { _type: 'inline', title: 'Commercial' },
           { _type: 'inline', title: 'Narrative' },
+          { _type: 'inline', title: 'Documentary' },
+          { _type: 'inline', title: 'Music Video' },
         ],
       },
     },

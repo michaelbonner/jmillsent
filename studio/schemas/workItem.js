@@ -48,6 +48,24 @@ export default {
       type: 'datetime',
     },
     {
+      name: 'categories',
+      title: 'Category',
+      type: 'array',
+      of: [
+        {
+          type: 'object',
+          name: 'inline',
+          fields: [{ type: 'string', name: 'title' }],
+        },
+      ],
+      options: {
+        list: [
+          { _type: 'inline', title: 'Commercial' },
+          { _type: 'inline', title: 'Narrative' },
+        ],
+      },
+    },
+    {
       name: 'shortClipMp4S3',
       title: 'Short hover clip - mp4 - S3',
       type: 's3-dam.media',

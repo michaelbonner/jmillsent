@@ -69,13 +69,13 @@ const ContactForm = ({ interests, successMessage = '' }) => {
         >
           {({ isSubmitting, isValid, handleChange, handleBlur, values }) => (
             <Form className="mx-auto grid max-w-3xl grid-cols-1 gap-y-6">
-              <div className="relative rounded-md border-gray-300 bg-white bg-opacity-100">
+              <div className="relative rounded-lg border-gray-300 bg-white bg-opacity-100">
                 <Field
                   as="input"
                   autoComplete="name"
                   name="name"
                   placeholder="FULL NAME"
-                  className="block w-full bg-transparent py-3 px-4 text-lg text-gray-900 placeholder-black shadow-sm focus:border-indigo-500 focus:ring-indigo-500 lg:px-8"
+                  className="block w-full bg-transparent py-3 px-4 rounded-lg text-lg text-gray-900 placeholder-black shadow-sm focus:border-indigo-500 focus:ring-indigo-500 lg:px-8"
                 />
                 <ErrorMessage
                   name="name"
@@ -84,13 +84,13 @@ const ContactForm = ({ interests, successMessage = '' }) => {
                 />
               </div>
 
-              <div className="relative rounded-md border-gray-300 bg-white bg-opacity-100">
+              <div className="relative rounded-lg border-gray-300 bg-white bg-opacity-100">
                 <Field
                   as="input"
                   autoComplete="name"
                   name="emailAddress"
                   placeholder="EMAIL ADDRESS"
-                  className="block w-full bg-transparent py-3 px-4 text-lg text-gray-900 placeholder-black shadow-sm focus:border-indigo-500 focus:ring-indigo-500 lg:px-8"
+                  className="block w-full bg-transparent py-3 px-4 rounded-lg text-lg text-gray-900 placeholder-black shadow-sm focus:border-indigo-500 focus:ring-indigo-500 lg:px-8"
                 />
                 <ErrorMessage
                   name="emailAddress"
@@ -99,13 +99,13 @@ const ContactForm = ({ interests, successMessage = '' }) => {
                 />
               </div>
 
-              <div className="relative rounded-md border-gray-300 bg-white bg-opacity-100">
+              <div className="relative rounded-lg border-gray-300 bg-white bg-opacity-100">
                 <Field
                   as="input"
                   autoComplete="tel"
                   name="phoneNumber"
                   placeholder="PHONE NUMBER"
-                  className="block w-full bg-transparent py-3 px-4 text-lg text-gray-900 placeholder-black shadow-sm focus:border-indigo-500 focus:ring-indigo-500 lg:px-8"
+                  className="block w-full bg-transparent py-3 px-4 rounded-lg text-lg text-gray-900 placeholder-black shadow-sm focus:border-indigo-500 focus:ring-indigo-500 lg:px-8"
                 />
                 <ErrorMessage
                   name="phoneNumber"
@@ -113,9 +113,9 @@ const ContactForm = ({ interests, successMessage = '' }) => {
                   component="div"
                 />
               </div>
-              <div className="relative rounded-md border-gray-300 bg-white bg-opacity-100">
+              <div className="relative rounded-lg border-gray-300 bg-white bg-opacity-100">
                 <TextareaAutosize
-                  className="block w-full rounded-md border-gray-300 bg-transparent py-3 px-4 text-lg text-gray-900 placeholder-black shadow-sm focus:border-indigo-500 focus:ring-indigo-500 lg:px-8"
+                  className="block w-full rounded-lg border-gray-300 bg-transparent py-3 px-4 text-lg text-gray-900 placeholder-black shadow-sm focus:border-indigo-500 focus:ring-indigo-500 lg:px-8"
                   minRows={4}
                   onChange={handleChange}
                   onBlur={handleBlur}
@@ -166,7 +166,7 @@ const ContactForm = ({ interests, successMessage = '' }) => {
               <button
                 type="submit"
                 className={classNames(
-                  `mx-auto inline-block w-full max-w-[450px] rounded-md text-lg font-bold uppercase`,
+                  `mx-auto inline-block w-full max-w-[450px] text-lg font-bold uppercase`,
                   `border border-gray-500 py-2.5 px-8 tracking-wider`,
                   `bg-black bg-opacity-50 transition-all`,
                   `hover:bg-gold hover:text-black`,
@@ -184,7 +184,7 @@ const ContactForm = ({ interests, successMessage = '' }) => {
         </Formik>
       )}
       {state === 'submitted' && (
-        <div className="mx-auto flex w-full max-w-4xl items-center justify-center rounded-md border py-14 text-center shadow-md">
+        <div className="mx-auto flex w-full max-w-4xl items-center justify-center rounded-lg border py-14 text-center shadow-md">
           <h2 className="text-xl font-bold tracking-wide text-gray-300">
             {successMessage}
           </h2>

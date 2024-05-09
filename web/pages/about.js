@@ -274,7 +274,7 @@ function About({ aboutPage, serviceShortNames }) {
                   <div className="lg:col-span-2">
                     <Image
                       alt={teamMember.name}
-                      className="mx-auto"
+                      className="mx-auto rounded-xl"
                       height={height}
                       src={urlForSanitySource(teamMember.image)
                         .width(width)

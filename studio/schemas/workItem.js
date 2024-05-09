@@ -53,19 +53,10 @@ export default {
       type: 'array',
       of: [
         {
-          type: 'object',
-          name: 'inline',
-          fields: [{ type: 'string', name: 'title' }],
+          type: 'reference',
+          to: [{ type: 'workItemCategory' }],
         },
       ],
-      options: {
-        list: [
-          { _type: 'inline', title: 'Commercial' },
-          { _type: 'inline', title: 'Narrative' },
-          { _type: 'inline', title: 'Documentary' },
-          { _type: 'inline', title: 'Music Video' },
-        ],
-      },
     },
     {
       name: 'shortClipMp4S3',

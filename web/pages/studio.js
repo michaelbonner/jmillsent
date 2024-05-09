@@ -183,7 +183,7 @@ function Studio({ studioPage }) {
             <div
               id="tour"
               className={classNames(
-                'container mx-auto mt-4 max-w-7xl border border-gray-300 p-4',
+                'container mx-auto mt-4 max-w-7xl border border-gray-300 rounded-xl p-4',
                 'lg:mt-10 lg:p-8'
               )}
             >

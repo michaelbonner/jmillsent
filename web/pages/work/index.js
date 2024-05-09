@@ -31,7 +31,7 @@ function Work({ workPage, workItems, workItemCategories }) {
   return (
     <Layout title={workPage.seoTitle} description={workPage.seoDescription}>
       <div className="lg:pt-24">
-        <ul className="pb-8 px-8 flex items-center justify-center gap-8 font-semibold">
+        <ul className="mt-4 pb-4 pt-4 px-8 flex items-center divide-x divide-white justify-center font-semibold border-t max-w-5xl mx-auto">
           {workItemCategories.map((tab, index) => {
             const tabHasItems = workItems.some((workItem) =>
               workItem.categories
@@ -42,10 +42,11 @@ function Work({ workPage, workItems, workItemCategories }) {
             if (!tabHasItems) return null
 
             return (
-              <li key={index} className="">
+              <li className="px-8 lg:px-12" key={index}>
                 <button
                   className={classNames(
-                    'uppercase italic p-1 border',
+                    'uppercase py-1 px-2 border',
+                    'lg:tracking-wider',
                     activeTab === tab.name ? 'border-white' : 'border-black'
                   )}
                   onClick={() => setActiveTab(tab.name)}

@@ -43,7 +43,7 @@ const BackgroundText = ({
   return (
     <div
       className={classNames(
-        'cursor-pointer border border-gray-300 p-4',
+        'cursor-pointer border border-gray-300 rounded-xl p-4',
         'lg:p-6'
       )}
       onClick={() => isLink && router.push(slug)}

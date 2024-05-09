@@ -85,7 +85,7 @@ function About({ aboutPage, serviceShortNames }) {
           </p>
         </div>
         <div className="mt-4 lg:mt-10" id="reel">
-          <div className="container mx-auto border border-gray-300 p-4 lg:p-8">
+          <div className="container mx-auto border rounded-xl border-gray-300 p-4 lg:p-8">
             <VideoPlayer
               poster={aboutPage.reelVideoPoster}
               title={aboutPage.reelVideoTitle}
@@ -139,7 +139,7 @@ function About({ aboutPage, serviceShortNames }) {
                 <div
                   key={index}
                   className={classNames(
-                    'flex flex-col justify-start space-y-12 border-2 border-gray-300 px-8 pt-12 pb-8'
+                    'flex flex-col justify-start space-y-12 border-2 border-gray-300 rounded-xl px-8 pt-12 pb-8'
                   )}
                   target="_blank"
                 >
@@ -188,7 +188,7 @@ function About({ aboutPage, serviceShortNames }) {
               {aboutPage.directorTitle}
             </p>
           </div>
-          <div className="relative border border-gray-300 py-4 px-4 lg:px-6">
+          <div className="relative border border-gray-300 rounded-xl py-4 px-4 lg:px-6">
             <SanityImage
               image={aboutPage.directorImage}
               alt={aboutPage.directorName}
@@ -384,7 +384,7 @@ function About({ aboutPage, serviceShortNames }) {
             {aboutPage.company3Title}
           </H2>
 
-          <div className="container mx-auto mt-4 max-w-7xl border border-gray-300 p-4 lg:mt-10 lg:p-8">
+          <div className="container mx-auto mt-4 max-w-7xl border border-gray-300 rounded-xl p-4 lg:mt-10 lg:p-8">
             <VideoPlayer
               poster={aboutPage.company3VideoPoster}
               title={aboutPage.company3VideoTitle}

@@ -188,13 +188,18 @@ function About({ aboutPage, serviceShortNames }) {
               {aboutPage.directorTitle}
             </p>
           </div>
-          <div className="relative border border-gray-300 rounded-xl py-4 px-4 lg:px-6">
+          <div className="relative border border-gray-300 rounded-xl py-4 px-4 lg:px-6 group">
             <SanityImage
-              image={aboutPage.directorImage}
               alt={aboutPage.directorName}
+              image={aboutPage.directorImage}
+              className="w-full h-full"
             />
             <div
-              className={`absolute right-0 top-0 bottom-0 hidden h-full w-1/2 bg-gradient-to-l from-black to-transparent opacity-70 transition-all duration-500 group-hover:opacity-80 lg:block lg:pr-20`}
+              className={classNames(
+                'absolute right-0 top-0 bottom-0 hidden h-full w-1/2 bg-gradient-to-l from-black to-transparent opacity-70 transition-all duration-500 rounded-r-xl',
+                'lg:block lg:pr-20',
+                'group-hover:opacity-80 group-hover:w-3/4'
+              )}
             />
             {(aboutPage.directorImageTitle ||
               aboutPage.directorImageSubtitle) && (

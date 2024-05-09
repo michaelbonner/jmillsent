@@ -8,9 +8,9 @@ import classNames from 'classnames'
 import groq from 'groq'
 import { useQueryState } from 'nuqs'
 
-function Work({ workPage, workItems }) {
+function Work({ workPage, workItems, workItemCategories }) {
   const [activeTab, setActiveTab] = useQueryState('work-type', {
-    defaultValue: 'Commercial',
+    defaultValue: workItemCategories?.at(0)?.name || '',
     clearOnDefault: true,
   })
 
@@ -18,7 +18,7 @@ function Work({ workPage, workItems }) {
     .map((workItem) => ({
       ...workItem,
       flatCategories: (workItem.categories || []).map(
-        (category) => category?.title
+        (category) => category?.name
       ),
     }))
     .filter((workItem) => {
@@ -32,31 +32,29 @@ function Work({ workPage, workItems }) {
     <Layout title={workPage.seoTitle} description={workPage.seoDescription}>
       <div className="lg:pt-24">
         <ul className="pb-8 px-8 flex items-center justify-center gap-8 font-semibold">
-          {['Commercial', 'Narrative', 'Documentary', 'Music Video'].map(
-            (tab, index) => {
-              const tabHasItems = workItems.some((workItem) =>
-                workItem.categories
-                  .map((category) => category?.title)
-                  .includes(tab)
-              )
+          {workItemCategories.map((tab, index) => {
+            const tabHasItems = workItems.some((workItem) =>
+              workItem.categories
+                .map((category) => category?.name)
+                .includes(tab.name)
+            )
 
-              if (!tabHasItems) return null
+            if (!tabHasItems) return null
 
-              return (
-                <li key={index} className="">
-                  <button
-                    className={classNames(
-                      'uppercase italic p-1 border',
-                      activeTab === tab ? 'border-white' : 'border-black'
-                    )}
-                    onClick={() => setActiveTab(tab)}
-                  >
-                    {tab}
-                  </button>
-                </li>
-              )
-            }
-          )}
+            return (
+              <li key={index} className="">
+                <button
+                  className={classNames(
+                    'uppercase italic p-1 border',
+                    activeTab === tab.name ? 'border-white' : 'border-black'
+                  )}
+                  onClick={() => setActiveTab(tab.name)}
+                >
+                  {tab.name}
+                </button>
+              </li>
+            )
+          })}
         </ul>
         <div
           className={classNames(
@@ -110,11 +108,21 @@ export async function getStaticProps() {
       clientName,
       title,
       poster,
-      categories,
+      categories[]->{
+        name
+      },
       "shortClipMp4URL": shortClipMp4.asset->url,
       "shortClipMp4S3URL": shortClipMp4S3.asset->fileURL,
       "shortClipOgvURL": shortClipOgv.asset->url,
       "shortClipOgvS3URL": shortClipOgvS3.asset->fileURL,
+    }
+  `
+  )
+  const workItemCategories = await sanityClient.fetch(
+    groq`
+    *[_type == "workItemCategory"]|order(order asc){
+      name,
+      order
     }
   `
   )
@@ -123,6 +131,7 @@ export async function getStaticProps() {
     props: {
       workPage,
       workItems,
+      workItemCategories,
     },
   }
 }

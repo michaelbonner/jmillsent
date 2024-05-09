@@ -8,6 +8,7 @@ import blockContent from './blockContent'
 import aboutPage from './aboutPage'
 import homePage from './homePage'
 import workItem from './workItem'
+import workItemCategory from './workItemCategory'
 import workPage from './workPage'
 import service from './service'
 import teamMember from './teamMember'
@@ -37,6 +38,7 @@ export default createSchema({
     homePage,
     workPage,
     workItem,
+    workItemCategory,
     aboutPage,
     service,
     studioPage,

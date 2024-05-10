@@ -22,7 +22,7 @@ export const VideoPlayerControlBar = ({
   setScrubberWidth,
   toggleFullScreen,
   videoWidthAspectRatio,
-  videoHeightApsectRatio,
+  videoHeightAspectRatio,
 }) => {
   const [fsMargin, setFsMargin] = useState(0)
   const scrubber = useRef(null)
@@ -33,7 +33,7 @@ export const VideoPlayerControlBar = ({
       const screenHeight = window.innerHeight
 
       let videoHeight =
-        (videoHeightApsectRatio / videoWidthAspectRatio) * screenWidth
+        (videoHeightAspectRatio / videoWidthAspectRatio) * screenWidth
 
       if (videoHeight >= screenHeight) {
         videoHeight = screenHeight - 200
@@ -51,7 +51,7 @@ export const VideoPlayerControlBar = ({
     window.addEventListener('resize', handleResize)
 
     return () => window.removeEventListener('resize', handleResize)
-  }, [isFullscreen])
+  }, [isFullscreen, videoHeightAspectRatio, videoWidthAspectRatio])
 
   useEffect(() => {
     const timeout = setTimeout(() => {

@@ -76,6 +76,40 @@ function About({ aboutPage, serviceShortNames }) {
           </div>
         )}
 
+        <div
+          className={classNames(
+            'grid grid-cols-3 items-center justify-center gap-4 mt-12 px-4',
+            'lg:flex lg:mt-24 lg:gap-6 lg:px-12 lg:flex-nowrap'
+          )}
+        >
+          {aboutPage.section1Images.map((image, index) => {
+            const width = 600
+            const height = 440
+
+            const altText =
+              image.caption ||
+              capitalize(
+                (image.name || `image-${index}`)
+                  .replace(/-/g, ' ')
+                  .replace(/_/g, ' ')
+                  .replace('.jpg', '')
+              )
+
+            return (
+              <div className="flex-1" key={index}>
+                <Image
+                  className="rounded-xl border border-gray-100"
+                  alt={altText}
+                  height={height}
+                  src={`${image.imageUrl}?w=${width}&h=${height}&auto=format&fit=crop&crop=focalpoint`}
+                  width={width}
+                  unoptimized
+                />
+              </div>
+            )
+          })}
+        </div>
+
         <DividerBar />
 
         <div className="container mx-auto -mt-1.5 px-8 text-center">
@@ -577,6 +611,11 @@ export async function getStaticProps() {
 			poster,
 			section1Body,
 			section1Title,
+      section1Images[]{
+        caption,
+        "imageUrl": asset->url,
+        "name": asset->originalFilename,
+      },
 			seoDescription,
 			seoTitle,
 			subtitle,

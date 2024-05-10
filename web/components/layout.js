@@ -490,7 +490,7 @@ const Layout = ({
       <footer className="text-center">
         <MobileFooterMenu />
         <DesktopFooterMenu />
-        <p className="text-gray-500 my-2">
+        <p className="text-gray-500 mb-2 mt-8">
           &copy; Jmills Entertainment {new Date().getFullYear()}
         </p>
       </footer>
@@ -526,7 +526,7 @@ const FooterNavItem = ({ navItem, className }) => {
 
 const MobileFooterMenu = () => {
   return (
-    <div className={classNames('mt-12 text-center px-8', 'lg:hidden')}>
+    <div className={classNames('mt-12 text-center px-5', 'lg:hidden')}>
       <div
         className={classNames(
           'flex flex-wrap justify-center pb-4 border-t border-gray-400 pt-4 gap-y-4',

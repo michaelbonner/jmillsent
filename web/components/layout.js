@@ -488,41 +488,8 @@ const Layout = ({
         {children}
       </main>
       <footer className="text-center">
-        <div
-          className={classNames(
-            'mt-12 text-center px-4',
-            'lg:px-0 lg:mt-24 lg:flex lg:flex-wrap lg:items-start lg:justify-center'
-          )}
-        >
-          <div
-            className={classNames(
-              'flex flex-wrap justify-center pb-4 border-t border-gray-400 pt-4 gap-y-4',
-              'divide-x divide-white',
-              'lg:inline-flex lg:px-0'
-            )}
-          >
-            {navItems[0].map((navItem, index) => {
-              return <FooterNavItem key={index} navItem={navItem} />
-            })}
-          </div>
-          <div
-            className={classNames(
-              'flex flex-wrap justify-center pb-4 border-t border-gray-400 pt-4 gap-y-4',
-              'divide-x divide-white',
-              'lg:inline-flex lg:px-0'
-            )}
-          >
-            {navItems[1].map((navItem, index) => {
-              return (
-                <FooterNavItem
-                  key={index}
-                  navItem={navItem}
-                  className={index === 0 ? 'lg:border-l' : ''}
-                />
-              )
-            })}
-          </div>
-        </div>
+        <MobileFooterMenu />
+        <DesktopFooterMenu />
         <p className="text-gray-500 my-2">
           &copy; Jmills Entertainment {new Date().getFullYear()}
         </p>
@@ -554,6 +521,55 @@ const FooterNavItem = ({ navItem, className }) => {
         {navItem.name}
       </div>
     </Link>
+  )
+}
+
+const MobileFooterMenu = () => {
+  return (
+    <div className={classNames('mt-12 text-center px-8', 'lg:hidden')}>
+      <div
+        className={classNames(
+          'flex flex-wrap justify-center pb-4 border-t border-gray-400 pt-4 gap-y-4',
+          'divide-x divide-white'
+        )}
+      >
+        {navItems[0].map((navItem, index) => {
+          return <FooterNavItem key={index} navItem={navItem} />
+        })}
+      </div>
+      <div
+        className={classNames(
+          'flex flex-wrap justify-center pb-4 border-t border-gray-400 pt-4 gap-y-4',
+          'divide-x divide-white'
+        )}
+      >
+        {navItems[1].map((navItem, index) => {
+          return <FooterNavItem key={index} navItem={navItem} />
+        })}
+      </div>
+    </div>
+  )
+}
+
+const DesktopFooterMenu = () => {
+  return (
+    <div
+      className={classNames(
+        'hidden',
+        'lg:text-center px-24 lg:mt-24 lg:flex lg:flex-wrap lg:items-start lg:justify-center'
+      )}
+    >
+      <div
+        className={classNames(
+          'w-full flex flex-wrap justify-center pb-4 border-t border-gray-400 pt-4 gap-y-4',
+          'divide-x divide-white'
+        )}
+      >
+        {[...navItems[0], ...navItems[1]].map((navItem, index) => {
+          return <FooterNavItem key={index} navItem={navItem} />
+        })}
+      </div>
+    </div>
   )
 }
 

@@ -545,8 +545,10 @@ const FooterNavItem = ({ navItem, className }) => {
     >
       <div
         className={classNames(
-          'py-1 px-2',
-          router.route === navItem.href && 'border border-white'
+          'py-1 px-2 transition-all',
+          router.route === navItem.href
+            ? 'border border-white'
+            : 'hover:scale-110'
         )}
       >
         {navItem.name}

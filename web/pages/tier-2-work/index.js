@@ -59,7 +59,6 @@ function Portfolio({ portfolioPage, portfolioItems }) {
                 customReel={true}
               />
             </div>
-            <MediumWhiteBar yMargin="mb-8 mt-12 lg:mt-24" />
           </div>
         </>
       )}

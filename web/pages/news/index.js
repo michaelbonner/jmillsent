@@ -31,7 +31,6 @@ function News({ newsPage }) {
           })}
         </div>
       </div>
-      <MediumWhiteBar yMargin="mb-8 mt-12 lg:mt-24" />
     </Layout>
   )
 }

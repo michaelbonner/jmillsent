@@ -250,7 +250,6 @@ function Studio({ studioPage }) {
         </section>
         {/* end: studioItems */}
       </div>
-      <MediumWhiteBar yMargin="mb-8 mt-12 lg:mt-24" />
     </Layout>
   )
 }

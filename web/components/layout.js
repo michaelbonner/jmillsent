@@ -13,34 +13,38 @@ import urlForSanitySource from '../lib/urlForSanitySource'
 import jmeAnimation from '../public/animations/JME_Logo_White_V2.json'
 
 const navItems = [
-  {
-    name: 'Home',
-    href: '/',
-  },
-  {
-    name: 'Work',
-    href: '/work',
-  },
-  {
-    name: 'About',
-    href: '/about',
-  },
-  {
-    name: 'Studio',
-    href: '/studio',
-  },
-  {
-    name: 'Moments',
-    href: '/moments',
-  },
-  {
-    name: 'News',
-    href: '/news',
-  },
-  {
-    name: 'Contact',
-    href: '/contact',
-  },
+  [
+    {
+      name: 'Home',
+      href: '/',
+    },
+    {
+      name: 'Work',
+      href: '/work',
+    },
+    {
+      name: 'About',
+      href: '/about',
+    },
+    {
+      name: 'Studio',
+      href: '/studio',
+    },
+  ],
+  [
+    {
+      name: 'Moments',
+      href: '/moments',
+    },
+    {
+      name: 'News',
+      href: '/news',
+    },
+    {
+      name: 'Contact',
+      href: '/contact',
+    },
+  ],
 ]
 
 const Layout = ({
@@ -307,7 +311,7 @@ const Layout = ({
           'z-40 flex flex-col items-center justify-center overflow-y-scroll text-right duration-300'
         )}
       >
-        {navItems.map((navItem, index) => {
+        {[...navItems[0], ...navItems[1]].map((navItem, index) => {
           return (
             <Link
               href={navItem.href}
@@ -483,28 +487,72 @@ const Layout = ({
       <main className="relative z-10 w-full bg-black text-white">
         {children}
       </main>
-      <footer className="relative z-10 -mt-1.5 bg-black text-center">
-        <nav className="container mx-auto flex w-full max-w-5xl flex-wrap justify-center gap-4 px-12 pb-8 lg:justify-around lg:px-4">
-          {navItems.map((navItem, index) => {
-            return (
-              <Link
-                key={index}
-                href={navItem.href}
-                className={classNames(
-                  {
-                    'border-b': router.route === navItem.href,
-                  },
-                  `pb-1 text-lg font-bold uppercase text-white lg:text-2xl`
-                )}
-              >
-                {navItem.name}
-              </Link>
-            )
-          })}
-        </nav>
-        &copy; Jeremy Miller {new Date().getFullYear()}
+      <footer className="text-center">
+        <div
+          className={classNames(
+            'mt-12 text-center px-4',
+            'lg:px-0 lg:mt-24 lg:flex lg:flex-wrap lg:items-start lg:justify-center'
+          )}
+        >
+          <div
+            className={classNames(
+              'flex flex-wrap justify-center pb-4 border-t border-gray-400 pt-4 gap-y-4',
+              'divide-x divide-white',
+              'lg:inline-flex lg:px-0'
+            )}
+          >
+            {navItems[0].map((navItem, index) => {
+              return <FooterNavItem key={index} navItem={navItem} />
+            })}
+          </div>
+          <div
+            className={classNames(
+              'flex flex-wrap justify-center pb-4 border-t border-gray-400 pt-4 gap-y-4',
+              'divide-x divide-white',
+              'lg:inline-flex lg:px-0'
+            )}
+          >
+            {navItems[1].map((navItem, index) => {
+              return (
+                <FooterNavItem
+                  key={index}
+                  navItem={navItem}
+                  className={index === 0 ? 'lg:border-l' : ''}
+                />
+              )
+            })}
+          </div>
+        </div>
+        <p className="text-gray-500 my-2">
+          &copy; Jmills Entertainment {new Date().getFullYear()}
+        </p>
       </footer>
     </div>
   )
 }
+
+const FooterNavItem = ({ navItem, className }) => {
+  const router = useRouter()
+
+  return (
+    <Link
+      href={navItem.href}
+      className={classNames(
+        'text-sm font-semibold uppercase text-white px-2',
+        'lg:text-2xl lg:px-4',
+        className
+      )}
+    >
+      <div
+        className={classNames(
+          'py-1 px-2',
+          router.route === navItem.href && 'border border-white'
+        )}
+      >
+        {navItem.name}
+      </div>
+    </Link>
+  )
+}
+
 export default Layout

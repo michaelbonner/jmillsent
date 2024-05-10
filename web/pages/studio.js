@@ -188,15 +188,15 @@ function Studio({ studioPage }) {
               )}
             >
               <VideoPlayer
-                poster={studioPage.tourVideoPoster}
-                title={studioPage.tourVideoTitle}
-                videoId={studioPage.tourVideoId}
-                videoIdShort={studioPage.tourVideoIdShort}
+                autoPlay
                 client={studioPage.tourVideoClient}
                 description={studioPage.tourVideoDescription}
+                poster={studioPage.tourVideoPoster}
+                title={studioPage.tourVideoTitle}
                 videoHeightAspectRatio={studioPage.tourVideoHeightAspectRatio}
+                videoId={studioPage.tourVideoId}
+                videoIdShort={studioPage.tourVideoIdShort}
                 videoWidthAspectRatio={studioPage.tourVideoWidthAspectRatio}
-                autoPlay={true}
               />
             </div>
             <DividerBar />

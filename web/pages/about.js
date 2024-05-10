@@ -87,15 +87,15 @@ function About({ aboutPage, serviceShortNames }) {
         <div className="mt-4 lg:mt-10" id="reel">
           <div className="container mx-auto border rounded-xl border-gray-300 p-4 lg:p-8">
             <VideoPlayer
-              poster={aboutPage.reelVideoPoster}
-              title={aboutPage.reelVideoTitle}
-              videoId={aboutPage.reelVideoId}
-              videoIdShort={aboutPage.reelVideoIdShort}
+              autoPlay
               client={aboutPage.reelVideoClient}
               description={aboutPage.reelVideoDescription}
+              poster={aboutPage.reelVideoPoster}
+              title={aboutPage.reelVideoTitle}
               videoHeightAspectRatio={aboutPage.reelVideoHeightAspectRatio}
+              videoId={aboutPage.reelVideoId}
+              videoIdShort={aboutPage.reelVideoIdShort}
               videoWidthAspectRatio={aboutPage.reelVideoWidthAspectRatio}
-              autoPlay={true}
             />
           </div>
         </div>
@@ -391,15 +391,15 @@ function About({ aboutPage, serviceShortNames }) {
 
           <div className="container mx-auto mt-4 max-w-7xl border border-gray-300 rounded-xl p-4 lg:mt-10 lg:p-8">
             <VideoPlayer
-              poster={aboutPage.company3VideoPoster}
-              title={aboutPage.company3VideoTitle}
-              videoId={aboutPage.company3VideoId}
-              videoIdShort={aboutPage.company3VideoIdShort}
+              autoPlay
               client={aboutPage.company3VideoClient}
               description={aboutPage.company3VideoDescription}
+              poster={aboutPage.company3VideoPoster}
+              title={aboutPage.company3VideoTitle}
               videoHeightAspectRatio={aboutPage.company3VideoHeightAspectRatio}
+              videoId={aboutPage.company3VideoId}
+              videoIdShort={aboutPage.company3VideoIdShort}
               videoWidthAspectRatio={aboutPage.company3VideoWidthAspectRatio}
-              autoPlay={true}
             />
           </div>
           {aboutPage.company3Body && (

@@ -82,7 +82,7 @@ function About({ aboutPage, serviceShortNames }) {
             'lg:flex lg:mt-24 lg:gap-6 lg:px-12 lg:flex-nowrap'
           )}
         >
-          {aboutPage.section1Images.map((image, index) => {
+          {(aboutPage.section1Images || []).map((image, index) => {
             const width = 600
             const height = 440
 
@@ -98,7 +98,7 @@ function About({ aboutPage, serviceShortNames }) {
             return (
               <div className="flex-1" key={index}>
                 <Image
-                  className="rounded-xl border border-gray-100"
+                  className="rounded-lg border border-gray-100"
                   alt={altText}
                   height={height}
                   src={`${image.imageUrl}?w=${width}&h=${height}&auto=format&fit=crop&crop=focalpoint`}
@@ -146,10 +146,61 @@ function About({ aboutPage, serviceShortNames }) {
               {aboutPage.section2Subtitle}
             </p>
           </div>
-          <ServicesInteractiveCard
-            services={aboutPage.services}
-            serviceShortNames={serviceShortNames}
-          />
+
+          <div
+            className={classNames(
+              'grid gap-y-4 gap-x-6 mt-12',
+              'md:grid-cols-2',
+              'lg:grid-cols-3'
+            )}
+          >
+            {aboutPage.services.map((service, index) => {
+              const imageSrc = urlForSanitySource(service.image)
+                .width(800)
+                .height(600)
+                .url()
+
+              return (
+                <div
+                  className={classNames(
+                    'relative flex flex-col justify-start gap-y-12 border-2 border-gray-300 rounded-lg px-4 pt-1 pb-8 group',
+                    'bg-center bg-cover bg-no-repeat',
+                    'lg:gap-y-20'
+                  )}
+                  style={{
+                    backgroundImage: `url(${imageSrc})`,
+                  }}
+                  key={index}
+                >
+                  <div
+                    className={classNames(
+                      'absolute bg-gradient-to-t rounded-lg from-black/100 via-black/70 to-black/20 inset-0 opacity-80',
+                      'transition-all duration-500',
+                      'group-hover:opacity-100',
+                      'lg:opacity-50'
+                    )}
+                  />
+                  <div className="relative z-10 text-left font-black text-6xl">
+                    {index + 1}
+                  </div>
+                  <div className="relative z-10">
+                    <h4 className="text-xl font-bold uppercase">
+                      {service.name}
+                    </h4>
+                    <div className="mx-auto mt-4 h-1 w-40 bg-gold"></div>
+                    <div
+                      className={classNames(
+                        'uppercase text-xs mt-4 text-white font-light',
+                        'lg:px-4'
+                      )}
+                    >
+                      <PortableText value={service.description} />
+                    </div>
+                  </div>
+                </div>
+              )
+            })}
+          </div>
         </section>
 
         {/* end: services */}

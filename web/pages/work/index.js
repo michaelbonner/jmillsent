@@ -59,8 +59,9 @@ function Work({ workPage, workItems, workItemCategories }) {
                   className={classNames(
                     'uppercase py-1 px-2 border transition-all',
                     'lg:tracking-wider',
-                    'hover:scale-110',
-                    activeTab === tab.name ? 'border-white' : 'border-black'
+                    activeTab === tab.name
+                      ? 'border-white'
+                      : 'border-black hover:scale-110'
                   )}
                   onClick={() => setActiveTab(tab.name)}
                 >

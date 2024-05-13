@@ -149,7 +149,7 @@ function About({ aboutPage, serviceShortNames }) {
 
           <div
             className={classNames(
-              'grid gap-y-4 gap-x-6 mt-12',
+              'grid gap-6 mt-12',
               'md:grid-cols-2',
               'lg:grid-cols-3'
             )}

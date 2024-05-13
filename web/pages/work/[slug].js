@@ -59,7 +59,7 @@ const WorkItem = ({ workItem = {} }) => {
       }
     >
       <div className={classNames('pg-10 px-4', 'lg:px-8 lg:pt-28')}>
-        <div className="my-12 max-w-9xl border border-gray-300 p-4 px-4 xl:mx-auto xl:p-8">
+        <div className="my-12 max-w-9xl border border-gray-300 rounded-xl p-4 px-4 xl:mx-auto xl:p-8">
           <VideoPlayer
             client={workItem.clientName}
             description={workItem.description}

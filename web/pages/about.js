@@ -76,6 +76,40 @@ function About({ aboutPage, serviceShortNames }) {
           </div>
         )}
 
+        <div
+          className={classNames(
+            'grid grid-cols-3 items-center justify-center gap-4 mt-12 px-4',
+            'lg:flex lg:mt-24 lg:gap-6 lg:px-12 lg:flex-nowrap'
+          )}
+        >
+          {(aboutPage.section1Images || []).map((image, index) => {
+            const width = 600
+            const height = 440
+
+            const altText =
+              image.caption ||
+              capitalize(
+                (image.name || `image-${index}`)
+                  .replace(/-/g, ' ')
+                  .replace(/_/g, ' ')
+                  .replace('.jpg', '')
+              )
+
+            return (
+              <div className="flex-1" key={index}>
+                <Image
+                  className="rounded-lg border border-gray-100"
+                  alt={altText}
+                  height={height}
+                  src={`${image.imageUrl}?w=${width}&h=${height}&auto=format&fit=crop&crop=focalpoint`}
+                  width={width}
+                  unoptimized
+                />
+              </div>
+            )
+          })}
+        </div>
+
         <DividerBar />
 
         <div className="container mx-auto -mt-1.5 px-8 text-center">
@@ -85,7 +119,7 @@ function About({ aboutPage, serviceShortNames }) {
           </p>
         </div>
         <div className="mt-4 lg:mt-10" id="reel">
-          <div className="container mx-auto border border-gray-300 p-4 lg:p-8">
+          <div className="container mx-auto border rounded-xl border-gray-300 p-4 lg:p-8">
             <VideoPlayer
               poster={aboutPage.reelVideoPoster}
               title={aboutPage.reelVideoTitle}
@@ -112,10 +146,61 @@ function About({ aboutPage, serviceShortNames }) {
               {aboutPage.section2Subtitle}
             </p>
           </div>
-          <ServicesInteractiveCard
-            services={aboutPage.services}
-            serviceShortNames={serviceShortNames}
-          />
+
+          <div
+            className={classNames(
+              'grid gap-6 mt-12',
+              'md:grid-cols-2',
+              'lg:grid-cols-3'
+            )}
+          >
+            {aboutPage.services.map((service, index) => {
+              const imageSrc = urlForSanitySource(service.image)
+                .width(800)
+                .height(600)
+                .url()
+
+              return (
+                <div
+                  className={classNames(
+                    'relative flex flex-col justify-start gap-y-12 border-2 border-gray-300 rounded-lg px-4 pt-1 pb-8 group',
+                    'bg-center bg-cover bg-no-repeat',
+                    'lg:gap-y-20'
+                  )}
+                  style={{
+                    backgroundImage: `url(${imageSrc})`,
+                  }}
+                  key={index}
+                >
+                  <div
+                    className={classNames(
+                      'absolute bg-gradient-to-t rounded-lg from-black/100 via-black/70 to-black/20 inset-0 opacity-80',
+                      'transition-all duration-500',
+                      'group-hover:opacity-100',
+                      'lg:opacity-50'
+                    )}
+                  />
+                  <div className="relative z-10 text-left font-black text-6xl">
+                    {index + 1}
+                  </div>
+                  <div className="relative z-10">
+                    <h4 className="text-xl font-bold uppercase">
+                      {service.name}
+                    </h4>
+                    <div className="mx-auto mt-4 h-1 w-40 bg-gold"></div>
+                    <div
+                      className={classNames(
+                        'uppercase text-xs mt-4 text-white font-light',
+                        'lg:px-4'
+                      )}
+                    >
+                      <PortableText value={service.description} />
+                    </div>
+                  </div>
+                </div>
+              )
+            })}
+          </div>
         </section>
 
         {/* end: services */}
@@ -139,7 +224,7 @@ function About({ aboutPage, serviceShortNames }) {
                 <div
                   key={index}
                   className={classNames(
-                    'flex flex-col justify-start space-y-12 border-2 border-gray-300 px-8 pt-12 pb-8'
+                    'flex flex-col justify-start space-y-12 border-2 border-gray-300 rounded-xl px-8 pt-12 pb-8'
                   )}
                   target="_blank"
                 >
@@ -188,13 +273,18 @@ function About({ aboutPage, serviceShortNames }) {
               {aboutPage.directorTitle}
             </p>
           </div>
-          <div className="relative border border-gray-300 py-4 px-4 lg:px-6">
+          <div className="relative border border-gray-300 rounded-xl py-4 px-4 lg:px-6 group">
             <SanityImage
-              image={aboutPage.directorImage}
               alt={aboutPage.directorName}
+              image={aboutPage.directorImage}
+              className="w-full h-full"
             />
             <div
-              className={`absolute right-0 top-0 bottom-0 hidden h-full w-1/2 bg-gradient-to-l from-black to-transparent opacity-70 transition-all duration-500 group-hover:opacity-80 lg:block lg:pr-20`}
+              className={classNames(
+                'absolute right-0 top-0 bottom-0 hidden h-full w-1/2 bg-gradient-to-l from-black to-transparent opacity-70 transition-all duration-500 rounded-r-xl',
+                'lg:block lg:pr-20',
+                'group-hover:opacity-80 group-hover:w-3/4'
+              )}
             />
             {(aboutPage.directorImageTitle ||
               aboutPage.directorImageSubtitle) && (
@@ -274,7 +364,7 @@ function About({ aboutPage, serviceShortNames }) {
                   <div className="lg:col-span-2">
                     <Image
                       alt={teamMember.name}
-                      className="mx-auto"
+                      className="mx-auto rounded-xl"
                       height={height}
                       src={urlForSanitySource(teamMember.image)
                         .width(width)
@@ -384,7 +474,7 @@ function About({ aboutPage, serviceShortNames }) {
             {aboutPage.company3Title}
           </H2>
 
-          <div className="container mx-auto mt-4 max-w-7xl border border-gray-300 p-4 lg:mt-10 lg:p-8">
+          <div className="container mx-auto mt-4 max-w-7xl border border-gray-300 rounded-xl p-4 lg:mt-10 lg:p-8">
             <VideoPlayer
               poster={aboutPage.company3VideoPoster}
               title={aboutPage.company3VideoTitle}
@@ -572,6 +662,11 @@ export async function getStaticProps() {
 			poster,
 			section1Body,
 			section1Title,
+      section1Images[]{
+        caption,
+        "imageUrl": asset->url,
+        "name": asset->originalFilename,
+      },
 			seoDescription,
 			seoTitle,
 			subtitle,

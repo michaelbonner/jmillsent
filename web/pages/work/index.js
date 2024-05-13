@@ -87,14 +87,6 @@ function Work({ workPage, workItems, workItemCategories }) {
               <PortableText value={workPage.workPageDescription} />
             </div>
           )}
-          <div className="mt-10">
-            <EmailSignupForm
-              title={workPage.subscribeFormTitle}
-              successMessage={workPage.subscribeFormSuccessMessage}
-              customReel={true}
-            />
-          </div>
-          <MediumWhiteBar yMargin="mb-8 mt-12 lg:mt-24" />
         </div>
       </div>
     </Layout>

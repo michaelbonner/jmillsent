@@ -14,7 +14,7 @@ const Map = () => {
         width: '100%',
         height: '600px',
       }}
-      mapContainerClassName="rounded-lg"
+      mapContainerClassName="rounded-xl"
       center={{ lat: 40.8309715, lng: -111.9024321 }}
       zoom={11}
       options={{

@@ -27,7 +27,7 @@ const ServicesInteractiveCard = ({ services, serviceShortNames }) => {
           {isDesktop && (
             <div
               className={classNames(
-                'relative border border-gray-300 px-4 pt-4 pb-2',
+                'relative border border-gray-300 rounded-xl px-4 pt-4 pb-2',
                 'lg:px-6 lg:pt-6 lg:pb-3'
               )}
               id={`service-${shortName}`}

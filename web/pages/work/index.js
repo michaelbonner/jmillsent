@@ -26,13 +26,6 @@ function Work({ workPage, workItems }) {
             <PortableText value={workPage.workPageDescription} />
           </div>
         )}
-        <div className="mt-10">
-          <EmailSignupForm
-            title={workPage.subscribeFormTitle}
-            successMessage={workPage.subscribeFormSuccessMessage}
-            customReel={true}
-          />
-        </div>
       </div>
     </Layout>
   )

@@ -92,11 +92,11 @@ const PortfolioItem = ({ portfolioItem = {}, portfolioPagePassword }) => {
             <div className="my-12 max-w-9xl border border-gray-300 rounded-xl p-4 px-4 xl:mx-auto xl:p-8">
               <VideoPlayer
                 client={portfolioItem.clientName}
+                clientName={portfolioItem.clientName}
                 description={portfolioItem.description}
                 poster={portfolioItem.poster}
                 title={portfolioItem.title}
                 videoId={portfolioItem.videoId}
-                clientName={portfolioItem.clientName}
                 videoHeightAspectRatio={
                   portfolioItem.videoHeightAspectRatio || '9'
                 }

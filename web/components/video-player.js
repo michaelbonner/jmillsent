@@ -120,6 +120,8 @@ const VideoPlayer = ({
       vimeoPlayer.off('pause')
       vimeoPlayer.off('timeupdate')
     }
+
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [autoPlay, isDesktop, scrubberWidth, vimeoPlayer])
 
   // switch to full video if we need to on first click
@@ -422,8 +424,8 @@ const VideoPlayer = ({
           setMuted={setMuted}
           setScrubberWidth={setScrubberWidth}
           toggleFullScreen={toggleFullScreen}
+          videoHeightAspectRatio={videoHeightAspectRatio}
           videoWidthAspectRatio={videoWidthAspectRatio}
-          videoHeightApsectRatio={videoHeightAspectRatio}
         />
       )}
 

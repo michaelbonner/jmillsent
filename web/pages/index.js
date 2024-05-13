@@ -67,15 +67,15 @@ function Home({ homePage }) {
       <div className="mt-10 px-4 2xs:px-8 lg:px-4" id="featured">
         <div className="container mx-auto border border-gray-300 rounded-xl p-4 lg:py-8 lg:px-8">
           <VideoPlayer
-            poster={homePage.reelVideoPoster}
-            title={homePage.reelVideoTitle}
-            videoId={homePage.reelVideoId}
-            videoIdShort={homePage.reelVideoIdShort}
+            autoPlay
             client={homePage.reelVideoClient}
             description={homePage.reelVideoDescription}
+            poster={homePage.reelVideoPoster}
+            title={homePage.reelVideoTitle}
             videoHeightAspectRatio={homePage.reelVideoHeightAspectRatio}
+            videoId={homePage.reelVideoId}
+            videoIdShort={homePage.reelVideoIdShort}
             videoWidthAspectRatio={homePage.reelVideoWidthAspectRatio}
-            autoPlay={true}
           />
         </div>
       </div>

@@ -506,7 +506,8 @@ const FooterNavItem = ({ navItem, className }) => {
       href={navItem.href}
       className={classNames(
         'text-sm font-semibold uppercase text-white px-2',
-        'lg:text-2xl lg:px-4',
+        'lg:text-lg lg:px-4',
+        'xl:text-2xl',
         className
       )}
     >
@@ -561,8 +562,9 @@ const DesktopFooterMenu = () => {
     >
       <div
         className={classNames(
-          'w-full flex flex-wrap justify-center pb-4 border-t border-gray-400 pt-4 gap-y-4',
-          'divide-x divide-white'
+          'flex flex-wrap justify-center pb-4 border-t border-gray-400 pt-4 gap-y-4',
+          'divide-x divide-white',
+          'xl:px-8'
         )}
       >
         {[...navItems[0], ...navItems[1]].map((navItem, index) => {

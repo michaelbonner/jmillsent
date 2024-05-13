@@ -28,6 +28,12 @@ function Work({ workPage, workItems, workItemCategories }) {
       )
     })
 
+  const workItemCategoriesThatHaveItems = workItemCategories.filter((tab) => {
+    return workItems.some((workItem) =>
+      workItem.categories.map((category) => category?.name).includes(tab.name)
+    )
+  })
+
   return (
     <Layout title={workPage.seoTitle} description={workPage.seoDescription}>
       <div className="lg:pt-24">
@@ -38,20 +44,13 @@ function Work({ workPage, workItems, workItemCategories }) {
             'xl:mx-48'
           )}
         >
-          {workItemCategories.map((tab, index) => {
-            const tabHasItems = workItems.some((workItem) =>
-              workItem.categories
-                .map((category) => category?.name)
-                .includes(tab.name)
-            )
-
-            if (!tabHasItems) return null
-
+          {workItemCategoriesThatHaveItems.map((tab, index) => {
             return (
               <li
                 className={classNames(
                   'text-xs flex justify-center',
-                  'lg:text-base lg:px-12'
+                  'lg:text-base lg:px-12',
+                  index % 2 === 0 && 'border-r lg:border-r-0'
                 )}
                 key={index}
               >

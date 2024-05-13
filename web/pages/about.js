@@ -641,8 +641,6 @@ function About({ aboutPage, serviceShortNames }) {
         </div>
       </section>
       {/* end: trusted by */}
-
-      <MediumWhiteBar yMargin="mb-12 mt-12 lg:mt-24" />
     </Layout>
   )
 }

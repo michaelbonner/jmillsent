@@ -145,8 +145,6 @@ function Moments({ momentsPage }) {
             })}
         </div>
       </section>
-      <MediumWhiteBar yMargin="mb-8 mt-12 lg:mt-24" />
-      {/* end: moments images */}
     </Layout>
   )
 }

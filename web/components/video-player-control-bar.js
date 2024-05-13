@@ -22,7 +22,7 @@ export const VideoPlayerControlBar = ({
   setScrubberWidth,
   toggleFullScreen,
   videoWidthAspectRatio,
-  videoHeightApsectRatio,
+  videoHeightAspectRatio,
 }) => {
   const [fsMargin, setFsMargin] = useState(0)
   const scrubber = useRef(null)
@@ -33,7 +33,7 @@ export const VideoPlayerControlBar = ({
       const screenHeight = window.innerHeight
 
       let videoHeight =
-        (videoHeightApsectRatio / videoWidthAspectRatio) * screenWidth
+        (videoHeightAspectRatio / videoWidthAspectRatio) * screenWidth
 
       if (videoHeight >= screenHeight) {
         videoHeight = screenHeight - 200
@@ -51,7 +51,7 @@ export const VideoPlayerControlBar = ({
     window.addEventListener('resize', handleResize)
 
     return () => window.removeEventListener('resize', handleResize)
-  }, [isFullscreen])
+  }, [isFullscreen, videoHeightAspectRatio, videoWidthAspectRatio])
 
   useEffect(() => {
     const timeout = setTimeout(() => {
@@ -63,13 +63,12 @@ export const VideoPlayerControlBar = ({
 
   return (
     <div
-      className={
-        !isFullscreen
-          ? 'container relative mb-4 z-10 mx-auto flex gap-x-2 bg-black pt-3 md:gap-x-8'
-          : isFullscreen && videoWidthAspectRatio == 16
-            ? `container absolute bottom-0 z-10 mx-auto flex gap-x-2 pt-3 md:gap-x-8 opacity-50`
-            : `container absolute bottom-0 z-10 mx-auto flex gap-x-2 pt-3 md:gap-x-8`
-      }
+      className={classNames(
+        'container pt-3 mx-auto flex gap-x-2 z-10 md:gap-x-8',
+        !isFullscreen && 'mt-4 relative bg-black',
+        isFullscreen && 'absolute bottom-0 flex gap-x-2',
+        isFullscreen && videoWidthAspectRatio == 16 && 'opacity-50'
+      )}
       style={isFullscreen ? { marginBottom: `${fsMargin}px` } : {}}
     >
       <button

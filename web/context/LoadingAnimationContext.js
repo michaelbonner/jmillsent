@@ -40,9 +40,11 @@ const LoadingAnimationProvider = ({ children }) => {
 
   useEffect(() => {
     const handleRouteChange = (url) => {
-      if (url === router.asPath) {
-        return
-      }
+      const baseUrl = url.split('?')[0]
+      const basePath = router.asPath.split('?')[0]
+
+      if (baseUrl === basePath) return
+
       if (url === '/' || url === '/about' || url === '/studio') {
         setIsAnimationComplete(false)
       }

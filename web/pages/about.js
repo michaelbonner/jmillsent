@@ -71,15 +71,15 @@ function About({ aboutPage, serviceShortNames }) {
       <div className="container mx-auto mt-12 px-4 text-center text-white lg:mt-24">
         <H2>{aboutPage.section1Title}</H2>
         {aboutPage.section1Body && (
-          <div className="prose-lg mx-auto mt-4 -mb-2 max-w-5xl px-4 text-center text-white lg:mt-10">
+          <div className="prose-lg mx-auto -mb-2 mt-4 max-w-5xl px-4 text-center text-white lg:mt-10">
             <PortableText value={aboutPage.section1Body} />
           </div>
         )}
 
         <div
           className={classNames(
-            'grid grid-cols-3 items-center justify-center gap-4 mt-12 px-4',
-            'lg:flex lg:mt-24 lg:gap-6 lg:px-12 lg:flex-nowrap'
+            'mt-12 grid grid-cols-3 items-center justify-center gap-4 px-4',
+            'lg:mt-24 lg:flex lg:flex-nowrap lg:gap-6 lg:px-12'
           )}
         >
           {(aboutPage.section1Images || []).map((image, index) => {
@@ -119,7 +119,7 @@ function About({ aboutPage, serviceShortNames }) {
           </p>
         </div>
         <div className="mt-4 lg:mt-10" id="reel">
-          <div className="container mx-auto border rounded-xl border-gray-300 p-4 lg:p-8">
+          <div className="container mx-auto rounded-xl border border-gray-300 p-4 lg:p-8">
             <VideoPlayer
               autoPlay
               client={aboutPage.reelVideoClient}
@@ -149,7 +149,7 @@ function About({ aboutPage, serviceShortNames }) {
 
           <div
             className={classNames(
-              'grid gap-6 mt-12',
+              'mt-12 grid gap-6',
               'md:grid-cols-2',
               'lg:grid-cols-3'
             )}
@@ -163,8 +163,8 @@ function About({ aboutPage, serviceShortNames }) {
               return (
                 <div
                   className={classNames(
-                    'relative flex flex-col justify-start gap-y-12 border-2 border-gray-300 rounded-lg px-4 pt-1 pb-8 group',
-                    'bg-center bg-cover bg-no-repeat',
+                    'group relative flex flex-col justify-start gap-y-12 rounded-lg border-2 border-gray-300 px-4 pb-8 pt-1',
+                    'bg-cover bg-center bg-no-repeat',
                     'lg:gap-y-20'
                   )}
                   style={{
@@ -174,13 +174,13 @@ function About({ aboutPage, serviceShortNames }) {
                 >
                   <div
                     className={classNames(
-                      'absolute bg-gradient-to-t rounded-lg from-black/100 via-black/70 to-black/20 inset-0 opacity-80',
+                      'absolute inset-0 rounded-lg bg-gradient-to-t from-black/100 via-black/70 to-black/20 opacity-80',
                       'transition-all duration-500',
                       'group-hover:opacity-100',
                       'lg:opacity-50'
                     )}
                   />
-                  <div className="relative z-10 text-left font-black text-6xl">
+                  <div className="relative z-10 text-left text-6xl font-black">
                     {index + 1}
                   </div>
                   <div className="relative z-10">
@@ -190,7 +190,7 @@ function About({ aboutPage, serviceShortNames }) {
                     <div className="mx-auto mt-4 h-1 w-40 bg-gold"></div>
                     <div
                       className={classNames(
-                        'uppercase text-xs mt-4 text-white font-light',
+                        'mt-4 text-xs font-light uppercase text-white',
                         'lg:px-4'
                       )}
                     >
@@ -224,7 +224,7 @@ function About({ aboutPage, serviceShortNames }) {
                 <div
                   key={index}
                   className={classNames(
-                    'flex flex-col justify-start space-y-12 border-2 border-gray-300 rounded-xl px-8 pt-12 pb-8'
+                    'flex flex-col justify-start space-y-12 rounded-xl border-2 border-gray-300 px-8 pb-8 pt-12'
                   )}
                   target="_blank"
                 >
@@ -273,17 +273,17 @@ function About({ aboutPage, serviceShortNames }) {
               {aboutPage.directorTitle}
             </p>
           </div>
-          <div className="relative border border-gray-300 rounded-xl py-4 px-4 lg:px-6 group">
+          <div className="group relative rounded-xl border border-gray-300 px-4 py-4 lg:px-6">
             <SanityImage
               alt={aboutPage.directorName}
               image={aboutPage.directorImage}
-              className="w-full h-full"
+              className="h-full w-full"
             />
             <div
               className={classNames(
-                'absolute right-0 top-0 bottom-0 hidden h-full w-1/2 bg-gradient-to-l from-black to-transparent opacity-70 transition-all duration-500 rounded-r-xl',
+                'absolute bottom-0 right-0 top-0 hidden h-full w-1/2 rounded-r-xl bg-gradient-to-l from-black to-transparent opacity-70 transition-all duration-500',
                 'lg:block lg:pr-20',
-                'group-hover:opacity-80 group-hover:w-3/4'
+                'group-hover:w-3/4 group-hover:opacity-80'
               )}
             />
             {(aboutPage.directorImageTitle ||
@@ -342,7 +342,7 @@ function About({ aboutPage, serviceShortNames }) {
           <div
             className={classNames(
               'mt-10 grid grid-cols-2 gap-x-2 gap-y-6',
-              'sm:gap-y-8 sm:gap-x-0',
+              'sm:gap-x-0 sm:gap-y-8',
               'md:grid-cols-3',
               'lg:grid-cols-8 lg:gap-x-12 lg:gap-y-6'
             )}
@@ -474,7 +474,7 @@ function About({ aboutPage, serviceShortNames }) {
             {aboutPage.company3Title}
           </H2>
 
-          <div className="container mx-auto mt-4 max-w-7xl border border-gray-300 rounded-xl p-4 lg:mt-10 lg:p-8">
+          <div className="container mx-auto mt-4 max-w-7xl rounded-xl border border-gray-300 p-4 lg:mt-10 lg:p-8">
             <VideoPlayer
               autoPlay
               client={aboutPage.company3VideoClient}
@@ -548,7 +548,7 @@ function About({ aboutPage, serviceShortNames }) {
                     key={index}
                     href={ravensCard.link}
                     className={classNames(
-                      'flex flex-col justify-between space-y-12 border-2 border-gray-300 px-8 pt-12 pb-8 transition-colors',
+                      'flex flex-col justify-between space-y-12 border-2 border-gray-300 px-8 pb-8 pt-12 transition-colors',
                       'hover:bg-gradient-to-b hover:from-gray-900 hover:to-black'
                     )}
                     target="_blank"

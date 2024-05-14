@@ -109,7 +109,7 @@ function Studio({ studioPage }) {
         {studioPage.section1Body && (
           <div
             className={classNames(
-              'prose-lg mx-auto mt-4 -mb-2 max-w-5xl px-4 text-center',
+              'prose-lg mx-auto -mb-2 mt-4 max-w-5xl px-4 text-center',
               'lg:mt-10'
             )}
           >
@@ -183,7 +183,7 @@ function Studio({ studioPage }) {
             <div
               id="tour"
               className={classNames(
-                'container mx-auto mt-4 max-w-7xl border border-gray-300 rounded-xl p-4',
+                'container mx-auto mt-4 max-w-7xl rounded-xl border border-gray-300 p-4',
                 'lg:mt-10 lg:p-8'
               )}
             >

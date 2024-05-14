@@ -37,7 +37,7 @@ export const VideoPlayerOverlayButton = ({
       >
         <div
           className={classNames(
-            `absolute inset-0 flex h-full w-full items-center justify-start gap-2 pl-2 md:gap-4 lg:pl-12 md:pb-[40px]`
+            `absolute inset-0 flex h-full w-full items-center justify-start gap-2 pl-2 md:gap-4 md:pb-[40px] lg:pl-12`
           )}
         >
           {!isIpad && (

@@ -49,7 +49,7 @@ function Contact({ contact }) {
             {contact.representationCards.map((card) => {
               return (
                 <div className="w-full sm:w-1/2 lg:w-1/3" key={card.title}>
-                  <div className="mx-5 flex h-full flex-col justify-center border border-gray-500 rounded-xl p-8">
+                  <div className="mx-5 flex h-full flex-col justify-center rounded-xl border border-gray-500 p-8">
                     <p className="text-xl font-bold tracking-wider">
                       {card.title}
                     </p>
@@ -78,7 +78,7 @@ function Contact({ contact }) {
             id="contacts"
           >
             <div className="w-full sm:w-1/2 lg:w-1/3">
-              <div className="mx-5 border border-gray-500 rounded-xl p-8">
+              <div className="mx-5 rounded-xl border border-gray-500 p-8">
                 <p className="text-xl font-bold uppercase tracking-wider">
                   Studio Address
                 </p>

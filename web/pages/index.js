@@ -48,7 +48,7 @@ function Home({ homePage }) {
     >
       <div className="container mx-auto mt-12 px-4 text-center text-white lg:mt-24">
         <H2>{homePage.section1Title}</H2>
-        <div className="prose-lg mx-auto mt-4 -mb-2 text-center lg:mt-10 lg:max-w-5xl">
+        <div className="prose-lg mx-auto -mb-2 mt-4 text-center lg:mt-10 lg:max-w-5xl">
           <PortableText value={homePage.section1Body} />
         </div>
       </div>
@@ -65,7 +65,7 @@ function Home({ homePage }) {
         </p>
       </div>
       <div className="mt-10 px-4 2xs:px-8 lg:px-4" id="featured">
-        <div className="container mx-auto border border-gray-300 rounded-xl p-4 lg:py-8 lg:px-8">
+        <div className="container mx-auto rounded-xl border border-gray-300 p-4 lg:px-8 lg:py-8">
           <VideoPlayer
             autoPlay
             client={homePage.reelVideoClient}

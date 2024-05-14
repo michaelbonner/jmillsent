@@ -39,8 +39,8 @@ function Work({ workPage, workItems, workItemCategories }) {
       <div className="lg:pt-24">
         <ul
           className={classNames(
-            'grid grid-cols-2 mt-4 mx-6 py-4 items-center justify-center font-semibold border-t',
-            'lg:flex lg:divide-x lg:divide-white lg:mx-36',
+            'mx-6 mt-4 grid grid-cols-2 items-center justify-center border-t py-4 font-semibold',
+            'lg:mx-36 lg:flex lg:divide-x lg:divide-white',
             'xl:mx-48'
           )}
         >
@@ -48,15 +48,15 @@ function Work({ workPage, workItems, workItemCategories }) {
             return (
               <li
                 className={classNames(
-                  'text-xs flex justify-center',
-                  'lg:text-base lg:px-12',
+                  'flex justify-center text-xs',
+                  'lg:px-12 lg:text-base',
                   index % 2 === 0 && 'border-r lg:border-r-0'
                 )}
                 key={index}
               >
                 <button
                   className={classNames(
-                    'uppercase py-1 px-2 border transition-all',
+                    'border px-2 py-1 uppercase transition-all',
                     'lg:tracking-wider',
                     activeTab === tab.name
                       ? 'border-white'

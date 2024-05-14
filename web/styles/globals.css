@@ -5,7 +5,8 @@
 @font-face {
   font-family: 'gothic-outline-title';
   src: url('/fonts/gothic-outline-title/gothic-outline-title.eot');
-  src: url('/fonts/gothic-outline-title/gothic-outline-title.eot?#iefix')
+  src:
+    url('/fonts/gothic-outline-title/gothic-outline-title.eot?#iefix')
       format('embedded-opentype'),
     url('/fonts/gothic-outline-title/gothic-outline-title.woff2')
       format('woff2'),

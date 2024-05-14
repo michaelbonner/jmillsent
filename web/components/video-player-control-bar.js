@@ -64,8 +64,8 @@ export const VideoPlayerControlBar = ({
   return (
     <div
       className={classNames(
-        'container pt-3 mx-auto flex gap-x-2 z-10 md:gap-x-8',
-        !isFullscreen && 'mt-4 relative bg-black',
+        'container z-10 mx-auto flex gap-x-2 pt-3 md:gap-x-8',
+        !isFullscreen && 'relative mt-4 bg-black',
         isFullscreen && 'absolute bottom-0 flex gap-x-2',
         isFullscreen && videoWidthAspectRatio == 16 && 'opacity-50'
       )}

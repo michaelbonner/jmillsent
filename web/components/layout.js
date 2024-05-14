@@ -259,7 +259,7 @@ const Layout = ({
               hidden: !menuVisible,
             },
             'w-full transition-all delay-500 duration-300 ease-in',
-            'z-50 flex items-start justify-between overflow-visible py-4 px-6 text-white'
+            'z-50 flex items-start justify-between overflow-visible px-6 py-4 text-white'
           )}
         >
           <div className="hidden lg:flex">
@@ -283,7 +283,7 @@ const Layout = ({
             </Link>
           </div>
           <button
-            className="absolute top-5 right-6 h-8 w-12 focus:outline-none lg:top-10"
+            className="absolute right-6 top-5 h-8 w-12 focus:outline-none lg:top-10"
             onClick={() => toggleMenu(!menuOpen)}
             aria-label="Close menu"
           >
@@ -360,7 +360,7 @@ const Layout = ({
 
       <div
         className={classNames(
-          'top-0 z-20 flex w-full items-center justify-between py-4 px-6 lg:absolute',
+          'top-0 z-20 flex w-full items-center justify-between px-6 py-4 lg:absolute',
           menuOpen && 'fixed',
           !menuOpen && 'sticky bg-black lg:bg-transparent'
         )}
@@ -400,7 +400,7 @@ const Layout = ({
                     absolute: !menuVisible,
                     hidden: menuVisible,
                   },
-                  'top-0 right-0 h-8 w-12 transform transition-all duration-300 ease-in'
+                  'right-0 top-0 h-8 w-12 transform transition-all duration-300 ease-in'
                 )}
               >
                 <Image
@@ -490,7 +490,7 @@ const Layout = ({
       <footer className="text-center">
         <MobileFooterMenu />
         <DesktopFooterMenu />
-        <p className="text-gray-500 mb-2 mt-8">
+        <p className="mb-2 mt-8 text-gray-500">
           &copy; Jmills Entertainment {new Date().getFullYear()}
         </p>
       </footer>
@@ -505,15 +505,15 @@ const FooterNavItem = ({ navItem, className }) => {
     <Link
       href={navItem.href}
       className={classNames(
-        'text-sm font-semibold uppercase text-white px-2',
-        'lg:text-lg lg:px-4',
+        'px-2 text-sm font-semibold uppercase text-white',
+        'lg:px-4 lg:text-lg',
         'xl:text-2xl',
         className
       )}
     >
       <div
         className={classNames(
-          'py-1 px-2 transition-all',
+          'px-2 py-1 transition-all',
           router.route === navItem.href
             ? 'border border-white'
             : 'hover:scale-110'
@@ -527,10 +527,10 @@ const FooterNavItem = ({ navItem, className }) => {
 
 const MobileFooterMenu = () => {
   return (
-    <div className={classNames('mt-12 text-center px-5', 'lg:hidden')}>
+    <div className={classNames('mt-12 px-5 text-center', 'lg:hidden')}>
       <div
         className={classNames(
-          'flex flex-wrap justify-center pb-4 border-t border-gray-400 pt-4 gap-y-4',
+          'flex flex-wrap justify-center gap-y-4 border-t border-gray-400 pb-4 pt-4',
           'divide-x divide-white'
         )}
       >
@@ -540,7 +540,7 @@ const MobileFooterMenu = () => {
       </div>
       <div
         className={classNames(
-          'flex flex-wrap justify-center pb-4 border-t border-gray-400 pt-4 gap-y-4',
+          'flex flex-wrap justify-center gap-y-4 border-t border-gray-400 pb-4 pt-4',
           'divide-x divide-white'
         )}
       >
@@ -557,12 +557,12 @@ const DesktopFooterMenu = () => {
     <div
       className={classNames(
         'hidden',
-        'lg:text-center px-24 lg:mt-24 lg:flex lg:flex-wrap lg:items-start lg:justify-center'
+        'px-24 lg:mt-24 lg:flex lg:flex-wrap lg:items-start lg:justify-center lg:text-center'
       )}
     >
       <div
         className={classNames(
-          'flex flex-wrap justify-center pb-4 border-t border-gray-400 pt-4 gap-y-4',
+          'flex flex-wrap justify-center gap-y-4 border-t border-gray-400 pb-4 pt-4',
           'divide-x divide-white',
           'xl:px-8'
         )}

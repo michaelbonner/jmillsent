@@ -89,7 +89,7 @@ const PortfolioItem = ({ portfolioItem = {}, portfolioPagePassword }) => {
       {isLoggedIn && (
         <>
           <div className="px-4 lg:px-8">
-            <div className="my-12 max-w-9xl border border-gray-300 rounded-xl p-4 px-4 xl:mx-auto xl:p-8">
+            <div className="my-12 max-w-9xl rounded-xl border border-gray-300 p-4 px-4 xl:mx-auto xl:p-8">
               <VideoPlayer
                 client={portfolioItem.clientName}
                 clientName={portfolioItem.clientName}
@@ -120,7 +120,7 @@ const PortfolioItem = ({ portfolioItem = {}, portfolioPagePassword }) => {
 
           <div className="3xl:px-0 container mx-auto mt-4 px-4">
             {portfolioItem.credits && portfolioItem.credits.length > 0 && (
-              <div className="my-12 mx-auto max-w-9xl">
+              <div className="mx-auto my-12 max-w-9xl">
                 {isDesktop === false && (
                   <>
                     <button

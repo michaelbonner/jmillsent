@@ -27,8 +27,8 @@ const ServicesInteractiveCard = ({ services, serviceShortNames }) => {
           {isDesktop && (
             <div
               className={classNames(
-                'relative border border-gray-300 rounded-xl px-4 pt-4 pb-2',
-                'lg:px-6 lg:pt-6 lg:pb-3'
+                'relative rounded-xl border border-gray-300 px-4 pb-2 pt-4',
+                'lg:px-6 lg:pb-3 lg:pt-6'
               )}
               id={`service-${shortName}`}
             >
@@ -37,7 +37,7 @@ const ServicesInteractiveCard = ({ services, serviceShortNames }) => {
                   <div className="absolute inset-0 z-10 bg-opacity-40 bg-gradient-to-l from-black via-transparent to-transparent" />
                   <div
                     className={classNames(
-                      `absolute top-0 right-0 left-auto z-10 flex flex-col justify-between gap-y-2 pr-7 pt-6 text-right text-xs`,
+                      `absolute left-auto right-0 top-0 z-10 flex flex-col justify-between gap-y-2 pr-7 pt-6 text-right text-xs`,
                       `lg:text-sm`
                     )}
                   >
@@ -110,7 +110,7 @@ const ServicesInteractiveCard = ({ services, serviceShortNames }) => {
                       'absolute left-0 top-0 z-10 flex justify-center text-center'
                     )}
                   >
-                    <div className="pt-6 pl-7">
+                    <div className="pl-7 pt-6">
                       <p
                         className={classNames(
                           'font-outline text-2xl',
@@ -183,7 +183,7 @@ const ServicesInteractiveCard = ({ services, serviceShortNames }) => {
                   setActiveService={setActiveService}
                 />
                 <div className="mx-auto flex flex-col justify-center gap-y-2">
-                  <H3 className="!mt-3 !mb-0 inline w-full py-1 text-center uppercase lg:hidden">
+                  <H3 className="!mb-0 !mt-3 inline w-full py-1 text-center uppercase lg:hidden">
                     {title}
                   </H3>
                   {description && (

@@ -3,9 +3,7 @@ import DividerBar from '@/components/divider-bar'
 import { H1, H2, H3 } from '@/components/headings'
 import Layout from '@/components/layout'
 import LittleWhiteBar from '@/components/little-white-bar'
-import MediumWhiteBar from '@/components/medium-white-bar'
 import SanityImage from '@/components/sanity-image'
-import ServicesInteractiveCard from '@/components/services-interactive-card'
 import { PortableText } from '@portabletext/react'
 import classNames from 'classnames'
 import groq from 'groq'
@@ -378,7 +376,7 @@ function About({ aboutPage, serviceShortNames }) {
                     <div className="px-4">
                       <LittleWhiteBar yMargin={'my-2'} />
                     </div>
-                    <p className="text-sm font-bold uppercase lg:font-outline lg:text-2xl">
+                    <p className="text-sm font-bold uppercase tracking-wider lg:font-outline lg:text-2xl">
                       {teamMember.title}
                     </p>
                   </div>

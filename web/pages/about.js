@@ -161,9 +161,11 @@ function About({ aboutPage, serviceShortNames }) {
               return (
                 <div
                   className={classNames(
-                    'group relative flex flex-col justify-start gap-y-12 rounded-lg border-2 border-gray-300 px-4 pb-8 pt-1',
+                    'group relative rounded-lg border-2 border-gray-300',
+                    'aspect-[4/4] overflow-hidden',
                     'bg-cover bg-center bg-no-repeat',
-                    'lg:gap-y-20'
+                    'lg:aspect-[3/4]',
+                    'xl:aspect-[4/3]'
                   )}
                   style={{
                     backgroundImage: `url(${imageSrc})`,
@@ -172,24 +174,34 @@ function About({ aboutPage, serviceShortNames }) {
                 >
                   <div
                     className={classNames(
-                      'absolute inset-0 rounded-lg bg-gradient-to-t from-black/100 via-black/70 to-black/20 opacity-80',
+                      'absolute inset-0 rounded-lg bg-gradient-to-t from-black/90 via-black/70 to-black/40 opacity-80',
                       'transition-all duration-500',
                       'group-hover:opacity-100',
                       'lg:opacity-50'
                     )}
                   />
-                  <div className="relative z-10 text-left text-6xl font-black">
-                    {index + 1}
-                  </div>
-                  <div className="relative z-10">
-                    <h4 className="text-xl font-bold uppercase">
+                  <div
+                    className={classNames(
+                      'relative z-10 flex h-full flex-col items-center justify-end overflow-auto py-3',
+                      'group-hover:justify-center'
+                    )}
+                  >
+                    <div
+                      className="font-outline text-5xl font-light"
+                      style={{
+                        letterSpacing: 1,
+                      }}
+                    >
+                      0{index + 1}
+                    </div>
+                    <div className="mx-auto my-2 h-1 w-40 shrink-0 bg-gold"></div>
+                    <h4 className="mb-4 text-3xl font-bold uppercase">
                       {service.name}
                     </h4>
-                    <div className="mx-auto mt-4 h-1 w-40 bg-gold"></div>
                     <div
                       className={classNames(
-                        'mt-4 text-xs font-light uppercase text-white',
-                        'lg:px-4'
+                        'hidden px-4 text-sm font-light uppercase text-white',
+                        'group-hover:block'
                       )}
                     >
                       <PortableText value={service.description} />

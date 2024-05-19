@@ -79,29 +79,25 @@ const EmailSignupForm = ({
           <div>
             <h2 className="font-light uppercase text-gray-100">{title}</h2>
             <div className="mx-auto mt-4 flex w-full max-w-lg justify-center">
-              <div className="flex w-full items-center justify-center rounded">
-                <label className="sr-only" htmlFor="mce-EMAIL">
-                  Email Address <span className="asterisk">*</span>
-                </label>
-                <input
-                  type="email"
-                  name="email"
-                  className="-mr-1 flex-1 rounded-l-md border-2 border-r-0 border-gray-300 bg-black bg-opacity-70 px-4 py-2 text-white focus:bg-opacity-90"
-                  id="email"
-                  placeholder="EMAIL ADDRESS"
-                  required
-                />
+              <div className="flex w-full items-center justify-center gap-1 rounded">
                 <button
                   className={classNames(
-                    'group flex items-center gap-x-2 rounded-md border-2 border-gray-300 px-4 py-2 transition-colors',
-                    'hover:bg-gold hover:text-black'
+                    'group flex items-center gap-x-2 border-2 border-black px-4 py-2 font-bold uppercase tracking-widest transition-colors',
+                    'hover:border-white hover:bg-white hover:text-black'
                   )}
                   type="submit"
                   name="subscribe"
                 >
-                  <span>Submit</span>
-                  <SkullSvg />
+                  Submit
                 </button>
+                <input
+                  type="email"
+                  name="email"
+                  className="-mr-1 flex-1 border-2 border-gray-300 bg-black bg-opacity-70 px-4 py-2 text-white focus:bg-opacity-90"
+                  id="email"
+                  placeholder="EMAIL ADDRESS"
+                  required
+                />
               </div>
             </div>
           </div>

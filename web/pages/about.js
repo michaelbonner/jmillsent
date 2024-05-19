@@ -4,7 +4,7 @@ import { H1, H2, H3 } from '@/components/headings'
 import Layout from '@/components/layout'
 import LittleWhiteBar from '@/components/little-white-bar'
 import SanityImage from '@/components/sanity-image'
-import { PortableText } from '@portabletext/react'
+import { PortableText, toPlainText } from '@portabletext/react'
 import classNames from 'classnames'
 import groq from 'groq'
 import useIsDesktop from 'hooks/useIsDesktop'
@@ -21,8 +21,11 @@ import 'react-18-image-lightbox/style.css'
 
 const VideoPlayer = dynamic(() => import('@/components/video-player'), {})
 
-function About({ aboutPage, serviceShortNames }) {
+function About({ aboutPage }) {
   const [isGalleryModelOpen, setIsGalleryModelOpen] = useState(false)
+  const [isServicesLightBoxOpen, setIsServicesLightBoxOpen] = useState(false)
+  const [servicesPhotoIndex, setServicesPhotoIndex] = useState(0)
+
   const isDesktop = useIsDesktop()
   const [photoIndex, setPhotoIndex] = useState(0)
 
@@ -42,6 +45,16 @@ function About({ aboutPage, serviceShortNames }) {
       </div>
     </div>
   )
+
+  const servicesImages = aboutPage.services.map((service) => {
+    return {
+      caption: toPlainText(service.description),
+      src: `${urlForSanitySource(
+        service.image
+      )}?w=2400&h=1600&auto=format&fit=crop&crop=focalpoint`,
+      title: service.name.toUpperCase(),
+    }
+  })
 
   return (
     <Layout
@@ -66,6 +79,40 @@ function About({ aboutPage, serviceShortNames }) {
         aboutPage.headerVideoWidthInPixels
       }
     >
+      {isServicesLightBoxOpen && (
+        <Lightbox
+          imageCaption={servicesImages[servicesPhotoIndex].caption}
+          imageTitle={
+            <span className="flex items-center gap-4 py-2">
+              <span className="font-outline">0{servicesPhotoIndex + 1}</span>
+              <span>{servicesImages[servicesPhotoIndex].title}</span>
+            </span>
+          }
+          mainSrc={servicesImages[servicesPhotoIndex].src}
+          nextSrc={
+            servicesImages[(servicesPhotoIndex + 1) % servicesImages.length].src
+          }
+          prevSrc={
+            servicesImages[
+              (servicesPhotoIndex + servicesImages.length - 1) %
+                servicesImages.length
+            ].src
+          }
+          onCloseRequest={() => setIsServicesLightBoxOpen(false)}
+          onMovePrevRequest={() =>
+            setServicesPhotoIndex(
+              (servicesPhotoIndex + servicesImages.length - 1) %
+                servicesImages.length
+            )
+          }
+          onMoveNextRequest={() =>
+            setServicesPhotoIndex(
+              (servicesPhotoIndex + 1) % servicesImages.length
+            )
+          }
+        />
+      )}
+
       <div className="container mx-auto mt-12 px-4 text-center text-white lg:mt-24">
         <H2>{aboutPage.section1Title}</H2>
         {aboutPage.section1Body && (
@@ -159,7 +206,7 @@ function About({ aboutPage, serviceShortNames }) {
                 .url()
 
               return (
-                <div
+                <button
                   className={classNames(
                     'group relative rounded-lg border-2 border-gray-300',
                     'aspect-[4/4] overflow-hidden',
@@ -167,6 +214,10 @@ function About({ aboutPage, serviceShortNames }) {
                     'lg:aspect-[3/4]',
                     'xl:aspect-[4/3]'
                   )}
+                  onClick={() => {
+                    setIsServicesLightBoxOpen(true)
+                    setServicesPhotoIndex(index)
+                  }}
                   style={{
                     backgroundImage: `url(${imageSrc})`,
                   }}
@@ -207,7 +258,7 @@ function About({ aboutPage, serviceShortNames }) {
                       <PortableText value={service.description} />
                     </div>
                   </div>
-                </div>
+                </button>
               )
             })}
           </div>
@@ -743,14 +794,9 @@ export async function getStaticProps() {
   		`
   )
 
-  const serviceShortNames = aboutPage.services?.map(
-    (service) => service.shortName
-  )
-
   return {
     props: {
       aboutPage,
-      serviceShortNames,
     },
   }
 }

@@ -23,6 +23,8 @@ export const VideoPlayerControlBar = ({
   toggleFullScreen,
   videoWidthAspectRatio,
   videoHeightAspectRatio,
+  videoLength,
+  videoPlayTime,
 }) => {
   const [fsMargin, setFsMargin] = useState(0)
   const scrubber = useRef(null)
@@ -64,7 +66,7 @@ export const VideoPlayerControlBar = ({
   return (
     <div
       className={classNames(
-        'container z-10 mx-auto flex gap-x-2 pt-3 md:gap-x-8',
+        'container z-10 mx-auto flex items-center gap-x-2 pt-3 md:gap-x-8',
         !isFullscreen && 'relative mt-4 bg-black',
         isFullscreen && 'absolute bottom-0 flex gap-x-2',
         isFullscreen && videoWidthAspectRatio == 16 && 'opacity-50'
@@ -100,7 +102,7 @@ export const VideoPlayerControlBar = ({
       </button>
       <button
         aria-label="Player scrubber bar"
-        className="relative flex-grow overflow-hidden rounded border-2 border-gray-300"
+        className="relative h-8 flex-grow overflow-hidden rounded border-2 border-gray-300"
         onClick={(e) => {
           if (!scrubber.current) {
             return
@@ -125,6 +127,13 @@ export const VideoPlayerControlBar = ({
           }}
         ></div>
       </button>
+      <div className="flex min-w-[110px] gap-1 text-xl font-light">
+        <span className="inline-block min-w-[50px] text-right text-gray-400">
+          {videoPlayTime}
+        </span>
+        <span>/</span>
+        <span className="inline-block min-w-[50px]">{videoLength}</span>
+      </div>
       <div className="flex items-center gap-x-2 text-2xl md:gap-x-6">
         {muted === true ? (
           <button

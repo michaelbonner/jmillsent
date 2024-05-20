@@ -208,7 +208,7 @@ function About({ aboutPage }) {
               return (
                 <button
                   className={classNames(
-                    'group relative rounded-lg border-2 border-gray-300',
+                    'group relative rounded-lg border-2 border-gray-300 focus:outline-white',
                     'aspect-[4/4] overflow-hidden',
                     'bg-cover bg-center bg-no-repeat',
                     'lg:aspect-[3/4]',
@@ -233,8 +233,8 @@ function About({ aboutPage }) {
                   />
                   <div
                     className={classNames(
-                      'relative z-10 flex h-full flex-col items-center justify-end overflow-auto py-3',
-                      'group-hover:justify-center'
+                      'relative z-10 flex h-full translate-y-1/2 flex-col items-center justify-center overflow-auto py-3 transition-transform duration-300',
+                      'group-hover:-translate-y-0'
                     )}
                   >
                     <div
@@ -251,8 +251,8 @@ function About({ aboutPage }) {
                     </h4>
                     <div
                       className={classNames(
-                        'hidden px-4 text-sm font-light uppercase text-white',
-                        'group-hover:block'
+                        'px-4 text-sm font-light uppercase text-white opacity-0 transition-opacity delay-300 duration-700',
+                        'group-hover:opacity-100'
                       )}
                     >
                       <PortableText value={service.description} />

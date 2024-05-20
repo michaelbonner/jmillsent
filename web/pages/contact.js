@@ -134,7 +134,6 @@ function Contact({ contact }) {
             successMessage={contact.subscribeFormSuccessMessage}
           />
         </div>
-        <MediumWhiteBar yMargin="my-12" />
       </div>
     </Layout>
   )

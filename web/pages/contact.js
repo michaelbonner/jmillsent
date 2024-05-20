@@ -128,7 +128,7 @@ function Contact({ contact }) {
             </a>
           </div>
         </div>
-        <div className="px-8">
+        <div className="mx-auto max-w-sm">
           <EmailSignupForm
             title={contact.subscribeFormTitle}
             successMessage={contact.subscribeFormSuccessMessage}

@@ -2,7 +2,7 @@ import Vimeo from '@vimeo/player'
 import classNames from 'classnames'
 import useIsDesktop from 'hooks/useIsDesktop'
 import Image from 'next/image'
-import { useEffect, useRef, useState } from 'react'
+import { useEffect, useMemo, useRef, useState } from 'react'
 import screenfull from 'screenfull'
 import urlForSanitySource from '../lib/urlForSanitySource'
 import SanityImage from './sanity-image'
@@ -40,6 +40,13 @@ const VideoPlayer = ({
   const [playingVideoId, setPlayingVideoId] = useState(videoIdShort || videoId)
   const [vimeoPlayer, setVimeoPlayer] = useState(null)
   const [vimeoIframeParams, setVimeoIframeParams] = useState('')
+  const [videoPlayTime, setVideoPlayTime] = useState('0:00')
+
+  const videoLength = useMemo(() => {
+    const minutes = Math.floor(totalPlaySeconds / 60)
+    const seconds = Math.floor(totalPlaySeconds - minutes * 60)
+    return `${minutes}:${seconds < 10 ? `0${seconds}` : seconds}`
+  }, [totalPlaySeconds])
 
   useEffect(() => {
     const vimeoParams = new URLSearchParams()
@@ -103,6 +110,12 @@ const VideoPlayer = ({
     vimeoPlayer.on('pause', onPause)
 
     const onTimeupdate = function (data) {
+      const playMinutes = Math.floor(data.seconds / 60)
+      const playSeconds = Math.floor(data.seconds - playMinutes * 60)
+
+      setVideoPlayTime(
+        `${playMinutes}:${playSeconds < 10 ? `0${playSeconds}` : playSeconds}`
+      )
       setScrubberPosition(data.percent * scrubberWidth)
     }
     vimeoPlayer.on('timeupdate', onTimeupdate)
@@ -426,6 +439,8 @@ const VideoPlayer = ({
           toggleFullScreen={toggleFullScreen}
           videoHeightAspectRatio={videoHeightAspectRatio}
           videoWidthAspectRatio={videoWidthAspectRatio}
+          videoLength={videoLength}
+          videoPlayTime={videoPlayTime}
         />
       )}
 

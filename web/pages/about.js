@@ -4,7 +4,7 @@ import { H1, H2, H3 } from '@/components/headings'
 import Layout from '@/components/layout'
 import LittleWhiteBar from '@/components/little-white-bar'
 import SanityImage from '@/components/sanity-image'
-import { PortableText } from '@portabletext/react'
+import { PortableText, toPlainText } from '@portabletext/react'
 import classNames from 'classnames'
 import groq from 'groq'
 import useIsDesktop from 'hooks/useIsDesktop'
@@ -21,8 +21,11 @@ import 'react-18-image-lightbox/style.css'
 
 const VideoPlayer = dynamic(() => import('@/components/video-player'), {})
 
-function About({ aboutPage, serviceShortNames }) {
+function About({ aboutPage }) {
   const [isGalleryModelOpen, setIsGalleryModelOpen] = useState(false)
+  const [isServicesLightBoxOpen, setIsServicesLightBoxOpen] = useState(false)
+  const [servicesPhotoIndex, setServicesPhotoIndex] = useState(0)
+
   const isDesktop = useIsDesktop()
   const [photoIndex, setPhotoIndex] = useState(0)
 
@@ -42,6 +45,16 @@ function About({ aboutPage, serviceShortNames }) {
       </div>
     </div>
   )
+
+  const servicesImages = aboutPage.services.map((service) => {
+    return {
+      caption: toPlainText(service.description),
+      src: `${urlForSanitySource(
+        service.image
+      )}?w=2400&h=1600&auto=format&fit=crop&crop=focalpoint`,
+      title: service.name.toUpperCase(),
+    }
+  })
 
   return (
     <Layout
@@ -66,6 +79,40 @@ function About({ aboutPage, serviceShortNames }) {
         aboutPage.headerVideoWidthInPixels
       }
     >
+      {isServicesLightBoxOpen && (
+        <Lightbox
+          imageCaption={servicesImages[servicesPhotoIndex].caption}
+          imageTitle={
+            <span className="flex items-center gap-4 py-2">
+              <span className="font-outline">0{servicesPhotoIndex + 1}</span>
+              <span>{servicesImages[servicesPhotoIndex].title}</span>
+            </span>
+          }
+          mainSrc={servicesImages[servicesPhotoIndex].src}
+          nextSrc={
+            servicesImages[(servicesPhotoIndex + 1) % servicesImages.length].src
+          }
+          prevSrc={
+            servicesImages[
+              (servicesPhotoIndex + servicesImages.length - 1) %
+                servicesImages.length
+            ].src
+          }
+          onCloseRequest={() => setIsServicesLightBoxOpen(false)}
+          onMovePrevRequest={() =>
+            setServicesPhotoIndex(
+              (servicesPhotoIndex + servicesImages.length - 1) %
+                servicesImages.length
+            )
+          }
+          onMoveNextRequest={() =>
+            setServicesPhotoIndex(
+              (servicesPhotoIndex + 1) % servicesImages.length
+            )
+          }
+        />
+      )}
+
       <div className="container mx-auto mt-12 px-4 text-center text-white lg:mt-24">
         <H2>{aboutPage.section1Title}</H2>
         {aboutPage.section1Body && (
@@ -159,12 +206,18 @@ function About({ aboutPage, serviceShortNames }) {
                 .url()
 
               return (
-                <div
+                <button
                   className={classNames(
-                    'group relative flex flex-col justify-start gap-y-12 rounded-lg border-2 border-gray-300 px-4 pb-8 pt-1',
+                    'group relative rounded-lg border-2 border-gray-300 focus:outline-white',
+                    'aspect-[4/4] overflow-hidden',
                     'bg-cover bg-center bg-no-repeat',
-                    'lg:gap-y-20'
+                    'lg:aspect-[3/4]',
+                    'xl:aspect-[4/3]'
                   )}
+                  onClick={() => {
+                    setIsServicesLightBoxOpen(true)
+                    setServicesPhotoIndex(index)
+                  }}
                   style={{
                     backgroundImage: `url(${imageSrc})`,
                   }}
@@ -172,30 +225,40 @@ function About({ aboutPage, serviceShortNames }) {
                 >
                   <div
                     className={classNames(
-                      'absolute inset-0 rounded-lg bg-gradient-to-t from-black/100 via-black/70 to-black/20 opacity-80',
+                      'absolute inset-0 rounded-lg bg-gradient-to-t from-black/90 via-black/70 to-black/40 opacity-80',
                       'transition-all duration-500',
-                      'group-hover:opacity-100',
+                      'from-black/80 via-black/80 to-black/80 group-hover:opacity-100',
                       'lg:opacity-50'
                     )}
                   />
-                  <div className="relative z-10 text-left text-6xl font-black">
-                    {index + 1}
-                  </div>
-                  <div className="relative z-10">
-                    <h4 className="text-xl font-bold uppercase">
+                  <div
+                    className={classNames(
+                      'relative z-10 flex h-full translate-y-1/2 flex-col items-center justify-center overflow-auto py-3 transition-transform duration-300',
+                      'group-hover:-translate-y-0'
+                    )}
+                  >
+                    <div
+                      className="font-outline text-5xl font-light"
+                      style={{
+                        letterSpacing: 1,
+                      }}
+                    >
+                      0{index + 1}
+                    </div>
+                    <div className="mx-auto my-2 h-1 w-40 shrink-0 bg-gold"></div>
+                    <h4 className="mb-4 text-3xl font-bold uppercase">
                       {service.name}
                     </h4>
-                    <div className="mx-auto mt-4 h-1 w-40 bg-gold"></div>
                     <div
                       className={classNames(
-                        'mt-4 text-xs font-light uppercase text-white',
-                        'lg:px-4'
+                        'px-4 text-sm font-light uppercase text-white opacity-0 transition-opacity delay-300 duration-700',
+                        'group-hover:opacity-100'
                       )}
                     >
                       <PortableText value={service.description} />
                     </div>
                   </div>
-                </div>
+                </button>
               )
             })}
           </div>
@@ -731,14 +794,9 @@ export async function getStaticProps() {
   		`
   )
 
-  const serviceShortNames = aboutPage.services?.map(
-    (service) => service.shortName
-  )
-
   return {
     props: {
       aboutPage,
-      serviceShortNames,
     },
   }
 }

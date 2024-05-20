@@ -251,7 +251,7 @@ function About({ aboutPage }) {
                     </h4>
                     <div
                       className={classNames(
-                        'px-4 text-sm font-light uppercase text-white opacity-0 transition-opacity delay-300 duration-700',
+                        'px-4 text-sm font-light uppercase text-white opacity-0 transition-opacity',
                         'group-hover:opacity-100'
                       )}
                     >

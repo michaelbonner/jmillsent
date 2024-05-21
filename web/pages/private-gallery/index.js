@@ -13,8 +13,6 @@ function Portfolio({ portfolioPage, portfolioItems }) {
   const [isLoggedIn, setIsLoggedIn] = useIsLoggedIn(portfolioPage.password)
   const [formError, setFormError] = useState('')
 
-  console.log('portfolioPage.password', portfolioPage.password)
-
   function handleSubmit(e) {
     e.preventDefault()
 
@@ -52,22 +50,15 @@ function Portfolio({ portfolioPage, portfolioItems }) {
                 )
               })}
             </div>
-            <div className="container mx-auto mt-12 px-12 text-center text-white">
-              {portfolioPage.portfolioPageDescription && (
+            {portfolioPage.portfolioPageDescription && (
+              <div className="container mx-auto mt-12 px-12 text-center text-white">
                 <div className="prose-lg mx-auto max-w-lg border py-1 text-center">
                   <PortableText
                     value={portfolioPage.portfolioPageDescription}
                   />
                 </div>
-              )}
-              <div className="mt-10">
-                <EmailSignupForm
-                  title={portfolioPage.subscribeFormTitle}
-                  successMessage={portfolioPage.subscribeFormSuccessMessage}
-                  customReel={true}
-                />
               </div>
-            </div>
+            )}
           </>
         )}
       </div>

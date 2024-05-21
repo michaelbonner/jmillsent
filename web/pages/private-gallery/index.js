@@ -13,6 +13,8 @@ function Portfolio({ portfolioPage, portfolioItems }) {
   const [isLoggedIn, setIsLoggedIn] = useIsLoggedIn(portfolioPage.password)
   const [formError, setFormError] = useState('')
 
+  console.log('portfolioPage.password', portfolioPage.password)
+
   function handleSubmit(e) {
     e.preventDefault()
 
@@ -29,39 +31,46 @@ function Portfolio({ portfolioPage, portfolioItems }) {
       title={portfolioPage.seoTitle}
       description={portfolioPage.seoDescription}
     >
-      {!isLoggedIn && (
-        <PasswordLoginForm
-          handleSubmit={handleSubmit}
-          formError={formError}
-          passwordInputPrompt={portfolioPage.passwordInputPrompt}
-        />
-      )}
+      <div className="mt-28">
+        {!isLoggedIn && (
+          <PasswordLoginForm
+            handleSubmit={handleSubmit}
+            formError={formError}
+            passwordInputPrompt={portfolioPage.passwordInputPrompt}
+          />
+        )}
 
-      {isLoggedIn && (
-        <>
-          <div className="mx-1 grid grid-cols-1 gap-1 lg:grid-cols-3">
-            {portfolioItems.map((portfolioItem, index) => {
-              return (
-                <PortfolioItemTile portfolioItem={portfolioItem} key={index} />
-              )
-            })}
-          </div>
-          <div className="container mx-auto mt-12 px-12 text-center text-white">
-            {portfolioPage.portfolioPageDescription && (
-              <div className="prose-lg mx-auto max-w-lg border py-1 text-center">
-                <PortableText value={portfolioPage.portfolioPageDescription} />
-              </div>
-            )}
-            <div className="mt-10">
-              <EmailSignupForm
-                title={portfolioPage.subscribeFormTitle}
-                successMessage={portfolioPage.subscribeFormSuccessMessage}
-                customReel={true}
-              />
+        {isLoggedIn && (
+          <>
+            <div className="mx-1 grid grid-cols-1 gap-1 lg:grid-cols-3">
+              {portfolioItems.map((portfolioItem, index) => {
+                return (
+                  <PortfolioItemTile
+                    portfolioItem={portfolioItem}
+                    key={index}
+                  />
+                )
+              })}
             </div>
-          </div>
-        </>
-      )}
+            <div className="container mx-auto mt-12 px-12 text-center text-white">
+              {portfolioPage.portfolioPageDescription && (
+                <div className="prose-lg mx-auto max-w-lg border py-1 text-center">
+                  <PortableText
+                    value={portfolioPage.portfolioPageDescription}
+                  />
+                </div>
+              )}
+              <div className="mt-10">
+                <EmailSignupForm
+                  title={portfolioPage.subscribeFormTitle}
+                  successMessage={portfolioPage.subscribeFormSuccessMessage}
+                  customReel={true}
+                />
+              </div>
+            </div>
+          </>
+        )}
+      </div>
     </Layout>
   )
 }

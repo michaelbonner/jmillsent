@@ -110,7 +110,7 @@ const PortfolioItem = ({ portfolioItem = {}, portfolioPagePassword }) => {
           <div className="mt-10">
             <div className="text-center">
               <Link
-                href="/tier-2-work"
+                href="/private-gallery"
                 className="inline-flex items-center justify-center border-2 border-gray-300 px-3 py-1 font-outline text-3xl uppercase transition-colors hover:bg-gold hover:text-black"
               >
                 Back To Portfolio

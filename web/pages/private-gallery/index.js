@@ -1,6 +1,4 @@
-import EmailSignupForm from '@/components/email-signup-form'
 import Layout from '@/components/layout'
-import MediumWhiteBar from '@/components/medium-white-bar'
 import { PasswordLoginForm } from '@/components/password-login-form'
 import PortfolioItemTile from '@/components/portfolio-item-tile'
 import { sanityClient } from '@/lib/sanity'

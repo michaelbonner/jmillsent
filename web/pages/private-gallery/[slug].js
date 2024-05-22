@@ -1,7 +1,6 @@
 /* eslint-disable @next/next/no-img-element */
 import { H3 } from '@/components/headings'
 import Layout from '@/components/layout'
-import MediumWhiteBar from '@/components/medium-white-bar'
 import { PasswordLoginForm } from '@/components/password-login-form'
 import { sanityClient } from '@/lib/sanity'
 import groq from 'groq'
@@ -9,8 +8,8 @@ import useIsDesktop from 'hooks/useIsDesktop'
 import useIsLoggedIn from 'hooks/useIsLoggedIn'
 import dynamic from 'next/dynamic'
 import Image from 'next/image'
-import { useState } from 'react'
 import Link from 'next/link'
+import { useState } from 'react'
 
 const VideoPlayer = dynamic(() => import('@/components/video-player'), {})
 

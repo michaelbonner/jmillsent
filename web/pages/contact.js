@@ -22,17 +22,17 @@ function Contact({ contact }) {
   return (
     <Layout title={contact.seoTitle} description={contact.seoDescription}>
       <div
-        className="px-4 lg:px-0 lg:pt-28"
+        className="px-4 lg:pt-28"
         style={{
           backgroundImage: `url(${backgroundImageUrl})`,
           backgroundSize: 'cover',
           backgroundPosition: 'center center',
         }}
       >
-        <div className="mx-auto max-w-5xl px-4 pt-12 text-center lg:px-0">
+        <div className="mx-auto max-w-5xl pt-12 text-center lg:px-4">
           <H1>{contact.title}</H1>
         </div>
-        <div className="mx-auto mt-8 w-full max-w-7xl px-4 lg:mt-16">
+        <div className="mx-auto mt-8 w-full max-w-7xl lg:mt-16 lg:px-4">
           <ContactForm
             interests={contact.interests}
             successMessage={contact.mainFormSuccessMessage}

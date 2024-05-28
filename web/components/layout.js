@@ -202,6 +202,7 @@ const Layout = ({
           content="https://www.jmillsent.com/og-image.jpg"
         />
         <meta name="description" content={description} />
+        <meta name="twitter:card" content="summary_large_image" />
         <link
           rel="preconnect"
           href="https://cdn.sanity.io"

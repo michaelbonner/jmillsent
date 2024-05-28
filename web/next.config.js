@@ -214,6 +214,16 @@ module.exports = {
         destination: '/work/pattern-accelerate',
         permanent: true,
       },
+      {
+        source: '/tier-2-work/:slug',
+        destination: '/private-gallery/:slug',
+        permanent: true,
+      },
+      {
+        source: '/tier-2-work',
+        destination: '/private-gallery',
+        permanent: true,
+      },
     ]
   },
 }

@@ -1,6 +1,4 @@
-import EmailSignupForm from '@/components/email-signup-form'
 import Layout from '@/components/layout'
-import MediumWhiteBar from '@/components/medium-white-bar'
 import { PasswordLoginForm } from '@/components/password-login-form'
 import PortfolioItemTile from '@/components/portfolio-item-tile'
 import { sanityClient } from '@/lib/sanity'
@@ -29,39 +27,39 @@ function Portfolio({ portfolioPage, portfolioItems }) {
       title={portfolioPage.seoTitle}
       description={portfolioPage.seoDescription}
     >
-      {!isLoggedIn && (
-        <PasswordLoginForm
-          handleSubmit={handleSubmit}
-          formError={formError}
-          passwordInputPrompt={portfolioPage.passwordInputPrompt}
-        />
-      )}
+      <div className="mt-28">
+        {!isLoggedIn && (
+          <PasswordLoginForm
+            handleSubmit={handleSubmit}
+            formError={formError}
+            passwordInputPrompt={portfolioPage.passwordInputPrompt}
+          />
+        )}
 
-      {isLoggedIn && (
-        <>
-          <div className="mx-1 grid grid-cols-1 gap-1 lg:grid-cols-3">
-            {portfolioItems.map((portfolioItem, index) => {
-              return (
-                <PortfolioItemTile portfolioItem={portfolioItem} key={index} />
-              )
-            })}
-          </div>
-          <div className="container mx-auto mt-12 px-12 text-center text-white">
+        {isLoggedIn && (
+          <>
+            <div className="mx-1 grid grid-cols-1 gap-1 lg:grid-cols-3">
+              {portfolioItems.map((portfolioItem, index) => {
+                return (
+                  <PortfolioItemTile
+                    portfolioItem={portfolioItem}
+                    key={index}
+                  />
+                )
+              })}
+            </div>
             {portfolioPage.portfolioPageDescription && (
-              <div className="prose-lg mx-auto max-w-lg border py-1 text-center">
-                <PortableText value={portfolioPage.portfolioPageDescription} />
+              <div className="container mx-auto mt-12 px-12 text-center text-white">
+                <div className="prose-lg mx-auto max-w-lg border py-1 text-center">
+                  <PortableText
+                    value={portfolioPage.portfolioPageDescription}
+                  />
+                </div>
               </div>
             )}
-            <div className="mt-10">
-              <EmailSignupForm
-                title={portfolioPage.subscribeFormTitle}
-                successMessage={portfolioPage.subscribeFormSuccessMessage}
-                customReel={true}
-              />
-            </div>
-          </div>
-        </>
-      )}
+          </>
+        )}
+      </div>
     </Layout>
   )
 }

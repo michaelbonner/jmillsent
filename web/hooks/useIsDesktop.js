@@ -1,24 +1,19 @@
-import { useEffect, useState } from 'react'
-import useClientOnly from './useClientOnly'
-import useWindowSize from './useWindowSize'
+import { useWindowSize } from '@uidotdev/usehooks'
+import { useMemo } from 'react'
 
 function useIsDesktop() {
-  const [isDesktop, setIsDesktop] = useState(null)
   const size = useWindowSize()
-  const isClient = useClientOnly()
 
-  useEffect(() => {
-    if (typeof window === 'undefined') return
-    if (!isClient) {
-      return
-    }
+  const isDesktop = useMemo(() => {
+    if (typeof window === 'undefined') return null
+    if (!size?.width) return null
 
     if (size.width >= 1024) {
-      setIsDesktop(true)
+      return true
     } else if (size.width > 0) {
-      setIsDesktop(false)
+      return false
     }
-  }, [isClient, size.width])
+  }, [size?.width])
 
   return isDesktop
 }

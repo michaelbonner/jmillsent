@@ -1,6 +1,6 @@
+import { useWindowSize } from '@uidotdev/usehooks'
 import Vimeo from '@vimeo/player'
 import classNames from 'classnames'
-import useIsDesktop from 'hooks/useIsDesktop'
 import Image from 'next/image'
 import { memo, useEffect, useMemo, useReducer, useRef, useState } from 'react'
 import screenfull from 'screenfull'
@@ -149,9 +149,15 @@ const VideoPlayer = ({
     vimeoIframeParams,
   } = state
 
-  const isDesktop = useIsDesktop()
+  const size = useWindowSize()
   const vimeoPlayerRef = useRef(null)
   const playerContainer = useRef(null)
+
+  const isDesktop = useMemo(() => {
+    if (!size?.width) return null
+
+    return size.width >= 1024
+  }, [size?.width])
 
   const [vimeoPlayer, setVimeoPlayer] = useState(null)
 
@@ -191,6 +197,13 @@ const VideoPlayer = ({
   useEffect(() => {
     if (isDesktop === null) return
     if (!vimeoPlayer) return
+
+    console.log({
+      autoPlay,
+      isDesktop,
+      scrubberWidth,
+      vimeoPlayer,
+    })
 
     vimeoPlayer.setLoop(autoPlay)
 

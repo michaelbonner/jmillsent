@@ -1,6 +1,6 @@
+import { useWindowSize } from '@uidotdev/usehooks'
 import classNames from 'classnames'
 import useIsDesktop from 'hooks/useIsDesktop'
-import useWindowSize from 'hooks/useWindowSize'
 import Lottie from 'lottie-react'
 import { useRouter } from 'next/dist/client/router'
 import Head from 'next/head'

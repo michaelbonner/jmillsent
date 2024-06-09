@@ -1,6 +1,5 @@
-import { createContext, useMemo, useState, useEffect } from 'react'
 import { useRouter } from 'next/dist/client/router'
-import useClientOnly from 'hooks/useClientOnly'
+import { createContext, useEffect, useMemo, useState } from 'react'
 
 export const LoadingAnimationContext = createContext({
   showLoadingAnimation: true,
@@ -12,7 +11,6 @@ export const LoadingAnimationContext = createContext({
 
 const LoadingAnimationProvider = ({ children }) => {
   const router = useRouter()
-  const isClient = useClientOnly()
   const [hasVisitedAnyPage, setHasVisitedAnyPage] = useState(false)
   const [isAnimationComplete, setIsAnimationComplete] = useState(false)
   const [isOverlayVisible, setIsOverlayVisible] = useState(true)
@@ -31,12 +29,12 @@ const LoadingAnimationProvider = ({ children }) => {
   }, [router.asPath])
 
   useEffect(() => {
-    if (isClient) {
+    if (typeof window !== 'undefined') {
       setTimeout(() => {
         setHasVisitedAnyPage(true)
       }, 4000)
     }
-  }, [isClient])
+  }, [])
 
   useEffect(() => {
     const handleRouteChange = (url) => {

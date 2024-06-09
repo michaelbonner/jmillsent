@@ -1,6 +1,5 @@
 import Vimeo from '@vimeo/player'
 import classNames from 'classnames'
-import useIsDesktop from 'hooks/useIsDesktop'
 import Image from 'next/image'
 import { memo, useEffect, useMemo, useReducer, useRef, useState } from 'react'
 import screenfull from 'screenfull'
@@ -77,6 +76,8 @@ const videoPlayerReducer = (state, action) => {
         showVideoOverlay: action.showVideoOverlay,
       }
     case 'setVimeoIframeParams':
+      if (state.vimeoIframeParams) return state
+
       const vimeoParams = new URLSearchParams()
       vimeoParams.append('badge', '0')
       vimeoParams.append('autopause', '0')
@@ -149,7 +150,11 @@ const VideoPlayer = ({
     vimeoIframeParams,
   } = state
 
-  const isDesktop = useIsDesktop()
+  const isDesktop = useMemo(() => {
+    if (typeof window === 'undefined') return null
+
+    return window.innerWidth > 1024
+  }, [])
   const vimeoPlayerRef = useRef(null)
   const playerContainer = useRef(null)
 
@@ -191,13 +196,6 @@ const VideoPlayer = ({
   useEffect(() => {
     if (isDesktop === null) return
     if (!vimeoPlayer) return
-
-    console.log({
-      autoPlay,
-      isDesktop,
-      scrubberWidth,
-      vimeoPlayer,
-    })
 
     vimeoPlayer.setLoop(autoPlay)
 

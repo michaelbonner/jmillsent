@@ -1,7 +1,6 @@
 import { H1 } from '@/components/headings'
 import Layout from '@/components/layout'
 import LittleWhiteBar from '@/components/little-white-bar'
-import MediumWhiteBar from '@/components/medium-white-bar'
 import classNames from 'classnames'
 import groq from 'groq'
 import useIsDesktop from 'hooks/useIsDesktop'
@@ -20,7 +19,7 @@ function Moments({ momentsPage }) {
   const isDesktop = useIsDesktop()
 
   const shuffledImages = useMemo(() => {
-    return shuffle(momentsPage.images)
+    return shuffle(momentsPage.images).filter((image) => image.imageUrl)
   }, [momentsPage.images])
 
   const imageTypeMap = [
@@ -102,47 +101,45 @@ function Moments({ momentsPage }) {
             'mt-0 grid grid-cols-2 gap-4 px-1 lg:grid-cols-12'
           )}
         >
-          {shuffledImages
-            .filter((image) => image.imageUrl)
-            .map((image, index) => {
-              const desktopIndex = index % 17
-              const imageType =
-                imageTypeMap[desktopImageTypeSequence[desktopIndex]]
-              const width = isDesktop ? imageType.width : 800
+          {shuffledImages.map((image, index) => {
+            const desktopIndex = index % 17
+            const imageType =
+              imageTypeMap[desktopImageTypeSequence[desktopIndex]]
+            const width = isDesktop ? imageType.width : 800
 
-              const height = isDesktop ? imageType.height : 600
-              const altText =
-                image.caption ||
-                capitalize(
-                  (image.name || `image-${index}`)
-                    .replace(/-/g, ' ')
-                    .replace(/_/g, ' ')
-                    .replace('.jpg', '')
-                )
-
-              return (
-                <div
-                  className={classNames(
-                    isDesktop ? imageType.colSpan : '',
-                    'bpd-gallery-image-container'
-                  )}
-                  key={index}
-                >
-                  <Image
-                    alt={altText}
-                    className={`bpd-gallery-image cursor-pointer`}
-                    height={height}
-                    onClick={() => {
-                      setIsGalleryModelOpen(true)
-                      setPhotoIndex(index)
-                    }}
-                    src={`${image.imageUrl}?w=${width}&h=${height}&auto=format&fit=crop&crop=focalpoint`}
-                    width={width}
-                    unoptimized
-                  />
-                </div>
+            const height = isDesktop ? imageType.height : 600
+            const altText =
+              image.caption ||
+              capitalize(
+                (image.name || `image-${index}`)
+                  .replace(/-/g, ' ')
+                  .replace(/_/g, ' ')
+                  .replace('.jpg', '')
               )
-            })}
+
+            return (
+              <div
+                className={classNames(
+                  isDesktop ? imageType.colSpan : '',
+                  'bpd-gallery-image-container'
+                )}
+                key={index}
+              >
+                <Image
+                  alt={altText}
+                  className={`bpd-gallery-image cursor-pointer`}
+                  height={height}
+                  onClick={() => {
+                    setIsGalleryModelOpen(true)
+                    setPhotoIndex(index)
+                  }}
+                  src={`${image.imageUrl}?w=${width}&h=${height}&auto=format&fit=crop&crop=focalpoint`}
+                  width={width}
+                  unoptimized
+                />
+              </div>
+            )
+          })}
         </div>
       </section>
     </Layout>

@@ -1,4 +1,5 @@
 /* eslint-disable react/jsx-no-target-blank */
+import { ClientOnly } from '@/components/client-only'
 import DividerBar from '@/components/divider-bar'
 import { H1, H2, H3 } from '@/components/headings'
 import Layout from '@/components/layout'
@@ -165,17 +166,19 @@ function About({ aboutPage }) {
         </div>
         <div className="mt-4 lg:mt-10" id="reel">
           <div className="container mx-auto rounded-xl border border-gray-300 p-4 lg:p-8">
-            <VideoPlayer
-              autoPlay
-              client={aboutPage.reelVideoClient}
-              description={aboutPage.reelVideoDescription}
-              poster={aboutPage.reelVideoPoster}
-              title={aboutPage.reelVideoTitle}
-              videoHeightAspectRatio={aboutPage.reelVideoHeightAspectRatio}
-              videoId={aboutPage.reelVideoId}
-              videoIdShort={aboutPage.reelVideoIdShort}
-              videoWidthAspectRatio={aboutPage.reelVideoWidthAspectRatio}
-            />
+            <ClientOnly>
+              <VideoPlayer
+                autoPlay
+                client={aboutPage.reelVideoClient}
+                description={aboutPage.reelVideoDescription}
+                poster={aboutPage.reelVideoPoster}
+                title={aboutPage.reelVideoTitle}
+                videoHeightAspectRatio={aboutPage.reelVideoHeightAspectRatio}
+                videoId={aboutPage.reelVideoId}
+                videoIdShort={aboutPage.reelVideoIdShort}
+                videoWidthAspectRatio={aboutPage.reelVideoWidthAspectRatio}
+              />
+            </ClientOnly>
           </div>
         </div>
 
@@ -535,17 +538,21 @@ function About({ aboutPage }) {
           </H2>
 
           <div className="container mx-auto mt-4 max-w-7xl rounded-xl border border-gray-300 p-4 lg:mt-10 lg:p-8">
-            <VideoPlayer
-              autoPlay
-              client={aboutPage.company3VideoClient}
-              description={aboutPage.company3VideoDescription}
-              poster={aboutPage.company3VideoPoster}
-              title={aboutPage.company3VideoTitle}
-              videoHeightAspectRatio={aboutPage.company3VideoHeightAspectRatio}
-              videoId={aboutPage.company3VideoId}
-              videoIdShort={aboutPage.company3VideoIdShort}
-              videoWidthAspectRatio={aboutPage.company3VideoWidthAspectRatio}
-            />
+            <ClientOnly>
+              <VideoPlayer
+                autoPlay
+                client={aboutPage.company3VideoClient}
+                description={aboutPage.company3VideoDescription}
+                poster={aboutPage.company3VideoPoster}
+                title={aboutPage.company3VideoTitle}
+                videoHeightAspectRatio={
+                  aboutPage.company3VideoHeightAspectRatio
+                }
+                videoId={aboutPage.company3VideoId}
+                videoIdShort={aboutPage.company3VideoIdShort}
+                videoWidthAspectRatio={aboutPage.company3VideoWidthAspectRatio}
+              />
+            </ClientOnly>
           </div>
           {aboutPage.company3Body && (
             <div className="prose-lg mx-auto mt-6 max-w-5xl px-4 text-center font-light text-white">

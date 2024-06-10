@@ -1,8 +1,8 @@
 /* eslint-disable @next/next/no-img-element */
+import { ClientOnly } from '@/components/client-only'
 import Date from '@/components/date'
 import LargeGoldBar from '@/components/large-gold-bar'
 import Layout from '@/components/layout'
-import MediumWhiteBar from '@/components/medium-white-bar'
 import { portableTextComponents, sanityClient } from '@/lib/sanity'
 import { PortableText } from '@portabletext/react'
 import groq from 'groq'
@@ -30,13 +30,15 @@ const NewsItem = ({ newsItem = {} }) => {
           )}
           {newsItem.videoId && (
             <div className="container mx-auto max-w-7xl rounded-xl border border-gray-300 px-8 py-8">
-              <VideoPlayer
-                poster={newsItem.heroImage}
-                title={newsItem.title}
-                videoId={newsItem.videoId}
-                videoHeightAspectRatio={newsItem.videoHeightAspectRatio}
-                videoWidthAspectRatio={newsItem.videoWidthAspectRatio}
-              />
+              <ClientOnly>
+                <VideoPlayer
+                  poster={newsItem.heroImage}
+                  title={newsItem.title}
+                  videoId={newsItem.videoId}
+                  videoHeightAspectRatio={newsItem.videoHeightAspectRatio}
+                  videoWidthAspectRatio={newsItem.videoWidthAspectRatio}
+                />
+              </ClientOnly>
             </div>
           )}
           <div className="mx-auto flex w-full max-w-5xl items-center justify-between gap-x-4 px-8 text-lg uppercase sm:gap-x-32 sm:text-3xl">

@@ -1,14 +1,14 @@
 /* eslint-disable @next/next/no-img-element */
+import { ClientOnly } from '@/components/client-only'
 import { H3 } from '@/components/headings'
 import Layout from '@/components/layout'
-import MediumWhiteBar from '@/components/medium-white-bar'
 import { sanityClient } from '@/lib/sanity'
+import classNames from 'classnames'
 import groq from 'groq'
 import useIsDesktop from 'hooks/useIsDesktop'
 import dynamic from 'next/dynamic'
 import Image from 'next/image'
 import { useState } from 'react'
-import classNames from 'classnames'
 
 const VideoPlayer = dynamic(() => import('@/components/video-player'), {})
 
@@ -60,16 +60,18 @@ const WorkItem = ({ workItem = {} }) => {
     >
       <div className={classNames('pg-10 px-4', 'lg:px-8 lg:pt-28')}>
         <div className="my-12 max-w-9xl rounded-xl border border-gray-300 p-4 px-4 xl:mx-auto xl:p-8">
-          <VideoPlayer
-            client={workItem.clientName}
-            description={workItem.description}
-            poster={workItem.poster}
-            title={workItem.title}
-            videoId={workItem.videoId}
-            clientName={workItem.clientName}
-            videoHeightAspectRatio={workItem.videoHeightAspectRatio || '9'}
-            videoWidthAspectRatio={workItem.videoWidthAspectRatio || '16'}
-          />
+          <ClientOnly>
+            <VideoPlayer
+              client={workItem.clientName}
+              description={workItem.description}
+              poster={workItem.poster}
+              title={workItem.title}
+              videoId={workItem.videoId}
+              clientName={workItem.clientName}
+              videoHeightAspectRatio={workItem.videoHeightAspectRatio || '9'}
+              videoWidthAspectRatio={workItem.videoWidthAspectRatio || '16'}
+            />
+          </ClientOnly>
         </div>
       </div>
 

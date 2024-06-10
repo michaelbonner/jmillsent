@@ -1,8 +1,8 @@
 import BackgroundText from '@/components/background-text-section'
+import { ClientOnly } from '@/components/client-only'
 import DividerBar from '@/components/divider-bar'
 import { H1, H2 } from '@/components/headings'
 import Layout from '@/components/layout'
-import MediumWhiteBar from '@/components/medium-white-bar'
 import urlForSanitySource from '@/lib/urlForSanitySource'
 import { PortableText, toPlainText } from '@portabletext/react'
 import classNames from 'classnames'
@@ -187,17 +187,19 @@ function Studio({ studioPage }) {
                 'lg:mt-10 lg:p-8'
               )}
             >
-              <VideoPlayer
-                autoPlay
-                client={studioPage.tourVideoClient}
-                description={studioPage.tourVideoDescription}
-                poster={studioPage.tourVideoPoster}
-                title={studioPage.tourVideoTitle}
-                videoHeightAspectRatio={studioPage.tourVideoHeightAspectRatio}
-                videoId={studioPage.tourVideoId}
-                videoIdShort={studioPage.tourVideoIdShort}
-                videoWidthAspectRatio={studioPage.tourVideoWidthAspectRatio}
-              />
+              <ClientOnly>
+                <VideoPlayer
+                  autoPlay
+                  client={studioPage.tourVideoClient}
+                  description={studioPage.tourVideoDescription}
+                  poster={studioPage.tourVideoPoster}
+                  title={studioPage.tourVideoTitle}
+                  videoHeightAspectRatio={studioPage.tourVideoHeightAspectRatio}
+                  videoId={studioPage.tourVideoId}
+                  videoIdShort={studioPage.tourVideoIdShort}
+                  videoWidthAspectRatio={studioPage.tourVideoWidthAspectRatio}
+                />
+              </ClientOnly>
             </div>
             <DividerBar />
           </>

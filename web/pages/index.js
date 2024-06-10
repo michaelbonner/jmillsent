@@ -1,7 +1,7 @@
+import { ClientOnly } from '@/components/client-only'
 import DividerBar from '@/components/divider-bar'
 import { H1, H2 } from '@/components/headings'
 import Layout from '@/components/layout'
-import MediumWhiteBar from '@/components/medium-white-bar'
 import { sanityClient } from '@/lib/sanity'
 import { PortableText } from '@portabletext/react'
 import groq from 'groq'
@@ -66,17 +66,19 @@ function Home({ homePage }) {
       </div>
       <div className="mt-10 px-4 2xs:px-8 lg:px-4" id="featured">
         <div className="container mx-auto rounded-xl border border-gray-300 p-4 lg:px-8 lg:py-8">
-          <VideoPlayer
-            autoPlay
-            client={homePage.reelVideoClient}
-            description={homePage.reelVideoDescription}
-            poster={homePage.reelVideoPoster}
-            title={homePage.reelVideoTitle}
-            videoHeightAspectRatio={homePage.reelVideoHeightAspectRatio}
-            videoId={homePage.reelVideoId}
-            videoIdShort={homePage.reelVideoIdShort}
-            videoWidthAspectRatio={homePage.reelVideoWidthAspectRatio}
-          />
+          <ClientOnly>
+            <VideoPlayer
+              autoPlay
+              client={homePage.reelVideoClient}
+              description={homePage.reelVideoDescription}
+              poster={homePage.reelVideoPoster}
+              title={homePage.reelVideoTitle}
+              videoHeightAspectRatio={homePage.reelVideoHeightAspectRatio}
+              videoId={homePage.reelVideoId}
+              videoIdShort={homePage.reelVideoIdShort}
+              videoWidthAspectRatio={homePage.reelVideoWidthAspectRatio}
+            />
+          </ClientOnly>
         </div>
       </div>
       {isDesktop === false && (

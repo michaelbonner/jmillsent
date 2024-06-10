@@ -1,4 +1,5 @@
 /* eslint-disable @next/next/no-img-element */
+import { ClientOnly } from '@/components/client-only'
 import { H3 } from '@/components/headings'
 import Layout from '@/components/layout'
 import { PasswordLoginForm } from '@/components/password-login-form'
@@ -90,20 +91,22 @@ const PortfolioItem = ({ portfolioItem = {}, portfolioPagePassword }) => {
           <>
             <div className="px-4 lg:px-8">
               <div className="my-12 max-w-9xl rounded-xl border border-gray-300 p-4 px-4 xl:mx-auto xl:p-8">
-                <VideoPlayer
-                  client={portfolioItem.clientName}
-                  clientName={portfolioItem.clientName}
-                  description={portfolioItem.description}
-                  poster={portfolioItem.poster}
-                  title={portfolioItem.title}
-                  videoId={portfolioItem.videoId}
-                  videoHeightAspectRatio={
-                    portfolioItem.videoHeightAspectRatio || '9'
-                  }
-                  videoWidthAspectRatio={
-                    portfolioItem.videoWidthAspectRatio || '16'
-                  }
-                />
+                <ClientOnly>
+                  <VideoPlayer
+                    client={portfolioItem.clientName}
+                    clientName={portfolioItem.clientName}
+                    description={portfolioItem.description}
+                    poster={portfolioItem.poster}
+                    title={portfolioItem.title}
+                    videoId={portfolioItem.videoId}
+                    videoHeightAspectRatio={
+                      portfolioItem.videoHeightAspectRatio || '9'
+                    }
+                    videoWidthAspectRatio={
+                      portfolioItem.videoWidthAspectRatio || '16'
+                    }
+                  />
+                </ClientOnly>
               </div>
             </div>
 

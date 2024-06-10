@@ -52,6 +52,8 @@ export const MomentsGallery = ({ images = [] }) => {
     <div>
       <Lightbox
         close={() => setIsGalleryModelOpen(false)}
+        closeOnPullDown={true}
+        closeOnPullUp={true}
         index={photoIndex}
         open={isGalleryModelOpen}
         plugins={[Zoom]}

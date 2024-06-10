@@ -105,7 +105,7 @@ function About({ aboutPage }) {
             <div>
               <span className="flex items-center gap-4 text-lg md:text-2xl">
                 <span className="font-outline">0{servicesPhotoIndex + 1}</span>
-                <span>{servicesImages[servicesPhotoIndex].title}</span>
+                <span>{image.title}</span>
               </span>
               <div className="my-2 h-1 w-40 shrink-0 bg-gold" />
             </div>

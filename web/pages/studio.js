@@ -11,9 +11,12 @@ import useIsDesktop from 'hooks/useIsDesktop'
 import dynamic from 'next/dynamic'
 import Link from 'next/link'
 import { useState } from 'react'
-import Lightbox from 'react-18-image-lightbox'
-import 'react-18-image-lightbox/style.css'
+import Lightbox from 'yet-another-react-lightbox'
+import Captions from 'yet-another-react-lightbox/plugins/captions'
 import { sanityClient } from '../lib/sanity'
+
+import 'yet-another-react-lightbox/plugins/captions.css'
+import 'yet-another-react-lightbox/styles.css'
 
 const VideoPlayer = dynamic(() => import('@/components/video-player'), {})
 
@@ -81,22 +84,34 @@ function Studio({ studioPage }) {
         studioPage.headerVideoWidthInPixels
       }
     >
-      {isLightBoxOpen && (
-        <Lightbox
-          imageCaption={images[photoIndex].caption}
-          imageTitle={images[photoIndex].title}
-          mainSrc={images[photoIndex].src}
-          nextSrc={images[(photoIndex + 1) % images.length].src}
-          prevSrc={images[(photoIndex + images.length - 1) % images.length].src}
-          onCloseRequest={() => setIsLightBoxOpen(false)}
-          onMovePrevRequest={() =>
-            setPhotoIndex((photoIndex + images.length - 1) % images.length)
-          }
-          onMoveNextRequest={() =>
-            setPhotoIndex((photoIndex + 1) % images.length)
-          }
-        />
-      )}
+      <Lightbox
+        captions={{
+          descriptionMaxLines: 100,
+        }}
+        close={() => setIsLightBoxOpen(false)}
+        controller={{
+          closeOnBackdropClick: true,
+          closeOnPullDown: true,
+          closeOnPullUp: true,
+        }}
+        index={photoIndex}
+        open={isLightBoxOpen}
+        plugins={[Captions]}
+        slides={images.map((image) => ({
+          src: image.src,
+          description: (
+            <div className="text-center md:text-lg">{image.caption}</div>
+          ),
+          title: (
+            <div>
+              <span className="flex items-center gap-4 text-lg md:text-2xl">
+                <span>{image.title}</span>
+              </span>
+              <div className="my-2 h-1 w-40 shrink-0 bg-gold" />
+            </div>
+          ),
+        }))}
+      />
 
       <div
         className={classNames(

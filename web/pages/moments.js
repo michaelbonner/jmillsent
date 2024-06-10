@@ -1,3 +1,4 @@
+import { ClientOnly } from '@/components/client-only'
 import { H1 } from '@/components/headings'
 import Layout from '@/components/layout'
 import LittleWhiteBar from '@/components/little-white-bar'
@@ -15,9 +16,6 @@ const MomentsGallery = dynamic(
       ssr: false,
     })
 )
-
-import { ClientOnly } from '@/components/client-only'
-import 'react-18-image-lightbox/style.css'
 
 function Moments({ momentsPage }) {
   const shuffledImages = useMemo(() => {

@@ -14,11 +14,14 @@ import dynamic from 'next/dynamic'
 import Image from 'next/image'
 import Link from 'next/link'
 import { Fragment, useState } from 'react'
-import Lightbox from 'react-18-image-lightbox'
+import Lightbox from 'yet-another-react-lightbox'
+import Captions from 'yet-another-react-lightbox/plugins/captions'
+import Zoom from 'yet-another-react-lightbox/plugins/zoom'
 import { sanityClient } from '../lib/sanity'
 import urlForSanitySource from '../lib/urlForSanitySource'
 
-import 'react-18-image-lightbox/style.css'
+import 'yet-another-react-lightbox/plugins/captions.css'
+import 'yet-another-react-lightbox/styles.css'
 
 const VideoPlayer = dynamic(() => import('@/components/video-player'), {})
 
@@ -80,39 +83,44 @@ function About({ aboutPage }) {
         aboutPage.headerVideoWidthInPixels
       }
     >
-      {isServicesLightBoxOpen && (
-        <Lightbox
-          imageCaption={servicesImages[servicesPhotoIndex].caption}
-          imageTitle={
-            <span className="flex items-center gap-4 py-2">
-              <span className="font-outline">0{servicesPhotoIndex + 1}</span>
-              <span>{servicesImages[servicesPhotoIndex].title}</span>
-            </span>
-          }
-          mainSrc={servicesImages[servicesPhotoIndex].src}
-          nextSrc={
-            servicesImages[(servicesPhotoIndex + 1) % servicesImages.length].src
-          }
-          prevSrc={
-            servicesImages[
-              (servicesPhotoIndex + servicesImages.length - 1) %
-                servicesImages.length
-            ].src
-          }
-          onCloseRequest={() => setIsServicesLightBoxOpen(false)}
-          onMovePrevRequest={() =>
-            setServicesPhotoIndex(
-              (servicesPhotoIndex + servicesImages.length - 1) %
-                servicesImages.length
-            )
-          }
-          onMoveNextRequest={() =>
-            setServicesPhotoIndex(
-              (servicesPhotoIndex + 1) % servicesImages.length
-            )
-          }
-        />
-      )}
+      <Lightbox
+        captions={{
+          descriptionMaxLines: 100,
+        }}
+        close={() => setIsServicesLightBoxOpen(false)}
+        controller={{
+          closeOnBackdropClick: true,
+          closeOnPullDown: true,
+          closeOnPullUp: true,
+        }}
+        index={servicesPhotoIndex}
+        open={isServicesLightBoxOpen}
+        plugins={[Captions]}
+        slides={servicesImages.map((image) => ({
+          src: image.src,
+          description: (
+            <div className="text-center md:text-lg">{image.caption}</div>
+          ),
+          title: (
+            <div>
+              <span className="flex items-center gap-4 text-lg md:text-2xl">
+                <span className="font-outline">0{servicesPhotoIndex + 1}</span>
+                <span>{servicesImages[servicesPhotoIndex].title}</span>
+              </span>
+              <div className="my-2 h-1 w-40 shrink-0 bg-gold" />
+            </div>
+          ),
+        }))}
+        styles={{
+          captionsTitleContainer: {
+            backgroundColor: 'black',
+            paddingBottom: 6,
+          },
+          captionsDescriptionContainer: {
+            backgroundColor: 'black',
+          },
+        }}
+      />
 
       <div className="container mx-auto mt-12 px-4 text-center text-white lg:mt-24">
         <H2>{aboutPage.section1Title}</H2>
@@ -457,30 +465,20 @@ function About({ aboutPage }) {
         </div>
 
         {/* utah locations */}
-        {isGalleryModelOpen && (
-          <Lightbox
-            mainSrc={utahLocationsImages[photoIndex]}
-            nextSrc={
-              utahLocationsImages[(photoIndex + 1) % utahLocationsImages.length]
-            }
-            prevSrc={
-              utahLocationsImages[
-                (photoIndex + utahLocationsImages.length - 1) %
-                  utahLocationsImages.length
-              ]
-            }
-            onCloseRequest={() => setIsGalleryModelOpen(false)}
-            onMovePrevRequest={() =>
-              setPhotoIndex(
-                (photoIndex + utahLocationsImages.length - 1) %
-                  utahLocationsImages.length
-              )
-            }
-            onMoveNextRequest={() =>
-              setPhotoIndex((photoIndex + 1) % utahLocationsImages.length)
-            }
-          />
-        )}
+        <Lightbox
+          open={isGalleryModelOpen}
+          close={() => setIsGalleryModelOpen(false)}
+          controller={{
+            closeOnBackdropClick: true,
+            closeOnPullDown: true,
+            closeOnPullUp: true,
+          }}
+          index={photoIndex}
+          plugins={[Zoom]}
+          slides={utahLocationsImages.map((image) => ({
+            src: image,
+          }))}
+        />
         <section
           className="mx-auto grid max-w-7xl gap-y-10 text-center"
           id="locations"

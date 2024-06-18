@@ -18,7 +18,7 @@ const Map = () => {
       center={{ lat: 40.8309715, lng: -111.9024321 }}
       zoom={11}
       options={{
-        styles: mapStyles,
+        mapId: '4bdce153715e1d3',
       }}
     >
       {/* JME */}

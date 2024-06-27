@@ -3,18 +3,16 @@
   "name": "jmillsent-website",
   "version": "1.0.0",
   "scripts": {
-    "build": "lerna run build --parallel",
-    "build-web": "lerna bootstrap && (cd web && npm run build)",
-    "build-studio": "lerna bootstrap && (cd studio && npm run build)",
-    "dev": "lerna run dev --parallel",
-    "format": "lerna run format",
-    "graphql-deploy": "lerna run graphql-deploy",
-    "lint": "lerna run lint",
-    "postinstall": "lerna bootstrap",
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "build": "turbo run build",
+    "dev": "turbo run dev",
+    "lint": "turbo run lint"
   },
   "devDependencies": {
-    "@sanity/cli": "^2.26.0",
-    "lerna": "^4.0.0"
-  }
+    "turbo": "^2.0.5"
+  },
+  "packageManager": "npm@10.8.1",
+  "workspaces": [
+    "studio",
+    "web"
+  ]
 }

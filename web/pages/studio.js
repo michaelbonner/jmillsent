@@ -120,53 +120,55 @@ function Studio({ studioPage }) {
           'lg:mt-24'
         )}
       >
-        <H2>{studioPage.section1Title}</H2>
-        {studioPage.section1Body && (
-          <div
-            className={classNames(
-              'prose-lg mx-auto -mb-2 mt-4 max-w-5xl px-4 text-center',
-              'lg:mt-10'
-            )}
-          >
-            <PortableText value={studioPage.section1Body} />
+        <div className="container mx-auto my-24 rounded-xl bg-white px-8 py-12 text-black">
+          <H2>{studioPage.section1Title}</H2>
+          {studioPage.section1Body && (
+            <div
+              className={classNames(
+                'prose-lg mx-auto -mb-2 mt-4 max-w-5xl px-4 text-center',
+                'lg:mt-10'
+              )}
+            >
+              <PortableText value={studioPage.section1Body} />
+            </div>
+          )}
+          <div className="mt-10 flex justify-center">
+            <Link
+              href="/contact"
+              className={classNames(
+                'group flex items-center justify-center gap-4 border-2 border-black px-3 py-2 uppercase transition-colors',
+                'hover:bg-gold'
+              )}
+            >
+              <span
+                className={classNames(
+                  'font-outline text-2xl tracking-tighter',
+                  'lg:text-3xl',
+                  'group-hover:text-gray-800'
+                )}
+              >
+                Book
+              </span>
+              <span
+                className={classNames(
+                  'text-2xl font-bold tracking-wide',
+                  'lg:text-3xl',
+                  'group-hover:text-gray-800'
+                )}
+              >
+                Studio
+              </span>
+              <span
+                className={classNames(
+                  'font-outline text-2xl tracking-tighter',
+                  'lg:text-3xl',
+                  'group-hover:text-gray-800'
+                )}
+              >
+                Space
+              </span>
+            </Link>
           </div>
-        )}
-        <div className="mt-10 flex justify-center">
-          <Link
-            href="/contact"
-            className={classNames(
-              'group flex items-center justify-center gap-4 border-2 border-gray-300 px-3 py-2 uppercase transition-colors',
-              'hover:bg-gold'
-            )}
-          >
-            <span
-              className={classNames(
-                'font-outline text-2xl tracking-tighter text-gray-300',
-                'lg:text-3xl',
-                'group-hover:text-black'
-              )}
-            >
-              Book
-            </span>
-            <span
-              className={classNames(
-                'text-2xl font-bold tracking-wide',
-                'lg:text-3xl',
-                'group-hover:text-black'
-              )}
-            >
-              Studio
-            </span>
-            <span
-              className={classNames(
-                'font-outline text-2xl tracking-tighter text-gray-300',
-                'lg:text-3xl',
-                'group-hover:text-black'
-              )}
-            >
-              Space
-            </span>
-          </Link>
         </div>
         <DividerBar />
         <div className="container mx-auto -mt-1.5 px-8 text-center uppercase">

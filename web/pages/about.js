@@ -280,52 +280,54 @@ function About({ aboutPage }) {
         <DividerBar />
 
         {/* Ad Formats */}
-        <section
-          className="mx-auto grid max-w-7xl gap-y-4 text-center"
-          id="ad-formats"
-        >
-          {aboutPage.adFormatsTitle && <H2>{aboutPage.adFormatsTitle}</H2>}
-          {aboutPage.adFormatsSubtitle && (
-            <p className="font-outline text-2xl lg:text-4xl">
-              {aboutPage.adFormatsSubtitle}
-            </p>
-          )}
-          <div className="mt-4 grid grid-cols-1 gap-8 md:grid-cols-3 lg:mt-10">
-            {aboutPage.adFormats.map((adFormatsCard, index) => {
-              return (
-                <div
-                  key={index}
-                  className={classNames(
-                    'flex flex-col justify-start space-y-12 rounded-xl border-2 border-gray-300 px-8 pb-8 pt-12'
-                  )}
-                  target="_blank"
-                >
-                  <div>
-                    <SanityImage
-                      image={adFormatsCard.image}
-                      className="block"
-                      alt={adFormatsCard.title}
-                    />
-                  </div>
-                  <div>
-                    <h4 className="text-2xl font-bold uppercase lg:text-3xl">
-                      {adFormatsCard.title}
-                    </h4>
-                    <div className="mx-auto mt-4 h-1 w-40 bg-gold"></div>
-                    <div className="prose-sm mt-4 lg:prose-lg">
-                      <PortableText value={adFormatsCard.body} />
+        <div className="container mx-auto my-24 rounded-xl bg-white px-8 py-12 text-black">
+          <section
+            className="mx-auto grid max-w-7xl gap-y-4 text-center"
+            id="ad-formats"
+          >
+            {aboutPage.adFormatsTitle && <H2>{aboutPage.adFormatsTitle}</H2>}
+            {aboutPage.adFormatsSubtitle && (
+              <p className="font-outline text-2xl lg:text-4xl">
+                {aboutPage.adFormatsSubtitle}
+              </p>
+            )}
+            <div className="mt-4 grid grid-cols-1 gap-x-4 gap-y-8 md:grid-cols-3 lg:gap-x-8">
+              {aboutPage.adFormats.map((adFormatsCard, index) => {
+                return (
+                  <div
+                    key={index}
+                    className={classNames(
+                      'flex flex-col justify-start space-y-12 rounded-xl bg-black px-8 pb-8 pt-12 text-white'
+                    )}
+                    target="_blank"
+                  >
+                    <div>
+                      <SanityImage
+                        image={adFormatsCard.image}
+                        className="block"
+                        alt={adFormatsCard.title}
+                      />
+                    </div>
+                    <div>
+                      <h4 className="text-2xl font-bold uppercase lg:text-3xl">
+                        {adFormatsCard.title}
+                      </h4>
+                      <div className="mx-auto mt-4 h-1 w-40 bg-gold"></div>
+                      <div className="prose prose-sm prose-invert mt-4 lg:prose-base">
+                        <PortableText value={adFormatsCard.body} />
+                      </div>
                     </div>
                   </div>
-                </div>
-              )
-            })}
-          </div>
-          {aboutPage.adFormatsContent && (
-            <div className="prose prose-lg mx-auto mt-4 max-w-5xl px-4 text-center text-white lg:mt-10">
-              <PortableText value={aboutPage.adFormatsContent} />
+                )
+              })}
             </div>
-          )}
-        </section>
+            {aboutPage.adFormatsContent && (
+              <div className="prose prose-lg mx-auto mt-4 max-w-5xl px-4 text-center text-white lg:mt-10">
+                <PortableText value={aboutPage.adFormatsContent} />
+              </div>
+            )}
+          </section>
+        </div>
         {/* end: Ad Formats */}
 
         <div className="px-8">

@@ -1,5 +1,6 @@
+import 'yet-another-react-lightbox/styles.css'
+
 import { ClientOnly } from '@/components/client-only'
-import DividerBar from '@/components/divider-bar'
 import { H1, H2 } from '@/components/headings'
 import Layout from '@/components/layout'
 import WorkItemTile from '@/components/work-item-tile'
@@ -9,11 +10,34 @@ import groq from 'groq'
 import useIsDesktop from 'hooks/useIsDesktop'
 import dynamic from 'next/dynamic'
 import Image from 'next/image'
+import { useState } from 'react'
+import Lightbox from 'yet-another-react-lightbox'
 
 const VideoPlayer = dynamic(() => import('@/components/video-player'), {})
 
 function Home({ homePage }) {
   const isDesktop = useIsDesktop()
+
+  const [isLightBoxOpen, setIsLightBoxOpen] = useState(false)
+  const [photoIndex, setPhotoIndex] = useState(0)
+
+  const latestCampaignVideoSlides = homePage.latestCampaignVideos.map(
+    (latestCampaignVideo) => ({
+      ...latestCampaignVideo,
+      slideType: 'video-slide',
+      client: latestCampaignVideo.clientName,
+      TitleElement: (
+        <div>
+          <span className="flex items-center gap-4 text-lg md:text-2xl">
+            <span>{latestCampaignVideo.title}</span>
+          </span>
+          <div className="my-2 h-1 w-40 shrink-0 bg-gold" />
+        </div>
+      ),
+    })
+  )
+
+  console.log('latestCampaignVideoSlides', latestCampaignVideoSlides)
 
   const heroContent = (
     <div className="flex h-full w-screen flex-col items-center justify-center text-center text-white">
@@ -64,8 +88,17 @@ function Home({ homePage }) {
           </div>
 
           <div className="grid grid-cols-1 gap-4 lg:grid-cols-3">
-            {homePage.latestCampaignVideos.map((video) => {
-              return <WorkItemTile workItem={video} key={video._id} />
+            {homePage.latestCampaignVideos.map((video, index) => {
+              return (
+                <WorkItemTile
+                  onClick={() => {
+                    setIsLightBoxOpen(true)
+                    setPhotoIndex(index)
+                  }}
+                  workItem={video}
+                  key={index}
+                />
+              )
             })}
           </div>
         </div>
@@ -117,6 +150,35 @@ function Home({ homePage }) {
           />
         </div>
       )}
+
+      <Lightbox
+        close={() => setIsLightBoxOpen(false)}
+        controller={{
+          closeOnBackdropClick: true,
+          closeOnPullDown: true,
+          closeOnPullUp: true,
+        }}
+        index={photoIndex}
+        open={isLightBoxOpen}
+        slides={latestCampaignVideoSlides}
+        render={{
+          slide: ({ slide }) => {
+            const {
+              TitleElement: _titleElement,
+              DescriptionElement: _descriptionElement,
+              ...slideProps
+            } = slide
+
+            return slide.slideType === 'video-slide' ? (
+              <ClientOnly>
+                <VideoPlayer {...slideProps} />
+              </ClientOnly>
+            ) : undefined
+          },
+          description: ({ DescriptionElement }) => <DescriptionElement />,
+          title: ({ TitleElement }) => <TitleElement />,
+        }}
+      />
     </Layout>
   )
 }
@@ -159,6 +221,13 @@ export async function getStaticProps() {
         clientName,
         title,
         poster,
+        clientName,
+        description,
+        extraPaddingOnVideo,
+        frames,
+        videoId,
+        videoHeightAspectRatio,
+        videoWidthAspectRatio,
         "shortClipMp4URL": shortClipMp4.asset->url,
         "shortClipMp4S3URL": shortClipMp4S3.asset->fileURL,
         "shortClipOgvURL": shortClipOgv.asset->url,

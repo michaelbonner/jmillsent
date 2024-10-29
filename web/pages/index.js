@@ -169,7 +169,9 @@ function Home({ homePage }) {
 
             return slide.slideType === 'video-slide' ? (
               <ClientOnly>
-                <VideoPlayer {...slideProps} />
+                <div className="w-full px-8 text-white lg:px-12">
+                  <VideoPlayer noContainer {...slideProps} />
+                </div>
               </ClientOnly>
             ) : undefined
           },

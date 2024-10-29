@@ -1,3 +1,6 @@
+import 'yet-another-react-lightbox/plugins/captions.css'
+import 'yet-another-react-lightbox/styles.css'
+
 import BackgroundText from '@/components/background-text-section'
 import { ClientOnly } from '@/components/client-only'
 import DividerBar from '@/components/divider-bar'
@@ -14,9 +17,6 @@ import { useState } from 'react'
 import Lightbox from 'yet-another-react-lightbox'
 import Captions from 'yet-another-react-lightbox/plugins/captions'
 import { sanityClient } from '../lib/sanity'
-
-import 'yet-another-react-lightbox/plugins/captions.css'
-import 'yet-another-react-lightbox/styles.css'
 
 const VideoPlayer = dynamic(() => import('@/components/video-player'), {})
 

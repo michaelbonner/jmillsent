@@ -3,13 +3,20 @@ import Link from 'next/link'
 import { useState } from 'react'
 import urlForSanitySource from '../lib/urlForSanitySource'
 
-const WorkItemTile = ({ workItem, index, hideAfterCount = 999 }) => {
+const Button = (props) => {
+  return <button {...props} />
+}
+
+const WorkItemTile = ({ workItem, index, hideAfterCount = 999, onClick }) => {
   const [isHovered, setIsHovered] = useState(false)
   const [hasHovered, setHasHovered] = useState(false)
 
+  const ElementToRender = onClick ? Button : Link
+
   return (
-    <Link
-      href={`/work/${workItem.slug?.current}`}
+    <ElementToRender
+      href={onClick ? undefined : `/work/${workItem.slug?.current}`}
+      onClick={onClick ? onClick : undefined}
       key={workItem._id}
       className={classNames(
         {
@@ -90,7 +97,7 @@ const WorkItemTile = ({ workItem, index, hideAfterCount = 999 }) => {
           {workItem.title}
         </h3>
       </div>
-    </Link>
+    </ElementToRender>
   )
 }
 

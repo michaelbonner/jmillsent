@@ -471,7 +471,7 @@ const VideoPlayer = ({
         {
           'flex h-screen flex-col items-center justify-center': isFullscreen,
         },
-        'bpd-player-container relative z-20'
+        'bpd-player-container relative z-20 w-full'
       )}
       ref={playerContainer}
     >

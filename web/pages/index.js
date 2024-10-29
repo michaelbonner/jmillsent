@@ -37,8 +37,6 @@ function Home({ homePage }) {
     })
   )
 
-  console.log('latestCampaignVideoSlides', latestCampaignVideoSlides)
-
   const heroContent = (
     <div className="flex h-full w-screen flex-col items-center justify-center text-center text-white">
       <H1>{homePage.mainTitle}</H1>

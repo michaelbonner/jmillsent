@@ -5,26 +5,60 @@ export default {
   title: 'Home page',
   type: 'document',
   icon,
+  groups: [
+    {
+      name: 'seo',
+      title: 'SEO',
+    },
+    {
+      name: 'hero',
+      title: 'Hero',
+    },
+    {
+      name: 'section1',
+      title: 'Section 1',
+    },
+    {
+      name: 'latestCampaign',
+      title: 'Latest campaign',
+    },
+    {
+      name: 'section2',
+      title: 'Section 2',
+    },
+    {
+      name: 'reelVideo',
+      title: 'Reel video',
+    },
+    {
+      name: 'footer',
+      title: 'Footer',
+    },
+  ],
   fields: [
-    {
-      name: 'mainTitle',
-      title: 'Main title',
-      type: 'string',
-    },
-    {
-      name: 'subtitle',
-      title: 'Subtitle',
-      type: 'string',
-    },
     {
       name: 'seoTitle',
       title: 'Seo title',
       type: 'string',
+      group: 'seo',
     },
     {
       name: 'seoDescription',
       title: 'Seo description',
       type: 'text',
+      group: 'seo',
+    },
+    {
+      name: 'mainTitle',
+      title: 'Main title',
+      type: 'string',
+      group: 'hero',
+    },
+    {
+      name: 'subtitle',
+      title: 'Subtitle',
+      type: 'string',
+      group: 'hero',
     },
     {
       name: 'poster',
@@ -33,6 +67,7 @@ export default {
       options: {
         hotspot: true,
       },
+      group: 'hero',
     },
     {
       name: 'videoId',
@@ -40,6 +75,7 @@ export default {
       type: 'string',
       description:
         'Enter the ID ( {{video_id}} ) of the video, not the whole url. https://player.vimeo.com/video/{{video_id}}?badge=0&autopause=0&player_id=0&app_id=58479',
+      group: 'hero',
     },
     {
       name: 'videoIdMobile',
@@ -47,27 +83,51 @@ export default {
       type: 'string',
       description:
         'Video ID to use on mobile. Leave blank to user the "Video ID" above on mobile',
+      group: 'hero',
     },
     {
       name: 'headerVideoWidthInPixelsMobile',
       title: 'Header video width in pixels (mobile)',
       type: 'number',
+      group: 'hero',
     },
     {
       name: 'headerVideoHeightInPixelsMobile',
       title: 'Header video height in pixels (mobile)',
       type: 'number',
+      group: 'hero',
     },
     {
       name: 'section1Title',
       title: 'Section 1 title',
       type: 'string',
+      group: 'section1',
     },
     {
       name: 'section1Body',
       title: 'Section 1 body',
       type: 'array',
       of: [{ type: 'block' }],
+      group: 'section1',
+    },
+    {
+      name: 'latestCampaignTitle',
+      title: 'Latest campaign title',
+      type: 'string',
+      group: 'latestCampaign',
+    },
+    {
+      name: 'latestCampaignSubtitle',
+      title: 'Latest campaign subtitle',
+      type: 'string',
+      group: 'latestCampaign',
+    },
+    {
+      name: 'latestCampaignVideos',
+      title: 'Latest campaign videos',
+      type: 'array',
+      of: [{ type: 'reference', to: [{ type: 'workItem' }] }],
+      group: 'latestCampaign',
     },
     {
       name: 'section2Title',
@@ -78,16 +138,19 @@ export default {
       name: 'section2Subtitle',
       title: 'Section 2 subtitle',
       type: 'string',
+      group: 'section2',
     },
     {
       name: 'reelVideoTitle',
       title: 'Reel video title',
       type: 'string',
+      group: 'reelVideo',
     },
     {
       name: 'reelVideoClient',
       title: 'Reel video client',
       type: 'string',
+      group: 'reelVideo',
     },
     {
       name: 'reelVideoDescription',
@@ -98,6 +161,7 @@ export default {
       name: 'reelVideoId',
       title: 'Reel video id',
       type: 'string',
+      group: 'reelVideo',
     },
     {
       name: 'reelVideoIdShort',
@@ -108,6 +172,7 @@ export default {
       name: 'reelVideoWidthInPixels',
       title: 'Reel video width in pixels',
       type: 'number',
+      group: 'reelVideo',
     },
     {
       name: 'reelVideoHeightInPixels',
@@ -140,6 +205,7 @@ export default {
         ],
         layout: 'dropdown',
       },
+      group: 'reelVideo',
     },
     {
       name: 'reelVideoHeightAspectRatio',
@@ -175,16 +241,19 @@ export default {
       options: {
         hotspot: true,
       },
+      group: 'reelVideo',
     },
     {
       name: 'footerTitle',
       title: 'Footer title',
       type: 'string',
+      group: 'footer',
     },
     {
       name: 'footerSubtitle',
       title: 'Footer subtitle',
       type: 'string',
+      group: 'footer',
     },
   ],
   preview: {

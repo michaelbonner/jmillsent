@@ -113,6 +113,7 @@ const VideoPlayer = ({
   videoId = '',
   videoIdShort = '',
   videoWidthAspectRatio = '16',
+  noContainer = false,
 }) => {
   const [state, dispatch] = useReducer(videoPlayerReducer, {
     hasClicked: false,
@@ -518,8 +519,8 @@ const VideoPlayer = ({
         <div
           className={classNames(
             {
-              'w-full': isFullscreen,
-              container: !isFullscreen,
+              'w-full': isFullscreen || noContainer,
+              container: !isFullscreen && !noContainer,
               'bg-gray-900': !showVideo,
             },
             'mx-auto transition-all duration-700'

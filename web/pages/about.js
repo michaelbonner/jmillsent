@@ -122,45 +122,47 @@ function About({ aboutPage }) {
       />
 
       <div className="container mx-auto mt-12 px-4 text-center text-white lg:mt-24">
-        <H2>{aboutPage.section1Title}</H2>
-        {aboutPage.section1Body && (
-          <div className="prose-lg mx-auto -mb-2 mt-4 max-w-5xl px-4 text-center text-white lg:mt-10">
-            <PortableText value={aboutPage.section1Body} />
-          </div>
-        )}
-
-        <div
-          className={classNames(
-            'mt-12 grid grid-cols-3 items-center justify-center gap-4 px-4',
-            'lg:mt-24 lg:flex lg:flex-nowrap lg:gap-6 lg:px-12'
+        <div className="container mx-auto my-24 rounded-xl bg-white px-8 py-12 text-black">
+          <H2>{aboutPage.section1Title}</H2>
+          {aboutPage.section1Body && (
+            <div className="prose-lg mx-auto -mb-2 mt-4 max-w-6xl px-4 text-center lg:mt-10">
+              <PortableText value={aboutPage.section1Body} />
+            </div>
           )}
-        >
-          {(aboutPage.section1Images || []).map((image, index) => {
-            const width = 600
-            const height = 440
 
-            const altText =
-              image.caption ||
-              capitalize(
-                (image.name || `image-${index}`)
-                  .replace(/-/g, ' ')
-                  .replace(/_/g, ' ')
-                  .replace('.jpg', '')
+          <div
+            className={classNames(
+              'mt-8 grid grid-cols-3 items-center justify-center gap-2',
+              'lg:mt-12 lg:flex lg:flex-nowrap lg:gap-2 lg:px-4'
+            )}
+          >
+            {(aboutPage.section1Images || []).map((image, index) => {
+              const width = 600
+              const height = 440
+
+              const altText =
+                image.caption ||
+                capitalize(
+                  (image.name || `image-${index}`)
+                    .replace(/-/g, ' ')
+                    .replace(/_/g, ' ')
+                    .replace('.jpg', '')
+                )
+
+              return (
+                <div className="flex-1" key={index}>
+                  <Image
+                    className="rounded-lg border border-gray-100"
+                    alt={altText}
+                    height={height}
+                    src={`${image.imageUrl}?w=${width}&h=${height}&auto=format&fit=crop&crop=focalpoint`}
+                    width={width}
+                    unoptimized
+                  />
+                </div>
               )
-
-            return (
-              <div className="flex-1" key={index}>
-                <Image
-                  className="rounded-lg border border-gray-100"
-                  alt={altText}
-                  height={height}
-                  src={`${image.imageUrl}?w=${width}&h=${height}&auto=format&fit=crop&crop=focalpoint`}
-                  width={width}
-                  unoptimized
-                />
-              </div>
-            )
-          })}
+            })}
+          </div>
         </div>
 
         <DividerBar />

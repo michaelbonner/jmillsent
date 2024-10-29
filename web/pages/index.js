@@ -2,6 +2,7 @@ import { ClientOnly } from '@/components/client-only'
 import DividerBar from '@/components/divider-bar'
 import { H1, H2 } from '@/components/headings'
 import Layout from '@/components/layout'
+import WorkItemTile from '@/components/work-item-tile'
 import { sanityClient } from '@/lib/sanity'
 import { PortableText } from '@portabletext/react'
 import groq from 'groq'
@@ -12,6 +13,7 @@ import Image from 'next/image'
 const VideoPlayer = dynamic(() => import('@/components/video-player'), {})
 
 function Home({ homePage }) {
+  console.log('homePage', homePage)
   const isDesktop = useIsDesktop()
 
   const heroContent = (
@@ -53,7 +55,22 @@ function Home({ homePage }) {
         </div>
       </div>
 
-      <DividerBar yMargin="my-16 lg:my-24" />
+      <div className="container mx-auto my-24 rounded-xl bg-white px-8 py-12">
+        <div className="container mx-auto grid gap-8 px-4 text-center">
+          <div>
+            <H2 className="text-black">{homePage.latestCampaignTitle}</H2>
+            <p className="font-outline text-lg uppercase text-black lg:text-6xl">
+              {homePage.latestCampaignSubtitle}
+            </p>
+          </div>
+
+          <div className="grid grid-cols-1 gap-4 lg:grid-cols-3">
+            {homePage.latestCampaignVideos.map((video) => {
+              return <WorkItemTile workItem={video} key={video._id} />
+            })}
+          </div>
+        </div>
+      </div>
 
       <div
         className="container mx-auto -mt-1.5 px-8 text-center uppercase"
@@ -134,8 +151,21 @@ export async function getStaticProps() {
 			videoId,
       videoIdMobile,
       headerVideoWidthInPixelsMobile,
-      headerVideoHeightInPixelsMobile
-  		}
+      headerVideoHeightInPixelsMobile,
+      latestCampaignTitle,
+      latestCampaignSubtitle,
+      latestCampaignVideos[]->{
+        _id,
+        slug,
+        clientName,
+        title,
+        poster,
+        "shortClipMp4URL": shortClipMp4.asset->url,
+        "shortClipMp4S3URL": shortClipMp4S3.asset->fileURL,
+        "shortClipOgvURL": shortClipOgv.asset->url,
+        "shortClipOgvS3URL": shortClipOgvS3.asset->fileURL,
+      }
+  	}
   		`
   )
   return {

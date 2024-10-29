@@ -58,7 +58,7 @@ function Home({ homePage }) {
         <div className="container mx-auto grid gap-8 px-4 text-center">
           <div>
             <H2 className="text-black">{homePage.latestCampaignTitle}</H2>
-            <p className="font-outline text-lg uppercase text-black lg:text-6xl">
+            <p className="font-outline text-xl uppercase tracking-tighter text-black lg:text-5xl">
               {homePage.latestCampaignSubtitle}
             </p>
           </div>

@@ -13,7 +13,6 @@ import Image from 'next/image'
 const VideoPlayer = dynamic(() => import('@/components/video-player'), {})
 
 function Home({ homePage }) {
-  console.log('homePage', homePage)
   const isDesktop = useIsDesktop()
 
   const heroContent = (

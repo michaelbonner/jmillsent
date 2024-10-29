@@ -1,6 +1,4 @@
-import EmailSignupForm from '@/components/email-signup-form'
 import Layout from '@/components/layout'
-import MediumWhiteBar from '@/components/medium-white-bar'
 import WorkItemTile from '@/components/work-item-tile'
 import { sanityClient } from '@/lib/sanity'
 import { PortableText } from '@portabletext/react'

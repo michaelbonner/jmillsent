@@ -1,4 +1,6 @@
-/* eslint-disable react/jsx-no-target-blank */
+import 'yet-another-react-lightbox/plugins/captions.css'
+import 'yet-another-react-lightbox/styles.css'
+
 import { ClientOnly } from '@/components/client-only'
 import DividerBar from '@/components/divider-bar'
 import { H1, H2, H3 } from '@/components/headings'
@@ -19,9 +21,6 @@ import Captions from 'yet-another-react-lightbox/plugins/captions'
 import Zoom from 'yet-another-react-lightbox/plugins/zoom'
 import { sanityClient } from '../lib/sanity'
 import urlForSanitySource from '../lib/urlForSanitySource'
-
-import 'yet-another-react-lightbox/plugins/captions.css'
-import 'yet-another-react-lightbox/styles.css'
 
 const VideoPlayer = dynamic(() => import('@/components/video-player'), {})
 
@@ -384,6 +383,7 @@ function About({ aboutPage }) {
             <a
               href="https://jeremymillerdirector.com/"
               className="group flex items-center justify-center gap-4 border-2 border-gray-300 px-3 py-2 uppercase transition-colors hover:bg-gold"
+              rel="noreferrer"
               target="_blank"
             >
               <span className="font-outline text-2xl tracking-tighter text-gray-300 group-hover:text-black lg:text-3xl">
@@ -522,7 +522,11 @@ function About({ aboutPage }) {
         {/* company 3 */}
         <section className="-mt-1.5 grid items-center gap-y-4" id="company3">
           <div className="mx-auto w-full max-w-sm">
-            <a href="https://www.company3.com/" target="_blank">
+            <a
+              href="https://www.company3.com/"
+              rel="noreferrer"
+              target="_blank"
+            >
               <Image
                 src="/images/company-3.svg"
                 alt="company3"
@@ -646,6 +650,7 @@ function About({ aboutPage }) {
               <a
                 href="https://ravensfilmworks.com/"
                 className="group mt-4 flex items-center justify-center gap-4 border-2 border-gray-300 px-3 py-2 uppercase transition-colors hover:bg-gold sm:mt-10"
+                rel="noreferrer"
                 target="_blank"
               >
                 <span className="font-outline text-2xl tracking-tighter text-gray-300 group-hover:text-black lg:text-3xl">

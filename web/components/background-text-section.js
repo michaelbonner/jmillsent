@@ -42,15 +42,13 @@ const BackgroundText = ({
   const titleStyle = leftOrRight === 'left' ? 'lg:text-left' : 'lg:text-right'
   return (
     <div
-      className={classNames(
-        'cursor-pointer rounded-xl border border-gray-300 p-4',
-        'lg:p-6'
-      )}
+      className={classNames('cursor-pointer', 'lg:p-6')}
       onClick={() => isLink && router.push(slug)}
     >
       <div className="group relative w-full" style={{ lineHeight: 0 }}>
         <Image
           alt={imageAlt}
+          className="rounded-xl"
           height={600}
           src={`${urlForSanitySource(
             image

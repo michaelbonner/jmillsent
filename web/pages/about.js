@@ -220,7 +220,7 @@ function About({ aboutPage }) {
               return (
                 <button
                   className={classNames(
-                    'group relative rounded-lg border-2 border-gray-300 focus:outline-white',
+                    'group relative rounded-lg',
                     'aspect-[4/4] overflow-hidden',
                     'bg-cover bg-center bg-no-repeat',
                     'lg:aspect-[3/4]',
@@ -347,11 +347,11 @@ function About({ aboutPage }) {
               {aboutPage.directorTitle}
             </p>
           </div>
-          <div className="group relative rounded-xl border border-gray-300 px-4 py-4 lg:px-6">
+          <div className="group relative overflow-hidden lg:px-6">
             <SanityImage
               alt={aboutPage.directorName}
               image={aboutPage.directorImage}
-              className="h-full w-full"
+              className="h-full w-full rounded-xl"
             />
             <div
               className={classNames(

@@ -1,16 +1,18 @@
 import { useWindowSize } from '@uidotdev/usehooks'
 import classNames from 'classnames'
 import useIsDesktop from 'hooks/useIsDesktop'
-import Lottie from 'lottie-react'
 import { useRouter } from 'next/dist/client/router'
+import dynamic from 'next/dynamic'
 import Head from 'next/head'
 import Image from 'next/image'
 import Link from 'next/link'
 import React, { useContext, useEffect, useState } from 'react'
 import ReactPlayer from 'react-player'
-import { LoadingAnimationContext } from '../context/LoadingAnimationContext'
 import urlForSanitySource from '../lib/urlForSanitySource'
-import jmeAnimation from '../public/animations/JME_Logo_White_V2.json'
+import { ClientOnly } from './client-only'
+import { LoadingAnimationContext } from 'context/LoadingAnimationContext'
+
+const LoadingAnimation = dynamic(() => import('./loading-animation'))
 
 const navItems = [
   [
@@ -233,15 +235,9 @@ const Layout = ({
         )}
       >
         {showLoadingAnimation && !isAnimationComplete && (
-          <div className="relative top-[calc(50vh-140px)] mx-auto h-[220px] w-[220px] lg:top-[calc(50vh-110px)]">
-            <Lottie
-              animationData={jmeAnimation}
-              loop={0}
-              onComplete={() => {
-                setIsAnimationComplete(true)
-              }}
-            />
-          </div>
+          <ClientOnly>
+            <LoadingAnimation setIsAnimationComplete={setIsAnimationComplete} />
+          </ClientOnly>
         )}
       </div>
 

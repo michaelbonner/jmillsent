@@ -1,4 +1,3 @@
-import Link from 'next/link'
 import BackgroundText from './background-text-section'
 
 const NewsItemCard = ({ newsItem }) => {

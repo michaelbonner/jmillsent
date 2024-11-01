@@ -1,6 +1,4 @@
-import React from 'react'
-import mapStyles from '../data/map-styles'
-import { GoogleMap, useJsApiLoader, Marker } from '@react-google-maps/api'
+import { GoogleMap, Marker, useJsApiLoader } from '@react-google-maps/api'
 
 const Map = () => {
   const { isLoaded } = useJsApiLoader({

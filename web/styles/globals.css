@@ -114,7 +114,6 @@ header {
 
 .bpd-gallery-image {
   @apply block;
-  border: thin solid white !important;
 }
 
 .ril-outer .ril__toolbar {

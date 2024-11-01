@@ -1,3 +1,4 @@
+import 'swiper/css'
 import 'yet-another-react-lightbox/plugins/captions.css'
 import 'yet-another-react-lightbox/styles.css'
 
@@ -5,6 +6,7 @@ import { ClientOnly } from '@/components/client-only'
 import DividerBar from '@/components/divider-bar'
 import { H1, H2, H3 } from '@/components/headings'
 import Layout from '@/components/layout'
+import LittleBlackBar from '@/components/little-black-bar'
 import LittleWhiteBar from '@/components/little-white-bar'
 import SanityImage from '@/components/sanity-image'
 import { PortableText, toPlainText } from '@portabletext/react'
@@ -16,6 +18,9 @@ import dynamic from 'next/dynamic'
 import Image from 'next/image'
 import Link from 'next/link'
 import { Fragment, useState } from 'react'
+import { styles } from 'styles/styles'
+import { Autoplay } from 'swiper/modules'
+import { Swiper, SwiperSlide } from 'swiper/react'
 import Lightbox from 'yet-another-react-lightbox'
 import Captions from 'yet-another-react-lightbox/plugins/captions'
 import Zoom from 'yet-another-react-lightbox/plugins/zoom'
@@ -122,45 +127,69 @@ function About({ aboutPage }) {
       />
 
       <div className="container mx-auto mt-12 px-4 text-center text-white lg:mt-24">
-        <H2>{aboutPage.section1Title}</H2>
-        {aboutPage.section1Body && (
-          <div className="prose-lg mx-auto -mb-2 mt-4 max-w-5xl px-4 text-center text-white lg:mt-10">
-            <PortableText value={aboutPage.section1Body} />
-          </div>
-        )}
-
-        <div
-          className={classNames(
-            'mt-12 grid grid-cols-3 items-center justify-center gap-4 px-4',
-            'lg:mt-24 lg:flex lg:flex-nowrap lg:gap-6 lg:px-12'
+        <div className="container mx-auto my-24 rounded-2xl bg-white px-8 py-12 text-black">
+          <H2>{aboutPage.section1Title}</H2>
+          <LittleBlackBar maxWidth="max-w-96" />
+          {aboutPage.section1Body && (
+            <div className="prose-lg mx-auto -mb-2 mt-4 max-w-6xl px-4 text-center lg:mt-10">
+              <PortableText value={aboutPage.section1Body} />
+            </div>
           )}
-        >
-          {(aboutPage.section1Images || []).map((image, index) => {
-            const width = 600
-            const height = 440
 
-            const altText =
-              image.caption ||
-              capitalize(
-                (image.name || `image-${index}`)
-                  .replace(/-/g, ' ')
-                  .replace(/_/g, ' ')
-                  .replace('.jpg', '')
-              )
+          {aboutPage.section1Subtitle && (
+            <div className="mt-12">
+              <H3>{aboutPage.section1Subtitle}</H3>
+            </div>
+          )}
 
-            return (
-              <div className="flex-1" key={index}>
-                <Image
-                  className="rounded-lg border border-gray-100"
-                  alt={altText}
-                  height={height}
-                  src={`${image.imageUrl}?w=${width}&h=${height}&auto=format&fit=crop&crop=focalpoint`}
-                  width={width}
-                  unoptimized
-                />
-              </div>
-            )
-          })}
+          <div className="mx-auto mt-8 max-w-7xl">
+            <Swiper
+              autoplay={{
+                delay: 3500,
+                disableOnInteraction: false,
+              }}
+              loop
+              modules={[Autoplay]}
+              slidesPerView={2}
+              spaceBetween={24}
+              breakpoints={{
+                640: {
+                  slidesPerView: 3,
+                  spaceBetween: 24,
+                },
+              }}
+              speed={1000}
+            >
+              {(aboutPage.section1Images || []).map((image, index) => {
+                const width = 600
+                const height = 440
+
+                const altText =
+                  image.caption ||
+                  capitalize(
+                    (image.name || `image-${index}`)
+                      .replace(/-/g, ' ')
+                      .replace(/_/g, ' ')
+                      .replace('.jpg', '')
+                  )
+
+                return (
+                  <SwiperSlide key={index}>
+                    <div>
+                      <Image
+                        className="rounded-lg border border-gray-100"
+                        alt={altText}
+                        height={height}
+                        src={`${image.imageUrl}?w=${width}&h=${height}&auto=format&fit=crop&crop=focalpoint`}
+                        width={width}
+                        unoptimized
+                      />
+                    </div>
+                  </SwiperSlide>
+                )
+              })}
+            </Swiper>
+          </div>
         </div>
 
         <DividerBar />
@@ -172,7 +201,7 @@ function About({ aboutPage }) {
           </p>
         </div>
         <div className="mt-4 lg:mt-10" id="reel">
-          <div className="container mx-auto rounded-xl border border-gray-300 p-4 lg:p-8">
+          <div className="container mx-auto rounded-2xl border border-gray-300 p-4 lg:p-8">
             <ClientOnly>
               <VideoPlayer
                 autoPlay
@@ -218,7 +247,7 @@ function About({ aboutPage }) {
               return (
                 <button
                   className={classNames(
-                    'group relative rounded-lg border-2 border-gray-300 focus:outline-white',
+                    'group relative rounded-lg',
                     'aspect-[4/4] overflow-hidden',
                     'bg-cover bg-center bg-no-repeat',
                     'lg:aspect-[3/4]',
@@ -278,52 +307,54 @@ function About({ aboutPage }) {
         <DividerBar />
 
         {/* Ad Formats */}
-        <section
-          className="mx-auto grid max-w-7xl gap-y-4 text-center"
-          id="ad-formats"
-        >
-          {aboutPage.adFormatsTitle && <H2>{aboutPage.adFormatsTitle}</H2>}
-          {aboutPage.adFormatsSubtitle && (
-            <p className="font-outline text-2xl lg:text-4xl">
-              {aboutPage.adFormatsSubtitle}
-            </p>
-          )}
-          <div className="mt-4 grid grid-cols-1 gap-8 md:grid-cols-3 lg:mt-10">
-            {aboutPage.adFormats.map((adFormatsCard, index) => {
-              return (
-                <div
-                  key={index}
-                  className={classNames(
-                    'flex flex-col justify-start space-y-12 rounded-xl border-2 border-gray-300 px-8 pb-8 pt-12'
-                  )}
-                  target="_blank"
-                >
-                  <div>
-                    <SanityImage
-                      image={adFormatsCard.image}
-                      className="block"
-                      alt={adFormatsCard.title}
-                    />
-                  </div>
-                  <div>
-                    <h4 className="text-2xl font-bold uppercase lg:text-3xl">
-                      {adFormatsCard.title}
-                    </h4>
-                    <div className="mx-auto mt-4 h-1 w-40 bg-gold"></div>
-                    <div className="prose-sm mt-4 lg:prose-lg">
-                      <PortableText value={adFormatsCard.body} />
+        <div className="container mx-auto my-24 rounded-2xl bg-white px-8 py-12 text-black">
+          <section
+            className="mx-auto grid max-w-7xl gap-y-4 text-center"
+            id="ad-formats"
+          >
+            {aboutPage.adFormatsTitle && <H2>{aboutPage.adFormatsTitle}</H2>}
+            {aboutPage.adFormatsSubtitle && (
+              <p className="font-outline text-2xl lg:text-4xl">
+                {aboutPage.adFormatsSubtitle}
+              </p>
+            )}
+            <div className="mt-4 grid grid-cols-1 gap-x-4 gap-y-8 md:grid-cols-3 lg:gap-x-8">
+              {aboutPage.adFormats.map((adFormatsCard, index) => {
+                return (
+                  <div
+                    key={index}
+                    className={classNames(
+                      'flex flex-col justify-start space-y-12 rounded-xl bg-black px-8 pb-8 pt-12 text-white'
+                    )}
+                    target="_blank"
+                  >
+                    <div>
+                      <SanityImage
+                        image={adFormatsCard.image}
+                        className="block"
+                        alt={adFormatsCard.title}
+                      />
+                    </div>
+                    <div>
+                      <h4 className="text-2xl font-bold uppercase lg:text-3xl">
+                        {adFormatsCard.title}
+                      </h4>
+                      <div className="mx-auto mt-4 h-1 w-40 bg-gold"></div>
+                      <div className="prose prose-sm prose-invert mt-4 lg:prose-base">
+                        <PortableText value={adFormatsCard.body} />
+                      </div>
                     </div>
                   </div>
-                </div>
-              )
-            })}
-          </div>
-          {aboutPage.adFormatsContent && (
-            <div className="prose prose-lg mx-auto mt-4 max-w-5xl px-4 text-center text-white lg:mt-10">
-              <PortableText value={aboutPage.adFormatsContent} />
+                )
+              })}
             </div>
-          )}
-        </section>
+            {aboutPage.adFormatsContent && (
+              <div className="prose prose-lg mx-auto mt-4 max-w-5xl px-4 text-center text-white lg:mt-10">
+                <PortableText value={aboutPage.adFormatsContent} />
+              </div>
+            )}
+          </section>
+        </div>
         {/* end: Ad Formats */}
 
         <div className="px-8">
@@ -343,11 +374,11 @@ function About({ aboutPage }) {
               {aboutPage.directorTitle}
             </p>
           </div>
-          <div className="group relative rounded-xl border border-gray-300 px-4 py-4 lg:px-6">
+          <div className="group relative overflow-hidden lg:px-6">
             <SanityImage
               alt={aboutPage.directorName}
               image={aboutPage.directorImage}
-              className="h-full w-full"
+              className="h-full w-full rounded-2xl"
             />
             <div
               className={classNames(
@@ -382,7 +413,7 @@ function About({ aboutPage }) {
           <div className="flex justify-center">
             <a
               href="https://jeremymillerdirector.com/"
-              className="group flex items-center justify-center gap-4 border-2 border-gray-300 px-3 py-2 uppercase transition-colors hover:bg-gold"
+              className={styles.buttonLink.default}
               rel="noreferrer"
               target="_blank"
             >
@@ -539,7 +570,7 @@ function About({ aboutPage }) {
             {aboutPage.company3Title}
           </H2>
 
-          <div className="container mx-auto mt-4 max-w-7xl rounded-xl border border-gray-300 p-4 lg:mt-10 lg:p-8">
+          <div className="container mx-auto mt-4 max-w-7xl rounded-2xl border border-gray-300 p-4 lg:mt-10 lg:p-8">
             <ClientOnly>
               <VideoPlayer
                 autoPlay
@@ -561,10 +592,10 @@ function About({ aboutPage }) {
               <PortableText value={aboutPage.company3Body} />
             </div>
           )}
-          <div className="flex justify-center">
+          <div className="mt-8 flex justify-center">
             <a
               href={aboutPage.company3Link || 'https://www.company3.com/'}
-              className="group mt-4 flex items-center justify-center gap-4 border-2 border-gray-300 px-3 py-2 uppercase transition-colors hover:bg-gold sm:mt-10"
+              className={styles.buttonLink.default}
               target="_blank"
             >
               <span className="font-outline text-2xl tracking-tighter text-gray-300 group-hover:text-black lg:text-3xl">
@@ -730,6 +761,7 @@ export async function getStaticProps() {
 			poster,
 			section1Body,
 			section1Title,
+      section1Subtitle,
       section1Images[]{
         caption,
         "imageUrl": asset->url,

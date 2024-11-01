@@ -1,18 +1,43 @@
+import 'yet-another-react-lightbox/styles.css'
+
 import { ClientOnly } from '@/components/client-only'
-import DividerBar from '@/components/divider-bar'
 import { H1, H2 } from '@/components/headings'
 import Layout from '@/components/layout'
+import WorkItemTile from '@/components/work-item-tile'
 import { sanityClient } from '@/lib/sanity'
 import { PortableText } from '@portabletext/react'
+import classNames from 'classnames'
 import groq from 'groq'
 import useIsDesktop from 'hooks/useIsDesktop'
 import dynamic from 'next/dynamic'
 import Image from 'next/image'
+import Link from 'next/link'
+import { useState } from 'react'
+import Lightbox from 'yet-another-react-lightbox'
 
 const VideoPlayer = dynamic(() => import('@/components/video-player'), {})
 
 function Home({ homePage }) {
   const isDesktop = useIsDesktop()
+
+  const [isLightBoxOpen, setIsLightBoxOpen] = useState(false)
+  const [photoIndex, setPhotoIndex] = useState(0)
+
+  const latestCampaignVideoSlides = homePage.latestCampaignVideos.map(
+    (latestCampaignVideo) => ({
+      ...latestCampaignVideo,
+      slideType: 'video-slide',
+      client: latestCampaignVideo.clientName,
+      TitleElement: (
+        <div>
+          <span className="flex items-center gap-4 text-lg md:text-2xl">
+            <span>{latestCampaignVideo.title}</span>
+          </span>
+          <div className="my-2 h-1 w-40 shrink-0 bg-gold" />
+        </div>
+      ),
+    })
+  )
 
   const heroContent = (
     <div className="flex h-full w-screen flex-col items-center justify-center text-center text-white">
@@ -53,7 +78,53 @@ function Home({ homePage }) {
         </div>
       </div>
 
-      <DividerBar yMargin="my-16 lg:my-24" />
+      <div className="container mx-auto my-24 rounded-2xl bg-white px-8 py-12">
+        <div className="container mx-auto grid gap-8 px-4 text-center">
+          <div>
+            <H2 className="text-black">{homePage.latestCampaignTitle}</H2>
+            <p className="font-outline text-xl uppercase tracking-tighter text-black lg:text-5xl">
+              {homePage.latestCampaignSubtitle}
+            </p>
+          </div>
+
+          <div className="grid grid-cols-1 gap-4 lg:grid-cols-3">
+            {homePage.latestCampaignVideos.map((video, index) => {
+              return (
+                <WorkItemTile
+                  autoPlay
+                  onClick={() => {
+                    setIsLightBoxOpen(true)
+                    setPhotoIndex(index)
+                  }}
+                  workItem={video}
+                  key={index}
+                />
+              )
+            })}
+          </div>
+
+          <div className="mt-3 grid gap-4 lg:flex lg:justify-around lg:gap-8 lg:px-8">
+            <Link
+              href="/about"
+              className={classNames(
+                'min-w-[33%] rounded-xl border-2 border-black px-8 py-1 text-2xl font-bold uppercase tracking-widest text-black transition-all',
+                'hover:border-black hover:bg-gold hover:text-black'
+              )}
+            >
+              Learn More
+            </Link>
+            <Link
+              href="/work"
+              className={classNames(
+                'min-w-[33%] rounded-xl border-2 border-black bg-black px-8 py-1 text-2xl font-bold uppercase tracking-widest transition-all',
+                'hover:border-black hover:bg-gold hover:text-black'
+              )}
+            >
+              Explore Work
+            </Link>
+          </div>
+        </div>
+      </div>
 
       <div
         className="container mx-auto -mt-1.5 px-8 text-center uppercase"
@@ -65,7 +136,7 @@ function Home({ homePage }) {
         </p>
       </div>
       <div className="mt-10 px-4 2xs:px-8 lg:px-4" id="featured">
-        <div className="container mx-auto rounded-xl border border-gray-300 p-4 lg:px-8 lg:py-8">
+        <div className="container mx-auto rounded-2xl border border-gray-300 p-4 lg:px-8 lg:py-8">
           <ClientOnly>
             <VideoPlayer
               autoPlay
@@ -101,6 +172,37 @@ function Home({ homePage }) {
           />
         </div>
       )}
+
+      <Lightbox
+        close={() => setIsLightBoxOpen(false)}
+        controller={{
+          closeOnBackdropClick: true,
+          closeOnPullDown: true,
+          closeOnPullUp: true,
+        }}
+        index={photoIndex}
+        open={isLightBoxOpen}
+        slides={latestCampaignVideoSlides}
+        render={{
+          slide: ({ slide }) => {
+            const {
+              TitleElement: _titleElement,
+              DescriptionElement: _descriptionElement,
+              ...slideProps
+            } = slide
+
+            return slide.slideType === 'video-slide' ? (
+              <ClientOnly>
+                <div className="w-full px-8 text-white lg:px-12">
+                  <VideoPlayer noContainer {...slideProps} />
+                </div>
+              </ClientOnly>
+            ) : undefined
+          },
+          description: ({ DescriptionElement }) => <DescriptionElement />,
+          title: ({ TitleElement }) => <TitleElement />,
+        }}
+      />
     </Layout>
   )
 }
@@ -134,8 +236,28 @@ export async function getStaticProps() {
 			videoId,
       videoIdMobile,
       headerVideoWidthInPixelsMobile,
-      headerVideoHeightInPixelsMobile
-  		}
+      headerVideoHeightInPixelsMobile,
+      latestCampaignTitle,
+      latestCampaignSubtitle,
+      latestCampaignVideos[]->{
+        _id,
+        slug,
+        clientName,
+        title,
+        poster,
+        clientName,
+        description,
+        extraPaddingOnVideo,
+        frames,
+        videoId,
+        videoHeightAspectRatio,
+        videoWidthAspectRatio,
+        "shortClipMp4URL": shortClipMp4.asset->url,
+        "shortClipMp4S3URL": shortClipMp4S3.asset->fileURL,
+        "shortClipOgvURL": shortClipOgv.asset->url,
+        "shortClipOgvS3URL": shortClipOgvS3.asset->fileURL,
+      }
+  	}
   		`
   )
   return {

@@ -9,13 +9,7 @@ import dynamic from 'next/dynamic'
 import { useMemo } from 'react'
 import { sanityClient } from '../lib/sanity'
 
-const MomentsGallery = dynamic(
-  () =>
-    import('@/components/moments-gallery', {
-      loading: () => <p>Loading...</p>,
-      ssr: false,
-    })
-)
+const MomentsGallery = dynamic(() => import('@/components/moments-gallery'))
 
 function Moments({ momentsPage }) {
   const shuffledImages = useMemo(() => {

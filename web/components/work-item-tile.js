@@ -3,13 +3,26 @@ import Link from 'next/link'
 import { useState } from 'react'
 import urlForSanitySource from '../lib/urlForSanitySource'
 
-const WorkItemTile = ({ workItem, index, hideAfterCount = 999 }) => {
-  const [isHovered, setIsHovered] = useState(false)
-  const [hasHovered, setHasHovered] = useState(false)
+const Button = (props) => {
+  return <button {...props} />
+}
+
+const WorkItemTile = ({
+  workItem,
+  index,
+  hideAfterCount = 999,
+  onClick,
+  autoPlay = false,
+}) => {
+  const [isHovered, setIsHovered] = useState(autoPlay)
+  const [hasHovered, setHasHovered] = useState(autoPlay)
+
+  const ElementToRender = onClick ? Button : Link
 
   return (
-    <Link
-      href={`/work/${workItem.slug?.current}`}
+    <ElementToRender
+      href={onClick ? undefined : `/work/${workItem.slug?.current}`}
+      onClick={onClick ? onClick : undefined}
       key={workItem._id}
       className={classNames(
         {
@@ -30,12 +43,20 @@ const WorkItemTile = ({ workItem, index, hideAfterCount = 999 }) => {
         setHasHovered(true)
         setIsHovered(true)
       }}
-      onMouseLeave={() => setIsHovered(false)}
+      onMouseLeave={() => {
+        if (!autoPlay) {
+          setIsHovered(false)
+        }
+      }}
       onTouchStart={() => {
         setHasHovered(true)
         setIsHovered(true)
       }}
-      onTouchEnd={() => setIsHovered(false)}
+      onTouchEnd={() => {
+        if (!autoPlay) {
+          setIsHovered(false)
+        }
+      }}
     >
       {hasHovered &&
         (workItem.shortClipMp4URL || workItem.shortClipMp4S3URL) &&
@@ -90,7 +111,7 @@ const WorkItemTile = ({ workItem, index, hideAfterCount = 999 }) => {
           {workItem.title}
         </h3>
       </div>
-    </Link>
+    </ElementToRender>
   )
 }
 

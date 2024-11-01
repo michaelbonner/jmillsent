@@ -146,6 +146,7 @@ export async function getStaticProps({ params }) {
       props: { newsItem, newsItems },
     }
   } catch (error) {
+    console.error(error)
     return {
       props: {},
     }

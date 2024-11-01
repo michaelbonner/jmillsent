@@ -1,6 +1,5 @@
 import { H1, H2 } from '@/components/headings'
 import Layout from '@/components/layout'
-import MediumWhiteBar from '@/components/medium-white-bar'
 import NewsItemCard from '@/components/news-item-card'
 import { sanityClient } from '@/lib/sanity'
 import groq from 'groq'

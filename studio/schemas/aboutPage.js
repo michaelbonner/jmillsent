@@ -280,6 +280,12 @@ export default {
       group: 'section1',
     },
     {
+      name: 'section1Subtitle',
+      title: 'Section 1 subtitle',
+      type: 'string',
+      group: 'section1',
+    },
+    {
       name: 'section1Images',
       title: 'Images',
       type: 'array',

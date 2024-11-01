@@ -78,7 +78,7 @@ function Home({ homePage }) {
         </div>
       </div>
 
-      <div className="container mx-auto my-24 rounded-xl bg-white px-8 py-12">
+      <div className="container mx-auto my-24 rounded-2xl bg-white px-8 py-12">
         <div className="container mx-auto grid gap-8 px-4 text-center">
           <div>
             <H2 className="text-black">{homePage.latestCampaignTitle}</H2>
@@ -107,7 +107,7 @@ function Home({ homePage }) {
             <Link
               href="/about"
               className={classNames(
-                'min-w-[33%] border-2 border-black px-8 py-1 text-2xl font-bold uppercase tracking-widest text-black transition-all',
+                'min-w-[33%] rounded-xl border-2 border-black px-8 py-1 text-2xl font-bold uppercase tracking-widest text-black transition-all',
                 'hover:border-black hover:bg-gold hover:text-black'
               )}
             >
@@ -116,7 +116,7 @@ function Home({ homePage }) {
             <Link
               href="/work"
               className={classNames(
-                'min-w-[33%] border-2 border-black bg-black px-8 py-1 text-2xl font-bold uppercase tracking-widest transition-all',
+                'min-w-[33%] rounded-xl border-2 border-black bg-black px-8 py-1 text-2xl font-bold uppercase tracking-widest transition-all',
                 'hover:border-black hover:bg-gold hover:text-black'
               )}
             >
@@ -136,7 +136,7 @@ function Home({ homePage }) {
         </p>
       </div>
       <div className="mt-10 px-4 2xs:px-8 lg:px-4" id="featured">
-        <div className="container mx-auto rounded-xl border border-gray-300 p-4 lg:px-8 lg:py-8">
+        <div className="container mx-auto rounded-2xl border border-gray-300 p-4 lg:px-8 lg:py-8">
           <ClientOnly>
             <VideoPlayer
               autoPlay

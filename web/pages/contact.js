@@ -68,7 +68,7 @@ function Contact({ contact }) {
           <DividerBar yMargin="my-12 lg:my-24" />
 
           <div className="px-4">
-            <div className="mx-auto max-w-7xl rounded-xl border border-gray-500">
+            <div className="mx-auto max-w-7xl overflow-hidden rounded-2xl border border-gray-500">
               <Map />
             </div>
           </div>

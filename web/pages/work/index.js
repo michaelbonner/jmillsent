@@ -54,7 +54,7 @@ function Work({ workPage, workItems, workItemCategories }) {
               >
                 <button
                   className={classNames(
-                    'border px-2 py-1 uppercase transition-all',
+                    'rounded-xl border px-2 py-1 uppercase transition-all',
                     'lg:tracking-wider',
                     activeTab === tab.name
                       ? 'border-white'

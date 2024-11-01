@@ -17,6 +17,8 @@ import { useState } from 'react'
 import Lightbox from 'yet-another-react-lightbox'
 import Captions from 'yet-another-react-lightbox/plugins/captions'
 import { sanityClient } from '../lib/sanity'
+import LittleBlackBar from '@/components/little-black-bar'
+import { styles } from 'styles/styles'
 
 const VideoPlayer = dynamic(() => import('@/components/video-player'), {})
 
@@ -120,7 +122,7 @@ function Studio({ studioPage }) {
           'lg:mt-24'
         )}
       >
-        <div className="container mx-auto my-24 rounded-xl bg-white px-8 py-12 text-black">
+        <div className="container mx-auto my-24 rounded-2xl bg-white px-8 py-12 text-black">
           <H2>{studioPage.section1Title}</H2>
           <LittleBlackBar maxWidth="max-w-96" />
           {studioPage.section1Body && (
@@ -134,13 +136,7 @@ function Studio({ studioPage }) {
             </div>
           )}
           <div className="mt-10 flex justify-center">
-            <Link
-              href="/contact"
-              className={classNames(
-                'group flex items-center justify-center gap-4 border-2 border-black px-3 py-2 uppercase transition-colors',
-                'hover:bg-gold'
-              )}
-            >
+            <Link href="/contact" className={styles.buttonLink.blackBorder}>
               <span
                 className={classNames(
                   'font-outline text-2xl tracking-tighter',
@@ -201,7 +197,7 @@ function Studio({ studioPage }) {
             <div
               id="tour"
               className={classNames(
-                'container mx-auto mt-4 max-w-7xl rounded-xl border border-gray-300 p-4',
+                'container mx-auto mt-4 max-w-7xl rounded-2xl border border-gray-300 p-4',
                 'lg:mt-10 lg:p-8'
               )}
             >

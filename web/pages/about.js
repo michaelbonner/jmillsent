@@ -1,3 +1,4 @@
+import 'swiper/css'
 import 'yet-another-react-lightbox/plugins/captions.css'
 import 'yet-another-react-lightbox/styles.css'
 
@@ -5,6 +6,7 @@ import { ClientOnly } from '@/components/client-only'
 import DividerBar from '@/components/divider-bar'
 import { H1, H2, H3 } from '@/components/headings'
 import Layout from '@/components/layout'
+import LittleBlackBar from '@/components/little-black-bar'
 import LittleWhiteBar from '@/components/little-white-bar'
 import SanityImage from '@/components/sanity-image'
 import { PortableText, toPlainText } from '@portabletext/react'
@@ -16,12 +18,14 @@ import dynamic from 'next/dynamic'
 import Image from 'next/image'
 import Link from 'next/link'
 import { Fragment, useState } from 'react'
+import { styles } from 'styles/styles'
+import { Autoplay } from 'swiper/modules'
+import { Swiper, SwiperSlide } from 'swiper/react'
 import Lightbox from 'yet-another-react-lightbox'
 import Captions from 'yet-another-react-lightbox/plugins/captions'
 import Zoom from 'yet-another-react-lightbox/plugins/zoom'
 import { sanityClient } from '../lib/sanity'
 import urlForSanitySource from '../lib/urlForSanitySource'
-import { styles } from 'styles/styles'
 
 const VideoPlayer = dynamic(() => import('@/components/video-player'), {})
 
@@ -125,44 +129,66 @@ function About({ aboutPage }) {
       <div className="container mx-auto mt-12 px-4 text-center text-white lg:mt-24">
         <div className="container mx-auto my-24 rounded-2xl bg-white px-8 py-12 text-black">
           <H2>{aboutPage.section1Title}</H2>
+          <LittleBlackBar maxWidth="max-w-96" />
           {aboutPage.section1Body && (
             <div className="prose-lg mx-auto -mb-2 mt-4 max-w-6xl px-4 text-center lg:mt-10">
               <PortableText value={aboutPage.section1Body} />
             </div>
           )}
 
-          <div
-            className={classNames(
-              'mt-8 grid grid-cols-3 items-center justify-center gap-2',
-              'lg:mt-12 lg:flex lg:flex-nowrap lg:gap-2 lg:px-4'
-            )}
-          >
-            {(aboutPage.section1Images || []).map((image, index) => {
-              const width = 600
-              const height = 440
+          {aboutPage.section1Subtitle && (
+            <div className="mt-12">
+              <H3>{aboutPage.section1Subtitle}</H3>
+            </div>
+          )}
 
-              const altText =
-                image.caption ||
-                capitalize(
-                  (image.name || `image-${index}`)
-                    .replace(/-/g, ' ')
-                    .replace(/_/g, ' ')
-                    .replace('.jpg', '')
+          <div className="mx-auto mt-8 max-w-7xl">
+            <Swiper
+              autoplay={{
+                delay: 3500,
+                disableOnInteraction: false,
+              }}
+              loop
+              modules={[Autoplay]}
+              slidesPerView={2}
+              spaceBetween={24}
+              breakpoints={{
+                640: {
+                  slidesPerView: 3,
+                  spaceBetween: 24,
+                },
+              }}
+              speed={1000}
+            >
+              {(aboutPage.section1Images || []).map((image, index) => {
+                const width = 600
+                const height = 440
+
+                const altText =
+                  image.caption ||
+                  capitalize(
+                    (image.name || `image-${index}`)
+                      .replace(/-/g, ' ')
+                      .replace(/_/g, ' ')
+                      .replace('.jpg', '')
+                  )
+
+                return (
+                  <SwiperSlide key={index}>
+                    <div>
+                      <Image
+                        className="rounded-lg border border-gray-100"
+                        alt={altText}
+                        height={height}
+                        src={`${image.imageUrl}?w=${width}&h=${height}&auto=format&fit=crop&crop=focalpoint`}
+                        width={width}
+                        unoptimized
+                      />
+                    </div>
+                  </SwiperSlide>
                 )
-
-              return (
-                <div className="flex-1" key={index}>
-                  <Image
-                    className="rounded-lg border border-gray-100"
-                    alt={altText}
-                    height={height}
-                    src={`${image.imageUrl}?w=${width}&h=${height}&auto=format&fit=crop&crop=focalpoint`}
-                    width={width}
-                    unoptimized
-                  />
-                </div>
-              )
-            })}
+              })}
+            </Swiper>
           </div>
         </div>
 
@@ -735,6 +761,7 @@ export async function getStaticProps() {
 			poster,
 			section1Body,
 			section1Title,
+      section1Subtitle,
       section1Images[]{
         caption,
         "imageUrl": asset->url,

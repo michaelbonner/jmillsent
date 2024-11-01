@@ -6,10 +6,12 @@ import Layout from '@/components/layout'
 import WorkItemTile from '@/components/work-item-tile'
 import { sanityClient } from '@/lib/sanity'
 import { PortableText } from '@portabletext/react'
+import classNames from 'classnames'
 import groq from 'groq'
 import useIsDesktop from 'hooks/useIsDesktop'
 import dynamic from 'next/dynamic'
 import Image from 'next/image'
+import Link from 'next/link'
 import { useState } from 'react'
 import Lightbox from 'yet-another-react-lightbox'
 
@@ -89,6 +91,7 @@ function Home({ homePage }) {
             {homePage.latestCampaignVideos.map((video, index) => {
               return (
                 <WorkItemTile
+                  autoPlay
                   onClick={() => {
                     setIsLightBoxOpen(true)
                     setPhotoIndex(index)
@@ -98,6 +101,27 @@ function Home({ homePage }) {
                 />
               )
             })}
+          </div>
+
+          <div className="mt-3 grid gap-4 lg:flex lg:justify-around lg:gap-8 lg:px-8">
+            <Link
+              href="/about"
+              className={classNames(
+                'min-w-[33%] border-2 border-black px-8 py-1 text-2xl font-bold uppercase tracking-widest text-black transition-all',
+                'hover:border-black hover:bg-gold hover:text-black'
+              )}
+            >
+              Learn More
+            </Link>
+            <Link
+              href="/work"
+              className={classNames(
+                'min-w-[33%] border-2 border-black bg-black px-8 py-1 text-2xl font-bold uppercase tracking-widest transition-all',
+                'hover:border-black hover:bg-gold hover:text-black'
+              )}
+            >
+              Explore Work
+            </Link>
           </div>
         </div>
       </div>

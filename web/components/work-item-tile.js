@@ -7,9 +7,15 @@ const Button = (props) => {
   return <button {...props} />
 }
 
-const WorkItemTile = ({ workItem, index, hideAfterCount = 999, onClick }) => {
-  const [isHovered, setIsHovered] = useState(false)
-  const [hasHovered, setHasHovered] = useState(false)
+const WorkItemTile = ({
+  workItem,
+  index,
+  hideAfterCount = 999,
+  onClick,
+  autoPlay = false,
+}) => {
+  const [isHovered, setIsHovered] = useState(autoPlay)
+  const [hasHovered, setHasHovered] = useState(autoPlay)
 
   const ElementToRender = onClick ? Button : Link
 
@@ -37,12 +43,20 @@ const WorkItemTile = ({ workItem, index, hideAfterCount = 999, onClick }) => {
         setHasHovered(true)
         setIsHovered(true)
       }}
-      onMouseLeave={() => setIsHovered(false)}
+      onMouseLeave={() => {
+        if (!autoPlay) {
+          setIsHovered(false)
+        }
+      }}
       onTouchStart={() => {
         setHasHovered(true)
         setIsHovered(true)
       }}
-      onTouchEnd={() => setIsHovered(false)}
+      onTouchEnd={() => {
+        if (!autoPlay) {
+          setIsHovered(false)
+        }
+      }}
     >
       {hasHovered &&
         (workItem.shortClipMp4URL || workItem.shortClipMp4S3URL) &&

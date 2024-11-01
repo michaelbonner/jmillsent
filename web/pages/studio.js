@@ -122,6 +122,7 @@ function Studio({ studioPage }) {
       >
         <div className="container mx-auto my-24 rounded-xl bg-white px-8 py-12 text-black">
           <H2>{studioPage.section1Title}</H2>
+          <LittleBlackBar maxWidth="max-w-96" />
           {studioPage.section1Body && (
             <div
               className={classNames(

@@ -1,5 +1,7 @@
-import Lottie from 'lottie-react'
+import dynamic from 'next/dynamic'
 import jmeAnimation from '../public/animations/JME_Logo_White_V2.json'
+
+const Lottie = dynamic(() => import('lottie-react'), { ssr: false })
 
 const LoadingAnimation = ({ setIsAnimationComplete }) => {
   return (

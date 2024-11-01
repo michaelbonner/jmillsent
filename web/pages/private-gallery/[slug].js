@@ -127,7 +127,7 @@ const PortfolioItem = ({ portfolioItem = {}, portfolioPagePassword }) => {
                   {isDesktop === false && (
                     <>
                       <button
-                        onClick={(e) => {
+                        onClick={() => {
                           setIsOpen(!isOpen)
                         }}
                         className="flex place-items-center"
@@ -337,6 +337,7 @@ export async function getStaticProps({ params }) {
       props: { portfolioItem, portfolioItems, portfolioPagePassword },
     }
   } catch (error) {
+    console.error(error)
     return {
       props: {},
     }

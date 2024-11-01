@@ -285,11 +285,11 @@ const ContactForm = ({ interests, successMessage = '' }) => {
                 <button
                   type="submit"
                   className={classNames(
-                    `mx-auto inline-block w-full max-w-[450px] text-lg font-bold uppercase`,
-                    `border border-gray-500 px-8 py-2.5 tracking-wider`,
-                    `bg-black bg-opacity-50 transition-all`,
-                    `hover:bg-gold hover:text-black`,
-                    `focus:bg-gold focus:text-black`,
+                    'mx-auto inline-block w-full max-w-[450px] rounded-xl text-lg font-bold uppercase',
+                    'border border-gray-500 px-8 py-2.5 tracking-wider',
+                    'bg-black bg-opacity-50 transition-all',
+                    'hover:bg-gold hover:text-black',
+                    'focus:bg-gold focus:text-black',
                     {
                       'opacity-50': isSubmitting || !isValid,
                     }

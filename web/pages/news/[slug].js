@@ -10,6 +10,7 @@ import dynamic from 'next/dynamic'
 import Image from 'next/image'
 import Link from 'next/link'
 import urlForSanitySource from '../../lib/urlForSanitySource'
+import { styles } from 'styles/styles'
 
 const VideoPlayer = dynamic(() => import('@/components/video-player'), {})
 
@@ -29,7 +30,7 @@ const NewsItem = ({ newsItem = {} }) => {
             />
           )}
           {newsItem.videoId && (
-            <div className="container mx-auto max-w-7xl rounded-xl border border-gray-300 px-8 py-8">
+            <div className="container mx-auto max-w-7xl rounded-2xl border border-gray-300 px-8 py-8">
               <ClientOnly>
                 <VideoPlayer
                   poster={newsItem.heroImage}
@@ -57,11 +58,8 @@ const NewsItem = ({ newsItem = {} }) => {
             </div>
           )}
           <div className="mt-10">
-            <div className="text-center">
-              <Link
-                href="/news"
-                className="group mt-4 inline-flex items-center justify-center gap-3 border-2 border-gray-300 px-3 py-1 text-2xl uppercase transition-colors hover:bg-gold"
-              >
+            <div className="mt-4 text-center text-2xl">
+              <Link href="/news" className={styles.buttonLink.default}>
                 <span className="font-outline tracking-tighter text-gray-300 group-hover:text-black">
                   More
                 </span>

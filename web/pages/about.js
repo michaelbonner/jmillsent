@@ -21,6 +21,7 @@ import Captions from 'yet-another-react-lightbox/plugins/captions'
 import Zoom from 'yet-another-react-lightbox/plugins/zoom'
 import { sanityClient } from '../lib/sanity'
 import urlForSanitySource from '../lib/urlForSanitySource'
+import { styles } from 'styles/styles'
 
 const VideoPlayer = dynamic(() => import('@/components/video-player'), {})
 
@@ -122,7 +123,7 @@ function About({ aboutPage }) {
       />
 
       <div className="container mx-auto mt-12 px-4 text-center text-white lg:mt-24">
-        <div className="container mx-auto my-24 rounded-xl bg-white px-8 py-12 text-black">
+        <div className="container mx-auto my-24 rounded-2xl bg-white px-8 py-12 text-black">
           <H2>{aboutPage.section1Title}</H2>
           {aboutPage.section1Body && (
             <div className="prose-lg mx-auto -mb-2 mt-4 max-w-6xl px-4 text-center lg:mt-10">
@@ -174,7 +175,7 @@ function About({ aboutPage }) {
           </p>
         </div>
         <div className="mt-4 lg:mt-10" id="reel">
-          <div className="container mx-auto rounded-xl border border-gray-300 p-4 lg:p-8">
+          <div className="container mx-auto rounded-2xl border border-gray-300 p-4 lg:p-8">
             <ClientOnly>
               <VideoPlayer
                 autoPlay
@@ -280,7 +281,7 @@ function About({ aboutPage }) {
         <DividerBar />
 
         {/* Ad Formats */}
-        <div className="container mx-auto my-24 rounded-xl bg-white px-8 py-12 text-black">
+        <div className="container mx-auto my-24 rounded-2xl bg-white px-8 py-12 text-black">
           <section
             className="mx-auto grid max-w-7xl gap-y-4 text-center"
             id="ad-formats"
@@ -351,7 +352,7 @@ function About({ aboutPage }) {
             <SanityImage
               alt={aboutPage.directorName}
               image={aboutPage.directorImage}
-              className="h-full w-full rounded-xl"
+              className="h-full w-full rounded-2xl"
             />
             <div
               className={classNames(
@@ -386,7 +387,7 @@ function About({ aboutPage }) {
           <div className="flex justify-center">
             <a
               href="https://jeremymillerdirector.com/"
-              className="group flex items-center justify-center gap-4 border-2 border-gray-300 px-3 py-2 uppercase transition-colors hover:bg-gold"
+              className={styles.buttonLink.default}
               rel="noreferrer"
               target="_blank"
             >
@@ -543,7 +544,7 @@ function About({ aboutPage }) {
             {aboutPage.company3Title}
           </H2>
 
-          <div className="container mx-auto mt-4 max-w-7xl rounded-xl border border-gray-300 p-4 lg:mt-10 lg:p-8">
+          <div className="container mx-auto mt-4 max-w-7xl rounded-2xl border border-gray-300 p-4 lg:mt-10 lg:p-8">
             <ClientOnly>
               <VideoPlayer
                 autoPlay
@@ -565,10 +566,10 @@ function About({ aboutPage }) {
               <PortableText value={aboutPage.company3Body} />
             </div>
           )}
-          <div className="flex justify-center">
+          <div className="mt-8 flex justify-center">
             <a
               href={aboutPage.company3Link || 'https://www.company3.com/'}
-              className="group mt-4 flex items-center justify-center gap-4 border-2 border-gray-300 px-3 py-2 uppercase transition-colors hover:bg-gold sm:mt-10"
+              className={styles.buttonLink.default}
               target="_blank"
             >
               <span className="font-outline text-2xl tracking-tighter text-gray-300 group-hover:text-black lg:text-3xl">

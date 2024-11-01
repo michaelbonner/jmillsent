@@ -8,6 +8,7 @@ import LittleGoldBar from './little-gold-bar'
 import Date from './date'
 import { useRouter } from 'next/router'
 import classNames from 'classnames'
+import { styles as globalStyles } from 'styles/styles'
 
 const BackgroundText = ({
   image,
@@ -48,7 +49,7 @@ const BackgroundText = ({
       <div className="group relative w-full" style={{ lineHeight: 0 }}>
         <Image
           alt={imageAlt}
-          className="rounded-xl"
+          className="rounded-2xl"
           height={600}
           src={`${urlForSanitySource(
             image
@@ -81,12 +82,9 @@ const BackgroundText = ({
               </div>
               {customButtonText1 && customButtonText2 && customButtonText3 && (
                 <div
-                  className={`self-center ${styles[leftOrRight].buttonPosition}`}
+                  className={`mt-4 self-center text-2xl leading-normal ${styles[leftOrRight].buttonPosition}`}
                 >
-                  <Link
-                    href={slug}
-                    className="inline-flex items-center justify-center gap-3 border-2 border-gray-300 px-3 py-1 text-2xl uppercase text-gray-300 transition-colors hover:bg-gold hover:text-black"
-                  >
+                  <Link href={slug} className={globalStyles.buttonLink.default}>
                     <span className="font-outline tracking-tighter">
                       {customButtonText1}
                     </span>

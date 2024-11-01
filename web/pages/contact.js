@@ -87,7 +87,7 @@ function Contact({ contact }) {
                 </div>
                 <div className="prose prose-lg leading-8">
                   <a
-                    className="text-gray-500 no-underline"
+                    className="no-underline hover:underline"
                     href="https://g.page/jmillsent?share"
                     target="_blank"
                     rel="noopener noreferrer"

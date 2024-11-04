@@ -313,6 +313,7 @@ function About({ aboutPage }) {
             id="ad-formats"
           >
             {aboutPage.adFormatsTitle && <H2>{aboutPage.adFormatsTitle}</H2>}
+            <LittleBlackBar maxWidth="max-w-96" yMargin="my-4" />
             {aboutPage.adFormatsSubtitle && (
               <p className="font-outline text-2xl lg:text-4xl">
                 {aboutPage.adFormatsSubtitle}

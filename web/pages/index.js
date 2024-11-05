@@ -103,11 +103,11 @@ function Home({ homePage }) {
             })}
           </div>
 
-          <div className="mt-3 grid gap-4 lg:flex lg:justify-around lg:gap-8 lg:px-8">
+          <div className="mt-3 grid gap-4 lg:flex lg:justify-center lg:gap-12 lg:px-8">
             <Link
               href="/about"
               className={classNames(
-                'min-w-[33%] rounded-xl border-2 border-black px-8 py-1 text-2xl font-bold uppercase tracking-widest text-black transition-all',
+                'rounded-lg border-2 border-black px-8 py-0.5 font-bold uppercase tracking-widest text-black transition-all',
                 'hover:border-black hover:bg-gold hover:text-black'
               )}
             >
@@ -116,7 +116,7 @@ function Home({ homePage }) {
             <Link
               href="/work"
               className={classNames(
-                'min-w-[33%] rounded-xl border-2 border-black bg-black px-8 py-1 text-2xl font-bold uppercase tracking-widest transition-all',
+                'rounded-lg border-2 border-black bg-black px-8 py-0.5 font-bold uppercase tracking-widest transition-all',
                 'hover:border-black hover:bg-gold hover:text-black'
               )}
             >

@@ -1,7 +1,6 @@
 import { ClientOnly } from '@/components/client-only'
 import { H1 } from '@/components/headings'
 import Layout from '@/components/layout'
-import LittleWhiteBar from '@/components/little-white-bar'
 import groq from 'groq'
 import capitalize from 'just-capitalize'
 import shuffle from 'just-shuffle'
@@ -51,10 +50,10 @@ function Moments({ momentsPage }) {
       heroVideoId={momentsPage.videoId}
       heroContent={heroContent}
     >
-      <LittleWhiteBar />
-
       <ClientOnly>
-        <MomentsGallery images={shuffledImages} />
+        <div className="container mx-auto my-24 rounded-2xl bg-white p-8 text-black lg:p-10">
+          <MomentsGallery images={shuffledImages} />
+        </div>
       </ClientOnly>
     </Layout>
   )

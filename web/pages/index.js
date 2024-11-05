@@ -104,7 +104,7 @@ function Home({ homePage }) {
             })}
           </div>
 
-          <div className="mt-3 grid gap-4 lg:flex lg:justify-center lg:gap-12 lg:px-8">
+          <div className="mt-3 grid gap-4 lg:flex lg:justify-center lg:gap-16 lg:px-8">
             <Link
               href="/about"
               className={classNames(

@@ -68,7 +68,7 @@ export const MomentsGallery = ({ images = [] }) => {
         zoom={{ ref: zoomRef }}
       />
 
-      <section className="mx-auto my-12 max-w-13xl px-6 text-center lg:mt-16">
+      <section className="mx-auto max-w-13xl text-center">
         {/* desktop grid */}
         <div
           className={classNames(

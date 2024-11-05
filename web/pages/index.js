@@ -98,6 +98,7 @@ function Home({ homePage }) {
                   }}
                   workItem={video}
                   key={index}
+                  showWithPlayLockup
                 />
               )
             })}

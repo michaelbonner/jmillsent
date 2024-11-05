@@ -1,9 +1,8 @@
 import classNames from 'classnames'
 import Link from 'next/link'
 import { useState } from 'react'
-import urlForSanitySource from '../lib/urlForSanitySource'
 import { GrPlay } from 'react-icons/gr'
-import LittleGoldBar from './little-gold-bar'
+import urlForSanitySource from '../lib/urlForSanitySource'
 
 const Button = (props) => {
   return <button {...props} />

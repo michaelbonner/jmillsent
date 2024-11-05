@@ -26,7 +26,6 @@ import Captions from 'yet-another-react-lightbox/plugins/captions'
 import Zoom from 'yet-another-react-lightbox/plugins/zoom'
 import { sanityClient } from '../lib/sanity'
 import urlForSanitySource from '../lib/urlForSanitySource'
-import { IoChevronBackSharp, IoChevronForwardSharp } from 'react-icons/io5'
 
 const VideoPlayer = dynamic(() => import('@/components/video-player'), {})
 

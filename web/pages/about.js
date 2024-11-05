@@ -143,7 +143,7 @@ function About({ aboutPage }) {
             </div>
           )}
 
-          <div className="-mx-8 mt-8 flex max-w-7xl lg:-mx-4">
+          <div className="-mx-8 mt-8 flex max-w-7xl lg:-mx-4 2xl:mx-auto">
             <button
               className="p-4"
               onClick={() => controlledSwiper?.slidePrev()}

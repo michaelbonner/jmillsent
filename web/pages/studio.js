@@ -232,12 +232,11 @@ function Studio({ studioPage }) {
               {studioPage.studioItemSectionSubtitle}
             </p>
           </div>
+
           {studioPage.studioItems?.length > 0 && (
             <div
               className={classNames(
-                'mx-auto mt-10 grid max-w-7xl gap-y-4',
-                'sm:gap-y-8',
-                'lg:gap-y-12'
+                'mx-auto mt-12 grid max-w-7xl gap-y-8 rounded-2xl bg-white p-8 lg:mt-24 lg:gap-y-10 lg:p-10'
               )}
             >
               {studioPage.studioItems.map((service, index) => {

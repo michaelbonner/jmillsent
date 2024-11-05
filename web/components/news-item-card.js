@@ -3,7 +3,7 @@ import BackgroundText from './background-text-section'
 const NewsItemCard = ({ newsItem }) => {
   const leftOrRight = newsItem.rightAlign ? 'right' : 'left'
   return (
-    <div className="z-10 grid w-full gap-y-4 px-8 lg:max-w-5xl xl:max-w-7xl">
+    <div className="z-10 w-full xl:max-w-7xl">
       <BackgroundText
         leftOrRight={leftOrRight}
         image={newsItem?.poster || newsItem?.heroImage}

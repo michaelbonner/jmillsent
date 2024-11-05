@@ -466,56 +466,65 @@ function About({ aboutPage }) {
 
         {/* team section */}
         <section className="mx-auto max-w-7xl text-center lg:px-0" id="team">
-          <H2>{aboutPage.teamTitle}</H2>
-          <p className="-mt-1.5 font-outline text-xl uppercase lg:text-5xl">
-            {aboutPage.teamSubtitle}
-          </p>
-          <div
-            className={classNames(
-              'mt-10 grid grid-cols-2 gap-x-2 gap-y-6',
-              'sm:gap-x-0 sm:gap-y-8',
-              'md:grid-cols-3',
-              'lg:grid-cols-8 lg:gap-x-12 lg:gap-y-6'
-            )}
-          >
-            {aboutPage.teamMembers.map((teamMember, teamMemberIndex) => {
-              const width = isDesktop ? 400 : 200
-              const height = isDesktop ? 460 : 250
-              return (
-                <Fragment key={teamMember._id}>
-                  {aboutPage.teamMembers.length % 4 === 3 &&
-                    teamMemberIndex === aboutPage.teamMembers.length - 3 &&
-                    browserWidth >= 1024 && <div className=""></div>}
-                  {aboutPage.teamMembers.length % 4 === 2 &&
-                    teamMemberIndex === aboutPage.teamMembers.length - 2 &&
-                    browserWidth >= 1024 && <div className="col-span-2"></div>}
-                  {aboutPage.teamMembers.length % 4 === 1 &&
-                    teamMemberIndex === aboutPage.teamMembers.length - 1 &&
-                    browserWidth >= 1024 && <div className="col-span-3"></div>}
-                  <div className="lg:col-span-2">
-                    <Image
-                      alt={teamMember.name}
-                      className="mx-auto rounded-xl"
-                      height={height}
-                      src={urlForSanitySource(teamMember.image)
-                        .width(width)
-                        .height(height)
-                        .url()}
-                      width={width}
-                    />
-                    <p className="mt-2 text-sm font-extrabold uppercase lg:text-2xl">
-                      {teamMember.name}
-                    </p>
-                    <div className="px-4">
-                      <LittleWhiteBar yMargin={'my-2'} />
+          <div className="rounded-2xl bg-white p-8 text-black lg:p-10">
+            <H2>{aboutPage.teamTitle}</H2>
+            <p className="-mt-1.5 font-outline text-xl uppercase lg:text-5xl">
+              {aboutPage.teamSubtitle}
+            </p>
+            <div
+              className={classNames(
+                'mt-10 grid grid-cols-2 gap-x-2 gap-y-6',
+                'sm:gap-x-0 sm:gap-y-8',
+                'md:grid-cols-3',
+                'lg:mt-12 lg:grid-cols-8 lg:gap-x-12 lg:gap-y-6'
+              )}
+            >
+              {aboutPage.teamMembers.map((teamMember, teamMemberIndex) => {
+                const width = isDesktop ? 400 : 200
+                const height = isDesktop ? 460 : 250
+                return (
+                  <Fragment key={teamMember._id}>
+                    {aboutPage.teamMembers.length % 4 === 3 &&
+                      teamMemberIndex === aboutPage.teamMembers.length - 3 &&
+                      browserWidth >= 1024 && <div className=""></div>}
+                    {aboutPage.teamMembers.length % 4 === 2 &&
+                      teamMemberIndex === aboutPage.teamMembers.length - 2 &&
+                      browserWidth >= 1024 && (
+                        <div className="col-span-2"></div>
+                      )}
+                    {aboutPage.teamMembers.length % 4 === 1 &&
+                      teamMemberIndex === aboutPage.teamMembers.length - 1 &&
+                      browserWidth >= 1024 && (
+                        <div className="col-span-3"></div>
+                      )}
+                    <div className="lg:col-span-2">
+                      <Image
+                        alt={teamMember.name}
+                        className="mx-auto rounded-xl"
+                        height={height}
+                        src={urlForSanitySource(teamMember.image)
+                          .width(width)
+                          .height(height)
+                          .url()}
+                        width={width}
+                      />
+                      <p className="mt-2 text-sm font-extrabold uppercase lg:text-2xl">
+                        {teamMember.name}
+                      </p>
+                      <div className="px-4">
+                        <LittleBlackBar
+                          maxWidth="max-w-full"
+                          yMargin={'my-2'}
+                        />
+                      </div>
+                      <p className="text-sm font-bold uppercase tracking-wider lg:font-outline lg:text-2xl">
+                        {teamMember.title}
+                      </p>
                     </div>
-                    <p className="text-sm font-bold uppercase tracking-wider lg:font-outline lg:text-2xl">
-                      {teamMember.title}
-                    </p>
-                  </div>
-                </Fragment>
-              )
-            })}
+                  </Fragment>
+                )
+              })}
+            </div>
           </div>
         </section>
         {/* end: team section */}

@@ -19,13 +19,14 @@ import Image from 'next/image'
 import Link from 'next/link'
 import { Fragment, useState } from 'react'
 import { styles } from 'styles/styles'
-import { Autoplay } from 'swiper/modules'
+import { Autoplay, Controller } from 'swiper/modules'
 import { Swiper, SwiperSlide } from 'swiper/react'
 import Lightbox from 'yet-another-react-lightbox'
 import Captions from 'yet-another-react-lightbox/plugins/captions'
 import Zoom from 'yet-another-react-lightbox/plugins/zoom'
 import { sanityClient } from '../lib/sanity'
 import urlForSanitySource from '../lib/urlForSanitySource'
+import { IoChevronBackSharp, IoChevronForwardSharp } from 'react-icons/io5'
 
 const VideoPlayer = dynamic(() => import('@/components/video-player'), {})
 
@@ -33,6 +34,7 @@ function About({ aboutPage }) {
   const [isGalleryModelOpen, setIsGalleryModelOpen] = useState(false)
   const [isServicesLightBoxOpen, setIsServicesLightBoxOpen] = useState(false)
   const [servicesPhotoIndex, setServicesPhotoIndex] = useState(0)
+  const [controlledSwiper, setControlledSwiper] = useState(null)
 
   const isDesktop = useIsDesktop()
   const [photoIndex, setPhotoIndex] = useState(0)
@@ -142,22 +144,37 @@ function About({ aboutPage }) {
             </div>
           )}
 
-          <div className="mx-auto mt-8 max-w-7xl">
+          <div className="-mx-8 mt-8 flex max-w-7xl lg:-mx-4">
+            <button
+              className="p-4"
+              onClick={() => controlledSwiper?.slidePrev()}
+            >
+              <Image
+                className="rotate-180 opacity-50 transition-opacity duration-300 hover:opacity-80"
+                alt="chevron-arrow"
+                src="/images/chevron-arrow.svg"
+                width={81 / 2}
+                height={172 / 2}
+              />
+            </button>
             <Swiper
               autoplay={{
                 delay: 3500,
                 disableOnInteraction: false,
               }}
-              loop
-              modules={[Autoplay]}
-              slidesPerView={2}
-              spaceBetween={24}
               breakpoints={{
                 640: {
                   slidesPerView: 3,
                   spaceBetween: 24,
                 },
               }}
+              className="px-8"
+              loop
+              modules={[Autoplay, Controller]}
+              navigation={true}
+              onSwiper={setControlledSwiper}
+              slidesPerView={2}
+              spaceBetween={24}
               speed={1000}
             >
               {(aboutPage.section1Images || []).map((image, index) => {
@@ -189,6 +206,18 @@ function About({ aboutPage }) {
                 )
               })}
             </Swiper>
+            <button
+              className="p-4"
+              onClick={() => controlledSwiper?.slideNext()}
+            >
+              <Image
+                className="opacity-50 transition-opacity duration-300 hover:opacity-80"
+                alt="chevron-arrow"
+                src="/images/chevron-arrow.svg"
+                width={81 / 2}
+                height={172 / 2}
+              />
+            </button>
           </div>
         </div>
 

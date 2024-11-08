@@ -115,20 +115,14 @@ function Studio({ studioPage }) {
         }))}
       />
 
-      <div
-        className={classNames(
-          'container mx-auto mt-12 px-4 text-center text-white',
-          'sm:px-6',
-          'lg:mt-24'
-        )}
-      >
-        <div className="mx-auto my-24 max-w-7xl rounded-2xl bg-white px-8 py-12 text-black">
+      <div className="mx-auto max-w-7xl px-8">
+        <div className="mx-auto my-24 max-w-7xl rounded-2xl bg-white px-8 py-12 text-center text-black">
           <H2>{studioPage.section1Title}</H2>
           <LittleBlackBar maxWidth="max-w-96" />
           {studioPage.section1Body && (
             <div
               className={classNames(
-                'prose-lg mx-auto -mb-2 mt-4 max-w-5xl px-4 text-center',
+                'prose-lg mx-auto -mb-2 mt-4 max-w-5xl px-4',
                 'lg:mt-10'
               )}
             >
@@ -214,7 +208,7 @@ function Studio({ studioPage }) {
 
         {/* studioItems */}
         <section id="studio-items">
-          <div className="container mx-auto -mt-1.5 px-8 text-center uppercase">
+          <div className="container mx-auto -mt-1.5 text-center uppercase">
             <H2>{studioPage.studioItemSectionTitle}</H2>
             <p
               className={classNames(

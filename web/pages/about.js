@@ -179,7 +179,7 @@ function About({ aboutPage }) {
               </button>
               <Swiper
                 autoplay={{
-                  delay: 3500,
+                  delay: 1_500,
                   disableOnInteraction: false,
                 }}
                 breakpoints={{

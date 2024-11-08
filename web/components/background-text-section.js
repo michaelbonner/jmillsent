@@ -60,7 +60,7 @@ const BackgroundText = ({
           className={`w-full rounded-2xl lg:absolute ${styles[leftOrRight].containerPosition} bottom-0 top-0 h-full ${styles[leftOrRight].gradientDirection} from-black to-transparent opacity-70 transition-all duration-500 group-hover:opacity-80`}
         />
         <div
-          className={`rounded-2xl lg:absolute ${styles[leftOrRight].containerPosition} bottom-0 top-0 ${styles[leftOrRight].textAlign} flex flex-col items-start justify-center sm:gap-y-2`}
+          className={`rounded-2xl text-black lg:absolute lg:text-white ${styles[leftOrRight].containerPosition} bottom-0 top-0 ${styles[leftOrRight].textAlign} flex flex-col items-start justify-center sm:gap-y-2`}
         >
           <H3
             className={`${titleStyle} !mb-0 !mt-3 inline w-full py-1 text-center uppercase`}

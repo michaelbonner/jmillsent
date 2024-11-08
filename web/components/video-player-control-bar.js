@@ -1,13 +1,6 @@
 import classNames from 'classnames'
 import { useEffect, useRef, useState } from 'react'
-import {
-  GrContract,
-  GrExpand,
-  GrPause,
-  GrPlay,
-  GrVolume,
-  GrVolumeMute,
-} from 'react-icons/gr'
+import { GrPause, GrPlay, GrVolume, GrVolumeMute } from 'react-icons/gr'
 
 export const VideoPlayerControlBar = ({
   handleScrubberClick,

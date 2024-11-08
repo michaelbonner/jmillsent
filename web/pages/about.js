@@ -229,7 +229,7 @@ function About({ aboutPage }) {
           </p>
         </div>
         <div className="mt-4 lg:mt-10" id="reel">
-          <div className="container mx-auto rounded-2xl border border-gray-300 p-4 lg:p-8">
+          <div className="container mx-auto rounded-2xl">
             <ClientOnly>
               <VideoPlayer
                 autoPlay
@@ -608,7 +608,7 @@ function About({ aboutPage }) {
             {aboutPage.company3Title}
           </H2>
 
-          <div className="container mx-auto mt-4 max-w-7xl rounded-2xl border border-gray-300 p-4 lg:mt-10 lg:p-8">
+          <div className="container mx-auto mt-4 max-w-7xl rounded-2xl lg:mt-10">
             <ClientOnly>
               <VideoPlayer
                 autoPlay

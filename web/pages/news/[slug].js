@@ -30,7 +30,7 @@ const NewsItem = ({ newsItem = {} }) => {
             />
           )}
           {newsItem.videoId && (
-            <div className="container mx-auto max-w-7xl rounded-2xl border border-gray-300 px-8 py-8">
+            <div className="container mx-auto max-w-7xl rounded-2xl">
               <ClientOnly>
                 <VideoPlayer
                   poster={newsItem.heroImage}

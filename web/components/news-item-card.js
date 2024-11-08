@@ -7,7 +7,7 @@ const NewsItemCard = ({ newsItem }) => {
       <BackgroundText
         leftOrRight={leftOrRight}
         image={newsItem?.poster || newsItem?.heroImage}
-        imageAlt={newsItem?.seoTitle}
+        imageAlt={newsItem?.seoTitle || 'News'}
         title={newsItem?.title}
         description={newsItem?.description}
         date={newsItem?.date}

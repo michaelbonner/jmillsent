@@ -90,7 +90,7 @@ const PortfolioItem = ({ portfolioItem = {}, portfolioPagePassword }) => {
         {isLoggedIn && (
           <>
             <div className="px-4 lg:px-8">
-              <div className="my-12 max-w-9xl rounded-2xl border border-gray-300 p-4 px-4 xl:mx-auto xl:p-8">
+              <div className="my-12 max-w-9xl rounded-2xl xl:mx-auto">
                 <ClientOnly>
                   <VideoPlayer
                     client={portfolioItem.clientName}

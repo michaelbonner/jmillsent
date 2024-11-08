@@ -137,7 +137,7 @@ function Home({ homePage }) {
         </p>
       </div>
       <div className="mt-10 px-4 2xs:px-8 lg:px-4" id="featured">
-        <div className="container mx-auto rounded-2xl border border-gray-300 p-4 lg:px-8 lg:py-8">
+        <div className="container mx-auto rounded-2xl">
           <ClientOnly>
             <VideoPlayer
               autoPlay

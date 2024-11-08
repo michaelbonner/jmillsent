@@ -122,7 +122,7 @@ function Studio({ studioPage }) {
           'lg:mt-24'
         )}
       >
-        <div className="container mx-auto my-24 rounded-2xl bg-white px-8 py-12 text-black">
+        <div className="mx-auto my-24 max-w-7xl rounded-2xl bg-white px-8 py-12 text-black">
           <H2>{studioPage.section1Title}</H2>
           <LittleBlackBar maxWidth="max-w-96" />
           {studioPage.section1Body && (
@@ -197,8 +197,8 @@ function Studio({ studioPage }) {
             <div
               id="tour"
               className={classNames(
-                'container mx-auto mt-4 max-w-7xl rounded-2xl border border-gray-300 p-4',
-                'lg:mt-10 lg:p-8'
+                'container mx-auto mt-4 max-w-7xl rounded-2xl',
+                'lg:mt-10'
               )}
             >
               <ClientOnly>

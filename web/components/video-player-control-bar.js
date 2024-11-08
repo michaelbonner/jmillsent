@@ -167,7 +167,12 @@ export const VideoPlayerControlBar = ({
               toggleFullScreen(false)
             }}
           >
-            <GrContract />
+            {/* eslint-disable-next-line @next/next/no-img-element */}
+            <img
+              className="size-14"
+              src="/images/fullscreen-close.svg"
+              alt="Fullscreen"
+            />
           </button>
         ) : (
           <button
@@ -178,7 +183,12 @@ export const VideoPlayerControlBar = ({
               toggleFullScreen(true)
             }}
           >
-            <GrExpand />
+            {/* eslint-disable-next-line @next/next/no-img-element */}
+            <img
+              className="size-14"
+              src="/images/fullscreen-open.svg"
+              alt="Fullscreen"
+            />
           </button>
         )}
       </div>

@@ -135,6 +135,31 @@ function Studio({ studioPage }) {
               <PortableText value={studioPage.section1Body} />
             </div>
           )}
+
+          {studioPage.tourVideoId && (
+            <div
+              id="tour"
+              className={classNames(
+                'container mx-auto mt-4 rounded-2xl px-10 text-white',
+                'lg:mt-10'
+              )}
+            >
+              <ClientOnly>
+                <VideoPlayer
+                  autoPlay
+                  client={studioPage.tourVideoClient}
+                  description={studioPage.tourVideoDescription}
+                  poster={studioPage.tourVideoPoster}
+                  title={studioPage.tourVideoTitle}
+                  videoHeightAspectRatio={studioPage.tourVideoHeightAspectRatio}
+                  videoId={studioPage.tourVideoId}
+                  videoIdShort={studioPage.tourVideoIdShort}
+                  videoWidthAspectRatio={studioPage.tourVideoWidthAspectRatio}
+                />
+              </ClientOnly>
+            </div>
+          )}
+
           <div className="mt-10 flex justify-center">
             <Link href="/contact" className={styles.buttonLink.blackBorder}>
               <span
@@ -167,18 +192,6 @@ function Studio({ studioPage }) {
             </Link>
           </div>
         </div>
-        <DividerBar />
-        <div className="container mx-auto -mt-1.5 px-8 text-center uppercase">
-          <H2>{studioPage.section3Title}</H2>
-          <p
-            className={classNames(
-              'font-outline text-xl uppercase leading-4',
-              'lg:text-5xl'
-            )}
-          >
-            {studioPage.section3Subtitle}
-          </p>
-        </div>
 
         {/* Ternary to remove hero video & video player if no videoId found. */}
         {studioPage.tourVideoId && (
@@ -194,27 +207,7 @@ function Studio({ studioPage }) {
                 {studioPage.section2Subtitle}
               </p>
             </div>
-            <div
-              id="tour"
-              className={classNames(
-                'container mx-auto mt-4 max-w-7xl rounded-2xl',
-                'lg:mt-10'
-              )}
-            >
-              <ClientOnly>
-                <VideoPlayer
-                  autoPlay
-                  client={studioPage.tourVideoClient}
-                  description={studioPage.tourVideoDescription}
-                  poster={studioPage.tourVideoPoster}
-                  title={studioPage.tourVideoTitle}
-                  videoHeightAspectRatio={studioPage.tourVideoHeightAspectRatio}
-                  videoId={studioPage.tourVideoId}
-                  videoIdShort={studioPage.tourVideoIdShort}
-                  videoWidthAspectRatio={studioPage.tourVideoWidthAspectRatio}
-                />
-              </ClientOnly>
-            </div>
+
             <DividerBar />
           </>
         )}

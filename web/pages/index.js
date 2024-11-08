@@ -71,108 +71,110 @@ function Home({ homePage }) {
         homePage.reelVideoWidthInPixels
       }
     >
-      <div className="container mx-auto mt-12 px-4 text-center text-white lg:mt-24">
-        <H2>{homePage.section1Title}</H2>
-        <div className="prose-lg mx-auto -mb-2 mt-4 text-center lg:mt-10 lg:max-w-5xl">
-          <PortableText value={homePage.section1Body} />
-        </div>
-      </div>
-
-      <div className="container mx-auto my-24 rounded-2xl bg-white px-8 py-12">
-        <div className="container mx-auto grid gap-8 px-4 text-center">
-          <div>
-            <H2 className="text-black">{homePage.latestCampaignTitle}</H2>
-            <p className="font-outline text-xl uppercase tracking-tighter text-black lg:text-5xl">
-              {homePage.latestCampaignSubtitle}
-            </p>
-          </div>
-
-          <div className="grid grid-cols-1 gap-4 lg:grid-cols-3">
-            {homePage.latestCampaignVideos.map((video, index) => {
-              return (
-                <WorkItemTile
-                  autoPlay
-                  onClick={() => {
-                    setIsLightBoxOpen(true)
-                    setPhotoIndex(index)
-                  }}
-                  workItem={video}
-                  key={index}
-                  showWithPlayLockup
-                />
-              )
-            })}
-          </div>
-
-          <div className="mt-3 grid gap-4 lg:flex lg:justify-center lg:gap-16 lg:px-8">
-            <Link
-              href="/about"
-              className={classNames(
-                'rounded-lg border-2 border-black px-8 py-0.5 font-bold uppercase tracking-widest text-black transition-all',
-                'hover:border-black hover:bg-gold hover:text-black'
-              )}
-            >
-              Learn More
-            </Link>
-            <Link
-              href="/work"
-              className={classNames(
-                'rounded-lg border-2 border-black bg-black px-8 py-0.5 font-bold uppercase tracking-widest transition-all',
-                'hover:border-black hover:bg-gold hover:text-black'
-              )}
-            >
-              Explore Work
-            </Link>
+      <div className="mx-auto max-w-7xl px-8">
+        <div className="container mx-auto mt-12 text-center text-white lg:mt-24">
+          <H2>{homePage.section1Title}</H2>
+          <div className="prose-lg mx-auto -mb-2 mt-4 text-center lg:mt-10 lg:max-w-5xl">
+            <PortableText value={homePage.section1Body} />
           </div>
         </div>
-      </div>
 
-      <div
-        className="container mx-auto -mt-1.5 px-8 text-center uppercase"
-        id="section2"
-      >
-        <H2>{homePage.section2Title}</H2>
-        <p className="font-outline text-2xl uppercase lg:text-6xl">
-          {homePage.section2Subtitle}
-        </p>
-      </div>
-      <div className="mt-10 px-4 2xs:px-8 lg:px-4" id="featured">
-        <div className="container mx-auto rounded-2xl">
-          <ClientOnly>
-            <VideoPlayer
-              autoPlay
-              client={homePage.reelVideoClient}
-              description={homePage.reelVideoDescription}
-              poster={homePage.reelVideoPoster}
-              title={homePage.reelVideoTitle}
-              videoHeightAspectRatio={homePage.reelVideoHeightAspectRatio}
-              videoId={homePage.reelVideoId}
-              videoIdShort={homePage.reelVideoIdShort}
-              videoWidthAspectRatio={homePage.reelVideoWidthAspectRatio}
+        <div className="container mx-auto my-24 rounded-2xl bg-white py-12">
+          <div className="container mx-auto grid gap-8 px-8 text-center lg:px-12">
+            <div>
+              <H2 className="text-black">{homePage.latestCampaignTitle}</H2>
+              <p className="font-outline text-xl uppercase tracking-tighter text-black lg:text-5xl">
+                {homePage.latestCampaignSubtitle}
+              </p>
+            </div>
+
+            <div className="grid grid-cols-1 gap-4 lg:grid-cols-3">
+              {homePage.latestCampaignVideos.map((video, index) => {
+                return (
+                  <WorkItemTile
+                    autoPlay
+                    onClick={() => {
+                      setIsLightBoxOpen(true)
+                      setPhotoIndex(index)
+                    }}
+                    workItem={video}
+                    key={index}
+                    showWithPlayLockup
+                  />
+                )
+              })}
+            </div>
+
+            <div className="mt-3 grid gap-4 lg:flex lg:justify-center lg:gap-16">
+              <Link
+                href="/about"
+                className={classNames(
+                  'rounded-lg border-2 border-black px-8 py-0.5 font-bold uppercase tracking-widest text-black transition-all',
+                  'hover:border-black hover:bg-gold hover:text-black'
+                )}
+              >
+                Learn More
+              </Link>
+              <Link
+                href="/work"
+                className={classNames(
+                  'rounded-lg border-2 border-black bg-black px-8 py-0.5 font-bold uppercase tracking-widest transition-all',
+                  'hover:border-black hover:bg-gold hover:text-black'
+                )}
+              >
+                Explore Work
+              </Link>
+            </div>
+          </div>
+        </div>
+
+        <div
+          className="container mx-auto -mt-1.5 text-center uppercase"
+          id="section2"
+        >
+          <H2>{homePage.section2Title}</H2>
+          <p className="font-outline text-2xl uppercase lg:text-6xl">
+            {homePage.section2Subtitle}
+          </p>
+        </div>
+        <div className="mt-10" id="featured">
+          <div className="container mx-auto rounded-2xl">
+            <ClientOnly>
+              <VideoPlayer
+                autoPlay
+                client={homePage.reelVideoClient}
+                description={homePage.reelVideoDescription}
+                poster={homePage.reelVideoPoster}
+                title={homePage.reelVideoTitle}
+                videoHeightAspectRatio={homePage.reelVideoHeightAspectRatio}
+                videoId={homePage.reelVideoId}
+                videoIdShort={homePage.reelVideoIdShort}
+                videoWidthAspectRatio={homePage.reelVideoWidthAspectRatio}
+              />
+            </ClientOnly>
+          </div>
+        </div>
+        {isDesktop === false && (
+          <div className="mx-auto -mb-5 mt-12 flex w-full max-w-md justify-center lg:mt-24 lg:max-w-xl">
+            <Image
+              alt="JME Film Production Company"
+              height={100}
+              src={`/images/jmills-raven-gold.svg`}
+              width={100}
             />
-          </ClientOnly>
-        </div>
+          </div>
+        )}
+        {isDesktop && (
+          <div className="mx-auto -mb-5 mt-12 w-full max-w-md lg:mt-24 lg:max-w-xl">
+            <Image
+              alt="JME Film Production Company"
+              height={202}
+              src={`/images/JME-film-prod-co-white.svg`}
+              width={600}
+            />
+          </div>
+        )}
       </div>
-      {isDesktop === false && (
-        <div className="mx-auto -mb-5 mt-12 flex w-full max-w-md justify-center px-12 lg:mt-24 lg:max-w-xl">
-          <Image
-            alt="JME Film Production Company"
-            height={100}
-            src={`/images/jmills-raven-gold.svg`}
-            width={100}
-          />
-        </div>
-      )}
-      {isDesktop && (
-        <div className="mx-auto -mb-5 mt-12 w-full max-w-md px-12 lg:mt-24 lg:max-w-xl">
-          <Image
-            alt="JME Film Production Company"
-            height={202}
-            src={`/images/JME-film-prod-co-white.svg`}
-            width={600}
-          />
-        </div>
-      )}
 
       <Lightbox
         close={() => setIsLightBoxOpen(false)}
@@ -194,7 +196,7 @@ function Home({ homePage }) {
 
             return slide.slideType === 'video-slide' ? (
               <ClientOnly>
-                <div className="w-full px-8 text-white lg:px-12">
+                <div className="w-full text-white">
                   <VideoPlayer noContainer {...slideProps} />
                 </div>
               </ClientOnly>

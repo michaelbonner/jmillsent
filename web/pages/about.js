@@ -127,7 +127,7 @@ function About({ aboutPage }) {
         }}
       />
 
-      <div className="container mx-auto mt-12 px-4 text-center text-white lg:mt-24">
+      <div className="mx-auto mt-12 max-w-7xl px-4 text-center text-white lg:mt-24">
         <div className="container mx-auto my-24 rounded-2xl bg-white px-8 py-12 text-black">
           <H2>{aboutPage.section1Title}</H2>
           <LittleBlackBar maxWidth="max-w-96" />
@@ -136,6 +136,24 @@ function About({ aboutPage }) {
               <PortableText value={aboutPage.section1Body} />
             </div>
           )}
+
+          <div className="mt-8 lg:mt-16" id="reel">
+            <div className="container mx-auto rounded-2xl px-10 text-white">
+              <ClientOnly>
+                <VideoPlayer
+                  autoPlay
+                  client={aboutPage.reelVideoClient}
+                  description={aboutPage.reelVideoDescription}
+                  poster={aboutPage.reelVideoPoster}
+                  title={aboutPage.reelVideoTitle}
+                  videoHeightAspectRatio={aboutPage.reelVideoHeightAspectRatio}
+                  videoId={aboutPage.reelVideoId}
+                  videoIdShort={aboutPage.reelVideoIdShort}
+                  videoWidthAspectRatio={aboutPage.reelVideoWidthAspectRatio}
+                />
+              </ClientOnly>
+            </div>
+          </div>
 
           {aboutPage.section1Subtitle && (
             <div className="mt-12">
@@ -167,7 +185,7 @@ function About({ aboutPage }) {
                   spaceBetween: 24,
                 },
               }}
-              className="px-8"
+              className="px-10"
               loop
               modules={[Autoplay, Controller]}
               navigation={true}
@@ -217,32 +235,6 @@ function About({ aboutPage }) {
                 height={172 / 2}
               />
             </button>
-          </div>
-        </div>
-
-        <DividerBar />
-
-        <div className="container mx-auto -mt-1.5 px-8 text-center">
-          <H2>{aboutPage.reelVideoSectionTitle}</H2>
-          <p className="font-outline text-xl uppercase leading-4 lg:text-5xl">
-            {aboutPage.reelVideoSectionSubtitle}
-          </p>
-        </div>
-        <div className="mt-4 lg:mt-10" id="reel">
-          <div className="container mx-auto rounded-2xl">
-            <ClientOnly>
-              <VideoPlayer
-                autoPlay
-                client={aboutPage.reelVideoClient}
-                description={aboutPage.reelVideoDescription}
-                poster={aboutPage.reelVideoPoster}
-                title={aboutPage.reelVideoTitle}
-                videoHeightAspectRatio={aboutPage.reelVideoHeightAspectRatio}
-                videoId={aboutPage.reelVideoId}
-                videoIdShort={aboutPage.reelVideoIdShort}
-                videoWidthAspectRatio={aboutPage.reelVideoWidthAspectRatio}
-              />
-            </ClientOnly>
           </div>
         </div>
 

@@ -134,7 +134,7 @@ function Studio({ studioPage }) {
             <div
               id="tour"
               className={classNames(
-                'container mx-auto mt-4 rounded-2xl px-10 text-white',
+                'container mx-auto mt-4 rounded-2xl text-white lg:px-10',
                 'lg:mt-10'
               )}
             >

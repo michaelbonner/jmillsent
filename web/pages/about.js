@@ -129,7 +129,7 @@ function About({ aboutPage }) {
 
       <div className="mx-auto max-w-7xl px-8">
         <div className="mx-auto mt-12 max-w-7xl text-center text-white lg:mt-24">
-          <div className="container mx-auto my-24 rounded-2xl bg-white py-12 text-black">
+          <div className="container mx-auto my-24 rounded-2xl bg-white px-8 py-12 text-black">
             <H2>{aboutPage.section1Title}</H2>
             <LittleBlackBar maxWidth="max-w-96" />
             {aboutPage.section1Body && (
@@ -139,7 +139,7 @@ function About({ aboutPage }) {
             )}
 
             <div className="mt-8 lg:mt-16" id="reel">
-              <div className="container mx-auto rounded-2xl px-10 text-white">
+              <div className="container mx-auto rounded-2xl text-white lg:px-10">
                 <ClientOnly>
                   <VideoPlayer
                     autoPlay
@@ -164,7 +164,7 @@ function About({ aboutPage }) {
               </div>
             )}
 
-            <div className="-mx-8 mt-8 flex max-w-7xl lg:-mx-4 2xl:mx-auto">
+            <div className="-mx-8 mt-8 flex max-w-7xl 2xl:mx-auto">
               <button
                 className="p-4"
                 onClick={() => controlledSwiper?.slidePrev()}

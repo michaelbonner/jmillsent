@@ -59,7 +59,7 @@ export const VideoPlayerControlBar = ({
   return (
     <div
       className={classNames(
-        'container absolute bottom-0 z-10 mx-auto flex items-center gap-x-2 px-8 pt-3 opacity-0 duration-500 group-hover:opacity-100 md:gap-x-8',
+        'container absolute bottom-4 z-10 mx-auto flex items-center gap-x-2 px-8 pt-3 opacity-0 duration-500 group-hover:opacity-100 md:gap-x-8',
         isFullscreen && videoWidthAspectRatio == 16 && 'opacity-50'
       )}
       style={isFullscreen ? { marginBottom: `${fsMargin}px` } : {}}
@@ -119,7 +119,7 @@ export const VideoPlayerControlBar = ({
         ></div>
       </button>
       <div className="flex min-w-[110px] gap-1 text-xl font-light">
-        <span className="inline-block min-w-[50px] text-right text-gray-400">
+        <span className="inline-block min-w-[50px] text-right text-gray-100">
           {videoPlayTime}
         </span>
         <span>/</span>
@@ -160,7 +160,7 @@ export const VideoPlayerControlBar = ({
           >
             {/* eslint-disable-next-line @next/next/no-img-element */}
             <img
-              className="size-12"
+              className="h-6"
               src="/images/fullscreen-close.svg"
               alt="Fullscreen"
             />
@@ -176,7 +176,7 @@ export const VideoPlayerControlBar = ({
           >
             {/* eslint-disable-next-line @next/next/no-img-element */}
             <img
-              className="size-12"
+              className="h-6"
               src="/images/fullscreen-open.svg"
               alt="Fullscreen"
             />

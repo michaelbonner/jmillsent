@@ -132,12 +132,6 @@ function About({ aboutPage }) {
           <div className="container mx-auto my-24 rounded-2xl bg-white px-8 py-12 text-black">
             <H2>{aboutPage.section1Title}</H2>
             <LittleBlackBar maxWidth="max-w-96" />
-            {aboutPage.section1Body && (
-              <div className="prose-lg mx-auto -mb-2 mt-4 max-w-6xl px-4 text-center lg:mt-10">
-                <PortableText value={aboutPage.section1Body} />
-              </div>
-            )}
-
             <div className="mt-8 lg:mt-16" id="reel">
               <div className="container mx-auto rounded-2xl text-white lg:px-10">
                 <ClientOnly>
@@ -157,6 +151,11 @@ function About({ aboutPage }) {
                 </ClientOnly>
               </div>
             </div>
+            {aboutPage.section1Body && (
+              <div className="prose-lg mx-auto -mb-2 mt-4 max-w-6xl px-4 text-center lg:mt-10">
+                <PortableText value={aboutPage.section1Body} />
+              </div>
+            )}
 
             {aboutPage.section1Subtitle && (
               <div className="mt-12">

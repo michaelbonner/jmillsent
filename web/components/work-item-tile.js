@@ -1,15 +1,30 @@
 import classNames from 'classnames'
 import Link from 'next/link'
 import { useState } from 'react'
+import { GrPlay } from 'react-icons/gr'
 import urlForSanitySource from '../lib/urlForSanitySource'
 
-const WorkItemTile = ({ workItem, index, hideAfterCount = 999 }) => {
-  const [isHovered, setIsHovered] = useState(false)
-  const [hasHovered, setHasHovered] = useState(false)
+const Button = (props) => {
+  return <button {...props} />
+}
+
+const WorkItemTile = ({
+  workItem,
+  index,
+  hideAfterCount = 999,
+  onClick,
+  autoPlay = false,
+  showWithPlayLockup = false,
+}) => {
+  const [isHovered, setIsHovered] = useState(autoPlay)
+  const [hasHovered, setHasHovered] = useState(autoPlay)
+
+  const ElementToRender = onClick ? Button : Link
 
   return (
-    <Link
-      href={`/work/${workItem.slug?.current}`}
+    <ElementToRender
+      href={onClick ? undefined : `/work/${workItem.slug?.current}`}
+      onClick={onClick ? onClick : undefined}
       key={workItem._id}
       className={classNames(
         {
@@ -30,12 +45,20 @@ const WorkItemTile = ({ workItem, index, hideAfterCount = 999 }) => {
         setHasHovered(true)
         setIsHovered(true)
       }}
-      onMouseLeave={() => setIsHovered(false)}
+      onMouseLeave={() => {
+        if (!autoPlay) {
+          setIsHovered(false)
+        }
+      }}
       onTouchStart={() => {
         setHasHovered(true)
         setIsHovered(true)
       }}
-      onTouchEnd={() => setIsHovered(false)}
+      onTouchEnd={() => {
+        if (!autoPlay) {
+          setIsHovered(false)
+        }
+      }}
     >
       {hasHovered &&
         (workItem.shortClipMp4URL || workItem.shortClipMp4S3URL) &&
@@ -82,15 +105,35 @@ const WorkItemTile = ({ workItem, index, hideAfterCount = 999 }) => {
             )}
           </video>
         )}
-      <div className="z-10 text-center">
-        <h2 className="text-3xl font-extrabold uppercase lg:text-2xl">
-          {workItem.clientName}
-        </h2>
-        <h3 className="font-outline text-3xl uppercase lg:text-2xl">
-          {workItem.title}
-        </h3>
+      <div className="z-10 w-full text-center">
+        {showWithPlayLockup ? (
+          <div className="flex w-full items-center justify-start gap-4 pl-4 pr-2 text-left">
+            <div className="z-10 flex cursor-pointer items-center justify-center bg-transparent text-4xl xl:justify-start xl:text-6xl">
+              <div className="bpd-white-icon ml-1 flex scale-110 items-center justify-center rounded-full border-2 border-gray-300 transition-opacity duration-500">
+                <GrPlay className="size-10 py-2 pl-1" />
+              </div>
+            </div>
+            <div className="border-l-4 border-gold pl-4">
+              <div className="text-xl font-bold uppercase">
+                {workItem.clientName}
+              </div>
+              <div className="font-outline text-xl uppercase">
+                {workItem.title}
+              </div>
+            </div>
+          </div>
+        ) : (
+          <>
+            <h2 className="text-3xl font-extrabold uppercase lg:text-2xl">
+              {workItem.clientName}
+            </h2>
+            <h3 className="font-outline text-3xl uppercase lg:text-2xl">
+              {workItem.title}
+            </h3>
+          </>
+        )}
       </div>
-    </Link>
+    </ElementToRender>
   )
 }
 

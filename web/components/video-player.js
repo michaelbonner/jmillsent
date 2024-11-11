@@ -113,6 +113,7 @@ const VideoPlayer = ({
   videoId = '',
   videoIdShort = '',
   videoWidthAspectRatio = '16',
+  noContainer = false,
 }) => {
   const [state, dispatch] = useReducer(videoPlayerReducer, {
     hasClicked: false,
@@ -471,7 +472,7 @@ const VideoPlayer = ({
         {
           'flex h-screen flex-col items-center justify-center': isFullscreen,
         },
-        'bpd-player-container relative z-20'
+        'bpd-player-container group relative z-20 w-full overflow-hidden rounded-2xl'
       )}
       ref={playerContainer}
     >
@@ -518,8 +519,8 @@ const VideoPlayer = ({
         <div
           className={classNames(
             {
-              'w-full': isFullscreen,
-              container: !isFullscreen,
+              'w-full': isFullscreen || noContainer,
+              container: !isFullscreen && !noContainer,
               'bg-gray-900': !showVideo,
             },
             'mx-auto transition-all duration-700'

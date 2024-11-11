@@ -4,13 +4,13 @@ import EmailSignupForm from '@/components/email-signup-form'
 import { H1 } from '@/components/headings'
 import Layout from '@/components/layout'
 import LittleWhiteBar from '@/components/little-white-bar'
-import MediumWhiteBar from '@/components/medium-white-bar'
 import { PortableText } from '@portabletext/react'
 import groq from 'groq'
 import dynamic from 'next/dynamic'
 import { GrInstagram, GrLinkedin, GrVimeo } from 'react-icons/gr'
 import { sanityClient } from '../lib/sanity'
 import urlForSanitySource from '../lib/urlForSanitySource'
+import LittleBlackBar from '@/components/little-black-bar'
 
 const ContactForm = dynamic(() => import('@/components/contact-form'), {})
 const Map = dynamic(() => import('@/components/map'), {})
@@ -68,7 +68,7 @@ function Contact({ contact }) {
           <DividerBar yMargin="my-12 lg:my-24" />
 
           <div className="px-4">
-            <div className="mx-auto max-w-7xl rounded-xl border border-gray-500">
+            <div className="mx-auto max-w-7xl overflow-hidden rounded-2xl border border-gray-500">
               <Map />
             </div>
           </div>
@@ -78,16 +78,16 @@ function Contact({ contact }) {
             id="contacts"
           >
             <div className="w-full sm:w-1/2 lg:w-1/3">
-              <div className="mx-5 rounded-xl border border-gray-500 p-8">
+              <div className="mx-5 rounded-xl bg-white p-8 text-black">
                 <p className="text-xl font-bold uppercase tracking-wider">
                   Studio Address
                 </p>
                 <div className="mx-auto w-32">
-                  <LittleWhiteBar yMargin="my-4" />
+                  <LittleBlackBar yMargin="my-4" />
                 </div>
-                <div className="prose-white prose prose-lg leading-9 text-gray-300">
+                <div className="prose prose-lg leading-8">
                   <a
-                    className="no-underline"
+                    className="no-underline hover:underline"
                     href="https://g.page/jmillsent?share"
                     target="_blank"
                     rel="noopener noreferrer"

@@ -1,7 +1,6 @@
 import { ClientOnly } from '@/components/client-only'
 import { H1 } from '@/components/headings'
 import Layout from '@/components/layout'
-import LittleWhiteBar from '@/components/little-white-bar'
 import groq from 'groq'
 import capitalize from 'just-capitalize'
 import shuffle from 'just-shuffle'
@@ -9,36 +8,28 @@ import dynamic from 'next/dynamic'
 import { useMemo } from 'react'
 import { sanityClient } from '../lib/sanity'
 
-const MomentsGallery = dynamic(
-  () =>
-    import('@/components/moments-gallery', {
-      loading: () => <p>Loading...</p>,
-      ssr: false,
-    })
-)
+const MomentsGallery = dynamic(() => import('@/components/moments-gallery'))
 
-function Moments({ momentsPage }) {
+function Moments({ images, momentsPage }) {
   const shuffledImages = useMemo(() => {
     return shuffle(
-      momentsPage.images
-        .filter((image) => image.imageUrl)
-        .map(
-          (image) => ({
-            ...image,
-            lightboxSource: `${image.imageUrl}?w=1800&auto=format`,
-            altText:
-              image.caption ||
-              capitalize(
-                (image.name || `image-${index}`)
-                  .replace(/-/g, ' ')
-                  .replace(/_/g, ' ')
-                  .replace('.jpg', '')
-              ),
-          }),
-          { shuffleAll: true }
-        )
+      images.map(
+        (image) => ({
+          ...image,
+          lightboxSource: `${image.imageUrl}?w=1800&auto=format`,
+          altText:
+            image.caption ||
+            capitalize(
+              (image.name || `image-${index}`)
+                .replace(/-/g, ' ')
+                .replace(/_/g, ' ')
+                .replace('.jpg', '')
+            ),
+        }),
+        { shuffleAll: true }
+      )
     )
-  }, [momentsPage.images])
+  }, [images])
 
   const heroContent = (
     <div className="flex h-full w-full flex-col items-center justify-center text-white">
@@ -57,11 +48,13 @@ function Moments({ momentsPage }) {
       heroVideoId={momentsPage.videoId}
       heroContent={heroContent}
     >
-      <LittleWhiteBar />
-
-      <ClientOnly>
-        <MomentsGallery images={shuffledImages} />
-      </ClientOnly>
+      <div className="px-4 lg:px-8">
+        <div className="mx-auto mb-16 max-w-13xl rounded-2xl bg-white p-6 text-black lg:mb-24 lg:mt-[4%] lg:p-10">
+          <ClientOnly>
+            <MomentsGallery images={shuffledImages} />
+          </ClientOnly>
+        </div>
+      </div>
     </Layout>
   )
 }
@@ -85,9 +78,17 @@ export async function getStaticProps() {
     `
   )
 
+  // take a random 500 images from the images array
+  const { images: sanityImages, ...momentsPageData } = momentsPage
+  const images = sanityImages
+    .filter((image) => image.imageUrl)
+    .sort(() => Math.random() - 0.5)
+    .slice(0, 500)
+
   return {
     props: {
-      momentsPage,
+      images,
+      momentsPage: momentsPageData,
     },
   }
 }

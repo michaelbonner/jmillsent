@@ -1,3 +1,6 @@
+import 'yet-another-react-lightbox/plugins/captions.css'
+import 'yet-another-react-lightbox/styles.css'
+
 import BackgroundText from '@/components/background-text-section'
 import { ClientOnly } from '@/components/client-only'
 import DividerBar from '@/components/divider-bar'
@@ -14,9 +17,8 @@ import { useState } from 'react'
 import Lightbox from 'yet-another-react-lightbox'
 import Captions from 'yet-another-react-lightbox/plugins/captions'
 import { sanityClient } from '../lib/sanity'
-
-import 'yet-another-react-lightbox/plugins/captions.css'
-import 'yet-another-react-lightbox/styles.css'
+import LittleBlackBar from '@/components/little-black-bar'
+import { styles } from 'styles/styles'
 
 const VideoPlayer = dynamic(() => import('@/components/video-player'), {})
 
@@ -113,93 +115,17 @@ function Studio({ studioPage }) {
         }))}
       />
 
-      <div
-        className={classNames(
-          'container mx-auto mt-12 px-4 text-center text-white',
-          'sm:px-6',
-          'lg:mt-24'
-        )}
-      >
-        <H2>{studioPage.section1Title}</H2>
-        {studioPage.section1Body && (
-          <div
-            className={classNames(
-              'prose-lg mx-auto -mb-2 mt-4 max-w-5xl px-4 text-center',
-              'lg:mt-10'
-            )}
-          >
-            <PortableText value={studioPage.section1Body} />
-          </div>
-        )}
-        <div className="mt-10 flex justify-center">
-          <Link
-            href="/contact"
-            className={classNames(
-              'group flex items-center justify-center gap-4 border-2 border-gray-300 px-3 py-2 uppercase transition-colors',
-              'hover:bg-gold'
-            )}
-          >
-            <span
-              className={classNames(
-                'font-outline text-2xl tracking-tighter text-gray-300',
-                'lg:text-3xl',
-                'group-hover:text-black'
-              )}
-            >
-              Book
-            </span>
-            <span
-              className={classNames(
-                'text-2xl font-bold tracking-wide',
-                'lg:text-3xl',
-                'group-hover:text-black'
-              )}
-            >
-              Studio
-            </span>
-            <span
-              className={classNames(
-                'font-outline text-2xl tracking-tighter text-gray-300',
-                'lg:text-3xl',
-                'group-hover:text-black'
-              )}
-            >
-              Space
-            </span>
-          </Link>
-        </div>
-        <DividerBar />
-        <div className="container mx-auto -mt-1.5 px-8 text-center uppercase">
-          <H2>{studioPage.section3Title}</H2>
-          <p
-            className={classNames(
-              'font-outline text-xl uppercase leading-4',
-              'lg:text-5xl'
-            )}
-          >
-            {studioPage.section3Subtitle}
-          </p>
-        </div>
+      <div className="mx-auto max-w-7xl px-8">
+        <div className="mx-auto my-24 max-w-7xl rounded-2xl bg-white px-8 py-12 text-center text-black">
+          <H2>{studioPage.section1Title}</H2>
+          <LittleBlackBar maxWidth="max-w-96" yMargin="my-10" />
 
-        {/* Ternary to remove hero video & video player if no videoId found. */}
-        {studioPage.tourVideoId && (
-          <>
-            <div className="container mx-auto px-8 text-center" id="tour">
-              <H2>{studioPage.section2Title}</H2>
-              <p
-                className={classNames(
-                  'font-outline text-xl uppercase',
-                  'lg:text-5xl'
-                )}
-              >
-                {studioPage.section2Subtitle}
-              </p>
-            </div>
+          {studioPage.tourVideoId && (
             <div
               id="tour"
               className={classNames(
-                'container mx-auto mt-4 max-w-7xl rounded-xl border border-gray-300 p-4',
-                'lg:mt-10 lg:p-8'
+                'container mx-auto mt-12 rounded-2xl text-white',
+                'lg:px-10'
               )}
             >
               <ClientOnly>
@@ -216,13 +142,74 @@ function Studio({ studioPage }) {
                 />
               </ClientOnly>
             </div>
+          )}
+
+          {studioPage.section1Body && (
+            <div
+              className={classNames(
+                'prose-lg mx-auto -mb-2 mt-4 max-w-5xl px-4',
+                'lg:mt-10'
+              )}
+            >
+              <PortableText value={studioPage.section1Body} />
+            </div>
+          )}
+
+          <div className="mt-10 flex justify-center">
+            <Link href="/contact" className={styles.buttonLink.blackBorder}>
+              <span
+                className={classNames(
+                  'font-outline text-2xl tracking-tighter',
+                  'lg:text-3xl',
+                  'group-hover:text-gray-800'
+                )}
+              >
+                Book
+              </span>
+              <span
+                className={classNames(
+                  'text-2xl font-bold tracking-wide',
+                  'lg:text-3xl',
+                  'group-hover:text-gray-800'
+                )}
+              >
+                Studio
+              </span>
+              <span
+                className={classNames(
+                  'font-outline text-2xl tracking-tighter',
+                  'lg:text-3xl',
+                  'group-hover:text-gray-800'
+                )}
+              >
+                Space
+              </span>
+            </Link>
+          </div>
+        </div>
+
+        {/* Ternary to remove hero video & video player if no videoId found. */}
+        {studioPage.tourVideoId && (
+          <>
+            <div className="container mx-auto px-8 text-center" id="tour">
+              <H2>{studioPage.section2Title}</H2>
+              <p
+                className={classNames(
+                  'font-outline text-xl uppercase',
+                  'lg:text-5xl'
+                )}
+              >
+                {studioPage.section2Subtitle}
+              </p>
+            </div>
+
             <DividerBar />
           </>
         )}
 
         {/* studioItems */}
         <section id="studio-items">
-          <div className="container mx-auto -mt-1.5 px-8 text-center uppercase">
+          <div className="container mx-auto -mt-1.5 text-center uppercase">
             <H2>{studioPage.studioItemSectionTitle}</H2>
             <p
               className={classNames(
@@ -233,12 +220,11 @@ function Studio({ studioPage }) {
               {studioPage.studioItemSectionSubtitle}
             </p>
           </div>
+
           {studioPage.studioItems?.length > 0 && (
             <div
               className={classNames(
-                'mx-auto mt-10 grid max-w-7xl gap-y-4',
-                'sm:gap-y-8',
-                'lg:gap-y-12'
+                'mx-auto mt-12 grid max-w-7xl gap-y-8 rounded-2xl bg-white p-8 lg:mt-24 lg:gap-y-10 lg:p-10'
               )}
             >
               {studioPage.studioItems.map((service, index) => {

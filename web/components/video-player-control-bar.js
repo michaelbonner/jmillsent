@@ -1,13 +1,6 @@
 import classNames from 'classnames'
 import { useEffect, useRef, useState } from 'react'
-import {
-  GrContract,
-  GrExpand,
-  GrPause,
-  GrPlay,
-  GrVolume,
-  GrVolumeMute,
-} from 'react-icons/gr'
+import { GrPause, GrPlay, GrVolume, GrVolumeMute } from 'react-icons/gr'
 
 export const VideoPlayerControlBar = ({
   handleScrubberClick,
@@ -66,16 +59,14 @@ export const VideoPlayerControlBar = ({
   return (
     <div
       className={classNames(
-        'container z-10 mx-auto flex items-center gap-x-2 pt-3 md:gap-x-8',
-        !isFullscreen && 'relative mt-4 bg-black',
-        isFullscreen && 'absolute bottom-0 flex gap-x-2',
+        'container absolute bottom-4 z-10 mx-auto flex items-center gap-x-2 px-8 pt-3 opacity-0 duration-500 group-hover:opacity-100 md:gap-x-8',
         isFullscreen && videoWidthAspectRatio == 16 && 'opacity-50'
       )}
       style={isFullscreen ? { marginBottom: `${fsMargin}px` } : {}}
     >
       <button
         aria-label="Play/Pause"
-        className="relative h-6 w-6 text-4xl outline-0 md:h-8 md:w-8"
+        className="relative grid size-6 place-items-center text-4xl outline-0"
         onClick={handleTogglePlay}
         title="Play/Pause"
       >
@@ -86,7 +77,7 @@ export const VideoPlayerControlBar = ({
               'opacity-100': isPlaying,
               'opacity-0': !isPlaying,
             },
-            `absolute inset-0 h-6 w-6 fill-current transition-all duration-500 md:h-8 md:w-8`
+            `col-start-1 row-start-1 size-full fill-current transition-all duration-500`
           )}
         />
         <GrPlay
@@ -96,7 +87,7 @@ export const VideoPlayerControlBar = ({
               'opacity-100': !isPlaying,
               'opacity-0': isPlaying,
             },
-            `absolute inset-0 h-6 w-6 fill-current transition-all duration-500 md:h-8 md:w-8`
+            `col-start-1 row-start-1 size-full fill-current transition-all duration-500`
           )}
         />
       </button>
@@ -128,7 +119,7 @@ export const VideoPlayerControlBar = ({
         ></div>
       </button>
       <div className="flex min-w-[110px] gap-1 text-xl font-light">
-        <span className="inline-block min-w-[50px] text-right text-gray-400">
+        <span className="inline-block min-w-[50px] text-right text-gray-100">
           {videoPlayTime}
         </span>
         <span>/</span>
@@ -167,7 +158,12 @@ export const VideoPlayerControlBar = ({
               toggleFullScreen(false)
             }}
           >
-            <GrContract />
+            {/* eslint-disable-next-line @next/next/no-img-element */}
+            <img
+              className="h-6"
+              src="/images/fullscreen-close.svg"
+              alt="Fullscreen"
+            />
           </button>
         ) : (
           <button
@@ -178,7 +174,12 @@ export const VideoPlayerControlBar = ({
               toggleFullScreen(true)
             }}
           >
-            <GrExpand />
+            {/* eslint-disable-next-line @next/next/no-img-element */}
+            <img
+              className="h-6"
+              src="/images/fullscreen-open.svg"
+              alt="Fullscreen"
+            />
           </button>
         )}
       </div>

@@ -1,6 +1,5 @@
 import { H1, H2 } from '@/components/headings'
 import Layout from '@/components/layout'
-import MediumWhiteBar from '@/components/medium-white-bar'
 import NewsItemCard from '@/components/news-item-card'
 import { sanityClient } from '@/lib/sanity'
 import groq from 'groq'
@@ -24,8 +23,8 @@ function News({ newsPage }) {
       heroImageUrl={newsPage.poster}
       heroContent={heroContent}
     >
-      <div className="mx-auto mt-12 max-w-7xl pb-8 lg:mt-24">
-        <div className="mt-10 grid max-w-7xl justify-center gap-y-4 sm:gap-y-8 lg:gap-y-12">
+      <div className="mx-auto mt-12 max-w-7xl pb-8 lg:mt-24 lg:px-8">
+        <div className="mt-10 grid max-w-7xl justify-center gap-y-24 rounded-2xl p-8 lg:gap-y-10 lg:bg-white lg:p-10">
           {newsPage?.newsItems.map((newsItem, index) => {
             return <NewsItemCard key={index} newsItem={newsItem} />
           })}

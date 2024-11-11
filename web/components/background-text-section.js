@@ -8,6 +8,7 @@ import LittleGoldBar from './little-gold-bar'
 import Date from './date'
 import { useRouter } from 'next/router'
 import classNames from 'classnames'
+import { styles as globalStyles } from 'styles/styles'
 
 const BackgroundText = ({
   image,
@@ -42,15 +43,13 @@ const BackgroundText = ({
   const titleStyle = leftOrRight === 'left' ? 'lg:text-left' : 'lg:text-right'
   return (
     <div
-      className={classNames(
-        'cursor-pointer rounded-xl border border-gray-300 p-4',
-        'lg:p-6'
-      )}
+      className={classNames('cursor-pointer')}
       onClick={() => isLink && router.push(slug)}
     >
       <div className="group relative w-full" style={{ lineHeight: 0 }}>
         <Image
           alt={imageAlt}
+          className="rounded-2xl"
           height={600}
           src={`${urlForSanitySource(
             image
@@ -58,10 +57,10 @@ const BackgroundText = ({
           width={1246}
         />
         <div
-          className={`w-full lg:absolute ${styles[leftOrRight].containerPosition} bottom-0 top-0 h-full ${styles[leftOrRight].gradientDirection} from-black to-transparent opacity-70 transition-all duration-500 group-hover:opacity-80`}
+          className={`w-full rounded-2xl lg:absolute ${styles[leftOrRight].containerPosition} bottom-0 top-0 h-full ${styles[leftOrRight].gradientDirection} from-black to-transparent opacity-70 transition-all duration-500 group-hover:opacity-80`}
         />
         <div
-          className={`lg:absolute ${styles[leftOrRight].containerPosition} bottom-0 top-0 ${styles[leftOrRight].textAlign} flex flex-col items-start justify-center sm:gap-y-2`}
+          className={`rounded-2xl text-black lg:absolute lg:text-white ${styles[leftOrRight].containerPosition} bottom-0 top-0 ${styles[leftOrRight].textAlign} flex flex-col items-start justify-center sm:gap-y-2`}
         >
           <H3
             className={`${titleStyle} !mb-0 !mt-3 inline w-full py-1 text-center uppercase`}
@@ -78,17 +77,14 @@ const BackgroundText = ({
                   </div>
                 )}
               </div>
-              <div className="prose-lg mx-auto mt-1.5 max-w-xl font-light leading-normal text-white lg:mx-0">
+              <div className="prose-lg mx-auto mt-1.5 max-w-xl font-light leading-normal lg:mx-0">
                 <PortableText value={description} />
               </div>
               {customButtonText1 && customButtonText2 && customButtonText3 && (
                 <div
-                  className={`self-center ${styles[leftOrRight].buttonPosition}`}
+                  className={`mt-4 self-center text-2xl leading-normal ${styles[leftOrRight].buttonPosition}`}
                 >
-                  <Link
-                    href={slug}
-                    className="inline-flex items-center justify-center gap-3 border-2 border-gray-300 px-3 py-1 text-2xl uppercase text-gray-300 transition-colors hover:bg-gold hover:text-black"
-                  >
+                  <Link href={slug} className={globalStyles.buttonLink.default}>
                     <span className="font-outline tracking-tighter">
                       {customButtonText1}
                     </span>

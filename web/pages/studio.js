@@ -118,7 +118,7 @@ function Studio({ studioPage }) {
       <div className="mx-auto max-w-7xl px-8">
         <div className="mx-auto my-24 max-w-7xl rounded-2xl bg-white px-8 py-12 text-center text-black">
           <H2>{studioPage.section1Title}</H2>
-          <LittleBlackBar maxWidth="max-w-96" yMargin="my-8" />
+          <LittleBlackBar maxWidth="max-w-96" yMargin="my-10" />
 
           {studioPage.tourVideoId && (
             <div

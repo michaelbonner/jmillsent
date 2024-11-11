@@ -119,16 +119,6 @@ function Studio({ studioPage }) {
         <div className="mx-auto my-24 max-w-7xl rounded-2xl bg-white px-8 py-12 text-center text-black">
           <H2>{studioPage.section1Title}</H2>
           <LittleBlackBar maxWidth="max-w-96" />
-          {studioPage.section1Body && (
-            <div
-              className={classNames(
-                'prose-lg mx-auto -mb-2 mt-4 max-w-5xl px-4',
-                'lg:mt-10'
-              )}
-            >
-              <PortableText value={studioPage.section1Body} />
-            </div>
-          )}
 
           {studioPage.tourVideoId && (
             <div
@@ -151,6 +141,17 @@ function Studio({ studioPage }) {
                   videoWidthAspectRatio={studioPage.tourVideoWidthAspectRatio}
                 />
               </ClientOnly>
+            </div>
+          )}
+
+          {studioPage.section1Body && (
+            <div
+              className={classNames(
+                'prose-lg mx-auto -mb-2 mt-4 max-w-5xl px-4',
+                'lg:mt-10'
+              )}
+            >
+              <PortableText value={studioPage.section1Body} />
             </div>
           )}
 

@@ -66,7 +66,7 @@ export const VideoPlayerControlBar = ({
     >
       <button
         aria-label="Play/Pause"
-        className="relative h-6 w-6 text-4xl outline-0 md:h-8 md:w-8"
+        className="relative grid size-6 place-items-center text-4xl outline-0"
         onClick={handleTogglePlay}
         title="Play/Pause"
       >
@@ -77,7 +77,7 @@ export const VideoPlayerControlBar = ({
               'opacity-100': isPlaying,
               'opacity-0': !isPlaying,
             },
-            `absolute inset-0 h-6 w-6 fill-current transition-all duration-500 md:h-8 md:w-8`
+            `col-start-1 row-start-1 size-full fill-current transition-all duration-500`
           )}
         />
         <GrPlay
@@ -87,7 +87,7 @@ export const VideoPlayerControlBar = ({
               'opacity-100': !isPlaying,
               'opacity-0': isPlaying,
             },
-            `absolute inset-0 h-6 w-6 fill-current transition-all duration-500 md:h-8 md:w-8`
+            `col-start-1 row-start-1 size-full fill-current transition-all duration-500`
           )}
         />
       </button>

@@ -160,7 +160,7 @@ export const VideoPlayerControlBar = ({
           >
             {/* eslint-disable-next-line @next/next/no-img-element */}
             <img
-              className="size-14"
+              className="size-12"
               src="/images/fullscreen-close.svg"
               alt="Fullscreen"
             />
@@ -176,7 +176,7 @@ export const VideoPlayerControlBar = ({
           >
             {/* eslint-disable-next-line @next/next/no-img-element */}
             <img
-              className="size-14"
+              className="size-12"
               src="/images/fullscreen-open.svg"
               alt="Fullscreen"
             />

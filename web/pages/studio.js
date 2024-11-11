@@ -118,14 +118,14 @@ function Studio({ studioPage }) {
       <div className="mx-auto max-w-7xl px-8">
         <div className="mx-auto my-24 max-w-7xl rounded-2xl bg-white px-8 py-12 text-center text-black">
           <H2>{studioPage.section1Title}</H2>
-          <LittleBlackBar maxWidth="max-w-96" />
+          <LittleBlackBar maxWidth="max-w-96" yMargin="my-8" />
 
           {studioPage.tourVideoId && (
             <div
               id="tour"
               className={classNames(
-                'container mx-auto mt-4 rounded-2xl text-white lg:px-10',
-                'lg:mt-10'
+                'container mx-auto mt-12 rounded-2xl text-white',
+                'lg:px-10'
               )}
             >
               <ClientOnly>

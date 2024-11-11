@@ -131,8 +131,8 @@ function About({ aboutPage }) {
         <div className="mx-auto mt-12 max-w-7xl text-center text-white lg:mt-24">
           <div className="container mx-auto my-24 rounded-2xl bg-white px-8 py-12 text-black">
             <H2>{aboutPage.section1Title}</H2>
-            <LittleBlackBar maxWidth="max-w-96" />
-            <div className="mt-8 lg:mt-16" id="reel">
+            <LittleBlackBar maxWidth="max-w-96" yMargin="my-8" />
+            <div className="mt-12" id="reel">
               <div className="container mx-auto rounded-2xl text-white lg:px-10">
                 <ClientOnly>
                   <VideoPlayer

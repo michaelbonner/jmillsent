@@ -10,28 +10,26 @@ import { sanityClient } from '../lib/sanity'
 
 const MomentsGallery = dynamic(() => import('@/components/moments-gallery'))
 
-function Moments({ momentsPage }) {
+function Moments({ images, momentsPage }) {
   const shuffledImages = useMemo(() => {
     return shuffle(
-      momentsPage.images
-        .filter((image) => image.imageUrl)
-        .map(
-          (image) => ({
-            ...image,
-            lightboxSource: `${image.imageUrl}?w=1800&auto=format`,
-            altText:
-              image.caption ||
-              capitalize(
-                (image.name || `image-${index}`)
-                  .replace(/-/g, ' ')
-                  .replace(/_/g, ' ')
-                  .replace('.jpg', '')
-              ),
-          }),
-          { shuffleAll: true }
-        )
+      images.map(
+        (image) => ({
+          ...image,
+          lightboxSource: `${image.imageUrl}?w=1800&auto=format`,
+          altText:
+            image.caption ||
+            capitalize(
+              (image.name || `image-${index}`)
+                .replace(/-/g, ' ')
+                .replace(/_/g, ' ')
+                .replace('.jpg', '')
+            ),
+        }),
+        { shuffleAll: true }
+      )
     )
-  }, [momentsPage.images])
+  }, [images])
 
   const heroContent = (
     <div className="flex h-full w-full flex-col items-center justify-center text-white">
@@ -80,9 +78,17 @@ export async function getStaticProps() {
     `
   )
 
+  // take a random 500 images from the images array
+  const { images: sanityImages, ...momentsPageData } = momentsPage
+  const images = sanityImages
+    .filter((image) => image.imageUrl)
+    .sort(() => Math.random() - 0.5)
+    .slice(0, 500)
+
   return {
     props: {
-      momentsPage,
+      images,
+      momentsPage: momentsPageData,
     },
   }
 }

@@ -49,7 +49,7 @@ function Moments({ images, momentsPage }) {
       heroContent={heroContent}
     >
       <div className="px-4 lg:px-8">
-        <div className="mx-auto mb-16 max-w-11xl rounded-2xl bg-white p-6 text-black lg:mb-24 lg:mt-[4%] lg:p-10">
+        <div className="mx-auto mb-16 max-w-13xl rounded-2xl bg-white p-6 text-black lg:mb-24 lg:mt-[4%] lg:p-10">
           <ClientOnly>
             <MomentsGallery images={shuffledImages} />
           </ClientOnly>

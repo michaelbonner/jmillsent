@@ -88,19 +88,30 @@ function Home({ homePage }) {
               </p>
             </div>
 
-            <div className="grid grid-cols-1 gap-4 lg:grid-cols-3">
+            <div className="grid grid-cols-1 gap-4 lg:grid-cols-2">
               {homePage.latestCampaignVideos.map((video, index) => {
+                const shouldBeBig =
+                  (homePage.latestCampaignVideos.length === 1 ||
+                    homePage.latestCampaignVideos.length === 3) &&
+                  index === 0
+                let colSpan = shouldBeBig ? 'col-span-2 min-h-96' : ''
+
                 return (
-                  <WorkItemTile
-                    autoPlay
-                    onClick={() => {
-                      setIsLightBoxOpen(true)
-                      setPhotoIndex(index)
-                    }}
-                    workItem={video}
-                    key={index}
-                    showWithPlayLockup
-                  />
+                  <div className={colSpan} key={index}>
+                    <WorkItemTile
+                      className="h-full w-full"
+                      autoPlay
+                      onClick={() => {
+                        setIsLightBoxOpen(true)
+                        setPhotoIndex(index)
+                      }}
+                      playLockupClassName={classNames(
+                        shouldBeBig && 'scale-150 origin-left'
+                      )}
+                      workItem={video}
+                      showWithPlayLockup
+                    />
+                  </div>
                 )
               })}
             </div>

@@ -59,7 +59,9 @@ export const VideoPlayerControlBar = ({
   return (
     <div
       className={classNames(
-        'container absolute bottom-4 z-10 mx-auto flex items-center gap-x-2 px-8 pt-3 opacity-0 duration-500 group-hover:opacity-100 md:gap-x-8',
+        'absolute bottom-4 left-0 right-0 z-10 flex items-center gap-x-2 px-8 pt-3 opacity-0 duration-500',
+        'md:gap-x-8',
+        'group-hover:opacity-100',
         isFullscreen && videoWidthAspectRatio == 16 && 'opacity-50'
       )}
       style={isFullscreen ? { marginBottom: `${fsMargin}px` } : {}}

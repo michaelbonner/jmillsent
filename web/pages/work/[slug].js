@@ -100,13 +100,13 @@ const WorkItem = ({ workItem = {} }) => {
                         {column1Credits.map((credit, index) => {
                           return (
                             <div
-                              className="grid grid-cols-2 items-center gap-x-4 pt-4"
+                              className="grid grid-cols-5 items-center gap-x-4 pt-4"
                               key={index}
                             >
-                              <div className="justify-self-end text-right font-bold uppercase">
+                              <div className="col-span-2 justify-self-end text-right font-bold uppercase">
                                 {credit.role}
                               </div>
-                              <div className="space-x-4 text-lg font-light uppercase lg:text-xl">
+                              <div className="col-span-3 space-x-4 font-light uppercase">
                                 {credit.value}
                               </div>
                             </div>
@@ -117,13 +117,13 @@ const WorkItem = ({ workItem = {} }) => {
                         {column2Credits.map((credit, index) => {
                           return (
                             <div
-                              className="grid grid-cols-2 items-center gap-x-4 pt-4"
+                              className="grid grid-cols-5 items-center gap-x-4 pt-4"
                               key={index}
                             >
-                              <div className="justify-self-end text-right font-bold uppercase">
+                              <div className="col-span-2 justify-self-end text-right font-bold uppercase">
                                 {credit.role}
                               </div>
-                              <div className="space-x-4 text-lg font-light uppercase lg:text-xl">
+                              <div className="col-span-3 space-x-4 font-light uppercase">
                                 {credit.value}
                               </div>
                             </div>
@@ -139,19 +139,19 @@ const WorkItem = ({ workItem = {} }) => {
             {isDesktop && (
               <>
                 <H3>Credits</H3>
-                <div className="h-auto overflow-hidden transition-all lg:text-xl xl:mt-12">
+                <div className="h-auto overflow-hidden transition-all xl:mt-4">
                   <div className="mb-12 grid grid-cols-1 gap-x-20 gap-y-4 md:grid-cols-2 lg:grid-cols-2">
                     <div>
                       {column1Credits.map((credit, index) => {
                         return (
                           <div
-                            className="grid grid-cols-2 items-center gap-2 pt-4"
+                            className="grid grid-cols-5 items-center gap-2 pt-4"
                             key={index}
                           >
-                            <div className="font-bold uppercase">
+                            <div className="col-span-2 font-bold uppercase">
                               {credit.role}
                             </div>
-                            <div className="space-x-4 text-xl font-light uppercase">
+                            <div className="col-span-3 space-x-4 font-light uppercase">
                               {credit.value}
                             </div>
                           </div>
@@ -162,13 +162,13 @@ const WorkItem = ({ workItem = {} }) => {
                       {column2Credits.map((credit, index) => {
                         return (
                           <div
-                            className="grid grid-cols-2 items-center gap-2 pt-4"
+                            className="grid grid-cols-5 items-center gap-2 pt-4"
                             key={index}
                           >
-                            <div className="font-bold uppercase">
+                            <div className="col-span-2 font-bold uppercase">
                               {credit.role}
                             </div>
-                            <div className="space-x-4 text-xl font-light uppercase">
+                            <div className="col-span-3 space-x-4 font-light uppercase">
                               {credit.value}
                             </div>
                           </div>

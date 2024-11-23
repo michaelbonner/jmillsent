@@ -94,7 +94,7 @@ const WorkItem = ({ workItem = {} }) => {
                   </div>
                 </button>
                 <div className={`${isOpen ? 'visible' : 'hidden'}`}>
-                  <div className="h-auto overflow-hidden transition-all">
+                  <div className="h-auto overflow-hidden text-sm transition-all">
                     <div className="grid grid-cols-1">
                       <div>
                         {column1Credits.map((credit, index) => {
@@ -139,7 +139,7 @@ const WorkItem = ({ workItem = {} }) => {
             {isDesktop && (
               <>
                 <H3>Credits</H3>
-                <div className="h-auto overflow-hidden transition-all xl:mt-4">
+                <div className="h-auto overflow-hidden text-sm transition-all xl:mt-4">
                   <div className="mb-12 grid grid-cols-1 gap-x-20 gap-y-4 md:grid-cols-2 lg:grid-cols-2">
                     <div>
                       {column1Credits.map((credit, index) => {

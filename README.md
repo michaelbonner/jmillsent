@@ -2,8 +2,8 @@
 
 The project is built in 2 parts
 
-1. `web` - The public website
-1. `studio` - The Sanity CMS
+1. `web` - The public website - [https://www.jmillsent.com/](https://www.jmillsent.com/)
+1. `studio` - The Sanity CMS - [https://jmillsent-studio.vercel.app/](https://jmillsent-studio.vercel.app/)
 
 ## Public site
 
@@ -25,13 +25,9 @@ Built using Next.js, consumes data from Sanity
 
 We are using Sanity's CMS to power the content creation process.
 
-### Working on the Sanity CMS
+[https://jmillsent-studio.vercel.app/](https://jmillsent-studio.vercel.app/)
+
+### Working on the Sanity CMS locally
 
 - `cd` in to studio
-- Run `sanity login`
 - Run `npm run start`
-
-### Deploying your changes to the CMS
-
-- `cd` in to studio
-- Run `sanity deploy`

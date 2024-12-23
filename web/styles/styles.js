@@ -1,7 +1,7 @@
 import classNames from 'classnames'
 
 const baseButtonStyles = classNames(
-  'group inline-flex items-center justify-center gap-4 rounded-xl border-2 px-5 py-1 uppercase transition-colors',
+  'group inline-flex items-center justify-center gap-4 rounded-xl border-2 px-5 py-1 uppercase transition-colors cursor-pointer',
   'hover:bg-gold'
 )
 

@@ -25,6 +25,8 @@ import newsPage from './newsPage'
 import adFormat from './adFormat'
 import portfolioItem from './portfolioItem'
 import portfolioPage from './portfolioPage'
+import documentaryPage from './documentaryPage'
+import episode from './episode'
 
 // Then we give our schema to the builder and provide the result to Sanity
 export default createSchema({
@@ -56,5 +58,7 @@ export default createSchema({
     newsPage,
     portfolioItem,
     portfolioPage,
+    documentaryPage,
+    episode,
   ]),
 })

@@ -31,3 +31,10 @@ We are using Sanity's CMS to power the content creation process.
 
 - `cd` in to studio
 - Run `npm run start`
+
+## Deploy
+
+Currently hosted on Vercel.
+
+- [vercel.com/bootpack/jmillsent](https://vercel.com/bootpack/jmillsent)
+- [vercel.com/bootpack/jmillsent-studio](https://vercel.com/bootpack/jmillsent-studio)

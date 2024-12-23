@@ -137,7 +137,7 @@ const Documentary = ({ documentaryPage }) => {
                   client={documentaryPage.title}
                   description={''}
                   poster={documentaryPage.poster}
-                  title={documentaryPage.title}
+                  title={documentaryPage.subtitle}
                   videoId={documentaryPage.videoId}
                   clientName={documentaryPage.subtitle}
                   videoHeightAspectRatio={

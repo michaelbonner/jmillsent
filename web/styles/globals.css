@@ -57,6 +57,10 @@ body {
   @apply font-extrabold;
 }
 
+.prose p {
+  @apply mb-3;
+}
+
 .bpd-project-tile {
   aspect-ratio: 2.3 / 1;
 }

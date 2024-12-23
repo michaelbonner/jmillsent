@@ -43,7 +43,7 @@ aspect-w-16	aspect-h-16
 
 const Documentary = ({ documentaryPage }) => {
   const [isEpisodeLightBoxOpen, setIsEpisodeLightBoxOpen] = useState(false)
-  const [episodePhotoIndex, setepisodePhotoIndex] = useState(0)
+  const [episodePhotoIndex, setEpisodePhotoIndex] = useState(0)
   const isDesktop = useIsDesktop()
 
   const episodeImages = documentaryPage.episodes.map((episode) => {
@@ -196,7 +196,7 @@ const Documentary = ({ documentaryPage }) => {
                       )}
                       onClick={() => {
                         setIsEpisodeLightBoxOpen(true)
-                        setepisodePhotoIndex(index)
+                        setEpisodePhotoIndex(index)
                       }}
                       style={{
                         backgroundImage: `url(${imageSrc})`,

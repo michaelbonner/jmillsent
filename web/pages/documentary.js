@@ -112,7 +112,7 @@ const Documentary = ({ documentaryPage }) => {
               Branded Content
             </Link>
           </li>
-          <li
+          {/* <li
             className={classNames(
               'flex justify-center text-xs',
               'lg:px-12 lg:text-base'
@@ -127,7 +127,7 @@ const Documentary = ({ documentaryPage }) => {
             >
               Documentary
             </span>
-          </li>
+          </li> */}
         </ul>
         <div className="container mx-auto max-w-7xl">
           <div className="mt-4 rounded-xl bg-white p-4 text-black lg:p-12">

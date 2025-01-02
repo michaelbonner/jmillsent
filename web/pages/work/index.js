@@ -68,7 +68,7 @@ function Work({ workPage, workItems, workItemCategories }) {
               </li>
             )
           })}
-          <li
+          {/* <li
             className={classNames(
               'flex justify-center text-xs',
               'lg:px-12 lg:text-base'
@@ -84,7 +84,7 @@ function Work({ workPage, workItems, workItemCategories }) {
             >
               Documentary
             </Link>
-          </li>
+          </li> */}
         </ul>
         <div
           className={classNames(

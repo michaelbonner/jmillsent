@@ -4,6 +4,7 @@ import { sanityClient } from '@/lib/sanity'
 import { PortableText } from '@portabletext/react'
 import classNames from 'classnames'
 import groq from 'groq'
+import Link from 'next/link'
 import { useQueryState } from 'nuqs'
 
 function Work({ workPage, workItems, workItemCategories }) {
@@ -67,6 +68,23 @@ function Work({ workPage, workItems, workItemCategories }) {
               </li>
             )
           })}
+          {/* <li
+            className={classNames(
+              'flex justify-center text-xs',
+              'lg:px-12 lg:text-base'
+            )}
+          >
+            <Link
+              className={classNames(
+                'rounded-xl border px-2 py-1 uppercase transition-all',
+                'lg:tracking-wider',
+                'border-black hover:scale-110'
+              )}
+              href="/documentary"
+            >
+              Documentary
+            </Link>
+          </li> */}
         </ul>
         <div
           className={classNames(

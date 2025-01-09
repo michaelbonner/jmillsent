@@ -252,13 +252,13 @@ const Documentary = ({ documentaryPage }) => {
                 rel="noreferrer"
                 target="_blank"
               >
-                <span className="font-outline text-2xl tracking-tighter text-gray-300 lg:text-3xl">
+                <span className="font-outline text-2xl tracking-tighter lg:text-3xl">
                   Watch
                 </span>
                 <span className="text-2xl font-bold tracking-wide lg:text-3xl">
                   Documentary
                 </span>
-                <span className="font-outline text-2xl tracking-tighter text-gray-300 lg:text-3xl">
+                <span className="font-outline text-2xl tracking-tighter lg:text-3xl">
                   Now
                 </span>
               </a>

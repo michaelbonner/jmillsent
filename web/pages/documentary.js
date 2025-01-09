@@ -179,7 +179,7 @@ const Documentary = ({ documentaryPage }) => {
             <section id="episodes">
               <div
                 className={classNames(
-                  'mt-12 grid gap-6',
+                  'mt-4 grid gap-6',
                   'md:grid-cols-2',
                   'lg:grid-cols-4'
                 )}

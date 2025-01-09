@@ -131,7 +131,7 @@ const Documentary = ({ documentaryPage }) => {
         </ul>
         <div className="container mx-auto max-w-7xl">
           <div className="mt-4 rounded-xl bg-white p-4 text-black lg:p-12">
-            <div className="mb-12 rounded-2xl text-white">
+            <div className="mb-12 rounded-2xl bg-black text-white">
               <ClientOnly>
                 <VideoPlayer
                   client={documentaryPage.title}
@@ -151,7 +151,7 @@ const Documentary = ({ documentaryPage }) => {
             </div>
 
             <div className="mx-auto max-w-5xl gap-6 md:flex lg:gap-10">
-              <div>
+              <div className="mb-6">
                 <Image
                   alt="Documentary Poster"
                   src={urlForSanitySource(documentaryPage.poster)
@@ -160,23 +160,26 @@ const Documentary = ({ documentaryPage }) => {
                     .url()}
                   height={630}
                   width={410}
+                  className="mx-auto"
                 />
               </div>
-              <div className="prose prose-lg md:w-3/4">
-                <H2 className="text-xl font-bold uppercase lg:text-5xl">
+              <div className="prose-lg md:w-3/4">
+                <h2 className="mb-0 text-3xl font-bold uppercase lg:text-5xl">
                   {documentaryPage.bodyHeader}
-                </H2>
-                <H3 className="font-outline text-2xl uppercase lg:text-4xl">
+                </h2>
+                <h3 className="font-outline text-3xl uppercase lg:text-4xl">
                   {documentaryPage.bodySubheader}
-                </H3>
+                </h3>
                 <div className="h-[2px] w-full max-w-lg bg-black" />
-                <PortableText value={documentaryPage.body} />
+                <div className="text-base">
+                  <PortableText value={documentaryPage.body} />
+                </div>
               </div>
             </div>
             <section id="episodes">
               <div
                 className={classNames(
-                  'mt-12 grid gap-6',
+                  'mt-4 grid gap-6',
                   'md:grid-cols-2',
                   'lg:grid-cols-4'
                 )}
@@ -191,7 +194,7 @@ const Documentary = ({ documentaryPage }) => {
                     <button
                       className={classNames(
                         'group relative rounded-xl',
-                        'aspect-[4/3] overflow-hidden',
+                        'aspect-2 overflow-hidden',
                         'bg-cover bg-center bg-no-repeat'
                       )}
                       onClick={() => {
@@ -212,8 +215,8 @@ const Documentary = ({ documentaryPage }) => {
                       />
                       <div
                         className={classNames(
-                          'relative z-10 flex h-full translate-y-1/3 flex-col items-center justify-center overflow-auto py-3 transition-transform duration-300',
-                          'group-hover:-translate-y-0'
+                          'relative z-10 flex translate-y-0 flex-col items-center justify-center overflow-hidden py-3 transition-transform duration-300',
+                          'group-hover:-translate-y-10'
                         )}
                       >
                         <div

@@ -293,19 +293,19 @@ function About({ aboutPage }) {
                     />
                     <div
                       className={classNames(
-                        'relative z-10 flex h-full translate-y-1/2 flex-col items-center justify-center overflow-auto py-3 transition-transform duration-300',
+                        'relative z-10 flex h-full translate-y-1/2 flex-col items-center justify-center py-3 transition-transform duration-300 group-hover:overflow-auto',
                         'group-hover:-translate-y-0'
                       )}
                     >
                       <div
-                        className="font-outline text-5xl font-light"
+                        className="font-outline text-5xl font-light group-hover:hidden"
                         style={{
                           letterSpacing: 1,
                         }}
                       >
                         0{index + 1}
                       </div>
-                      <div className="mx-auto my-2 h-1 w-40 shrink-0 bg-gold"></div>
+                      <div className="mx-auto my-2 h-1 w-40 shrink-0 bg-gold group-hover:hidden"></div>
                       <h4 className="mb-4 text-3xl font-bold uppercase">
                         {service.name}
                       </h4>
@@ -511,7 +511,7 @@ function About({ aboutPage }) {
                             yMargin={'my-2'}
                           />
                         </div>
-                        <p className="text-sm font-bold uppercase tracking-wider lg:font-outline lg:text-2xl">
+                        <p className="text-sm uppercase tracking-wider lg:font-outline lg:text-2xl">
                           {teamMember.title}
                         </p>
                       </div>

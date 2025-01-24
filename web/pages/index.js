@@ -17,6 +17,11 @@ import Lightbox from 'yet-another-react-lightbox'
 
 const VideoPlayer = dynamic(() => import('@/components/video-player'), {})
 
+const aspectRatioMap = {
+  '2.35:1': 'aspect-[2.35/1]',
+  '16:9': 'aspect-[16/9]',
+}
+
 function Home({ homePage }) {
   const isDesktop = useIsDesktop()
 
@@ -94,10 +99,18 @@ function Home({ homePage }) {
                   (homePage.latestCampaignVideos.length === 1 ||
                     homePage.latestCampaignVideos.length === 3) &&
                   index === 0
-                let colSpan = shouldBeBig ? 'col-span-2 min-h-96' : ''
+
+                const aspectRatio =
+                  aspectRatioMap[homePage.latestCampaignAspectRatio]
 
                 return (
-                  <div className={colSpan} key={index}>
+                  <div
+                    className={classNames(
+                      shouldBeBig && 'col-span-2',
+                      aspectRatio
+                    )}
+                    key={index}
+                  >
                     <WorkItemTile
                       className="h-full w-full"
                       autoPlay
@@ -253,6 +266,7 @@ export async function getStaticProps() {
       headerVideoHeightInPixelsMobile,
       latestCampaignTitle,
       latestCampaignSubtitle,
+      latestCampaignAspectRatio,
       latestCampaignVideos[]->{
         _id,
         slug,

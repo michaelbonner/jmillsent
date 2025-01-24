@@ -130,6 +130,16 @@ export default {
       group: 'latestCampaign',
     },
     {
+      name: 'latestCampaignAspectRatio',
+      title: 'Latest campaign aspect ratio',
+      type: 'string',
+      options: {
+        list: ['2.35:1', '16:9'],
+        layout: 'dropdown',
+      },
+      group: 'latestCampaign',
+    },
+    {
       name: 'section2Title',
       title: 'Section 2 title',
       type: 'string',

@@ -1,9 +1,6 @@
-import 'yet-another-react-lightbox/styles.css'
-
 import { ClientOnly } from '@/components/client-only'
 import { H1, H2 } from '@/components/headings'
 import Layout from '@/components/layout'
-import WorkItemTile from '@/components/work-item-tile'
 import { sanityClient } from '@/lib/sanity'
 import { PortableText } from '@portabletext/react'
 import classNames from 'classnames'
@@ -12,37 +9,11 @@ import useIsDesktop from 'hooks/useIsDesktop'
 import dynamic from 'next/dynamic'
 import Image from 'next/image'
 import Link from 'next/link'
-import { useState } from 'react'
-import Lightbox from 'yet-another-react-lightbox'
 
 const VideoPlayer = dynamic(() => import('@/components/video-player'), {})
 
-const aspectRatioMap = {
-  '2.35:1': 'aspect-[2.35/1]',
-  '16:9': 'aspect-[16/9]',
-}
-
 function Home({ homePage }) {
   const isDesktop = useIsDesktop()
-
-  const [isLightBoxOpen, setIsLightBoxOpen] = useState(false)
-  const [photoIndex, setPhotoIndex] = useState(0)
-
-  const latestCampaignVideoSlides = homePage.latestCampaignVideos.map(
-    (latestCampaignVideo) => ({
-      ...latestCampaignVideo,
-      slideType: 'video-slide',
-      client: latestCampaignVideo.clientName,
-      TitleElement: (
-        <div>
-          <span className="flex items-center gap-4 text-lg md:text-2xl">
-            <span>{latestCampaignVideo.title}</span>
-          </span>
-          <div className="my-2 h-1 w-40 shrink-0 bg-gold" />
-        </div>
-      ),
-    })
-  )
 
   const heroContent = (
     <div className="flex h-full w-screen flex-col items-center justify-center text-center text-white">
@@ -100,30 +71,22 @@ function Home({ homePage }) {
                     homePage.latestCampaignVideos.length === 3) &&
                   index === 0
 
-                const aspectRatio =
-                  aspectRatioMap[homePage.latestCampaignAspectRatio]
-
                 return (
                   <div
-                    className={classNames(
-                      shouldBeBig && 'col-span-2',
-                      aspectRatio
-                    )}
+                    className={classNames(shouldBeBig && 'col-span-2')}
                     key={index}
                   >
-                    <WorkItemTile
-                      className="h-full w-full"
-                      autoPlay
-                      onClick={() => {
-                        setIsLightBoxOpen(true)
-                        setPhotoIndex(index)
-                      }}
-                      playLockupClassName={classNames(
-                        shouldBeBig && 'scale-150 origin-left'
-                      )}
-                      workItem={video}
-                      showWithPlayLockup
-                    />
+                    <ClientOnly>
+                      <VideoPlayer
+                        client={video.clientName}
+                        description={video.description}
+                        poster={video.poster}
+                        title={video.title}
+                        videoHeightAspectRatio={video.videoHeightAspectRatio}
+                        videoId={video.videoId}
+                        videoWidthAspectRatio={video.videoWidthAspectRatio}
+                      />
+                    </ClientOnly>
                   </div>
                 )
               })}
@@ -199,37 +162,6 @@ function Home({ homePage }) {
           </div>
         )}
       </div>
-
-      <Lightbox
-        close={() => setIsLightBoxOpen(false)}
-        controller={{
-          closeOnBackdropClick: true,
-          closeOnPullDown: true,
-          closeOnPullUp: true,
-        }}
-        index={photoIndex}
-        open={isLightBoxOpen}
-        slides={latestCampaignVideoSlides}
-        render={{
-          slide: ({ slide }) => {
-            const {
-              TitleElement: _titleElement,
-              DescriptionElement: _descriptionElement,
-              ...slideProps
-            } = slide
-
-            return slide.slideType === 'video-slide' ? (
-              <ClientOnly>
-                <div className="w-full text-white">
-                  <VideoPlayer noContainer {...slideProps} />
-                </div>
-              </ClientOnly>
-            ) : undefined
-          },
-          description: ({ DescriptionElement }) => <DescriptionElement />,
-          title: ({ TitleElement }) => <TitleElement />,
-        }}
-      />
     </Layout>
   )
 }
@@ -266,7 +198,6 @@ export async function getStaticProps() {
       headerVideoHeightInPixelsMobile,
       latestCampaignTitle,
       latestCampaignSubtitle,
-      latestCampaignAspectRatio,
       latestCampaignVideos[]->{
         _id,
         slug,

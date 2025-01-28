@@ -17,6 +17,7 @@ const WorkItemTile = ({
   showWithPlayLockup = false,
   className,
   playLockupClassName,
+  aspectRatio,
 }) => {
   const [isHovered, setIsHovered] = useState(autoPlay)
   const [hasHovered, setHasHovered] = useState(autoPlay)
@@ -32,7 +33,8 @@ const WorkItemTile = ({
         {
           'lg:hidden': index >= hideAfterCount,
         },
-        `bpd-project-tile relative text-white`,
+        aspectRatio ? aspectRatio : 'bpd-project-tile',
+        `relative text-white`,
         `flex flex-col items-center justify-center space-y-2 lg:space-y-0`,
         className
       )}

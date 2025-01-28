@@ -1,6 +1,7 @@
 import { ClientOnly } from '@/components/client-only'
 import { H1, H2 } from '@/components/headings'
 import Layout from '@/components/layout'
+import WorkItemTile from '@/components/work-item-tile'
 import { sanityClient } from '@/lib/sanity'
 import { PortableText } from '@portabletext/react'
 import classNames from 'classnames'
@@ -73,20 +74,24 @@ function Home({ homePage }) {
 
                 return (
                   <div
-                    className={classNames(shouldBeBig && 'col-span-2')}
+                    className={classNames(
+                      shouldBeBig && 'lg:col-span-2',
+                      'overflow-hidden rounded-xl',
+                      'xl:rounded-2xl'
+                    )}
                     key={index}
                   >
-                    <ClientOnly>
-                      <VideoPlayer
-                        client={video.clientName}
-                        description={video.description}
-                        poster={video.poster}
-                        title={video.title}
-                        videoHeightAspectRatio={video.videoHeightAspectRatio}
-                        videoId={video.videoId}
-                        videoWidthAspectRatio={video.videoWidthAspectRatio}
-                      />
-                    </ClientOnly>
+                    <WorkItemTile
+                      aspectRatio="aspect-[16/9]"
+                      workItem={video}
+                      autoPlay
+                      showWithPlayLockup
+                      playLockupClassName={classNames(
+                        shouldBeBig
+                          ? 'lg:origin-left lg:scale-150'
+                          : 'lg:origin-left lg:scale-125'
+                      )}
+                    />
                   </div>
                 )
               })}

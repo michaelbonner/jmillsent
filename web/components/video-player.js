@@ -203,12 +203,12 @@ const VideoPlayer = ({
 
     const getVideoDetails = async (player) => {
       const duration = await player.getDuration()
-      console.info('player: duration', duration)
+      console.debug('player: duration', duration)
       dispatch({ type: 'setTotalPlaySeconds', totalPlaySeconds: duration })
     }
 
     const onLoaded = () => {
-      console.info('player: onLoaded')
+      console.debug('player: onLoaded')
       getVideoDetails(vimeoPlayer)
       if (!isPlayerLoaded && isDesktop && autoPlay && !hasClicked) {
         setTimeout(async () => {
@@ -226,13 +226,13 @@ const VideoPlayer = ({
     vimeoPlayer.on('loaded', onLoaded)
 
     const onPlay = function () {
-      console.info('player: play')
+      console.debug('player: play')
       dispatch({ type: 'setIsPlaying', isPlaying: true })
     }
     vimeoPlayer.on('play', onPlay)
 
     const onPause = function () {
-      console.info('player: pause')
+      console.debug('player: pause')
       dispatch({ type: 'setIsPlaying', isPlaying: false })
     }
     vimeoPlayer.on('pause', onPause)
@@ -253,7 +253,7 @@ const VideoPlayer = ({
     vimeoPlayer.on('timeupdate', onTimeupdate)
 
     vimeoPlayer.on('seeked', function (data) {
-      console.info('player: seeked', data)
+      console.debug('player: seeked', data)
       if (data.percent !== 0) {
         dispatch({ type: 'setHasClicked', hasClicked: true })
       }

@@ -9,11 +9,15 @@ import useIsDesktop from 'hooks/useIsDesktop'
 import dynamic from 'next/dynamic'
 import Image from 'next/image'
 import Link from 'next/link'
+import { useState } from 'react'
 
 const VideoPlayer = dynamic(() => import('@/components/video-player'), {})
 
 function Home({ homePage }) {
   const isDesktop = useIsDesktop()
+
+  const [latestCampaignVideoPlayingIndex, setLatestCampaignVideoPlayingIndex] =
+    useState(null)
 
   const heroContent = (
     <div className="flex h-full w-screen flex-col items-center justify-center text-center text-white">
@@ -71,12 +75,20 @@ function Home({ homePage }) {
                     homePage.latestCampaignVideos.length === 3) &&
                   index === 0
 
+                const isCurrentlyPlaying =
+                  latestCampaignVideoPlayingIndex === index
+
+                const shouldReduceOpacity =
+                  latestCampaignVideoPlayingIndex !== null &&
+                  !isCurrentlyPlaying
+
                 return (
                   <div
                     className={classNames(
                       shouldBeBig && 'lg:col-span-2',
-                      'overflow-hidden rounded-xl',
-                      'xl:rounded-2xl'
+                      'overflow-hidden rounded-xl transition-opacity duration-500',
+                      'xl:rounded-2xl',
+                      shouldReduceOpacity && 'opacity-50'
                     )}
                     key={index}
                   >
@@ -85,17 +97,25 @@ function Home({ homePage }) {
                         autoPlay
                         client={video.clientName}
                         description={video.description}
-                        poster={video.poster}
-                        title={video.title}
-                        videoHeightAspectRatio={video.videoHeightAspectRatio}
-                        videoId={video.videoId}
-                        videoWidthAspectRatio={video.videoWidthAspectRatio}
+                        onPlayProp={() =>
+                          setLatestCampaignVideoPlayingIndex(index)
+                        }
+                        onPauseProp={() =>
+                          setLatestCampaignVideoPlayingIndex((previous) =>
+                            previous === index ? null : previous
+                          )
+                        }
                         overrideClassNames={{
                           text: {
                             client: shouldBeBig ? '' : 'text-xl lg:text-3xl',
                             title: shouldBeBig ? '' : 'text-2xl lg:text-4xl',
                           },
                         }}
+                        poster={video.poster}
+                        title={video.title}
+                        videoHeightAspectRatio={video.videoHeightAspectRatio}
+                        videoId={video.videoId}
+                        videoWidthAspectRatio={video.videoWidthAspectRatio}
                       />
                     </ClientOnly>
                   </div>

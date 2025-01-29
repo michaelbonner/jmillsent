@@ -115,6 +115,8 @@ const VideoPlayer = ({
   videoWidthAspectRatio = '16',
   noContainer = false,
   overrideClassNames = {},
+  onPlayProp = () => {},
+  onPauseProp = () => {},
 }) => {
   const [state, dispatch] = useReducer(videoPlayerReducer, {
     hasClicked: false,
@@ -383,6 +385,12 @@ const VideoPlayer = ({
   }, [])
 
   const handleOverlayClick = () => {
+    if (isPlaying) {
+      onPauseProp()
+    } else {
+      onPlayProp()
+    }
+
     if (!vimeoPlayer) {
       dispatch({ type: 'setHasClicked', hasClicked: true })
       return
@@ -411,8 +419,10 @@ const VideoPlayer = ({
     const isPaused = await vimeoPlayer.getPaused()
     if (isPaused) {
       vimeoPlayer.play()
+      onPlayProp()
     } else {
       vimeoPlayer.pause()
+      onPauseProp()
     }
   }
 

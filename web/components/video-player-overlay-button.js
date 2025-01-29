@@ -1,8 +1,9 @@
 import classNames from 'classnames'
+import { memo } from 'react'
 import { GrPlay } from 'react-icons/gr'
 import LittleGoldBar from './little-gold-bar'
 
-export const VideoPlayerOverlayButton = ({
+const VideoPlayerOverlayButtonNotMemoized = ({
   client,
   description,
   handleOverlayClick,
@@ -72,3 +73,17 @@ export const VideoPlayerOverlayButton = ({
     </button>
   )
 }
+
+export const VideoPlayerOverlayButton = memo(
+  VideoPlayerOverlayButtonNotMemoized,
+  (prevProps, nextProps) => {
+    return (
+      prevProps.client === nextProps.client &&
+      prevProps.description === nextProps.description &&
+      prevProps.hasClicked === nextProps.hasClicked &&
+      prevProps.isIpad === nextProps.isIpad &&
+      prevProps.showVideoOverlay === nextProps.showVideoOverlay &&
+      prevProps.title === nextProps.title
+    )
+  }
+)

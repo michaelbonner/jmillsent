@@ -73,7 +73,7 @@ const ContactForm = ({ interests, successMessage = '' }) => {
                 })
               }
             } catch (error) {
-              console.log(error)
+              console.error(error)
               setSubmitting(false)
               toast('Save failed', {
                 type: toast.TYPE.ERROR,

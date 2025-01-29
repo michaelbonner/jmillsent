@@ -1,7 +1,6 @@
 import { ClientOnly } from '@/components/client-only'
 import { H1, H2 } from '@/components/headings'
 import Layout from '@/components/layout'
-import WorkItemTile from '@/components/work-item-tile'
 import { sanityClient } from '@/lib/sanity'
 import { PortableText } from '@portabletext/react'
 import classNames from 'classnames'
@@ -81,17 +80,24 @@ function Home({ homePage }) {
                     )}
                     key={index}
                   >
-                    <WorkItemTile
-                      aspectRatio="aspect-[16/9]"
-                      workItem={video}
-                      autoPlay
-                      showWithPlayLockup
-                      playLockupClassName={classNames(
-                        shouldBeBig
-                          ? 'lg:origin-left lg:scale-150'
-                          : 'lg:origin-left lg:scale-125'
-                      )}
-                    />
+                    <ClientOnly>
+                      <VideoPlayer
+                        autoPlay
+                        client={video.clientName}
+                        description={video.description}
+                        poster={video.poster}
+                        title={video.title}
+                        videoHeightAspectRatio={video.videoHeightAspectRatio}
+                        videoId={video.videoId}
+                        videoWidthAspectRatio={video.videoWidthAspectRatio}
+                        overrideClassNames={{
+                          text: {
+                            client: shouldBeBig ? '' : 'text-xl lg:text-3xl',
+                            title: shouldBeBig ? '' : 'text-2xl lg:text-4xl',
+                          },
+                        }}
+                      />
+                    </ClientOnly>
                   </div>
                 )
               })}
@@ -209,7 +215,6 @@ export async function getStaticProps() {
         clientName,
         title,
         poster,
-        clientName,
         description,
         extraPaddingOnVideo,
         frames,

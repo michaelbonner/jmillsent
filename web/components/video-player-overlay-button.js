@@ -1,6 +1,7 @@
 import classNames from 'classnames'
 import { memo } from 'react'
 import { GrPlay } from 'react-icons/gr'
+import { twMerge } from 'tailwind-merge'
 import LittleGoldBar from './little-gold-bar'
 
 const VideoPlayerOverlayButtonNotMemoized = ({
@@ -11,6 +12,7 @@ const VideoPlayerOverlayButtonNotMemoized = ({
   isIpad,
   showVideoOverlay,
   title,
+  overrideClassNames,
 }) => {
   return (
     <button
@@ -53,16 +55,31 @@ const VideoPlayerOverlayButtonNotMemoized = ({
             </div>
           )}
           <div className="border-l-2 border-gold pl-2 md:border-l-4 lg:pl-6">
-            <div className="text-xl font-bold uppercase lg:text-4xl">
+            <div
+              className={twMerge(
+                'text-xl font-bold uppercase lg:text-4xl',
+                overrideClassNames?.text?.client
+              )}
+            >
               {client}
             </div>
-            <div className="font-outline text-2xl uppercase lg:text-5xl">
+            <div
+              className={twMerge(
+                'font-outline text-2xl uppercase lg:text-5xl',
+                overrideClassNames?.text?.title
+              )}
+            >
               {title}
             </div>
             {description && (
               <div className="w-64">
                 <LittleGoldBar />
-                <div className="max-h-[300px] w-full max-w-sm overflow-y-scroll whitespace-pre-wrap text-base uppercase tracking-wide">
+                <div
+                  className={twMerge(
+                    'max-h-[300px] w-full max-w-sm overflow-y-scroll whitespace-pre-wrap text-base uppercase tracking-wide',
+                    overrideClassNames?.text?.description
+                  )}
+                >
                   {description}
                 </div>
               </div>

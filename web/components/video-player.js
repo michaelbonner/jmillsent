@@ -114,6 +114,7 @@ const VideoPlayer = ({
   videoIdShort = '',
   videoWidthAspectRatio = '16',
   noContainer = false,
+  overrideClassNames = {},
 }) => {
   const [state, dispatch] = useReducer(videoPlayerReducer, {
     hasClicked: false,
@@ -504,6 +505,7 @@ const VideoPlayer = ({
           hasClicked={hasClicked}
           isIos={isIos}
           isIpad={isIpad}
+          overrideClassNames={overrideClassNames}
           showVideoOverlay={showVideoOverlay}
           title={title}
         />
@@ -558,6 +560,7 @@ const VideoPlayer = ({
           hasClicked={hasClicked}
           isIos={isIos}
           isIpad={isIpad}
+          overrideClassNames={overrideClassNames}
           showVideoOverlay={showVideoOverlay}
           title={title}
         />

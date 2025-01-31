@@ -16,8 +16,10 @@ const VideoPlayer = dynamic(() => import('@/components/video-player'), {})
 function Home({ homePage }) {
   const isDesktop = useIsDesktop()
 
-  const [latestCampaignVideoPlayingIndex, setLatestCampaignVideoPlayingIndex] =
-    useState(null)
+  const [
+    latestCampaignVideoPlayingIndexes,
+    setLatestCampaignVideoPlayingIndexes,
+  ] = useState([])
 
   const heroContent = (
     <div className="flex h-full w-screen flex-col items-center justify-center text-center text-white">
@@ -76,10 +78,10 @@ function Home({ homePage }) {
                   index === 0
 
                 const isCurrentlyPlaying =
-                  latestCampaignVideoPlayingIndex === index
+                  latestCampaignVideoPlayingIndexes.includes(index)
 
                 const shouldReduceOpacity =
-                  latestCampaignVideoPlayingIndex !== null &&
+                  latestCampaignVideoPlayingIndexes.length > 0 &&
                   !isCurrentlyPlaying
 
                 return (
@@ -98,11 +100,14 @@ function Home({ homePage }) {
                         client={video.clientName}
                         description={video.description}
                         onPlayProp={() =>
-                          setLatestCampaignVideoPlayingIndex(index)
+                          setLatestCampaignVideoPlayingIndexes((p) => [
+                            ...p,
+                            index,
+                          ])
                         }
                         onPauseProp={() =>
-                          setLatestCampaignVideoPlayingIndex((previous) =>
-                            previous === index ? null : previous
+                          setLatestCampaignVideoPlayingIndexes((previous) =>
+                            previous.filter((p) => p !== index)
                           )
                         }
                         overrideClassNames={{

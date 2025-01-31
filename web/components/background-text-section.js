@@ -1,14 +1,14 @@
 import urlForSanitySource from '@/lib/urlForSanitySource'
 import { PortableText } from '@portabletext/react'
+import classNames from 'classnames'
 import Image from 'next/image'
 import Link from 'next/link'
-import React from 'react'
+import { useRouter } from 'next/router'
+import { styles as globalStyles } from 'styles/styles'
+import { clsx } from 'yet-another-react-lightbox'
+import Date from './date'
 import { H3 } from './headings'
 import LittleGoldBar from './little-gold-bar'
-import Date from './date'
-import { useRouter } from 'next/router'
-import classNames from 'classnames'
-import { styles as globalStyles } from 'styles/styles'
 
 const BackgroundText = ({
   image,
@@ -77,14 +77,20 @@ const BackgroundText = ({
                   </div>
                 )}
               </div>
-              <div className="prose-lg mx-auto mt-1.5 max-w-xl font-light leading-normal lg:mx-0">
+              <div className="prose prose-lg mx-auto mt-1.5 max-w-xl font-light leading-normal lg:prose-invert lg:mx-0">
                 <PortableText value={description} />
               </div>
               {customButtonText1 && customButtonText2 && customButtonText3 && (
                 <div
                   className={`mt-4 self-center text-2xl leading-normal ${styles[leftOrRight].buttonPosition}`}
                 >
-                  <Link href={slug} className={globalStyles.buttonLink.default}>
+                  <Link
+                    href={slug}
+                    className={clsx(
+                      globalStyles.buttonLink.blackBorder,
+                      'lg:border-white'
+                    )}
+                  >
                     <span className="font-outline tracking-tighter">
                       {customButtonText1}
                     </span>

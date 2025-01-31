@@ -115,8 +115,8 @@ const VideoPlayer = ({
   videoWidthAspectRatio = '16',
   noContainer = false,
   overrideClassNames = {},
-  onPlayProp = () => {},
-  onPauseProp = () => {},
+  onPlayProp,
+  onPauseProp,
 }) => {
   const [state, dispatch] = useReducer(videoPlayerReducer, {
     hasClicked: false,
@@ -124,6 +124,7 @@ const VideoPlayer = ({
     isIos: false,
     isIpad: false,
     isPlayerLoaded: false,
+    isPlaying: false,
     muted: true,
     playerState: 'initial',
     playingVideoId: videoIdShort || videoId,
@@ -386,23 +387,20 @@ const VideoPlayer = ({
 
   const handleOverlayClick = () => {
     if (isPlaying) {
-      onPauseProp()
+      onPauseProp?.()
     } else {
-      onPlayProp()
+      onPlayProp?.()
     }
 
-    if (!vimeoPlayer) {
-      dispatch({ type: 'setHasClicked', hasClicked: true })
-      return
-    }
+    const player = new Vimeo(vimeoPlayerRef.current)
 
-    if (autoPlay && isPlaying && !hasClicked) {
-      vimeoPlayer.pause()
-      vimeoPlayer.setVolume(1)
-      vimeoPlayer.setCurrentTime(0)
+    if (autoPlay && !isPlaying && !hasClicked) {
+      player?.pause()
+      player?.setVolume(1)
+      player?.setCurrentTime(0)
       dispatch({ type: 'setScrubberPosition', scrubberPosition: 0 })
       setTimeout(() => {
-        vimeoPlayer.play()
+        player?.play()
       }, 100)
     } else {
       handleTogglePlay()
@@ -414,15 +412,15 @@ const VideoPlayer = ({
   const handleTogglePlay = async () => {
     dispatch({ type: 'setHasClicked', hasClicked: true })
 
-    if (!vimeoPlayer) return
+    const player = new Vimeo(vimeoPlayerRef.current)
 
-    const isPaused = await vimeoPlayer.getPaused()
+    const isPaused = await player.getPaused()
     if (isPaused) {
-      vimeoPlayer.play()
-      onPlayProp()
+      player.play()
+      onPlayProp?.()
     } else {
-      vimeoPlayer.pause()
-      onPauseProp()
+      player.pause()
+      onPauseProp?.()
     }
   }
 

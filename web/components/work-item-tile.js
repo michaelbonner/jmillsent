@@ -15,6 +15,9 @@ const WorkItemTile = ({
   onClick,
   autoPlay = false,
   showWithPlayLockup = false,
+  className,
+  playLockupClassName,
+  aspectRatio,
 }) => {
   const [isHovered, setIsHovered] = useState(autoPlay)
   const [hasHovered, setHasHovered] = useState(autoPlay)
@@ -30,8 +33,10 @@ const WorkItemTile = ({
         {
           'lg:hidden': index >= hideAfterCount,
         },
-        `bpd-project-tile relative text-white`,
-        `flex flex-col items-center justify-center space-y-2 lg:space-y-0`
+        aspectRatio ? aspectRatio : 'bpd-project-tile',
+        `relative text-white`,
+        `flex flex-col items-center justify-center space-y-2 lg:space-y-0`,
+        className
       )}
       style={{
         backgroundImage: workItem.poster
@@ -107,7 +112,12 @@ const WorkItemTile = ({
         )}
       <div className="z-10 w-full text-center">
         {showWithPlayLockup ? (
-          <div className="flex w-full items-center justify-start gap-4 pl-4 pr-2 text-left">
+          <div
+            className={classNames(
+              'flex w-full items-center justify-start gap-4 pl-4 pr-2 text-left',
+              playLockupClassName
+            )}
+          >
             <div className="z-10 flex cursor-pointer items-center justify-center bg-transparent text-4xl xl:justify-start xl:text-6xl">
               <div className="bpd-white-icon ml-1 flex scale-110 items-center justify-center rounded-full border-2 border-gray-300 transition-opacity duration-500">
                 <GrPlay className="size-10 py-2 pl-1" />

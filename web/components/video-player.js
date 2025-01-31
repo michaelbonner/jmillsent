@@ -114,6 +114,9 @@ const VideoPlayer = ({
   videoIdShort = '',
   videoWidthAspectRatio = '16',
   noContainer = false,
+  overrideClassNames = {},
+  onPlayProp,
+  onPauseProp,
 }) => {
   const [state, dispatch] = useReducer(videoPlayerReducer, {
     hasClicked: false,
@@ -121,6 +124,7 @@ const VideoPlayer = ({
     isIos: false,
     isIpad: false,
     isPlayerLoaded: false,
+    isPlaying: false,
     muted: true,
     playerState: 'initial',
     playingVideoId: videoIdShort || videoId,
@@ -202,12 +206,12 @@ const VideoPlayer = ({
 
     const getVideoDetails = async (player) => {
       const duration = await player.getDuration()
-      console.info('player: duration', duration)
+      console.debug('player: duration', duration)
       dispatch({ type: 'setTotalPlaySeconds', totalPlaySeconds: duration })
     }
 
     const onLoaded = () => {
-      console.info('player: onLoaded')
+      console.debug('player: onLoaded')
       getVideoDetails(vimeoPlayer)
       if (!isPlayerLoaded && isDesktop && autoPlay && !hasClicked) {
         setTimeout(async () => {
@@ -225,13 +229,13 @@ const VideoPlayer = ({
     vimeoPlayer.on('loaded', onLoaded)
 
     const onPlay = function () {
-      console.info('player: play')
+      console.debug('player: play')
       dispatch({ type: 'setIsPlaying', isPlaying: true })
     }
     vimeoPlayer.on('play', onPlay)
 
     const onPause = function () {
-      console.info('player: pause')
+      console.debug('player: pause')
       dispatch({ type: 'setIsPlaying', isPlaying: false })
     }
     vimeoPlayer.on('pause', onPause)
@@ -252,7 +256,7 @@ const VideoPlayer = ({
     vimeoPlayer.on('timeupdate', onTimeupdate)
 
     vimeoPlayer.on('seeked', function (data) {
-      console.info('player: seeked', data)
+      console.debug('player: seeked', data)
       if (data.percent !== 0) {
         dispatch({ type: 'setHasClicked', hasClicked: true })
       }
@@ -382,18 +386,21 @@ const VideoPlayer = ({
   }, [])
 
   const handleOverlayClick = () => {
-    if (!vimeoPlayer) {
-      dispatch({ type: 'setHasClicked', hasClicked: true })
-      return
+    if (isPlaying) {
+      onPauseProp?.()
+    } else {
+      onPlayProp?.()
     }
 
-    if (autoPlay && isPlaying && !hasClicked) {
-      vimeoPlayer.pause()
-      vimeoPlayer.setVolume(1)
-      vimeoPlayer.setCurrentTime(0)
+    const player = new Vimeo(vimeoPlayerRef.current)
+
+    if (autoPlay && !isPlaying && !hasClicked) {
+      player?.pause()
+      player?.setVolume(1)
+      player?.setCurrentTime(0)
       dispatch({ type: 'setScrubberPosition', scrubberPosition: 0 })
       setTimeout(() => {
-        vimeoPlayer.play()
+        player?.play()
       }, 100)
     } else {
       handleTogglePlay()
@@ -405,13 +412,15 @@ const VideoPlayer = ({
   const handleTogglePlay = async () => {
     dispatch({ type: 'setHasClicked', hasClicked: true })
 
-    if (!vimeoPlayer) return
+    const player = new Vimeo(vimeoPlayerRef.current)
 
-    const isPaused = await vimeoPlayer.getPaused()
+    const isPaused = await player.getPaused()
     if (isPaused) {
-      vimeoPlayer.play()
+      player.play()
+      onPlayProp?.()
     } else {
-      vimeoPlayer.pause()
+      player.pause()
+      onPauseProp?.()
     }
   }
 
@@ -504,6 +513,7 @@ const VideoPlayer = ({
           hasClicked={hasClicked}
           isIos={isIos}
           isIpad={isIpad}
+          overrideClassNames={overrideClassNames}
           showVideoOverlay={showVideoOverlay}
           title={title}
         />
@@ -558,6 +568,7 @@ const VideoPlayer = ({
           hasClicked={hasClicked}
           isIos={isIos}
           isIpad={isIpad}
+          overrideClassNames={overrideClassNames}
           showVideoOverlay={showVideoOverlay}
           title={title}
         />

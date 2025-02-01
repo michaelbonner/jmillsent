@@ -1,12 +1,21 @@
 import Vimeo from '@vimeo/player'
 import classNames from 'classnames'
 import Image from 'next/image'
-import { memo, useEffect, useMemo, useReducer, useRef, useState } from 'react'
+import {
+  memo,
+  useCallback,
+  useEffect,
+  useMemo,
+  useReducer,
+  useRef,
+  useState,
+} from 'react'
 import screenfull from 'screenfull'
 import urlForSanitySource from '../lib/urlForSanitySource'
 import SanityImage from './sanity-image'
 import { VideoPlayerControlBar } from './video-player-control-bar'
 import { VideoPlayerOverlayButton } from './video-player-overlay-button'
+import { v4 as uuidv4 } from 'uuid'
 
 const videoPlayerReducer = (state, action) => {
   switch (action.type) {
@@ -137,6 +146,8 @@ const VideoPlayerComponent = ({
     vimeoPlayer: null,
   })
 
+  const iframeId = useMemo(() => uuidv4(), [])
+
   const {
     hasClicked,
     isFullscreen,
@@ -154,16 +165,25 @@ const VideoPlayerComponent = ({
     videoPlayTime,
     vimeoIframeParams,
   } = state
+  const [vimeoPlayer, setVimeoPlayer] = useState(null)
 
   const isDesktop = useMemo(() => {
     if (typeof window === 'undefined') return null
 
     return window.innerWidth > 1024
   }, [])
-  const vimeoPlayerRef = useRef(null)
-  const playerContainer = useRef(null)
+  const vimeoPlayerRef = useCallback(
+    (videoNode) => {
+      if (!videoNode) {
+        return
+      }
 
-  const [vimeoPlayer, setVimeoPlayer] = useState(null)
+      setVimeoPlayer(new Vimeo(document.getElementById(iframeId)))
+    },
+    [iframeId]
+  )
+
+  const playerContainer = useRef(null)
 
   const videoLength = useMemo(() => {
     const minutes = Math.floor(totalPlaySeconds / 60)
@@ -184,61 +204,63 @@ const VideoPlayerComponent = ({
     let player
 
     const loadPlayer = () => {
-      if (!vimeoPlayerRef?.current) {
+      if (!vimeoPlayerRef) {
         setTimeout(loadPlayer, 100)
         return
       }
 
-      const iframe = vimeoPlayerRef?.current
-      player = new Vimeo(iframe)
-
-      setVimeoPlayer(player)
+      if (document.getElementById(iframeId)) {
+        setVimeoPlayer(new Vimeo(document.getElementById(iframeId)))
+      }
     }
 
     if (!player) loadPlayer()
-  }, [autoPlay, hasClicked, isDesktop, vimeoPlayerRef, vimeoPlayer])
+  }, [autoPlay, hasClicked, isDesktop, vimeoPlayerRef, vimeoPlayer, iframeId])
+
+  const getVideoDetails = async () => {
+    const duration = await vimeoPlayer?.getDuration()
+    if (duration) {
+      console.debug('player: duration', duration)
+      dispatch({ type: 'setTotalPlaySeconds', totalPlaySeconds: duration })
+    }
+  }
+
+  const onLoaded = () => {
+    console.debug('player: onLoaded')
+    getVideoDetails()
+
+    if (!isPlayerLoaded && isDesktop && autoPlay && !hasClicked) {
+      setTimeout(async () => {
+        try {
+          await vimeoPlayer?.play()
+
+          dispatch({ type: 'setIsPlayerLoaded', isPlayerLoaded: true })
+        } catch (error) {
+          console.error('onLoaded error', error)
+        }
+      }, 500)
+    }
+  }
 
   useEffect(() => {
     if (isDesktop === null) return
     if (!vimeoPlayer) return
 
-    vimeoPlayer.setLoop(autoPlay)
+    vimeoPlayer?.setLoop(autoPlay)
 
-    const getVideoDetails = async (player) => {
-      const duration = await player.getDuration()
-      console.debug('player: duration', duration)
-      dispatch({ type: 'setTotalPlaySeconds', totalPlaySeconds: duration })
-    }
-
-    const onLoaded = () => {
-      console.debug('player: onLoaded')
-      getVideoDetails(vimeoPlayer)
-      if (!isPlayerLoaded && isDesktop && autoPlay && !hasClicked) {
-        setTimeout(async () => {
-          try {
-            await vimeoPlayer.setVolume(0)
-            await vimeoPlayer.play()
-
-            dispatch({ type: 'setIsPlayerLoaded', isPlayerLoaded: true })
-          } catch (error) {
-            console.error('onLoaded error', error)
-          }
-        }, 500)
-      }
-    }
-    vimeoPlayer.on('loaded', onLoaded)
+    vimeoPlayer?.on('loaded', onLoaded)
 
     const onPlay = function () {
       console.debug('player: play')
       dispatch({ type: 'setIsPlaying', isPlaying: true })
     }
-    vimeoPlayer.on('play', onPlay)
+    vimeoPlayer?.on('play', onPlay)
 
     const onPause = function () {
       console.debug('player: pause')
       dispatch({ type: 'setIsPlaying', isPlaying: false })
     }
-    vimeoPlayer.on('pause', onPause)
+    vimeoPlayer?.on('pause', onPause)
 
     const onTimeupdate = function (data) {
       const playMinutes = Math.floor(data.seconds / 60)
@@ -253,9 +275,9 @@ const VideoPlayerComponent = ({
         scrubberPosition: data.percent * scrubberWidth,
       })
     }
-    vimeoPlayer.on('timeupdate', onTimeupdate)
+    vimeoPlayer?.on('timeupdate', onTimeupdate)
 
-    vimeoPlayer.on('seeked', function (data) {
+    vimeoPlayer?.on('seeked', function (data) {
       console.debug('player: seeked', data)
       if (data.percent !== 0) {
         dispatch({ type: 'setHasClicked', hasClicked: true })
@@ -263,10 +285,11 @@ const VideoPlayerComponent = ({
     })
 
     return () => {
-      vimeoPlayer.off('loaded')
-      vimeoPlayer.off('play')
-      vimeoPlayer.off('pause')
-      vimeoPlayer.off('timeupdate')
+      vimeoPlayer?.off('loaded')
+      vimeoPlayer?.off('play')
+      vimeoPlayer?.off('pause')
+      vimeoPlayer?.off('timeupdate')
+      vimeoPlayer?.off('seeked')
     }
 
     // eslint-disable-next-line react-hooks/exhaustive-deps
@@ -312,9 +335,9 @@ const VideoPlayerComponent = ({
     if (!vimeoPlayer) return
 
     if (muted) {
-      vimeoPlayer.setVolume(0)
+      vimeoPlayer?.setVolume(0)
     } else {
-      vimeoPlayer.setVolume(1)
+      vimeoPlayer?.setVolume(1)
     }
   }, [muted, vimeoPlayer])
 
@@ -364,8 +387,15 @@ const VideoPlayerComponent = ({
     if (isDesktop === null) return
     if (!vimeoPlayer) return
 
+    const loadVideo = async () => {
+      await vimeoPlayer?.loadVideo(videoId)
+      await vimeoPlayer?.setVolume(1)
+      await vimeoPlayer?.setCurrentTime(0)
+      await vimeoPlayer?.play()
+    }
+
     if (hasClicked && isDesktop && playingVideoId !== videoId) {
-      vimeoPlayer.loadVideo(videoId)
+      loadVideo()
     }
   }, [hasClicked, isDesktop, playingVideoId, videoId, vimeoPlayer])
 
@@ -385,48 +415,47 @@ const VideoPlayerComponent = ({
     }
   }, [])
 
-  const handleOverlayClick = () => {
+  const handleOverlayClick = async () => {
+    dispatch({ type: 'setHasClicked', hasClicked: true })
+
+    const player = new Vimeo(document.getElementById(iframeId))
+    setVimeoPlayer(player)
+
     if (isPlaying) {
       onPauseProp?.()
     } else {
       onPlayProp?.()
     }
 
-    const player = new Vimeo(vimeoPlayerRef.current)
-
     if (autoPlay && !isPlaying && !hasClicked) {
-      player?.pause()
-      player?.setVolume(1)
-      player?.setCurrentTime(0)
+      await player?.pause()
+      await player?.setVolume(1)
+      await player?.setCurrentTime(0)
       dispatch({ type: 'setScrubberPosition', scrubberPosition: 0 })
-      setTimeout(() => {
-        player?.play()
+      setTimeout(async () => {
+        await player?.play()
       }, 100)
     } else {
       handleTogglePlay()
     }
-
-    dispatch({ type: 'setHasClicked', hasClicked: true })
   }
 
   const handleTogglePlay = async () => {
     dispatch({ type: 'setHasClicked', hasClicked: true })
 
-    const player = new Vimeo(vimeoPlayerRef.current)
-
-    const isPaused = await player.getPaused()
+    const isPaused = await vimeoPlayer?.getPaused()
     if (isPaused) {
-      player.play()
+      await vimeoPlayer?.play()
       onPlayProp?.()
     } else {
-      player.pause()
+      await vimeoPlayer?.pause()
       onPauseProp?.()
     }
   }
 
-  const handleScrubberClick = (position) => {
+  const handleScrubberClick = async (position) => {
     try {
-      vimeoPlayer.setCurrentTime(
+      await vimeoPlayer?.setCurrentTime(
         Math.min(
           totalPlaySeconds,
           totalPlaySeconds * (position / scrubberWidth)
@@ -551,12 +580,13 @@ const VideoPlayerComponent = ({
             {isDesktop !== null && vimeoIframeParams && (
               <iframe
                 allow="autoplay; fullscreen; picture-in-picture; clipboard-write; encrypted-media"
-                frameBorder="0"
-                webkitallowfullscreen="true"
-                mozallowfullscreen="true"
                 allowFullScreen={true}
-                src={`https://player.vimeo.com/video/${playingVideoId}?${vimeoIframeParams}`}
+                frameBorder="0"
+                id={iframeId}
+                mozallowfullscreen="true"
                 ref={vimeoPlayerRef}
+                src={`https://player.vimeo.com/video/${playingVideoId}?${vimeoIframeParams}`}
+                webkitallowfullscreen="true"
               />
             )}
           </div>

@@ -66,6 +66,7 @@ export default {
         accept: 'video/*',
         storeOriginalFilename: true,
       },
+      description: 'Used on the /work page on hover',
     },
     {
       name: 'shortClipOgvS3',
@@ -75,6 +76,7 @@ export default {
         accept: 'video/*',
         storeOriginalFilename: true,
       },
+      description: 'Used on the /work page on hover',
     },
     {
       name: 'videoId',
@@ -82,6 +84,13 @@ export default {
       type: 'string',
       description:
         'Enter the ID ( {{video_id}} ) of the video, not the whole url. https://player.vimeo.com/video/{{video_id}}?badge=0&autopause=0&player_id=0&app_id=58479',
+    },
+    {
+      name: 'videoIdShort',
+      title: 'Video ID (short)',
+      type: 'string',
+      description:
+        'Only used on the home page "Latest Campaign" section. Enter the ID ( {{video_id}} ) of the video, not the whole url. https://player.vimeo.com/video/{{video_id}}?badge=0&autopause=0&player_id=0&app_id=58479',
     },
     {
       name: 'videoWidthAspectRatio',

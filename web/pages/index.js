@@ -120,6 +120,7 @@ function Home({ homePage }) {
                         title={video.title}
                         videoHeightAspectRatio={video.videoHeightAspectRatio}
                         videoId={video.videoId}
+                        videoIdShort={video.videoIdShort}
                         videoWidthAspectRatio={video.videoWidthAspectRatio}
                       />
                     </ClientOnly>
@@ -244,6 +245,7 @@ export async function getStaticProps() {
         extraPaddingOnVideo,
         frames,
         videoId,
+        videoIdShort,
         videoHeightAspectRatio,
         videoWidthAspectRatio,
         "shortClipMp4URL": shortClipMp4.asset->url,

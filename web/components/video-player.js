@@ -103,7 +103,7 @@ const videoPlayerReducer = (state, action) => {
   }
 }
 
-const VideoPlayer = ({
+const VideoPlayerComponent = ({
   autoPlay = false,
   client = '',
   description = '',
@@ -550,7 +550,7 @@ const VideoPlayer = ({
             {isDesktop === null && <div>Loading video</div>}
             {isDesktop !== null && vimeoIframeParams && (
               <iframe
-                allow="autoplay; fullscreen;"
+                allow="autoplay; fullscreen; picture-in-picture; clipboard-write; encrypted-media"
                 frameBorder="0"
                 webkitallowfullscreen="true"
                 mozallowfullscreen="true"
@@ -628,13 +628,24 @@ const VideoPlayer = ({
   )
 }
 
-export default memo(VideoPlayer, (prevProps, nextProps) => {
-  return (
-    JSON.stringify({
-      ...prevProps,
-    }) ===
-    JSON.stringify({
-      ...nextProps,
-    })
-  )
-})
+export const VideoPlayer = memo(
+  VideoPlayerComponent,
+  (prevProps, nextProps) => {
+    return (
+      prevProps.autoPlay === nextProps.autoPlay &&
+      prevProps.client === nextProps.client &&
+      prevProps.description === nextProps.description &&
+      prevProps.poster === nextProps.poster &&
+      prevProps.title === nextProps.title &&
+      prevProps.videoHeightAspectRatio === nextProps.videoHeightAspectRatio &&
+      prevProps.videoId === nextProps.videoId &&
+      prevProps.videoIdShort === nextProps.videoIdShort &&
+      prevProps.videoWidthAspectRatio === nextProps.videoWidthAspectRatio &&
+      prevProps.noContainer === nextProps.noContainer &&
+      JSON.stringify(prevProps.overrideClassNames) ===
+        JSON.stringify(nextProps.overrideClassNames)
+    )
+  }
+)
+
+export default VideoPlayer

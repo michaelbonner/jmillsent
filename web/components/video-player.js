@@ -375,13 +375,6 @@ const VideoPlayerComponent = ({
     }
   }, [hasClicked, playingVideoId])
 
-  useEffect(() => {
-    if (hasClicked) {
-      dispatch({ type: 'setMuted', muted: false })
-      vimeoPlayer?.setVolume(1)
-    }
-  }, [hasClicked, vimeoPlayer])
-
   // switch to full video if we need to on first click
   useEffect(() => {
     if (isDesktop === null) return
@@ -389,9 +382,12 @@ const VideoPlayerComponent = ({
 
     const loadVideo = async () => {
       await vimeoPlayer?.loadVideo(videoId)
-      await vimeoPlayer?.setVolume(1)
       await vimeoPlayer?.setCurrentTime(0)
       await vimeoPlayer?.play()
+
+      setTimeout(async () => {
+        await vimeoPlayer?.setVolume(1)
+      }, 200)
     }
 
     if (hasClicked && isDesktop && playingVideoId !== videoId) {
@@ -423,18 +419,20 @@ const VideoPlayerComponent = ({
 
     if (isPlaying) {
       onPauseProp?.()
+      dispatch({ type: 'setMuted', muted: true })
     } else {
       onPlayProp?.()
+      dispatch({ type: 'setMuted', muted: false })
     }
 
     if (autoPlay && !isPlaying && !hasClicked) {
       await player?.pause()
-      await player?.setVolume(1)
+      await player?.play()
       await player?.setCurrentTime(0)
       dispatch({ type: 'setScrubberPosition', scrubberPosition: 0 })
       setTimeout(async () => {
-        await player?.play()
-      }, 100)
+        await player?.setVolume(1)
+      }, 200)
     } else {
       handleTogglePlay()
     }

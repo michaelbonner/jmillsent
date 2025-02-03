@@ -167,11 +167,6 @@ const VideoPlayerComponent = ({
   } = state
   const [vimeoPlayer, setVimeoPlayer] = useState(null)
 
-  if (hasClicked) {
-    console.log('hasClicked', hasClicked)
-    console.log(iframeId)
-  }
-
   const isDesktop = useMemo(() => {
     if (typeof window === 'undefined') return null
 
@@ -447,8 +442,6 @@ const VideoPlayerComponent = ({
   }
 
   const handleTogglePlay = async () => {
-    dispatch({ type: 'setHasClicked', hasClicked: true })
-
     const isPaused = await vimeoPlayer?.getPaused()
     if (isPaused) {
       await vimeoPlayer?.play()

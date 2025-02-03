@@ -177,16 +177,6 @@ const VideoPlayerComponent = ({
     setVimeoPlayer(new Vimeo(videoNode))
   }, [])
 
-  if (hasClicked) {
-    console.log({
-      hasClicked,
-      playingVideoId,
-      videoId,
-      videoIdShort,
-      autoPlay,
-    })
-  }
-
   const playerContainer = useRef(null)
 
   const videoLength = useMemo(() => {
@@ -318,7 +308,6 @@ const VideoPlayerComponent = ({
     if (muted) {
       vimeoPlayer?.setVolume(0)
     } else {
-      console.log('setting volume to 1 from useEffect')
       vimeoPlayer?.setVolume(1)
     }
   }, [muted, vimeoPlayer])
@@ -369,7 +358,6 @@ const VideoPlayerComponent = ({
       await vimeoPlayer?.play()
 
       setTimeout(async () => {
-        console.log('setting volume to 1 from useEffect setTimeout')
         await vimeoPlayer?.setVolume(1)
       }, 200)
     }
@@ -417,7 +405,6 @@ const VideoPlayerComponent = ({
       await vimeoPlayer?.setCurrentTime(0)
       dispatch({ type: 'setScrubberPosition', scrubberPosition: 0 })
       setTimeout(async () => {
-        console.log('setting volume to 1 from handleOverlayClick')
         await vimeoPlayer?.setVolume(1)
       }, 200)
     } else {
@@ -655,7 +642,6 @@ export const VideoPlayer = memo(
       prevProps.videoWidthAspectRatio === nextProps.videoWidthAspectRatio &&
       prevProps.noContainer === nextProps.noContainer
 
-    console.log('isSame', isSame)
     return isSame
   }
 )

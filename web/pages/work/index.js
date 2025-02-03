@@ -4,16 +4,19 @@ import { sanityClient } from '@/lib/sanity'
 import { PortableText } from '@portabletext/react'
 import classNames from 'classnames'
 import groq from 'groq'
-import Link from 'next/link'
 import { useQueryState } from 'nuqs'
 
-function Work({ workPage, workItems, workItemCategories }) {
+function Work({ workPage, workItemCategories }) {
   const [activeTab, setActiveTab] = useQueryState('work-type', {
     defaultValue: workItemCategories?.at(0)?.name || '',
     clearOnDefault: true,
   })
 
-  const filteredWorkItems = workItems
+  const categoryWorkItems = workItemCategories.find(
+    (category) => category.name === activeTab
+  ).workItems
+
+  const filteredWorkItems = categoryWorkItems
     .map((workItem) => ({
       ...workItem,
       flatCategories: (workItem.categories || []).map(
@@ -27,12 +30,6 @@ function Work({ workPage, workItems, workItemCategories }) {
       )
     })
 
-  const workItemCategoriesThatHaveItems = workItemCategories.filter((tab) => {
-    return workItems.some((workItem) =>
-      workItem.categories.map((category) => category?.name).includes(tab.name)
-    )
-  })
-
   return (
     <Layout title={workPage.seoTitle} description={workPage.seoDescription}>
       <div className="lg:pt-24">
@@ -43,7 +40,7 @@ function Work({ workPage, workItems, workItemCategories }) {
             'xl:mx-48'
           )}
         >
-          {workItemCategoriesThatHaveItems.map((tab, index) => {
+          {workItemCategories.map((tab, index) => {
             return (
               <li
                 className={classNames(
@@ -111,48 +108,41 @@ function Work({ workPage, workItems, workItemCategories }) {
 export async function getStaticProps() {
   const workPage = await sanityClient.fetch(
     groq`
-  *[_type == "workPage"][0]{
-    poster,
-    seoTitle,
-    seoDescription,
-    subscribeFormTitle,
-    subscribeFormSuccessMessage,
-    videoId,
-    workPageDescription,
-  }
+      *[_type == "workPage"][0]{
+        poster,
+        seoTitle,
+        seoDescription,
+        subscribeFormTitle,
+        subscribeFormSuccessMessage,
+        videoId,
+        workPageDescription,
+      }
   `
   )
-  const workItems = await sanityClient.fetch(
-    groq`
-    *[_type == "workItem"][!(_id in path('drafts.**'))]|order(order asc){
-      _id,
-      slug,
-      clientName,
-      title,
-      poster,
-      categories[]->{
-        name
-      },
-      "shortClipMp4URL": shortClipMp4.asset->url,
-      "shortClipMp4S3URL": shortClipMp4S3.asset->fileURL,
-      "shortClipOgvURL": shortClipOgv.asset->url,
-      "shortClipOgvS3URL": shortClipOgvS3.asset->fileURL,
-    }
-  `
-  )
+
   const workItemCategories = await sanityClient.fetch(
     groq`
-    *[_type == "workItemCategory"]|order(order asc){
-      name,
-      order
-    }
+      *[_type == "workItemCategory"][showOnWorkPage == true]|order(order asc){
+        name,
+        order,
+        workItems[]->{
+          _id,
+          slug,
+          clientName,
+          title,
+          poster,
+          "shortClipMp4URL": shortClipMp4.asset->url,
+          "shortClipMp4S3URL": shortClipMp4S3.asset->fileURL,
+          "shortClipOgvURL": shortClipOgv.asset->url,
+          "shortClipOgvS3URL": shortClipOgvS3.asset->fileURL,
+        }
+      }
   `
   )
 
   return {
     props: {
       workPage,
-      workItems,
       workItemCategories,
     },
   }

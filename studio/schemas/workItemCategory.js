@@ -12,6 +12,13 @@ export default {
       type: 'string',
     },
     {
+      name: 'showOnWorkPage',
+      title: 'Show on Work Page',
+      type: 'boolean',
+      description: 'If true, this category will be shown on the work page.',
+      initialValue: false,
+    },
+    {
       name: 'order',
       title: 'Order',
       type: 'number',

@@ -48,17 +48,6 @@ export default {
       type: 'datetime',
     },
     {
-      name: 'categories',
-      title: 'Category',
-      type: 'array',
-      of: [
-        {
-          type: 'reference',
-          to: [{ type: 'workItemCategory' }],
-        },
-      ],
-    },
-    {
       name: 'shortClipMp4S3',
       title: 'Short hover clip - mp4 - S3',
       type: 's3-dam.media',

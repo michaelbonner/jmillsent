@@ -18,6 +18,12 @@ export default {
       description:
         'The order in which this category should appear on the work page.',
     },
+    {
+      name: 'workItems',
+      title: 'Work Items',
+      type: 'array',
+      of: [{ type: 'reference', to: { type: 'workItem' } }],
+    },
   ],
   preview: {
     select: {

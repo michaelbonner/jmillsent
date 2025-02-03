@@ -264,9 +264,9 @@ const Layout = ({
             <Link href={`/`} className="flex items-center">
               <Image
                 alt="JMills Logo"
-                src="/images/jme_film_co_x_white.png"
-                width={Math.floor(192 * 0.5)}
-                height={Math.floor(150 * 0.5)}
+                src="/images/jme_film_co_circle_white.svg"
+                width={100}
+                height={100}
               />
             </Link>
           </div>
@@ -274,14 +274,14 @@ const Layout = ({
             <Link href={`/`} className="flex items-center">
               <Image
                 alt="JMills Logo"
-                src="/images/jme-film-co-horizontal-white.png"
-                width={Math.floor(1200 * 0.13)}
-                height={Math.floor(395 * 0.13)}
+                src="/images/jme_film_co_circle_white.svg"
+                width={80}
+                height={80}
               />
             </Link>
           </div>
           <button
-            className="absolute right-6 top-5 h-8 w-12 focus:outline-none lg:top-10"
+            className="absolute right-6 top-10 h-8 w-12 focus:outline-none lg:top-10"
             onClick={() => toggleMenu(!menuOpen)}
             aria-label="Close menu"
           >
@@ -367,9 +367,9 @@ const Layout = ({
           <Link href={`/`} className="flex items-center">
             <Image
               alt="JMills Logo"
-              src="/images/jme_film_co_x_white.png"
-              width={Math.floor(202 * 0.5)}
-              height={Math.floor(158 * 0.5)}
+              src="/images/jme_film_co_circle_white.svg"
+              width={100}
+              height={100}
             />
           </Link>
         </div>
@@ -377,9 +377,9 @@ const Layout = ({
           <Link href={`/`} className="flex items-center">
             <Image
               alt="JMills Logo"
-              src="/images/jme-film-co-horizontal-white.png"
-              width={Math.floor(1200 * 0.13)}
-              height={Math.floor(395 * 0.13)}
+              src="/images/jme_film_co_circle_white.svg"
+              width={80}
+              height={80}
             />
           </Link>
         </div>

@@ -167,6 +167,11 @@ const VideoPlayerComponent = ({
   } = state
   const [vimeoPlayer, setVimeoPlayer] = useState(null)
 
+  if (hasClicked) {
+    console.log('hasClicked', hasClicked)
+    console.log(iframeId)
+  }
+
   const isDesktop = useMemo(() => {
     if (typeof window === 'undefined') return null
 
@@ -337,6 +342,7 @@ const VideoPlayerComponent = ({
     if (muted) {
       vimeoPlayer?.setVolume(0)
     } else {
+      console.log('setting volume to 1 from useEffect')
       vimeoPlayer?.setVolume(1)
     }
   }, [muted, vimeoPlayer])
@@ -386,6 +392,7 @@ const VideoPlayerComponent = ({
       await vimeoPlayer?.play()
 
       setTimeout(async () => {
+        console.log('setting volume to 1 from useEffect setTimeout')
         await vimeoPlayer?.setVolume(1)
       }, 200)
     }
@@ -431,6 +438,7 @@ const VideoPlayerComponent = ({
       await player?.setCurrentTime(0)
       dispatch({ type: 'setScrubberPosition', scrubberPosition: 0 })
       setTimeout(async () => {
+        console.log('setting volume to 1 from handleOverlayClick')
         await player?.setVolume(1)
       }, 200)
     } else {

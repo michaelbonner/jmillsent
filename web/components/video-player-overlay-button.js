@@ -7,6 +7,7 @@ import LittleGoldBar from './little-gold-bar'
 const VideoPlayerOverlayButtonNotMemoized = ({
   client,
   description,
+  disableGradientOverlay,
   handleOverlayClick,
   hasClicked,
   isIpad,
@@ -28,7 +29,9 @@ const VideoPlayerOverlayButtonNotMemoized = ({
     >
       <div
         className={classNames(
-          'absolute inset-0 h-full w-full bg-gradient-to-r from-black via-transparent to-transparent',
+          'absolute inset-0 h-full w-full',
+          !disableGradientOverlay &&
+            'bg-gradient-to-r from-black via-transparent to-transparent',
           showVideoOverlay ? 'opacity-80' : 'opacity-0'
         )}
       ></div>
@@ -100,7 +103,8 @@ export const VideoPlayerOverlayButton = memo(
       prevProps.hasClicked === nextProps.hasClicked &&
       prevProps.isIpad === nextProps.isIpad &&
       prevProps.showVideoOverlay === nextProps.showVideoOverlay &&
-      prevProps.title === nextProps.title
+      prevProps.title === nextProps.title &&
+      prevProps.disableGradientOverlay === nextProps.disableGradientOverlay
     )
   }
 )

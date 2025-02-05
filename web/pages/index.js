@@ -99,6 +99,7 @@ function Home({ homePage }) {
                         autoPlay
                         client={video.clientName}
                         description={video.description}
+                        disableGradientOverlay
                         onPlayProp={() =>
                           setLatestCampaignVideoPlayingIndexes((p) => [
                             ...p,

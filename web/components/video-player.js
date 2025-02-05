@@ -63,11 +63,6 @@ const videoPlayerReducer = (state, action) => {
         ...state,
         isFullscreen: action.isFullscreen,
       }
-    case 'setIsIos':
-      return {
-        ...state,
-        isIos: action.isIos,
-      }
     case 'setIsIpad':
       return {
         ...state,
@@ -129,7 +124,6 @@ const VideoPlayerComponent = ({
   const [state, dispatch] = useReducer(videoPlayerReducer, {
     hasClicked: false,
     isFullscreen: false,
-    isIos: false,
     isIpad: false,
     isPlayerLoaded: false,
     isPlaying: false,
@@ -148,7 +142,6 @@ const VideoPlayerComponent = ({
   const {
     hasClicked,
     isFullscreen,
-    isIos,
     isIpad,
     isPlayerLoaded,
     isPlaying,
@@ -294,7 +287,6 @@ const VideoPlayerComponent = ({
 
     if (checkIfIos(window.navigator)) {
       dispatch({ type: 'setMuted', muted: false })
-      dispatch({ type: 'setIsIos', isIos: true })
     }
     if (checkIfIpad(window.navigator)) {
       dispatch({ type: 'setIsIpad', isIpad: true })
@@ -510,7 +502,6 @@ const VideoPlayerComponent = ({
           description={description}
           handleOverlayClick={handleOverlayClick}
           hasClicked={hasClicked}
-          isIos={isIos}
           isIpad={isIpad}
           overrideClassNames={overrideClassNames}
           showVideoOverlay={showVideoOverlay}
@@ -565,7 +556,6 @@ const VideoPlayerComponent = ({
           description={description}
           handleOverlayClick={handleOverlayClick}
           hasClicked={hasClicked}
-          isIos={isIos}
           isIpad={isIpad}
           overrideClassNames={overrideClassNames}
           showVideoOverlay={showVideoOverlay}

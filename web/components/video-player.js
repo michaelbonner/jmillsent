@@ -110,6 +110,7 @@ const VideoPlayerComponent = ({
   autoPlay = false,
   client = '',
   description = '',
+  disableGradientOverlay = false,
   poster,
   title,
   videoHeightAspectRatio = '9',
@@ -500,6 +501,7 @@ const VideoPlayerComponent = ({
         <VideoPlayerOverlayButton
           client={client}
           description={description}
+          disableGradientOverlay={disableGradientOverlay}
           handleOverlayClick={handleOverlayClick}
           hasClicked={hasClicked}
           isIpad={isIpad}
@@ -554,6 +556,7 @@ const VideoPlayerComponent = ({
         <VideoPlayerOverlayButton
           client={client}
           description={description}
+          disableGradientOverlay={disableGradientOverlay}
           handleOverlayClick={handleOverlayClick}
           hasClicked={hasClicked}
           isIpad={isIpad}

@@ -24,6 +24,7 @@ function Moments({ images, momentsPage }) {
                 .replace(/-/g, ' ')
                 .replace(/_/g, ' ')
                 .replace('.jpg', '')
+                .replace('.png', '')
             ),
         }),
         { shuffleAll: true }

@@ -281,7 +281,7 @@ const Layout = ({
             </Link>
           </div>
           <button
-            className="absolute right-6 top-10 h-8 w-12 focus:outline-none lg:top-10"
+            className="absolute top-10 right-6 h-8 w-12 focus:outline-hidden lg:top-10"
             onClick={() => toggleMenu(!menuOpen)}
             aria-label="Close menu"
           >
@@ -344,7 +344,7 @@ const Layout = ({
                     'w-full': hoveredMenuItem === navItem.href,
                     'w-0': hoveredMenuItem !== navItem.href,
                   },
-                  'absolute left-0 right-0 z-0 bg-white transition-all duration-500'
+                  'absolute right-0 left-0 z-0 bg-white transition-all duration-500'
                 )}
                 style={{
                   bottom: 'calc(50% - 1px)',
@@ -384,9 +384,9 @@ const Layout = ({
           </Link>
         </div>
         <div className="flex items-center justify-end">
-          <div className="relative lg:ml-8 lg:mr-0">
+          <div className="relative lg:mr-0 lg:ml-8">
             <button
-              className="relative h-8 w-12 hover:animate-pulse focus:outline-none"
+              className="relative h-8 w-12 hover:animate-pulse focus:outline-hidden"
               onClick={() => toggleMenu(!menuOpen)}
               aria-label="Open menu"
             >
@@ -398,7 +398,7 @@ const Layout = ({
                     absolute: !menuVisible,
                     hidden: menuVisible,
                   },
-                  'right-0 top-0 h-8 w-12 transform transition-all duration-300 ease-in'
+                  'top-0 right-0 h-8 w-12 transform transition-all duration-300 ease-in'
                 )}
               >
                 <Image
@@ -419,7 +419,7 @@ const Layout = ({
           <div
             className={classNames(
               {
-                'from-gray-700 via-gray-800 to-black lg:bg-opacity-25 lg:bg-gradient-to-b':
+                'from-gray-700 via-gray-800 to-black lg:bg-linear-to-b lg:from-gray-700/25 lg:via-gray-800/25 lg:to-black/25':
                   heroVideoId,
               },
               `relative h-full bg-black`
@@ -488,7 +488,7 @@ const Layout = ({
       <footer className="text-center">
         <MobileFooterMenu />
         <DesktopFooterMenu />
-        <p className="mb-2 mt-8 text-gray-500">
+        <p className="mt-8 mb-2 text-gray-500">
           &copy; Jmills Entertainment {new Date().getFullYear()}
         </p>
       </footer>
@@ -503,7 +503,7 @@ const FooterNavItem = ({ navItem, className }) => {
     <Link
       href={navItem.href}
       className={classNames(
-        'px-2 text-sm font-semibold uppercase text-white',
+        'px-2 text-sm font-semibold text-white uppercase',
         'lg:px-4 lg:text-lg',
         'xl:text-2xl',
         className
@@ -528,7 +528,7 @@ const MobileFooterMenu = () => {
     <div className={classNames('mt-12 px-5 text-center', 'lg:hidden')}>
       <div
         className={classNames(
-          'flex flex-wrap justify-center gap-y-4 border-t border-gray-400 pb-4 pt-4',
+          'flex flex-wrap justify-center gap-y-4 border-t border-gray-400 pt-4 pb-4',
           'divide-x divide-white'
         )}
       >
@@ -538,7 +538,7 @@ const MobileFooterMenu = () => {
       </div>
       <div
         className={classNames(
-          'flex flex-wrap justify-center gap-y-4 border-t border-gray-400 pb-4 pt-4',
+          'flex flex-wrap justify-center gap-y-4 border-t border-gray-400 pt-4 pb-4',
           'divide-x divide-white'
         )}
       >
@@ -560,7 +560,7 @@ const DesktopFooterMenu = () => {
     >
       <div
         className={classNames(
-          'flex flex-wrap justify-center gap-y-4 border-t border-gray-400 pb-4 pt-4',
+          'flex flex-wrap justify-center gap-y-4 border-t border-gray-400 pt-4 pb-4',
           'divide-x divide-white',
           'xl:px-8'
         )}

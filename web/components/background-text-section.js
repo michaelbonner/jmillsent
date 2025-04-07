@@ -29,14 +29,14 @@ const BackgroundText = ({
       textAlign: 'text-center lg:text-left',
       barPosition: 'mx-auto lg:ml-0 lg:mr-auto',
       containerPosition: 'left-0 lg:pl-20',
-      gradientDirection: 'bg-gradient-to-r',
+      gradientDirection: 'bg-linear-to-r',
       buttonPosition: 'lg:self-start',
     },
     right: {
       textAlign: 'text-center lg:text-right',
       barPosition: 'mx-auto lg:mr-0 lg:ml-auto',
       containerPosition: 'right-0 lg:pr-20',
-      gradientDirection: 'bg-gradient-to-l',
+      gradientDirection: 'bg-linear-to-l',
       buttonPosition: 'lg:self-end',
     },
   }
@@ -63,7 +63,7 @@ const BackgroundText = ({
           className={`rounded-2xl text-black lg:absolute lg:text-white ${styles[leftOrRight].containerPosition} bottom-0 top-0 ${styles[leftOrRight].textAlign} flex flex-col items-start justify-center sm:gap-y-2`}
         >
           <H3
-            className={`${titleStyle} !mb-0 !mt-3 inline w-full py-1 text-center uppercase`}
+            className={`${titleStyle} mb-0! mt-3! inline w-full py-1 text-center uppercase`}
           >
             {title}
           </H3>

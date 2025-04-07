@@ -68,6 +68,7 @@ const EmailSignupForm = ({
         setError(body?.error || defaultErrorMessage)
       }
     } catch (error) {
+      console.error(error)
       setError(defaultErrorMessage)
     }
   }
@@ -77,13 +78,13 @@ const EmailSignupForm = ({
       {!customReel && state === 'initial' && (
         <form onSubmit={submitFreshCuts}>
           <div>
-            <h2 className="font-light uppercase text-gray-100">{title}</h2>
+            <h2 className="font-light text-gray-100 uppercase">{title}</h2>
             <div className="mx-auto mt-4 h-px w-40 bg-gray-400" />
             <div className="mx-auto mt-6 flex w-full max-w-sm justify-center">
-              <div className="flex w-full items-center justify-center gap-1 rounded">
+              <div className="flex w-full items-center justify-center gap-1 rounded-sm">
                 <button
                   className={classNames(
-                    'group flex items-center gap-x-2 border-2 border-black px-2 py-1 font-bold uppercase tracking-widest transition-colors',
+                    'group flex items-center gap-x-2 border-2 border-black px-2 py-1 font-bold tracking-widest uppercase transition-colors',
                     'hover:border-white hover:bg-white hover:text-black'
                   )}
                   type="submit"
@@ -94,7 +95,7 @@ const EmailSignupForm = ({
                 <input
                   type="email"
                   name="email"
-                  className="mr-2 flex-1 border-2 border-gray-300 bg-black bg-opacity-70 px-3 py-1 text-white focus:bg-opacity-90"
+                  className="mr-2 flex-1 border-2 border-gray-300 bg-black/70 px-3 py-1 text-white focus:bg-black/90"
                   id="email"
                   placeholder="EMAIL ADDRESS"
                   required
@@ -107,23 +108,23 @@ const EmailSignupForm = ({
       )}
       {!customReel && state === 'submitted' && (
         <div className="mx-auto flex w-full max-w-xl justify-center border px-8 py-4 lg:mt-20">
-          <p className="font-light uppercase text-gray-100">{successMessage}</p>
+          <p className="font-light text-gray-100 uppercase">{successMessage}</p>
         </div>
       )}
 
       {customReel && state === 'initial' && (
         <form onSubmit={submitCustomReel}>
           <div>
-            <h2 className="font-light uppercase text-gray-100">{title}</h2>
+            <h2 className="font-light text-gray-100 uppercase">{title}</h2>
             <div className="mx-auto mt-4 flex w-full max-w-lg justify-center">
-              <div className="flex w-full items-center justify-center rounded">
+              <div className="flex w-full items-center justify-center rounded-sm">
                 <label className="sr-only" htmlFor="email">
                   Email Address <span className="asterisk">*</span>
                 </label>
                 <input
                   type="email"
                   name="email"
-                  className="-mr-1 flex-1 rounded-l-md border-2 border-r-0 border-gray-300 bg-black bg-opacity-70 px-4 py-2 text-white focus:bg-opacity-90"
+                  className="-mr-1 flex-1 rounded-l-md border-2 border-r-0 border-gray-300 bg-black/70 px-4 py-2 text-white focus:bg-black/90"
                   id="email"
                   placeholder="EMAIL ADDRESS"
                   required
@@ -147,7 +148,7 @@ const EmailSignupForm = ({
       )}
       {customReel && state === 'submitted' && (
         <div className="mx-auto flex w-full max-w-xl justify-center border px-8 py-4 lg:mt-20">
-          <p className="font-light uppercase text-gray-100">{successMessage}</p>
+          <p className="font-light text-gray-100 uppercase">{successMessage}</p>
         </div>
       )}
     </div>

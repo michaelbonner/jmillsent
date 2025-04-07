@@ -208,7 +208,7 @@ const Documentary = ({ documentaryPage }) => {
                     >
                       <div
                         className={classNames(
-                          'absolute inset-0 rounded-lg bg-gradient-to-t from-black/100 via-black/30 to-black/0 opacity-50 transition-all duration-300',
+                          'absolute inset-0 rounded-lg bg-linear-to-t from-black/100 via-black/30 to-black/0 opacity-50 transition-all duration-300',
                           'lg:from-transparent lg:via-transparent lg:to-transparent lg:opacity-0',
                           'group-hover:from-black/80 group-hover:via-black/80 group-hover:to-black/80 group-hover:opacity-100'
                         )}

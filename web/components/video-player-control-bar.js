@@ -95,7 +95,7 @@ export const VideoPlayerControlBar = ({
       </button>
       <button
         aria-label="Player scrubber bar"
-        className="relative h-8 flex-grow overflow-hidden rounded border-2 border-gray-300"
+        className="relative h-8 grow overflow-hidden rounded-sm border-2 border-gray-300"
         onClick={(e) => {
           if (!scrubber.current) {
             return

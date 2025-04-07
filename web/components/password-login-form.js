@@ -10,14 +10,14 @@ export const PasswordLoginForm = ({
       <div className="border py-12">
         <p className="mb-6 text-lg font-semibold">{passwordInputPrompt}</p>
         <form
-          className="mx-auto flex w-1/2 items-center justify-center rounded"
+          className="mx-auto flex w-1/2 items-center justify-center rounded-sm"
           onSubmit={handleSubmit}
         >
           <label className="sr-only" htmlFor="password">
             Password
           </label>
           <input
-            className="-mr-1 flex-1 rounded-l-md border-2 border-r-0 border-gray-300 bg-black bg-opacity-70 px-4 py-2 text-white focus:bg-opacity-90"
+            className="-mr-1 flex-1 rounded-l-md border-2 border-r-0 border-gray-300 bg-black/70 px-4 py-2 text-white focus:bg-black/90"
             name="password"
             type="text"
             placeholder="PASSWORD"

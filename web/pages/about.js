@@ -270,10 +270,10 @@ function About({ aboutPage }) {
                   <button
                     className={classNames(
                       'group relative rounded-lg',
-                      'aspect-[4/4] overflow-hidden',
+                      'aspect-4/4 overflow-hidden',
                       'bg-cover bg-center bg-no-repeat',
-                      'lg:aspect-[3/4]',
-                      'xl:aspect-[4/3]'
+                      'lg:aspect-3/4',
+                      'xl:aspect-4/3'
                     )}
                     onClick={() => {
                       setIsServicesLightBoxOpen(true)
@@ -286,7 +286,7 @@ function About({ aboutPage }) {
                   >
                     <div
                       className={classNames(
-                        'absolute inset-0 rounded-lg bg-gradient-to-t from-black/100 via-black/30 to-black/0 opacity-50 transition-all duration-300',
+                        'absolute inset-0 rounded-lg bg-linear-to-t from-black/100 via-black/30 to-black/0 opacity-50 transition-all duration-300',
                         'lg:from-transparent lg:via-transparent lg:to-transparent lg:opacity-0',
                         'group-hover:from-black/80 group-hover:via-black/80 group-hover:to-black/80 group-hover:opacity-100'
                       )}
@@ -405,7 +405,7 @@ function About({ aboutPage }) {
               />
               <div
                 className={classNames(
-                  'absolute bottom-0 right-0 top-0 hidden h-full w-1/2 rounded-r-xl bg-gradient-to-l from-black to-transparent opacity-70 transition-all duration-500',
+                  'absolute bottom-0 right-0 top-0 hidden h-full w-1/2 rounded-r-xl bg-linear-to-l from-black to-transparent opacity-70 transition-all duration-500',
                   'lg:block lg:pr-20',
                   'group-hover:w-3/4 group-hover:opacity-80'
                 )}
@@ -546,7 +546,7 @@ function About({ aboutPage }) {
             className="mx-auto grid max-w-7xl gap-y-10 text-center"
             id="locations"
           >
-            <H2 className="!mb-0">{aboutPage.utahLocationsTitle}</H2>
+            <H2 className="mb-0!">{aboutPage.utahLocationsTitle}</H2>
             <div className="grid grid-cols-1 gap-1 lg:grid-cols-3">
               {aboutPage.utahLocations.map((utahLocation, index) => {
                 return (
@@ -598,7 +598,7 @@ function About({ aboutPage }) {
                 />
               </a>
             </div>
-            <H2 className="!mb-0 font-outline font-thin">
+            <H2 className="mb-0! font-outline font-thin">
               {aboutPage.company3Title}
             </H2>
 
@@ -683,7 +683,7 @@ function About({ aboutPage }) {
                       href={ravensCard.link}
                       className={classNames(
                         'flex flex-col justify-between space-y-12 border-2 border-gray-300 px-8 pb-8 pt-12 transition-colors',
-                        'hover:bg-gradient-to-b hover:from-gray-900 hover:to-black'
+                        'hover:bg-linear-to-b hover:from-gray-900 hover:to-black'
                       )}
                       target="_blank"
                     >

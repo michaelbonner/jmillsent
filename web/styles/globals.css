@@ -1,183 +1,232 @@
-@tailwind base;
-@tailwind components;
-@tailwind utilities;
+@import 'tailwindcss';
 
-@font-face {
-  font-family: 'gothic-outline-title';
-  src: url('/fonts/gothic-outline-title/gothic-outline-title.eot');
-  src:
-    url('/fonts/gothic-outline-title/gothic-outline-title.eot?#iefix')
-      format('embedded-opentype'),
-    url('/fonts/gothic-outline-title/gothic-outline-title.woff2')
-      format('woff2'),
-    url('/fonts/gothic-outline-title/gothic-outline-title.woff') format('woff'),
-    url('/fonts/gothic-outline-title/gothic-outline-title.ttf')
-      format('truetype'),
-    url('/fonts/gothic-outline-title/gothic-outline-title.svg#GothicOutlineTitleW01-D')
-      format('svg');
+@plugin '@tailwindcss/aspect-ratio';
+@plugin '@tailwindcss/forms';
+@plugin '@tailwindcss/typography';
+
+@theme {
+  --breakpoint-*: initial;
+  --breakpoint-2xs: 385px;
+  --breakpoint-xs: 425px;
+  --breakpoint-sm: 640px;
+  --breakpoint-md: 768px;
+  --breakpoint-lg: 1024px;
+  --breakpoint-xl: 1280px;
+  --breakpoint-2xl: 1536px;
+
+  --font-*: initial;
+  --font-sans: proxima-nova, sans-serif;
+  --font-outline: gothic-outline-title, sans-serif;
+
+  --color-trans-black: rgba(0, 0, 0, 0.5);
+
+  --color-gold: #967738;
+
+  --container-8xl: 80rem;
+  --container-9xl: 90rem;
+  --container-10xl: 100rem;
+  --container-11xl: 110rem;
+  --container-12xl: 120rem;
+  --container-13xl: 130rem;
 }
 
-.font-outline {
-  letter-spacing: 0.1em;
-}
+/*
+  The default border color has changed to `currentcolor` in Tailwind CSS v4,
+  so we've added these compatibility styles to make sure everything still
+  looks the same as it did with Tailwind CSS v3.
 
-@media (prefers-contrast: more) {
-  .font-outline {
-    @apply font-sans;
-    @apply font-bold;
+  If we ever want to remove these styles, we need to add an explicit border
+  color utility to any element that depends on these defaults.
+*/
+@layer base {
+  *,
+  ::after,
+  ::before,
+  ::backdrop,
+  ::file-selector-button {
+    border-color: var(--color-gray-200, currentcolor);
   }
 }
 
-.bpd-fade-in {
-  animation: fadeInAnimation ease 3s;
-  animation-iteration-count: 1;
-  animation-fill-mode: forwards;
-  animation-delay: 800ms;
-  opacity: 0;
+@utility text-shadow {
+  text-shadow: 0 0 4px #1f2937;
 }
 
-@keyframes fadeInAnimation {
-  0% {
-    opacity: 0;
-  }
-  100% {
-    opacity: 1;
-  }
+@utility text-shadow-md {
+  text-shadow: 0 0 8px #1f2937;
 }
 
-body {
-  @apply bg-black;
+@utility text-shadow-lg {
+  text-shadow: 0 0 30px #1f2937;
 }
 
-.prose h2 {
-  @apply text-3xl;
-  @apply mb-3;
-}
-.prose strong {
-  @apply font-extrabold;
-}
-
-.prose p {
-  @apply mb-3;
-}
-
-.bpd-project-tile {
-  aspect-ratio: 2.3 / 1;
-}
-
-@media screen and (min-width: 1024px) {
-  .bpd-project-tile {
-    aspect-ratio: unset;
-    min-height: 180px;
-  }
-}
-
-@media screen and (min-width: 1400px) {
-  .bpd-project-tile {
-    min-height: 22vh;
-  }
-}
-
-@media screen and (min-width: 1800px) {
-  .bpd-project-tile {
-    min-height: 20vh;
-  }
-}
-
-header {
-  max-width: 100%;
-  overflow-x: hidden;
-}
-
-.bpd-white-icon polygon,
-.bpd-white-icon path {
-  stroke: #fff;
-}
-
-.bpd-player-container:fullscreen {
-  background-color: rgb(0, 0, 0);
-}
-.bpd-player-container:-webkit-full-screen {
-  background-color: rgb(0, 0, 0);
-}
-.bpd-player-container:-moz-full-screen {
-  background-color: rgb(0, 0, 0);
-}
-
-.prose-white a {
-  @apply text-gray-300;
-}
-
-.bpd-gallery-image-container {
-  @apply block;
-}
-
-.bpd-gallery-image-container div {
-  @apply block !important;
-}
-
-.bpd-gallery-image {
-  @apply block;
-}
-
-.ril-outer .ril__toolbar {
-  @apply pt-2;
-  @apply pb-4;
-  @apply px-4;
-  @apply bg-black;
-  @apply bg-opacity-70;
-  height: 80px;
-}
-
-.ril-outer .ril__toolbarItem,
-.ril-outer .ril__toolbarSide {
-  @apply h-full;
-}
-
-.ril-outer .ril__toolbarItemChild {
-  @apply font-bold;
-  @apply text-2xl;
-  @apply tracking-wider;
-  @apply relative;
-}
-
-.ril-outer .ril-toolbar-left .ril__toolbarItemChild:after {
-  content: '';
-  @apply bg-gold;
-  @apply h-1;
-  @apply absolute;
-  @apply -bottom-2;
-  @apply left-0;
-  @apply right-16;
-  min-width: 60px;
-}
-
-.ril-outer .ril__caption {
-  max-height: 30vh;
-}
-
-.ril-outer .ril__captionContent {
-  @apply w-full;
-  @apply bg-black;
-  @apply text-lg;
-  @apply pt-4;
-  @apply pb-6;
-  @apply px-12;
-  @apply text-center;
+@utility text-shadow-none {
+  text-shadow: none;
 }
 
 @layer utilities {
-  .text-shadow {
-    text-shadow: 0 0 4px #1f2937;
+  @font-face {
+    font-family: 'gothic-outline-title';
+    src: url('/fonts/gothic-outline-title/gothic-outline-title.eot');
+    src:
+      url('/fonts/gothic-outline-title/gothic-outline-title.eot?#iefix')
+        format('embedded-opentype'),
+      url('/fonts/gothic-outline-title/gothic-outline-title.woff2')
+        format('woff2'),
+      url('/fonts/gothic-outline-title/gothic-outline-title.woff')
+        format('woff'),
+      url('/fonts/gothic-outline-title/gothic-outline-title.ttf')
+        format('truetype'),
+      url('/fonts/gothic-outline-title/gothic-outline-title.svg#GothicOutlineTitleW01-D')
+        format('svg');
   }
-  .text-shadow-md {
-    text-shadow: 0 0 8px #1f2937;
+
+  .font-outline {
+    letter-spacing: 0.1em;
   }
-  .text-shadow-lg {
-    text-shadow: 0 0 30px #1f2937;
+
+  @media (prefers-contrast: more) {
+    .font-outline {
+      @apply font-sans;
+      @apply font-bold;
+    }
   }
-  .text-shadow-none {
-    text-shadow: none;
+
+  .bpd-fade-in {
+    animation: fadeInAnimation ease 3s;
+    animation-iteration-count: 1;
+    animation-fill-mode: forwards;
+    animation-delay: 800ms;
+    opacity: 0;
+  }
+
+  @keyframes fadeInAnimation {
+    0% {
+      opacity: 0;
+    }
+    100% {
+      opacity: 1;
+    }
+  }
+
+  body {
+    @apply bg-black;
+  }
+
+  .prose h2 {
+    @apply text-3xl;
+    @apply mb-3;
+  }
+  .prose strong {
+    @apply font-extrabold;
+  }
+
+  .prose p {
+    @apply mb-3;
+  }
+
+  .bpd-project-tile {
+    aspect-ratio: 2.3 / 1;
+  }
+
+  @media screen and (min-width: 1024px) {
+    .bpd-project-tile {
+      aspect-ratio: unset;
+      min-height: 180px;
+    }
+  }
+
+  @media screen and (min-width: 1400px) {
+    .bpd-project-tile {
+      min-height: 22vh;
+    }
+  }
+
+  @media screen and (min-width: 1800px) {
+    .bpd-project-tile {
+      min-height: 20vh;
+    }
+  }
+
+  header {
+    max-width: 100%;
+    overflow-x: hidden;
+  }
+
+  .bpd-white-icon polygon,
+  .bpd-white-icon path {
+    stroke: #fff;
+  }
+
+  .bpd-player-container:fullscreen {
+    background-color: rgb(0, 0, 0);
+  }
+  .bpd-player-container:-webkit-full-screen {
+    background-color: rgb(0, 0, 0);
+  }
+  .bpd-player-container:-moz-full-screen {
+    background-color: rgb(0, 0, 0);
+  }
+
+  .prose-white a {
+    @apply text-gray-300;
+  }
+
+  .bpd-gallery-image-container {
+    @apply block;
+  }
+
+  .bpd-gallery-image-container div {
+    @apply block!;
+  }
+
+  .bpd-gallery-image {
+    @apply block;
+  }
+
+  .ril-outer .ril__toolbar {
+    @apply pt-2;
+    @apply pb-4;
+    @apply px-4;
+    @apply bg-black/70;
+    height: 80px;
+  }
+
+  .ril-outer .ril__toolbarItem,
+  .ril-outer .ril__toolbarSide {
+    @apply h-full;
+  }
+
+  .ril-outer .ril__toolbarItemChild {
+    @apply font-bold;
+    @apply text-2xl;
+    @apply tracking-wider;
+    @apply relative;
+  }
+
+  .ril-outer .ril-toolbar-left .ril__toolbarItemChild:after {
+    content: '';
+    @apply bg-gold;
+    @apply h-1;
+    @apply absolute;
+    @apply -bottom-2;
+    @apply left-0;
+    @apply right-16;
+    min-width: 60px;
+  }
+
+  .ril-outer .ril__caption {
+    max-height: 30vh;
+  }
+
+  .ril-outer .ril__captionContent {
+    @apply w-full;
+    @apply bg-black;
+    @apply text-lg;
+    @apply pt-4;
+    @apply pb-6;
+    @apply px-12;
+    @apply text-center;
   }
 }
 

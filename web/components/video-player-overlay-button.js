@@ -31,7 +31,7 @@ const VideoPlayerOverlayButtonNotMemoized = ({
         className={classNames(
           'absolute inset-0 h-full w-full',
           !disableGradientOverlay &&
-            'bg-gradient-to-r from-black via-transparent to-transparent',
+            'bg-linear-to-r from-black via-transparent to-transparent',
           showVideoOverlay ? 'opacity-80' : 'opacity-0'
         )}
       ></div>

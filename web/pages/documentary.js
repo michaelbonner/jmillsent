@@ -3,21 +3,20 @@ import 'yet-another-react-lightbox/plugins/captions.css'
 import 'yet-another-react-lightbox/styles.css'
 
 import { ClientOnly } from '@/components/client-only'
-import { H2, H3 } from '@/components/headings'
 import Layout from '@/components/layout'
 import { sanityClient } from '@/lib/sanity'
+import { PortableText, toPlainText } from '@portabletext/react'
 import classNames from 'classnames'
 import groq from 'groq'
 import useIsDesktop from 'hooks/useIsDesktop'
 import dynamic from 'next/dynamic'
 import Image from 'next/image'
-import { useState } from 'react'
-import { PortableText, toPlainText } from '@portabletext/react'
-import urlForSanitySource from '../lib/urlForSanitySource'
 import Link from 'next/link'
+import { useState } from 'react'
+import { styles } from 'styles/styles'
 import Lightbox from 'yet-another-react-lightbox'
 import Captions from 'yet-another-react-lightbox/plugins/captions'
-import { styles } from 'styles/styles'
+import urlForSanitySource from '../lib/urlForSanitySource'
 
 const VideoPlayer = dynamic(() => import('@/components/video-player'), {})
 
@@ -227,13 +226,13 @@ const Documentary = ({ documentaryPage }) => {
                         >
                           EP {episode.episodeNum}
                         </div>
-                        <div className="mx-auto my-2 h-1 w-40 shrink-0 bg-gold"></div>
-                        <h4 className="mb-4 text-xl font-bold uppercase text-white">
+                        <div className="bg-gold mx-auto my-2 h-1 w-40 shrink-0"></div>
+                        <h4 className="mb-4 text-xl font-bold text-white uppercase">
                           {episode.title}
                         </h4>
                         <div
                           className={classNames(
-                            'px-4 text-sm font-light uppercase text-white opacity-0 transition-opacity',
+                            'px-4 text-sm font-light text-white uppercase opacity-0 transition-opacity',
                             'group-hover:opacity-100'
                           )}
                         >
@@ -266,7 +265,7 @@ const Documentary = ({ documentaryPage }) => {
           </div>
 
           {isDesktop === false && (
-            <div className="mx-auto -mb-5 mt-12 flex w-full max-w-md justify-center px-12 lg:mt-24 lg:max-w-xl">
+            <div className="mx-auto mt-12 -mb-5 flex w-full max-w-md justify-center px-12 lg:mt-24 lg:max-w-xl">
               <Image
                 alt="JME Film Production Company"
                 height={100}
@@ -276,7 +275,7 @@ const Documentary = ({ documentaryPage }) => {
             </div>
           )}
           {isDesktop && (
-            <div className="mx-auto -mb-5 mt-12 w-full max-w-md px-12 lg:mt-24 lg:max-w-xl">
+            <div className="mx-auto mt-12 -mb-5 w-full max-w-md px-12 lg:mt-24 lg:max-w-xl">
               <Image
                 alt="JME Film Production Company"
                 height={202}
@@ -311,7 +310,7 @@ const Documentary = ({ documentaryPage }) => {
                 <span className="font-outline">EP {image.episodeNum}</span>
                 <span>{image.title}</span>
               </span>
-              <div className="my-2 h-1 w-40 shrink-0 bg-gold" />
+              <div className="bg-gold my-2 h-1 w-40 shrink-0" />
             </div>
           ),
         }))}

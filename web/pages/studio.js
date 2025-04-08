@@ -109,7 +109,7 @@ function Studio({ studioPage }) {
               <span className="flex items-center gap-4 text-lg md:text-2xl">
                 <span>{image.title}</span>
               </span>
-              <div className="my-2 h-1 w-40 shrink-0 bg-gold" />
+              <div className="bg-gold my-2 h-1 w-40 shrink-0" />
             </div>
           ),
         }))}
@@ -147,7 +147,7 @@ function Studio({ studioPage }) {
           {studioPage.section1Body && (
             <div
               className={classNames(
-                'prose-lg mx-auto -mb-2 mt-4 max-w-5xl px-4',
+                'prose-lg mx-auto mt-4 -mb-2 max-w-5xl px-4',
                 'lg:mt-10'
               )}
             >
@@ -213,7 +213,7 @@ function Studio({ studioPage }) {
             <H2>{studioPage.studioItemSectionTitle}</H2>
             <p
               className={classNames(
-                'font-outline text-xl uppercase leading-4',
+                'font-outline text-xl leading-4 uppercase',
                 'lg:text-5xl'
               )}
             >

@@ -79,7 +79,7 @@ function Contact({ contact }) {
           >
             <div className="w-full sm:w-1/2 lg:w-1/3">
               <div className="mx-5 rounded-xl bg-white p-8 text-black">
-                <p className="text-xl font-bold uppercase tracking-wider">
+                <p className="text-xl font-bold tracking-wider uppercase">
                   Studio Address
                 </p>
                 <div className="mx-auto w-32">

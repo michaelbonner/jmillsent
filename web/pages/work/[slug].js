@@ -59,7 +59,7 @@ const WorkItem = ({ workItem = {} }) => {
       }
     >
       <div className={classNames('pg-10 px-4', 'lg:px-8 lg:pt-28')}>
-        <div className="my-12 max-w-9xl rounded-2xl xl:mx-auto">
+        <div className="max-w-9xl my-12 rounded-2xl xl:mx-auto">
           <ClientOnly>
             <VideoPlayer
               client={workItem.clientName}
@@ -77,7 +77,7 @@ const WorkItem = ({ workItem = {} }) => {
 
       <div className="3xl:px-0 container mx-auto mt-4 px-4">
         {workItem.credits && workItem.credits.length > 0 && (
-          <div className="mx-auto my-12 max-w-9xl">
+          <div className="max-w-9xl mx-auto my-12">
             {isDesktop === false && (
               <>
                 <button
@@ -87,8 +87,8 @@ const WorkItem = ({ workItem = {} }) => {
                   className="flex place-items-center"
                 >
                   <h3 className="text-xl font-extrabold uppercase">Credits</h3>
-                  <div className={`${isOpen ? 'rotate-90 pl-0 pr-1' : ''}`}>
-                    <p className="place-self-center pl-2 font-outline text-2xl lg:text-4xl">
+                  <div className={`${isOpen ? 'rotate-90 pr-1 pl-0' : ''}`}>
+                    <p className="font-outline place-self-center pl-2 text-2xl lg:text-4xl">
                       &gt;
                     </p>
                   </div>
@@ -184,7 +184,7 @@ const WorkItem = ({ workItem = {} }) => {
       </div>
 
       {isDesktop === false && (
-        <div className="mx-auto -mb-5 mt-12 flex w-full max-w-md justify-center px-12 lg:mt-24 lg:max-w-xl">
+        <div className="mx-auto mt-12 -mb-5 flex w-full max-w-md justify-center px-12 lg:mt-24 lg:max-w-xl">
           <Image
             alt="JME Film Production Company"
             height={100}
@@ -194,7 +194,7 @@ const WorkItem = ({ workItem = {} }) => {
         </div>
       )}
       {isDesktop && (
-        <div className="mx-auto -mb-5 mt-12 w-full max-w-md px-12 lg:mt-24 lg:max-w-xl">
+        <div className="mx-auto mt-12 -mb-5 w-full max-w-md px-12 lg:mt-24 lg:max-w-xl">
           <Image
             alt="JME Film Production Company"
             height={202}

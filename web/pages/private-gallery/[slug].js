@@ -90,7 +90,7 @@ const PortfolioItem = ({ portfolioItem = {}, portfolioPagePassword }) => {
         {isLoggedIn && (
           <>
             <div className="px-4 lg:px-8">
-              <div className="my-12 max-w-9xl rounded-2xl xl:mx-auto">
+              <div className="max-w-9xl my-12 rounded-2xl xl:mx-auto">
                 <ClientOnly>
                   <VideoPlayer
                     client={portfolioItem.clientName}
@@ -114,7 +114,7 @@ const PortfolioItem = ({ portfolioItem = {}, portfolioPagePassword }) => {
               <div className="text-center">
                 <Link
                   href="/private-gallery"
-                  className="inline-flex items-center justify-center border-2 border-gray-300 px-3 py-1 font-outline text-3xl uppercase transition-colors hover:bg-gold hover:text-black"
+                  className="font-outline hover:bg-gold inline-flex items-center justify-center border-2 border-gray-300 px-3 py-1 text-3xl uppercase transition-colors hover:text-black"
                 >
                   Back To Portfolio
                 </Link>
@@ -123,7 +123,7 @@ const PortfolioItem = ({ portfolioItem = {}, portfolioPagePassword }) => {
 
             <div className="3xl:px-0 container mx-auto mt-4 px-4">
               {portfolioItem.credits && portfolioItem.credits.length > 0 && (
-                <div className="mx-auto my-12 max-w-9xl">
+                <div className="max-w-9xl mx-auto my-12">
                   {isDesktop === false && (
                     <>
                       <button
@@ -136,9 +136,9 @@ const PortfolioItem = ({ portfolioItem = {}, portfolioPagePassword }) => {
                           Credits
                         </h3>
                         <div
-                          className={`${isOpen ? 'rotate-90 pl-0 pr-1' : ''}`}
+                          className={`${isOpen ? 'rotate-90 pr-1 pl-0' : ''}`}
                         >
-                          <p className="place-self-center pl-2 font-outline text-2xl lg:text-4xl">
+                          <p className="font-outline place-self-center pl-2 text-2xl lg:text-4xl">
                             &gt;
                           </p>
                         </div>
@@ -234,7 +234,7 @@ const PortfolioItem = ({ portfolioItem = {}, portfolioPagePassword }) => {
             </div>
 
             {isDesktop === false && (
-              <div className="mx-auto -mb-5 mt-12 flex w-full max-w-md justify-center px-12 lg:mt-24 lg:max-w-xl">
+              <div className="mx-auto mt-12 -mb-5 flex w-full max-w-md justify-center px-12 lg:mt-24 lg:max-w-xl">
                 <Image
                   alt="JME Film Production Company"
                   height={100}
@@ -244,7 +244,7 @@ const PortfolioItem = ({ portfolioItem = {}, portfolioPagePassword }) => {
               </div>
             )}
             {isDesktop && (
-              <div className="mx-auto -mb-5 mt-12 w-full max-w-md px-12 lg:mt-24 lg:max-w-xl">
+              <div className="mx-auto mt-12 -mb-5 w-full max-w-md px-12 lg:mt-24 lg:max-w-xl">
                 <Image
                   alt="JME Film Production Company"
                   height={202}

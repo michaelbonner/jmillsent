@@ -56,7 +56,7 @@ function Home({ homePage }) {
       <div className="mx-auto max-w-7xl px-8">
         <div className="container mx-auto mt-12 text-center text-white lg:mt-24">
           <H2>{homePage.section1Title}</H2>
-          <div className="prose-lg mx-auto -mb-2 mt-4 text-center lg:mt-10 lg:max-w-5xl">
+          <div className="prose-lg mx-auto mt-4 -mb-2 text-center lg:mt-10 lg:max-w-5xl">
             <PortableText value={homePage.section1Body} />
           </div>
         </div>
@@ -65,7 +65,7 @@ function Home({ homePage }) {
           <div className="container mx-auto grid gap-8 px-8 text-center lg:px-12">
             <div>
               <H2 className="text-black">{homePage.latestCampaignTitle}</H2>
-              <p className="font-outline text-xl uppercase tracking-tighter text-black lg:text-5xl">
+              <p className="font-outline text-xl tracking-tighter text-black uppercase lg:text-5xl">
                 {homePage.latestCampaignSubtitle}
               </p>
             </div>
@@ -134,8 +134,8 @@ function Home({ homePage }) {
               <Link
                 href="/about"
                 className={classNames(
-                  'rounded-lg border-2 border-black px-8 py-0.5 font-bold uppercase tracking-widest text-black transition-all',
-                  'hover:border-black hover:bg-gold hover:text-black'
+                  'rounded-lg border-2 border-black px-8 py-0.5 font-bold tracking-widest text-black uppercase transition-all',
+                  'hover:bg-gold hover:border-black hover:text-black'
                 )}
               >
                 Learn More
@@ -143,8 +143,8 @@ function Home({ homePage }) {
               <Link
                 href="/work"
                 className={classNames(
-                  'rounded-lg border-2 border-black bg-black px-8 py-0.5 font-bold uppercase tracking-widest transition-all',
-                  'hover:border-black hover:bg-gold hover:text-black'
+                  'rounded-lg border-2 border-black bg-black px-8 py-0.5 font-bold tracking-widest uppercase transition-all',
+                  'hover:bg-gold hover:border-black hover:text-black'
                 )}
               >
                 Explore Work
@@ -180,7 +180,7 @@ function Home({ homePage }) {
           </div>
         </div>
         {isDesktop === false && (
-          <div className="mx-auto -mb-5 mt-12 flex w-full max-w-md justify-center lg:mt-24 lg:max-w-xl">
+          <div className="mx-auto mt-12 -mb-5 flex w-full max-w-md justify-center lg:mt-24 lg:max-w-xl">
             <Image
               alt="JME Film Production Company"
               height={100}
@@ -190,7 +190,7 @@ function Home({ homePage }) {
           </div>
         )}
         {isDesktop && (
-          <div className="mx-auto -mb-5 mt-12 w-full max-w-md lg:mt-24 lg:max-w-xl">
+          <div className="mx-auto mt-12 -mb-5 w-full max-w-md lg:mt-24 lg:max-w-xl">
             <Image
               alt="JME Film Production Company"
               height={202}

@@ -7,8 +7,9 @@ import groq from 'groq'
 import { useQueryState } from 'nuqs'
 
 function Work({ workPage, workItemCategories }) {
+  const defaultActiveTab = workItemCategories?.at(0)?.name || ''
   const [activeTab, setActiveTab] = useQueryState('work-type', {
-    defaultValue: workItemCategories?.at(0)?.name || '',
+    defaultValue: defaultActiveTab,
     clearOnDefault: true,
   })
 
@@ -31,7 +32,18 @@ function Work({ workPage, workItemCategories }) {
     })
 
   return (
-    <Layout title={workPage.seoTitle} description={workPage.seoDescription}>
+    <Layout
+      title={
+        activeTab !== defaultActiveTab
+          ? `${activeTab} ${workPage.seoTitle}`
+          : workPage.seoTitle
+      }
+      description={
+        activeTab !== defaultActiveTab
+          ? `${activeTab} | ${workPage.seoDescription}`
+          : workPage.seoDescription
+      }
+    >
       <div className="lg:pt-24">
         <ul
           className={classNames(

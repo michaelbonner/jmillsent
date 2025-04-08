@@ -112,7 +112,7 @@ function About({ aboutPage }) {
                 <span className="font-outline">0{servicesPhotoIndex + 1}</span>
                 <span>{image.title}</span>
               </span>
-              <div className="my-2 h-1 w-40 shrink-0 bg-gold" />
+              <div className="bg-gold my-2 h-1 w-40 shrink-0" />
             </div>
           ),
         }))}
@@ -152,7 +152,7 @@ function About({ aboutPage }) {
               </div>
             </div>
             {aboutPage.section1Body && (
-              <div className="prose-lg mx-auto -mb-2 mt-4 max-w-6xl px-4 text-center lg:mt-10">
+              <div className="prose-lg mx-auto mt-4 -mb-2 max-w-6xl px-4 text-center lg:mt-10">
                 <PortableText value={aboutPage.section1Body} />
               </div>
             )}
@@ -248,7 +248,7 @@ function About({ aboutPage }) {
           <section className="relative -mt-1.5" id="services">
             <div className="container mx-auto text-center">
               <H2>{aboutPage.section2Title}</H2>
-              <p className="-mt-1.5 font-outline text-xl uppercase lg:text-5xl">
+              <p className="font-outline -mt-1.5 text-xl uppercase lg:text-5xl">
                 {aboutPage.section2Subtitle}
               </p>
             </div>
@@ -305,13 +305,13 @@ function About({ aboutPage }) {
                       >
                         0{index + 1}
                       </div>
-                      <div className="mx-auto my-2 h-1 w-40 shrink-0 bg-gold group-hover:hidden"></div>
+                      <div className="bg-gold mx-auto my-2 h-1 w-40 shrink-0 group-hover:hidden"></div>
                       <h4 className="mb-4 text-3xl font-bold uppercase">
                         {service.name}
                       </h4>
                       <div
                         className={classNames(
-                          'px-4 text-sm font-light uppercase text-white opacity-0 transition-opacity',
+                          'px-4 text-sm font-light text-white uppercase opacity-0 transition-opacity',
                           'group-hover:opacity-100'
                         )}
                       >
@@ -347,7 +347,7 @@ function About({ aboutPage }) {
                     <div
                       key={index}
                       className={classNames(
-                        'flex flex-col justify-start space-y-12 rounded-xl bg-black px-8 pb-8 pt-12 text-white'
+                        'flex flex-col justify-start space-y-12 rounded-xl bg-black px-8 pt-12 pb-8 text-white'
                       )}
                       target="_blank"
                     >
@@ -362,8 +362,8 @@ function About({ aboutPage }) {
                         <h4 className="text-2xl font-bold uppercase lg:text-3xl">
                           {adFormatsCard.title}
                         </h4>
-                        <div className="mx-auto mt-4 h-1 w-40 bg-gold"></div>
-                        <div className="prose prose-sm prose-invert mt-4 lg:prose-base">
+                        <div className="bg-gold mx-auto mt-4 h-1 w-40"></div>
+                        <div className="prose prose-sm prose-invert lg:prose-base mt-4">
                           <PortableText value={adFormatsCard.body} />
                         </div>
                       </div>
@@ -393,7 +393,7 @@ function About({ aboutPage }) {
               <p className="text-4xl font-bold lg:text-5xl">
                 {aboutPage.directorName}
               </p>
-              <p className="mt-8 font-outline text-4xl uppercase lg:mt-4 lg:text-5xl">
+              <p className="font-outline mt-8 text-4xl uppercase lg:mt-4 lg:text-5xl">
                 {aboutPage.directorTitle}
               </p>
             </div>
@@ -405,7 +405,7 @@ function About({ aboutPage }) {
               />
               <div
                 className={classNames(
-                  'absolute bottom-0 right-0 top-0 hidden h-full w-1/2 rounded-r-xl bg-linear-to-l from-black to-transparent opacity-70 transition-all duration-500',
+                  'absolute top-0 right-0 bottom-0 hidden h-full w-1/2 rounded-r-xl bg-linear-to-l from-black to-transparent opacity-70 transition-all duration-500',
                   'lg:block lg:pr-20',
                   'group-hover:w-3/4 group-hover:opacity-80'
                 )}
@@ -413,12 +413,12 @@ function About({ aboutPage }) {
               {(aboutPage.directorImageTitle ||
                 aboutPage.directorImageSubtitle) && (
                 <div className="inset-0 mt-4 flex flex-col items-center justify-center gap-y-1 sm:gap-y-2 lg:absolute lg:mt-0 lg:items-end lg:gap-y-6 lg:pr-24">
-                  <p className="text-lg font-bold uppercase tracking-wider sm:text-3xl lg:text-4xl">
+                  <p className="text-lg font-bold tracking-wider uppercase sm:text-3xl lg:text-4xl">
                     {aboutPage.directorImageTitle}
                   </p>
                   {aboutPage.directorImageTitle &&
                     aboutPage.directorImageSubtitle && (
-                      <div className="h-[2px] w-24 bg-gold md:h-1 md:w-48"></div>
+                      <div className="bg-gold h-[2px] w-24 md:h-1 md:w-48"></div>
                     )}
                   {aboutPage.directorImageSubtitle && (
                     <p className="font-outline text-xl uppercase sm:text-3xl lg:text-4xl">
@@ -462,7 +462,7 @@ function About({ aboutPage }) {
           <section className="mx-auto max-w-7xl text-center" id="team">
             <div className="rounded-2xl bg-white p-8 text-black lg:p-10">
               <H2>{aboutPage.teamTitle}</H2>
-              <p className="-mt-1.5 font-outline text-xl uppercase lg:text-5xl">
+              <p className="font-outline -mt-1.5 text-xl uppercase lg:text-5xl">
                 {aboutPage.teamSubtitle}
               </p>
               <div
@@ -511,7 +511,7 @@ function About({ aboutPage }) {
                             yMargin={'my-2'}
                           />
                         </div>
-                        <p className="text-sm uppercase tracking-wider lg:font-outline lg:text-2xl">
+                        <p className="lg:font-outline text-sm tracking-wider uppercase lg:text-2xl">
                           {teamMember.title}
                         </p>
                       </div>
@@ -598,7 +598,7 @@ function About({ aboutPage }) {
                 />
               </a>
             </div>
-            <H2 className="mb-0! font-outline font-thin">
+            <H2 className="font-outline mb-0! font-thin">
               {aboutPage.company3Title}
             </H2>
 
@@ -682,7 +682,7 @@ function About({ aboutPage }) {
                       key={index}
                       href={ravensCard.link}
                       className={classNames(
-                        'flex flex-col justify-between space-y-12 border-2 border-gray-300 px-8 pb-8 pt-12 transition-colors',
+                        'flex flex-col justify-between space-y-12 border-2 border-gray-300 px-8 pt-12 pb-8 transition-colors',
                         'hover:bg-linear-to-b hover:from-gray-900 hover:to-black'
                       )}
                       target="_blank"
@@ -714,7 +714,7 @@ function About({ aboutPage }) {
               <div className="flex justify-center">
                 <a
                   href="https://ravensfilmworks.com/"
-                  className="group mt-4 flex items-center justify-center gap-4 border-2 border-gray-300 px-3 py-2 uppercase transition-colors hover:bg-gold sm:mt-10"
+                  className="group hover:bg-gold mt-4 flex items-center justify-center gap-4 border-2 border-gray-300 px-3 py-2 uppercase transition-colors sm:mt-10"
                   rel="noreferrer"
                   target="_blank"
                 >
@@ -766,7 +766,7 @@ function About({ aboutPage }) {
             {aboutPage.brands.map((brand) => {
               return (
                 <div key={brand._id}>
-                  <SanityImage image={brand.image} alt={brand.name} />
+                  <SanityImage alt={brand.name} image={brand.image} />
                 </div>
               )
             })}

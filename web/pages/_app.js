@@ -1,8 +1,10 @@
+import '../styles/globals.css'
+
 import { useRouter } from 'next/dist/client/router'
 import { useEffect } from 'react'
 import TagManager from 'react-gtm-module'
 import LoadingAnimationProvider from '../context/LoadingAnimationContext'
-import '../styles/globals.css'
+import { NuqsAdapter } from 'nuqs/adapters/next/pages'
 
 function MyApp({ Component, pageProps }) {
   const router = useRouter()
@@ -12,9 +14,11 @@ function MyApp({ Component, pageProps }) {
   }, [])
 
   return (
-    <LoadingAnimationProvider>
-      <Component {...pageProps} key={router.asPath} />
-    </LoadingAnimationProvider>
+    <NuqsAdapter>
+      <LoadingAnimationProvider>
+        <Component key={router.asPath} {...pageProps} />
+      </LoadingAnimationProvider>
+    </NuqsAdapter>
   )
 }
 

@@ -7,34 +7,29 @@ function SanityImage({ alt, className, image }) {
 
   const { height, width } = getImageDimensions(image)
 
+  const trimmedWidth = width > 2000 ? 2000 : width
+  const trimmedHeight = width > 2000 ? height * (2000 / width) : height
+
   return (
     <Image
       className={className}
-      src={urlForSanitySource(image).width(1920).height(1080).dpr(2).url()}
+      src={urlForSanitySource(image)
+        .dpr(2)
+        .width(trimmedWidth)
+        .height(trimmedHeight)
+        .url()}
       alt={alt ?? image?.asset._ref}
-      width={width}
-      height={height}
+      width={trimmedWidth}
+      height={trimmedHeight}
       placeholder="blur"
       blurDataURL={urlForSanitySource(image)
         .width(24)
         .height(24)
         .blur(10)
         .url()}
-      sizes="
-          (max-width: 768px) 100vw,
-          (max-width: 1200px) 50vw,
-          40vw"
+      sizes="(max-width: 800px) 100vw, 800px"
+      fill={width ? false : true}
     />
-
-    // eslint-disable-next-line jsx-a11y/alt-text
-    // <Image
-    //   {...imageProps}
-    //   alt={alt}
-    //   className={className}
-    //   fill={imageProps.width ? false : true}
-    //   sizes="(max-width: 800px) 100vw, 800px"
-    //   unoptimized
-    // />
   )
 }
 

@@ -68,7 +68,7 @@ export const MomentsGallery = ({ images = [] }) => {
         zoom={{ ref: zoomRef }}
       />
 
-      <section className="mx-auto max-w-13xl text-center">
+      <section className="max-w-13xl mx-auto text-center">
         {/* desktop grid */}
         <div
           className={classNames(
@@ -89,6 +89,7 @@ export const MomentsGallery = ({ images = [] }) => {
                   imageType.colSpan,
                   'bpd-gallery-image-container'
                 )}
+                data-index={image.index}
                 key={index}
               >
                 <Image

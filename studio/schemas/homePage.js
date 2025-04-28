@@ -258,7 +258,7 @@ export default {
   ],
   preview: {
     select: {},
-    prepare(selection) {
+    prepare() {
       return {
         title: `Home Page`,
       }

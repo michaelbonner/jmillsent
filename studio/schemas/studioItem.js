@@ -1,4 +1,4 @@
-import { MdWeb as icon } from 'react-icons/md';
+import { MdWeb as icon } from 'react-icons/md'
 
 export default {
   name: 'studioItem',
@@ -47,7 +47,7 @@ export default {
         date: selection.date,
         subtitle: selection.date,
         media: selection.media,
-      };
+      }
     },
   },
-};
+}

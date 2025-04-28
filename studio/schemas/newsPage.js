@@ -54,7 +54,7 @@ export default {
   ],
   preview: {
     select: {},
-    prepare(selection) {
+    prepare() {
       return {
         title: `News Page`,
       }

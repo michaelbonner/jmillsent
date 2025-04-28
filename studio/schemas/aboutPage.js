@@ -612,7 +612,7 @@ export default {
       title: 'title',
     },
     media: 'poster',
-    prepare(selection) {
+    prepare() {
       return {
         title: `About Page`,
       }

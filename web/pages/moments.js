@@ -81,10 +81,38 @@ export async function getStaticProps() {
 
   // take a random 500 images from the images array
   const { images: sanityImages, ...momentsPageData } = momentsPage
-  const images = sanityImages
+
+  const allImages = sanityImages
     .filter((image) => image.imageUrl)
-    .sort(() => Math.random() - 0.5)
-    .slice(0, 500)
+    .map((image, index) => ({
+      ...image,
+      index,
+    }))
+
+  // always show the latest 100 images
+  const latest100Images = allImages.slice(-100).map((image) => ({
+    ...image,
+    sortValue: Math.random(),
+  }))
+
+  // get the rest of the images in random order weighted by index
+  // to show more recent images more often
+  const otherImages = allImages
+    // get only the images now in the "latest100Images" array
+    .slice(0, -100)
+    // add a random sort value weighted by index
+    .map((image, index) => ({
+      ...image,
+      sortValue: Math.random() * (index / 100),
+    }))
+    // sort the images by the sort value
+    .sort((a, b) => a.sortValue - b.sortValue)
+    // get the first 400 images
+    .slice(400)
+
+  const images = [...latest100Images, ...otherImages].sort(
+    () => Math.random() - 0.5
+  )
 
   return {
     props: {

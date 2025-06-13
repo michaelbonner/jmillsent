@@ -43,6 +43,7 @@
     "uuidv",
     "viruserv",
     "webkitallowfullscreen",
-    "workfront"
+    "workfront",
+    "yarl"
   ]
 }

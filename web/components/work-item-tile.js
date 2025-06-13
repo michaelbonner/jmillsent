@@ -18,6 +18,7 @@ const WorkItemTile = ({
   className,
   playLockupClassName,
   aspectRatio,
+  typographyClassNameOverrides = {},
 }) => {
   const [isHovered, setIsHovered] = useState(autoPlay)
   const [hasHovered, setHasHovered] = useState(autoPlay)
@@ -114,7 +115,7 @@ const WorkItemTile = ({
         {showWithPlayLockup ? (
           <div
             className={classNames(
-              'flex w-full items-center justify-start gap-4 pl-4 pr-2 text-left',
+              'flex w-full items-center justify-start gap-4 pr-2 pl-4 text-left',
               playLockupClassName
             )}
           >
@@ -123,7 +124,7 @@ const WorkItemTile = ({
                 <GrPlay className="size-10 py-2 pl-1" />
               </div>
             </div>
-            <div className="border-l-4 border-gold pl-4">
+            <div className="border-gold border-l-4 pl-4">
               <div className="text-xl font-bold uppercase">
                 {workItem.clientName}
               </div>
@@ -134,10 +135,25 @@ const WorkItemTile = ({
           </div>
         ) : (
           <>
-            <h2 className="text-3xl font-extrabold uppercase lg:text-2xl">
+            <h2
+              className={
+                typographyClassNameOverrides?.clientName
+                  ? typographyClassNameOverrides.clientName
+                  : classNames(
+                      'text-3xl font-extrabold uppercase',
+                      'lg:text-2xl'
+                    )
+              }
+            >
               {workItem.clientName}
             </h2>
-            <h3 className="font-outline text-3xl uppercase lg:text-2xl">
+            <h3
+              className={
+                typographyClassNameOverrides?.title
+                  ? typographyClassNameOverrides.title
+                  : classNames('font-outline text-3xl uppercase', 'lg:text-2xl')
+              }
+            >
               {workItem.title}
             </h3>
           </>

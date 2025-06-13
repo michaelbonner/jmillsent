@@ -148,6 +148,20 @@ function Work({ workPage, workItemCategories }) {
                       }
                     : undefined
                 }
+                typographyClassNameOverrides={
+                  isSocialLayout
+                    ? {
+                        clientName: classNames(
+                          'text-lg font-extrabold uppercase',
+                          'lg:text-2xl'
+                        ),
+                        title: classNames(
+                          'font-outline text-lg uppercase',
+                          'lg:text-2xl'
+                        ),
+                      }
+                    : undefined
+                }
               />
             )
           })}

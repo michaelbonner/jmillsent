@@ -200,7 +200,7 @@ export async function getStaticProps() {
 
   const workItemCategories = await sanityClient.fetch(
     groq`
-      *[_type == "workItemCategory"][showOnWorkPage == true]|order(order asc){
+      *[_type == "workItemCategory"][showOnWorkPage == true || name == "Social"]|order(order asc){
         name,
         order,
         workItems[]->{
@@ -217,30 +217,6 @@ export async function getStaticProps() {
       }
   `
   )
-
-  const socialWorkItemCategory = await sanityClient.fetch(
-    groq`
-      *[_type == "workItemCategory"][name == "Social"][0]{
-        name,
-        order,
-        workItems[]->{
-          _id,
-          slug,
-          clientName,
-          title,
-          poster,
-          "shortClipMp4URL": shortClipMp4.asset->url,
-          "shortClipMp4S3URL": shortClipMp4S3.asset->fileURL,
-          "shortClipOgvURL": shortClipOgv.asset->url,
-          "shortClipOgvS3URL": shortClipOgvS3.asset->fileURL,
-        }
-      }
-  `
-  )
-
-  if (!workItemCategories.find((category) => category.name === 'Social')) {
-    workItemCategories.push(socialWorkItemCategory)
-  }
 
   return {
     props: {

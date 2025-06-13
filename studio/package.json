@@ -9,7 +9,9 @@
   "scripts": {
     "start": "sanity start",
     "dev": "sanity start",
-    "build": "sanity build"
+    "build": "sanity build",
+    "preinstall": "npx only-allow bun",
+    "out": "bun outdated"
   },
   "keywords": [
     "sanity"
@@ -22,18 +24,18 @@
     "@sanity/default-layout": "^2.36.2",
     "@sanity/default-login": "^2.36.2",
     "@sanity/desk-tool": "^2.36.2",
-    "@sanity/vision": "^2.36.2",
-    "prop-types": "^15.7",
-    "react": "^17.0",
-    "react-dom": "^17.0",
-    "react-icons": "^5.2.1",
-    "sanity-plugin-dashboard-widget-vercel": "^1.1.0",
-    "sanity-plugin-media": "^1.4.0",
+    "@sanity/vision": "^2.36.6",
+    "prop-types": "^15.8.1",
+    "react": "^17.0.2",
+    "react-dom": "^17.0.2",
+    "react-icons": "^5.5.0",
+    "sanity-plugin-dashboard-widget-vercel": "^1.1.5",
+    "sanity-plugin-media": "^1.5.1",
     "sanity-plugin-order-documents": "^0.0.22",
-    "sanity-plugin-s3-dam": "^0.6.0",
+    "sanity-plugin-s3-dam": "^0.6.2",
     "styled-components": "^5.3.11"
   },
   "devDependencies": {
-    "@sanity/cli": "^3.52.0"
+    "@sanity/cli": "^3.92.0"
   }
 }

@@ -10,10 +10,13 @@
     "format": "lerna run format",
     "graphql-deploy": "lerna run graphql-deploy",
     "lint": "lerna run lint",
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "preinstall": "npx only-allow bun",
+    "out": "bun outdated",
+    "up": "bun update"
   },
   "devDependencies": {
-    "@sanity/cli": "^3.75.0",
-    "lerna": "^8.1.9"
+    "@sanity/cli": "^3.92.0",
+    "lerna": "^8.2.2"
   }
 }

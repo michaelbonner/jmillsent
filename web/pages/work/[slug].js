@@ -3,6 +3,7 @@ import { ClientOnly } from '@/components/client-only'
 import { H3 } from '@/components/headings'
 import Layout from '@/components/layout'
 import { sanityClient } from '@/lib/sanity'
+import urlForSanitySource from '@/lib/urlForSanitySource'
 import classNames from 'classnames'
 import groq from 'groq'
 import useIsDesktop from 'hooks/useIsDesktop'
@@ -47,6 +48,14 @@ const WorkItem = ({ workItem = {} }) => {
     ? workItem.credits.slice(column1Credits.length)
     : []
 
+  const sanityImagePoster = workItem.poster
+    ? urlForSanitySource(workItem.poster)
+        .width(1080)
+        .height(1920)
+        .crop('focalpoint')
+        .url()
+    : null
+
   return (
     <Layout
       title={
@@ -60,18 +69,71 @@ const WorkItem = ({ workItem = {} }) => {
     >
       <div className={classNames('pg-10 px-4', 'lg:px-8 lg:pt-28')}>
         <div className="max-w-9xl my-12 rounded-2xl xl:mx-auto">
-          <ClientOnly>
-            <VideoPlayer
-              client={workItem.clientName}
-              description={workItem.description}
-              poster={workItem.poster}
-              title={workItem.title}
-              videoId={workItem.videoId}
-              clientName={workItem.clientName}
-              videoHeightAspectRatio={workItem.videoHeightAspectRatio || '9'}
-              videoWidthAspectRatio={workItem.videoWidthAspectRatio || '16'}
-            />
-          </ClientOnly>
+          {workItem.videoId && (
+            <ClientOnly>
+              <VideoPlayer
+                client={workItem.clientName}
+                description={workItem.description}
+                poster={workItem.poster}
+                title={workItem.title}
+                videoId={workItem.videoId}
+                clientName={workItem.clientName}
+                videoHeightAspectRatio={workItem.videoHeightAspectRatio || '9'}
+                videoWidthAspectRatio={workItem.videoWidthAspectRatio || '16'}
+              />
+            </ClientOnly>
+          )}
+          {!workItem.videoId && workItem.shortClipMp4S3URL && (
+            <div
+              className="mx-auto aspect-[1080/1920] max-h-[80vh] cursor-pointer"
+              onClick={(event) => {
+                console.log('event', event.target)
+                if (event.target.paused) {
+                  event.target.play()
+                  event.target.controls = true
+                } else {
+                  event.target.pause()
+                }
+              }}
+            >
+              <video
+                loop={true}
+                controls={false}
+                preload="none"
+                className="h-full w-full"
+                poster={sanityImagePoster}
+                controlsList="nodownload noplaybackrate noremoteplayback nofullscreen"
+                disablePictureInPicture
+              >
+                {workItem.shortClipMp4S3URL ? (
+                  <source
+                    id="mp4"
+                    src={workItem.shortClipMp4S3URL}
+                    type="video/mp4"
+                  />
+                ) : (
+                  <source
+                    id="mp4"
+                    src={workItem.shortClipMp4URL}
+                    type="video/mp4"
+                  />
+                )}
+                {workItem.shortClipOgvS3URL ? (
+                  <source
+                    id="ogv"
+                    src={workItem.shortClipOgvS3URL}
+                    type="video/ogg"
+                  />
+                ) : (
+                  <source
+                    id="ogv"
+                    src={workItem.shortClipOgvURL}
+                    type="video/ogg"
+                  />
+                )}
+              </video>
+            </div>
+          )}
         </div>
       </div>
 
@@ -246,6 +308,10 @@ export async function getStaticProps({ params }) {
         videoId,
         videoHeightAspectRatio,
         videoWidthAspectRatio,
+        "shortClipMp4URL": shortClipMp4.asset->url,
+        "shortClipMp4S3URL": shortClipMp4S3.asset->fileURL,
+        "shortClipOgvURL": shortClipOgv.asset->url,
+        "shortClipOgvS3URL": shortClipOgvS3.asset->fileURL,
       }
       `,
       { slug }

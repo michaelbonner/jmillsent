@@ -1,10 +1,17 @@
+import 'yet-another-react-lightbox/plugins/captions.css'
+import 'yet-another-react-lightbox/styles.css'
+
 import Layout from '@/components/layout'
 import WorkItemTile from '@/components/work-item-tile'
 import { sanityClient } from '@/lib/sanity'
+import urlForSanitySource from '@/lib/urlForSanitySource'
 import { PortableText } from '@portabletext/react'
 import classNames from 'classnames'
 import groq from 'groq'
 import { useQueryState } from 'nuqs'
+import { useState } from 'react'
+import Lightbox from 'yet-another-react-lightbox'
+import Video from 'yet-another-react-lightbox/plugins/video'
 
 function Work({ workPage, workItemCategories }) {
   const defaultActiveTab = workItemCategories?.at(0)?.name || ''
@@ -13,9 +20,24 @@ function Work({ workPage, workItemCategories }) {
     clearOnDefault: true,
   })
 
-  const categoryWorkItems = workItemCategories.find(
-    (category) => category.name === activeTab
-  ).workItems
+  const [lightboxActiveIndex, setLightboxActiveIndex] = useState(null)
+
+  const isSocialLayout = activeTab === 'Social'
+
+  const categoryWorkItems = workItemCategories
+    .find((category) => category.name === activeTab)
+    .workItems.map((workItem) => {
+      if (!isSocialLayout) return workItem
+
+      return {
+        ...workItem,
+        posterUrl: urlForSanitySource(workItem.poster)
+          .width(1080)
+          .height(1920)
+          .crop('focalpoint')
+          .url(),
+      }
+    })
 
   const filteredWorkItems = categoryWorkItems
     .map((workItem) => ({
@@ -30,6 +52,34 @@ function Work({ workPage, workItemCategories }) {
         (workItem.flatCategories || []).includes(activeTab)
       )
     })
+
+  const lightboxSlides = isSocialLayout
+    ? filteredWorkItems.map((workItem) => {
+        return {
+          autoplay: true,
+          controlsList: 'nodownload nofullscreen noremoteplayback',
+          disablePictureInPicture: true,
+          disableRemotePlayback: true,
+          height: 1920,
+          loop: true,
+          playsInline: true,
+          poster: workItem.posterUrl,
+          preload: 'auto',
+          sources: [
+            {
+              src: workItem.shortClipMp4S3URL,
+              type: 'video/mp4',
+            },
+            {
+              src: workItem.shortClipOgvS3URL,
+              type: 'video/ogg',
+            },
+          ],
+          type: 'video',
+          width: 1080,
+        }
+      })
+    : []
 
   return (
     <Layout
@@ -77,32 +127,29 @@ function Work({ workPage, workItemCategories }) {
               </li>
             )
           })}
-          {/* <li
-            className={classNames(
-              'flex justify-center text-xs',
-              'lg:px-12 lg:text-base'
-            )}
-          >
-            <Link
-              className={classNames(
-                'rounded-xl border px-2 py-1 uppercase transition-all',
-                'lg:tracking-wider',
-                'border-black hover:scale-110'
-              )}
-              href="/documentary"
-            >
-              Documentary
-            </Link>
-          </li> */}
         </ul>
         <div
           className={classNames(
             'mx-1 grid grid-cols-1 gap-1',
-            'lg:grid-cols-3'
+            'lg:grid-cols-3',
+            isSocialLayout && 'mx-auto max-w-6xl grid-cols-3'
           )}
         >
           {filteredWorkItems.map((workItem, index) => {
-            return <WorkItemTile workItem={workItem} key={index} />
+            return (
+              <WorkItemTile
+                workItem={workItem}
+                key={index}
+                aspectRatio={isSocialLayout ? 'aspect-[1080/1920]' : ''}
+                onClick={
+                  isSocialLayout
+                    ? () => {
+                        setLightboxActiveIndex(index)
+                      }
+                    : undefined
+                }
+              />
+            )
           })}
         </div>
         <div className="container mx-auto mt-12 px-12 text-center text-white">
@@ -113,6 +160,25 @@ function Work({ workPage, workItemCategories }) {
           )}
         </div>
       </div>
+
+      {isSocialLayout && (
+        <Lightbox
+          open={lightboxActiveIndex !== null}
+          plugins={[Video]}
+          slides={lightboxSlides}
+          index={lightboxActiveIndex}
+          close={() => {
+            // find all videos and pause them
+            const videos = document.querySelectorAll(
+              '.yarl__video_container video'
+            )
+            videos.forEach((video) => {
+              video.pause()
+            })
+            setLightboxActiveIndex(null)
+          }}
+        />
+      )}
     </Layout>
   )
 }

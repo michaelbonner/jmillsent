@@ -6,7 +6,9 @@
     "dev": "next dev --turbopack",
     "build": "next build",
     "start": "next start",
-    "lint": "next lint"
+    "lint": "next lint",
+    "preinstall": "npx only-allow bun",
+    "out": "bun outdated"
   },
   "dependencies": {
     "@mailchimp/mailchimp_marketing": "^3.0.80",

@@ -49,12 +49,12 @@ export const VideoPlayerControlBar = ({
   }, [isFullscreen, videoHeightAspectRatio, videoWidthAspectRatio])
 
   useEffect(() => {
-    const timeout = setTimeout(() => {
+    const timeout = setInterval(() => {
       setScrubberWidth(scrubber?.current?.clientWidth || 100)
     }, 1000)
 
-    return () => clearTimeout(timeout)
-  }, [setScrubberWidth])
+    return () => clearInterval(timeout)
+  }, [])
 
   return (
     <div

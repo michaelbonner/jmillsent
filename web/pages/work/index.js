@@ -148,6 +148,20 @@ function Work({ workPage, workItemCategories }) {
                       }
                     : undefined
                 }
+                typographyClassNameOverrides={
+                  isSocialLayout
+                    ? {
+                        clientName: classNames(
+                          'text-lg font-extrabold uppercase',
+                          'lg:text-2xl'
+                        ),
+                        title: classNames(
+                          'font-outline text-lg uppercase',
+                          'lg:text-2xl'
+                        ),
+                      }
+                    : undefined
+                }
               />
             )
           })}
@@ -200,7 +214,7 @@ export async function getStaticProps() {
 
   const workItemCategories = await sanityClient.fetch(
     groq`
-      *[_type == "workItemCategory"][showOnWorkPage == true]|order(order asc){
+      *[_type == "workItemCategory"][showOnWorkPage == true || name == "Social"]|order(order asc){
         name,
         order,
         workItems[]->{

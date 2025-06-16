@@ -107,8 +107,8 @@ function Work({ workPage, workItemCategories }) {
               <li
                 className={classNames(
                   'flex justify-center text-xs',
-                  'lg:px-12 lg:text-base',
-                  index % 2 === 0 && 'border-r lg:border-r-0'
+                  'lg:px-12 lg:text-base lg:[&:last-child]:border-r-0',
+                  index % 2 === 0 && 'border-r'
                 )}
                 key={index}
               >
@@ -214,7 +214,7 @@ export async function getStaticProps() {
 
   const workItemCategories = await sanityClient.fetch(
     groq`
-      *[_type == "workItemCategory"][showOnWorkPage == true || name == "Social"]|order(order asc){
+      *[_type == "workItemCategory"][showOnWorkPage == true]|order(order asc){
         name,
         order,
         workItems[]->{

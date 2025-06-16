@@ -132,7 +132,7 @@ function Work({ workPage, workItemCategories }) {
           className={classNames(
             'mx-1 grid grid-cols-1 gap-1',
             'lg:grid-cols-3',
-            isSocialLayout && 'mx-auto max-w-6xl grid-cols-3'
+            isSocialLayout && 'mx-auto grid-cols-3 xl:grid-cols-6'
           )}
         >
           {filteredWorkItems.map((workItem, index) => {
@@ -152,12 +152,14 @@ function Work({ workPage, workItemCategories }) {
                   isSocialLayout
                     ? {
                         clientName: classNames(
-                          'text-lg font-extrabold uppercase',
-                          'lg:text-2xl'
+                          'text-lg font-extrabold uppercase transition-opacity duration-300',
+                          'lg:text-2xl',
+                          'group-hover:opacity-0'
                         ),
                         title: classNames(
-                          'font-outline text-lg uppercase',
-                          'lg:text-2xl'
+                          'font-outline text-lg uppercase transition-opacity duration-300',
+                          'lg:text-2xl',
+                          'group-hover:opacity-0'
                         ),
                       }
                     : undefined

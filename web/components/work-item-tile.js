@@ -31,6 +31,7 @@ const WorkItemTile = ({
       onClick={onClick ? onClick : undefined}
       key={workItem._id}
       className={classNames(
+        'group',
         {
           'lg:hidden': index >= hideAfterCount,
         },

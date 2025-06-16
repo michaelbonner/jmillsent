@@ -12,6 +12,7 @@ import { useQueryState } from 'nuqs'
 import { memo, useEffect, useMemo, useRef, useState } from 'react'
 import Lightbox from 'yet-another-react-lightbox'
 import { GrPause, GrPlay, GrVolume, GrVolumeMute } from 'react-icons/gr'
+import { VideoPlayerOverlayButton } from '@/components/video-player-overlay-button'
 
 function Work({ workPage, workItemCategories }) {
   const defaultActiveTab = workItemCategories?.at(0)?.name || ''
@@ -206,11 +207,11 @@ function Work({ workPage, workItemCategories }) {
 }
 
 const SlideVideo = memo(
-  ({ slide, isActive }) => {
+  ({ slide }) => {
     const videoRef = useRef(null)
     const scrubber = useRef(null)
 
-    const [isPlaying, setIsPlaying] = useState(isActive)
+    const [isPlaying, setIsPlaying] = useState(false)
     const [muted, setMuted] = useState(false)
     const [scrubberPosition, setScrubberPosition] = useState(0)
     const [videoPlayTime, setVideoPlayTime] = useState('00:00')
@@ -231,6 +232,8 @@ const SlideVideo = memo(
         if (!videoRef.current) {
           return
         }
+        setMuted(videoRef.current.muted)
+        setIsPlaying(!videoRef.current.paused)
         setScrubberPosition(
           (videoRef.current.currentTime / videoRef.current.duration) *
             scrubber.current.clientWidth
@@ -245,38 +248,41 @@ const SlideVideo = memo(
       }
     }, [scrubberPosition])
 
-    useEffect(() => {
+    const handleTogglePlay = () => {
       if (!videoRef.current) {
         return
       }
 
-      if (isPlaying) {
+      if (videoRef.current.paused) {
         videoRef.current.play()
       } else {
         videoRef.current.pause()
       }
-    }, [isPlaying])
-
-    const handleTogglePlay = () => {
-      setIsPlaying(!isPlaying)
     }
 
     const scrubberWidth = useMemo(() => {
       if (!scrubber.current) {
         return 100
       }
+
       return scrubber.current.clientWidth
     }, [])
 
     const handleScrubberClick = (position) => {
-      setScrubberPosition(position)
+      if (!videoRef.current) {
+        return
+      }
+
       videoRef.current.currentTime =
         (position / scrubberWidth) * videoRef.current.duration
     }
 
     const handleMuteClick = (e) => {
       e.stopPropagation()
-      setMuted(!muted)
+
+      if (!videoRef.current) {
+        return
+      }
 
       videoRef.current.muted = !muted
     }
@@ -287,7 +293,7 @@ const SlideVideo = memo(
           autoPlay={false}
           ref={videoRef}
           id={`social-video-${slide.index}`}
-          className="h-full w-full cursor-pointer object-contain"
+          className="h-full w-full cursor-pointer rounded-lg object-contain"
           poster={slide.posterUrl}
           controlsList="nodownload nofullscreen noremoteplayback"
           disablePictureInPicture
@@ -304,6 +310,21 @@ const SlideVideo = memo(
           <source src={slide.shortClipOgvS3URL} type="video/ogg" />
           Your browser does not support the video.
         </video>
+
+        <VideoPlayerOverlayButton
+          client={slide.clientName}
+          handleOverlayClick={handleTogglePlay}
+          hasClicked={true}
+          overrideClassNames={{
+            text: {
+              client: 'text-white',
+              title: 'text-white',
+              description: 'text-white',
+            },
+          }}
+          showVideoOverlay={!isPlaying}
+          title={slide.title}
+        />
 
         <div
           className={classNames(
@@ -399,10 +420,7 @@ const SlideVideo = memo(
     )
   },
   (prevProps, nextProps) => {
-    return (
-      prevProps.slide.index === nextProps.slide.index &&
-      prevProps.isActive === nextProps.isActive
-    )
+    return prevProps.slide.index === nextProps.slide.index
   }
 )
 SlideVideo.displayName = 'SlideVideo'

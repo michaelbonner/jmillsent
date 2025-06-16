@@ -112,7 +112,7 @@ const WorkItemTile = ({
             )}
           </video>
         )}
-      <div className="z-10 w-full text-center">
+      <div className="z-10 flex w-full flex-col justify-center text-center">
         {showWithPlayLockup ? (
           <div
             className={classNames(

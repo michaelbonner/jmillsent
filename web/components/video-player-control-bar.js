@@ -59,7 +59,7 @@ export const VideoPlayerControlBar = ({
   return (
     <div
       className={classNames(
-        'absolute bottom-4 left-0 right-0 z-10 flex items-center gap-x-2 px-8 pt-3 opacity-0 duration-500',
+        'absolute right-0 bottom-4 left-0 z-10 flex items-center gap-x-2 px-8 pt-3 opacity-0 duration-500',
         'md:gap-x-8',
         'group-hover:opacity-100',
         isFullscreen && videoWidthAspectRatio == 16 && 'opacity-50'

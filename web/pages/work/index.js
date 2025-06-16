@@ -9,9 +9,9 @@ import { PortableText } from '@portabletext/react'
 import classNames from 'classnames'
 import groq from 'groq'
 import { useQueryState } from 'nuqs'
-import { useState } from 'react'
+import { memo, useEffect, useMemo, useRef, useState } from 'react'
 import Lightbox from 'yet-another-react-lightbox'
-import Video from 'yet-another-react-lightbox/plugins/video'
+import { GrPause, GrPlay, GrVolume, GrVolumeMute } from 'react-icons/gr'
 
 function Work({ workPage, workItemCategories }) {
   const defaultActiveTab = workItemCategories?.at(0)?.name || ''
@@ -54,31 +54,10 @@ function Work({ workPage, workItemCategories }) {
     })
 
   const lightboxSlides = isSocialLayout
-    ? filteredWorkItems.map((workItem) => {
-        return {
-          autoplay: true,
-          controlsList: 'nodownload nofullscreen noremoteplayback',
-          disablePictureInPicture: true,
-          disableRemotePlayback: true,
-          height: 1920,
-          loop: true,
-          playsInline: true,
-          poster: workItem.posterUrl,
-          preload: 'auto',
-          sources: [
-            {
-              src: workItem.shortClipMp4S3URL,
-              type: 'video/mp4',
-            },
-            {
-              src: workItem.shortClipOgvS3URL,
-              type: 'video/ogg',
-            },
-          ],
-          type: 'video',
-          width: 1080,
-        }
-      })
+    ? filteredWorkItems.map((item, index) => ({
+        ...item,
+        index,
+      }))
     : []
 
   return (
@@ -140,7 +119,11 @@ function Work({ workPage, workItemCategories }) {
               <WorkItemTile
                 workItem={workItem}
                 key={index}
-                aspectRatio={isSocialLayout ? 'aspect-[1080/1920]' : ''}
+                aspectRatio={
+                  isSocialLayout
+                    ? `aspect-w-${workItem.videoWidthAspectRatio} aspect-h-${workItem.videoHeightAspectRatio}`
+                    : ''
+                }
                 onClick={
                   isSocialLayout
                     ? () => {
@@ -180,24 +163,248 @@ function Work({ workPage, workItemCategories }) {
       {isSocialLayout && (
         <Lightbox
           open={lightboxActiveIndex !== null}
-          plugins={[Video]}
           slides={lightboxSlides}
           index={lightboxActiveIndex}
           close={() => {
             // find all videos and pause them
-            const videos = document.querySelectorAll(
-              '.yarl__video_container video'
-            )
+            const videos = document.querySelectorAll('.yarl__slide video')
             videos.forEach((video) => {
               video.pause()
             })
             setLightboxActiveIndex(null)
+          }}
+          on={{
+            view: (data) => {
+              // find all videos and pause them
+              const videos = document.querySelectorAll('.yarl__slide video')
+              videos.forEach((video) => {
+                video.pause()
+              })
+
+              setTimeout(() => {
+                const currentVideo = document.getElementById(
+                  `social-video-${data.index}`
+                )
+                currentVideo?.play()
+              }, 500)
+            },
+          }}
+          render={{
+            slide: ({ slide }) => {
+              return (
+                <SlideVideo
+                  slide={slide}
+                  isActive={slide.index === lightboxActiveIndex}
+                />
+              )
+            },
           }}
         />
       )}
     </Layout>
   )
 }
+
+const SlideVideo = memo(
+  ({ slide, isActive }) => {
+    const videoRef = useRef(null)
+    const scrubber = useRef(null)
+
+    const [isPlaying, setIsPlaying] = useState(isActive)
+    const [muted, setMuted] = useState(false)
+    const [scrubberPosition, setScrubberPosition] = useState(0)
+    const [videoPlayTime, setVideoPlayTime] = useState('00:00')
+    const [videoLength, setVideoLength] = useState('00:00')
+
+    const getMinutesAndSeconds = (time) => {
+      const minutes = Math.floor(time / 60)
+      const seconds = Math.floor(time - minutes * 60)
+      return `${minutes}:${seconds < 10 ? '0' : ''}${seconds}`
+    }
+
+    useEffect(() => {
+      if (!videoRef.current) {
+        return
+      }
+
+      const interval = setInterval(() => {
+        if (!videoRef.current) {
+          return
+        }
+        setScrubberPosition(
+          (videoRef.current.currentTime / videoRef.current.duration) *
+            scrubber.current.clientWidth
+        )
+        setVideoPlayTime(getMinutesAndSeconds(videoRef.current.currentTime))
+      }, 30)
+
+      setVideoLength(getMinutesAndSeconds(videoRef.current.duration))
+
+      return () => {
+        clearInterval(interval)
+      }
+    }, [scrubberPosition])
+
+    useEffect(() => {
+      if (!videoRef.current) {
+        return
+      }
+
+      if (isPlaying) {
+        videoRef.current.play()
+      } else {
+        videoRef.current.pause()
+      }
+    }, [isPlaying])
+
+    const handleTogglePlay = () => {
+      setIsPlaying(!isPlaying)
+    }
+
+    const scrubberWidth = useMemo(() => {
+      if (!scrubber.current) {
+        return 100
+      }
+      return scrubber.current.clientWidth
+    }, [])
+
+    const handleScrubberClick = (position) => {
+      setScrubberPosition(position)
+      videoRef.current.currentTime =
+        (position / scrubberWidth) * videoRef.current.duration
+    }
+
+    const handleMuteClick = (e) => {
+      e.stopPropagation()
+      setMuted(!muted)
+
+      videoRef.current.muted = !muted
+    }
+
+    return (
+      <div className="group relative mx-auto h-[90%]">
+        <video
+          autoPlay={false}
+          ref={videoRef}
+          id={`social-video-${slide.index}`}
+          className="h-full w-full cursor-pointer object-contain"
+          poster={slide.posterUrl}
+          controlsList="nodownload nofullscreen noremoteplayback"
+          disablePictureInPicture
+          disableRemotePlayback
+          height={1920}
+          loop
+          playsInline
+          preload="auto"
+          width={1080}
+          controls={false}
+          onClick={handleTogglePlay}
+        >
+          <source src={slide.shortClipMp4S3URL} type="video/mp4" />
+          <source src={slide.shortClipOgvS3URL} type="video/ogg" />
+          Your browser does not support the video.
+        </video>
+
+        <div
+          className={classNames(
+            'absolute right-0 -bottom-[4%] left-0 z-10 flex translate-y-[5%] items-center gap-x-2 opacity-0 duration-500',
+            'md:gap-x-8',
+            'group-hover:opacity-100'
+          )}
+        >
+          <button
+            aria-label="Play/Pause"
+            className="relative grid size-6 place-items-center text-4xl outline-0"
+            onClick={handleTogglePlay}
+            title="Play/Pause"
+          >
+            <GrPause
+              className={classNames(
+                `bpd-white-icon`,
+                {
+                  'opacity-100': isPlaying,
+                  'opacity-0': !isPlaying,
+                },
+                `col-start-1 row-start-1 size-full fill-current transition-all duration-500`
+              )}
+            />
+            <GrPlay
+              className={classNames(
+                `bpd-white-icon`,
+                {
+                  'opacity-100': !isPlaying,
+                  'opacity-0': isPlaying,
+                },
+                `col-start-1 row-start-1 size-full fill-current transition-all duration-500`
+              )}
+            />
+          </button>
+          <button
+            aria-label="Player scrubber bar"
+            className="relative h-8 grow overflow-hidden rounded-sm border-2 border-gray-300"
+            onClick={(e) => {
+              if (!scrubber.current) {
+                return
+              }
+              const scrubberBoundingClientRect =
+                scrubber.current.getBoundingClientRect()
+
+              const zeroBasedClickPosition =
+                e.clientX - scrubberBoundingClientRect.left
+
+              const xPercentageClicked =
+                zeroBasedClickPosition / scrubber.current.clientWidth
+
+              handleScrubberClick(xPercentageClicked * scrubberWidth)
+            }}
+            ref={scrubber}
+          >
+            <div
+              className="absolute top-0 h-full w-1 bg-gray-500"
+              style={{
+                transform: `translate3d(${scrubberPosition}px,0, 0)`,
+              }}
+            ></div>
+          </button>
+          <div className="flex min-w-[110px] gap-1 text-xl font-light text-gray-100">
+            <span className="inline-block min-w-[50px] text-right">
+              {videoPlayTime}
+            </span>
+            <span>/</span>
+            <span className="inline-block min-w-[50px]">
+              {videoLength ?? 'N/A'}
+            </span>
+          </div>
+          <div className="flex items-center gap-x-2 text-2xl md:gap-x-6">
+            {muted === true ? (
+              <button
+                aria-label="Unmute"
+                className="bpd-white-icon"
+                onClick={handleMuteClick}
+              >
+                <GrVolumeMute />
+              </button>
+            ) : (
+              <button
+                aria-label="Mute"
+                className="bpd-white-icon"
+                onClick={handleMuteClick}
+              >
+                <GrVolume />
+              </button>
+            )}
+          </div>
+        </div>
+      </div>
+    )
+  },
+  (prevProps, nextProps) => {
+    return (
+      prevProps.slide.index === nextProps.slide.index &&
+      prevProps.isActive === nextProps.isActive
+    )
+  }
+)
 
 export async function getStaticProps() {
   const workPage = await sanityClient.fetch(
@@ -225,6 +432,8 @@ export async function getStaticProps() {
           clientName,
           title,
           poster,
+          videoHeightAspectRatio,
+          videoWidthAspectRatio,
           "shortClipMp4URL": shortClipMp4.asset->url,
           "shortClipMp4S3URL": shortClipMp4S3.asset->fileURL,
           "shortClipOgvURL": shortClipOgv.asset->url,

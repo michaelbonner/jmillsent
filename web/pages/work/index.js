@@ -405,6 +405,7 @@ const SlideVideo = memo(
     )
   }
 )
+SlideVideo.displayName = 'SlideVideo'
 
 export async function getStaticProps() {
   const workPage = await sanityClient.fetch(

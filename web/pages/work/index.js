@@ -77,7 +77,7 @@ function Work({ workPage, workItemCategories }) {
       <div className="lg:pt-24">
         <ul
           className={classNames(
-            'mx-6 mt-4 flex flex-wrap items-center justify-center border-t py-4 font-semibold',
+            'mx-6 mt-4 flex flex-wrap items-center justify-center gap-y-1 border-t py-4 font-semibold',
             'lg:mx-36 lg:flex lg:divide-x lg:divide-white lg:pt-4',
             'xl:mx-48'
           )}
@@ -86,8 +86,9 @@ function Work({ workPage, workItemCategories }) {
             return (
               <li
                 className={classNames(
-                  'relative flex justify-center text-xs',
-                  'border-r lg:border-0 lg:px-12 lg:text-base [&:last-child]:border-r-0'
+                  'relative flex justify-center border-r text-xs',
+                  '[&:last-child]:border-r-0',
+                  'lg:px-12 lg:text-base'
                 )}
                 key={index}
               >

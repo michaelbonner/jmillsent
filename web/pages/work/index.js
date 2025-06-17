@@ -77,8 +77,8 @@ function Work({ workPage, workItemCategories }) {
       <div className="lg:pt-24">
         <ul
           className={classNames(
-            'mx-6 mt-4 grid grid-cols-2 items-center justify-center border-t pb-4 font-semibold lg:pt-4',
-            'lg:mx-36 lg:flex lg:divide-x lg:divide-white',
+            'mx-6 mt-4 flex flex-wrap items-center justify-center border-t py-4 font-semibold',
+            'lg:mx-36 lg:flex lg:divide-x lg:divide-white lg:pt-4',
             'xl:mx-48'
           )}
         >
@@ -87,8 +87,7 @@ function Work({ workPage, workItemCategories }) {
               <li
                 className={classNames(
                   'relative flex justify-center text-xs',
-                  'border border-t-0 py-1.5 [&:last-child]:border-b-0 [&:nth-of-type(even)]:border-r-0 [&:nth-of-type(even)]:border-l-0 [&:nth-of-type(odd)]:border-l-0',
-                  'lg:border-0 lg:!border-r lg:px-12 lg:text-base lg:[&:last-child]:!border-r-0'
+                  'border-r lg:border-0 lg:px-12 lg:text-base [&:last-child]:border-r-0'
                 )}
                 key={index}
               >
@@ -97,7 +96,7 @@ function Work({ workPage, workItemCategories }) {
                     'rounded-xl border px-2 py-1 uppercase transition-all',
                     'lg:tracking-wider',
                     activeTab === tab.name
-                      ? 'border-white'
+                      ? 'mx-2 border-white'
                       : 'border-black hover:scale-110'
                   )}
                   onClick={() => setActiveTab(tab.name)}

@@ -77,7 +77,7 @@ function Work({ workPage, workItemCategories }) {
       <div className="lg:pt-24">
         <ul
           className={classNames(
-            'mx-6 mt-4 grid grid-cols-2 items-center justify-center border-t py-4 font-semibold',
+            'mx-6 mt-4 grid grid-cols-2 items-center justify-center border-t pb-4 font-semibold lg:pt-4',
             'lg:mx-36 lg:flex lg:divide-x lg:divide-white',
             'xl:mx-48'
           )}
@@ -86,9 +86,9 @@ function Work({ workPage, workItemCategories }) {
             return (
               <li
                 className={classNames(
-                  'flex justify-center text-xs',
-                  'lg:px-12 lg:text-base lg:[&:last-child]:border-r-0',
-                  index % 2 === 0 && 'border-r'
+                  'relative flex justify-center text-xs',
+                  'border border-t-0 py-1.5 [&:last-child]:border-b-0 [&:nth-of-type(even)]:border-r-0 [&:nth-of-type(even)]:border-l-0 [&:nth-of-type(odd)]:border-l-0',
+                  'lg:border-0 lg:!border-r lg:px-12 lg:text-base lg:[&:last-child]:!border-r-0'
                 )}
                 key={index}
               >
@@ -103,6 +103,8 @@ function Work({ workPage, workItemCategories }) {
                   onClick={() => setActiveTab(tab.name)}
                 >
                   {tab.name}
+
+                  <span className="absolute inset-0" />
                 </button>
               </li>
             )

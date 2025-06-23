@@ -110,10 +110,13 @@ function Work({ workPage, workItemCategories }) {
             )
           })}
         </ul>
+        {/* lg:grid-cols-1 lg:grid-cols-2 lg:grid-cols-3 */}
         <div
           className={classNames(
             'mx-1 grid grid-cols-1 gap-1',
-            'lg:grid-cols-3',
+            filteredWorkItems.length >= 3
+              ? 'lg:grid-cols-3'
+              : `lg:grid-cols-${filteredWorkItems.length}`,
             isSocialLayout && 'mx-auto grid-cols-3 xl:grid-cols-6'
           )}
         >

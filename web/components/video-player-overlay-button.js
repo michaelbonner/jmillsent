@@ -23,7 +23,7 @@ const VideoPlayerOverlayButtonNotMemoized = ({
         hasClicked &&
           showVideoOverlay &&
           'pointer-events-none md:pointer-events-auto',
-        'absolute inset-0 bottom-[40px] h-full w-full cursor-pointer bg-transparent pb-[40px] text-left text-3xl outline-0'
+        'absolute inset-0 bottom-[40px] h-full w-full cursor-pointer bg-transparent py-[40px] text-left text-3xl outline-0'
       )}
       onClick={handleOverlayClick}
     >
@@ -43,7 +43,7 @@ const VideoPlayerOverlayButtonNotMemoized = ({
       >
         <div
           className={classNames(
-            `absolute inset-0 flex h-full w-full items-center justify-start gap-2 pl-2 md:gap-4 md:pb-[40px] lg:pl-12`
+            `absolute inset-0 flex h-full w-full items-center justify-start gap-2 pl-2 md:gap-4 md:py-[40px] lg:pl-12`
           )}
         >
           {!isIpad && (
@@ -57,7 +57,7 @@ const VideoPlayerOverlayButtonNotMemoized = ({
               </div>
             </div>
           )}
-          <div className="border-l-2 border-gold pl-2 md:border-l-4 lg:pl-6">
+          <div className="border-gold border-l-2 pl-2 md:border-l-4 lg:pl-6">
             <div
               className={twMerge(
                 'text-xl font-bold uppercase lg:text-4xl',
@@ -79,7 +79,7 @@ const VideoPlayerOverlayButtonNotMemoized = ({
                 <LittleGoldBar />
                 <div
                   className={twMerge(
-                    'max-h-[300px] w-full max-w-sm overflow-y-scroll whitespace-pre-wrap text-base uppercase tracking-wide',
+                    'max-h-[300px] w-full max-w-sm overflow-y-scroll text-base tracking-wide whitespace-pre-wrap uppercase',
                     overrideClassNames?.text?.description
                   )}
                 >

@@ -31,6 +31,42 @@ export default {
       type: 'array',
       of: [{ type: 'reference', to: { type: 'workItem' } }],
     },
+    {
+      name: 'imageGallery',
+      title: 'Image Gallery',
+      type: 'array',
+      of: [
+        {
+          type: 'image',
+          fields: [
+            {
+              name: 'caption',
+              type: 'string',
+              title: 'Caption',
+              options: {
+                isHighlighted: true, // <-- make this field easily accessible
+              },
+            },
+          ],
+        },
+      ],
+    },
+    {
+      name: 'title',
+      title: 'Title',
+      type: 'string',
+    },
+    {
+      name: 'subtitle',
+      title: 'Subtitle',
+      type: 'string',
+    },
+    {
+      name: 'body',
+      title: 'Body',
+      type: 'array',
+      of: [{ type: 'block' }],
+    },
   ],
   preview: {
     select: {

@@ -2,6 +2,8 @@ import 'yet-another-react-lightbox/plugins/captions.css'
 import 'yet-another-react-lightbox/styles.css'
 
 import Layout from '@/components/layout'
+import LittleBlackBar from '@/components/little-black-bar'
+import { VideoPlayerOverlayButton } from '@/components/video-player-overlay-button'
 import WorkItemTile from '@/components/work-item-tile'
 import { sanityClient } from '@/lib/sanity'
 import urlForSanitySource from '@/lib/urlForSanitySource'
@@ -10,9 +12,10 @@ import classNames from 'classnames'
 import groq from 'groq'
 import { useQueryState } from 'nuqs'
 import { memo, useEffect, useMemo, useRef, useState } from 'react'
-import Lightbox from 'yet-another-react-lightbox'
 import { GrPause, GrPlay, GrVolume, GrVolumeMute } from 'react-icons/gr'
-import { VideoPlayerOverlayButton } from '@/components/video-player-overlay-button'
+import Lightbox from 'yet-another-react-lightbox'
+import { ClientOnly } from '@/components/client-only'
+import { ImageGallery } from '@/components/image-gallery'
 
 function Work({ workPage, workItemCategories }) {
   const defaultActiveTab = workItemCategories?.at(0)?.name || ''
@@ -25,9 +28,12 @@ function Work({ workPage, workItemCategories }) {
 
   const isSocialLayout = activeTab === 'Social'
 
-  const categoryWorkItems = workItemCategories
-    .find((category) => category.name === activeTab)
-    .workItems.map((workItem) => {
+  const currentCategory = workItemCategories.find(
+    (category) => category.name === activeTab
+  )
+
+  const categoryWorkItems =
+    currentCategory.workItems?.map((workItem) => {
       if (!isSocialLayout) return workItem
 
       return {
@@ -38,7 +44,7 @@ function Work({ workPage, workItemCategories }) {
           .crop('focalpoint')
           .url(),
       }
-    })
+    }) ?? []
 
   const filteredWorkItems = categoryWorkItems
     .map((workItem) => ({
@@ -60,6 +66,11 @@ function Work({ workPage, workItemCategories }) {
         index,
       }))
     : []
+
+  const showWhiteContainer =
+    currentCategory?.imageGallery?.length > 0 ||
+    currentCategory?.title ||
+    currentCategory?.workPageDescription
 
   return (
     <Layout
@@ -164,6 +175,40 @@ function Work({ workPage, workItemCategories }) {
             </div>
           )}
         </div>
+        {showWhiteContainer && (
+          <div className="container mx-auto mt-12 bg-white p-4 text-center text-black lg:p-12">
+            {currentCategory?.imageGallery &&
+              currentCategory.imageGallery.length > 0 && (
+                <ClientOnly>
+                  <ImageGallery images={currentCategory.imageGallery} />
+                </ClientOnly>
+              )}
+            {(currentCategory?.title ||
+              currentCategory?.subtitle ||
+              currentCategory?.body) && (
+              <div className="mt-12">
+                {currentCategory?.title && (
+                  <h2 className="text-3xl font-extrabold uppercase lg:text-3xl">
+                    {currentCategory.title}
+                  </h2>
+                )}
+                {currentCategory?.subtitle && (
+                  <h3 className="font-outline text-3xl uppercase lg:text-4xl">
+                    {currentCategory.subtitle}
+                  </h3>
+                )}
+                {currentCategory?.body && (
+                  <>
+                    <LittleBlackBar yMargin="my-6" maxWidth="max-w-xs" />
+                    <div className="mx-auto max-w-2xl py-1 text-center text-sm font-light uppercase">
+                      <PortableText value={currentCategory.body} />
+                    </div>
+                  </>
+                )}
+              </div>
+            )}
+          </div>
+        )}
       </div>
 
       {isSocialLayout && (
@@ -447,9 +492,17 @@ export async function getStaticProps() {
 
   const workItemCategories = await sanityClient.fetch(
     groq`
-      *[_type == "workItemCategory"][showOnWorkPage == true]|order(order asc){
+      *[_type == "workItemCategory"][showOnWorkPage == true || name == "Narrative"]|order(order asc){
         name,
         order,
+        imageGallery[]{
+          caption,
+          "imageUrl": asset->url,
+          "name": asset->originalFilename,
+        },
+        title,
+        subtitle,
+        body,
         workItems[]->{
           _id,
           slug,

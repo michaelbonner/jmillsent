@@ -8,7 +8,7 @@ export const ImageGallery = ({ images }) => {
     customPaging: function (i) {
       return (
         <a>
-          <img
+          <Image
             className="rounded-lg"
             src={images[i].imageUrl}
             alt={images[i].caption || images[i].name}
@@ -53,6 +53,7 @@ export const ImageGallery = ({ images }) => {
             alt={image.caption || image.name}
             width={1080}
             height={1920}
+            key={image.imageUrl}
           />
         ))}
       </Slider>

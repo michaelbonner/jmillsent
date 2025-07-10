@@ -11,7 +11,8 @@
     "dev": "sanity start",
     "build": "sanity build",
     "preinstall": "npx only-allow bun",
-    "out": "bun outdated"
+    "out": "bun outdated",
+    "up": "bun update"
   },
   "keywords": [
     "sanity"
@@ -36,6 +37,6 @@
     "styled-components": "^5.3.11"
   },
   "devDependencies": {
-    "@sanity/cli": "^3.92.0"
+    "@sanity/cli": "^3.98.1"
   }
 }

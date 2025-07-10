@@ -23,7 +23,7 @@
         "styled-components": "^5.3.11",
       },
       "devDependencies": {
-        "@sanity/cli": "^3.92.0",
+        "@sanity/cli": "^3.98.1",
       },
     },
   },

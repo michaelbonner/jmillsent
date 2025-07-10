@@ -156,7 +156,10 @@ function Studio({ studioPage }) {
           )}
 
           <div className="mt-10 flex justify-center">
-            <Link href="/contact" className={styles.buttonLink.blackBorder}>
+            <Link
+              href="https://theravenspace.com"
+              className={styles.buttonLink.blackBorder}
+            >
               <span
                 className={classNames(
                   'font-outline text-2xl tracking-tighter',

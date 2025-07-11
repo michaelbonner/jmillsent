@@ -176,7 +176,7 @@ function Work({ workPage, workItemCategories }) {
           )}
         </div>
         {showWhiteContainer && (
-          <div className="container mx-auto mt-12 bg-white p-4 text-center text-black lg:p-12">
+          <div className="container mx-auto mt-12 rounded-2xl bg-white p-4 text-center text-black lg:p-12">
             {currentCategory?.imageGallery &&
               currentCategory.imageGallery.length > 0 && (
                 <ClientOnly>

@@ -233,8 +233,8 @@
 @layer components {
   .slider-container {
     .slick-arrow {
-      @apply absolute bottom-[5%] z-10 h-[10%] w-[5%] origin-center cursor-pointer opacity-50 invert-100 transition-opacity hover:opacity-100;
-      @apply lg:bottom-[5%] lg:h-[72px] lg:w-[36px];
+      @apply absolute bottom-[7%] z-10 h-[10%] w-[5%] origin-center cursor-pointer opacity-50 invert-100 transition-opacity hover:opacity-100;
+      @apply lg:h-[72px] lg:w-[36px];
     }
 
     .slick-prev {
@@ -247,7 +247,7 @@
 
     .ui-slick-dots li.slick-active:before {
       content: '';
-      @apply bg-gold/40 absolute inset-0 rounded-lg;
+      @apply bg-gold/80 absolute right-0 bottom-0 left-0 h-2 rounded-b-lg backdrop-blur-sm;
     }
   }
 

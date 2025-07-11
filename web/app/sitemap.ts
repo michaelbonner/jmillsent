@@ -3,13 +3,14 @@ import { groq } from 'next-sanity'
 import { sanityClient } from '../lib/sanity'
 
 const getWorkItemCategories = async () => {
-  const workItemCategories = await sanityClient.fetch(
-    groq`
+  const workItemCategories =
+    (await sanityClient.fetch(
+      groq`
       *[_type == "workItemCategory"][showOnWorkPage == true]|order(order asc){
         name,
       }
     `
-  )
+    )) ?? []
   // the first item is the default page, so we remove it
   workItemCategories.shift()
   return workItemCategories.map((item: { name: string }) => ({
@@ -35,14 +36,15 @@ const getWorkItems = async () => {
   )
 
   // get only the unique slugs from the work items
-  const workItemSlugs = Array.from(
-    new Set(
-      workItemCategories.flatMap(
-        (category: { workItems: { slug: { current: string } }[] }) =>
-          category.workItems.map((item) => item.slug.current)
+  const workItemSlugs =
+    Array.from(
+      new Set(
+        workItemCategories.flatMap(
+          (category: { workItems: { slug: { current: string } }[] }) =>
+            (category.workItems ?? []).map((item) => item.slug.current)
+        )
       )
-    )
-  )
+    ) ?? []
   return workItemSlugs.sort().map((slug) => ({
     url: `https://www.jmillsent.com/work/${slug}`,
     lastModified: new Date(),
@@ -52,13 +54,14 @@ const getWorkItems = async () => {
 }
 
 const getNewsItems = async () => {
-  const newsItems = await sanityClient.fetch(
-    groq`
+  const newsItems =
+    (await sanityClient.fetch(
+      groq`
       *[_type == "newsItem"] {
         slug,
       }
     `
-  )
+    )) ?? []
   return newsItems.map((item: { slug: { current: string } }) => ({
     url: `https://www.jmillsent.com/news/${item.slug.current}`,
     lastModified: new Date(),

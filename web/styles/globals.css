@@ -232,12 +232,6 @@
 
 @layer components {
   .slider-container {
-    position: relative;
-
-    .slick-slide {
-      @apply h-full;
-    }
-
     .slick-arrow {
       @apply absolute bottom-[5%] z-10 h-[10%] w-[5%] origin-center cursor-pointer opacity-50 invert-100 transition-opacity hover:opacity-100;
       @apply lg:bottom-[5%] lg:h-[72px] lg:w-[36px];
@@ -251,18 +245,9 @@
       @apply right-4;
     }
 
-    .slick-dots {
-      display: flex;
-      justify-content: stretch;
-      align-items: center;
-      gap: 1rem;
-
-      img {
-        width: 100%;
-        height: 100%;
-        object-fit: cover;
-        border-radius: 0.5rem;
-      }
+    .ui-slick-dots li.slick-active:before {
+      content: '';
+      @apply bg-gold/40 absolute inset-0 rounded-lg;
     }
   }
 

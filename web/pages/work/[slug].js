@@ -87,7 +87,6 @@ const WorkItem = ({ workItem = {} }) => {
             <div
               className="mx-auto aspect-[1080/1920] max-h-[80vh] cursor-pointer"
               onClick={(event) => {
-                console.log('event', event.target)
                 if (event.target.paused) {
                   event.target.play()
                   event.target.controls = true

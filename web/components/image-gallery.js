@@ -1,7 +1,8 @@
 import 'slick-carousel/slick/slick.css'
 
-import Slider from 'react-slick'
+import classNames from 'classnames'
 import Image from 'next/image'
+import Slider from 'react-slick'
 
 export const ImageGallery = ({ images }) => {
   const settings = {
@@ -18,9 +19,16 @@ export const ImageGallery = ({ images }) => {
         </a>
       )
     },
-    className: '',
+    className: classNames(
+      '[&_.slick-slide]:aspect-[2.4/1]',
+      '[&_.slick-slide>div]:h-full',
+      '[&_.slick-slide>div>img]:size-full [&_.slick-slide>div>img]:object-cover [&_.slick-slide>div>img]:object-center'
+    ),
     dots: true,
-    dotsClass: 'slick-dots slick-thumb !flex !items-center !gap-x-3 mt-2',
+    dotsClass: classNames(
+      'ui-slick-dots !flex !items-stretch !gap-x-3 mt-2 w-full',
+      '[&>li]:size-full [&>li_img]:size-full [&>li]:relative [&>li]:aspect-[16/9]'
+    ),
     infinite: true,
     speed: 500,
     slidesToShow: 1,
@@ -51,8 +59,8 @@ export const ImageGallery = ({ images }) => {
             className="rounded-xl object-cover"
             src={image.imageUrl}
             alt={image.caption || image.name}
-            width={1080}
-            height={1920}
+            width={image.width}
+            height={image.height}
             key={image.imageUrl}
           />
         ))}

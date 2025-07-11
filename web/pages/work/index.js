@@ -499,6 +499,8 @@ export async function getStaticProps() {
           caption,
           "imageUrl": asset->url,
           "name": asset->originalFilename,
+          "width": asset->metadata.dimensions.width,
+          "height": asset->metadata.dimensions.height,
         },
         title,
         subtitle,

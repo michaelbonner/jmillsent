@@ -1,5 +1,6 @@
 import 'slick-carousel/slick/slick.css'
 
+import urlForSanitySource from '@/lib/urlForSanitySource'
 import classNames from 'classnames'
 import Image from 'next/image'
 import Slider from 'react-slick'
@@ -10,11 +11,14 @@ export const ImageGallery = ({ images }) => {
       return (
         <a>
           <Image
-            className="rounded-lg"
-            src={images[i].imageUrl}
             alt={images[i].caption || images[i].name}
-            width={200}
-            height={120}
+            className="rounded-lg"
+            height={600 / 2}
+            src={urlForSanitySource(images[i].asset)
+              .width(160 * 4)
+              .height(90 * 4)
+              .url()}
+            width={1400 / 2}
           />
         </a>
       )
@@ -56,12 +60,12 @@ export const ImageGallery = ({ images }) => {
       <Slider {...settings}>
         {images.map((image) => (
           <Image
-            className="rounded-xl object-cover"
-            src={image.imageUrl}
             alt={image.caption || image.name}
-            width={image.width}
-            height={image.height}
-            key={image.imageUrl}
+            className="rounded-xl object-cover"
+            height={600}
+            key={image.asset._id}
+            src={urlForSanitySource(image.asset).width(1400).height(600).url()}
+            width={1400}
           />
         ))}
       </Slider>

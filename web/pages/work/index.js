@@ -18,12 +18,6 @@ import { ClientOnly } from '@/components/client-only'
 import { ImageGallery } from '@/components/image-gallery'
 
 function Work({ workPage, workItemCategories }) {
-  const narrativeCategory = workItemCategories.find(
-    (category) => category.name === 'Narrative'
-  )
-
-  console.log('narrativeCategory.imageGallery', narrativeCategory.imageGallery)
-
   const defaultActiveTab = workItemCategories?.at(0)?.name || ''
   const [activeTab, setActiveTab] = useQueryState('work-type', {
     defaultValue: defaultActiveTab,
@@ -502,9 +496,12 @@ export async function getStaticProps() {
         name,
         order,
         imageGallery[]{
-          caption,
-          asset,
+          _type,
           "name": asset->originalFilename,
+          asset,
+          caption,
+          crop,
+          hotspot,
         },
         title,
         subtitle,

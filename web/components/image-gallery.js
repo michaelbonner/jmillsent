@@ -31,7 +31,8 @@ export const ImageGallery = ({ images }) => {
     ),
     dots: true,
     dotsClass: classNames(
-      'ui-slick-dots !flex !items-stretch !gap-x-2 mt-2 w-full',
+      'ui-slick-dots !hidden',
+      'lg:!flex lg:!items-stretch lg:!gap-x-2 lg:mt-2 lg:w-full',
       '[&>li]:size-full [&>li_img]:size-full [&>li]:relative [&>li]:aspect-[16/9]'
     ),
     infinite: true,

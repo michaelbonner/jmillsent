@@ -109,7 +109,7 @@ function Work({ workPage, workItemCategories }) {
                     'rounded-xl border px-2 py-1 uppercase transition-all',
                     'lg:tracking-wider',
                     activeTab === tab.name
-                      ? 'mx-2 border-white'
+                      ? 'mx-2 border-white lg:px-4'
                       : 'border-black hover:scale-110'
                   )}
                   onClick={() => setActiveTab(tab.name)}
@@ -169,15 +169,22 @@ function Work({ workPage, workItemCategories }) {
             )
           })}
         </div>
-        <div className="container mx-auto mt-12 px-12 text-center text-white">
-          {workPage.workPageDescription && (
-            <div className="prose-lg mx-auto max-w-lg border py-1 text-center">
-              <PortableText value={workPage.workPageDescription} />
-            </div>
-          )}
-        </div>
+        {workPage.workPageDescription && (
+          <div className="container mx-auto mt-12 px-12 text-center text-white">
+            {workPage.workPageDescription && (
+              <div className="prose-lg mx-auto max-w-lg border py-1 text-center">
+                <PortableText value={workPage.workPageDescription} />
+              </div>
+            )}
+          </div>
+        )}
         {showWhiteContainer && (
-          <div className="container mx-auto mt-12 rounded-2xl bg-white p-4 text-center text-black lg:p-12">
+          <div
+            className={classNames(
+              'container mx-auto mt-2 rounded-2xl bg-white p-4 text-center text-black',
+              'lg:p-12'
+            )}
+          >
             {currentCategory?.imageGallery &&
               currentCategory.imageGallery.length > 0 && (
                 <ClientOnly>

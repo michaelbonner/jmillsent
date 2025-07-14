@@ -89,8 +89,9 @@ function Work({ workPage, workItemCategories }) {
         <ul
           className={classNames(
             'mx-6 mt-4 flex flex-wrap items-center justify-center gap-y-1 border-t py-4 font-semibold',
-            'lg:mx-36 lg:flex lg:divide-x lg:divide-white lg:pt-4',
-            'xl:mx-48'
+            'lg:mx-8 lg:flex lg:flex-nowrap lg:divide-x lg:divide-white lg:pt-4',
+            'xl:mx-24',
+            '2xl:mx-48'
           )}
         >
           {workItemCategories.map((tab, index) => {
@@ -99,7 +100,7 @@ function Work({ workPage, workItemCategories }) {
                 className={classNames(
                   'relative flex justify-center border-r text-xs',
                   '[&:last-child]:border-r-0',
-                  'lg:px-12 lg:text-base'
+                  'lg:px-4 lg:text-base'
                 )}
                 key={index}
               >

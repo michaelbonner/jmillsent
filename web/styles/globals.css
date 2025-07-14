@@ -233,8 +233,9 @@
 @layer components {
   .slider-container {
     .slick-arrow {
-      @apply absolute bottom-[7%] z-10 h-[10%] w-[5%] origin-center cursor-pointer opacity-50 invert-100 transition-opacity hover:opacity-100;
-      @apply lg:h-[72px] lg:w-[36px];
+      @apply absolute top-0 z-10 h-full w-[5%] origin-center cursor-pointer opacity-30 invert-100 transition-opacity duration-500;
+      @apply hover:opacity-100;
+      @apply lg:top-[40%] lg:h-[72px] lg:w-[36px];
     }
 
     .slick-prev {
@@ -245,9 +246,9 @@
       @apply right-4;
     }
 
-    .ui-slick-dots li.slick-active:before {
+    .ui-slick-dots li.slick-active:after {
       content: '';
-      @apply bg-gold/80 absolute right-0 bottom-0 left-0 h-2 rounded-b-lg backdrop-blur-sm;
+      @apply bg-gold absolute right-0 bottom-0 left-0 h-1.5 rounded-b-lg backdrop-blur-sm;
     }
   }
 

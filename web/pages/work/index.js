@@ -492,7 +492,7 @@ export async function getStaticProps() {
 
   const workItemCategories = await sanityClient.fetch(
     groq`
-      *[_type == "workItemCategory"][showOnWorkPage == true || name == "Narrative"]|order(order asc){
+      *[_type == "workItemCategory"][showOnWorkPage == true]|order(order asc){
         name,
         order,
         imageGallery[]{

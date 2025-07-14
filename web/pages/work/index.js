@@ -85,11 +85,11 @@ function Work({ workPage, workItemCategories }) {
           : workPage.seoDescription
       }
     >
-      <div className="lg:pt-24">
+      <div className={classNames('lg:pt-28', '2xl:pt-32')}>
         <ul
           className={classNames(
-            'mx-6 mt-4 flex flex-wrap items-center justify-center gap-y-1 border-t py-4 font-semibold',
-            'lg:mx-8 lg:flex lg:flex-nowrap lg:divide-x lg:divide-white lg:pt-4',
+            'mx-6 flex flex-wrap items-center justify-center gap-y-1 border-t py-4 font-semibold',
+            'lg:mx-8 lg:mt-4 lg:flex lg:flex-nowrap lg:divide-x lg:divide-white lg:pt-4',
             'xl:mx-24',
             '2xl:mx-48'
           )}

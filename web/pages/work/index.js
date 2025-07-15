@@ -296,10 +296,14 @@ const SlideVideo = memo(
           (videoRef.current.currentTime / videoRef.current.duration) *
             scrubber.current.clientWidth
         )
-        setVideoPlayTime(getMinutesAndSeconds(videoRef.current.currentTime))
+        if (!isNaN(videoRef.current.currentTime)) {
+          setVideoPlayTime(getMinutesAndSeconds(videoRef.current.currentTime))
+        }
       }, 30)
 
-      setVideoLength(getMinutesAndSeconds(videoRef.current.duration))
+      if (!isNaN(videoRef.current.duration)) {
+        setVideoLength(getMinutesAndSeconds(videoRef.current.duration))
+      }
 
       return () => {
         clearInterval(interval)

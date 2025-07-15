@@ -447,7 +447,7 @@ const Layout = ({
                   loop={true}
                   muted={true}
                   playing={true}
-                  playsinline={true}
+                  playsInline={true}
                   style={{
                     position: 'absolute',
                     top: 0,
@@ -460,7 +460,7 @@ const Layout = ({
                   }}
                   onPlay={() => setVideoPlaying(true)}
                   title="JME Film Studio"
-                  url={`https://player.vimeo.com/video/${heroVideoId}?badge=0&autopause=0&player_id=0&app_id=58479&autoplay=true&background=true`}
+                  src={`https://player.vimeo.com/video/${heroVideoId}?badge=0&autopause=0&player_id=0&app_id=58479&autoplay=true&background=true`}
                   width={heroVideoWidth}
                 />
                 {heroContent && (

@@ -1,6 +1,8 @@
 import 'yet-another-react-lightbox/plugins/captions.css'
 import 'yet-another-react-lightbox/styles.css'
 
+import { ClientOnly } from '@/components/client-only'
+import { ImageGallery } from '@/components/image-gallery'
 import Layout from '@/components/layout'
 import LittleBlackBar from '@/components/little-black-bar'
 import { VideoPlayerOverlayButton } from '@/components/video-player-overlay-button'
@@ -10,12 +12,13 @@ import urlForSanitySource from '@/lib/urlForSanitySource'
 import { PortableText } from '@portabletext/react'
 import classNames from 'classnames'
 import groq from 'groq'
+import dynamic from 'next/dynamic'
 import { useQueryState } from 'nuqs'
 import { memo, useEffect, useMemo, useRef, useState } from 'react'
 import { GrPause, GrPlay, GrVolume, GrVolumeMute } from 'react-icons/gr'
 import Lightbox from 'yet-another-react-lightbox'
-import { ClientOnly } from '@/components/client-only'
-import { ImageGallery } from '@/components/image-gallery'
+
+const LoadingAnimation = dynamic(() => import('@/components/loading-animation'))
 
 function Work({ workPage, workItemCategories }) {
   const defaultActiveTab = workItemCategories?.at(0)?.name || ''
@@ -275,6 +278,8 @@ const SlideVideo = memo(
     const [videoPlayTime, setVideoPlayTime] = useState('00:00')
     const [videoLength, setVideoLength] = useState('00:00')
 
+    const showLoadingAnimation = videoLength === '00:00'
+
     const getMinutesAndSeconds = (time) => {
       const minutes = Math.floor(time / 60)
       const seconds = Math.floor(time - minutes * 60)
@@ -372,6 +377,14 @@ const SlideVideo = memo(
           <source src={slide.shortClipOgvS3URL} type="video/ogg" />
           Your browser does not support the video.
         </video>
+
+        {showLoadingAnimation && (
+          <div className="absolute inset-0 animate-pulse bg-black/30">
+            <ClientOnly>
+              <LoadingAnimation loop setIsAnimationComplete={() => {}} />
+            </ClientOnly>
+          </div>
+        )}
 
         <VideoPlayerOverlayButton
           client={slide.clientName}

@@ -43,7 +43,7 @@ const WorkItemTile = ({
       )}
       style={{
         backgroundImage: workItem.poster
-          ? `url(${urlForSanitySource(workItem.poster).width(700).format('webp').quality(75)})`
+          ? `url(${urlForSanitySource(workItem.poster).width(700).format('webp').quality(80)})`
           : '',
         backgroundSize: 'cover',
         backgroundPosition: 'center',

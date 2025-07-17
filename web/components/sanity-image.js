@@ -19,6 +19,8 @@ function SanityImage({ alt, className, image }) {
         .width(24)
         .height(24)
         .blur(10)
+        .format('webp')
+        .quality(80)
         .url()}
       sizes="(max-width: 800px) 100vw, 800px"
     />

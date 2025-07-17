@@ -44,6 +44,7 @@ function Work({ workPage, workItemCategories }) {
         posterUrl: urlForSanitySource(workItem.poster)
           .width(1080)
           .height(1920)
+          .format('webp')
           .crop('focalpoint')
           .url(),
       }

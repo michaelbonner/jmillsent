@@ -48,9 +48,13 @@ const Documentary = ({ documentaryPage }) => {
   const episodeImages = documentaryPage.episodes.map((episode) => {
     return {
       caption: toPlainText(episode.description),
-      src: `${urlForSanitySource(
-        episode.image
-      )}?w=2400&h=1600&auto=format&fit=crop&crop=focalpoint`,
+      src: urlForSanitySource(episode.image)
+        .width(2400)
+        .height(1600)
+        .format('webp')
+        .fit('crop')
+        .crop('focalpoint')
+        .url(),
       title: episode.title.toUpperCase(),
       episodeNum: episode.episodeNum,
     }
@@ -156,6 +160,9 @@ const Documentary = ({ documentaryPage }) => {
                   src={urlForSanitySource(documentaryPage.poster)
                     .width(410)
                     .height(630)
+                    .format('webp')
+                    .fit('crop')
+                    .crop('focalpoint')
                     .url()}
                   height={630}
                   width={410}
@@ -187,6 +194,9 @@ const Documentary = ({ documentaryPage }) => {
                   const imageSrc = urlForSanitySource(episode.image)
                     .width(800)
                     .height(600)
+                    .format('webp')
+                    .fit('crop')
+                    .crop('focalpoint')
                     .url()
 
                   return (

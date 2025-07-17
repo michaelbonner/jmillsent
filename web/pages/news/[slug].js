@@ -18,16 +18,22 @@ const NewsItem = ({ newsItem = {} }) => {
   return (
     <>
       <Layout title={newsItem.seoTitle} description={newsItem.seoDescription}>
-        <div className="mx-auto grid gap-y-8 lg:mt-28 lg:max-w-7xl">
+        <div className="relative mx-auto grid gap-y-8 lg:mt-28 lg:max-w-7xl">
           {!newsItem.videoId && (
-            <Image
-              alt={newsItem.seoTitle}
-              src={`${urlForSanitySource(
-                newsItem.heroImage || newsItem.poster
-              )}?w=1440&h=600&auto=format&fit=crop&crop=focalpoint`}
-              height={600}
-              width={1440}
-            />
+            <div className="relative h-[600px] w-full">
+              <Image
+                alt={newsItem.seoTitle}
+                src={urlForSanitySource(newsItem.heroImage || newsItem.poster)
+                  .width(1440)
+                  .height(600)
+                  .format('webp')
+                  .fit('crop')
+                  .crop('focalpoint')
+                  .url()}
+                fill
+                className="object-cover"
+              />
+            </div>
           )}
           {newsItem.videoId && (
             <div className="container mx-auto max-w-7xl rounded-2xl">

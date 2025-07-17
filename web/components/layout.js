@@ -121,7 +121,7 @@ const Layout = ({
       setShowHero(true)
       setHeaderStyles({
         backgroundImage: heroImageUrl
-          ? `url(${urlForSanitySource(heroImageUrl).width(1400)})`
+          ? `url(${urlForSanitySource(heroImageUrl).width(1400).format('webp').quality(80).url()})`
           : '',
         backgroundSize: 'cover',
         backgroundPosition: 'center',

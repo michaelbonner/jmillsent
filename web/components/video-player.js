@@ -608,6 +608,8 @@ const VideoPlayerComponent = ({
                   .height(
                     1200 * (videoHeightAspectRatio / videoWidthAspectRatio)
                   )
+                  .format('webp')
+                  .quality(80)
                   .url()}
                 width="1200"
                 height={1200 * (videoHeightAspectRatio / videoWidthAspectRatio)}

@@ -15,12 +15,12 @@ const PortfolioItemTile = ({ portfolioItem, index, hideAfterCount = 999 }) => {
         {
           'lg:hidden': index >= hideAfterCount,
         },
-        `bpd-project-tile relative text-white `,
+        `bpd-project-tile relative text-white`,
         `flex flex-col items-center justify-center space-y-2 lg:space-y-0`
       )}
       style={{
         backgroundImage: portfolioItem.poster
-          ? `url(${urlForSanitySource(portfolioItem.poster).width(700)})`
+          ? `url(${urlForSanitySource(portfolioItem.poster).width(700).format('webp').quality(80).url()})`
           : '',
         backgroundSize: 'cover',
         backgroundPosition: 'center',

@@ -18,7 +18,10 @@ const Map = dynamic(() => import('@/components/map'), {})
 function Contact({ contact }) {
   const backgroundImageUrl = urlForSanitySource(contact.backgroundImage)
     .width(1400)
+    .format('webp')
+    .quality(80)
     .url()
+
   return (
     <Layout title={contact.seoTitle} description={contact.seoDescription}>
       <div

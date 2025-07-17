@@ -17,6 +17,8 @@ export const ImageGallery = ({ images }) => {
             src={urlForSanitySource(images[i].asset)
               .width(160 * 4)
               .height(90 * 4)
+              .format('webp')
+              .quality(80)
               .url()}
             width={1400 / 2}
           />
@@ -66,7 +68,12 @@ export const ImageGallery = ({ images }) => {
             className="rounded-xl object-cover"
             height={600}
             key={image.asset._id}
-            src={urlForSanitySource(image.asset).width(1400).height(600).url()}
+            src={urlForSanitySource(image.asset)
+              .width(1400)
+              .height(600)
+              .format('webp')
+              .quality(80)
+              .url()}
             width={1400}
           />
         ))}

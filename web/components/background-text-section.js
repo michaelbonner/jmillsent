@@ -51,19 +51,23 @@ const BackgroundText = ({
           alt={imageAlt}
           className="rounded-2xl"
           height={600}
-          src={`${urlForSanitySource(
-            image
-          )}?w=1246&h=600&auto=format&fit=crop&crop=focalpoint`}
+          src={urlForSanitySource(image)
+            .width(1246)
+            .height(600)
+            .format('webp')
+            .fit('crop')
+            .crop('focalpoint')
+            .url()}
           width={1246}
         />
         <div
-          className={`w-full rounded-2xl lg:absolute ${styles[leftOrRight].containerPosition} bottom-0 top-0 h-full ${styles[leftOrRight].gradientDirection} from-black to-transparent opacity-70 transition-all duration-500 group-hover:opacity-80`}
+          className={`w-full rounded-2xl lg:absolute ${styles[leftOrRight].containerPosition} top-0 bottom-0 h-full ${styles[leftOrRight].gradientDirection} from-black to-transparent opacity-70 transition-all duration-500 group-hover:opacity-80`}
         />
         <div
-          className={`rounded-2xl text-black lg:absolute lg:text-white ${styles[leftOrRight].containerPosition} bottom-0 top-0 ${styles[leftOrRight].textAlign} flex flex-col items-start justify-center sm:gap-y-2`}
+          className={`rounded-2xl text-black lg:absolute lg:text-white ${styles[leftOrRight].containerPosition} top-0 bottom-0 ${styles[leftOrRight].textAlign} flex flex-col items-start justify-center sm:gap-y-2`}
         >
           <H3
-            className={`${titleStyle} mb-0! mt-3! inline w-full py-1 text-center uppercase`}
+            className={`${titleStyle} mt-3! mb-0! inline w-full py-1 text-center uppercase`}
           >
             {title}
           </H3>
@@ -77,7 +81,7 @@ const BackgroundText = ({
                   </div>
                 )}
               </div>
-              <div className="prose prose-lg mx-auto mt-1.5 max-w-xl font-light leading-normal lg:prose-invert lg:mx-0">
+              <div className="prose prose-lg lg:prose-invert mx-auto mt-1.5 max-w-xl leading-normal font-light lg:mx-0">
                 <PortableText value={description} />
               </div>
               {customButtonText1 && customButtonText2 && customButtonText3 && (

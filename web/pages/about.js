@@ -40,8 +40,8 @@ function About({ aboutPage }) {
 
   const { width: browserWidth } = useWindowSize()
 
-  const utahLocationsImages = aboutPage.utahLocations.map(
-    (image) => `${urlForSanitySource(image)}?w=1800&auto=format`
+  const utahLocationsImages = aboutPage.utahLocations.map((image) =>
+    urlForSanitySource(image).width(1800).format('webp').quality(80).url()
   )
 
   const heroContent = (
@@ -58,9 +58,13 @@ function About({ aboutPage }) {
   const servicesImages = aboutPage.services.map((service) => {
     return {
       caption: toPlainText(service.description),
-      src: `${urlForSanitySource(
-        service.image
-      )}?w=2400&h=1600&auto=format&fit=crop&crop=focalpoint`,
+      src: urlForSanitySource(service.image)
+        .width(2400)
+        .height(1600)
+        .format('webp')
+        .fit('crop')
+        .crop('focalpoint')
+        .url(),
       title: service.name.toUpperCase(),
     }
   })
@@ -264,6 +268,8 @@ function About({ aboutPage }) {
                 const imageSrc = urlForSanitySource(service.image)
                   .width(800)
                   .height(600)
+                  .format('webp')
+                  .quality(80)
                   .url()
 
                 return (
@@ -499,6 +505,8 @@ function About({ aboutPage }) {
                           src={urlForSanitySource(teamMember.image)
                             .width(width)
                             .height(height)
+                            .format('webp')
+                            .quality(80)
                             .url()}
                           width={width}
                         />
@@ -561,7 +569,12 @@ function About({ aboutPage }) {
                     style={{
                       backgroundImage: `url(${urlForSanitySource(
                         utahLocation.asset
-                      ).size(600, 400)})`,
+                      )
+                        .width(600)
+                        .height(400)
+                        .format('webp')
+                        .quality(80)
+                        .url()})`,
                       backgroundSize: 'cover',
                       backgroundPosition: 'center',
                       height: 'min(25vh, 300px)',

@@ -56,9 +56,13 @@ function Studio({ studioPage }) {
   const images = studioPage.studioItems.map((service) => {
     return {
       caption: toPlainText(service.description),
-      src: `${urlForSanitySource(
-        service.image
-      )}?w=2400&h=1600&auto=format&fit=crop&crop=focalpoint`,
+      src: urlForSanitySource(service.image)
+        .width(2400)
+        .height(1600)
+        .format('webp')
+        .fit('crop')
+        .crop('focalpoint')
+        .url(),
       title: service.title.toUpperCase(),
     }
   })

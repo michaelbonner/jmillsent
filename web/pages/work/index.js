@@ -168,6 +168,7 @@ function Work({ workPage, workItemCategories }) {
                       }
                     : undefined
                 }
+                showPlayOnHover={isSocialLayout}
               />
             )
           })}

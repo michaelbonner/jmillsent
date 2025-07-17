@@ -9,16 +9,17 @@ const Button = (props) => {
 }
 
 const WorkItemTile = ({
-  workItem,
-  index,
-  hideAfterCount = 999,
-  onClick,
-  autoPlay = false,
-  showWithPlayLockup = false,
-  className,
-  playLockupClassName,
   aspectRatio,
+  autoPlay = false,
+  className,
+  hideAfterCount = 999,
+  index,
+  onClick,
+  playLockupClassName,
+  showPlayOnHover = false,
+  showWithPlayLockup = false,
   typographyClassNameOverrides = {},
+  workItem,
 }) => {
   const [isHovered, setIsHovered] = useState(autoPlay)
   const [hasHovered, setHasHovered] = useState(autoPlay)
@@ -112,6 +113,11 @@ const WorkItemTile = ({
             )}
           </video>
         )}
+      {showPlayOnHover && (
+        <div className="absolute inset-0 flex size-full items-center justify-center bg-black/50 opacity-0 transition-all duration-500 group-hover:opacity-100">
+          <GrPlay className="size-20 rounded-full border-2 border-gray-300 py-5 pl-2" />
+        </div>
+      )}
       <div className="z-10 flex w-full flex-col justify-center text-center">
         {showWithPlayLockup ? (
           <div

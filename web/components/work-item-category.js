@@ -4,7 +4,7 @@ import WorkItemTile from '@/components/work-item-tile'
 import { defaultSlugify } from '@/lib/defaultSlugify'
 import { urlForSanitySource } from '@/lib/urlForSanitySource'
 import { PortableText } from '@portabletext/react'
-import { clsx } from 'clsx'
+import clsx from 'clsx'
 import dynamic from 'next/dynamic'
 import Link from 'next/link'
 import { memo, useEffect, useMemo, useRef, useState } from 'react'
@@ -26,9 +26,10 @@ export const WorkItemCategory = ({
 
   const isSocialLayout = workItemCategory === 'social'
 
-  const currentCategory = workItemCategories.find(
-    (category) => defaultSlugify(category.name) === workItemCategory
-  )
+  const currentCategory =
+    workItemCategories.find(
+      (category) => defaultSlugify(category.name) === workItemCategory
+    ) ?? workItemCategories.at(0)
 
   const categoryWorkItems =
     currentCategory.workItems?.map((workItem) => {

@@ -1,6 +1,7 @@
 import type { MetadataRoute } from 'next'
 import { groq } from 'next-sanity'
 import { sanityClient } from '../lib/sanity'
+import { defaultSlugify } from '@/lib/defaultSlugify'
 
 const getWorkItemCategories = async () => {
   const workItemCategories =
@@ -14,7 +15,7 @@ const getWorkItemCategories = async () => {
   // the first item is the default page, so we remove it
   workItemCategories.shift()
   return workItemCategories.map((item: { name: string }) => ({
-    url: `https://www.jmillsent.com/work?work-type=${item.name}`,
+    url: `https://www.jmillsent.com/work/category/${defaultSlugify(item.name)}`,
     lastModified: new Date(),
     changeFrequency: 'monthly',
     priority: 0.5,

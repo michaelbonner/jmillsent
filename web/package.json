@@ -41,6 +41,7 @@
     "react-toastify": "^11.0.5",
     "screenfull": "^6.0.2",
     "slick-carousel": "^1.8.1",
+    "slugify": "^1.6.6",
     "styled-components": "^6.1.19",
     "swiper": "^11.2.10",
     "tailwind-merge": "^3.3.1",

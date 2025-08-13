@@ -16,7 +16,7 @@ import { useState } from 'react'
 import { styles } from 'styles/styles'
 import Lightbox from 'yet-another-react-lightbox'
 import Captions from 'yet-another-react-lightbox/plugins/captions'
-import urlForSanitySource from '../lib/urlForSanitySource'
+import { urlForSanitySource } from '../lib/urlForSanitySource'
 
 const VideoPlayer = dynamic(() => import('@/components/video-player'), {})
 

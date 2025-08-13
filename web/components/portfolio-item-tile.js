@@ -1,7 +1,7 @@
 import classNames from 'classnames'
 import Link from 'next/link'
 import { useState } from 'react'
-import urlForSanitySource from '../lib/urlForSanitySource'
+import { urlForSanitySource } from '../lib/urlForSanitySource'
 
 const PortfolioItemTile = ({ portfolioItem, index, hideAfterCount = 999 }) => {
   const [isHovered, setIsHovered] = useState(false)

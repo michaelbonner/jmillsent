@@ -8,7 +8,7 @@ import Image from 'next/image'
 import Link from 'next/link'
 import React, { useContext, useEffect, useState } from 'react'
 import ReactPlayer from 'react-player'
-import urlForSanitySource from '../lib/urlForSanitySource'
+import { urlForSanitySource } from '../lib/urlForSanitySource'
 import { ClientOnly } from './client-only'
 import { LoadingAnimationContext } from 'context/LoadingAnimationContext'
 

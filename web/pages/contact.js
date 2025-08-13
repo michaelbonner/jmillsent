@@ -9,7 +9,7 @@ import groq from 'groq'
 import dynamic from 'next/dynamic'
 import { GrInstagram, GrLinkedin, GrVimeo } from 'react-icons/gr'
 import { sanityClient } from '../lib/sanity'
-import urlForSanitySource from '../lib/urlForSanitySource'
+import { urlForSanitySource } from '../lib/urlForSanitySource'
 import LittleBlackBar from '@/components/little-black-bar'
 
 const ContactForm = dynamic(() => import('@/components/contact-form'), {})

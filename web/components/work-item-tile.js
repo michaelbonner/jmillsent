@@ -1,5 +1,5 @@
 import { urlForSanitySource } from '@/lib/urlForSanitySource'
-import { clsx } from 'clsx'
+import clsx from 'clsx'
 import Link from 'next/link'
 import { useState } from 'react'
 import { GrPlay } from 'react-icons/gr'
@@ -26,13 +26,6 @@ const WorkItemTile = ({
 
   const ElementToRender = onClick ? Button : Link
 
-  const getBackgroundImage = () => {
-    if (workItem.poster) {
-      return `url(${urlForSanitySource(workItem.poster).width(700).format('webp').quality(80)})`
-    }
-    return ''
-  }
-
   return (
     <ElementToRender
       href={onClick ? undefined : `/work/${workItem.slug?.current}`}
@@ -49,7 +42,9 @@ const WorkItemTile = ({
         className
       )}
       style={{
-        backgroundImage: getBackgroundImage(),
+        backgroundImage: workItem.poster
+          ? `url(${urlForSanitySource(workItem.poster).width(700).format('webp').quality(80)})`
+          : '',
         backgroundSize: 'cover',
         backgroundPosition: 'center',
         backgroundRepeat: 'no-repeat',

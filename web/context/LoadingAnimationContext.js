@@ -41,7 +41,7 @@ const LoadingAnimationProvider = ({ children }) => {
       const baseUrl = url.split('?')[0]
       const basePath = router.asPath.split('?')[0]
 
-      if (baseUrl.startsWith('/work')) {
+      if (baseUrl === '/work' || baseUrl.startsWith('/work/category')) {
         return
       }
 

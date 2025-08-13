@@ -5,7 +5,7 @@ import { WorkItemCategory } from '@/components/work-item-category'
 import { defaultSlugify } from '@/lib/defaultSlugify'
 import { sanityClient } from '@/lib/sanity'
 import groq from 'groq'
-import { getWorkPageAndWorkItemCategories } from '..'
+import { getWorkPageAndWorkItemCategories } from '@/lib/sanity-data/getWorkPageAndWorkItemCategories'
 
 const WorkItemCategoryPage = ({
   workPage,
@@ -45,6 +45,19 @@ export async function getStaticProps({ params }) {
 
   const { workPage, workItemCategories } =
     await getWorkPageAndWorkItemCategories()
+
+  if (
+    !workItemCategories.find(
+      (category) => defaultSlugify(category.name) === workItemCategory
+    )
+  ) {
+    return {
+      redirect: {
+        destination: '/work',
+        permanent: false,
+      },
+    }
+  }
 
   return {
     props: {

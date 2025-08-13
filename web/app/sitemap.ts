@@ -57,17 +57,23 @@ const getNewsItems = async () => {
   const newsItems =
     (await sanityClient.fetch(
       groq`
-      *[_type == "newsItem"] {
-        slug,
+      *[_type == "newsPage"][0]{
+      newsItems[]-> {
+       slug,
+       _updatedAt,
       }
+    }
     `
     )) ?? []
-  return newsItems.map((item: { slug: { current: string } }) => ({
-    url: `https://www.jmillsent.com/news/${item.slug.current}`,
-    lastModified: new Date(),
-    changeFrequency: 'monthly',
-    priority: 0.5,
-  }))
+
+  return (newsItems.newsItems ?? []).map(
+    (item: { slug: { current: string }; _updatedAt: string }) => ({
+      url: `https://www.jmillsent.com/news/${item.slug.current}`,
+      lastModified: new Date(item._updatedAt),
+      changeFrequency: 'monthly',
+      priority: 0.5,
+    })
+  )
 }
 
 export default async function sitemap(): Promise<MetadataRoute.Sitemap> {

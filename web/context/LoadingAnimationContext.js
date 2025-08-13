@@ -41,6 +41,10 @@ const LoadingAnimationProvider = ({ children }) => {
       const baseUrl = url.split('?')[0]
       const basePath = router.asPath.split('?')[0]
 
+      if (baseUrl.startsWith('/work')) {
+        return
+      }
+
       if (baseUrl === basePath) return
 
       if (url === '/' || url === '/about' || url === '/studio') {

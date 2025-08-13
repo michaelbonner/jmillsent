@@ -1,8 +1,8 @@
-import classNames from 'classnames'
+import { urlForSanitySource } from '@/lib/urlForSanitySource'
+import { clsx } from 'clsx'
 import Link from 'next/link'
 import { useState } from 'react'
 import { GrPlay } from 'react-icons/gr'
-import urlForSanitySource from '../lib/urlForSanitySource'
 
 const Button = (props) => {
   return <button {...props} />
@@ -26,12 +26,19 @@ const WorkItemTile = ({
 
   const ElementToRender = onClick ? Button : Link
 
+  const getBackgroundImage = () => {
+    if (workItem.poster) {
+      return `url(${urlForSanitySource(workItem.poster).width(700).format('webp').quality(80)})`
+    }
+    return ''
+  }
+
   return (
     <ElementToRender
       href={onClick ? undefined : `/work/${workItem.slug?.current}`}
       onClick={onClick ? onClick : undefined}
       key={workItem._id}
-      className={classNames(
+      className={clsx(
         'group',
         {
           'lg:hidden': index >= hideAfterCount,
@@ -42,9 +49,7 @@ const WorkItemTile = ({
         className
       )}
       style={{
-        backgroundImage: workItem.poster
-          ? `url(${urlForSanitySource(workItem.poster).width(700).format('webp').quality(80)})`
-          : '',
+        backgroundImage: getBackgroundImage(),
         backgroundSize: 'cover',
         backgroundPosition: 'center',
         backgroundRepeat: 'no-repeat',
@@ -72,7 +77,7 @@ const WorkItemTile = ({
         (workItem.shortClipMp4URL || workItem.shortClipMp4S3URL) &&
         (workItem.shortClipOgvURL || workItem.shortClipOgvS3URL) && (
           <video
-            className={classNames(
+            className={clsx(
               `absolute inset-0 h-full w-full object-cover transition-all duration-700`,
               {
                 'opacity-100': workItem.shortClipMp4S3URL && isHovered,
@@ -121,7 +126,7 @@ const WorkItemTile = ({
       <div className="z-10 flex w-full flex-col justify-center text-center">
         {showWithPlayLockup ? (
           <div
-            className={classNames(
+            className={clsx(
               'flex w-full items-center justify-start gap-4 pr-2 pl-4 text-left',
               playLockupClassName
             )}
@@ -146,10 +151,7 @@ const WorkItemTile = ({
               className={
                 typographyClassNameOverrides?.clientName
                   ? typographyClassNameOverrides.clientName
-                  : classNames(
-                      'text-3xl font-extrabold uppercase',
-                      'lg:text-2xl'
-                    )
+                  : clsx('text-3xl font-extrabold uppercase', 'lg:text-2xl')
               }
             >
               {workItem.clientName}
@@ -158,7 +160,7 @@ const WorkItemTile = ({
               className={
                 typographyClassNameOverrides?.title
                   ? typographyClassNameOverrides.title
-                  : classNames('font-outline text-3xl uppercase', 'lg:text-2xl')
+                  : clsx('font-outline text-3xl uppercase', 'lg:text-2xl')
               }
             >
               {workItem.title}
@@ -169,5 +171,4 @@ const WorkItemTile = ({
     </ElementToRender>
   )
 }
-
 export default WorkItemTile

@@ -1,6 +1,6 @@
 import 'slick-carousel/slick/slick.css'
 
-import urlForSanitySource from '@/lib/urlForSanitySource'
+import { urlForSanitySource } from '@/lib/urlForSanitySource'
 import classNames from 'classnames'
 import Image from 'next/image'
 import Slider from 'react-slick'

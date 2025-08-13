@@ -1,4 +1,4 @@
-import urlForSanitySource from '@/lib/urlForSanitySource'
+import { urlForSanitySource } from '@/lib/urlForSanitySource'
 import { getImageDimensions } from '@sanity/asset-utils'
 import Image from 'next/image'
 

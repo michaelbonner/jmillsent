@@ -25,7 +25,7 @@ import Lightbox from 'yet-another-react-lightbox'
 import Captions from 'yet-another-react-lightbox/plugins/captions'
 import Zoom from 'yet-another-react-lightbox/plugins/zoom'
 import { sanityClient } from '../lib/sanity'
-import urlForSanitySource from '../lib/urlForSanitySource'
+import { urlForSanitySource } from '../lib/urlForSanitySource'
 
 const VideoPlayer = dynamic(() => import('@/components/video-player'), {})
 

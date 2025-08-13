@@ -9,7 +9,7 @@ import groq from 'groq'
 import dynamic from 'next/dynamic'
 import Image from 'next/image'
 import Link from 'next/link'
-import urlForSanitySource from '../../lib/urlForSanitySource'
+import { urlForSanitySource } from '../../lib/urlForSanitySource'
 import { styles } from 'styles/styles'
 
 const VideoPlayer = dynamic(() => import('@/components/video-player'), {})

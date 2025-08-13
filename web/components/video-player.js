@@ -11,7 +11,7 @@ import {
   useState,
 } from 'react'
 import screenfull from 'screenfull'
-import urlForSanitySource from '../lib/urlForSanitySource'
+import { urlForSanitySource } from '../lib/urlForSanitySource'
 import SanityImage from './sanity-image'
 import { VideoPlayerControlBar } from './video-player-control-bar'
 import { VideoPlayerOverlayButton } from './video-player-overlay-button'

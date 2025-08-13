@@ -18,5 +18,8 @@
   "devDependencies": {
     "@sanity/cli": "^3.92.0",
     "lerna": "^8.2.2"
+  },
+  "dependencies": {
+    "clsx": "^2.1.1"
   }
 }

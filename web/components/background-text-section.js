@@ -1,4 +1,4 @@
-import urlForSanitySource from '@/lib/urlForSanitySource'
+import { urlForSanitySource } from '@/lib/urlForSanitySource'
 import { PortableText } from '@portabletext/react'
 import classNames from 'classnames'
 import Image from 'next/image'

@@ -27,7 +27,7 @@ const getWorkItems = async () => {
 
   const workItemCategories = await sanityClient.fetch(
     groq`
-        *[_type == "workItemCategory"][showOnWorkPage == true]|order(order asc){
+        *[_type == "workItemCategory"][showOnWorkPage == true][name != "Social"]|order(order asc){
         workItems[]->{
           _id,
           slug,

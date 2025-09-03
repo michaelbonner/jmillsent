@@ -22,7 +22,7 @@ const NewsItem = ({ newsItem = {} }) => {
           {!newsItem.videoId && (
             <div className="relative h-[600px] w-full">
               <Image
-                alt={newsItem.seoTitle}
+                alt={newsItem.seoTitle ?? newsItem.title}
                 src={urlForSanitySource(newsItem.heroImage || newsItem.poster)
                   .width(1440)
                   .height(600)

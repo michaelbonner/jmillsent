@@ -5,10 +5,10 @@ import Image from 'next/image'
 import Link from 'next/link'
 import { useRouter } from 'next/router'
 import { styles as globalStyles } from 'styles/styles'
-import clsx from 'yet-another-react-lightbox'
 import Date from './date'
 import { H3 } from './headings'
 import LittleGoldBar from './little-gold-bar'
+import clsx from 'clsx'
 
 const BackgroundText = ({
   image,
@@ -95,15 +95,15 @@ const BackgroundText = ({
                       'lg:border-white'
                     )}
                   >
-                    <span className="font-outline tracking-tighter uppercase">
+                    <span className="font-outline tracking-tighter">
                       {customButtonText1}
                     </span>
 
-                    <span className="font-bold tracking-wide uppercase">
+                    <span className="font-bold tracking-wide">
                       {customButtonText2}
                     </span>
 
-                    <span className="font-outline tracking-tighter uppercase">
+                    <span className="font-outline tracking-tighter">
                       {customButtonText3}
                     </span>
                   </Link>

@@ -1,4 +1,4 @@
-import classNames from 'classnames'
+import { clsx } from 'clsx'
 
 export const PasswordLoginForm = ({
   handleSubmit,
@@ -23,7 +23,7 @@ export const PasswordLoginForm = ({
             placeholder="PASSWORD"
           />
           <button
-            className={classNames(
+            className={clsx(
               'group flex items-center gap-x-2 rounded-md border-2 border-gray-300 px-4 py-2 transition-colors',
               'hover:bg-gold hover:text-black'
             )}

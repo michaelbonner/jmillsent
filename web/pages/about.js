@@ -11,7 +11,7 @@ import LittleWhiteBar from '@/components/little-white-bar'
 import SanityImage from '@/components/sanity-image'
 import { PortableText, toPlainText } from '@portabletext/react'
 import { useWindowSize } from '@uidotdev/usehooks'
-import classNames from 'classnames'
+import { clsx } from 'clsx'
 import groq from 'groq'
 import useIsDesktop from 'hooks/useIsDesktop'
 import dynamic from 'next/dynamic'
@@ -258,7 +258,7 @@ function About({ aboutPage }) {
             </div>
 
             <div
-              className={classNames(
+              className={clsx(
                 'mt-12 grid gap-6',
                 'md:grid-cols-2',
                 'lg:grid-cols-3'
@@ -274,7 +274,7 @@ function About({ aboutPage }) {
 
                 return (
                   <button
-                    className={classNames(
+                    className={clsx(
                       'group relative rounded-lg',
                       'aspect-4/4 overflow-hidden',
                       'bg-cover bg-center bg-no-repeat',
@@ -291,14 +291,14 @@ function About({ aboutPage }) {
                     key={index}
                   >
                     <div
-                      className={classNames(
+                      className={clsx(
                         'absolute inset-0 rounded-lg bg-linear-to-t from-black/100 via-black/30 to-black/0 opacity-50 transition-all duration-300',
                         'lg:from-transparent lg:via-transparent lg:to-transparent lg:opacity-0',
                         'group-hover:from-black/80 group-hover:via-black/80 group-hover:to-black/80 group-hover:opacity-100'
                       )}
                     />
                     <div
-                      className={classNames(
+                      className={clsx(
                         'relative z-10 flex h-full translate-y-1/2 flex-col items-center justify-center py-3 transition-transform duration-300 group-hover:overflow-auto',
                         'group-hover:-translate-y-0'
                       )}
@@ -316,7 +316,7 @@ function About({ aboutPage }) {
                         {service.name}
                       </h4>
                       <div
-                        className={classNames(
+                        className={clsx(
                           'px-4 text-sm font-light text-white uppercase opacity-0 transition-opacity',
                           'group-hover:opacity-100'
                         )}
@@ -352,7 +352,7 @@ function About({ aboutPage }) {
                   return (
                     <div
                       key={index}
-                      className={classNames(
+                      className={clsx(
                         'flex flex-col justify-start space-y-12 rounded-xl bg-black px-8 pt-12 pb-8 text-white'
                       )}
                       target="_blank"
@@ -410,7 +410,7 @@ function About({ aboutPage }) {
                 className="h-full w-full rounded-2xl"
               />
               <div
-                className={classNames(
+                className={clsx(
                   'absolute top-0 right-0 bottom-0 hidden h-full w-1/2 rounded-r-xl bg-linear-to-l from-black to-transparent opacity-70 transition-all duration-500',
                   'lg:block lg:pr-20',
                   'group-hover:w-3/4 group-hover:opacity-80'
@@ -472,7 +472,7 @@ function About({ aboutPage }) {
                 {aboutPage.teamSubtitle}
               </p>
               <div
-                className={classNames(
+                className={clsx(
                   'mx-auto mt-10 grid max-w-5xl grid-cols-2 gap-x-2 gap-y-6',
                   'sm:gap-x-0 sm:gap-y-8',
                   'md:grid-cols-3',
@@ -694,7 +694,7 @@ function About({ aboutPage }) {
                     <Link
                       key={index}
                       href={ravensCard.link}
-                      className={classNames(
+                      className={clsx(
                         'flex flex-col justify-between space-y-12 border-2 border-gray-300 px-8 pt-12 pb-8 transition-colors',
                         'hover:bg-linear-to-b hover:from-gray-900 hover:to-black'
                       )}

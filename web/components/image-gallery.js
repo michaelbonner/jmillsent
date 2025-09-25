@@ -1,7 +1,7 @@
 import 'slick-carousel/slick/slick.css'
 
 import { urlForSanitySource } from '@/lib/urlForSanitySource'
-import classNames from 'classnames'
+import { clsx } from 'clsx'
 import Image from 'next/image'
 import Slider from 'react-slick'
 
@@ -25,14 +25,14 @@ export const ImageGallery = ({ images }) => {
         </a>
       )
     },
-    className: classNames(
+    className: clsx(
       'relative',
       '[&_.slick-slide]:aspect-[2.4/1]',
       '[&_.slick-slide>div]:h-full',
       '[&_.slick-slide>div>img]:size-full [&_.slick-slide>div>img]:object-cover [&_.slick-slide>div>img]:object-center'
     ),
     dots: true,
-    dotsClass: classNames(
+    dotsClass: clsx(
       'ui-slick-dots !hidden',
       'lg:!flex lg:!items-stretch lg:!gap-x-2 lg:mt-2 lg:w-full',
       '[&>li]:size-full [&>li_img]:size-full [&>li]:relative [&>li]:aspect-[16/9]'

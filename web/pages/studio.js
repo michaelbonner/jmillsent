@@ -6,19 +6,19 @@ import { ClientOnly } from '@/components/client-only'
 import DividerBar from '@/components/divider-bar'
 import { H1, H2 } from '@/components/headings'
 import Layout from '@/components/layout'
+import LittleBlackBar from '@/components/little-black-bar'
 import { urlForSanitySource } from '@/lib/urlForSanitySource'
 import { PortableText, toPlainText } from '@portabletext/react'
-import classNames from 'classnames'
+import { clsx } from 'clsx'
 import groq from 'groq'
 import useIsDesktop from 'hooks/useIsDesktop'
 import dynamic from 'next/dynamic'
 import Link from 'next/link'
 import { useState } from 'react'
+import { styles } from 'styles/styles'
 import Lightbox from 'yet-another-react-lightbox'
 import Captions from 'yet-another-react-lightbox/plugins/captions'
 import { sanityClient } from '../lib/sanity'
-import LittleBlackBar from '@/components/little-black-bar'
-import { styles } from 'styles/styles'
 
 const VideoPlayer = dynamic(() => import('@/components/video-player'), {})
 
@@ -29,24 +29,19 @@ function Studio({ studioPage }) {
 
   const heroContent = (
     <div
-      className={classNames(
+      className={clsx(
         'grid h-full w-full items-center text-white',
         'lg:gap-y-4'
       )}
     >
       <div
-        className={classNames(
+        className={clsx(
           'grid items-center justify-center pt-4 text-center',
           'lg:mt-16'
         )}
       >
         <H1 className="mb-0">{studioPage.title}</H1>
-        <h2
-          className={classNames(
-            'font-outline text-3xl uppercase',
-            'lg:text-7xl'
-          )}
-        >
+        <h2 className={clsx('font-outline text-3xl uppercase', 'lg:text-7xl')}>
           {studioPage.subtitle}
         </h2>
       </div>
@@ -127,7 +122,7 @@ function Studio({ studioPage }) {
           {studioPage.tourVideoId && (
             <div
               id="tour"
-              className={classNames(
+              className={clsx(
                 'container mx-auto mt-12 rounded-2xl text-white',
                 'lg:px-10'
               )}
@@ -150,7 +145,7 @@ function Studio({ studioPage }) {
 
           {studioPage.section1Body && (
             <div
-              className={classNames(
+              className={clsx(
                 'prose-lg mx-auto mt-4 -mb-2 max-w-5xl px-4',
                 'lg:mt-10'
               )}
@@ -165,7 +160,7 @@ function Studio({ studioPage }) {
               className={styles.buttonLink.blackBorder}
             >
               <span
-                className={classNames(
+                className={clsx(
                   'font-outline text-2xl tracking-tighter',
                   'lg:text-3xl',
                   'group-hover:text-gray-800'
@@ -174,7 +169,7 @@ function Studio({ studioPage }) {
                 Book
               </span>
               <span
-                className={classNames(
+                className={clsx(
                   'text-2xl font-bold tracking-wide',
                   'lg:text-3xl',
                   'group-hover:text-gray-800'
@@ -183,7 +178,7 @@ function Studio({ studioPage }) {
                 Studio
               </span>
               <span
-                className={classNames(
+                className={clsx(
                   'font-outline text-2xl tracking-tighter',
                   'lg:text-3xl',
                   'group-hover:text-gray-800'
@@ -201,7 +196,7 @@ function Studio({ studioPage }) {
             <div className="container mx-auto px-8 text-center" id="tour">
               <H2>{studioPage.section2Title}</H2>
               <p
-                className={classNames(
+                className={clsx(
                   'font-outline text-xl uppercase',
                   'lg:text-5xl'
                 )}
@@ -219,7 +214,7 @@ function Studio({ studioPage }) {
           <div className="container mx-auto -mt-1.5 text-center uppercase">
             <H2>{studioPage.studioItemSectionTitle}</H2>
             <p
-              className={classNames(
+              className={clsx(
                 'font-outline text-xl leading-4 uppercase',
                 'lg:text-5xl'
               )}
@@ -230,7 +225,7 @@ function Studio({ studioPage }) {
 
           {studioPage.studioItems?.length > 0 && (
             <div
-              className={classNames(
+              className={clsx(
                 'mx-auto mt-12 grid max-w-7xl gap-y-8 rounded-2xl bg-white p-8 lg:mt-24 lg:gap-y-10 lg:p-10'
               )}
             >

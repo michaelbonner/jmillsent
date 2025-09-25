@@ -6,7 +6,7 @@ import { ClientOnly } from '@/components/client-only'
 import Layout from '@/components/layout'
 import { sanityClient } from '@/lib/sanity'
 import { PortableText, toPlainText } from '@portabletext/react'
-import classNames from 'classnames'
+import { clsx } from 'clsx'
 import groq from 'groq'
 import useIsDesktop from 'hooks/useIsDesktop'
 import dynamic from 'next/dynamic'
@@ -73,21 +73,21 @@ const Documentary = ({ documentaryPage }) => {
     >
       <div className="lg:pt-24">
         <ul
-          className={classNames(
+          className={clsx(
             'mx-6 mt-4 grid grid-cols-2 items-center justify-center border-t py-4 font-semibold',
             'lg:mx-36 lg:flex lg:divide-x lg:divide-white',
             'xl:mx-48'
           )}
         >
           <li
-            className={classNames(
+            className={clsx(
               'flex justify-center text-xs',
               'lg:px-12 lg:text-base',
               'border-r lg:border-r-0'
             )}
           >
             <Link
-              className={classNames(
+              className={clsx(
                 'rounded-xl border px-2 py-1 uppercase transition-all',
                 'lg:tracking-wider',
                 'border-black hover:scale-110'
@@ -98,14 +98,14 @@ const Documentary = ({ documentaryPage }) => {
             </Link>
           </li>
           <li
-            className={classNames(
+            className={clsx(
               'flex justify-center text-xs',
               'lg:px-12 lg:text-base',
               'border-r lg:border-r-0'
             )}
           >
             <Link
-              className={classNames(
+              className={clsx(
                 'rounded-xl border px-2 py-1 uppercase transition-all',
                 'lg:tracking-wider',
                 'border-black hover:scale-110'
@@ -116,13 +116,13 @@ const Documentary = ({ documentaryPage }) => {
             </Link>
           </li>
           {/* <li
-            className={classNames(
+            className={clsx(
               'flex justify-center text-xs',
               'lg:px-12 lg:text-base'
             )}
           >
             <span
-              className={classNames(
+              className={clsx(
                 'rounded-xl border px-2 py-1 uppercase transition-all',
                 'lg:tracking-wider',
                 'border-white'
@@ -184,7 +184,7 @@ const Documentary = ({ documentaryPage }) => {
             </div>
             <section id="episodes">
               <div
-                className={classNames(
+                className={clsx(
                   'mt-4 grid gap-6',
                   'md:grid-cols-2',
                   'lg:grid-cols-4'
@@ -201,7 +201,7 @@ const Documentary = ({ documentaryPage }) => {
 
                   return (
                     <button
-                      className={classNames(
+                      className={clsx(
                         'group relative rounded-xl',
                         'aspect-2 overflow-hidden',
                         'bg-cover bg-center bg-no-repeat'
@@ -216,14 +216,14 @@ const Documentary = ({ documentaryPage }) => {
                       key={index}
                     >
                       <div
-                        className={classNames(
+                        className={clsx(
                           'absolute inset-0 rounded-lg bg-linear-to-t from-black/100 via-black/30 to-black/0 opacity-50 transition-all duration-300',
                           'lg:from-transparent lg:via-transparent lg:to-transparent lg:opacity-0',
                           'group-hover:from-black/80 group-hover:via-black/80 group-hover:to-black/80 group-hover:opacity-100'
                         )}
                       />
                       <div
-                        className={classNames(
+                        className={clsx(
                           'relative z-10 flex translate-y-0 flex-col items-center justify-center overflow-hidden py-3 transition-transform duration-300',
                           'group-hover:-translate-y-10'
                         )}
@@ -241,7 +241,7 @@ const Documentary = ({ documentaryPage }) => {
                           {episode.title}
                         </h4>
                         <div
-                          className={classNames(
+                          className={clsx(
                             'px-4 text-sm font-light text-white uppercase opacity-0 transition-opacity',
                             'group-hover:opacity-100'
                           )}

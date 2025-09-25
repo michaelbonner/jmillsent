@@ -1,6 +1,6 @@
 import { urlForSanitySource } from '@/lib/urlForSanitySource'
 import { PortableText } from '@portabletext/react'
-import classNames from 'classnames'
+import clsx from 'clsx'
 import Image from 'next/image'
 import Link from 'next/link'
 import { useRouter } from 'next/router'
@@ -8,7 +8,6 @@ import { styles as globalStyles } from 'styles/styles'
 import Date from './date'
 import { H3 } from './headings'
 import LittleGoldBar from './little-gold-bar'
-import clsx from 'clsx'
 
 const BackgroundText = ({
   image,
@@ -43,7 +42,7 @@ const BackgroundText = ({
   const titleStyle = leftOrRight === 'left' ? 'lg:text-left' : 'lg:text-right'
   return (
     <div
-      className={classNames('cursor-pointer')}
+      className={clsx('cursor-pointer')}
       onClick={() => isLink && router.push(slug)}
     >
       <div className="group relative w-full" style={{ lineHeight: 0 }}>

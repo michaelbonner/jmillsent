@@ -1,4 +1,4 @@
-import classNames from 'classnames'
+import { clsx } from 'clsx'
 import Link from 'next/link'
 import { useState } from 'react'
 import { urlForSanitySource } from '../lib/urlForSanitySource'
@@ -11,7 +11,7 @@ const PortfolioItemTile = ({ portfolioItem, index, hideAfterCount = 999 }) => {
     <Link
       href={`/private-gallery/${portfolioItem.slug?.current}`}
       key={portfolioItem._id}
-      className={classNames(
+      className={clsx(
         {
           'lg:hidden': index >= hideAfterCount,
         },
@@ -41,7 +41,7 @@ const PortfolioItemTile = ({ portfolioItem, index, hideAfterCount = 999 }) => {
         (portfolioItem.shortClipMp4URL || portfolioItem.shortClipMp4S3URL) &&
         (portfolioItem.shortClipOgvURL || portfolioItem.shortClipOgvS3URL) && (
           <video
-            className={classNames(
+            className={clsx(
               `absolute inset-0 h-full w-full object-cover transition-all duration-700`,
               {
                 'opacity-100': portfolioItem.shortClipMp4S3URL && isHovered,

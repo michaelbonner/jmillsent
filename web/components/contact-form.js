@@ -1,9 +1,9 @@
-import classNames from 'classnames'
+import { clsx } from 'clsx'
 import { ErrorMessage, Field, Form, Formik } from 'formik'
-import React, { useState } from 'react'
+import { useState } from 'react'
 import TextareaAutosize from 'react-textarea-autosize'
-import * as Yup from 'yup'
 import { toast } from 'react-toastify'
+import * as Yup from 'yup'
 
 const phoneRegExp =
   /^((\\+[1-9]{1,4}[ \\-]*)|(\\([0-9]{2,3}\\)[ \\-]*)|([0-9]{2,4})[ \\-]*)*?[0-9]{3,4}?[ \\-]*[0-9]{3,4}?$/
@@ -82,7 +82,7 @@ const ContactForm = ({ interests, successMessage = '' }) => {
           }}
         >
           {({ isSubmitting, isValid, handleChange, handleBlur, values }) => (
-            <Form className={classNames('grid gap-8', 'lg:gap-12')}>
+            <Form className={clsx('grid gap-8', 'lg:gap-12')}>
               <div className="mx-auto grid w-full max-w-3xl grid-cols-1 gap-6">
                 <div className="relative rounded-lg border-gray-300 bg-white">
                   <Field
@@ -145,15 +145,9 @@ const ContactForm = ({ interests, successMessage = '' }) => {
                   />
                 </div>
               </div>
-              <div
-                className={classNames(
-                  'mx-auto w-full',
-                  'lg:pt-4',
-                  'xl:border-t'
-                )}
-              >
+              <div className={clsx('mx-auto w-full', 'lg:pt-4', 'xl:border-t')}>
                 <div
-                  className={classNames(
+                  className={clsx(
                     'relative mx-auto grid w-full items-center gap-4',
                     'sm:flex sm:justify-center',
                     'md:gap-8 md:px-8'
@@ -164,23 +158,23 @@ const ContactForm = ({ interests, successMessage = '' }) => {
                   </p>
                   {/* Mobile interests */}
                   <div
-                    className={classNames(
+                    className={clsx(
                       'grid gap-3 text-[13px]',
                       'sm:text-sm',
                       'lg:text-base'
                     )}
                   >
                     <div
-                      className={classNames(
+                      className={clsx(
                         'col-span-2 flex flex-wrap justify-start gap-y-2 divide-x divide-white border-t border-gray-200 pt-3',
                         'md:justify-center',
                         'xl:hidden'
                       )}
                     >
                       {interestsSplit[0].map((interest) => (
-                        <div className={classNames('px-2')} key={interest}>
+                        <div className={clsx('px-2')} key={interest}>
                           <label
-                            className={classNames(
+                            className={clsx(
                               'flex cursor-pointer items-center gap-x-3 divide-x divide-white border-2 px-1 py-1 font-light uppercase',
                               'md:px-2',
                               values.preference.includes(interest)
@@ -206,15 +200,15 @@ const ContactForm = ({ interests, successMessage = '' }) => {
                       />
                     </div>
                     <div
-                      className={classNames(
+                      className={clsx(
                         'col-span-2 flex flex-wrap justify-start gap-y-2 divide-x divide-white border-t border-gray-200 pt-3',
                         'xl:hidden'
                       )}
                     >
                       {interestsSplit[1].map((interest) => (
-                        <div className={classNames('px-2')} key={interest}>
+                        <div className={clsx('px-2')} key={interest}>
                           <label
-                            className={classNames(
+                            className={clsx(
                               'flex cursor-pointer items-center gap-x-3 divide-x divide-white border-2 px-1 py-1 font-light uppercase',
                               'md:px-2',
                               values.preference.includes(interest)
@@ -242,19 +236,16 @@ const ContactForm = ({ interests, successMessage = '' }) => {
                   </div>
                   {/* Desktop interests */}
                   <div
-                    className={classNames(
+                    className={clsx(
                       'col-span-2 hidden flex-wrap justify-start gap-y-2 divide-x divide-white',
                       'xl:flex xl:gap-y-4'
                     )}
                   >
                     {[...interestsSplit[0], ...interestsSplit[1]].map(
                       (interest) => (
-                        <div
-                          className={classNames('px-2', 'lg:px-4')}
-                          key={interest}
-                        >
+                        <div className={clsx('px-2', 'lg:px-4')} key={interest}>
                           <label
-                            className={classNames(
+                            className={clsx(
                               'font-lights flex cursor-pointer items-center gap-x-3 divide-x-2 divide-white border-2 px-3 py-1 uppercase',
                               values.preference.includes(interest)
                                 ? 'border-white'
@@ -285,7 +276,7 @@ const ContactForm = ({ interests, successMessage = '' }) => {
               <div className="flex justify-center">
                 <button
                   type="submit"
-                  className={classNames(
+                  className={clsx(
                     'mx-auto inline-block w-full max-w-[450px] rounded-xl text-lg font-bold uppercase',
                     'border border-gray-500 px-8 py-2.5 tracking-wider',
                     'bg-black/50 transition-all',

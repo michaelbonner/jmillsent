@@ -1,10 +1,9 @@
-import classNames from 'classnames'
-import React from 'react'
+import { clsx } from 'clsx'
 
 const H1 = ({ children, className = '' }) => {
   return (
     <h1
-      className={classNames(
+      className={clsx(
         className,
         'text-2xl font-extrabold uppercase lg:mb-4 lg:text-7xl'
       )}
@@ -16,7 +15,7 @@ const H1 = ({ children, className = '' }) => {
 const H2 = ({ children, className = '' }) => {
   return (
     <h2
-      className={classNames(
+      className={clsx(
         className,
         'mb-2 text-2xl font-extrabold uppercase lg:text-5xl'
       )}
@@ -28,7 +27,7 @@ const H2 = ({ children, className = '' }) => {
 const H3 = ({ children, className = '' }) => {
   return (
     <h3
-      className={classNames(
+      className={clsx(
         className,
         'mb-2 text-xl font-extrabold uppercase lg:text-3xl'
       )}
@@ -40,7 +39,7 @@ const H3 = ({ children, className = '' }) => {
 const H4 = ({ children, className = '' }) => {
   return (
     <h4
-      className={classNames(
+      className={clsx(
         className,
         'mb-2 text-lg font-extrabold uppercase lg:text-xl'
       )}

@@ -1,4 +1,4 @@
-import classNames from 'classnames'
+import { clsx } from 'clsx'
 import Image from 'next/image'
 import { useRef, useState } from 'react'
 import Lightbox from 'yet-another-react-lightbox'
@@ -71,7 +71,7 @@ export const MomentsGallery = ({ images = [] }) => {
       <section className="max-w-13xl mx-auto text-center">
         {/* desktop grid */}
         <div
-          className={classNames(
+          className={clsx(
             'mt-0 hidden grid-cols-2 gap-4 px-1',
             'lg:grid lg:grid-cols-12'
           )}
@@ -85,7 +85,7 @@ export const MomentsGallery = ({ images = [] }) => {
 
             return (
               <div
-                className={classNames(
+                className={clsx(
                   imageType.colSpan,
                   'bpd-gallery-image-container'
                 )}
@@ -112,7 +112,7 @@ export const MomentsGallery = ({ images = [] }) => {
 
         {/* mobile grid */}
         <div
-          className={classNames(
+          className={clsx(
             'mt-0 grid grid-cols-2 gap-4 px-1',
             'lg:hidden lg:grid-cols-12'
           )}
@@ -122,10 +122,7 @@ export const MomentsGallery = ({ images = [] }) => {
             const height = 600
 
             return (
-              <div
-                className={classNames('bpd-gallery-image-container')}
-                key={index}
-              >
+              <div className={clsx('bpd-gallery-image-container')} key={index}>
                 <Image
                   alt={image.altText}
                   className={`bpd-gallery-image cursor-pointer`}

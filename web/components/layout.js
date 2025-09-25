@@ -1,5 +1,6 @@
 import { useWindowSize } from '@uidotdev/usehooks'
-import classNames from 'classnames'
+import { clsx } from 'clsx'
+import { LoadingAnimationContext } from 'context/LoadingAnimationContext'
 import useIsDesktop from 'hooks/useIsDesktop'
 import { useRouter } from 'next/dist/client/router'
 import dynamic from 'next/dynamic'
@@ -10,7 +11,6 @@ import React, { useContext, useEffect, useState } from 'react'
 import ReactPlayer from 'react-player'
 import { urlForSanitySource } from '../lib/urlForSanitySource'
 import { ClientOnly } from './client-only'
-import { LoadingAnimationContext } from 'context/LoadingAnimationContext'
 
 const LoadingAnimation = dynamic(() => import('./loading-animation'))
 
@@ -228,7 +228,7 @@ const Layout = ({
       </Head>
 
       <div
-        className={classNames(
+        className={clsx(
           'pointer-events-none fixed inset-0 z-30 bg-black transition-opacity duration-[2400ms]',
           isOverlayVisible ? 'opacity-100' : 'opacity-0',
           showLoadingAnimation ? 'delay-[2700ms]' : 'delay-[700ms]'
@@ -242,14 +242,14 @@ const Layout = ({
       </div>
 
       <div
-        className={classNames(
+        className={clsx(
           'top-0 z-50 w-full lg:absolute',
           !menuOpen && 'absolute',
           menuOpen && 'sticky'
         )}
       >
         <div
-          className={classNames(
+          className={clsx(
             {
               'opacity-100': menuOpen,
               'opacity-0': !menuOpen,
@@ -298,7 +298,7 @@ const Layout = ({
         </div>
       </div>
       <nav
-        className={classNames(
+        className={clsx(
           {
             'translate-x-0': menuOpen,
             'translate-x-4 opacity-0': !menuOpen,
@@ -314,7 +314,7 @@ const Layout = ({
             <Link
               href={navItem.href}
               key={index}
-              className={classNames(
+              className={clsx(
                 `${
                   !hoveredMenuItem || hoveredMenuItem === navItem.href
                     ? 'text-white'
@@ -328,7 +328,7 @@ const Layout = ({
               onMouseLeave={() => setHoveredMenuItem('')}
             >
               <span
-                className={classNames(
+                className={clsx(
                   {
                     'text-gold': navItem.href === router.pathname,
                     'text-gold opacity-50': navItem.href === router.pathname,
@@ -339,7 +339,7 @@ const Layout = ({
                 {navItem.name}
               </span>
               <span
-                className={classNames(
+                className={clsx(
                   {
                     'w-full': hoveredMenuItem === navItem.href,
                     'w-0': hoveredMenuItem !== navItem.href,
@@ -357,7 +357,7 @@ const Layout = ({
       </nav>
 
       <div
-        className={classNames(
+        className={clsx(
           'top-0 z-20 flex w-full items-center justify-between px-6 py-4 lg:absolute',
           menuOpen && 'fixed',
           !menuOpen && 'sticky bg-black lg:bg-transparent'
@@ -391,7 +391,7 @@ const Layout = ({
               aria-label="Open menu"
             >
               <span
-                className={classNames(
+                className={clsx(
                   {
                     'opacity-100': !menuOpen,
                     'opacity-0': menuOpen,
@@ -417,7 +417,7 @@ const Layout = ({
       <header className="overflow-hidden">
         {isDesktop !== null && (
           <div
-            className={classNames(
+            className={clsx(
               {
                 'from-gray-700 via-gray-800 to-black lg:bg-linear-to-b lg:from-gray-700/25 lg:via-gray-800/25 lg:to-black/25':
                   heroVideoId,
@@ -428,7 +428,7 @@ const Layout = ({
           >
             {heroVideoId ? (
               <div
-                className={classNames(
+                className={clsx(
                   {
                     'opacity-100': videoPlaying,
                     'opacity-0': !videoPlaying,
@@ -502,7 +502,7 @@ const FooterNavItem = ({ navItem, className }) => {
   return (
     <Link
       href={navItem.href}
-      className={classNames(
+      className={clsx(
         'px-2 text-sm font-semibold text-white uppercase',
         'lg:px-4 lg:text-lg',
         'xl:text-2xl',
@@ -510,7 +510,7 @@ const FooterNavItem = ({ navItem, className }) => {
       )}
     >
       <div
-        className={classNames(
+        className={clsx(
           'px-2 py-1 transition-all',
           router.route === navItem.href
             ? 'border border-white'
@@ -525,9 +525,9 @@ const FooterNavItem = ({ navItem, className }) => {
 
 const MobileFooterMenu = () => {
   return (
-    <div className={classNames('mt-12 px-5 text-center', 'lg:hidden')}>
+    <div className={clsx('mt-12 px-5 text-center', 'lg:hidden')}>
       <div
-        className={classNames(
+        className={clsx(
           'flex flex-wrap justify-center gap-y-4 border-t border-gray-400 pt-4 pb-4',
           'divide-x divide-white'
         )}
@@ -537,7 +537,7 @@ const MobileFooterMenu = () => {
         })}
       </div>
       <div
-        className={classNames(
+        className={clsx(
           'flex flex-wrap justify-center gap-y-4 border-t border-gray-400 pt-4 pb-4',
           'divide-x divide-white'
         )}
@@ -553,13 +553,13 @@ const MobileFooterMenu = () => {
 const DesktopFooterMenu = () => {
   return (
     <div
-      className={classNames(
+      className={clsx(
         'hidden',
         'px-24 lg:mt-24 lg:flex lg:flex-wrap lg:items-start lg:justify-center lg:text-center'
       )}
     >
       <div
-        className={classNames(
+        className={clsx(
           'flex flex-wrap justify-center gap-y-4 border-t border-gray-400 pt-4 pb-4',
           'divide-x divide-white',
           'xl:px-8'

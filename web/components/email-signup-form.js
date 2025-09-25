@@ -1,4 +1,4 @@
-import classNames from 'classnames'
+import { clsx } from 'clsx'
 import { useState } from 'react'
 
 const SkullSvg = () => (
@@ -83,7 +83,7 @@ const EmailSignupForm = ({
             <div className="mx-auto mt-6 flex w-full max-w-sm justify-center">
               <div className="flex w-full items-center justify-center gap-1 rounded-sm">
                 <button
-                  className={classNames(
+                  className={clsx(
                     'group flex items-center gap-x-2 border-2 border-black px-2 py-1 font-bold tracking-widest uppercase transition-colors',
                     'hover:border-white hover:bg-white hover:text-black'
                   )}
@@ -130,7 +130,7 @@ const EmailSignupForm = ({
                   required
                 />
                 <button
-                  className={classNames(
+                  className={clsx(
                     'group flex items-center gap-x-2 rounded-md border-2 border-gray-300 px-4 py-2 transition-colors',
                     'hover:bg-gold hover:text-black'
                   )}

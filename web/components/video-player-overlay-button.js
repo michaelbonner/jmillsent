@@ -1,4 +1,4 @@
-import classNames from 'classnames'
+import { clsx } from 'clsx'
 import { memo } from 'react'
 import { GrPlay } from 'react-icons/gr'
 import { twMerge } from 'tailwind-merge'
@@ -17,7 +17,7 @@ const VideoPlayerOverlayButtonNotMemoized = ({
 }) => {
   return (
     <button
-      className={classNames(
+      className={clsx(
         // showVideoOverlay && 'opacity-100',
         // !showVideoOverlay && 'pointer-events-none opacity-0',
         hasClicked &&
@@ -28,7 +28,7 @@ const VideoPlayerOverlayButtonNotMemoized = ({
       onClick={handleOverlayClick}
     >
       <div
-        className={classNames(
+        className={clsx(
           'absolute inset-0 h-full w-full',
           !disableGradientOverlay &&
             'bg-linear-to-r from-black via-transparent to-transparent',
@@ -36,20 +36,20 @@ const VideoPlayerOverlayButtonNotMemoized = ({
         )}
       ></div>
       <div
-        className={classNames(
+        className={clsx(
           'transition-all duration-500',
           showVideoOverlay ? 'opacity-100' : 'opacity-0'
         )}
       >
         <div
-          className={classNames(
+          className={clsx(
             `absolute inset-0 flex h-full w-full items-center justify-start gap-2 pl-2 md:gap-4 md:py-[40px] lg:pl-12`
           )}
         >
           {!isIpad && (
             <div className="z-10 flex cursor-pointer items-center justify-center bg-transparent text-4xl xl:justify-start xl:text-6xl">
               <div
-                className={classNames(
+                className={clsx(
                   `bpd-white-icon ml-1 flex items-center justify-center rounded-full border border-gray-300 transition-opacity duration-500 md:border-2`
                 )}
               >

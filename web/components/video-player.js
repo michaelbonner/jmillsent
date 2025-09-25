@@ -1,5 +1,5 @@
 import Vimeo from '@vimeo/player'
-import classNames from 'classnames'
+import { clsx } from 'clsx'
 import Image from 'next/image'
 import {
   memo,
@@ -469,7 +469,7 @@ const VideoPlayerComponent = ({
 
   return (
     <article
-      className={classNames(
+      className={clsx(
         {
           'flex h-screen flex-col items-center justify-center': isFullscreen,
         },
@@ -480,7 +480,7 @@ const VideoPlayerComponent = ({
       <div className={playerState === 'initial' ? 'block' : 'hidden'}>
         <div className="container mx-auto">
           <div
-            className={classNames(
+            className={clsx(
               `aspect-w-${videoWidthAspectRatio}`,
               `aspect-h-${videoHeightAspectRatio}`,
               `transition-all duration-700`
@@ -519,7 +519,7 @@ const VideoPlayerComponent = ({
         }
       >
         <div
-          className={classNames(
+          className={clsx(
             {
               'w-full': isFullscreen || noContainer,
               container: !isFullscreen && !noContainer,
@@ -529,7 +529,7 @@ const VideoPlayerComponent = ({
           )}
         >
           <div
-            className={classNames(
+            className={clsx(
               `relative lg:my-0`,
               `aspect-w-${videoWidthAspectRatio} aspect-h-${videoHeightAspectRatio}`,
               `transition-all duration-700`,
@@ -593,7 +593,7 @@ const VideoPlayerComponent = ({
       <div className={playerState === 'poster' ? 'block' : 'hidden'}>
         <div className="container mx-auto">
           <div
-            className={classNames(
+            className={clsx(
               `aspect-w-${videoWidthAspectRatio}`,
               `aspect-h-${videoHeightAspectRatio}`,
               `transition-all duration-700`

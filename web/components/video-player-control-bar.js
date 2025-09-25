@@ -1,4 +1,4 @@
-import classNames from 'classnames'
+import { clsx } from 'clsx'
 import { useEffect, useRef, useState } from 'react'
 import { GrPause, GrPlay, GrVolume, GrVolumeMute } from 'react-icons/gr'
 
@@ -59,7 +59,7 @@ export const VideoPlayerControlBar = ({
 
   return (
     <div
-      className={classNames(
+      className={clsx(
         'absolute right-0 bottom-4 left-0 z-10 flex items-center gap-x-2 px-8 pt-3 opacity-0 duration-500',
         'md:gap-x-8',
         'group-hover:opacity-100',
@@ -74,7 +74,7 @@ export const VideoPlayerControlBar = ({
         title="Play/Pause"
       >
         <GrPause
-          className={classNames(
+          className={clsx(
             `bpd-white-icon`,
             {
               'opacity-100': isPlaying,
@@ -84,7 +84,7 @@ export const VideoPlayerControlBar = ({
           )}
         />
         <GrPlay
-          className={classNames(
+          className={clsx(
             `bpd-white-icon`,
             {
               'opacity-100': !isPlaying,

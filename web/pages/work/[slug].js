@@ -3,7 +3,7 @@ import { H3 } from '@/components/headings'
 import Layout from '@/components/layout'
 import { sanityClient } from '@/lib/sanity'
 import { urlForSanitySource } from '@/lib/urlForSanitySource'
-import classNames from 'classnames'
+import { clsx } from 'clsx'
 import groq from 'groq'
 import useIsDesktop from 'hooks/useIsDesktop'
 import dynamic from 'next/dynamic'
@@ -57,7 +57,7 @@ const WorkItem = ({ workItem = {} }) => {
         `${fullTitle} | JmillsENT | Motion Picture Studio + Film Agency`
       }
     >
-      <div className={classNames('pg-10 px-4', 'lg:px-8 lg:pt-28')}>
+      <div className={clsx('pg-10 px-4', 'lg:px-8 lg:pt-28')}>
         <div className="max-w-9xl my-12 rounded-2xl xl:mx-auto">
           {workItem.videoId && (
             <ClientOnly>

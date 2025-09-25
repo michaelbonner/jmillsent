@@ -3,7 +3,7 @@ import { H1, H2 } from '@/components/headings'
 import Layout from '@/components/layout'
 import { sanityClient } from '@/lib/sanity'
 import { PortableText } from '@portabletext/react'
-import classNames from 'classnames'
+import { clsx } from 'clsx'
 import groq from 'groq'
 import useIsDesktop from 'hooks/useIsDesktop'
 import dynamic from 'next/dynamic'
@@ -86,7 +86,7 @@ function Home({ homePage }) {
 
                 return (
                   <div
-                    className={classNames(
+                    className={clsx(
                       shouldBeBig && 'lg:col-span-2',
                       'overflow-hidden rounded-xl transition-opacity duration-500',
                       'xl:rounded-2xl',
@@ -133,7 +133,7 @@ function Home({ homePage }) {
             <div className="mt-3 grid gap-4 lg:flex lg:justify-center lg:gap-16">
               <Link
                 href="/about"
-                className={classNames(
+                className={clsx(
                   'rounded-lg border-2 border-black px-8 py-0.5 font-bold tracking-widest text-black uppercase transition-all',
                   'hover:bg-gold hover:border-black hover:text-black'
                 )}
@@ -142,7 +142,7 @@ function Home({ homePage }) {
               </Link>
               <Link
                 href="/work"
-                className={classNames(
+                className={clsx(
                   'rounded-lg border-2 border-black bg-black px-8 py-0.5 font-bold tracking-widest uppercase transition-all',
                   'hover:bg-gold hover:border-black hover:text-black'
                 )}

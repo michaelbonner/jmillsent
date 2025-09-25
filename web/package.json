@@ -21,7 +21,6 @@
     "@uidotdev/usehooks": "^2.4.1",
     "@vimeo/player": "^2.29.1",
     "aws-sdk": "^2.1692.0",
-    "classnames": "^2.5.1",
     "clsx": "^2.1.1",
     "date-fns": "^4.1.0",
     "formik": "^2.4.6",

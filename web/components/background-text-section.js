@@ -95,15 +95,15 @@ const BackgroundText = ({
                       'lg:border-white'
                     )}
                   >
-                    <span className="font-outline tracking-tighter">
+                    <span className="font-outline tracking-tighter uppercase">
                       {customButtonText1}
                     </span>
 
-                    <span className="font-bold tracking-wide">
+                    <span className="font-bold tracking-wide uppercase">
                       {customButtonText2}
                     </span>
 
-                    <span className="font-outline tracking-tighter">
+                    <span className="font-outline tracking-tighter uppercase">
                       {customButtonText3}
                     </span>
                   </Link>

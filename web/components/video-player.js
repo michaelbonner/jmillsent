@@ -388,7 +388,6 @@ const VideoPlayerComponent = ({
       onPauseProp?.()
     } else {
       onPlayProp?.()
-      dispatch({ type: 'setMuted', muted: false })
     }
 
     if (autoPlay && !isPlaying && !hasClicked) {

@@ -128,7 +128,7 @@ const VideoPlayerComponent = ({
     isIpad: false,
     isPlayerLoaded: false,
     isPlaying: false,
-    muted: false,
+    muted: !!autoPlay,
     playerState: 'initial',
     playingVideoId: videoIdShort || videoId,
     scrubberPosition: 0,

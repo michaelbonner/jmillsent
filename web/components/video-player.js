@@ -128,7 +128,7 @@ const VideoPlayerComponent = ({
     isIpad: false,
     isPlayerLoaded: false,
     isPlaying: false,
-    muted: true,
+    muted: false,
     playerState: 'initial',
     playingVideoId: videoIdShort || videoId,
     scrubberPosition: 0,
@@ -568,7 +568,7 @@ const VideoPlayerComponent = ({
       {playerState !== 'poster' && isDesktop === true && (
         <VideoPlayerControlBar
           handleScrubberClick={handleScrubberClick}
-          handleTogglePlay={handleTogglePlay}
+          handleTogglePlay={handleOverlayClick}
           isFullscreen={isFullscreen}
           isPlaying={isPlaying}
           muted={muted}

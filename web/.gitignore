@@ -35,3 +35,11 @@ yarn-error.log*
 .vercel
 
 public/sitemap*
+
+# Playwright
+node_modules/
+/test-results/
+/playwright-report/
+/blob-report/
+/playwright/.cache/
+/playwright/.auth/

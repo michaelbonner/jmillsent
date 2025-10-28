@@ -9,6 +9,7 @@
     "start": "next start",
     "lint": "eslint .",
     "preinstall": "npx only-allow bun",
+    "test": "playwright test",
     "out": "bun outdated"
   },
   "dependencies": {
@@ -50,8 +51,10 @@
     "yup": "^1.7.1"
   },
   "devDependencies": {
+    "@playwright/test": "^1.56.1",
     "@tailwindcss/forms": "^0.5.10",
     "@tailwindcss/postcss": "^4.1.16",
+    "@types/node": "^24.9.2",
     "eslint": "^9.38.0",
     "eslint-config-next": "^16.0.1",
     "postcss": "^8.5.6",

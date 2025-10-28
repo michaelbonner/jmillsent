@@ -5,6 +5,7 @@
   "scripts": {
     "dev": "next dev --turbopack",
     "build": "next build",
+    "knip": "bunx knip",
     "start": "next start",
     "lint": "eslint .",
     "preinstall": "npx only-allow bun",

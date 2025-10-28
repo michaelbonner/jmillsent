@@ -330,7 +330,7 @@ const SlideVideo = memo(
     }
 
     const scrubberWidth = useMemo(() => {
-      if (!scrubber.current) {
+      if (scrubber.current === null) {
         return 100
       }
 

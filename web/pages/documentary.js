@@ -1,4 +1,3 @@
-/* eslint-disable @next/next/no-img-element */
 import 'yet-another-react-lightbox/plugins/captions.css'
 import 'yet-another-react-lightbox/styles.css'
 

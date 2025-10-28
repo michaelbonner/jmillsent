@@ -5,7 +5,9 @@ function useIsLoggedIn(token) {
 
   useEffect(() => {
     if (typeof window !== 'undefined') {
-      setIsLoggedIn(localStorage.getItem('private-portfolio') === token)
+      setTimeout(() => {
+        setIsLoggedIn(localStorage.getItem('private-portfolio') === token)
+      }, 0)
     }
   }, [token])
   return [isLoggedIn, setIsLoggedIn]

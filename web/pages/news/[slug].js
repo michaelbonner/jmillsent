@@ -1,4 +1,3 @@
-/* eslint-disable @next/next/no-img-element */
 import { ClientOnly } from '@/components/client-only'
 import Date from '@/components/date'
 import LargeGoldBar from '@/components/large-gold-bar'

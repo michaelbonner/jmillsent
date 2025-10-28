@@ -1,4 +1,3 @@
-/* eslint-disable @next/next/no-img-element */
 import DividerBar from '@/components/divider-bar'
 import EmailSignupForm from '@/components/email-signup-form'
 import { H1 } from '@/components/headings'

@@ -623,23 +623,20 @@ const VideoPlayerComponent = ({
   )
 }
 
-export const VideoPlayer = memo(
-  VideoPlayerComponent,
-  (prevProps, nextProps) => {
-    const isSame =
-      prevProps.autoPlay === nextProps.autoPlay &&
-      prevProps.client === nextProps.client &&
-      prevProps.description === nextProps.description &&
-      prevProps.poster === nextProps.poster &&
-      prevProps.title === nextProps.title &&
-      prevProps.videoHeightAspectRatio === nextProps.videoHeightAspectRatio &&
-      prevProps.videoId === nextProps.videoId &&
-      prevProps.videoIdShort === nextProps.videoIdShort &&
-      prevProps.videoWidthAspectRatio === nextProps.videoWidthAspectRatio &&
-      prevProps.noContainer === nextProps.noContainer
+const VideoPlayer = memo(VideoPlayerComponent, (prevProps, nextProps) => {
+  const isSame =
+    prevProps.autoPlay === nextProps.autoPlay &&
+    prevProps.client === nextProps.client &&
+    prevProps.description === nextProps.description &&
+    prevProps.poster === nextProps.poster &&
+    prevProps.title === nextProps.title &&
+    prevProps.videoHeightAspectRatio === nextProps.videoHeightAspectRatio &&
+    prevProps.videoId === nextProps.videoId &&
+    prevProps.videoIdShort === nextProps.videoIdShort &&
+    prevProps.videoWidthAspectRatio === nextProps.videoWidthAspectRatio &&
+    prevProps.noContainer === nextProps.noContainer
 
-    return isSame
-  }
-)
+  return isSame
+})
 
 export default VideoPlayer

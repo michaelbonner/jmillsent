@@ -329,7 +329,6 @@ const VideoPlayerComponent = ({
     } else {
       // dispatch({ type: 'setPlayingVideoId', playingVideoId: videoId })
     }
-    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [isDesktop])
 
   useEffect(() => {

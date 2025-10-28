@@ -2,8 +2,9 @@
   "entry": ["pages/**/*.js", "./styles/globals.css"],
   "project": ["**/*.{js,ts}"],
   "ignoreDependencies": [
-    "@tailwindcss/typography",
+    "@tailwindcss/aspect-ratio",
     "@tailwindcss/forms",
+    "@tailwindcss/typography",
     "tailwindcss"
   ],
   "ignoreBinaries": ["only-allow", "outdated"]

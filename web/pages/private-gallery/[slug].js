@@ -1,4 +1,3 @@
-/* eslint-disable @next/next/no-img-element */
 import { ClientOnly } from '@/components/client-only'
 import { H3 } from '@/components/headings'
 import Layout from '@/components/layout'

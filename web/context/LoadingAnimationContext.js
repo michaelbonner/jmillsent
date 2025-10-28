@@ -25,7 +25,9 @@ const LoadingAnimationProvider = ({ children }) => {
   }, [hasVisitedAnyPage, router.asPath, isAnimationComplete])
 
   useEffect(() => {
-    setIsOverlayVisible(false)
+    setTimeout(() => {
+      setIsOverlayVisible(false)
+    }, 0)
   }, [router.asPath])
 
   useEffect(() => {

@@ -17,7 +17,6 @@ function NotFound() {
     return () => {
       clearInterval(skullColorInterval)
     }
-    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [])
 
   return (

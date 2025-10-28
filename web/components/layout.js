@@ -7,7 +7,7 @@ import dynamic from 'next/dynamic'
 import Head from 'next/head'
 import Image from 'next/image'
 import Link from 'next/link'
-import React, { useContext, useEffect, useState } from 'react'
+import React, { useContext, useEffect, useMemo, useState } from 'react'
 import { urlForSanitySource } from '../lib/urlForSanitySource'
 import { ClientOnly } from './client-only'
 
@@ -62,13 +62,9 @@ const Layout = ({
   const [menuVisible, setMenuVisible] = useState(false)
   const router = useRouter()
   const [hoveredMenuItem, setHoveredMenuItem] = useState('')
-  const [headerStyles, setHeaderStyles] = useState({})
-  const [showHero, setShowHero] = useState(false)
   const [videoPlaying, setVideoPlaying] = useState(false)
   const { width: windowWidth, height: windowHeight } = useWindowSize()
   const heroContainerRef = React.createRef()
-  const [heroVideoHeight, setHeroVideoHeight] = useState('42vw')
-  const [heroVideoWidth, setHeroVideoWidth] = useState('100vw')
   const isDesktop = useIsDesktop()
   const {
     showLoadingAnimation,
@@ -115,10 +111,42 @@ const Layout = ({
     }
   }, [router])
 
-  useEffect(() => {
+  const showHero = useMemo(() => {
+    return heroImageUrl || heroVideoId
+  }, [heroImageUrl, heroVideoId])
+
+  const { heroVideoHeight, heroVideoWidth } = useMemo(() => {
+    if (isDesktop === false && !heroVideoId) {
+      return {
+        heroVideoHeight: `27.5vh`,
+        heroVideoWidth: `100vw`,
+      }
+    }
+
+    if (heroVideoWidthInPixels && heroVideoHeightInPixels) {
+      const scaleFactor = windowWidth / heroVideoWidthInPixels
+
+      return {
+        heroVideoHeight: `${heroVideoHeightInPixels * scaleFactor}px`,
+        heroVideoWidth: `${heroVideoWidthInPixels * scaleFactor}px`,
+      }
+    }
+
+    return {
+      heroVideoHeight: `42vw`,
+      heroVideoWidth: `100vw`,
+    }
+  }, [
+    heroVideoId,
+    isDesktop,
+    heroVideoHeightInPixels,
+    heroVideoWidthInPixels,
+    windowWidth,
+  ])
+
+  const headerStyles = useMemo(() => {
     if (heroImageUrl || heroVideoId) {
-      setShowHero(true)
-      setHeaderStyles({
+      return {
         backgroundImage: heroImageUrl
           ? `url(${urlForSanitySource(heroImageUrl).width(1400).format('webp').quality(80).url()})`
           : '',
@@ -128,36 +156,17 @@ const Layout = ({
         height: heroVideoHeight,
         width: heroVideoWidth,
         maxHeight: `70vh`,
-      })
+      }
     }
-  }, [heroVideoId, heroImageUrl, heroVideoHeight, heroVideoWidth])
+
+    return {}
+  }, [heroImageUrl, heroVideoId, heroVideoHeight, heroVideoWidth])
 
   useEffect(() => {
     setTimeout(() => {
       setVideoPlaying(true)
     }, 1500)
   }, [])
-
-  useEffect(() => {
-    if (heroVideoWidthInPixels && heroVideoHeightInPixels) {
-      const scaleFactor = windowWidth / heroVideoWidthInPixels
-
-      setHeroVideoHeight(`${heroVideoHeightInPixels * scaleFactor}px`)
-      setHeroVideoWidth(`${heroVideoWidthInPixels * scaleFactor}px`)
-    }
-  }, [
-    heroContainerRef,
-    heroVideoHeightInPixels,
-    heroVideoWidthInPixels,
-    windowHeight,
-    windowWidth,
-  ])
-
-  useEffect(() => {
-    if (isDesktop === false && !heroVideoId) {
-      setHeroVideoHeight(`27.5vh`)
-    }
-  }, [heroVideoId, isDesktop])
 
   return (
     <div className="relative">

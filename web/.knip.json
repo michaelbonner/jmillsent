@@ -4,6 +4,7 @@
   "ignoreDependencies": [
     "@tailwindcss/typography",
     "@tailwindcss/forms",
-    "eslint"
-  ]
+    "tailwindcss"
+  ],
+  "ignoreBinaries": ["only-allow", "outdated"]
 }

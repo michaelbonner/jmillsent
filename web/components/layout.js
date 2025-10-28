@@ -8,7 +8,6 @@ import Head from 'next/head'
 import Image from 'next/image'
 import Link from 'next/link'
 import React, { useContext, useEffect, useState } from 'react'
-import ReactPlayer from 'react-player'
 import { urlForSanitySource } from '../lib/urlForSanitySource'
 import { ClientOnly } from './client-only'
 
@@ -439,15 +438,12 @@ const Layout = ({
                 width={heroVideoWidth}
                 ref={heroContainerRef}
               >
-                <ReactPlayer
-                  allow="autoplay; fullscreen; picture-in-picture"
-                  controls={false}
-                  frameBorder="0"
-                  height={heroVideoHeight}
-                  loop={true}
-                  muted={true}
-                  playing={true}
-                  playsInline={true}
+                <iframe
+                  allow="autoplay; fullscreen; picture-in-picture; clipboard-write; encrypted-media"
+                  allowFullScreen={true}
+                  mozallowfullscreen="true"
+                  src={`https://player.vimeo.com/video/${heroVideoId}?badge=0&autopause=0&player_id=0&app_id=58479&autoplay=true&background=true`}
+                  webkitallowfullscreen="true"
                   style={{
                     position: 'absolute',
                     top: 0,
@@ -458,10 +454,6 @@ const Layout = ({
                     width: heroVideoWidth,
                     height: heroVideoHeight,
                   }}
-                  onPlay={() => setVideoPlaying(true)}
-                  title="JME Film Studio"
-                  src={`https://player.vimeo.com/video/${heroVideoId}?badge=0&autopause=0&player_id=0&app_id=58479&autoplay=true&background=true`}
-                  width={heroVideoWidth}
                 />
                 {heroContent && (
                   <div className="relative z-30 h-full w-screen text-white">

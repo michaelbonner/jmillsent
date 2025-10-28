@@ -6,7 +6,7 @@ import Zoom from 'yet-another-react-lightbox/plugins/zoom'
 
 import 'yet-another-react-lightbox/styles.css'
 
-export const MomentsGallery = ({ images = [] }) => {
+const MomentsGallery = ({ images = [] }) => {
   const [isGalleryModelOpen, setIsGalleryModelOpen] = useState(false)
   const [photoIndex, setPhotoIndex] = useState(0)
 

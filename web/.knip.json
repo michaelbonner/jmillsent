@@ -1,0 +1,9 @@
+{
+  "entry": ["pages/**/*.js", "./styles/globals.css"],
+  "project": ["**/*.{js,ts}"],
+  "ignoreDependencies": [
+    "@tailwindcss/typography",
+    "@tailwindcss/forms",
+    "eslint"
+  ]
+}

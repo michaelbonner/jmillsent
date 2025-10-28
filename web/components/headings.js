@@ -36,16 +36,5 @@ const H3 = ({ children, className = '' }) => {
     </h3>
   )
 }
-const H4 = ({ children, className = '' }) => {
-  return (
-    <h4
-      className={clsx(
-        className,
-        'mb-2 text-lg font-extrabold uppercase lg:text-xl'
-      )}
-    >
-      {children}
-    </h4>
-  )
-}
-export { H1, H2, H3, H4 }
+
+export { H1, H2, H3 }

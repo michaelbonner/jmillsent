@@ -21,7 +21,7 @@
     "@tailwindcss/aspect-ratio": "^0.4.2",
     "@tailwindcss/typography": "^0.5.19",
     "@uidotdev/usehooks": "^2.4.1",
-    "@vimeo/player": "^2.30.0",
+    "@vimeo/player": "^2.30.1",
     "aws-sdk": "^2.1692.0",
     "clsx": "^2.1.1",
     "date-fns": "^4.1.0",

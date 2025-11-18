@@ -56,7 +56,7 @@ function Home({ homePage }) {
       <div className="mx-auto max-w-7xl px-8">
         <div className="container mx-auto mt-12 text-center text-white lg:mt-24">
           <H2>{homePage.section1Title}</H2>
-          <div className="prose-lg mx-auto mt-4 -mb-2 text-center lg:mt-10 lg:max-w-5xl">
+          <div className="prose prose-lg prose-invert mx-auto mt-4 -mb-2 text-center lg:mt-10 lg:max-w-5xl">
             <PortableText value={homePage.section1Body} />
           </div>
         </div>

@@ -50,7 +50,7 @@ function Portfolio({ portfolioPage, portfolioItems }) {
             </div>
             {portfolioPage.portfolioPageDescription && (
               <div className="container mx-auto mt-12 px-12 text-center text-white">
-                <div className="prose-lg mx-auto max-w-lg border py-1 text-center">
+                <div className="prose prose-lg prose-invert mx-auto max-w-lg border py-1 text-center">
                   <PortableText
                     value={portfolioPage.portfolioPageDescription}
                   />

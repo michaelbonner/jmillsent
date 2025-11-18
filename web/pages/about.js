@@ -156,7 +156,7 @@ function About({ aboutPage }) {
               </div>
             </div>
             {aboutPage.section1Body && (
-              <div className="prose-lg mx-auto mt-4 -mb-2 max-w-6xl px-4 text-center lg:mt-10">
+              <div className="prose prose-lg mx-auto mt-4 -mb-2 max-w-6xl px-4 text-center lg:mt-10">
                 <PortableText value={aboutPage.section1Body} />
               </div>
             )}
@@ -300,7 +300,7 @@ function About({ aboutPage }) {
                     <div
                       className={clsx(
                         'relative z-10 flex h-full translate-y-1/2 flex-col items-center justify-center py-3 transition-transform duration-300 group-hover:overflow-auto',
-                        'group-hover:-translate-y-0'
+                        'group-hover:translate-y-0'
                       )}
                     >
                       <div
@@ -435,7 +435,7 @@ function About({ aboutPage }) {
               )}
             </div>
             {aboutPage.directorDescription && (
-              <div className="prose-lg mx-auto max-w-5xl px-4">
+              <div className="prose prose-lg prose-invert mx-auto max-w-5xl px-4">
                 <PortableText value={aboutPage.directorDescription} />
               </div>
             )}
@@ -584,7 +584,7 @@ function About({ aboutPage }) {
               })}
             </div>
             {aboutPage.utahLocationsDescription && (
-              <div className="prose-lg mx-auto max-w-3xl px-4 text-center">
+              <div className="prose prose-lg prose-invert mx-auto max-w-3xl px-4 text-center">
                 <PortableText value={aboutPage.utahLocationsDescription} />
               </div>
             )}
@@ -635,7 +635,7 @@ function About({ aboutPage }) {
               </ClientOnly>
             </div>
             {aboutPage.company3Body && (
-              <div className="prose-lg mx-auto mt-6 max-w-5xl px-4 text-center font-light text-white">
+              <div className="prose prose-lg prose-invert mx-auto mt-6 max-w-5xl px-4 text-center font-light text-white">
                 <PortableText value={aboutPage.company3Body} />
               </div>
             )}
@@ -712,7 +712,7 @@ function About({ aboutPage }) {
                           alt={ravensCard.caption}
                         />
                       </div>
-                      <div className="prose-sm lg:prose-lg">
+                      <div className="prose prose-sm lg:prose-lg prose-invert">
                         <PortableText value={ravensCard.body} />
                       </div>
                     </Link>

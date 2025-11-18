@@ -146,7 +146,7 @@ function Studio({ studioPage }) {
           {studioPage.section1Body && (
             <div
               className={clsx(
-                'prose-lg mx-auto mt-4 -mb-2 max-w-5xl px-4',
+                'prose prose-lg mx-auto mt-4 -mb-2 max-w-5xl px-4',
                 'lg:mt-10'
               )}
             >

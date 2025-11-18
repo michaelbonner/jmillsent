@@ -99,7 +99,7 @@ export const WorkItemCategory = ({
               <li
                 className={clsx(
                   'relative flex justify-center border-r text-xs',
-                  '[&:last-child]:border-r-0',
+                  'last:border-r-0',
                   'lg:px-4 lg:text-base'
                 )}
                 key={index}
@@ -177,7 +177,7 @@ export const WorkItemCategory = ({
         {workPage.workPageDescription && (
           <div className="container mx-auto mt-12 px-12 text-center text-white">
             {workPage.workPageDescription && (
-              <div className="prose-lg mx-auto max-w-lg border py-1 text-center">
+              <div className="prose prose-lg prose-invert mx-auto max-w-lg border py-1 text-center">
                 <PortableText value={workPage.workPageDescription} />
               </div>
             )}

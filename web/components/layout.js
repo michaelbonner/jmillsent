@@ -237,9 +237,9 @@ const Layout = ({
 
       <div
         className={clsx(
-          'pointer-events-none fixed inset-0 z-30 bg-black transition-opacity duration-[2400ms]',
+          'pointer-events-none fixed inset-0 z-30 bg-black transition-opacity duration-2400',
           isOverlayVisible ? 'opacity-100' : 'opacity-0',
-          showLoadingAnimation ? 'delay-[2700ms]' : 'delay-[700ms]'
+          showLoadingAnimation ? 'delay-2700' : 'delay-700'
         )}
       >
         {showLoadingAnimation && !isAnimationComplete && (

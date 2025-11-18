@@ -168,7 +168,7 @@ const Documentary = ({ documentaryPage }) => {
                   className="mx-auto"
                 />
               </div>
-              <div className="prose-lg md:w-3/4">
+              <div className="prose prose-lg prose-invert md:w-3/4">
                 <h2 className="mb-0 text-3xl font-bold uppercase lg:text-5xl">
                   {documentaryPage.bodyHeader}
                 </h2>

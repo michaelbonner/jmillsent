@@ -313,7 +313,7 @@ const Layout = ({
             fixed: menuVisible,
             hidden: !menuVisible,
           },
-          'inset-0 transform bg-black pb-[20px] transition-all ease-in',
+          'inset-0 transform bg-black/92 backdrop-blur-lg pb-[20px] transition-all ease-in',
           'z-40 flex flex-col items-center justify-center overflow-y-scroll text-right duration-300'
         )}
       >
@@ -323,10 +323,9 @@ const Layout = ({
               href={navItem.href}
               key={index}
               className={clsx(
-                `${
-                  !hoveredMenuItem || hoveredMenuItem === navItem.href
-                    ? 'text-white'
-                    : 'text-gray-500'
+                `${!hoveredMenuItem || hoveredMenuItem === navItem.href
+                  ? 'text-white'
+                  : 'text-gray-500'
                 }`,
                 `group relative max-w-[80vw] py-[3vh] font-bold uppercase lg:py-6`,
                 `text-2xl tracking-wider md:text-4xl xl:text-6xl`,

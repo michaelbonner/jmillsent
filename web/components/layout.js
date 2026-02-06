@@ -234,6 +234,11 @@ const Layout = ({
         />
         <link
           rel="preconnect"
+          href="https://use.typekit.net"
+          crossOrigin="true"
+        />
+        <link
+          rel="preconnect"
           href="https://cdn.sanity.io"
           crossOrigin="true"
         />

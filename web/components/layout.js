@@ -10,7 +10,6 @@ import Link from 'next/link'
 import React, { useContext, useEffect, useMemo, useState } from 'react'
 import { urlForSanitySource } from '../lib/urlForSanitySource'
 import { ClientOnly } from './client-only'
-import { JsonLd } from './json-ld'
 
 const LoadingAnimation = dynamic(() => import('./loading-animation'))
 
@@ -257,30 +256,36 @@ const Layout = ({
           href="https://i.vimeocdn.com"
           crossOrigin="true"
         />
-        <JsonLd
-          data={{
-            '@context': 'https://schema.org',
-            '@type': 'Organization',
-            '@id': 'https://www.jmillsent.com/#organization',
-            name: 'Jmills Entertainment',
-            url: 'https://www.jmillsent.com',
-            logo: 'https://www.jmillsent.com/images/jme_film_co_circle_white.svg',
-            sameAs: [
-              'https://www.instagram.com/jmillsent',
-              'https://vimeo.com/jmillsent',
-              'https://www.linkedin.com/company/jmillsentertainment',
-            ],
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{
+            __html: JSON.stringify({
+              '@context': 'https://schema.org',
+              '@type': 'Organization',
+              '@id': 'https://www.jmillsent.com/#organization',
+              name: 'Jmills Entertainment',
+              url: 'https://www.jmillsent.com',
+              logo: 'https://www.jmillsent.com/images/jme_film_co_circle_white.svg',
+              sameAs: [
+                'https://www.instagram.com/jmillsent',
+                'https://vimeo.com/jmillsent',
+                'https://www.linkedin.com/company/jmillsentertainment',
+              ],
+            }),
           }}
         />
-        <JsonLd
-          data={{
-            '@context': 'https://schema.org',
-            '@type': 'WebSite',
-            name: 'JmillsENT',
-            url: 'https://www.jmillsent.com',
-            publisher: {
-              '@id': 'https://www.jmillsent.com/#organization',
-            },
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{
+            __html: JSON.stringify({
+              '@context': 'https://schema.org',
+              '@type': 'WebSite',
+              name: 'JmillsENT',
+              url: 'https://www.jmillsent.com',
+              publisher: {
+                '@id': 'https://www.jmillsent.com/#organization',
+              },
+            }),
           }}
         />
       </Head>

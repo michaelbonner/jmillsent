@@ -8,6 +8,7 @@ import groq from 'groq'
 import useIsDesktop from 'hooks/useIsDesktop'
 import dynamic from 'next/dynamic'
 import Image from 'next/image'
+import Head from 'next/head'
 import { useState } from 'react'
 import { JsonLd } from '@/components/json-ld'
 
@@ -58,6 +59,36 @@ const WorkItem = ({ workItem = {} }) => {
         `${fullTitle} | JmillsENT | Motion Picture Studio + Film Agency`
       }
     >
+      {workItem.videoId && (
+        <Head>
+          <meta property="og:type" content="video.other" />
+          <meta
+            property="og:video"
+            content={`https://player.vimeo.com/video/${workItem.videoId}`}
+          />
+          <meta property="og:video:type" content="text/html" />
+          {workItem.poster && (
+            <meta
+              property="og:image"
+              content={urlForSanitySource(workItem.poster)
+                .width(1200)
+                .height(630)
+                .format('webp')
+                .url()}
+            />
+          )}
+          {workItem.poster && (
+            <meta
+              name="twitter:image"
+              content={urlForSanitySource(workItem.poster)
+                .width(1200)
+                .height(630)
+                .format('webp')
+                .url()}
+            />
+          )}
+        </Head>
+      )}
       {workItem.videoId && (
         <JsonLd
           data={{

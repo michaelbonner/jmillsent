@@ -213,11 +213,25 @@ const Layout = ({
         <meta property="og:type" content="website" />
         <meta property="og:description" content={description} />
         <meta
+          property="og:url"
+          content={`https://www.jmillsent.com${router.asPath.split('?')[0]}`}
+        />
+        <meta property="og:site_name" content="JmillsENT" />
+        <meta
           property="og:image"
           content="https://www.jmillsent.com/og-image.jpg"
         />
         <meta name="description" content={description} />
         <meta name="twitter:card" content="summary_large_image" />
+        <meta
+          name="twitter:title"
+          content={title || 'JmillsENT | Motion Picture Studio + Film Agency'}
+        />
+        <meta name="twitter:description" content={description} />
+        <meta
+          name="twitter:image"
+          content="https://www.jmillsent.com/og-image.jpg"
+        />
         <link
           rel="preconnect"
           href="https://cdn.sanity.io"

@@ -9,6 +9,7 @@ import useIsDesktop from 'hooks/useIsDesktop'
 import dynamic from 'next/dynamic'
 import Image from 'next/image'
 import { useState } from 'react'
+import { JsonLd } from '@/components/json-ld'
 
 const VideoPlayer = dynamic(() => import('@/components/video-player'))
 
@@ -57,6 +58,25 @@ const WorkItem = ({ workItem = {} }) => {
         `${fullTitle} | JmillsENT | Motion Picture Studio + Film Agency`
       }
     >
+      {workItem.videoId && (
+        <JsonLd
+          data={{
+            '@context': 'https://schema.org',
+            '@type': 'VideoObject',
+            name: fullTitle,
+            description: workItem.description || fullTitle,
+            thumbnailUrl: workItem.poster
+              ? urlForSanitySource(workItem.poster)
+                  .width(1280)
+                  .height(720)
+                  .format('webp')
+                  .url()
+              : undefined,
+            uploadDate: workItem.date || undefined,
+            embedUrl: `https://player.vimeo.com/video/${workItem.videoId}`,
+          }}
+        />
+      )}
       <div className={clsx('pg-10 px-4', 'lg:px-8 lg:pt-28')}>
         <div className="max-w-9xl my-12 rounded-2xl xl:mx-auto">
           {workItem.videoId && (
@@ -287,11 +307,14 @@ export async function getStaticProps({ params }) {
         _id,
         behindTheScenes,
         clientName,
+        date,
         description,
         credits,
         extraPaddingOnVideo,
         frames,
         poster,
+        seoTitle,
+        seoDescription,
         slug,
         title,
         videoId,

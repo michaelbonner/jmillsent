@@ -7,9 +7,9 @@
   "author": "Bootpack Digital <dev@bootpackdigital.com>",
   "license": "UNLICENSED",
   "scripts": {
-    "start": "sanity start",
-    "dev": "sanity start",
+    "dev": "sanity dev",
     "build": "sanity build",
+    "start": "sanity start",
     "preinstall": "npx only-allow bun",
     "out": "bun outdated",
     "up": "bun update"
@@ -18,25 +18,25 @@
     "sanity"
   ],
   "dependencies": {
-    "@sanity/base": "^2.36.2",
-    "@sanity/components": "^2.14.0",
-    "@sanity/core": "^2.36.2",
-    "@sanity/dashboard": "^2.36.0",
-    "@sanity/default-layout": "^2.36.2",
-    "@sanity/default-login": "^2.36.2",
-    "@sanity/desk-tool": "^2.36.2",
-    "@sanity/vision": "^2.36.6",
-    "prop-types": "^15.8.1",
-    "react": "^17.0.2",
-    "react-dom": "^17.0.2",
+    "@sanity/dashboard": "^5.0.1",
+    "@sanity/orderable-document-list": "^1.5.0",
+    "@sanity/vision": "^3.98.1",
+    "react": "^19.0.0",
+    "react-dom": "^19.0.0",
     "react-icons": "^5.5.0",
-    "sanity-plugin-dashboard-widget-vercel": "^1.1.5",
-    "sanity-plugin-media": "^1.5.1",
-    "sanity-plugin-order-documents": "^0.0.22",
-    "sanity-plugin-s3-dam": "^0.6.2",
-    "styled-components": "^5.3.11"
+    "react-is": "^19.0.0",
+    "sanity": "^5.8.1",
+    "sanity-plugin-dashboard-widget-vercel": "^3.1.6",
+    "sanity-plugin-media": "^4.1.1",
+    "sanity-plugin-s3-files": "^1.0.2",
+    "styled-components": "^6.1.15"
   },
   "devDependencies": {
-    "@sanity/cli": "^3.98.1"
+    "@sanity/cli": "^5.8.1"
+  },
+  "overrides": {
+    "sanity-plugin-s3-files": {
+      "sanity": "$sanity"
+    }
   }
 }

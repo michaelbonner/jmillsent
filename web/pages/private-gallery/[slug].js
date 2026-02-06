@@ -7,6 +7,7 @@ import groq from 'groq'
 import useIsDesktop from 'hooks/useIsDesktop'
 import useIsLoggedIn from 'hooks/useIsLoggedIn'
 import dynamic from 'next/dynamic'
+import Head from 'next/head'
 import Image from 'next/image'
 import Link from 'next/link'
 import { useState } from 'react'
@@ -77,6 +78,9 @@ const PortfolioItem = ({ portfolioItem = {}, portfolioPagePassword }) => {
         `${fullTitle} | JmillsENT | Motion Picture Studio + Film Agency`
       }
     >
+      <Head>
+        <meta name="robots" content="noindex, nofollow" />
+      </Head>
       <div className="mt-28">
         {!isLoggedIn && (
           <PasswordLoginForm

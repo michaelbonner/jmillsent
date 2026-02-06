@@ -1,3 +1,4 @@
+import Head from 'next/head'
 import Layout from '@/components/layout'
 import { PasswordLoginForm } from '@/components/password-login-form'
 import PortfolioItemTile from '@/components/portfolio-item-tile'
@@ -27,6 +28,9 @@ function Portfolio({ portfolioPage, portfolioItems }) {
       title={portfolioPage.seoTitle}
       description={portfolioPage.seoDescription}
     >
+      <Head>
+        <meta name="robots" content="noindex, nofollow" />
+      </Head>
       <div className="mt-28">
         {!isLoggedIn && (
           <PasswordLoginForm

@@ -176,6 +176,10 @@ const Layout = ({
           {title || 'JmillsENT | Motion Picture Studio + Film Agency'}
         </title>
         <link
+          rel="canonical"
+          href={`https://www.jmillsent.com${router.asPath.split('?')[0]}`}
+        />
+        <link
           rel="preload"
           href="https://player.vimeo.com/api/player.js"
           as="script"

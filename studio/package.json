@@ -33,10 +33,5 @@
   },
   "devDependencies": {
     "@sanity/cli": "^5.8.1"
-  },
-  "overrides": {
-    "sanity-plugin-s3-files": {
-      "sanity": "$sanity"
-    }
   }
 }

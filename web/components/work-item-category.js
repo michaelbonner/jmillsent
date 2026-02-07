@@ -86,6 +86,11 @@ export const WorkItemCategory = ({
       }
     >
       <div className={clsx('lg:pt-28', '2xl:pt-32')}>
+        <h1 className="sr-only">
+          {workItemCategory !== defaultTab
+            ? `${currentCategory.name} ${workPage.seoTitle}`
+            : workPage.seoTitle}
+        </h1>
         <ul
           className={clsx(
             'mx-6 flex flex-wrap items-center justify-center gap-y-1 border-t py-4 font-semibold',

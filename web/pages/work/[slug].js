@@ -108,6 +108,7 @@ const WorkItem = ({ workItem = {} }) => {
           }}
         />
       )}
+      <h1 className="sr-only">{fullTitle}</h1>
       <div className={clsx('pg-10 px-4', 'lg:px-8 lg:pt-28')}>
         <div className="max-w-9xl my-12 rounded-2xl xl:mx-auto">
           {workItem.videoId && (

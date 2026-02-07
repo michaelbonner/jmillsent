@@ -103,7 +103,7 @@ const WorkItem = ({ workItem = {} }) => {
                   .format('webp')
                   .url()
               : undefined,
-            uploadDate: workItem.date || undefined,
+            uploadDate: workItem.date || workItem._createdAt,
             embedUrl: `https://player.vimeo.com/video/${workItem.videoId}`,
           }}
         />
@@ -336,6 +336,7 @@ export async function getStaticProps({ params }) {
       groq`
       *[_type == "workItem" && slug.current == $slug][0]{
         _id,
+        _createdAt,
         behindTheScenes,
         clientName,
         date,

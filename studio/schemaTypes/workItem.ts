@@ -53,7 +53,7 @@ export const workItem = defineType({
       title: 'Short hover clip - mp4 - S3',
       type: 's3-dam.media',
       options: {
-        accept: 'video/*',
+        accept: {'video/*': []},
         storeOriginalFilename: true,
       },
       description: 'Used on the /work page on hover',
@@ -63,7 +63,7 @@ export const workItem = defineType({
       title: 'Short hover clip - ogv - S3',
       type: 's3-dam.media',
       options: {
-        accept: 'video/*',
+        accept: {'video/*': []},
         storeOriginalFilename: true,
       },
       description: 'Used on the /work page on hover',

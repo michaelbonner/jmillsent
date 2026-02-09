@@ -52,7 +52,7 @@ export const portfolioItem = defineType({
       title: 'Short hover clip - mp4 - S3',
       type: 's3-dam.media',
       options: {
-        accept: 'video/*',
+        accept: {'video/*': []},
         storeOriginalFilename: true,
       },
     }),
@@ -61,7 +61,7 @@ export const portfolioItem = defineType({
       title: 'Short hover clip - ogv - S3',
       type: 's3-dam.media',
       options: {
-        accept: 'video/*',
+        accept: {'video/*': []},
         storeOriginalFilename: true,
       },
     }),

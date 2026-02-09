@@ -21,6 +21,9 @@ import {portfolioItem} from './portfolioItem'
 import {portfolioPage} from './portfolioPage'
 import {documentaryPage} from './documentaryPage'
 import {episode} from './episode'
+import {treatmentTitleSlide} from './treatmentTitleSlide'
+import {treatmentWelcomeSlide} from './treatmentWelcomeSlide'
+import {treatment} from './treatment'
 
 export const schemaTypes = [
   homePage,
@@ -46,4 +49,7 @@ export const schemaTypes = [
   portfolioPage,
   documentaryPage,
   episode,
+  treatmentTitleSlide,
+  treatmentWelcomeSlide,
+  treatment,
 ]

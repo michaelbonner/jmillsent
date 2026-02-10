@@ -54,8 +54,8 @@ function TitleSlide({ slide }) {
 
   const styles = {
     h1: clsx(
-      'font-black uppercase italic',
-      !slide.heading2 ? 'text-8xl' : 'text-7xl',
+      'font-black uppercase',
+      !slide.heading2 ? 'text-8xl' : 'text-7xl italic',
     ),
     h2: clsx(
       'text-2xl',

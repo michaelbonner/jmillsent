@@ -22,7 +22,7 @@ import {portfolioPage} from './portfolioPage'
 import {documentaryPage} from './documentaryPage'
 import {episode} from './episode'
 import {treatmentTitleSlide} from './treatmentTitleSlide'
-import {treatmentWelcomeSlide} from './treatmentWelcomeSlide'
+
 import {treatment} from './treatment'
 
 export const schemaTypes = [
@@ -50,6 +50,6 @@ export const schemaTypes = [
   documentaryPage,
   episode,
   treatmentTitleSlide,
-  treatmentWelcomeSlide,
+
   treatment,
 ]

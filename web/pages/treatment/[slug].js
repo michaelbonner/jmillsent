@@ -375,7 +375,7 @@ export async function getStaticPaths() {
     paths: paths
       .filter((path) => path?.slug?.current)
       .map((path) => ({ params: { slug: path.slug.current } })),
-    fallback: false,
+    fallback: 'blocking',
   }
 }
 

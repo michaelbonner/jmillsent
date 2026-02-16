@@ -4,6 +4,7 @@ import { PortableText } from '@portabletext/react'
 import clsx from 'clsx'
 import groq from 'groq'
 import Image from 'next/image'
+import Head from 'next/head'
 import { useCallback, useEffect, useMemo, useState } from 'react'
 
 function SlideBackground({ slide }) {
@@ -350,6 +351,34 @@ function useAssetPreloader(treatment) {
   return { loaded, progress }
 }
 
+function PrintSlide({ slide, treatment, index, totalSlides }) {
+  return (
+    <div
+      className="print-slide relative overflow-hidden"
+      style={{
+        width: SLIDE_WIDTH,
+        height: SLIDE_HEIGHT,
+        backgroundColor: slide.backgroundColor || '#000000',
+        '--treatment-primary': treatment.primaryColor || '#967738',
+        '--treatment-secondary': treatment.secondaryColor || '#FFFFFF',
+      }}
+    >
+      <div className="absolute inset-0 overflow-hidden">
+        <SlideBackground slide={slide} />
+      </div>
+      <div className="relative z-10 h-full w-full">
+        <SlideContent slide={slide} clientLogo={treatment.clientLogo} />
+      </div>
+      <SlideFrame
+        treatment={treatment}
+        slide={slide}
+        currentIndex={index}
+        totalSlides={totalSlides}
+      />
+    </div>
+  )
+}
+
 export default function TreatmentPage({ treatment }) {
   const [currentIndex, setCurrentIndex] = useState(0)
   const [visible, setVisible] = useState(true)
@@ -420,97 +449,152 @@ export default function TreatmentPage({ treatment }) {
   const showPageNumbers = standardSlideElements?.showPageNumbers
 
   return (
-    <div
-      className="flex h-dvh w-full items-center justify-center overflow-hidden"
-      style={{ backgroundColor: '#0C0C0D' }}
-    >
-      <div
-        className="group relative"
-        style={{
-          width: SLIDE_WIDTH,
-          height: SLIDE_HEIGHT,
-          transform: `scale(${scale})`,
-          transformOrigin: 'center center',
-          backgroundColor: currentSlide?.backgroundColor || '#000000',
-          '--treatment-primary': treatment.primaryColor || '#967738',
-          '--treatment-secondary': treatment.secondaryColor || '#FFFFFF',
-        }}
-      >
-        {/* Background layer */}
-        <div className="absolute inset-0 overflow-hidden">
-          <SlideBackground slide={currentSlide} />
-        </div>
+    <>
+      <Head>
+        <style>{`
+          @media print {
+            @page {
+              size: ${SLIDE_WIDTH}px ${SLIDE_HEIGHT}px;
+              margin: 0;
+            }
+            body {
+              margin: 0;
+              padding: 0;
+              -webkit-print-color-adjust: exact;
+              print-color-adjust: exact;
+            }
+          }
+        `}</style>
+      </Head>
 
-        {/* Slide content with fade transition */}
-        <div
-          className="relative z-10 h-full w-full transition-opacity duration-500"
-          style={{ opacity: visible ? 1 : 0 }}
-        >
-          <SlideContent slide={currentSlide} clientLogo={treatment.clientLogo} />
-        </div>
-
-        {/* Frame overlay */}
-        <SlideFrame
-          treatment={treatment}
-          slide={currentSlide}
-          currentIndex={currentIndex}
-          totalSlides={totalSlides}
-        />
-
-        {/* Navigation arrows */}
-        {currentIndex > 0 && (
-          <button
-            onClick={goPrev}
-            className="absolute left-4 top-1/2 z-30 -translate-y-1/2 rounded-full bg-black/30 p-3 text-white opacity-0 backdrop-blur-sm transition-all group-hover:opacity-100 hover:bg-black/50"
-            aria-label="Previous slide"
-          >
-            <svg
-              xmlns="http://www.w3.org/2000/svg"
-              fill="none"
-              viewBox="0 0 24 24"
-              strokeWidth={2}
-              stroke="currentColor"
-              className="h-6 w-6"
-            >
-              <path
-                strokeLinecap="round"
-                strokeLinejoin="round"
-                d="M15.75 19.5L8.25 12l7.5-7.5"
-              />
-            </svg>
-          </button>
-        )}
-        {currentIndex < totalSlides - 1 && (
-          <button
-            onClick={goNext}
-            className="absolute right-4 top-1/2 z-30 -translate-y-1/2 rounded-full bg-black/30 p-3 text-white opacity-0 backdrop-blur-sm transition-all group-hover:opacity-100 hover:bg-black/50"
-            aria-label="Next slide"
-          >
-            <svg
-              xmlns="http://www.w3.org/2000/svg"
-              fill="none"
-              viewBox="0 0 24 24"
-              strokeWidth={2}
-              stroke="currentColor"
-              className="h-6 w-6"
-            >
-              <path
-                strokeLinecap="round"
-                strokeLinejoin="round"
-                d="M8.25 4.5l7.5 7.5-7.5 7.5"
-              />
-            </svg>
-          </button>
-        )}
-
-        {/* Page numbers (standalone, when frame is off) */}
-        {showPageNumbers && !standardSlideElements?.showFrame && (
-          <div className="absolute bottom-6 left-1/2 z-30 -translate-x-1/2 text-sm text-white/70">
-            {currentIndex + 1} / {totalSlides}
-          </div>
-        )}
+      {/* Print layout: all slides rendered for PDF */}
+      <div className="hidden print:block">
+        {slides.map((slide, i) => (
+          <PrintSlide
+            key={slide._key}
+            slide={slide}
+            treatment={treatment}
+            index={i}
+            totalSlides={totalSlides}
+          />
+        ))}
       </div>
-    </div>
+
+      {/* Interactive presentation: hidden during print */}
+      <div
+        className="flex h-dvh w-full items-center justify-center overflow-hidden print:hidden"
+        style={{ backgroundColor: '#0C0C0D' }}
+      >
+        <div
+          className="group relative"
+          style={{
+            width: SLIDE_WIDTH,
+            height: SLIDE_HEIGHT,
+            transform: `scale(${scale})`,
+            transformOrigin: 'center center',
+            backgroundColor: currentSlide?.backgroundColor || '#000000',
+            '--treatment-primary': treatment.primaryColor || '#967738',
+            '--treatment-secondary': treatment.secondaryColor || '#FFFFFF',
+          }}
+        >
+          {/* Background layer */}
+          <div className="absolute inset-0 overflow-hidden">
+            <SlideBackground slide={currentSlide} />
+          </div>
+
+          {/* Slide content with fade transition */}
+          <div
+            className="relative z-10 h-full w-full transition-opacity duration-500"
+            style={{ opacity: visible ? 1 : 0 }}
+          >
+            <SlideContent slide={currentSlide} clientLogo={treatment.clientLogo} />
+          </div>
+
+          {/* Frame overlay */}
+          <SlideFrame
+            treatment={treatment}
+            slide={currentSlide}
+            currentIndex={currentIndex}
+            totalSlides={totalSlides}
+          />
+
+          {/* Navigation arrows */}
+          {currentIndex > 0 && (
+            <button
+              onClick={goPrev}
+              className="absolute left-4 top-1/2 z-30 -translate-y-1/2 rounded-full bg-black/30 p-3 text-white opacity-0 backdrop-blur-sm transition-all group-hover:opacity-100 hover:bg-black/50"
+              aria-label="Previous slide"
+            >
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                fill="none"
+                viewBox="0 0 24 24"
+                strokeWidth={2}
+                stroke="currentColor"
+                className="h-6 w-6"
+              >
+                <path
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                  d="M15.75 19.5L8.25 12l7.5-7.5"
+                />
+              </svg>
+            </button>
+          )}
+          {currentIndex < totalSlides - 1 && (
+            <button
+              onClick={goNext}
+              className="absolute right-4 top-1/2 z-30 -translate-y-1/2 rounded-full bg-black/30 p-3 text-white opacity-0 backdrop-blur-sm transition-all group-hover:opacity-100 hover:bg-black/50"
+              aria-label="Next slide"
+            >
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                fill="none"
+                viewBox="0 0 24 24"
+                strokeWidth={2}
+                stroke="currentColor"
+                className="h-6 w-6"
+              >
+                <path
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                  d="M8.25 4.5l7.5 7.5-7.5 7.5"
+                />
+              </svg>
+            </button>
+          )}
+
+          {/* Export PDF button */}
+          <button
+            onClick={() => window.print()}
+            className="absolute right-4 top-4 z-30 rounded-full bg-black/30 p-3 text-white opacity-0 backdrop-blur-sm transition-all group-hover:opacity-100 hover:bg-black/50"
+            aria-label="Export PDF"
+          >
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              fill="none"
+              viewBox="0 0 24 24"
+              strokeWidth={2}
+              stroke="currentColor"
+              className="h-6 w-6"
+            >
+              <path
+                strokeLinecap="round"
+                strokeLinejoin="round"
+                d="M3 16.5v2.25A2.25 2.25 0 005.25 21h13.5A2.25 2.25 0 0021 18.75V16.5M16.5 12L12 16.5m0 0L7.5 12m4.5 4.5V3"
+              />
+            </svg>
+          </button>
+
+          {/* Page numbers (standalone, when frame is off) */}
+          {showPageNumbers && !standardSlideElements?.showFrame && (
+            <div className="absolute bottom-6 left-1/2 z-30 -translate-x-1/2 text-sm text-white/70">
+              {currentIndex + 1} / {totalSlides}
+            </div>
+          )}
+        </div>
+      </div>
+    </>
   )
 }
 

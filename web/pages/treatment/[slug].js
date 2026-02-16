@@ -48,7 +48,58 @@ const placementClasses = {
   'bottom-right': 'items-end justify-end text-right',
 }
 
-function TitleSlide({ slide }) {
+function SlideOverlay({ slide, clientLogo }) {
+  if (slide.frameStyle !== 'border-tb') return null
+  const hasTop = slide.showClientLogo && clientLogo?.asset
+  const hasBottom = slide.additionalText || slide.showJmeLogo
+  if (!hasTop && !hasBottom) return null
+
+  return (
+    <div className="pointer-events-none absolute inset-0 z-20">
+      {/* Top: client logo + horizontal line */}
+      {hasTop && (
+        <div className="absolute left-8 right-8 top-6 flex items-center gap-4">
+          <div className="relative h-10 w-32 shrink-0">
+            <Image
+              src={urlForSanitySource(clientLogo)
+                .height(80)
+                .format('webp')
+                .url()}
+              alt=""
+              fill
+              className="object-contain object-left"
+            />
+          </div>
+          <div className="h-px grow bg-white/60" />
+        </div>
+      )}
+
+      {/* Bottom: additional text + horizontal line + JME logo */}
+      {hasBottom && (
+        <div className="absolute bottom-6 left-8 right-8 flex items-center gap-4">
+          {slide.additionalText && (
+            <span className="shrink-0 text-xs font-bold uppercase tracking-widest text-white">
+              {slide.additionalText}
+            </span>
+          )}
+          <div className="h-px grow bg-white/60" />
+          {slide.showJmeLogo && (
+            <div className="relative h-8 w-24 shrink-0">
+              {/* eslint-disable-next-line @next/next/no-img-element */}
+              <img
+                src="/images/jme-film-co-horizontal-white.webp"
+                alt=""
+                className="h-full w-full object-contain object-right"
+              />
+            </div>
+          )}
+        </div>
+      )}
+    </div>
+  )
+}
+
+function TitleSlide({ slide, clientLogo }) {
   const textColor = slide.textColor || '#FFFFFF'
   const placement = slide.placement || 'center-center'
 
@@ -63,55 +114,59 @@ function TitleSlide({ slide }) {
   }
 
   return (
-    <div className={clsx('relative flex h-full w-full flex-col gap-2 p-24', placementClasses[placement])}>
-      {slide.logo?.asset && (
-        <div className="relative h-24 w-48">
-          <Image
-            src={urlForSanitySource(slide.logo)
-              .width(400)
-              .format('webp')
-              .url()}
-            alt=""
-            fill
-            className="object-contain"
-          />
-        </div>
-      )}
-      {slide.heading1 && (
-        <h1
-          className={styles.h1}
-          style={{ color: textColor }}
-        >
-          {slide.heading1}
-        </h1>
-      )}
-      {slide.heading2 && (
-        <h2
-          className={styles.h2}
-          style={{ color: textColor }}
-        >
-          {slide.heading2}
-        </h2>
-      )}
-      {slide.body && (
-        <div
-          className="prose prose-invert mt-0 max-w-3xl text-lg"
-          style={{ color: textColor }}
-        >
-          <PortableText
-            value={slide.body}
-            components={portableTextComponents}
-          />
-        </div>
-      )}
-    </div>
+    <>
+      <div className={clsx('relative flex h-full w-full flex-col gap-2 p-24', placementClasses[placement])}>
+        {slide.logo?.asset && (
+          <div className="relative h-24 w-48">
+            <Image
+              src={urlForSanitySource(slide.logo)
+                .width(400)
+                .format('webp')
+                .url()}
+              alt=""
+              fill
+              className="object-contain"
+            />
+          </div>
+        )}
+        {slide.heading1 && (
+          <h1
+            className={styles.h1}
+            style={{ color: textColor }}
+          >
+            {slide.heading1}
+          </h1>
+        )}
+        {slide.heading2 && (
+          <h2
+            className={styles.h2}
+            style={{ color: textColor }}
+          >
+            {slide.heading2}
+          </h2>
+        )}
+        {slide.body && (
+          <div
+            className="prose prose-invert mt-0 max-w-3xl text-lg"
+            style={{ color: textColor }}
+          >
+            <PortableText
+              value={slide.body}
+              components={portableTextComponents}
+            />
+          </div>
+        )}
+      </div>
+      <SlideOverlay slide={slide} clientLogo={clientLogo} />
+    </>
   )
 }
 
 
 function SlideFrame({ treatment, slide, currentIndex, totalSlides }) {
   const { standardSlideElements, clientLogo } = treatment
-  if (!standardSlideElements?.showFrame || slide?.hideFrame) return null
+  const frameStyle = slide?.frameStyle || 'default'
+  if (!standardSlideElements?.showFrame || frameStyle !== 'default') return null
 
   const {
     frameTopText,
@@ -191,9 +246,9 @@ function SlideFrame({ treatment, slide, currentIndex, totalSlides }) {
   )
 }
 
-function SlideContent({ slide }) {
+function SlideContent({ slide, clientLogo }) {
   if (slide._type === 'treatmentTitleSlide') {
-    return <TitleSlide slide={slide} />
+    return <TitleSlide slide={slide} clientLogo={clientLogo} />
   }
 
   return null
@@ -298,7 +353,7 @@ export default function TreatmentPage({ treatment }) {
           className="relative z-10 h-full w-full transition-opacity duration-500"
           style={{ opacity: visible ? 1 : 0 }}
         >
-          <SlideContent slide={currentSlide} />
+          <SlideContent slide={currentSlide} clientLogo={treatment.clientLogo} />
         </div>
 
         {/* Frame overlay */}
@@ -400,13 +455,17 @@ export async function getStaticProps({ params }) {
           "backgroundVideoURL": backgroundVideo.asset->fileURL,
           backgroundColor,
           textColor,
-          hideFrame,
+          frameStyle,
           _type == "treatmentTitleSlide" => {
             logo{asset->{url, _id, metadata}},
             heading1,
             heading2,
             placement,
             body,
+            frameStyle,
+            showClientLogo,
+            additionalText,
+            showJmeLogo,
           },
         }
       }

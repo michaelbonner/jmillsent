@@ -55,10 +55,40 @@ export const treatmentTitleSlide = defineType({
       type: 'blockContent',
     }),
     defineField({
-      name: 'hideFrame',
-      title: 'Hide Frame',
+      name: 'frameStyle',
+      title: 'Frame Style',
+      type: 'string',
+      initialValue: 'default',
+      options: {
+        list: [
+          { title: 'Default', value: 'default' },
+          { title: 'Border Top/Bottom', value: 'border-tb' },
+          { title: 'None', value: 'none' },
+        ],
+      },
+    }),
+    defineField({
+      name: 'showClientLogo',
+      title: 'Show Client Logo (Top Left)',
       type: 'boolean',
       initialValue: false,
+      description: 'Displays the treatment client logo at the top left with a decorative line',
+      hidden: ({ parent }) => parent?.frameStyle !== 'border-tb',
+    }),
+    defineField({
+      name: 'additionalText',
+      title: 'Additional Text (Bottom Left)',
+      type: 'string',
+      description: 'Text displayed at the bottom left of the slide',
+      hidden: ({ parent }) => parent?.frameStyle !== 'border-tb',
+    }),
+    defineField({
+      name: 'showJmeLogo',
+      title: 'Show JME Logo (Bottom Right)',
+      type: 'boolean',
+      initialValue: false,
+      description: 'Displays the JME logo at the bottom right with a decorative line',
+      hidden: ({ parent }) => parent?.frameStyle !== 'border-tb',
     }),
     defineField({
       name: 'placement',

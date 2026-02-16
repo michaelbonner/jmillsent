@@ -1,6 +1,7 @@
 module.exports = {
   poweredByHeader: false,
   reactStrictMode: true,
+  serverExternalPackages: ['@sparticuz/chromium', 'puppeteer-core'],
   images: {
     remotePatterns: [
       {

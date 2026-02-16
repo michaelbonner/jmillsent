@@ -4,7 +4,7 @@ import { PortableText } from '@portabletext/react'
 import clsx from 'clsx'
 import groq from 'groq'
 import Image from 'next/image'
-import { useCallback, useEffect, useState } from 'react'
+import { useCallback, useEffect, useMemo, useState } from 'react'
 
 function SlideBackground({ slide }) {
   return (
@@ -274,10 +274,87 @@ function useSlideScale() {
   return scale
 }
 
+function collectAssetUrls(treatment) {
+  const images = []
+  const videos = []
+  const slides = treatment?.slides || []
+
+  if (treatment?.clientLogo?.asset) {
+    images.push(urlForSanitySource(treatment.clientLogo).height(80).format('webp').url())
+    images.push(urlForSanitySource(treatment.clientLogo).height(64).format('webp').url())
+  }
+
+  images.push('/images/jme-film-co-horizontal-white.webp')
+
+  for (const slide of slides) {
+    if (slide.backgroundImage?.asset) {
+      images.push(
+        urlForSanitySource(slide.backgroundImage).width(1920).height(1080).format('webp').url()
+      )
+    }
+    if (slide.backgroundVideoURL) {
+      videos.push(slide.backgroundVideoURL)
+    }
+    if (slide.logo?.asset) {
+      images.push(urlForSanitySource(slide.logo).width(400).format('webp').url())
+    }
+  }
+
+  return { images: [...new Set(images)], videos: [...new Set(videos)] }
+}
+
+function useAssetPreloader(treatment) {
+  const [progress, setProgress] = useState(0)
+  const [loaded, setLoaded] = useState(false)
+
+  const { images, videos } = useMemo(() => collectAssetUrls(treatment), [treatment])
+
+  useEffect(() => {
+    const total = images.length + videos.length
+    if (total === 0) {
+      setLoaded(true)
+      return
+    }
+
+    let completed = 0
+    const tick = () => {
+      completed++
+      setProgress(Math.round((completed / total) * 100))
+      if (completed >= total) setLoaded(true)
+    }
+
+    images.forEach((src) => {
+      const img = new window.Image()
+      img.onload = tick
+      img.onerror = tick
+      img.src = src
+    })
+
+    videos.forEach((src) => {
+      const video = document.createElement('video')
+      video.preload = 'auto'
+      video.muted = true
+      const done = () => {
+        video.oncanplaythrough = null
+        video.onerror = null
+        tick()
+      }
+      video.oncanplaythrough = done
+      video.onerror = done
+      video.src = src
+      // Don't wait forever for large videos
+      setTimeout(done, 15000)
+    })
+  }, [images, videos])
+
+  return { loaded, progress }
+}
+
 export default function TreatmentPage({ treatment }) {
   const [currentIndex, setCurrentIndex] = useState(0)
   const [visible, setVisible] = useState(true)
   const scale = useSlideScale()
+  const { loaded, progress } = useAssetPreloader(treatment)
 
   const slides = treatment?.slides || []
   const totalSlides = slides.length
@@ -319,6 +396,22 @@ export default function TreatmentPage({ treatment }) {
         style={{ backgroundColor: '#0C0C0D' }}
       >
         <p>No slides found.</p>
+      </div>
+    )
+  }
+
+  if (!loaded) {
+    return (
+      <div
+        className="flex h-dvh flex-col items-center justify-center gap-6 text-white"
+        style={{ backgroundColor: '#0C0C0D' }}
+      >
+        <div className="h-1 w-48 overflow-hidden rounded-full bg-white/20">
+          <div
+            className="h-full rounded-full bg-white transition-all duration-300"
+            style={{ width: `${progress}%` }}
+          />
+        </div>
       </div>
     )
   }

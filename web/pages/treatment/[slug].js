@@ -5,6 +5,7 @@ import clsx from 'clsx'
 import groq from 'groq'
 import Image from 'next/image'
 import Head from 'next/head'
+import { useRouter } from 'next/router'
 import { useCallback, useEffect, useMemo, useState } from 'react'
 
 function SlideBackground({ slide }) {
@@ -419,8 +420,11 @@ function PrintSlide({ slide, treatment, index, totalSlides }) {
 }
 
 export default function TreatmentPage({ treatment }) {
+  const router = useRouter()
+  const isExportMode = router.query.export === 'true'
   const [currentIndex, setCurrentIndex] = useState(0)
   const [visible, setVisible] = useState(true)
+  const [pdfLoading, setPdfLoading] = useState(false)
   const scale = useSlideScale()
   const { loaded, progress } = useAssetPreloader(treatment)
 
@@ -449,13 +453,36 @@ export default function TreatmentPage({ treatment }) {
   }, [currentIndex, goToSlide])
 
   useEffect(() => {
+    if (isExportMode) return
     const handleKeyDown = (e) => {
       if (e.key === 'ArrowRight') goNext()
       if (e.key === 'ArrowLeft') goPrev()
     }
     window.addEventListener('keydown', handleKeyDown)
     return () => window.removeEventListener('keydown', handleKeyDown)
-  }, [goNext, goPrev])
+  }, [goNext, goPrev, isExportMode])
+
+  const handleExportPdf = useCallback(async () => {
+    if (pdfLoading) return
+    setPdfLoading(true)
+    try {
+      const res = await fetch(`/api/treatment-pdf?slug=${treatment.slug.current}`)
+      if (!res.ok) throw new Error('PDF generation failed')
+      const blob = await res.blob()
+      const url = URL.createObjectURL(blob)
+      const a = document.createElement('a')
+      a.href = url
+      a.download = `${treatment.title || treatment.slug.current}-treatment.pdf`
+      document.body.appendChild(a)
+      a.click()
+      a.remove()
+      URL.revokeObjectURL(url)
+    } catch {
+      window.print()
+    } finally {
+      setPdfLoading(false)
+    }
+  }, [pdfLoading, treatment])
 
   if (!treatment || totalSlides === 0) {
     return (
@@ -480,6 +507,24 @@ export default function TreatmentPage({ treatment }) {
             style={{ width: `${progress}%` }}
           />
         </div>
+      </div>
+    )
+  }
+
+  // Export mode: render all slides stacked for Puppeteer screenshotting
+  if (isExportMode) {
+    return (
+      <div data-export-ready style={{ backgroundColor: '#0C0C0D' }}>
+        {slides.map((slide, i) => (
+          <div key={slide._key} data-slide={i}>
+            <PrintSlide
+              slide={slide}
+              treatment={treatment}
+              index={i}
+              totalSlides={totalSlides}
+            />
+          </div>
+        ))}
       </div>
     )
   }
@@ -605,24 +650,48 @@ export default function TreatmentPage({ treatment }) {
 
           {/* Export PDF button */}
           <button
-            onClick={() => window.print()}
-            className="absolute right-4 top-4 z-30 rounded-full bg-black/30 p-3 text-white opacity-0 backdrop-blur-sm transition-all group-hover:opacity-100 hover:bg-black/50"
+            onClick={handleExportPdf}
+            disabled={pdfLoading}
+            className="absolute right-4 top-4 z-30 rounded-full bg-black/30 p-3 text-white opacity-0 backdrop-blur-sm transition-all group-hover:opacity-100 hover:bg-black/50 disabled:cursor-wait"
             aria-label="Export PDF"
           >
-            <svg
-              xmlns="http://www.w3.org/2000/svg"
-              fill="none"
-              viewBox="0 0 24 24"
-              strokeWidth={2}
-              stroke="currentColor"
-              className="h-6 w-6"
-            >
-              <path
-                strokeLinecap="round"
-                strokeLinejoin="round"
-                d="M3 16.5v2.25A2.25 2.25 0 005.25 21h13.5A2.25 2.25 0 0021 18.75V16.5M16.5 12L12 16.5m0 0L7.5 12m4.5 4.5V3"
-              />
-            </svg>
+            {pdfLoading ? (
+              <svg
+                className="h-6 w-6 animate-spin"
+                xmlns="http://www.w3.org/2000/svg"
+                fill="none"
+                viewBox="0 0 24 24"
+              >
+                <circle
+                  className="opacity-25"
+                  cx="12"
+                  cy="12"
+                  r="10"
+                  stroke="currentColor"
+                  strokeWidth="4"
+                />
+                <path
+                  className="opacity-75"
+                  fill="currentColor"
+                  d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"
+                />
+              </svg>
+            ) : (
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                fill="none"
+                viewBox="0 0 24 24"
+                strokeWidth={2}
+                stroke="currentColor"
+                className="h-6 w-6"
+              >
+                <path
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                  d="M3 16.5v2.25A2.25 2.25 0 005.25 21h13.5A2.25 2.25 0 0021 18.75V16.5M16.5 12L12 16.5m0 0L7.5 12m4.5 4.5V3"
+                />
+              </svg>
+            )}
           </button>
 
           {/* Page numbers (standalone, when frame is off) */}

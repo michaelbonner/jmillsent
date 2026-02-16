@@ -68,12 +68,26 @@ export const treatmentTitleSlide = defineType({
       },
     }),
     defineField({
-      name: 'showClientLogo',
-      title: 'Show Client Logo (Top Left)',
-      type: 'boolean',
-      initialValue: false,
-      description: 'Displays the treatment client logo at the top left with a decorative line',
+      name: 'topLogo',
+      title: 'Top Left Logo',
+      type: 'string',
+      initialValue: 'none',
+      options: {
+        list: [
+          { title: 'None', value: 'none' },
+          { title: 'Client Logo', value: 'client' },
+          { title: 'JME Logo', value: 'jme' },
+          { title: 'Custom', value: 'custom' },
+        ],
+      },
       hidden: ({ parent }) => parent?.frameStyle !== 'border-tb',
+    }),
+    defineField({
+      name: 'topLogoCustom',
+      title: 'Top Left Custom Logo',
+      type: 'image',
+      options: { hotspot: true },
+      hidden: ({ parent }) => parent?.frameStyle !== 'border-tb' || parent?.topLogo !== 'custom',
     }),
     defineField({
       name: 'additionalText',
@@ -83,12 +97,26 @@ export const treatmentTitleSlide = defineType({
       hidden: ({ parent }) => parent?.frameStyle !== 'border-tb',
     }),
     defineField({
-      name: 'showJmeLogo',
-      title: 'Show JME Logo (Bottom Right)',
-      type: 'boolean',
-      initialValue: false,
-      description: 'Displays the JME logo at the bottom right with a decorative line',
+      name: 'bottomLogo',
+      title: 'Bottom Right Logo',
+      type: 'string',
+      initialValue: 'none',
+      options: {
+        list: [
+          { title: 'None', value: 'none' },
+          { title: 'Client Logo', value: 'client' },
+          { title: 'JME Logo', value: 'jme' },
+          { title: 'Custom', value: 'custom' },
+        ],
+      },
       hidden: ({ parent }) => parent?.frameStyle !== 'border-tb',
+    }),
+    defineField({
+      name: 'bottomLogoCustom',
+      title: 'Bottom Right Custom Logo',
+      type: 'image',
+      options: { hotspot: true },
+      hidden: ({ parent }) => parent?.frameStyle !== 'border-tb' || parent?.bottomLogo !== 'custom',
     }),
     defineField({
       name: 'placement',

@@ -49,33 +49,70 @@ const placementClasses = {
   'bottom-right': 'items-end justify-end text-right',
 }
 
+function OverlayLogo({ type, clientLogo, customLogo, className }) {
+  if (type === 'client' && clientLogo?.asset) {
+    return (
+      <div className={clsx('relative shrink-0', className)}>
+        <Image
+          src={urlForSanitySource(clientLogo).height(80).format('webp').url()}
+          alt=""
+          fill
+          className="object-contain object-left"
+        />
+      </div>
+    )
+  }
+  if (type === 'jme') {
+    return (
+      <div className={clsx('relative shrink-0', className)}>
+        {/* eslint-disable-next-line @next/next/no-img-element */}
+        <img
+          src="/images/jme-film-co-horizontal-white.webp"
+          alt=""
+          className="h-full w-full object-contain"
+        />
+      </div>
+    )
+  }
+  if (type === 'custom' && customLogo?.asset) {
+    return (
+      <div className={clsx('relative shrink-0', className)}>
+        <Image
+          src={urlForSanitySource(customLogo).height(80).format('webp').url()}
+          alt=""
+          fill
+          className="object-contain object-left"
+        />
+      </div>
+    )
+  }
+  return null
+}
+
 function SlideOverlay({ slide, clientLogo }) {
   if (slide.frameStyle !== 'border-tb') return null
-  const hasTop = slide.showClientLogo && clientLogo?.asset
-  const hasBottom = slide.additionalText || slide.showJmeLogo
+  const topLogo = slide.topLogo || 'none'
+  const bottomLogo = slide.bottomLogo || 'none'
+  const hasTop = topLogo !== 'none'
+  const hasBottom = slide.additionalText || bottomLogo !== 'none'
   if (!hasTop && !hasBottom) return null
 
   return (
     <div className="pointer-events-none absolute inset-0 z-20">
-      {/* Top: client logo + horizontal line */}
+      {/* Top: logo + horizontal line */}
       {hasTop && (
         <div className="absolute left-8 right-8 top-6 flex items-center gap-4">
-          <div className="relative h-10 w-32 shrink-0">
-            <Image
-              src={urlForSanitySource(clientLogo)
-                .height(80)
-                .format('webp')
-                .url()}
-              alt=""
-              fill
-              className="object-contain object-left"
-            />
-          </div>
+          <OverlayLogo
+            type={topLogo}
+            clientLogo={clientLogo}
+            customLogo={slide.topLogoCustom}
+            className="h-10 w-32"
+          />
           <div className="h-px grow bg-white/60" />
         </div>
       )}
 
-      {/* Bottom: additional text + horizontal line + JME logo */}
+      {/* Bottom: additional text + horizontal line + logo */}
       {hasBottom && (
         <div className="absolute bottom-6 left-8 right-8 flex items-center gap-4">
           {slide.additionalText && (
@@ -84,16 +121,12 @@ function SlideOverlay({ slide, clientLogo }) {
             </span>
           )}
           <div className="h-px grow bg-white/60" />
-          {slide.showJmeLogo && (
-            <div className="relative h-8 w-24 shrink-0">
-              {/* eslint-disable-next-line @next/next/no-img-element */}
-              <img
-                src="/images/jme-film-co-horizontal-white.webp"
-                alt=""
-                className="h-full w-full object-contain object-right"
-              />
-            </div>
-          )}
+          <OverlayLogo
+            type={bottomLogo}
+            clientLogo={clientLogo}
+            customLogo={slide.bottomLogoCustom}
+            className="h-8 w-24"
+          />
         </div>
       )}
     </div>
@@ -298,6 +331,12 @@ function collectAssetUrls(treatment) {
     }
     if (slide.logo?.asset) {
       images.push(urlForSanitySource(slide.logo).width(400).format('webp').url())
+    }
+    if (slide.topLogoCustom?.asset) {
+      images.push(urlForSanitySource(slide.topLogoCustom).height(80).format('webp').url())
+    }
+    if (slide.bottomLogoCustom?.asset) {
+      images.push(urlForSanitySource(slide.bottomLogoCustom).height(80).format('webp').url())
     }
   }
 
@@ -640,9 +679,11 @@ export async function getStaticProps({ params }) {
             placement,
             body,
             frameStyle,
-            showClientLogo,
+            topLogo,
+            topLogoCustom{asset->{url, _id, metadata}},
             additionalText,
-            showJmeLogo,
+            bottomLogo,
+            bottomLogoCustom{asset->{url, _id, metadata}},
           },
         }
       }

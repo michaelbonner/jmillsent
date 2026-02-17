@@ -422,7 +422,6 @@ function PrintSlide({ slide, treatment, index, totalSlides }) {
 export default function TreatmentPage({ treatment }) {
   const router = useRouter()
   const isExportMode = router.query.export === 'true'
-  const [currentIndex, setCurrentIndex] = useState(0)
   const [visible, setVisible] = useState(true)
   const [pdfLoading, setPdfLoading] = useState(false)
   const scale = useSlideScale()
@@ -430,6 +429,13 @@ export default function TreatmentPage({ treatment }) {
 
   const slides = treatment?.slides || []
   const totalSlides = slides.length
+
+  // Derive currentIndex from ?page= query param (1-based), default to first slide
+  const pageParam = parseInt(router.query.page, 10)
+  const currentIndex =
+    !isNaN(pageParam) && pageParam >= 1 && pageParam <= totalSlides
+      ? pageParam - 1
+      : 0
   const currentSlide = slides[currentIndex]
 
   const goToSlide = useCallback(
@@ -437,11 +443,15 @@ export default function TreatmentPage({ treatment }) {
       if (newIndex < 0 || newIndex >= totalSlides) return
       setVisible(false)
       setTimeout(() => {
-        setCurrentIndex(newIndex)
+        router.replace(
+          { pathname: router.pathname, query: { ...router.query, page: newIndex + 1 } },
+          undefined,
+          { shallow: true }
+        )
         setVisible(true)
       }, 500)
     },
-    [totalSlides]
+    [totalSlides, router]
   )
 
   const goNext = useCallback(() => {

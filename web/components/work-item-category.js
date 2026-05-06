@@ -91,93 +91,98 @@ export const WorkItemCategory = ({
             ? `${currentCategory.name} ${workPage.seoTitle}`
             : workPage.seoTitle}
         </h1>
-        <ul
-          className={clsx(
-            'mx-6 flex flex-wrap items-center justify-center gap-y-1 border-t py-4 font-semibold',
-            'lg:mx-8 lg:mt-4 lg:flex lg:flex-nowrap lg:divide-x lg:divide-white lg:pt-4',
-            'xl:mx-24',
-            '2xl:mx-48'
-          )}
-        >
-          {workItemCategories.map((tab, index) => {
-            return (
-              <li
-                className={clsx(
-                  'relative flex justify-center border-r text-xs',
-                  'last:border-r-0',
-                  'lg:px-4 lg:text-base'
-                )}
-                key={index}
-              >
-                <Link
-                  className={clsx(
-                    'rounded-xl border px-2 py-1 uppercase transition-all',
-                    'lg:tracking-wider',
-                    workItemCategory === defaultSlugify(tab.name)
-                      ? 'mx-2 border-white lg:px-4'
-                      : 'border-black hover:scale-110'
-                  )}
-                  href={
-                    index === 0
-                      ? '/work'
-                      : `/work/category/${defaultSlugify(tab.name)}`
-                  }
-                >
-                  {tab.name}
-
-                  <span className="absolute inset-0" />
-                </Link>
-              </li>
-            )
-          })}
-        </ul>
-        {/* lg:grid-cols-1 lg:grid-cols-2 lg:grid-cols-3 */}
         <div
           className={clsx(
-            'mx-4 mt-2 grid grid-cols-1 gap-4',
-            filteredWorkItems.length >= 3
-              ? 'lg:grid-cols-3'
-              : `lg:grid-cols-${filteredWorkItems.length}`,
-            isSocialLayout && 'mx-auto grid-cols-3 xl:grid-cols-6'
+            'container mx-auto mt-6 rounded-2xl bg-white p-4 text-black',
+            'lg:mt-12 lg:p-8'
           )}
         >
-          {filteredWorkItems.map((workItem, index) => {
-            return (
-              <WorkItemTile
-                workItem={workItem}
-                key={index}
-                aspectRatio={
-                  isSocialLayout
-                    ? `aspect-w-${workItem.videoWidthAspectRatio} aspect-h-${workItem.videoHeightAspectRatio}`
-                    : ''
-                }
-                onClick={
-                  isSocialLayout
-                    ? () => {
-                        setLightboxActiveIndex(index)
-                      }
-                    : undefined
-                }
-                typographyClassNameOverrides={
-                  isSocialLayout
-                    ? {
-                        clientName: clsx(
-                          'text-lg font-extrabold uppercase transition-opacity duration-300',
-                          'lg:text-2xl',
-                          'group-hover:opacity-0'
-                        ),
-                        title: clsx(
-                          'font-outline text-lg uppercase transition-opacity duration-300',
-                          'lg:text-2xl',
-                          'group-hover:opacity-0'
-                        ),
-                      }
-                    : undefined
-                }
-                showPlayOnHover={isSocialLayout}
-              />
-            )
-          })}
+          <ul
+            className={clsx(
+              'flex flex-wrap items-center justify-center gap-y-1 border-t border-black/10 py-4 font-semibold',
+              'lg:flex lg:flex-nowrap lg:divide-x lg:divide-black/20 lg:pt-4'
+            )}
+          >
+            {workItemCategories.map((tab, index) => {
+              return (
+                <li
+                  className={clsx(
+                    'relative flex justify-center border-r border-black/20 text-xs',
+                    'last:border-r-0',
+                    'lg:px-4 lg:text-base'
+                  )}
+                  key={index}
+                >
+                  <Link
+                    className={clsx(
+                      'rounded-xl border px-2 py-1 uppercase transition-all',
+                      'lg:tracking-wider',
+                      workItemCategory === defaultSlugify(tab.name)
+                        ? 'mx-2 border-black lg:px-4'
+                        : 'border-transparent hover:scale-110'
+                    )}
+                    href={
+                      index === 0
+                        ? '/work'
+                        : `/work/category/${defaultSlugify(tab.name)}`
+                    }
+                  >
+                    {tab.name}
+
+                    <span className="absolute inset-0" />
+                  </Link>
+                </li>
+              )
+            })}
+          </ul>
+          {/* lg:grid-cols-1 lg:grid-cols-2 lg:grid-cols-3 */}
+          <div
+            className={clsx(
+              'mt-4 grid grid-cols-1 gap-4',
+              filteredWorkItems.length >= 3
+                ? 'lg:grid-cols-3'
+                : `lg:grid-cols-${filteredWorkItems.length}`,
+              isSocialLayout && 'mx-auto grid-cols-3 xl:grid-cols-6'
+            )}
+          >
+            {filteredWorkItems.map((workItem, index) => {
+              return (
+                <WorkItemTile
+                  workItem={workItem}
+                  key={index}
+                  aspectRatio={
+                    isSocialLayout
+                      ? `aspect-w-${workItem.videoWidthAspectRatio} aspect-h-${workItem.videoHeightAspectRatio}`
+                      : ''
+                  }
+                  onClick={
+                    isSocialLayout
+                      ? () => {
+                          setLightboxActiveIndex(index)
+                        }
+                      : undefined
+                  }
+                  typographyClassNameOverrides={
+                    isSocialLayout
+                      ? {
+                          clientName: clsx(
+                            'text-lg font-extrabold uppercase transition-opacity duration-300',
+                            'lg:text-2xl',
+                            'group-hover:opacity-0'
+                          ),
+                          title: clsx(
+                            'font-outline text-lg uppercase transition-opacity duration-300',
+                            'lg:text-2xl',
+                            'group-hover:opacity-0'
+                          ),
+                        }
+                      : undefined
+                  }
+                  showPlayOnHover={isSocialLayout}
+                />
+              )
+            })}
+          </div>
         </div>
         {workPage.workPageDescription && (
           <div className="container mx-auto mt-12 px-12 text-center text-white">

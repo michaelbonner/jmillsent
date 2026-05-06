@@ -30,7 +30,7 @@ const NewsItem = ({ newsItem = {} }) => {
                   .crop('focalpoint')
                   .url()}
                 fill
-                className="object-cover"
+                className="rounded-xl object-cover"
               />
             </div>
           )}

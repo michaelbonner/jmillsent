@@ -37,7 +37,7 @@ const WorkItemTile = ({
           'lg:hidden': index >= hideAfterCount,
         },
         aspectRatio ? aspectRatio : 'bpd-project-tile',
-        `relative text-white`,
+        `relative overflow-hidden rounded-xl text-white`,
         `flex flex-col items-center justify-center space-y-2 lg:space-y-0`,
         className
       )}

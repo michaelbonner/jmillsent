@@ -165,7 +165,7 @@ const Documentary = ({ documentaryPage }) => {
                     .url()}
                   height={630}
                   width={410}
-                  className="mx-auto"
+                  className="mx-auto rounded-xl"
                 />
               </div>
               <div className="prose prose-lg prose-invert md:w-3/4">

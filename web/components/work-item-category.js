@@ -91,16 +91,11 @@ export const WorkItemCategory = ({
             ? `${currentCategory.name} ${workPage.seoTitle}`
             : workPage.seoTitle}
         </h1>
-        <div
-          className={clsx(
-            'container mx-auto mt-6 rounded-2xl bg-white p-4 text-black',
-            'lg:mt-12 lg:p-8'
-          )}
-        >
+        <div className="max-w-8xl mx-auto px-4 lg:px-8">
           <ul
             className={clsx(
-              'flex flex-wrap items-center justify-center gap-y-1 border-t border-black/10 py-4 font-semibold',
-              'lg:flex lg:flex-nowrap lg:divide-x lg:divide-black/20 lg:pt-4'
+              'mx-7 flex flex-wrap items-center justify-center gap-y-1 rounded-2xl bg-black/80 py-4 font-semibold',
+              'lg:sticky lg:top-4 lg:z-20 lg:flex lg:flex-nowrap lg:divide-x lg:divide-black/20 lg:shadow-xl lg:backdrop-blur-sm'
             )}
           >
             {workItemCategories.map((tab, index) => {
@@ -109,16 +104,16 @@ export const WorkItemCategory = ({
                   className={clsx(
                     'relative flex justify-center border-r border-black/20 text-xs',
                     'last:border-r-0',
-                    'lg:px-4 lg:text-base'
+                    'lg:px-2 lg:text-base'
                   )}
                   key={index}
                 >
                   <Link
                     className={clsx(
-                      'rounded-xl border px-2 py-1 uppercase transition-all',
+                      'rounded-xs border px-4 py-1 uppercase transition-all',
                       'lg:tracking-wider',
                       workItemCategory === defaultSlugify(tab.name)
-                        ? 'mx-2 border-black lg:px-4'
+                        ? 'border-white bg-black/30'
                         : 'border-transparent hover:scale-110'
                     )}
                     href={
@@ -135,146 +130,155 @@ export const WorkItemCategory = ({
               )
             })}
           </ul>
-          {/* lg:grid-cols-1 lg:grid-cols-2 lg:grid-cols-3 */}
-          <div
-            className={clsx(
-              'mt-4 grid grid-cols-1 gap-4',
-              filteredWorkItems.length >= 3
-                ? 'lg:grid-cols-3'
-                : `lg:grid-cols-${filteredWorkItems.length}`,
-              isSocialLayout && 'mx-auto grid-cols-3 xl:grid-cols-6'
-            )}
-          >
-            {filteredWorkItems.map((workItem, index) => {
-              return (
-                <WorkItemTile
-                  workItem={workItem}
-                  key={index}
-                  aspectRatio={
-                    isSocialLayout
-                      ? `aspect-w-${workItem.videoWidthAspectRatio} aspect-h-${workItem.videoHeightAspectRatio}`
-                      : ''
-                  }
-                  onClick={
-                    isSocialLayout
-                      ? () => {
-                          setLightboxActiveIndex(index)
-                        }
-                      : undefined
-                  }
-                  typographyClassNameOverrides={
-                    isSocialLayout
-                      ? {
-                          clientName: clsx(
-                            'text-lg font-extrabold uppercase transition-opacity duration-300',
-                            'lg:text-2xl',
-                            'group-hover:opacity-0'
-                          ),
-                          title: clsx(
-                            'font-outline text-lg uppercase transition-opacity duration-300',
-                            'lg:text-2xl',
-                            'group-hover:opacity-0'
-                          ),
-                        }
-                      : undefined
-                  }
-                  showPlayOnHover={isSocialLayout}
-                />
-              )
-            })}
-          </div>
-        </div>
-        {workPage.workPageDescription && (
-          <div className="container mx-auto mt-12 px-12 text-center text-white">
-            {workPage.workPageDescription && (
-              <div className="prose prose-lg prose-invert mx-auto max-w-lg border py-1 text-center">
-                <PortableText value={workPage.workPageDescription} />
-              </div>
-            )}
-          </div>
-        )}
-        {showWhiteContainer && (
-          <div
-            className={clsx(
-              'container mx-auto mt-2 rounded-2xl bg-white p-4 text-center text-black',
-              'lg:p-12'
-            )}
-          >
-            {currentCategory?.imageGallery &&
-              currentCategory.imageGallery.length > 0 && (
-                <ClientOnly>
-                  <ImageGallery images={currentCategory.imageGallery} />
-                </ClientOnly>
-              )}
-            {(currentCategory?.title ||
-              currentCategory?.subtitle ||
-              currentCategory?.body) && (
-              <div className="mt-12">
-                {currentCategory?.title && (
-                  <h2 className="text-3xl font-extrabold uppercase lg:text-3xl">
-                    {currentCategory.title}
-                  </h2>
-                )}
-                {currentCategory?.subtitle && (
-                  <h3 className="font-outline text-3xl uppercase lg:text-4xl">
-                    {currentCategory.subtitle}
-                  </h3>
-                )}
-                {currentCategory?.body && (
-                  <>
-                    <LittleBlackBar yMargin="my-6" maxWidth="max-w-xs" />
-                    <div className="mx-auto max-w-2xl py-1 text-center text-sm font-light uppercase">
-                      <PortableText value={currentCategory.body} />
-                    </div>
-                  </>
-                )}
-              </div>
-            )}
-          </div>
-        )}
-      </div>
 
-      {isSocialLayout && (
-        <Lightbox
-          open={lightboxActiveIndex !== null}
-          slides={lightboxSlides}
-          index={lightboxActiveIndex}
-          close={() => {
-            // find all videos and pause them
-            const videos = document.querySelectorAll('.yarl__slide video')
-            videos.forEach((video) => {
-              video.pause()
-            })
-            setLightboxActiveIndex(null)
-          }}
-          on={{
-            view: (data) => {
+          <div
+            className={clsx(
+              'mx-auto mt-2 rounded-2xl bg-white p-4 text-black',
+              'lg:p-6'
+            )}
+          >
+            {/* lg:grid-cols-1 lg:grid-cols-2 lg:grid-cols-3 */}
+            {filteredWorkItems.length > 0 && (
+              <div
+                className={clsx(
+                  'grid grid-cols-1 gap-4',
+                  filteredWorkItems.length >= 3
+                    ? 'lg:grid-cols-3'
+                    : `lg:grid-cols-${filteredWorkItems.length}`,
+                  isSocialLayout && 'mx-auto grid-cols-3 xl:grid-cols-6'
+                )}
+              >
+                {filteredWorkItems.map((workItem, index) => {
+                  return (
+                    <WorkItemTile
+                      workItem={workItem}
+                      key={index}
+                      aspectRatio={
+                        isSocialLayout
+                          ? `aspect-w-${workItem.videoWidthAspectRatio} aspect-h-${workItem.videoHeightAspectRatio}`
+                          : ''
+                      }
+                      onClick={
+                        isSocialLayout
+                          ? () => {
+                              setLightboxActiveIndex(index)
+                            }
+                          : undefined
+                      }
+                      typographyClassNameOverrides={
+                        isSocialLayout
+                          ? {
+                              clientName: clsx(
+                                'text-lg font-extrabold uppercase transition-opacity duration-300',
+                                'lg:text-2xl',
+                                'group-hover:opacity-0'
+                              ),
+                              title: clsx(
+                                'font-outline text-lg uppercase transition-opacity duration-300',
+                                'lg:text-2xl',
+                                'group-hover:opacity-0'
+                              ),
+                            }
+                          : undefined
+                      }
+                      showPlayOnHover={isSocialLayout}
+                    />
+                  )
+                })}
+              </div>
+            )}
+
+            {showWhiteContainer && (
+              <div className="text-center">
+                {currentCategory?.imageGallery &&
+                  currentCategory.imageGallery.length > 0 && (
+                    <ClientOnly>
+                      <ImageGallery images={currentCategory.imageGallery} />
+                    </ClientOnly>
+                  )}
+                {(currentCategory?.title ||
+                  currentCategory?.subtitle ||
+                  currentCategory?.body) && (
+                  <div className="mt-12">
+                    {currentCategory?.title && (
+                      <h2 className="text-3xl font-extrabold uppercase lg:text-3xl">
+                        {currentCategory.title}
+                      </h2>
+                    )}
+                    {currentCategory?.subtitle && (
+                      <h3 className="font-outline text-3xl uppercase lg:text-4xl">
+                        {currentCategory.subtitle}
+                      </h3>
+                    )}
+                    {currentCategory?.body && (
+                      <>
+                        <LittleBlackBar yMargin="my-6" maxWidth="max-w-xs" />
+                        <div className="mx-auto max-w-2xl py-1 text-center text-sm font-light uppercase">
+                          <PortableText value={currentCategory.body} />
+                        </div>
+                      </>
+                    )}
+                  </div>
+                )}
+              </div>
+            )}
+          </div>
+          {workPage.workPageDescription && (
+            <div className="container mx-auto mt-12 px-12 text-center text-white">
+              {workPage.workPageDescription && (
+                <div className="prose prose-lg mx-auto max-w-lg border py-1 text-center">
+                  <PortableText value={workPage.workPageDescription} />
+                </div>
+              )}
+            </div>
+          )}
+          {/* {showWhiteContainer && (
+            
+          )} */}
+        </div>
+
+        {isSocialLayout && (
+          <Lightbox
+            open={lightboxActiveIndex !== null}
+            slides={lightboxSlides}
+            index={lightboxActiveIndex}
+            close={() => {
               // find all videos and pause them
               const videos = document.querySelectorAll('.yarl__slide video')
               videos.forEach((video) => {
                 video.pause()
               })
+              setLightboxActiveIndex(null)
+            }}
+            on={{
+              view: (data) => {
+                // find all videos and pause them
+                const videos = document.querySelectorAll('.yarl__slide video')
+                videos.forEach((video) => {
+                  video.pause()
+                })
 
-              setTimeout(() => {
-                const currentVideo = document.getElementById(
-                  `social-video-${data.index}`
+                setTimeout(() => {
+                  const currentVideo = document.getElementById(
+                    `social-video-${data.index}`
+                  )
+                  currentVideo?.play()
+                }, 500)
+              },
+            }}
+            render={{
+              slide: ({ slide }) => {
+                return (
+                  <SlideVideo
+                    slide={slide}
+                    isActive={slide.index === lightboxActiveIndex}
+                  />
                 )
-                currentVideo?.play()
-              }, 500)
-            },
-          }}
-          render={{
-            slide: ({ slide }) => {
-              return (
-                <SlideVideo
-                  slide={slide}
-                  isActive={slide.index === lightboxActiveIndex}
-                />
-              )
-            },
-          }}
-        />
-      )}
+              },
+            }}
+          />
+        )}
+      </div>
     </Layout>
   )
 }

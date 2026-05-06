@@ -134,7 +134,7 @@ export const WorkItemCategory = ({
         {/* lg:grid-cols-1 lg:grid-cols-2 lg:grid-cols-3 */}
         <div
           className={clsx(
-            'mx-1 grid grid-cols-1 gap-1',
+            'mx-4 mt-2 grid grid-cols-1 gap-4',
             filteredWorkItems.length >= 3
               ? 'lg:grid-cols-3'
               : `lg:grid-cols-${filteredWorkItems.length}`,

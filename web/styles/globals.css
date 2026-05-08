@@ -131,20 +131,7 @@
 
   @media screen and (min-width: 1024px) {
     .bpd-project-tile {
-      aspect-ratio: unset;
-      min-height: 180px;
-    }
-  }
-
-  @media screen and (min-width: 1400px) {
-    .bpd-project-tile {
-      min-height: 22vh;
-    }
-  }
-
-  @media screen and (min-width: 1800px) {
-    .bpd-project-tile {
-      min-height: 20vh;
+      aspect-ratio: 2.35 / 1;
     }
   }
 

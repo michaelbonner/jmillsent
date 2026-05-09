@@ -133,11 +133,11 @@ function About({ aboutPage }) {
 
       <div className="mx-auto max-w-7xl px-8">
         <div className="mx-auto mt-12 max-w-7xl text-center text-white lg:mt-24">
-          <div className="container mx-auto my-24 rounded-2xl bg-white px-8 py-12 text-black">
+          <div className="container mx-auto my-24 rounded-xl bg-white px-8 py-12 text-black">
             <H2>{aboutPage.section1Title}</H2>
             <LittleBlackBar maxWidth="max-w-96" yMargin="my-10" />
             <div className="mt-12" id="reel">
-              <div className="container mx-auto rounded-2xl text-white lg:px-10">
+              <div className="container mx-auto rounded-xl text-white lg:px-10">
                 <ClientOnly>
                   <VideoPlayer
                     autoPlay
@@ -335,7 +335,7 @@ function About({ aboutPage }) {
           <DividerBar />
 
           {/* Ad Formats */}
-          <div className="container mx-auto my-24 rounded-2xl bg-white px-8 py-12 text-black">
+          <div className="container mx-auto my-24 rounded-xl bg-white px-8 py-12 text-black">
             <section
               className="mx-auto grid max-w-7xl gap-y-4 text-center"
               id="ad-formats"
@@ -353,7 +353,7 @@ function About({ aboutPage }) {
                     <div
                       key={index}
                       className={clsx(
-                        'flex flex-col justify-start space-y-12 rounded-xl bg-black px-8 pt-12 pb-8 text-white'
+                        'flex flex-col justify-start space-y-12 rounded-lg bg-black px-8 pt-12 pb-8 text-white'
                       )}
                       target="_blank"
                     >
@@ -407,7 +407,7 @@ function About({ aboutPage }) {
               <SanityImage
                 alt={aboutPage.directorName}
                 image={aboutPage.directorImage}
-                className="h-full w-full rounded-2xl"
+                className="h-full w-full rounded-xl"
               />
               <div
                 className={clsx(
@@ -466,7 +466,7 @@ function About({ aboutPage }) {
 
           {/* team section */}
           <section className="mx-auto max-w-7xl text-center" id="team">
-            <div className="rounded-2xl bg-white p-8 text-black lg:p-10">
+            <div className="rounded-xl bg-white p-8 text-black lg:p-10">
               <H2>{aboutPage.teamTitle}</H2>
               <p className="font-outline -mt-1.5 text-xl uppercase lg:text-5xl">
                 {aboutPage.teamSubtitle}
@@ -500,7 +500,7 @@ function About({ aboutPage }) {
                       <div className="lg:col-span-2">
                         <Image
                           alt={teamMember.name}
-                          className="mx-auto rounded-xl"
+                          className="mx-auto rounded-lg"
                           height={height}
                           src={urlForSanitySource(teamMember.image)
                             .width(width)
@@ -615,7 +615,7 @@ function About({ aboutPage }) {
               {aboutPage.company3Title}
             </H2>
 
-            <div className="container mx-auto mt-4 max-w-7xl rounded-2xl lg:mt-10">
+            <div className="container mx-auto mt-4 max-w-7xl rounded-xl lg:mt-10">
               <ClientOnly>
                 <VideoPlayer
                   autoPlay

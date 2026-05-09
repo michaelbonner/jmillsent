@@ -61,7 +61,7 @@ function Home({ homePage }) {
           </div>
         </div>
 
-        <div className="container mx-auto my-24 rounded-2xl bg-white py-12">
+        <div className="container mx-auto my-24 rounded-xl bg-white py-12">
           <div className="container mx-auto grid gap-8 px-8 text-center lg:px-12">
             <div>
               <H2 className="text-black">{homePage.latestCampaignTitle}</H2>
@@ -88,8 +88,7 @@ function Home({ homePage }) {
                   <div
                     className={clsx(
                       shouldBeBig && 'lg:col-span-2',
-                      'overflow-hidden rounded-xl transition-opacity duration-500',
-                      'xl:rounded-2xl',
+                      'overflow-hidden rounded-lg transition-opacity duration-500',
                       shouldReduceOpacity && 'opacity-50'
                     )}
                     key={index}
@@ -163,7 +162,7 @@ function Home({ homePage }) {
           </p>
         </div>
         <div className="mt-10" id="featured">
-          <div className="container mx-auto rounded-2xl">
+          <div className="container mx-auto rounded-xl">
             <ClientOnly>
               <VideoPlayer
                 autoPlay

@@ -87,7 +87,7 @@ const Documentary = ({ documentaryPage }) => {
           >
             <Link
               className={clsx(
-                'rounded-xl border px-2 py-1 uppercase transition-all',
+                'rounded-lg border px-2 py-1 uppercase transition-all',
                 'lg:tracking-wider',
                 'border-black hover:scale-110'
               )}
@@ -105,7 +105,7 @@ const Documentary = ({ documentaryPage }) => {
           >
             <Link
               className={clsx(
-                'rounded-xl border px-2 py-1 uppercase transition-all',
+                'rounded-lg border px-2 py-1 uppercase transition-all',
                 'lg:tracking-wider',
                 'border-black hover:scale-110'
               )}
@@ -122,7 +122,7 @@ const Documentary = ({ documentaryPage }) => {
           >
             <span
               className={clsx(
-                'rounded-xl border px-2 py-1 uppercase transition-all',
+                'rounded-lg border px-2 py-1 uppercase transition-all',
                 'lg:tracking-wider',
                 'border-white'
               )}
@@ -132,8 +132,8 @@ const Documentary = ({ documentaryPage }) => {
           </li> */}
         </ul>
         <div className="container mx-auto max-w-7xl">
-          <div className="mt-4 rounded-xl bg-white p-4 text-black lg:p-12">
-            <div className="mb-12 rounded-2xl bg-black text-white">
+          <div className="mt-4 rounded-lg bg-white p-4 text-black lg:p-12">
+            <div className="mb-12 rounded-xl bg-black text-white">
               <ClientOnly>
                 <VideoPlayer
                   client={documentaryPage.title}
@@ -165,7 +165,7 @@ const Documentary = ({ documentaryPage }) => {
                     .url()}
                   height={630}
                   width={410}
-                  className="mx-auto rounded-xl"
+                  className="mx-auto rounded-lg"
                 />
               </div>
               <div className="prose prose-lg prose-invert md:w-3/4">
@@ -201,7 +201,7 @@ const Documentary = ({ documentaryPage }) => {
                   return (
                     <button
                       className={clsx(
-                        'group relative rounded-xl',
+                        'group relative rounded-lg',
                         'aspect-2 overflow-hidden',
                         'bg-cover bg-center bg-no-repeat'
                       )}

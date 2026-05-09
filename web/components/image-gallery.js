@@ -65,7 +65,7 @@ export const ImageGallery = ({ images }) => {
         {images.map((image) => (
           <Image
             alt={image.caption || image.name}
-            className="rounded-xl object-cover"
+            className="rounded-lg object-cover"
             height={600}
             key={image.asset._id}
             src={urlForSanitySource(image.asset)

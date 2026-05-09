@@ -48,7 +48,7 @@ const BackgroundText = ({
       <div className="group relative w-full" style={{ lineHeight: 0 }}>
         <Image
           alt={imageAlt}
-          className="rounded-2xl"
+          className="rounded-xl"
           height={600}
           src={urlForSanitySource(image)
             .width(1246)
@@ -60,10 +60,10 @@ const BackgroundText = ({
           width={1246}
         />
         <div
-          className={`w-full rounded-2xl lg:absolute ${styles[leftOrRight].containerPosition} top-0 bottom-0 h-full ${styles[leftOrRight].gradientDirection} from-black to-transparent opacity-70 transition-all duration-500 group-hover:opacity-80`}
+          className={`w-full rounded-xl lg:absolute ${styles[leftOrRight].containerPosition} top-0 bottom-0 h-full ${styles[leftOrRight].gradientDirection} from-black to-transparent opacity-70 transition-all duration-500 group-hover:opacity-80`}
         />
         <div
-          className={`rounded-2xl text-black lg:absolute lg:text-white ${styles[leftOrRight].containerPosition} top-0 bottom-0 ${styles[leftOrRight].textAlign} flex flex-col items-start justify-center sm:gap-y-2`}
+          className={`rounded-xl text-black lg:absolute lg:text-white ${styles[leftOrRight].containerPosition} top-0 bottom-0 ${styles[leftOrRight].textAlign} flex flex-col items-start justify-center sm:gap-y-2`}
         >
           <H3
             className={`${titleStyle} mt-3! mb-0! inline w-full py-1 text-center uppercase`}

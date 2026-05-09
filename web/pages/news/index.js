@@ -24,8 +24,8 @@ function News({ newsPage }) {
       heroContent={heroContent}
     >
       <div className="mx-auto max-w-7xl lg:mt-10">
-        <div className="mx-4 mt-8 rounded-2xl bg-white lg:mx-8">
-          <div className="grid max-w-7xl justify-center gap-y-24 rounded-2xl p-6 lg:gap-y-10 lg:bg-white lg:p-10">
+        <div className="mx-4 mt-8 rounded-xl bg-white lg:mx-8">
+          <div className="grid max-w-7xl justify-center gap-y-24 rounded-xl p-6 lg:gap-y-10 lg:bg-white lg:p-10">
             {(newsPage?.newsItems ?? []).map((newsItem, index) => {
               return <NewsItemCard key={index} newsItem={newsItem} />
             })}

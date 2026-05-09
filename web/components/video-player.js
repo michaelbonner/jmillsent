@@ -473,7 +473,7 @@ const VideoPlayerComponent = ({
         {
           'flex h-screen flex-col items-center justify-center': isFullscreen,
         },
-        'bpd-player-container group relative z-20 w-full overflow-hidden rounded-2xl'
+        'bpd-player-container group relative z-20 w-full overflow-hidden rounded-lg'
       )}
       ref={playerContainer}
     >

@@ -115,7 +115,7 @@ function Studio({ studioPage }) {
       />
 
       <div className="mx-auto max-w-7xl px-8">
-        <div className="mx-auto my-24 max-w-7xl rounded-2xl bg-white px-8 py-12 text-center text-black">
+        <div className="mx-auto my-24 max-w-7xl rounded-xl bg-white px-8 py-12 text-center text-black">
           <H2>{studioPage.section1Title}</H2>
           <LittleBlackBar maxWidth="max-w-96" yMargin="my-10" />
 
@@ -123,7 +123,7 @@ function Studio({ studioPage }) {
             <div
               id="tour"
               className={clsx(
-                'container mx-auto mt-12 rounded-2xl text-white',
+                'container mx-auto mt-12 rounded-xl text-white',
                 'lg:px-10'
               )}
             >
@@ -226,7 +226,7 @@ function Studio({ studioPage }) {
           {studioPage.studioItems?.length > 0 && (
             <div
               className={clsx(
-                'mx-auto mt-12 grid max-w-7xl gap-y-8 rounded-2xl bg-white p-8 lg:mt-24 lg:gap-y-10 lg:p-10'
+                'mx-auto mt-12 grid max-w-7xl gap-y-8 rounded-xl bg-white p-8 lg:mt-24 lg:gap-y-10 lg:p-10'
               )}
             >
               {studioPage.studioItems.map((service, index) => {

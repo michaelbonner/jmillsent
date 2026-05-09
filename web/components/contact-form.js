@@ -277,7 +277,7 @@ const ContactForm = ({ interests, successMessage = '' }) => {
                 <button
                   type="submit"
                   className={clsx(
-                    'mx-auto inline-block w-full max-w-[450px] rounded-xl text-lg font-bold uppercase',
+                    'mx-auto inline-block w-full max-w-[450px] rounded-lg text-lg font-bold uppercase',
                     'border border-gray-500 px-8 py-2.5 tracking-wider',
                     'bg-black/50 transition-all',
                     'hover:bg-gold hover:text-black',

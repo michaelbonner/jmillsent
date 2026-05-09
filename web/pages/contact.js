@@ -51,7 +51,7 @@ function Contact({ contact }) {
             {contact.representationCards.map((card) => {
               return (
                 <div className="w-full sm:w-1/2 lg:w-1/3" key={card.title}>
-                  <div className="mx-5 flex h-full flex-col justify-center rounded-xl border border-gray-500 p-8">
+                  <div className="mx-5 flex h-full flex-col justify-center rounded-lg border border-gray-500 p-8">
                     <p className="text-xl font-bold tracking-wider">
                       {card.title}
                     </p>
@@ -70,7 +70,7 @@ function Contact({ contact }) {
           <DividerBar yMargin="my-12 lg:my-24" />
 
           <div className="px-4">
-            <div className="mx-auto max-w-7xl overflow-hidden rounded-2xl border border-gray-500">
+            <div className="mx-auto max-w-7xl overflow-hidden rounded-xl border border-gray-500">
               <Map />
             </div>
           </div>
@@ -80,7 +80,7 @@ function Contact({ contact }) {
             id="contacts"
           >
             <div className="w-full sm:w-1/2 lg:w-1/3">
-              <div className="mx-5 rounded-xl bg-white p-8 text-black">
+              <div className="mx-5 rounded-lg bg-white p-8 text-black">
                 <p className="text-xl font-bold tracking-wider uppercase">
                   Studio Address
                 </p>

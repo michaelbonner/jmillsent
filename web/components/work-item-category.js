@@ -94,7 +94,7 @@ export const WorkItemCategory = ({
         <div className="max-w-8xl xl:max-w-9xl mx-auto px-4 lg:px-8 2xl:max-w-none 2xl:px-[10vw]">
           <ul
             className={clsx(
-              'mx-7 flex flex-wrap items-center justify-center gap-y-1 rounded-2xl bg-black/80 py-4 font-semibold',
+              'mx-7 flex flex-wrap items-center justify-center gap-y-1 rounded-lg bg-black/80 py-4 font-semibold',
               'lg:sticky lg:top-4 lg:z-20 lg:flex lg:flex-nowrap lg:divide-x lg:divide-black/20 lg:shadow-xl lg:backdrop-blur-sm'
             )}
           >
@@ -133,7 +133,7 @@ export const WorkItemCategory = ({
 
           <div
             className={clsx(
-              'mx-auto mt-2 rounded-2xl bg-white p-4 text-black',
+              'mx-auto mt-2 rounded-xl bg-white p-4 text-black',
               'lg:p-6'
             )}
           >

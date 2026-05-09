@@ -30,12 +30,12 @@ const NewsItem = ({ newsItem = {} }) => {
                   .crop('focalpoint')
                   .url()}
                 fill
-                className="rounded-xl object-cover"
+                className="rounded-lg object-cover"
               />
             </div>
           )}
           {newsItem.videoId && (
-            <div className="container mx-auto max-w-7xl rounded-2xl">
+            <div className="container mx-auto max-w-7xl rounded-xl">
               <ClientOnly>
                 <VideoPlayer
                   poster={newsItem.heroImage}

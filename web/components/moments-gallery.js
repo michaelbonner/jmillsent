@@ -94,7 +94,7 @@ const MomentsGallery = ({ images = [] }) => {
               >
                 <Image
                   alt={image.altText}
-                  className={`bpd-gallery-image cursor-pointer rounded-xl`}
+                  className={`bpd-gallery-image cursor-pointer rounded-lg`}
                   height={height}
                   onClick={() => {
                     setIsGalleryModelOpen(true)
@@ -125,7 +125,7 @@ const MomentsGallery = ({ images = [] }) => {
               <div className={clsx('bpd-gallery-image-container')} key={index}>
                 <Image
                   alt={image.altText}
-                  className={`bpd-gallery-image cursor-pointer rounded-xl`}
+                  className={`bpd-gallery-image cursor-pointer rounded-lg`}
                   height={height}
                   onClick={() => {
                     setIsGalleryModelOpen(true)

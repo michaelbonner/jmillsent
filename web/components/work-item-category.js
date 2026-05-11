@@ -91,7 +91,7 @@ export const WorkItemCategory = ({
             ? `${currentCategory.name} ${workPage.seoTitle}`
             : workPage.seoTitle}
         </h1>
-        <div className="max-w-13xl mx-auto">
+        <div className="max-w-13xl mx-auto px-4 lg:px-0">
           <ul
             className={clsx(
               'mx-7 flex flex-wrap items-center justify-center gap-y-1 rounded-lg bg-black/80 py-4 font-semibold',

@@ -3,3 +3,6 @@ node_modules
 
 .DS_Store
 web/next-env.d.ts
+
+studio/.claude/
+web/.claude/

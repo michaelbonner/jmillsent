@@ -153,14 +153,14 @@ const Layout = ({
         backgroundSize: 'cover',
         backgroundPosition: 'center',
         backgroundRepeat: 'no-repeat',
-        height: heroVideoHeight,
-        width: heroVideoWidth,
-        maxHeight: `70vh`,
+        height: isDesktop === false ? '70svh' : heroVideoHeight,
+        width: isDesktop === false ? '100vw' : heroVideoWidth,
+        maxHeight: isDesktop === false ? 'none' : '70vh',
       }
     }
 
     return {}
-  }, [heroImageUrl, heroVideoId, heroVideoHeight, heroVideoWidth])
+  }, [heroImageUrl, heroVideoId, heroVideoHeight, heroVideoWidth, isDesktop])
 
   useEffect(() => {
     setTimeout(() => {
@@ -169,7 +169,7 @@ const Layout = ({
   }, [])
 
   return (
-    <div className="relative">
+    <div className="relative isolate">
       <Head>
         <title>
           {title || 'JmillsENT | Motion Picture Studio + Film Agency'}
@@ -320,43 +320,34 @@ const Layout = ({
               hidden: !menuVisible,
             },
             'w-full transition-all delay-500 duration-300 ease-in',
-            'z-50 flex items-start justify-between overflow-visible px-6 py-4 text-white'
+            'z-50 flex items-start justify-between overflow-visible px-5 py-5 text-white sm:px-8 lg:px-12'
           )}
         >
-          <div className="hidden lg:flex">
-            <Link href={`/`} className="flex items-center">
-              <Image
-                alt="JMills Logo"
-                src="/images/jme_film_co_circle_white.svg"
-                width={100}
-                height={100}
-              />
-            </Link>
-          </div>
-          <div className="flex lg:hidden">
-            <Link href={`/`} className="flex items-center">
-              <Image
-                alt="JMills Logo"
-                src="/images/jme_film_co_circle_white.svg"
-                width={80}
-                height={80}
-              />
-            </Link>
-          </div>
+          <Link
+            aria-label="Homepage"
+            href="/"
+            className="flex shrink-0 items-center"
+          >
+            <Image
+              alt=""
+              className="size-20 sm:size-24"
+              src="/images/jme_film_co_circle_white.svg"
+              width={96}
+              height={96}
+            />
+          </Link>
           <button
-            className="absolute top-10 right-6 h-8 w-12 focus:outline-hidden lg:top-10"
+            className="absolute top-7 right-5 flex size-12 items-center justify-center rounded-full border border-white/20 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-white sm:right-8 lg:right-12"
             onClick={() => toggleMenu(!menuOpen)}
             aria-label="Close menu"
           >
-            <span style={{ width: '48px', height: '32px' }}>
-              <Image
-                alt="Close menu"
-                className="h-8 w-12 fill-current stroke-current stroke-2 text-white"
-                src={`/images/menu-close-white.svg`}
-                width="48"
-                height="32"
-              />
-            </span>
+            <Image
+              alt=""
+              className="size-6"
+              src="/images/menu-close-white.svg"
+              width="24"
+              height="24"
+            />
           </button>
         </div>
       </div>
@@ -368,8 +359,8 @@ const Layout = ({
             fixed: menuVisible,
             hidden: !menuVisible,
           },
-          'inset-0 transform bg-black/92 backdrop-blur-lg pb-[20px] transition-all ease-in',
-          'z-40 flex flex-col items-center justify-center overflow-y-scroll text-right duration-300'
+          'inset-0 transform bg-black/95 backdrop-blur-xl transition-all ease-in',
+          'z-40 flex flex-col items-center justify-center overflow-y-auto px-5 py-24 duration-300'
         )}
       >
         {[...navItems[0], ...navItems[1]].map((navItem, index) => {
@@ -378,13 +369,14 @@ const Layout = ({
               href={navItem.href}
               key={index}
               className={clsx(
-                `${!hoveredMenuItem || hoveredMenuItem === navItem.href
-                  ? 'text-white'
-                  : 'text-gray-500'
+                `${
+                  !hoveredMenuItem || hoveredMenuItem === navItem.href
+                    ? 'text-white'
+                    : 'text-gray-500'
                 }`,
-                `group relative max-w-[80vw] py-[3vh] font-bold uppercase lg:py-6`,
-                `text-2xl tracking-wider md:text-4xl xl:text-6xl`,
-                `w-96 text-center transition-all duration-700`
+                `group relative max-w-[90vw] py-2 font-medium uppercase sm:py-3`,
+                `text-4xl tracking-[-0.04em] sm:text-5xl xl:text-7xl`,
+                `w-full text-center transition-colors duration-300`
               )}
               onMouseEnter={() => setHoveredMenuItem(navItem.href)}
               onMouseLeave={() => setHoveredMenuItem('')}
@@ -406,7 +398,7 @@ const Layout = ({
                     'w-full': hoveredMenuItem === navItem.href,
                     'w-0': hoveredMenuItem !== navItem.href,
                   },
-                  'absolute right-0 left-0 z-0 bg-white transition-all duration-500'
+                  'absolute right-0 left-0 z-0 bg-white transition-[width] duration-500'
                 )}
                 style={{
                   bottom: 'calc(50% - 1px)',
@@ -420,35 +412,29 @@ const Layout = ({
 
       <div
         className={clsx(
-          'top-0 z-20 flex w-full items-center justify-between px-6 py-4 lg:absolute',
+          'top-0 z-20 flex w-full items-center justify-between px-5 py-5 sm:px-8 lg:absolute lg:px-12',
           menuOpen && 'fixed',
-          !menuOpen && 'sticky bg-black lg:bg-transparent'
+          !menuOpen &&
+            'sticky bg-black/90 backdrop-blur-lg lg:bg-transparent lg:backdrop-blur-none'
         )}
       >
-        <div className="hidden lg:flex">
-          <Link href={`/`} className="flex items-center">
-            <Image
-              alt="JMills Logo"
-              src="/images/jme_film_co_circle_white.svg"
-              width={100}
-              height={100}
-            />
-          </Link>
-        </div>
-        <div className="flex lg:hidden">
-          <Link href={`/`} className="flex items-center">
-            <Image
-              alt="JMills Logo"
-              src="/images/jme_film_co_circle_white.svg"
-              width={80}
-              height={80}
-            />
-          </Link>
-        </div>
+        <Link
+          aria-label="Homepage"
+          href="/"
+          className="flex shrink-0 items-center"
+        >
+          <Image
+            alt=""
+            className="size-20 sm:size-24"
+            src="/images/jme_film_co_circle_white.svg"
+            width={96}
+            height={96}
+          />
+        </Link>
         <div className="flex items-center justify-end">
-          <div className="relative lg:mr-0 lg:ml-8">
+          <div className="relative">
             <button
-              className="relative h-8 w-12 hover:animate-pulse focus:outline-hidden"
+              className="relative flex size-12 items-center justify-center rounded-full border border-white/20 bg-black/10 backdrop-blur-sm focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-white"
               onClick={() => toggleMenu(!menuOpen)}
               aria-label="Open menu"
             >
@@ -460,15 +446,15 @@ const Layout = ({
                     absolute: !menuVisible,
                     hidden: menuVisible,
                   },
-                  'top-0 right-0 h-8 w-12 transform transition-all duration-300 ease-in'
+                  'inset-0 flex items-center justify-center transition-opacity duration-300 ease-in'
                 )}
               >
                 <Image
-                  alt="Open menu"
-                  className="h-8 w-12 fill-current stroke-current stroke-2 text-white"
+                  alt=""
+                  className="h-auto w-6"
                   src={showHero ? `/images/menu-white.svg` : `/images/menu.svg`}
-                  height="48"
-                  width="32"
+                  height="16"
+                  width="24"
                 />
               </span>
             </button>
@@ -540,10 +526,10 @@ const Layout = ({
       <main className="relative z-10 w-full bg-black text-white">
         {children}
       </main>
-      <footer className="text-center">
+      <footer className="mx-auto max-w-[100rem] px-5 pt-12 text-center sm:px-8 lg:px-12">
         <MobileFooterMenu />
         <DesktopFooterMenu />
-        <p className="mt-8 mb-2 text-gray-500">
+        <p className="border-t border-white/15 py-6 text-base text-white/40 sm:text-sm">
           &copy; Jmills Entertainment {new Date().getFullYear()}
         </p>
       </footer>
@@ -558,18 +544,16 @@ const FooterNavItem = ({ navItem, className }) => {
     <Link
       href={navItem.href}
       className={clsx(
-        'px-2 text-sm font-semibold text-white uppercase',
-        'lg:px-4 lg:text-lg',
-        'xl:text-2xl',
+        'text-base font-normal text-white/60 sm:text-sm',
         className
       )}
     >
       <div
         className={clsx(
-          'px-2 py-1 transition-all',
+          'rounded-full px-3 py-2',
           router.route === navItem.href
-            ? 'border border-white'
-            : 'hover:scale-110'
+            ? 'bg-white/10 text-white'
+            : 'hover:text-white'
         )}
       >
         {navItem.name}
@@ -580,11 +564,10 @@ const FooterNavItem = ({ navItem, className }) => {
 
 const MobileFooterMenu = () => {
   return (
-    <div className={clsx('mt-12 px-5 text-center', 'lg:hidden')}>
+    <div className="lg:hidden">
       <div
         className={clsx(
-          'flex flex-wrap justify-center gap-y-4 border-t border-gray-400 pt-4 pb-4',
-          'divide-x divide-white'
+          'flex flex-wrap justify-center gap-1 border-t border-white/15 py-5'
         )}
       >
         {navItems[0].map((navItem, index) => {
@@ -593,8 +576,7 @@ const MobileFooterMenu = () => {
       </div>
       <div
         className={clsx(
-          'flex flex-wrap justify-center gap-y-4 border-t border-gray-400 pt-4 pb-4',
-          'divide-x divide-white'
+          'flex flex-wrap justify-center gap-1 border-t border-white/15 py-5'
         )}
       >
         {navItems[1].map((navItem, index) => {
@@ -610,14 +592,12 @@ const DesktopFooterMenu = () => {
     <div
       className={clsx(
         'hidden',
-        'px-24 lg:mt-24 lg:flex lg:flex-wrap lg:items-start lg:justify-center lg:text-center'
+        'lg:flex lg:flex-wrap lg:items-start lg:justify-center lg:text-center'
       )}
     >
       <div
         className={clsx(
-          'flex flex-wrap justify-center gap-y-4 border-t border-gray-400 pt-4 pb-4',
-          'divide-x divide-white',
-          'xl:px-8'
+          'flex w-full flex-wrap justify-center gap-2 border-t border-white/15 py-6'
         )}
       >
         {[...navItems[0], ...navItems[1]].map((navItem, index) => {

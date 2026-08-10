@@ -4,20 +4,23 @@ import 'yet-another-react-lightbox/styles.css'
 
 import { ClientOnly } from '@/components/client-only'
 import DividerBar from '@/components/divider-bar'
-import { H1, H2, H3 } from '@/components/headings'
+import {
+  H1 as SharedH1,
+  H2 as SharedH2,
+  H3 as SharedH3,
+} from '@/components/headings'
 import Layout from '@/components/layout'
 import LittleBlackBar from '@/components/little-black-bar'
 import LittleWhiteBar from '@/components/little-white-bar'
 import SanityImage from '@/components/sanity-image'
 import { PortableText, toPlainText } from '@portabletext/react'
-import { useWindowSize } from '@uidotdev/usehooks'
 import { clsx } from 'clsx'
 import groq from 'groq'
 import useIsDesktop from 'hooks/useIsDesktop'
 import dynamic from 'next/dynamic'
 import Image from 'next/image'
 import Link from 'next/link'
-import { Fragment, useState } from 'react'
+import { useState } from 'react'
 import { styles } from 'styles/styles'
 import { Autoplay, Controller } from 'swiper/modules'
 import { Swiper, SwiperSlide } from 'swiper/react'
@@ -29,6 +32,36 @@ import { urlForSanitySource } from '../lib/urlForSanitySource'
 
 const VideoPlayer = dynamic(() => import('@/components/video-player'), {})
 
+const H1 = ({ className, ...props }) => (
+  <SharedH1
+    className={clsx(
+      'text-2xl font-extrabold tracking-normal lg:text-7xl',
+      className
+    )}
+    {...props}
+  />
+)
+
+const H2 = ({ className, ...props }) => (
+  <SharedH2
+    className={clsx(
+      'text-2xl font-extrabold tracking-normal lg:text-5xl',
+      className
+    )}
+    {...props}
+  />
+)
+
+const H3 = ({ className, ...props }) => (
+  <SharedH3
+    className={clsx(
+      'text-xl font-extrabold tracking-normal lg:text-3xl',
+      className
+    )}
+    {...props}
+  />
+)
+
 function About({ aboutPage }) {
   const [isGalleryModelOpen, setIsGalleryModelOpen] = useState(false)
   const [isServicesLightBoxOpen, setIsServicesLightBoxOpen] = useState(false)
@@ -38,17 +71,19 @@ function About({ aboutPage }) {
   const isDesktop = useIsDesktop()
   const [photoIndex, setPhotoIndex] = useState(0)
 
-  const { width: browserWidth } = useWindowSize()
-
   const utahLocationsImages = aboutPage.utahLocations.map((image) =>
     urlForSanitySource(image).width(1800).format('webp').quality(80).url()
   )
 
   const heroContent = (
-    <div className="flex h-full w-screen items-center justify-center text-white">
-      <div className="flex w-screen flex-col items-center justify-center px-4 text-center">
-        <H1>{aboutPage.title}</H1>
-        <h2 className="font-outline text-2xl uppercase lg:text-6xl">
+    <div className="relative flex h-full min-h-[70svh] w-screen flex-col justify-end overflow-hidden px-5 pb-10 text-white sm:px-8 sm:pb-14 lg:min-h-0 lg:px-12 lg:pb-16">
+      <div className="absolute inset-0 bg-linear-to-t from-black via-black/15 to-black/25" />
+      <div className="relative mx-auto w-full max-w-[100rem]">
+        <p className="mb-4 font-mono text-sm tracking-wide text-white/70 uppercase sm:text-xs">
+          About the studio
+        </p>
+        <H1 className="max-w-[14ch]">{aboutPage.title}</H1>
+        <h2 className="font-outline mt-2 max-w-[24ch] text-2xl text-balance text-white uppercase sm:text-3xl lg:text-5xl">
           {aboutPage.subtitle}
         </h2>
       </div>
@@ -131,135 +166,154 @@ function About({ aboutPage }) {
         }}
       />
 
-      <div className="mx-auto max-w-7xl px-8">
-        <div className="mx-auto mt-12 max-w-7xl text-center text-white lg:mt-24">
-          <div className="container mx-auto my-24 rounded-xl bg-white px-8 py-12 text-black">
-            <H2>{aboutPage.section1Title}</H2>
-            <LittleBlackBar maxWidth="max-w-96" yMargin="my-10" />
-            <div className="mt-12" id="reel">
-              <div className="container mx-auto rounded-xl text-white lg:px-10">
-                <ClientOnly>
-                  <VideoPlayer
-                    autoPlay
-                    client={aboutPage.reelVideoClient}
-                    description={aboutPage.reelVideoDescription}
-                    poster={aboutPage.reelVideoPoster}
-                    title={aboutPage.reelVideoTitle}
-                    videoHeightAspectRatio={
-                      aboutPage.reelVideoHeightAspectRatio
-                    }
-                    videoId={aboutPage.reelVideoId}
-                    videoIdShort={aboutPage.reelVideoIdShort}
-                    videoWidthAspectRatio={aboutPage.reelVideoWidthAspectRatio}
-                  />
-                </ClientOnly>
+      <div className="mx-auto max-w-[100rem] px-5 sm:px-8 lg:px-12">
+        <div className="text-white">
+          <section
+            className="my-6 overflow-hidden rounded-[min(1.5vw,1.5rem)] bg-[#f2f1ed] text-black sm:my-8"
+            id="reel"
+          >
+            <div className="grid gap-8 p-5 sm:p-8 lg:grid-cols-12 lg:gap-12 lg:p-12">
+              <div className="lg:col-span-5">
+                <p className="mb-4 font-mono text-sm tracking-wide text-black/50 uppercase sm:text-xs">
+                  Our approach
+                </p>
+                <H2 className="max-w-[18ch] text-4xl font-medium tracking-[-0.045em] sm:text-5xl lg:text-6xl">
+                  {aboutPage.section1Title}
+                </H2>
+                {aboutPage.section1Body && (
+                  <div className="prose prose-p:text-base prose-p:font-normal prose-p:leading-7 sm:prose-p:text-lg mt-6 max-w-[55ch] text-pretty text-black/65 lg:mt-8">
+                    <PortableText value={aboutPage.section1Body} />
+                  </div>
+                )}
+                {aboutPage.section1Subtitle && (
+                  <H3 className="mt-8 max-w-[26ch] border-t border-black/15 pt-6 text-xl font-semibold sm:text-2xl">
+                    {aboutPage.section1Subtitle}
+                  </H3>
+                )}
+              </div>
+              <div className="min-w-0 lg:col-span-7">
+                <div className="overflow-hidden rounded-[min(1vw,1rem)] bg-black text-white outline-1 -outline-offset-1 outline-black/10">
+                  <ClientOnly>
+                    <VideoPlayer
+                      autoPlay
+                      client={aboutPage.reelVideoClient}
+                      description={aboutPage.reelVideoDescription}
+                      poster={aboutPage.reelVideoPoster}
+                      title={aboutPage.reelVideoTitle}
+                      videoHeightAspectRatio={
+                        aboutPage.reelVideoHeightAspectRatio
+                      }
+                      videoId={aboutPage.reelVideoId}
+                      videoIdShort={aboutPage.reelVideoIdShort}
+                      videoWidthAspectRatio={
+                        aboutPage.reelVideoWidthAspectRatio
+                      }
+                    />
+                  </ClientOnly>
+                </div>
+                <div className="mt-4 flex items-center gap-3">
+                  <button
+                    className="relative flex size-12 shrink-0 items-center justify-center rounded-full border border-black/15"
+                    aria-label="Previous image"
+                    onClick={() => controlledSwiper?.slidePrev()}
+                  >
+                    <Image
+                      className="h-6 w-auto rotate-180 opacity-60"
+                      alt=""
+                      src="/images/chevron-arrow.svg"
+                      width={12}
+                      height={24}
+                    />
+                  </button>
+                  <Swiper
+                    autoplay={{
+                      delay: 1_500,
+                      disableOnInteraction: false,
+                    }}
+                    breakpoints={{
+                      640: {
+                        slidesPerView: 3,
+                        spaceBetween: 24,
+                      },
+                    }}
+                    className="min-w-0 flex-1"
+                    loop
+                    modules={[Autoplay, Controller]}
+                    navigation={true}
+                    onSwiper={setControlledSwiper}
+                    slidesPerView={1.4}
+                    spaceBetween={12}
+                    speed={1000}
+                  >
+                    {(aboutPage.section1Images || []).map((image, index) => {
+                      const width = 600
+                      const height = 440
+
+                      const altText =
+                        image.caption ||
+                        capitalize(
+                          (image.name || `image-${index}`)
+                            .replace(/-/g, ' ')
+                            .replace(/_/g, ' ')
+                            .replace('.jpg', '')
+                        )
+
+                      return (
+                        <SwiperSlide key={index}>
+                          <div>
+                            <Image
+                              className="aspect-4/3 w-full rounded-[min(1vw,0.75rem)] object-cover outline-1 -outline-offset-1 outline-black/10"
+                              alt={altText}
+                              height={height}
+                              src={`${image.imageUrl}?w=${width}&h=${height}&auto=format&fit=crop&crop=focalpoint`}
+                              width={width}
+                              unoptimized
+                            />
+                          </div>
+                        </SwiperSlide>
+                      )
+                    })}
+                  </Swiper>
+                  <button
+                    className="relative flex size-12 shrink-0 items-center justify-center rounded-full border border-black/15"
+                    aria-label="Next image"
+                    onClick={() => controlledSwiper?.slideNext()}
+                  >
+                    <Image
+                      className="h-6 w-auto opacity-60"
+                      alt=""
+                      src="/images/chevron-arrow.svg"
+                      width={12}
+                      height={24}
+                    />
+                  </button>
+                </div>
               </div>
             </div>
-            {aboutPage.section1Body && (
-              <div className="prose prose-lg mx-auto mt-4 -mb-2 max-w-6xl px-4 text-center lg:mt-10">
-                <PortableText value={aboutPage.section1Body} />
-              </div>
-            )}
-
-            {aboutPage.section1Subtitle && (
-              <div className="mt-12">
-                <H3>{aboutPage.section1Subtitle}</H3>
-              </div>
-            )}
-
-            <div className="-mx-8 mt-8 flex max-w-7xl 2xl:mx-auto">
-              <button
-                className="p-4"
-                onClick={() => controlledSwiper?.slidePrev()}
-              >
-                <Image
-                  className="rotate-180 opacity-50 transition-opacity duration-300 hover:opacity-80"
-                  alt="chevron-arrow"
-                  src="/images/chevron-arrow.svg"
-                  width={81 / 2}
-                  height={172 / 2}
-                />
-              </button>
-              <Swiper
-                autoplay={{
-                  delay: 1_500,
-                  disableOnInteraction: false,
-                }}
-                breakpoints={{
-                  640: {
-                    slidesPerView: 3,
-                    spaceBetween: 24,
-                  },
-                }}
-                className="px-10"
-                loop
-                modules={[Autoplay, Controller]}
-                navigation={true}
-                onSwiper={setControlledSwiper}
-                slidesPerView={2}
-                spaceBetween={24}
-                speed={1000}
-              >
-                {(aboutPage.section1Images || []).map((image, index) => {
-                  const width = 600
-                  const height = 440
-
-                  const altText =
-                    image.caption ||
-                    capitalize(
-                      (image.name || `image-${index}`)
-                        .replace(/-/g, ' ')
-                        .replace(/_/g, ' ')
-                        .replace('.jpg', '')
-                    )
-
-                  return (
-                    <SwiperSlide key={index}>
-                      <div>
-                        <Image
-                          className="rounded-lg border border-gray-100"
-                          alt={altText}
-                          height={height}
-                          src={`${image.imageUrl}?w=${width}&h=${height}&auto=format&fit=crop&crop=focalpoint`}
-                          width={width}
-                          unoptimized
-                        />
-                      </div>
-                    </SwiperSlide>
-                  )
-                })}
-              </Swiper>
-              <button
-                className="p-4"
-                onClick={() => controlledSwiper?.slideNext()}
-              >
-                <Image
-                  className="opacity-50 transition-opacity duration-300 hover:opacity-80"
-                  alt="chevron-arrow"
-                  src="/images/chevron-arrow.svg"
-                  width={81 / 2}
-                  height={172 / 2}
-                />
-              </button>
-            </div>
-          </div>
-
-          <div>
-            <DividerBar />
-          </div>
+          </section>
 
           {/* services */}
-          <section className="relative -mt-1.5" id="services">
-            <div className="container mx-auto text-center">
-              <H2>{aboutPage.section2Title}</H2>
-              <p className="font-outline -mt-1.5 text-xl uppercase lg:text-5xl">
+          <section
+            className="border-b border-white/15 py-20 sm:py-24 lg:py-32"
+            id="services"
+          >
+            <div className="flex flex-col gap-4 lg:flex-row lg:items-end lg:justify-between">
+              <div>
+                <p className="mb-4 font-mono text-sm tracking-wide text-white/50 uppercase sm:text-xs">
+                  What we do
+                </p>
+                <H2 className="max-w-[20ch] text-4xl font-medium tracking-[-0.045em] sm:text-5xl lg:text-6xl">
+                  {aboutPage.section2Title}
+                </H2>
+              </div>
+              <p className="font-outline max-w-[24ch] text-2xl text-white uppercase sm:text-3xl lg:text-right lg:text-4xl">
                 {aboutPage.section2Subtitle}
               </p>
             </div>
 
             <div
               className={clsx(
-                'mt-12 grid gap-6',
+                'mt-10 grid gap-3 sm:mt-12',
                 'md:grid-cols-2',
                 'lg:grid-cols-3'
               )}
@@ -275,8 +329,8 @@ function About({ aboutPage }) {
                 return (
                   <button
                     className={clsx(
-                      'group relative rounded-lg',
-                      'aspect-4/4 overflow-hidden',
+                      'group relative rounded-[min(1vw,1rem)] outline-1 -outline-offset-1 outline-white/10',
+                      'min-h-[30rem] overflow-hidden md:aspect-4/4 md:min-h-0',
                       'bg-cover bg-center bg-no-repeat',
                       'lg:aspect-3/4',
                       'xl:aspect-4/3'
@@ -292,33 +346,24 @@ function About({ aboutPage }) {
                   >
                     <div
                       className={clsx(
-                        'absolute inset-0 rounded-lg bg-linear-to-t from-black/100 via-black/30 to-black/0 opacity-50 transition-all duration-300',
-                        'lg:from-transparent lg:via-transparent lg:to-transparent lg:opacity-0',
-                        'group-hover:from-black/80 group-hover:via-black/80 group-hover:to-black/80 group-hover:opacity-100'
+                        'absolute inset-0 bg-linear-to-t from-black via-black/20 to-transparent opacity-90'
                       )}
                     />
                     <div
                       className={clsx(
-                        'relative z-10 flex h-full translate-y-1/2 flex-col items-center justify-center py-3 transition-transform duration-300 group-hover:overflow-auto',
-                        'group-hover:translate-y-0'
+                        'relative z-10 flex h-full flex-col items-start justify-end p-5 text-left sm:p-6'
                       )}
                     >
-                      <div
-                        className="font-outline text-5xl font-light group-hover:hidden"
-                        style={{
-                          letterSpacing: 1,
-                        }}
-                      >
+                      <div className="font-outline mb-auto text-3xl text-white/65 tabular-nums">
                         0{index + 1}
                       </div>
-                      <div className="bg-gold mx-auto my-2 h-1 w-40 shrink-0 group-hover:hidden"></div>
-                      <h4 className="mb-4 text-3xl font-bold uppercase">
+                      <h3 className="max-w-[22ch] text-2xl font-semibold tracking-tight text-balance uppercase sm:text-3xl">
                         {service.name}
-                      </h4>
+                      </h3>
                       <div
                         className={clsx(
-                          'px-4 text-sm font-light text-white uppercase opacity-0 transition-opacity',
-                          'group-hover:opacity-100'
+                          'mt-3 max-w-[48ch] text-base text-pretty text-white/70 sm:text-sm',
+                          'lg:max-h-0 lg:overflow-hidden lg:opacity-0 lg:transition-[max-height,opacity] lg:duration-300 lg:group-hover:max-h-48 lg:group-hover:opacity-100'
                         )}
                       >
                         <PortableText value={service.description} />
@@ -332,44 +377,48 @@ function About({ aboutPage }) {
 
           {/* end: services */}
 
-          <DividerBar />
-
           {/* Ad Formats */}
-          <div className="container mx-auto my-24 rounded-xl bg-white px-8 py-12 text-black">
+          <div className="my-6 overflow-hidden rounded-[min(1.5vw,1.5rem)] bg-[#f2f1ed] text-black sm:my-8">
             <section
-              className="mx-auto grid max-w-7xl gap-y-4 text-center"
+              className="grid gap-8 p-5 sm:p-8 lg:gap-12 lg:p-12"
               id="ad-formats"
             >
-              {aboutPage.adFormatsTitle && <H2>{aboutPage.adFormatsTitle}</H2>}
-              <LittleBlackBar maxWidth="max-w-96" yMargin="my-4" />
-              {aboutPage.adFormatsSubtitle && (
-                <p className="font-outline text-2xl lg:text-4xl">
-                  {aboutPage.adFormatsSubtitle}
-                </p>
-              )}
-              <div className="mt-4 grid grid-cols-1 gap-x-4 gap-y-8 md:grid-cols-3 lg:gap-x-8">
+              <div className="flex flex-col gap-4 border-b border-black/15 pb-8 lg:flex-row lg:items-end lg:justify-between">
+                <div>
+                  <p className="mb-4 font-mono text-sm tracking-wide text-black/50 uppercase sm:text-xs">
+                    Built for every screen
+                  </p>
+                  {aboutPage.adFormatsTitle && (
+                    <H2 className="max-w-[20ch] text-4xl font-medium tracking-[-0.045em] sm:text-5xl lg:text-6xl">
+                      {aboutPage.adFormatsTitle}
+                    </H2>
+                  )}
+                </div>
+                {aboutPage.adFormatsSubtitle && (
+                  <p className="font-outline max-w-[24ch] text-2xl text-black uppercase sm:text-3xl lg:text-right lg:text-4xl">
+                    {aboutPage.adFormatsSubtitle}
+                  </p>
+                )}
+              </div>
+              <div className="grid grid-cols-1 gap-3 md:grid-cols-3">
                 {aboutPage.adFormats.map((adFormatsCard, index) => {
                   return (
                     <div
                       key={index}
-                      className={clsx(
-                        'flex flex-col justify-start space-y-12 rounded-lg bg-black px-8 pt-12 pb-8 text-white'
-                      )}
-                      target="_blank"
+                      className="flex flex-col gap-8 rounded-[min(1vw,1rem)] bg-black p-5 text-left text-white sm:p-6"
                     >
                       <div>
                         <SanityImage
                           image={adFormatsCard.image}
-                          className="block"
+                          className="aspect-4/3 w-full rounded-[min(1vw,0.75rem)] object-cover outline-1 -outline-offset-1 outline-white/10"
                           alt={adFormatsCard.title}
                         />
                       </div>
                       <div>
-                        <h4 className="text-2xl font-bold uppercase lg:text-3xl">
+                        <h3 className="text-2xl font-semibold tracking-tight text-balance uppercase lg:text-3xl">
                           {adFormatsCard.title}
-                        </h4>
-                        <div className="bg-gold mx-auto mt-4 h-1 w-40"></div>
-                        <div className="prose prose-sm prose-invert lg:prose-base mt-4">
+                        </h3>
+                        <div className="prose prose-invert prose-p:text-base sm:prose-p:text-sm mt-4 text-pretty text-white/65">
                           <PortableText value={adFormatsCard.body} />
                         </div>
                       </div>
@@ -378,7 +427,7 @@ function About({ aboutPage }) {
                 })}
               </div>
               {aboutPage.adFormatsContent && (
-                <div className="prose prose-lg mx-auto mt-4 max-w-5xl px-4 text-center text-white lg:mt-10">
+                <div className="prose prose-p:text-base sm:prose-p:text-lg max-w-[60ch] text-pretty text-black/65">
                   <PortableText value={aboutPage.adFormatsContent} />
                 </div>
               )}
@@ -386,154 +435,120 @@ function About({ aboutPage }) {
           </div>
           {/* end: Ad Formats */}
 
-          <div>
-            <DividerBar />
-          </div>
-
           {/* director section */}
           <section
-            className="mx-auto grid max-w-7xl items-center gap-y-10 text-center"
+            className="grid gap-8 border-b border-white/15 py-20 sm:py-24 lg:grid-cols-12 lg:gap-12 lg:py-32"
             id="director"
           >
-            <div>
-              <p className="text-4xl font-bold lg:text-5xl">
-                {aboutPage.directorName}
+            <div className="lg:col-span-4">
+              <p className="mb-4 font-mono text-sm tracking-wide text-white/50 uppercase sm:text-xs">
+                The director
               </p>
-              <p className="font-outline mt-8 text-4xl uppercase lg:mt-4 lg:text-5xl">
+              <h2 className="max-w-[20ch] text-4xl font-semibold tracking-tight text-balance uppercase sm:text-5xl">
+                {aboutPage.directorName}
+              </h2>
+              <p className="font-outline mt-2 max-w-[24ch] text-2xl text-white uppercase sm:text-3xl">
                 {aboutPage.directorTitle}
               </p>
+              {aboutPage.directorDescription && (
+                <div className="prose prose-invert prose-p:text-base prose-p:leading-7 sm:prose-p:text-lg mt-8 max-w-[55ch] text-pretty text-white/65 lg:mt-10">
+                  <PortableText value={aboutPage.directorDescription} />
+                </div>
+              )}
+              <a
+                href="https://jeremymillerdirector.com/"
+                className="group mt-8 inline-flex items-center gap-3 border-b border-white/30 pb-2 text-base font-medium sm:text-sm"
+                rel="noreferrer"
+                target="_blank"
+              >
+                Visit director&apos;s site
+                <span
+                  aria-hidden="true"
+                  className="transition-transform duration-300 group-hover:translate-x-1"
+                >
+                  ↗
+                </span>
+              </a>
             </div>
-            <div className="group relative overflow-hidden">
+            <div className="group relative overflow-hidden rounded-[min(1.5vw,1.5rem)] outline-1 -outline-offset-1 outline-white/10 lg:col-span-8">
               <SanityImage
-                alt={aboutPage.directorName}
+                alt=""
                 image={aboutPage.directorImage}
-                className="h-full w-full rounded-xl"
+                className="h-full w-full object-cover"
               />
               <div
                 className={clsx(
-                  'absolute top-0 right-0 bottom-0 hidden h-full w-1/2 rounded-r-xl bg-linear-to-l from-black to-transparent opacity-70 transition-all duration-500',
-                  'lg:block lg:pr-20',
-                  'group-hover:w-3/4 group-hover:opacity-80'
+                  'absolute inset-0 bg-linear-to-t from-black/80 via-transparent to-transparent'
                 )}
               />
               {(aboutPage.directorImageTitle ||
                 aboutPage.directorImageSubtitle) && (
-                <div className="inset-0 mt-4 flex flex-col items-center justify-center gap-y-1 sm:gap-y-2 lg:absolute lg:mt-0 lg:items-end lg:gap-y-6 lg:pr-24">
-                  <p className="text-lg font-bold tracking-wider uppercase sm:text-3xl lg:text-4xl">
+                <div className="absolute inset-0 flex flex-col items-start justify-end gap-2 p-5 sm:p-8">
+                  <p className="max-w-[24ch] text-xl font-semibold tracking-tight text-balance uppercase sm:text-3xl">
                     {aboutPage.directorImageTitle}
                   </p>
-                  {aboutPage.directorImageTitle &&
-                    aboutPage.directorImageSubtitle && (
-                      <div className="bg-gold h-[2px] w-24 md:h-1 md:w-48"></div>
-                    )}
                   {aboutPage.directorImageSubtitle && (
-                    <p className="font-outline text-xl uppercase sm:text-3xl lg:text-4xl">
+                    <p className="font-outline max-w-[28ch] text-xl text-white/80 uppercase sm:text-2xl">
                       {aboutPage.directorImageSubtitle}
                     </p>
                   )}
                 </div>
               )}
             </div>
-            {aboutPage.directorDescription && (
-              <div className="prose prose-lg prose-invert mx-auto max-w-5xl px-4">
-                <PortableText value={aboutPage.directorDescription} />
-              </div>
-            )}
-            <div className="flex justify-center">
-              <a
-                href="https://jeremymillerdirector.com/"
-                className={styles.buttonLink.default}
-                rel="noreferrer"
-                target="_blank"
-              >
-                <span className="font-outline text-2xl tracking-tighter text-gray-300 group-hover:text-black lg:text-3xl">
-                  View
-                </span>
-                <span className="text-2xl font-bold tracking-wide group-hover:text-black lg:text-3xl">
-                  Director&apos;s
-                </span>
-                <span className="font-outline text-2xl tracking-tighter text-gray-300 group-hover:text-black lg:text-3xl">
-                  Site
-                </span>
-              </a>
-            </div>
           </section>
           {/* end: director section */}
 
-          <div>
-            <DividerBar />
-          </div>
-
           {/* team section */}
-          <section className="mx-auto max-w-7xl text-center" id="team">
-            <div className="rounded-xl bg-white p-8 text-black lg:p-10">
-              <H2>{aboutPage.teamTitle}</H2>
-              <p className="font-outline -mt-1.5 text-xl uppercase lg:text-5xl">
+          <section
+            className="border-b border-white/15 py-20 sm:py-24 lg:py-32"
+            id="team"
+          >
+            <div className="flex flex-col gap-4 lg:flex-row lg:items-end lg:justify-between">
+              <div>
+                <p className="mb-4 font-mono text-sm tracking-wide text-white/50 uppercase sm:text-xs">
+                  The crew
+                </p>
+                <H2 className="max-w-[20ch] text-4xl font-medium tracking-[-0.045em] sm:text-5xl lg:text-6xl">
+                  {aboutPage.teamTitle}
+                </H2>
+              </div>
+              <p className="font-outline max-w-[24ch] text-2xl text-white uppercase sm:text-3xl lg:text-right lg:text-4xl">
                 {aboutPage.teamSubtitle}
               </p>
-              <div
-                className={clsx(
-                  'mx-auto mt-10 grid max-w-5xl grid-cols-2 gap-x-2 gap-y-6',
-                  'sm:gap-x-0 sm:gap-y-8',
-                  'md:grid-cols-3',
-                  'lg:mt-12 lg:grid-cols-8 lg:gap-x-8 lg:gap-y-6'
-                )}
-              >
-                {aboutPage.teamMembers.map((teamMember, teamMemberIndex) => {
-                  const width = isDesktop ? 400 : 200
-                  const height = isDesktop ? 460 : 250
-                  return (
-                    <Fragment key={teamMember._id}>
-                      {aboutPage.teamMembers.length % 4 === 3 &&
-                        teamMemberIndex === aboutPage.teamMembers.length - 3 &&
-                        browserWidth >= 1024 && <div className=""></div>}
-                      {aboutPage.teamMembers.length % 4 === 2 &&
-                        teamMemberIndex === aboutPage.teamMembers.length - 2 &&
-                        browserWidth >= 1024 && (
-                          <div className="col-span-2"></div>
-                        )}
-                      {aboutPage.teamMembers.length % 4 === 1 &&
-                        teamMemberIndex === aboutPage.teamMembers.length - 1 &&
-                        browserWidth >= 1024 && (
-                          <div className="col-span-3"></div>
-                        )}
-                      <div className="lg:col-span-2">
-                        <Image
-                          alt={teamMember.name}
-                          className="mx-auto rounded-lg"
-                          height={height}
-                          src={urlForSanitySource(teamMember.image)
-                            .width(width)
-                            .height(height)
-                            .format('webp')
-                            .quality(80)
-                            .url()}
-                          width={width}
-                        />
-                        <p className="mt-2 text-sm font-extrabold uppercase lg:text-2xl">
-                          {teamMember.name}
-                        </p>
-                        <div className="px-4">
-                          <LittleBlackBar
-                            maxWidth="max-w-full"
-                            yMargin={'my-2'}
-                          />
-                        </div>
-                        <p className="lg:font-outline text-sm tracking-wider uppercase lg:text-2xl">
-                          {teamMember.title}
-                        </p>
-                      </div>
-                    </Fragment>
-                  )
-                })}
-              </div>
             </div>
+            <ul
+              className="mt-10 grid grid-cols-2 gap-3 sm:mt-12 md:grid-cols-3 lg:grid-cols-4"
+              role="list"
+            >
+              {aboutPage.teamMembers.map((teamMember) => {
+                const width = isDesktop ? 400 : 200
+                const height = isDesktop ? 460 : 250
+                return (
+                  <li key={teamMember._id} className="min-w-0">
+                    <Image
+                      alt=""
+                      className="aspect-4/5 w-full rounded-[min(1vw,1rem)] object-cover outline-1 -outline-offset-1 outline-white/10"
+                      height={height}
+                      src={urlForSanitySource(teamMember.image)
+                        .width(width)
+                        .height(height)
+                        .format('webp')
+                        .quality(80)
+                        .url()}
+                      width={width}
+                    />
+                    <p className="mt-4 text-base font-semibold text-white uppercase sm:text-lg">
+                      {teamMember.name}
+                    </p>
+                    <p className="mt-1 text-base text-white/50 sm:text-sm">
+                      {teamMember.title}
+                    </p>
+                  </li>
+                )
+              })}
+            </ul>
           </section>
           {/* end: team section */}
-
-          <div>
-            <DividerBar />
-          </div>
 
           {/* utah locations */}
           <Lightbox
@@ -551,16 +566,30 @@ function About({ aboutPage }) {
             }))}
           />
           <section
-            className="mx-auto grid max-w-7xl gap-y-10 text-center"
+            className="grid gap-8 border-b border-white/15 py-20 sm:py-24 lg:gap-12 lg:py-32"
             id="locations"
           >
-            <H2 className="mb-0!">{aboutPage.utahLocationsTitle}</H2>
-            <div className="grid grid-cols-1 gap-1 lg:grid-cols-3">
+            <div className="grid gap-6 lg:grid-cols-12 lg:gap-12">
+              <div className="lg:col-span-7">
+                <p className="mb-4 font-mono text-sm tracking-wide text-white/50 uppercase sm:text-xs">
+                  Home base / Utah
+                </p>
+                <H2 className="max-w-[20ch] text-4xl font-medium tracking-[-0.045em] sm:text-5xl lg:text-6xl">
+                  {aboutPage.utahLocationsTitle}
+                </H2>
+              </div>
+              {aboutPage.utahLocationsDescription && (
+                <div className="prose prose-invert prose-p:text-base prose-p:leading-7 sm:prose-p:text-lg max-w-[55ch] text-pretty text-white/65 lg:col-span-5 lg:pt-8">
+                  <PortableText value={aboutPage.utahLocationsDescription} />
+                </div>
+              )}
+            </div>
+            <div className="grid grid-cols-1 gap-3 lg:grid-cols-3">
               {aboutPage.utahLocations.map((utahLocation, index) => {
                 return (
                   <button
                     aria-label={`Utah location ${index + 1}`}
-                    className="h-full w-full"
+                    className="min-h-64 w-full overflow-hidden rounded-[min(1vw,1rem)] outline-1 -outline-offset-1 outline-white/10"
                     key={index}
                     onClick={() => {
                       setIsGalleryModelOpen(true)
@@ -583,11 +612,6 @@ function About({ aboutPage }) {
                 )
               })}
             </div>
-            {aboutPage.utahLocationsDescription && (
-              <div className="prose prose-lg prose-invert mx-auto max-w-3xl px-4 text-center">
-                <PortableText value={aboutPage.utahLocationsDescription} />
-              </div>
-            )}
           </section>
           {/* end: utah locations */}
 

@@ -1,11 +1,11 @@
-import { clsx } from 'clsx'
+import { twMerge } from 'tailwind-merge'
 
 const H1 = ({ children, className = '' }) => {
   return (
     <h1
-      className={clsx(
-        className,
-        'text-2xl font-extrabold uppercase lg:mb-4 lg:text-7xl'
+      className={twMerge(
+        'text-5xl font-semibold tracking-[-0.055em] text-balance uppercase sm:text-7xl lg:text-8xl xl:text-9xl',
+        className
       )}
     >
       {children}
@@ -15,9 +15,9 @@ const H1 = ({ children, className = '' }) => {
 const H2 = ({ children, className = '' }) => {
   return (
     <h2
-      className={clsx(
-        className,
-        'mb-2 text-2xl font-extrabold uppercase lg:text-5xl'
+      className={twMerge(
+        'text-4xl font-medium tracking-[-0.045em] text-balance uppercase sm:text-5xl lg:text-7xl',
+        className
       )}
     >
       {children}
@@ -27,9 +27,9 @@ const H2 = ({ children, className = '' }) => {
 const H3 = ({ children, className = '' }) => {
   return (
     <h3
-      className={clsx(
-        className,
-        'mb-2 text-xl font-extrabold uppercase lg:text-3xl'
+      className={twMerge(
+        'text-2xl font-medium tracking-[-0.035em] text-balance uppercase lg:text-4xl',
+        className
       )}
     >
       {children}

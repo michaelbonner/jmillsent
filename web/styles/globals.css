@@ -110,7 +110,31 @@
   }
 
   body {
-    @apply bg-black;
+    @apply bg-black text-white antialiased;
+    overflow-x: hidden;
+  }
+
+  ::selection {
+    @apply bg-white text-black;
+  }
+
+  html {
+    scroll-behavior: smooth;
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    html {
+      scroll-behavior: auto;
+    }
+
+    *,
+    *::before,
+    *::after {
+      animation-duration: 0.01ms !important;
+      animation-iteration-count: 1 !important;
+      scroll-behavior: auto !important;
+      transition-duration: 0.01ms !important;
+    }
   }
 
   .prose h2 {

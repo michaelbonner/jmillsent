@@ -1,4 +1,4 @@
-import { H1, H2 } from '@/components/headings'
+import { H1 } from '@/components/headings'
 import Layout from '@/components/layout'
 import NewsItemCard from '@/components/news-item-card'
 import { sanityClient } from '@/lib/sanity'
@@ -6,12 +6,16 @@ import groq from 'groq'
 
 function News({ newsPage }) {
   const heroContent = (
-    <div className="-my-2 flex w-full items-center justify-center py-24 text-white sm:my-10 sm:mb-10">
-      <div className="flex w-screen flex-col items-center justify-center px-4 text-center">
-        <H1>{newsPage?.seoTitle || 'News'}</H1>
-        <H2 className="font-outline uppercase sm:text-2xl lg:text-5xl">
+    <div className="relative flex min-h-[70svh] w-screen flex-col justify-end overflow-hidden px-5 pb-10 text-white sm:px-8 sm:pb-14 lg:px-12 lg:pb-16">
+      <div className="absolute inset-0 bg-linear-to-t from-black via-black/15 to-black/25" />
+      <div className="relative mx-auto w-full max-w-[100rem]">
+        <p className="mb-4 font-mono text-sm tracking-wide text-white/70 uppercase sm:text-xs">
+          Field notes
+        </p>
+        <H1 className="max-w-[14ch]">{newsPage?.seoTitle || 'News'}</H1>
+        <h2 className="font-outline mt-2 max-w-[24ch] text-2xl text-balance text-white uppercase sm:text-3xl lg:text-5xl">
           {newsPage?.seoDescription || 'News'}
-        </H2>
+        </h2>
       </div>
     </div>
   )

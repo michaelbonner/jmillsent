@@ -3,7 +3,7 @@ import Script from 'next/script'
 
 export default function Document() {
   return (
-    <Html lang="en">
+    <Html className="antialiased scheme-only-dark" lang="en">
       <Head>
         <link rel="stylesheet" href="https://use.typekit.net/gvj6hwn.css" />
       </Head>

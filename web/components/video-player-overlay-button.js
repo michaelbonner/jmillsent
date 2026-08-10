@@ -23,7 +23,7 @@ const VideoPlayerOverlayButtonNotMemoized = ({
         hasClicked &&
           showVideoOverlay &&
           'pointer-events-none md:pointer-events-auto',
-        'absolute inset-0 bottom-[40px] h-full w-full cursor-pointer bg-transparent py-[40px] text-left text-3xl outline-0'
+        'absolute inset-0 bottom-[40px] h-full w-full cursor-pointer bg-transparent py-[40px] text-left text-3xl text-white outline-0'
       )}
       onClick={handleOverlayClick}
     >

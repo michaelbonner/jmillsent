@@ -33,11 +33,17 @@ function Moments({ images, momentsPage }) {
   }, [images])
 
   const heroContent = (
-    <div className="flex h-full w-full flex-col items-center justify-center text-white">
-      <H1>{momentsPage.title}</H1>
-      <h2 className="font-outline text-2xl uppercase lg:text-6xl">
-        {momentsPage.subtitle}
-      </h2>
+    <div className="relative flex h-full min-h-[70svh] w-screen flex-col justify-end overflow-hidden px-5 pb-10 text-white sm:px-8 sm:pb-14 lg:min-h-0 lg:px-12 lg:pb-16">
+      <div className="absolute inset-0 bg-linear-to-t from-black via-black/15 to-black/25" />
+      <div className="relative mx-auto w-full max-w-[100rem]">
+        <p className="mb-4 font-mono text-sm tracking-wide text-white/70 uppercase sm:text-xs">
+          Behind the scenes
+        </p>
+        <H1 className="max-w-[14ch]">{momentsPage.title}</H1>
+        <h2 className="font-outline mt-2 max-w-[24ch] text-2xl text-balance text-white uppercase sm:text-3xl lg:text-5xl">
+          {momentsPage.subtitle}
+        </h2>
+      </div>
     </div>
   )
 

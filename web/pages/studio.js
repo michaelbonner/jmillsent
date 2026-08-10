@@ -28,20 +28,14 @@ function Studio({ studioPage }) {
   const isDesktop = useIsDesktop()
 
   const heroContent = (
-    <div
-      className={clsx(
-        'grid h-full w-full items-center text-white',
-        'lg:gap-y-4'
-      )}
-    >
-      <div
-        className={clsx(
-          'grid items-center justify-center pt-4 text-center',
-          'lg:mt-16'
-        )}
-      >
-        <H1 className="mb-0">{studioPage.title}</H1>
-        <h2 className={clsx('font-outline text-3xl uppercase', 'lg:text-7xl')}>
+    <div className="relative flex h-full min-h-[70svh] w-screen flex-col justify-end overflow-hidden px-5 pb-10 text-white sm:px-8 sm:pb-14 lg:min-h-0 lg:px-12 lg:pb-16">
+      <div className="absolute inset-0 bg-linear-to-t from-black via-black/15 to-black/25" />
+      <div className="relative mx-auto w-full max-w-[100rem]">
+        <p className="mb-4 font-mono text-sm tracking-wide text-white/70 uppercase sm:text-xs">
+          Production headquarters
+        </p>
+        <H1 className="max-w-[14ch]">{studioPage.title}</H1>
+        <h2 className="font-outline mt-2 max-w-[24ch] text-2xl text-balance text-white uppercase sm:text-3xl lg:text-5xl">
           {studioPage.subtitle}
         </h2>
       </div>

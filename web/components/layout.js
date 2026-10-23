@@ -14,38 +14,25 @@ import { ClientOnly } from './client-only'
 const LoadingAnimation = dynamic(() => import('./loading-animation'))
 
 const navItems = [
-  [
-    {
-      name: 'Home',
-      href: '/',
-    },
-    {
-      name: 'Work',
-      href: '/work',
-    },
-    {
-      name: 'About',
-      href: '/about',
-    },
-    {
-      name: 'Studio',
-      href: '/studio',
-    },
-  ],
-  [
-    {
-      name: 'Moments',
-      href: '/moments',
-    },
-    {
-      name: 'News',
-      href: '/news',
-    },
-    {
-      name: 'Contact',
-      href: '/contact',
-    },
-  ],
+  { name: 'Home', href: '/' },
+  { name: 'Work', href: '/work' },
+  { name: 'About', href: '/about' },
+  { name: 'Studio', href: '/studio' },
+  { name: 'Moments', href: '/moments' },
+  { name: 'News', href: '/news' },
+]
+
+const heroMinHeight = '420px'
+
+const contactNavItem = { name: 'Contact', href: '/contact' }
+
+const socialLinks = [
+  { name: 'Instagram', href: 'https://www.instagram.com/jmillsent' },
+  { name: 'Vimeo', href: 'https://vimeo.com/jmillsent' },
+  {
+    name: 'LinkedIn',
+    href: 'https://www.linkedin.com/company/jmillsentertainment',
+  },
 ]
 
 const Layout = ({
@@ -59,12 +46,9 @@ const Layout = ({
   heroVideoWidthInPixels = 0,
 }) => {
   const [menuOpen, setMenuOpen] = useState(false)
-  const [menuVisible, setMenuVisible] = useState(false)
   const router = useRouter()
-  const [hoveredMenuItem, setHoveredMenuItem] = useState('')
   const [videoPlaying, setVideoPlaying] = useState(false)
-  const { width: windowWidth, height: windowHeight } = useWindowSize()
-  const heroContainerRef = React.createRef()
+  const { width: windowWidth } = useWindowSize()
   const isDesktop = useIsDesktop()
   const {
     showLoadingAnimation,
@@ -72,20 +56,6 @@ const Layout = ({
     isOverlayVisible,
     isAnimationComplete,
   } = useContext(LoadingAnimationContext)
-
-  const toggleMenu = () => {
-    if (menuOpen) {
-      setMenuOpen(!menuOpen)
-      setTimeout(() => {
-        setMenuVisible(!menuOpen)
-      }, 100)
-    } else {
-      setMenuVisible(!menuOpen)
-      setTimeout(() => {
-        setMenuOpen(!menuOpen)
-      }, 100)
-    }
-  }
 
   useEffect(() => {
     if (menuOpen) {
@@ -101,7 +71,6 @@ const Layout = ({
 
   useEffect(() => {
     const handleRouteChangeComplete = () => {
-      setMenuVisible(false)
       setMenuOpen(false)
     }
     router.events.on('routeChangeComplete', handleRouteChangeComplete)
@@ -118,7 +87,7 @@ const Layout = ({
   const { heroVideoHeight, heroVideoWidth } = useMemo(() => {
     if (isDesktop === false && !heroVideoId) {
       return {
-        heroVideoHeight: `27.5vh`,
+        heroVideoHeight: `60svh`,
         heroVideoWidth: `100vw`,
       }
     }
@@ -144,6 +113,11 @@ const Layout = ({
     windowWidth,
   ])
 
+  const heroVideoAspectRatio =
+    heroVideoWidthInPixels && heroVideoHeightInPixels
+      ? heroVideoWidthInPixels / heroVideoHeightInPixels
+      : 100 / 42
+
   const headerStyles = useMemo(() => {
     if (heroImageUrl || heroVideoId) {
       return {
@@ -155,7 +129,8 @@ const Layout = ({
         backgroundRepeat: 'no-repeat',
         height: heroVideoHeight,
         width: heroVideoWidth,
-        maxHeight: `70vh`,
+        minHeight: heroMinHeight,
+        maxHeight: `86svh`,
       }
     }
 
@@ -233,11 +208,6 @@ const Layout = ({
         />
         <link
           rel="preconnect"
-          href="https://use.typekit.net"
-          crossOrigin="true"
-        />
-        <link
-          rel="preconnect"
           href="https://cdn.sanity.io"
           crossOrigin="true"
         />
@@ -306,200 +276,110 @@ const Layout = ({
 
       <div
         className={clsx(
-          'top-0 z-50 w-full lg:absolute',
-          !menuOpen && 'absolute',
-          menuOpen && 'sticky'
+          'top-0 z-40 w-full',
+          showHero && !menuOpen ? 'absolute' : 'relative',
+          menuOpen && 'fixed bg-neutral-950'
         )}
       >
-        <div
-          className={clsx(
-            {
-              'opacity-100': menuOpen,
-              'opacity-0': !menuOpen,
-              relative: menuVisible,
-              hidden: !menuVisible,
-            },
-            'w-full transition-all delay-500 duration-300 ease-in',
-            'z-50 flex items-start justify-between overflow-visible px-6 py-4 text-white'
-          )}
-        >
-          <div className="hidden lg:flex">
-            <Link href={`/`} className="flex items-center">
-              <Image
-                alt="JMills Logo"
-                src="/images/jme_film_co_circle_white.svg"
-                width={100}
-                height={100}
-              />
-            </Link>
-          </div>
-          <div className="flex lg:hidden">
-            <Link href={`/`} className="flex items-center">
-              <Image
-                alt="JMills Logo"
-                src="/images/jme_film_co_circle_white.svg"
-                width={80}
-                height={80}
-              />
-            </Link>
-          </div>
-          <button
-            className="absolute top-10 right-6 h-8 w-12 focus:outline-hidden lg:top-10"
-            onClick={() => toggleMenu(!menuOpen)}
-            aria-label="Close menu"
+        <div className="mx-auto flex max-w-[1480px] items-center justify-between gap-8 px-5 py-5 sm:px-8 lg:py-6">
+          <Link
+            href="/"
+            aria-label="Homepage"
+            className="w-20 shrink-0 lg:w-[100px]"
           >
-            <span style={{ width: '48px', height: '32px' }}>
-              <Image
-                alt="Close menu"
-                className="h-8 w-12 fill-current stroke-current stroke-2 text-white"
-                src={`/images/menu-close-white.svg`}
-                width="48"
-                height="32"
-              />
-            </span>
-          </button>
-        </div>
-      </div>
-      <nav
-        className={clsx(
-          {
-            'translate-x-0': menuOpen,
-            'translate-x-4 opacity-0': !menuOpen,
-            fixed: menuVisible,
-            hidden: !menuVisible,
-          },
-          'inset-0 transform bg-black/92 backdrop-blur-lg pb-[20px] transition-all ease-in',
-          'z-40 flex flex-col items-center justify-center overflow-y-scroll text-right duration-300'
-        )}
-      >
-        {[...navItems[0], ...navItems[1]].map((navItem, index) => {
-          return (
-            <Link
-              href={navItem.href}
-              key={index}
-              className={clsx(
-                `${!hoveredMenuItem || hoveredMenuItem === navItem.href
-                  ? 'text-white'
-                  : 'text-gray-500'
-                }`,
-                `group relative max-w-[80vw] py-[3vh] font-bold uppercase lg:py-6`,
-                `text-2xl tracking-wider md:text-4xl xl:text-6xl`,
-                `w-96 text-center transition-all duration-700`
-              )}
-              onMouseEnter={() => setHoveredMenuItem(navItem.href)}
-              onMouseLeave={() => setHoveredMenuItem('')}
-            >
-              <span
-                className={clsx(
-                  {
-                    'text-gold': navItem.href === router.pathname,
-                    'text-gold opacity-50': navItem.href === router.pathname,
-                  },
-                  `relative z-10`
-                )}
-              >
-                {navItem.name}
-              </span>
-              <span
-                className={clsx(
-                  {
-                    'w-full': hoveredMenuItem === navItem.href,
-                    'w-0': hoveredMenuItem !== navItem.href,
-                  },
-                  'absolute right-0 left-0 z-0 bg-white transition-all duration-500'
-                )}
-                style={{
-                  bottom: 'calc(50% - 1px)',
-                  height: '2px',
-                }}
-              ></span>
-            </Link>
-          )
-        })}
-      </nav>
-
-      <div
-        className={clsx(
-          'top-0 z-20 flex w-full items-center justify-between px-6 py-4 lg:absolute',
-          menuOpen && 'fixed',
-          !menuOpen && 'sticky bg-black lg:bg-transparent'
-        )}
-      >
-        <div className="hidden lg:flex">
-          <Link href={`/`} className="flex items-center">
             <Image
-              alt="JMills Logo"
+              alt="Jmills Entertainment logo"
               src="/images/jme_film_co_circle_white.svg"
               width={100}
               height={100}
+              className="h-auto w-full"
+              priority
             />
           </Link>
-        </div>
-        <div className="flex lg:hidden">
-          <Link href={`/`} className="flex items-center">
-            <Image
-              alt="JMills Logo"
-              src="/images/jme_film_co_circle_white.svg"
-              width={80}
-              height={80}
-            />
-          </Link>
-        </div>
-        <div className="flex items-center justify-end">
-          <div className="relative lg:mr-0 lg:ml-8">
-            <button
-              className="relative h-8 w-12 hover:animate-pulse focus:outline-hidden"
-              onClick={() => toggleMenu(!menuOpen)}
-              aria-label="Open menu"
-            >
-              <span
-                className={clsx(
-                  {
-                    'opacity-100': !menuOpen,
-                    'opacity-0': menuOpen,
-                    absolute: !menuVisible,
-                    hidden: menuVisible,
-                  },
-                  'top-0 right-0 h-8 w-12 transform transition-all duration-300 ease-in'
-                )}
+          <nav aria-label="Main navigation">
+            <div className="hidden items-center gap-6 text-sm font-medium tracking-[0.08em] uppercase lg:flex xl:gap-8">
+              {navItems.map((navItem) => (
+                <Link
+                  key={navItem.href}
+                  href={navItem.href}
+                  className={clsx(
+                    'border-b py-2 transition-colors',
+                    router.pathname === navItem.href
+                      ? 'border-white'
+                      : 'border-transparent hover:border-white'
+                  )}
+                >
+                  {navItem.name}
+                </Link>
+              ))}
+              <Link
+                href={contactNavItem.href}
+                className="border border-white px-5 py-3 text-sm font-medium transition-colors hover:bg-white hover:text-neutral-950"
               >
-                <Image
-                  alt="Open menu"
-                  className="h-8 w-12 fill-current stroke-current stroke-2 text-white"
-                  src={showHero ? `/images/menu-white.svg` : `/images/menu.svg`}
-                  height="48"
-                  width="32"
-                />
+                {contactNavItem.name}
+              </Link>
+            </div>
+            <button
+              type="button"
+              className="flex min-h-12 items-center gap-3 border-b border-white text-sm font-medium tracking-[0.08em] uppercase lg:hidden"
+              aria-expanded={menuOpen}
+              aria-controls="mobile-navigation"
+              onClick={() => setMenuOpen(!menuOpen)}
+            >
+              {menuOpen ? 'Close' : 'Menu'}
+              <span className="text-xl leading-none" aria-hidden="true">
+                {menuOpen ? '−' : '+'}
               </span>
             </button>
-          </div>
+          </nav>
         </div>
       </div>
 
+      <nav
+        id="mobile-navigation"
+        aria-label="Mobile navigation"
+        className={clsx(
+          'fixed inset-0 z-30 overflow-y-auto bg-neutral-950 px-5 pt-28 pb-10 sm:px-8 lg:hidden',
+          !menuOpen && 'hidden'
+        )}
+      >
+        <div className="flex flex-col border-t border-white/20">
+          {[...navItems, contactNavItem].map((navItem) => (
+            <Link
+              key={navItem.href}
+              href={navItem.href}
+              className={clsx(
+                'flex items-center justify-between border-b border-white/20 py-5',
+                'text-3xl font-semibold tracking-[-0.04em] uppercase',
+                router.pathname === navItem.href
+                  ? 'text-white'
+                  : 'text-white/70 hover:text-white'
+              )}
+            >
+              {navItem.name}
+              <span className="text-xl" aria-hidden="true">
+                ↗
+              </span>
+            </Link>
+          ))}
+        </div>
+      </nav>
+
       <header className="overflow-hidden">
-        {isDesktop !== null && (
+        {isDesktop !== null && showHero && (
           <div
-            className={clsx(
-              {
-                'from-gray-700 via-gray-800 to-black lg:bg-linear-to-b lg:from-gray-700/25 lg:via-gray-800/25 lg:to-black/25':
-                  heroVideoId,
-              },
-              `relative h-full bg-black`
-            )}
+            className="relative isolate h-full bg-neutral-900"
             style={headerStyles}
           >
-            {heroVideoId ? (
+            {heroVideoId && (
               <div
                 className={clsx(
                   {
                     'opacity-100': videoPlaying,
                     'opacity-0': !videoPlaying,
                   },
-                  `absolute inset-0 z-0`
+                  'absolute inset-0 -z-10 transition-opacity duration-1000'
                 )}
-                height={heroVideoHeight}
-                width={heroVideoWidth}
-                ref={heroContainerRef}
               >
                 <iframe
                   allow="autoplay; fullscreen; picture-in-picture; clipboard-write; encrypted-media"
@@ -509,122 +389,110 @@ const Layout = ({
                   webkitallowfullscreen="true"
                   style={{
                     position: 'absolute',
-                    top: 0,
-                    right: 0,
-                    bottom: 0,
-                    left: 0,
+                    top: '50%',
+                    left: '50%',
+                    transform: 'translate(-50%, -50%)',
                     pointerEvents: 'none',
-                    width: heroVideoWidth,
-                    height: heroVideoHeight,
+                    width: `max(${heroVideoWidth}, ${heroMinHeight} * ${heroVideoAspectRatio})`,
+                    height: `max(${heroVideoHeight}, ${heroMinHeight})`,
                   }}
                 />
-                {heroContent && (
-                  <div className="relative z-30 h-full w-screen text-white">
-                    {heroContent}
-                  </div>
-                )}
               </div>
-            ) : (
-              heroContent && (
-                <div
-                  className="relative z-0 flex h-full w-screen items-center text-white"
-                  style={{ minHeight: `20vh` }}
-                >
+            )}
+            <div className="absolute inset-0 bg-linear-to-r from-neutral-950/85 via-neutral-950/45 to-transparent" />
+            <div className="absolute inset-x-0 top-0 h-32 bg-linear-to-b from-neutral-950/60 to-transparent" />
+            {heroContent && (
+              <div className="relative flex h-full items-end py-12 text-white lg:py-20">
+                <div className="mx-auto w-full max-w-7xl px-5">
                   {heroContent}
                 </div>
-              )
+              </div>
             )}
           </div>
         )}
+        {!showHero && heroContent && (
+          <div className="pt-12 pb-8 text-white lg:pt-20">
+            <div className="mx-auto w-full max-w-7xl px-5">{heroContent}</div>
+          </div>
+        )}
       </header>
-      <main className="relative z-10 w-full bg-black text-white">
+      <main className="relative z-10 w-full bg-neutral-950 text-white">
         {children}
       </main>
-      <footer className="text-center">
-        <MobileFooterMenu />
-        <DesktopFooterMenu />
-        <p className="mt-8 mb-2 text-gray-500">
-          &copy; Jmills Entertainment {new Date().getFullYear()}
-        </p>
-      </footer>
+      <Footer />
     </div>
   )
 }
 
-const FooterNavItem = ({ navItem, className }) => {
-  const router = useRouter()
-
+const Footer = () => {
   return (
-    <Link
-      href={navItem.href}
-      className={clsx(
-        'px-2 text-sm font-semibold text-white uppercase',
-        'lg:px-4 lg:text-lg',
-        'xl:text-2xl',
-        className
-      )}
-    >
-      <div
-        className={clsx(
-          'px-2 py-1 transition-all',
-          router.route === navItem.href
-            ? 'border border-white'
-            : 'hover:scale-110'
-        )}
-      >
-        {navItem.name}
+    <footer className="bg-neutral-900 px-5 pt-16 pb-8 text-white sm:px-8 lg:pt-20">
+      <div className="mx-auto grid max-w-7xl gap-12 lg:grid-cols-12 lg:gap-10">
+        <div className="lg:col-span-6">
+          <Link href="/" aria-label="Homepage" className="block w-24">
+            <Image
+              alt="Jmills Entertainment logo"
+              src="/images/jme_film_co_circle_white.svg"
+              width={100}
+              height={100}
+              className="h-auto w-full"
+            />
+          </Link>
+          <p className="mt-8 max-w-[36ch] text-base/7 text-neutral-400">
+            Motion picture studio and film agency in Salt Lake City, Utah.
+          </p>
+        </div>
+        <div className="lg:col-span-3">
+          <nav
+            className="flex flex-col items-start gap-3 text-base"
+            aria-label="Footer navigation"
+          >
+            {[...navItems, contactNavItem].map((navItem) => (
+              <Link
+                key={navItem.href}
+                href={navItem.href}
+                className="underline-offset-4 hover:underline"
+              >
+                {navItem.name}
+              </Link>
+            ))}
+          </nav>
+        </div>
+        <div className="lg:col-span-3">
+          <p className="mb-5 text-sm font-medium tracking-[0.12em] text-neutral-400 uppercase">
+            Find us
+          </p>
+          <a
+            className="text-base/7 hover:underline"
+            href="https://maps.google.com/?q=1589+W+2225+S+Woods+Cross+UT+84087"
+            target="_blank"
+            rel="noopener nofollow"
+          >
+            1589 W 2225 S<br />
+            Woods Cross, UT 84087
+          </a>
+          <div className="mt-6 flex flex-col items-start gap-3 text-base">
+            {socialLinks.map((socialLink) => (
+              <a
+                key={socialLink.href}
+                href={socialLink.href}
+                target="_blank"
+                rel="noopener"
+                className="underline-offset-4 hover:underline"
+              >
+                {socialLink.name} ↗
+              </a>
+            ))}
+          </div>
+        </div>
       </div>
-    </Link>
-  )
-}
-
-const MobileFooterMenu = () => {
-  return (
-    <div className={clsx('mt-12 px-5 text-center', 'lg:hidden')}>
-      <div
-        className={clsx(
-          'flex flex-wrap justify-center gap-y-4 border-t border-gray-400 pt-4 pb-4',
-          'divide-x divide-white'
-        )}
-      >
-        {navItems[0].map((navItem, index) => {
-          return <FooterNavItem key={index} navItem={navItem} />
-        })}
+      <div className="mx-auto mt-16 flex max-w-7xl flex-col gap-3 border-t border-white/15 pt-6 text-sm text-neutral-400 sm:flex-row sm:flex-wrap sm:justify-between">
+        <p>&copy; {new Date().getFullYear()} Jmills Entertainment</p>
+        <a className="hover:underline" href="https://theravenspace.com/">
+          Ravenspace studio rental ↗
+        </a>
       </div>
-      <div
-        className={clsx(
-          'flex flex-wrap justify-center gap-y-4 border-t border-gray-400 pt-4 pb-4',
-          'divide-x divide-white'
-        )}
-      >
-        {navItems[1].map((navItem, index) => {
-          return <FooterNavItem key={index} navItem={navItem} />
-        })}
-      </div>
-    </div>
-  )
-}
-
-const DesktopFooterMenu = () => {
-  return (
-    <div
-      className={clsx(
-        'hidden',
-        'px-24 lg:mt-24 lg:flex lg:flex-wrap lg:items-start lg:justify-center lg:text-center'
-      )}
-    >
-      <div
-        className={clsx(
-          'flex flex-wrap justify-center gap-y-4 border-t border-gray-400 pt-4 pb-4',
-          'divide-x divide-white',
-          'xl:px-8'
-        )}
-      >
-        {[...navItems[0], ...navItems[1]].map((navItem, index) => {
-          return <FooterNavItem key={index} navItem={navItem} />
-        })}
-      </div>
-    </div>
+    </footer>
   )
 }
 

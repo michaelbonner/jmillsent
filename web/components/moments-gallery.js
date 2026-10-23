@@ -68,11 +68,11 @@ const MomentsGallery = ({ images = [] }) => {
         zoom={{ ref: zoomRef }}
       />
 
-      <section className="max-w-13xl mx-auto text-center">
+      <section className="max-w-13xl mx-auto">
         {/* desktop grid */}
         <div
           className={clsx(
-            'mt-0 hidden grid-cols-2 gap-4 px-1',
+            'mt-0 hidden grid-cols-2 gap-5',
             'lg:grid lg:grid-cols-12'
           )}
         >
@@ -94,7 +94,7 @@ const MomentsGallery = ({ images = [] }) => {
               >
                 <Image
                   alt={image.altText}
-                  className={`bpd-gallery-image cursor-pointer rounded-lg`}
+                  className="bpd-gallery-image cursor-pointer transition-opacity duration-300 hover:opacity-80"
                   height={height}
                   onClick={() => {
                     setIsGalleryModelOpen(true)
@@ -113,7 +113,7 @@ const MomentsGallery = ({ images = [] }) => {
         {/* mobile grid */}
         <div
           className={clsx(
-            'mt-0 grid grid-cols-2 gap-4 px-1',
+            'mt-0 grid grid-cols-2 gap-3',
             'lg:hidden lg:grid-cols-12'
           )}
         >
@@ -125,7 +125,7 @@ const MomentsGallery = ({ images = [] }) => {
               <div className={clsx('bpd-gallery-image-container')} key={index}>
                 <Image
                   alt={image.altText}
-                  className={`bpd-gallery-image cursor-pointer rounded-lg`}
+                  className="bpd-gallery-image cursor-pointer transition-opacity duration-300 hover:opacity-80"
                   height={height}
                   onClick={() => {
                     setIsGalleryModelOpen(true)

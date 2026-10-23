@@ -1,4 +1,4 @@
-import { H1, H2 } from '@/components/headings'
+import { Eyebrow, H1 } from '@/components/headings'
 import Layout from '@/components/layout'
 import NewsItemCard from '@/components/news-item-card'
 import { sanityClient } from '@/lib/sanity'
@@ -6,13 +6,11 @@ import groq from 'groq'
 
 function News({ newsPage }) {
   const heroContent = (
-    <div className="-my-2 flex w-full items-center justify-center py-24 text-white sm:my-10 sm:mb-10">
-      <div className="flex w-screen flex-col items-center justify-center px-4 text-center">
-        <H1>{newsPage?.seoTitle || 'News'}</H1>
-        <H2 className="font-outline uppercase sm:text-2xl lg:text-5xl">
-          {newsPage?.seoDescription || 'News'}
-        </H2>
-      </div>
+    <div className="flex max-w-5xl flex-col items-start gap-5 text-left">
+      <Eyebrow className="border-b border-white/60 pb-3 text-white">
+        {newsPage?.seoDescription || 'Hot off the press'}
+      </Eyebrow>
+      <H1 className="max-w-[20ch]">{newsPage?.seoTitle || 'News'}</H1>
     </div>
   )
 
@@ -23,15 +21,13 @@ function News({ newsPage }) {
       heroImageUrl={newsPage?.poster || ''}
       heroContent={heroContent}
     >
-      <div className="mx-auto max-w-7xl lg:mt-10">
-        <div className="mx-4 mt-8 rounded-xl bg-white lg:mx-8">
-          <div className="grid max-w-7xl justify-center gap-y-24 rounded-xl p-6 lg:gap-y-10 lg:bg-white lg:p-10">
-            {(newsPage?.newsItems ?? []).map((newsItem, index) => {
-              return <NewsItemCard key={index} newsItem={newsItem} />
-            })}
-          </div>
+      <section className="py-20 lg:py-28">
+        <div className="mx-auto grid max-w-7xl gap-x-10 gap-y-16 px-5 lg:grid-cols-2">
+          {(newsPage?.newsItems ?? []).map((newsItem, index) => {
+            return <NewsItemCard key={index} newsItem={newsItem} />
+          })}
         </div>
-      </div>
+      </section>
     </Layout>
   )
 }

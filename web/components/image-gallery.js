@@ -12,7 +12,6 @@ export const ImageGallery = ({ images }) => {
         <a>
           <Image
             alt={images[i].caption || images[i].name}
-            className="rounded-lg"
             height={600 / 2}
             src={urlForSanitySource(images[i].asset)
               .width(160 * 4)
@@ -65,7 +64,7 @@ export const ImageGallery = ({ images }) => {
         {images.map((image) => (
           <Image
             alt={image.caption || image.name}
-            className="rounded-lg object-cover"
+            className="object-cover"
             height={600}
             key={image.asset._id}
             src={urlForSanitySource(image.asset)

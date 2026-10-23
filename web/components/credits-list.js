@@ -1,7 +1,7 @@
 import { Eyebrow } from './headings'
 
-const CreditsList = ({ credits = [] }) => {
-  if (!credits.length) return null
+const CreditsList = ({ credits }) => {
+  if (!credits?.length) return null
 
   const column1Credits = credits.slice(0, Math.ceil(credits.length / 2))
   const column2Credits = credits.slice(column1Credits.length)

@@ -1,14 +1,14 @@
 import { ClientOnly } from '@/components/client-only'
-import { H1, H2 } from '@/components/headings'
+import ArrowLink from '@/components/arrow-link'
+import { Eyebrow, H1, H2 } from '@/components/headings'
 import Layout from '@/components/layout'
+import SectionIntro from '@/components/section-intro'
 import { sanityClient } from '@/lib/sanity'
 import { PortableText } from '@portabletext/react'
 import { clsx } from 'clsx'
 import groq from 'groq'
 import useIsDesktop from 'hooks/useIsDesktop'
 import dynamic from 'next/dynamic'
-import Image from 'next/image'
-import Link from 'next/link'
 import { useState } from 'react'
 
 const VideoPlayer = dynamic(() => import('@/components/video-player'), {})
@@ -22,11 +22,11 @@ function Home({ homePage }) {
   ] = useState([])
 
   const heroContent = (
-    <div className="flex h-full w-screen flex-col items-center justify-center text-center text-white">
-      <H1>{homePage.mainTitle}</H1>
-      <h2 className="font-outline text-2xl uppercase lg:text-6xl">
+    <div className="flex max-w-5xl flex-col items-start gap-5 text-left">
+      <Eyebrow className="border-b border-white/60 pb-3 text-white">
         {homePage.subtitle}
-      </h2>
+      </Eyebrow>
+      <H1 className="max-w-[20ch]">{homePage.mainTitle}</H1>
     </div>
   )
 
@@ -53,116 +53,101 @@ function Home({ homePage }) {
         homePage.reelVideoWidthInPixels
       }
     >
-      <div className="mx-auto max-w-7xl px-8">
-        <div className="container mx-auto mt-12 text-center text-white lg:mt-24">
-          <H2>{homePage.section1Title}</H2>
-          <div className="prose prose-lg prose-invert mx-auto mt-4 -mb-2 text-center lg:mt-10 lg:max-w-5xl">
+      <section className="py-20 lg:py-32">
+        <div className="mx-auto max-w-7xl px-5">
+          <SectionIntro
+            className="mb-0! lg:mb-0!"
+            eyebrow="Who we are"
+            title={homePage.section1Title}
+          >
             <PortableText value={homePage.section1Body} />
+          </SectionIntro>
+        </div>
+      </section>
+
+      <section className="bg-neutral-900 py-20 lg:py-28">
+        <div className="mx-auto max-w-7xl px-5">
+          <div className="mb-8 border-t border-white/30 pt-5 lg:mb-12">
+            <Eyebrow className="mb-5">Latest campaign</Eyebrow>
+            <H2 className="max-w-[24ch]">{homePage.latestCampaignTitle}</H2>
+            <p className="font-outline text-2xl uppercase lg:text-4xl">
+              {homePage.latestCampaignSubtitle}
+            </p>
+          </div>
+
+          <div className="grid grid-cols-1 gap-5 lg:grid-cols-2">
+            {homePage.latestCampaignVideos.map((video, index) => {
+              const shouldBeBig =
+                (homePage.latestCampaignVideos.length === 1 ||
+                  homePage.latestCampaignVideos.length === 3) &&
+                index === 0
+
+              const isCurrentlyPlaying =
+                latestCampaignVideoPlayingIndexes.includes(index)
+
+              const shouldReduceOpacity =
+                latestCampaignVideoPlayingIndexes.length > 0 &&
+                !isCurrentlyPlaying
+
+              return (
+                <div
+                  className={clsx(
+                    shouldBeBig && 'lg:col-span-2',
+                    'overflow-hidden transition-opacity duration-500',
+                    shouldReduceOpacity && 'opacity-50'
+                  )}
+                  key={index}
+                >
+                  <ClientOnly>
+                    <VideoPlayer
+                      autoPlay
+                      client={video.clientName}
+                      description={video.description}
+                      disableGradientOverlay
+                      onPlayProp={() =>
+                        setLatestCampaignVideoPlayingIndexes((p) => [
+                          ...p,
+                          index,
+                        ])
+                      }
+                      onPauseProp={() =>
+                        setLatestCampaignVideoPlayingIndexes((previous) =>
+                          previous.filter((p) => p !== index)
+                        )
+                      }
+                      overrideClassNames={{
+                        text: {
+                          client: shouldBeBig ? '' : 'text-xl lg:text-3xl',
+                          title: shouldBeBig ? '' : 'text-2xl lg:text-4xl',
+                        },
+                      }}
+                      poster={video.poster}
+                      title={video.title}
+                      videoHeightAspectRatio={video.videoHeightAspectRatio}
+                      videoId={video.videoId}
+                      videoIdShort={video.videoIdShort}
+                      videoWidthAspectRatio={video.videoWidthAspectRatio}
+                    />
+                  </ClientOnly>
+                </div>
+              )
+            })}
+          </div>
+
+          <div className="mt-10 flex flex-wrap gap-x-10 gap-y-4 uppercase">
+            <ArrowLink href="/about">Learn more</ArrowLink>
+            <ArrowLink href="/work">Explore work</ArrowLink>
           </div>
         </div>
+      </section>
 
-        <div className="container mx-auto my-24 rounded-xl bg-white py-12">
-          <div className="container mx-auto grid gap-8 px-8 text-center lg:px-12">
-            <div>
-              <H2 className="text-black">{homePage.latestCampaignTitle}</H2>
-              <p className="font-outline text-xl tracking-tighter text-black uppercase lg:text-5xl">
-                {homePage.latestCampaignSubtitle}
-              </p>
-            </div>
-
-            <div className="grid grid-cols-1 gap-4 lg:grid-cols-2">
-              {homePage.latestCampaignVideos.map((video, index) => {
-                const shouldBeBig =
-                  (homePage.latestCampaignVideos.length === 1 ||
-                    homePage.latestCampaignVideos.length === 3) &&
-                  index === 0
-
-                const isCurrentlyPlaying =
-                  latestCampaignVideoPlayingIndexes.includes(index)
-
-                const shouldReduceOpacity =
-                  latestCampaignVideoPlayingIndexes.length > 0 &&
-                  !isCurrentlyPlaying
-
-                return (
-                  <div
-                    className={clsx(
-                      shouldBeBig && 'lg:col-span-2',
-                      'overflow-hidden rounded-lg transition-opacity duration-500',
-                      shouldReduceOpacity && 'opacity-50'
-                    )}
-                    key={index}
-                  >
-                    <ClientOnly>
-                      <VideoPlayer
-                        autoPlay
-                        client={video.clientName}
-                        description={video.description}
-                        disableGradientOverlay
-                        onPlayProp={() =>
-                          setLatestCampaignVideoPlayingIndexes((p) => [
-                            ...p,
-                            index,
-                          ])
-                        }
-                        onPauseProp={() =>
-                          setLatestCampaignVideoPlayingIndexes((previous) =>
-                            previous.filter((p) => p !== index)
-                          )
-                        }
-                        overrideClassNames={{
-                          text: {
-                            client: shouldBeBig ? '' : 'text-xl lg:text-3xl',
-                            title: shouldBeBig ? '' : 'text-2xl lg:text-4xl',
-                          },
-                        }}
-                        poster={video.poster}
-                        title={video.title}
-                        videoHeightAspectRatio={video.videoHeightAspectRatio}
-                        videoId={video.videoId}
-                        videoIdShort={video.videoIdShort}
-                        videoWidthAspectRatio={video.videoWidthAspectRatio}
-                      />
-                    </ClientOnly>
-                  </div>
-                )
-              })}
-            </div>
-
-            <div className="mt-3 grid gap-4 lg:flex lg:justify-center lg:gap-16">
-              <Link
-                href="/about"
-                className={clsx(
-                  'rounded-lg border-2 border-black px-8 py-0.5 font-bold tracking-widest text-black uppercase transition-all',
-                  'hover:bg-gold hover:border-black hover:text-black'
-                )}
-              >
-                Learn More
-              </Link>
-              <Link
-                href="/work"
-                className={clsx(
-                  'rounded-lg border-2 border-black bg-black px-8 py-0.5 font-bold tracking-widest uppercase transition-all',
-                  'hover:bg-gold hover:border-black hover:text-black'
-                )}
-              >
-                Explore Work
-              </Link>
-            </div>
+      <section className="py-20 lg:py-28" id="section2">
+        <div className="mx-auto max-w-7xl px-5">
+          <div className="mb-8 lg:mb-12">
+            <Eyebrow className="mb-5">{homePage.section2Subtitle}</Eyebrow>
+            <H2 className="max-w-[24ch]">{homePage.section2Title}</H2>
           </div>
-        </div>
-
-        <div
-          className="container mx-auto -mt-1.5 text-center uppercase"
-          id="section2"
-        >
-          <H2>{homePage.section2Title}</H2>
-          <p className="font-outline text-2xl uppercase lg:text-6xl">
-            {homePage.section2Subtitle}
-          </p>
-        </div>
-        <div className="mt-10" id="featured">
-          <div className="container mx-auto rounded-xl">
+          <div id="featured">
             <ClientOnly>
               <VideoPlayer
                 autoPlay
@@ -178,27 +163,22 @@ function Home({ homePage }) {
             </ClientOnly>
           </div>
         </div>
-        {isDesktop === false && (
-          <div className="mx-auto mt-12 -mb-5 flex w-full max-w-md justify-center lg:mt-24 lg:max-w-xl">
-            <Image
-              alt="JME Film Production Company"
-              height={100}
-              src={`/images/jmills-raven-gold.svg`}
-              width={100}
-            />
+      </section>
+
+      <section className="mx-auto max-w-7xl px-5">
+        <div className="flex flex-col gap-8 border-t border-white/15 py-20 lg:flex-row lg:items-end lg:justify-between lg:py-28">
+          <div>
+            <Eyebrow className="mb-5">Start here</Eyebrow>
+            <H2 className="max-w-[20ch]">Bring your next project to JME.</H2>
           </div>
-        )}
-        {isDesktop && (
-          <div className="mx-auto mt-12 -mb-5 w-full max-w-md lg:mt-24 lg:max-w-xl">
-            <Image
-              alt="JME Film Production Company"
-              height={202}
-              src={`/images/JME-film-prod-co-white.svg`}
-              width={600}
-            />
-          </div>
-        )}
-      </div>
+          <ArrowLink
+            href="/contact"
+            className="self-start uppercase lg:shrink-0"
+          >
+            Start a project
+          </ArrowLink>
+        </div>
+      </section>
     </Layout>
   )
 }

@@ -1,142 +1,130 @@
-import DividerBar from '@/components/divider-bar'
 import EmailSignupForm from '@/components/email-signup-form'
-import { H1 } from '@/components/headings'
+import { Eyebrow, H1, H2, H3 } from '@/components/headings'
 import Layout from '@/components/layout'
-import LittleWhiteBar from '@/components/little-white-bar'
+import SectionIntro from '@/components/section-intro'
 import { PortableText } from '@portabletext/react'
 import groq from 'groq'
 import dynamic from 'next/dynamic'
 import { GrInstagram, GrLinkedin, GrVimeo } from 'react-icons/gr'
 import { sanityClient } from '../lib/sanity'
-import { urlForSanitySource } from '../lib/urlForSanitySource'
-import LittleBlackBar from '@/components/little-black-bar'
 
 const ContactForm = dynamic(() => import('@/components/contact-form'), {})
 const Map = dynamic(() => import('@/components/map'), {})
 
 function Contact({ contact }) {
-  const backgroundImageUrl = urlForSanitySource(contact.backgroundImage)
-    .width(1400)
-    .format('webp')
-    .quality(80)
-    .url()
+  const heroContent = (
+    <div className="flex max-w-5xl flex-col items-start gap-5 text-left">
+      <Eyebrow className="border-b border-white/60 pb-3 text-white">
+        Woods Cross, Utah
+      </Eyebrow>
+      <H1 className="max-w-[20ch]">{contact.title}</H1>
+    </div>
+  )
 
   return (
-    <Layout title={contact.seoTitle} description={contact.seoDescription}>
-      <div
-        className="px-4 lg:pt-28"
-        style={{
-          backgroundImage: `url(${backgroundImageUrl})`,
-          backgroundSize: 'cover',
-          backgroundPosition: 'center center',
-        }}
-      >
-        <div className="mx-auto max-w-5xl pt-12 text-center lg:px-4">
-          <H1>{contact.title}</H1>
-        </div>
-        <div className="mx-auto mt-8 w-full max-w-7xl lg:mt-16 lg:px-4">
-          <ContactForm
-            interests={contact.interests}
-            successMessage={contact.mainFormSuccessMessage}
-          />
-        </div>
+    <Layout
+      title={contact.seoTitle}
+      description={contact.seoDescription}
+      heroImageUrl={contact.backgroundImage || null}
+      heroContent={heroContent}
+    >
+      <section className="py-20 lg:py-32">
+        <div className="mx-auto grid max-w-7xl gap-12 px-5 lg:grid-cols-12 lg:gap-10">
+          <div className="lg:col-span-5">
+            <Eyebrow className="mb-5">Start a project</Eyebrow>
+            <H2 className="max-w-[20ch]">Tell us what you&apos;re making.</H2>
 
-        <DividerBar yMargin="my-12 lg:my-24" />
-
-        <div>
-          <div
-            className="mx-auto flex max-w-7xl flex-wrap justify-center gap-y-10 text-center"
-            id="contacts"
-          >
-            {contact.representationCards.map((card) => {
-              return (
-                <div className="w-full sm:w-1/2 lg:w-1/3" key={card.title}>
-                  <div className="mx-5 flex h-full flex-col justify-center rounded-lg border border-gray-500 p-8">
-                    <p className="text-xl font-bold tracking-wider">
-                      {card.title}
-                    </p>
-                    <div className="mx-auto w-32">
-                      <LittleWhiteBar yMargin="my-4" />
-                    </div>
-                    <div className="prose-white prose prose-lg mx-auto leading-9 text-gray-300">
-                      <PortableText value={card.body} />
-                    </div>
-                  </div>
-                </div>
-              )
-            })}
-          </div>
-
-          <DividerBar yMargin="my-12 lg:my-24" />
-
-          <div className="px-4">
-            <div className="mx-auto max-w-7xl overflow-hidden rounded-xl border border-gray-500">
-              <Map />
-            </div>
-          </div>
-
-          <div
-            className="mx-auto mt-12 flex max-w-7xl flex-wrap justify-center text-center lg:mt-16"
-            id="contacts"
-          >
-            <div className="w-full sm:w-1/2 lg:w-1/3">
-              <div className="mx-5 rounded-lg bg-white p-8 text-black">
-                <p className="text-xl font-bold tracking-wider uppercase">
-                  Studio Address
-                </p>
-                <div className="mx-auto w-32">
-                  <LittleBlackBar yMargin="my-4" />
-                </div>
-                <div className="prose prose-lg leading-8">
+            <div className="mt-10 grid gap-8 border-t border-white/20 pt-6">
+              <div>
+                <Eyebrow className="mb-3">Studio address</Eyebrow>
+                <a
+                  className="text-base/7 hover:underline"
+                  href="https://g.page/jmillsent?share"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                >
+                  Jmills Entertainment
+                  <br />
+                  1589 W 2225 S<br />
+                  Woods Cross, UT 84087
+                </a>
+              </div>
+              <div>
+                <Eyebrow className="mb-3">Follow</Eyebrow>
+                <div className="flex items-center gap-6">
                   <a
-                    className="no-underline hover:underline"
-                    href="https://g.page/jmillsent?share"
+                    aria-label="Instagram"
+                    href="https://www.instagram.com/jmillsent/"
                     target="_blank"
-                    rel="noopener noreferrer"
+                    rel="noreferrer"
                   >
-                    Jmills Entertainment
-                    <br />
-                    1589 W 2225 S<br />
-                    Woods Cross, UT 84087
+                    <GrInstagram size={22} />
+                  </a>
+                  <a
+                    aria-label="Vimeo"
+                    href="https://vimeo.com/jmillsent"
+                    target="_blank"
+                    rel="noreferrer"
+                  >
+                    <GrVimeo size={22} />
+                  </a>
+                  <a
+                    aria-label="LinkedIn"
+                    href="https://www.linkedin.com/company/jmills-entertainment/"
+                    target="_blank"
+                    rel="noreferrer"
+                  >
+                    <GrLinkedin size={22} />
                   </a>
                 </div>
               </div>
             </div>
           </div>
-        </div>
-
-        <div className="my-12 grid gap-y-12 lg:my-16">
-          <div className="flex items-center justify-center gap-16">
-            <a
-              href="https://www.instagram.com/jmillsent/"
-              target="_blank"
-              rel="noreferrer"
-            >
-              <GrInstagram size={24} />
-            </a>
-            <a
-              href="https://vimeo.com/jmillsent"
-              target="_blank"
-              rel="noreferrer"
-            >
-              <GrVimeo size={24} />
-            </a>
-            <a
-              href="https://www.linkedin.com/company/jmills-entertainment/"
-              target="_blank"
-              rel="noreferrer"
-            >
-              <GrLinkedin size={24} />
-            </a>
+          <div className="lg:col-span-7">
+            <ContactForm
+              interests={contact.interests}
+              successMessage={contact.mainFormSuccessMessage}
+            />
           </div>
         </div>
-        <div className="mx-auto max-w-sm">
-          <EmailSignupForm
-            title={contact.subscribeFormTitle}
-            successMessage={contact.subscribeFormSuccessMessage}
-          />
+      </section>
+
+      <section className="bg-neutral-900 py-20 lg:py-28" id="contacts">
+        <div className="mx-auto max-w-7xl px-5">
+          <div className="border-t border-white/30 pt-5">
+            <SectionIntro
+              eyebrow="Direct lines"
+              title={contact.representationTitle || 'Who to contact'}
+            />
+          </div>
+          <div className="grid gap-x-10 gap-y-12 md:grid-cols-2 lg:grid-cols-3">
+            {contact.representationCards.map((card) => {
+              return (
+                <div className="border-t border-white/20 pt-6" key={card.title}>
+                  <H3>{card.title}</H3>
+                  <div className="prose prose-invert mt-2 text-neutral-300">
+                    <PortableText value={card.body} />
+                  </div>
+                </div>
+              )
+            })}
+          </div>
         </div>
-      </div>
+      </section>
+
+      <section className="py-20 lg:py-28">
+        <div className="mx-auto max-w-7xl px-5">
+          <div className="overflow-hidden">
+            <Map />
+          </div>
+          <div className="mt-16 max-w-xl">
+            <EmailSignupForm
+              title={contact.subscribeFormTitle}
+              successMessage={contact.subscribeFormSuccessMessage}
+            />
+          </div>
+        </div>
+      </section>
     </Layout>
   )
 }

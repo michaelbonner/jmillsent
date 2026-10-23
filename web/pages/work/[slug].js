@@ -1,15 +1,13 @@
+import ArrowLink from '@/components/arrow-link'
 import { ClientOnly } from '@/components/client-only'
-import { H3 } from '@/components/headings'
+import CreditsList from '@/components/credits-list'
+import { Eyebrow, H1 } from '@/components/headings'
 import Layout from '@/components/layout'
 import { sanityClient } from '@/lib/sanity'
 import { urlForSanitySource } from '@/lib/urlForSanitySource'
-import { clsx } from 'clsx'
 import groq from 'groq'
-import useIsDesktop from 'hooks/useIsDesktop'
 import dynamic from 'next/dynamic'
-import Image from 'next/image'
 import Head from 'next/head'
-import { useState } from 'react'
 import { JsonLd } from '@/components/json-ld'
 
 const VideoPlayer = dynamic(() => import('@/components/video-player'))
@@ -27,17 +25,7 @@ const getFullTitle = ({ clientName, title }) => {
 }
 
 const WorkItem = ({ workItem = {} }) => {
-  const [isOpen, setIsOpen] = useState(false)
-  const isDesktop = useIsDesktop()
-
   const fullTitle = getFullTitle(workItem)
-
-  const column1Credits = workItem?.credits?.length
-    ? workItem.credits.slice(0, Math.ceil(workItem.credits.length / 2))
-    : []
-  const column2Credits = workItem?.credits?.length
-    ? workItem.credits.slice(column1Credits.length)
-    : []
 
   const sanityImagePoster = workItem.poster
     ? urlForSanitySource(workItem.poster)
@@ -108,204 +96,90 @@ const WorkItem = ({ workItem = {} }) => {
           }}
         />
       )}
-      <h1 className="sr-only">{fullTitle}</h1>
-      <div className={clsx('pg-10 px-4', 'lg:px-8 lg:pt-28')}>
-        <div className="max-w-9xl my-12 rounded-xl xl:mx-auto">
-          {workItem.videoId && (
-            <ClientOnly>
-              <VideoPlayer
-                client={workItem.clientName}
-                description={workItem.description}
-                poster={workItem.poster}
-                title={workItem.title}
-                videoId={workItem.videoId}
-                clientName={workItem.clientName}
-                videoHeightAspectRatio={workItem.videoHeightAspectRatio || '9'}
-                videoWidthAspectRatio={workItem.videoWidthAspectRatio || '16'}
-              />
-            </ClientOnly>
+      <article className="mx-auto max-w-7xl px-5 pt-8 pb-20 lg:pt-12 lg:pb-28">
+        <div className="mb-10 lg:mb-14">
+          {workItem.clientName && workItem.title && (
+            <Eyebrow className="mb-5">{workItem.clientName}</Eyebrow>
           )}
-          {!workItem.videoId && workItem.shortClipMp4S3URL && (
-            <div
-              className="mx-auto aspect-[1080/1920] max-h-[80vh] cursor-pointer"
-              onClick={(event) => {
-                if (event.target.paused) {
-                  event.target.play()
-                  event.target.controls = true
-                } else {
-                  event.target.pause()
-                }
-              }}
-            >
-              <video
-                loop={true}
-                controls={false}
-                preload="none"
-                className="h-full w-full"
-                poster={sanityImagePoster}
-                controlsList="nodownload noplaybackrate noremoteplayback nofullscreen"
-                disablePictureInPicture
-              >
-                {workItem.shortClipMp4S3URL ? (
-                  <source
-                    id="mp4"
-                    src={workItem.shortClipMp4S3URL}
-                    type="video/mp4"
-                  />
-                ) : (
-                  <source
-                    id="mp4"
-                    src={workItem.shortClipMp4URL}
-                    type="video/mp4"
-                  />
-                )}
-                {workItem.shortClipOgvS3URL ? (
-                  <source
-                    id="ogv"
-                    src={workItem.shortClipOgvS3URL}
-                    type="video/ogg"
-                  />
-                ) : (
-                  <source
-                    id="ogv"
-                    src={workItem.shortClipOgvURL}
-                    type="video/ogg"
-                  />
-                )}
-              </video>
-            </div>
-          )}
+          <H1 className="max-w-[24ch] text-4xl sm:text-5xl lg:text-6xl xl:text-7xl">
+            {workItem.title || workItem.clientName || 'Work'}
+            <span className="sr-only"> {fullTitle}</span>
+          </H1>
         </div>
-      </div>
 
-      <div className="3xl:px-0 container mx-auto mt-4 px-4">
-        {workItem.credits && workItem.credits.length > 0 && (
-          <div className="max-w-9xl mx-auto my-12">
-            {isDesktop === false && (
-              <>
-                <button
-                  onClick={() => {
-                    setIsOpen(!isOpen)
-                  }}
-                  className="flex place-items-center"
-                >
-                  <h3 className="text-xl font-extrabold uppercase">Credits</h3>
-                  <div className={`${isOpen ? 'rotate-90 pr-1 pl-0' : ''}`}>
-                    <p className="font-outline place-self-center pl-2 text-2xl lg:text-4xl">
-                      &gt;
-                    </p>
-                  </div>
-                </button>
-                <div className={`${isOpen ? 'visible' : 'hidden'}`}>
-                  <div className="h-auto overflow-hidden text-sm transition-all">
-                    <div className="grid grid-cols-1">
-                      <div>
-                        {column1Credits.map((credit, index) => {
-                          return (
-                            <div
-                              className="grid grid-cols-5 items-center gap-x-4 pt-4"
-                              key={index}
-                            >
-                              <div className="col-span-2 justify-self-end text-right font-bold uppercase">
-                                {credit.role}
-                              </div>
-                              <div className="col-span-3 space-x-4 font-light uppercase">
-                                {credit.value}
-                              </div>
-                            </div>
-                          )
-                        })}
-                      </div>
-                      <div>
-                        {column2Credits.map((credit, index) => {
-                          return (
-                            <div
-                              className="grid grid-cols-5 items-center gap-x-4 pt-4"
-                              key={index}
-                            >
-                              <div className="col-span-2 justify-self-end text-right font-bold uppercase">
-                                {credit.role}
-                              </div>
-                              <div className="col-span-3 space-x-4 font-light uppercase">
-                                {credit.value}
-                              </div>
-                            </div>
-                          )
-                        })}
-                      </div>
-                    </div>
-                  </div>
-                </div>
-              </>
-            )}
-
-            {isDesktop && (
-              <>
-                <H3>Credits</H3>
-                <div className="h-auto overflow-hidden text-sm transition-all xl:mt-4">
-                  <div className="mb-12 grid grid-cols-1 gap-x-20 gap-y-4 md:grid-cols-2 lg:grid-cols-2">
-                    <div>
-                      {column1Credits.map((credit, index) => {
-                        return (
-                          <div
-                            className="grid grid-cols-5 items-center gap-2 pt-4"
-                            key={index}
-                          >
-                            <div className="col-span-2 font-bold uppercase">
-                              {credit.role}
-                            </div>
-                            <div className="col-span-3 space-x-4 font-light uppercase">
-                              {credit.value}
-                            </div>
-                          </div>
-                        )
-                      })}
-                    </div>
-                    <div>
-                      {column2Credits.map((credit, index) => {
-                        return (
-                          <div
-                            className="grid grid-cols-5 items-center gap-2 pt-4"
-                            key={index}
-                          >
-                            <div className="col-span-2 font-bold uppercase">
-                              {credit.role}
-                            </div>
-                            <div className="col-span-3 space-x-4 font-light uppercase">
-                              {credit.value}
-                            </div>
-                          </div>
-                        )
-                      })}
-                    </div>
-                  </div>
-                </div>
-              </>
-            )}
+        {workItem.videoId && (
+          <ClientOnly>
+            <VideoPlayer
+              client={workItem.clientName}
+              description={workItem.description}
+              poster={workItem.poster}
+              title={workItem.title}
+              videoId={workItem.videoId}
+              clientName={workItem.clientName}
+              videoHeightAspectRatio={workItem.videoHeightAspectRatio || '9'}
+              videoWidthAspectRatio={workItem.videoWidthAspectRatio || '16'}
+            />
+          </ClientOnly>
+        )}
+        {!workItem.videoId && workItem.shortClipMp4S3URL && (
+          <div
+            className="mx-auto aspect-[1080/1920] max-h-[80vh] cursor-pointer"
+            onClick={(event) => {
+              if (event.target.paused) {
+                event.target.play()
+                event.target.controls = true
+              } else {
+                event.target.pause()
+              }
+            }}
+          >
+            <video
+              loop={true}
+              controls={false}
+              preload="none"
+              className="h-full w-full"
+              poster={sanityImagePoster}
+              controlsList="nodownload noplaybackrate noremoteplayback nofullscreen"
+              disablePictureInPicture
+            >
+              {workItem.shortClipMp4S3URL ? (
+                <source
+                  id="mp4"
+                  src={workItem.shortClipMp4S3URL}
+                  type="video/mp4"
+                />
+              ) : (
+                <source
+                  id="mp4"
+                  src={workItem.shortClipMp4URL}
+                  type="video/mp4"
+                />
+              )}
+              {workItem.shortClipOgvS3URL ? (
+                <source
+                  id="ogv"
+                  src={workItem.shortClipOgvS3URL}
+                  type="video/ogg"
+                />
+              ) : (
+                <source
+                  id="ogv"
+                  src={workItem.shortClipOgvURL}
+                  type="video/ogg"
+                />
+              )}
+            </video>
           </div>
         )}
-      </div>
 
-      {isDesktop === false && (
-        <div className="mx-auto mt-12 -mb-5 flex w-full max-w-md justify-center px-12 lg:mt-24 lg:max-w-xl">
-          <Image
-            alt="JME Film Production Company"
-            height={100}
-            src={`/images/jmills-raven-gold.svg`}
-            width={100}
-          />
+        <CreditsList credits={workItem.credits} />
+
+        <div className="mt-16 border-t border-white/15 pt-6">
+          <ArrowLink href="/work" className="uppercase">
+            More work
+          </ArrowLink>
         </div>
-      )}
-      {isDesktop && (
-        <div className="mx-auto mt-12 -mb-5 w-full max-w-md px-12 lg:mt-24 lg:max-w-xl">
-          <Image
-            alt="JME Film Production Company"
-            height={202}
-            src={`/images/JME-film-prod-co-white.svg`}
-            width={600}
-          />
-        </div>
-      )}
+      </article>
     </Layout>
   )
 }

@@ -1,15 +1,14 @@
+import ArrowLink from '@/components/arrow-link'
 import { ClientOnly } from '@/components/client-only'
 import Date from '@/components/date'
-import LargeGoldBar from '@/components/large-gold-bar'
+import { Eyebrow, H1 } from '@/components/headings'
 import Layout from '@/components/layout'
 import { portableTextComponents, sanityClient } from '@/lib/sanity'
 import { PortableText } from '@portabletext/react'
 import groq from 'groq'
 import dynamic from 'next/dynamic'
 import Image from 'next/image'
-import Link from 'next/link'
 import { urlForSanitySource } from '../../lib/urlForSanitySource'
-import { styles } from 'styles/styles'
 
 const VideoPlayer = dynamic(() => import('@/components/video-player'), {})
 
@@ -17,9 +16,19 @@ const NewsItem = ({ newsItem = {} }) => {
   return (
     <>
       <Layout title={newsItem.seoTitle} description={newsItem.seoDescription}>
-        <div className="relative mx-auto grid gap-y-8 lg:mt-28 lg:max-w-7xl">
+        <article className="mx-auto max-w-7xl px-5 pt-8 pb-20 lg:pt-12 lg:pb-28">
+          <div className="mb-10 max-w-5xl lg:mb-14">
+            {newsItem.date && (
+              <Eyebrow className="mb-5">
+                <Date dateString={newsItem.date} />
+              </Eyebrow>
+            )}
+            <H1 className="max-w-[24ch] text-4xl sm:text-5xl lg:text-6xl xl:text-7xl">
+              {newsItem.title}
+            </H1>
+          </div>
           {!newsItem.videoId && (
-            <div className="relative h-[600px] w-full">
+            <div className="relative aspect-12/5 w-full overflow-hidden bg-neutral-900">
               <Image
                 alt={newsItem.seoTitle ?? newsItem.title}
                 src={urlForSanitySource(newsItem.heroImage || newsItem.poster)
@@ -30,56 +39,35 @@ const NewsItem = ({ newsItem = {} }) => {
                   .crop('focalpoint')
                   .url()}
                 fill
-                className="rounded-lg object-cover"
+                className="object-cover"
               />
             </div>
           )}
           {newsItem.videoId && (
-            <div className="container mx-auto max-w-7xl rounded-xl">
-              <ClientOnly>
-                <VideoPlayer
-                  poster={newsItem.heroImage}
-                  title={newsItem.title}
-                  videoId={newsItem.videoId}
-                  videoHeightAspectRatio={newsItem.videoHeightAspectRatio}
-                  videoWidthAspectRatio={newsItem.videoWidthAspectRatio}
-                />
-              </ClientOnly>
-            </div>
+            <ClientOnly>
+              <VideoPlayer
+                poster={newsItem.heroImage}
+                title={newsItem.title}
+                videoId={newsItem.videoId}
+                videoHeightAspectRatio={newsItem.videoHeightAspectRatio}
+                videoWidthAspectRatio={newsItem.videoWidthAspectRatio}
+              />
+            </ClientOnly>
           )}
-          <div className="mx-auto flex w-full max-w-5xl items-center justify-between gap-x-4 px-8 text-lg uppercase sm:gap-x-32 sm:text-3xl">
-            <h1 className="font-extrabold">{newsItem.title}</h1>
-            {newsItem.date && <Date dateString={newsItem.date} />}
-          </div>
-          <div className="mx-auto w-full max-w-5xl sm:px-8">
-            <LargeGoldBar yMargin="my-0" />
-          </div>
           {newsItem.body && (
-            <div className="prose prose-lg prose-invert mx-auto w-full max-w-5xl px-8 text-center">
+            <div className="prose prose-lg prose-invert mt-12 max-w-[65ch] text-pretty text-neutral-300 lg:mt-16">
               <PortableText
                 components={portableTextComponents}
                 value={newsItem.body}
               />
             </div>
           )}
-          <div className="mt-10">
-            <div className="mt-4 text-center text-2xl">
-              <Link href="/news" className={styles.buttonLink.default}>
-                <span className="font-outline tracking-tighter text-gray-300 group-hover:text-black">
-                  More
-                </span>
-
-                <span className="font-bold tracking-wide group-hover:text-black">
-                  News
-                </span>
-
-                <span className="font-outline tracking-tighter text-gray-300 group-hover:text-black">
-                  Stories
-                </span>
-              </Link>
-            </div>
+          <div className="mt-16 border-t border-white/15 pt-6">
+            <ArrowLink href="/news" className="uppercase">
+              More news stories
+            </ArrowLink>
           </div>
-        </div>
+        </article>
       </Layout>
     </>
   )

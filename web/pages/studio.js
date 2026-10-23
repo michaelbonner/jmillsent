@@ -1,21 +1,19 @@
 import 'yet-another-react-lightbox/plugins/captions.css'
 import 'yet-another-react-lightbox/styles.css'
 
-import BackgroundText from '@/components/background-text-section'
+import ArrowLink from '@/components/arrow-link'
 import { ClientOnly } from '@/components/client-only'
-import DividerBar from '@/components/divider-bar'
-import { H1, H2 } from '@/components/headings'
+import { Eyebrow, H1, H2, H3 } from '@/components/headings'
 import Layout from '@/components/layout'
-import LittleBlackBar from '@/components/little-black-bar'
+import SectionIntro from '@/components/section-intro'
 import { urlForSanitySource } from '@/lib/urlForSanitySource'
 import { PortableText, toPlainText } from '@portabletext/react'
 import { clsx } from 'clsx'
 import groq from 'groq'
 import useIsDesktop from 'hooks/useIsDesktop'
 import dynamic from 'next/dynamic'
-import Link from 'next/link'
+import Image from 'next/image'
 import { useState } from 'react'
-import { styles } from 'styles/styles'
 import Lightbox from 'yet-another-react-lightbox'
 import Captions from 'yet-another-react-lightbox/plugins/captions'
 import { sanityClient } from '../lib/sanity'
@@ -28,23 +26,11 @@ function Studio({ studioPage }) {
   const isDesktop = useIsDesktop()
 
   const heroContent = (
-    <div
-      className={clsx(
-        'grid h-full w-full items-center text-white',
-        'lg:gap-y-4'
-      )}
-    >
-      <div
-        className={clsx(
-          'grid items-center justify-center pt-4 text-center',
-          'lg:mt-16'
-        )}
-      >
-        <H1 className="mb-0">{studioPage.title}</H1>
-        <h2 className={clsx('font-outline text-3xl uppercase', 'lg:text-7xl')}>
-          {studioPage.subtitle}
-        </h2>
-      </div>
+    <div className="flex max-w-5xl flex-col items-start gap-5 text-left">
+      <Eyebrow className="border-b border-white/60 pb-3 text-white">
+        {studioPage.subtitle}
+      </Eyebrow>
+      <H1 className="max-w-[20ch]">{studioPage.title}</H1>
     </div>
   )
 
@@ -108,25 +94,22 @@ function Studio({ studioPage }) {
               <span className="flex items-center gap-4 text-lg md:text-2xl">
                 <span>{image.title}</span>
               </span>
-              <div className="bg-gold my-2 h-1 w-40 shrink-0" />
+              <div className="my-2 h-px w-40 shrink-0 bg-white/30" />
             </div>
           ),
         }))}
       />
 
-      <div className="mx-auto max-w-7xl px-8">
-        <div className="mx-auto my-24 max-w-7xl rounded-xl bg-white px-8 py-12 text-center text-black">
-          <H2>{studioPage.section1Title}</H2>
-          <LittleBlackBar maxWidth="max-w-96" yMargin="my-10" />
+      <section className="py-20 lg:py-32">
+        <div className="mx-auto max-w-7xl px-5">
+          <SectionIntro eyebrow="The space" title={studioPage.section1Title}>
+            {studioPage.section1Body && (
+              <PortableText value={studioPage.section1Body} />
+            )}
+          </SectionIntro>
 
           {studioPage.tourVideoId && (
-            <div
-              id="tour"
-              className={clsx(
-                'container mx-auto mt-12 rounded-xl text-white',
-                'lg:px-10'
-              )}
-            >
+            <div id="tour">
               <ClientOnly>
                 <VideoPlayer
                   autoPlay
@@ -143,118 +126,102 @@ function Studio({ studioPage }) {
             </div>
           )}
 
-          {studioPage.section1Body && (
-            <div
-              className={clsx(
-                'prose prose-lg mx-auto mt-4 -mb-2 max-w-5xl px-4',
-                'lg:mt-10'
-              )}
-            >
-              <PortableText value={studioPage.section1Body} />
-            </div>
-          )}
-
-          <div className="mt-10 flex justify-center">
-            <Link
-              href="https://theravenspace.com"
-              className={styles.buttonLink.blackBorder}
-            >
-              <span
-                className={clsx(
-                  'font-outline text-2xl tracking-tighter',
-                  'lg:text-3xl',
-                  'group-hover:text-gray-800'
-                )}
-              >
-                Book
-              </span>
-              <span
-                className={clsx(
-                  'text-2xl font-bold tracking-wide',
-                  'lg:text-3xl',
-                  'group-hover:text-gray-800'
-                )}
-              >
-                Studio
-              </span>
-              <span
-                className={clsx(
-                  'font-outline text-2xl tracking-tighter',
-                  'lg:text-3xl',
-                  'group-hover:text-gray-800'
-                )}
-              >
-                Space
-              </span>
-            </Link>
-          </div>
+          <ArrowLink
+            href="https://theravenspace.com"
+            className="mt-10 uppercase"
+          >
+            Book the studio space
+          </ArrowLink>
         </div>
+      </section>
 
-        {/* Ternary to remove hero video & video player if no videoId found. */}
-        {studioPage.tourVideoId && (
-          <>
-            <div className="container mx-auto px-8 text-center" id="tour">
-              <H2>{studioPage.section2Title}</H2>
-              <p
-                className={clsx(
-                  'font-outline text-xl uppercase',
-                  'lg:text-5xl'
-                )}
-              >
-                {studioPage.section2Subtitle}
-              </p>
+      {studioPage.tourVideoId &&
+        (studioPage.section2Title || studioPage.section2Subtitle) && (
+          <section className="mx-auto max-w-7xl px-5">
+            <div className="border-t border-white/15 pt-5">
+              <SectionIntro
+                eyebrow={studioPage.section2Subtitle}
+                title={studioPage.section2Title}
+              />
             </div>
-
-            <DividerBar />
-          </>
+          </section>
         )}
 
-        {/* studioItems */}
-        <section id="studio-items">
-          <div className="container mx-auto -mt-1.5 text-center uppercase">
-            <H2>{studioPage.studioItemSectionTitle}</H2>
-            <p
-              className={clsx(
-                'font-outline text-xl leading-4 uppercase',
-                'lg:text-5xl'
-              )}
-            >
-              {studioPage.studioItemSectionSubtitle}
-            </p>
+      {/* studioItems */}
+      <section className="bg-neutral-900 py-20 lg:py-28" id="studio-items">
+        <div className="mx-auto max-w-7xl px-5">
+          <div className="border-t border-white/30 pt-5">
+            <SectionIntro
+              eyebrow={studioPage.studioItemSectionSubtitle}
+              title={studioPage.studioItemSectionTitle}
+            />
           </div>
 
           {studioPage.studioItems?.length > 0 && (
-            <div
-              className={clsx(
-                'mx-auto mt-12 grid max-w-7xl gap-y-8 rounded-xl bg-white p-8 lg:mt-24 lg:gap-y-10 lg:p-10'
-              )}
-            >
+            <div className="grid gap-5 lg:grid-cols-2">
               {studioPage.studioItems.map((service, index) => {
-                const leftOrRight = service.rightAlign ? 'right' : 'left'
                 return (
                   <button
+                    className={clsx(
+                      'group relative isolate flex min-h-[360px] flex-col justify-end overflow-hidden bg-neutral-800 p-6 text-left text-white sm:p-9',
+                      'first:lg:col-span-2 first:lg:min-h-[520px]'
+                    )}
+                    key={service._id}
                     onClick={() => {
                       setIsLightBoxOpen(true)
                       setPhotoIndex(index)
                     }}
                     type="button"
-                    key={service._id}
                   >
-                    <BackgroundText
-                      leftOrRight={leftOrRight}
-                      image={service.image}
-                      imageAlt={service.title}
-                      title={service.title}
-                      description={service.description}
+                    <Image
+                      alt={service.title}
+                      className="-z-10 object-cover transition-transform duration-500 group-hover:scale-[1.035]"
+                      fill
+                      sizes={
+                        index === 0
+                          ? '(max-width: 1279px) 100vw, 1280px'
+                          : '(max-width: 1023px) 100vw, 640px'
+                      }
+                      src={urlForSanitySource(service.image)
+                        .width(index === 0 ? 2000 : 1200)
+                        .format('webp')
+                        .quality(80)
+                        .url()}
                     />
+                    <div className="absolute inset-0 -z-10 bg-linear-to-t from-neutral-950/85 via-neutral-950/20 to-transparent" />
+                    <div className="flex flex-wrap items-end justify-between gap-5">
+                      <H3 className="mb-0 max-w-[24ch] lg:text-3xl">
+                        {service.title}
+                      </H3>
+                      <span className="border-b border-white pb-2 text-sm font-medium tracking-[0.08em] uppercase">
+                        View ↗
+                      </span>
+                    </div>
                   </button>
                 )
               })}
             </div>
           )}
-        </section>
-        {/* end: studioItems */}
-      </div>
+        </div>
+      </section>
+      {/* end: studioItems */}
+
+      <section className="mx-auto max-w-7xl px-5">
+        <div className="flex flex-col gap-8 py-20 lg:flex-row lg:items-end lg:justify-between lg:py-28">
+          <div>
+            <Eyebrow className="mb-5">Book it</Eyebrow>
+            <H2 className="max-w-[20ch]">
+              Bring your next shoot to our studio.
+            </H2>
+          </div>
+          <ArrowLink
+            href="https://theravenspace.com"
+            className="self-start uppercase lg:shrink-0"
+          >
+            Book the space
+          </ArrowLink>
+        </div>
+      </section>
     </Layout>
   )
 }

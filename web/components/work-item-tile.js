@@ -37,8 +37,8 @@ const WorkItemTile = ({
           'lg:hidden': index >= hideAfterCount,
         },
         aspectRatio ? aspectRatio : 'bpd-project-tile',
-        `relative overflow-hidden rounded-lg text-white`,
-        `flex flex-col items-center justify-center space-y-2 lg:space-y-0`,
+        `relative isolate overflow-hidden bg-neutral-900 text-white`,
+        `flex flex-col items-start justify-end p-5 text-left lg:p-6`,
         className
       )}
       style={{
@@ -73,7 +73,7 @@ const WorkItemTile = ({
         (workItem.shortClipOgvURL || workItem.shortClipOgvS3URL) && (
           <video
             className={clsx(
-              `absolute inset-0 h-full w-full object-cover transition-all duration-700`,
+              `absolute inset-0 -z-10 h-full w-full object-cover transition-all duration-700`,
               {
                 'opacity-100': workItem.shortClipMp4S3URL && isHovered,
                 'opacity-0': !workItem.shortClipMp4S3URL || !isHovered,
@@ -113,12 +113,13 @@ const WorkItemTile = ({
             )}
           </video>
         )}
+      <div className="absolute inset-0 -z-10 bg-linear-to-t from-neutral-950/85 via-neutral-950/20 to-transparent transition-opacity duration-500 group-hover:opacity-60" />
       {showPlayOnHover && (
         <div className="absolute inset-0 flex size-full items-center justify-center bg-black/50 opacity-0 transition-all duration-500 group-hover:opacity-100">
-          <GrPlay className="size-20 rounded-full border-2 border-gray-300 py-5 pl-2" />
+          <GrPlay className="size-20 rounded-full border border-white bg-neutral-950/50 py-5 pl-2" />
         </div>
       )}
-      <div className="z-10 flex w-full flex-col justify-center text-center">
+      <div className="z-10 flex w-full flex-col justify-end">
         {showWithPlayLockup ? (
           <div
             className={clsx(
@@ -127,12 +128,12 @@ const WorkItemTile = ({
             )}
           >
             <div className="z-10 flex cursor-pointer items-center justify-center bg-transparent text-4xl xl:justify-start xl:text-6xl">
-              <div className="bpd-white-icon ml-1 flex scale-110 items-center justify-center rounded-full border-2 border-gray-300 transition-opacity duration-500">
+              <div className="bpd-white-icon ml-1 flex scale-110 items-center justify-center rounded-full border border-white bg-neutral-950/50 transition-opacity duration-500">
                 <GrPlay className="size-10 py-2 pl-1" />
               </div>
             </div>
-            <div className="border-gold border-l-4 pl-4">
-              <div className="text-xl font-bold uppercase">
+            <div className="border-l border-white/60 pl-4">
+              <div className="text-xl font-semibold tracking-tight uppercase">
                 {workItem.clientName}
               </div>
               <div className="font-outline text-xl uppercase">
@@ -146,7 +147,7 @@ const WorkItemTile = ({
               className={
                 typographyClassNameOverrides?.clientName
                   ? typographyClassNameOverrides.clientName
-                  : clsx('text-3xl font-extrabold uppercase', 'lg:text-2xl')
+                  : 'text-sm font-medium tracking-[0.12em] text-white/75 uppercase'
               }
             >
               {workItem.clientName}
@@ -155,7 +156,7 @@ const WorkItemTile = ({
               className={
                 typographyClassNameOverrides?.title
                   ? typographyClassNameOverrides.title
-                  : clsx('font-outline text-3xl uppercase', 'lg:text-2xl')
+                  : 'mt-1 text-xl font-semibold tracking-tight text-balance uppercase lg:text-2xl'
               }
             >
               {workItem.title}

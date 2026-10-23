@@ -74,42 +74,42 @@ const EmailSignupForm = ({
   }
 
   return (
-    <div className="mx-auto text-center">
+    <div>
       {!customReel && state === 'initial' && (
         <form onSubmit={submitFreshCuts}>
           <div>
-            <h2 className="font-light text-gray-100 uppercase">{title}</h2>
-            <div className="mx-auto mt-4 h-px w-40 bg-gray-400" />
-            <div className="mx-auto mt-6 flex w-full max-w-sm justify-center">
-              <div className="flex w-full items-center justify-center gap-1 rounded-sm">
-                <button
-                  className={clsx(
-                    'group flex items-center gap-x-2 border-2 border-black px-2 py-1 font-bold tracking-widest uppercase transition-colors',
-                    'hover:border-white hover:bg-white hover:text-black'
-                  )}
-                  type="submit"
-                  name="subscribe"
-                >
-                  Submit
-                </button>
-                <input
-                  type="email"
-                  name="email"
-                  className="mr-2 flex-1 border-2 border-gray-300 bg-black/70 px-3 py-1 text-white focus:bg-black/90"
-                  id="email"
-                  placeholder="EMAIL ADDRESS"
-                  required
-                />
-              </div>
+            <label
+              className="text-sm font-medium tracking-[0.12em] text-neutral-400 uppercase"
+              htmlFor="email"
+            >
+              {title}
+            </label>
+            <div className="mt-3 flex w-full items-end gap-4">
+              <input
+                type="email"
+                name="email"
+                className="flex-1 border-0 border-b border-white/30 bg-transparent px-0 py-3 text-white placeholder:text-neutral-500 placeholder:uppercase focus:border-white focus:ring-0"
+                id="email"
+                placeholder="Email address"
+                required
+              />
+              <button
+                className="inline-flex min-h-12 items-center gap-3 border-b border-white py-2 text-sm font-medium tracking-[0.08em] uppercase transition-colors hover:border-white/50 hover:text-white/75"
+                type="submit"
+                name="subscribe"
+              >
+                Subscribe
+                <span aria-hidden="true">↗</span>
+              </button>
             </div>
           </div>
-          {error && <div className="mt-4 text-sm text-red-500">{error}</div>}
+          {error && <div className="mt-4 text-sm text-red-400">{error}</div>}
         </form>
       )}
       {!customReel && state === 'submitted' && (
-        <div className="mx-auto flex w-full max-w-xl justify-center border px-8 py-4 lg:mt-20">
-          <p className="font-light text-gray-100 uppercase">{successMessage}</p>
-        </div>
+        <p className="border-t border-white/30 pt-4 text-neutral-300 uppercase">
+          {successMessage}
+        </p>
       )}
 
       {customReel && state === 'initial' && (
@@ -132,7 +132,7 @@ const EmailSignupForm = ({
                 <button
                   className={clsx(
                     'group flex items-center gap-x-2 rounded-md border-2 border-gray-300 px-4 py-2 transition-colors',
-                    'hover:bg-gold hover:text-black'
+                    'hover:bg-white hover:text-black'
                   )}
                   type="submit"
                   name="subscribe"
@@ -143,7 +143,7 @@ const EmailSignupForm = ({
               </div>
             </div>
           </div>
-          {error && <div className="mt-4 text-sm text-red-500">{error}</div>}
+          {error && <div className="mt-4 text-sm text-red-400">{error}</div>}
         </form>
       )}
       {customReel && state === 'submitted' && (

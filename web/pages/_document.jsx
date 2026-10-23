@@ -4,9 +4,7 @@ import Script from 'next/script'
 export default function Document() {
   return (
     <Html lang="en">
-      <Head>
-        <link rel="stylesheet" href="https://use.typekit.net/gvj6hwn.css" />
-      </Head>
+      <Head />
       <body>
         <Script
           async

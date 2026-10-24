@@ -55,7 +55,7 @@ const NewsItem = ({ newsItem = {} }) => {
             </ClientOnly>
           )}
           {newsItem.body && (
-            <div className="prose prose-lg prose-invert mt-12 max-w-[65ch] text-pretty text-neutral-300 lg:mt-16">
+            <div className="prose prose-lg prose-invert mt-12 max-w-[65ch] break-words text-pretty text-neutral-300 lg:mt-16">
               <PortableText
                 components={portableTextComponents}
                 value={newsItem.body}

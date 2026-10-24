@@ -88,7 +88,7 @@ const EmailSignupForm = ({
               <input
                 type="email"
                 name="email"
-                className="flex-1 border-0 border-b border-white/30 bg-transparent px-0 py-3 text-white placeholder:text-neutral-500 placeholder:uppercase focus:border-white focus:ring-0"
+                className="min-w-0 flex-1 border-0 border-b border-white/30 bg-transparent px-0 py-3 text-white placeholder:text-neutral-500 placeholder:uppercase focus:border-white focus:ring-0"
                 id="email"
                 placeholder="Email address"
                 required

@@ -136,11 +136,15 @@ export const WorkItemCategory = ({
           {filteredWorkItems.length > 0 && (
             <div
               className={clsx(
-                'grid grid-cols-1 gap-5',
-                filteredWorkItems.length >= 3
-                  ? 'lg:grid-cols-3'
-                  : `lg:grid-cols-${filteredWorkItems.length}`,
-                isSocialLayout && 'mx-auto grid-cols-3 gap-3 xl:grid-cols-6'
+                'grid',
+                isSocialLayout
+                  ? 'grid-cols-2 gap-3 sm:grid-cols-3 xl:grid-cols-6'
+                  : clsx(
+                      'grid-cols-1 gap-5',
+                      filteredWorkItems.length >= 3
+                        ? 'lg:grid-cols-3'
+                        : `lg:grid-cols-${filteredWorkItems.length}`
+                    )
               )}
             >
               {filteredWorkItems.map((workItem, index) => {
@@ -148,11 +152,7 @@ export const WorkItemCategory = ({
                   <WorkItemTile
                     workItem={workItem}
                     key={index}
-                    aspectRatio={
-                      isSocialLayout
-                        ? `aspect-w-${workItem.videoWidthAspectRatio} aspect-h-${workItem.videoHeightAspectRatio}`
-                        : ''
-                    }
+                    aspectRatio={isSocialLayout ? 'aspect-[9/16]' : ''}
                     onClick={
                       isSocialLayout
                         ? () => {

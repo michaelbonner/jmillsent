@@ -38,7 +38,8 @@ const WorkItemTile = ({
         },
         aspectRatio ? aspectRatio : 'bpd-project-tile',
         `relative isolate overflow-hidden bg-neutral-900 text-white`,
-        `flex flex-col items-start justify-end p-5 text-left lg:p-6`,
+        'flex flex-col items-start justify-end text-left',
+        showPlayOnHover ? 'p-3 sm:p-4' : 'p-5 lg:p-6',
         className
       )}
       style={{
@@ -115,8 +116,8 @@ const WorkItemTile = ({
         )}
       <div className="absolute inset-0 -z-10 bg-linear-to-t from-neutral-950/85 via-neutral-950/20 to-transparent transition-opacity duration-500 group-hover:opacity-60" />
       {showPlayOnHover && (
-        <div className="absolute inset-0 flex size-full items-center justify-center bg-black/50 opacity-0 transition-all duration-500 group-hover:opacity-100">
-          <GrPlay className="size-20 rounded-full border border-white bg-neutral-950/50 py-5 pl-2" />
+        <div className="absolute inset-0 flex size-full items-center justify-center bg-transparent transition-all duration-500 sm:bg-black/50 sm:opacity-0 sm:group-hover:opacity-100">
+          <GrPlay className="size-12 rounded-full border border-white bg-neutral-950/50 py-3 pl-1 sm:size-20 sm:py-5 sm:pl-2" />
         </div>
       )}
       <div className="z-10 flex w-full flex-col justify-end">

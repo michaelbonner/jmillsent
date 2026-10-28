@@ -144,8 +144,8 @@ function Home({ homePage }) {
       <section className="py-20 lg:py-28" id="section2">
         <div className="mx-auto max-w-7xl px-5">
           <div className="mb-8 lg:mb-12">
-            <Eyebrow className="mb-5">{homePage.section2Subtitle}</Eyebrow>
-            <H2 className="max-w-[24ch]">{homePage.section2Title}</H2>
+            <Eyebrow className="mb-5">{homePage.section2Title}</Eyebrow>
+            <H2 className="max-w-[24ch]">{homePage.section2Subtitle}</H2>
           </div>
           <div id="featured">
             <ClientOnly>

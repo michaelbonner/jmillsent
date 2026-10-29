@@ -48,6 +48,7 @@ function Moments({ images, momentsPage }) {
       heroImageUrl={momentsPage.poster || null}
       heroVideoId={momentsPage.videoId}
       heroContent={heroContent}
+      heroWide
     >
       <section className="px-5 py-20 lg:py-28">
         <div className="max-w-13xl mx-auto">

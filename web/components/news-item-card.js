@@ -24,7 +24,7 @@ const NewsItemCard = ({ newsItem }) => {
             alt={newsItem?.seoTitle || newsItem?.title || 'News'}
             className="object-cover transition-transform duration-500 group-hover:scale-[1.035]"
             fill
-            sizes="(max-width: 1023px) 100vw, 640px"
+            sizes="(max-width: 1023px) 100vw, (max-width: 1535px) 50vw, 33vw"
             src={urlForSanitySource(image)
               .width(1200)
               .height(800)

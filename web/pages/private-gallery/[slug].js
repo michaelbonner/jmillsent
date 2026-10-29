@@ -1,15 +1,14 @@
+import ArrowLink from '@/components/arrow-link'
 import { ClientOnly } from '@/components/client-only'
-import { H3 } from '@/components/headings'
+import CreditsList from '@/components/credits-list'
+import { Eyebrow, H1 } from '@/components/headings'
 import Layout from '@/components/layout'
 import { PasswordLoginForm } from '@/components/password-login-form'
 import { sanityClient } from '@/lib/sanity'
 import groq from 'groq'
-import useIsDesktop from 'hooks/useIsDesktop'
 import useIsLoggedIn from 'hooks/useIsLoggedIn'
 import dynamic from 'next/dynamic'
 import Head from 'next/head'
-import Image from 'next/image'
-import Link from 'next/link'
 import { useState } from 'react'
 
 const VideoPlayer = dynamic(() => import('@/components/video-player'), {})
@@ -36,25 +35,13 @@ aspect-w-16	aspect-h-16
 
 const PortfolioItem = ({ portfolioItem = {}, portfolioPagePassword }) => {
   const [formError, setFormError] = useState('')
-  const [isOpen, setIsOpen] = useState(false)
   const [isLoggedIn, setIsLoggedIn] = useIsLoggedIn(
     portfolioPagePassword.password
   )
-  const isDesktop = useIsDesktop()
 
   const fullTitle = portfolioItem.clientName
     ? `${portfolioItem.clientName} | ${portfolioItem.title}`
     : portfolioItem.title
-
-  const column1Credits = portfolioItem?.credits?.length
-    ? portfolioItem.credits.slice(
-        0,
-        Math.ceil(portfolioItem.credits.length / 2)
-      )
-    : []
-  const column2Credits = portfolioItem?.credits?.length
-    ? portfolioItem.credits.slice(column1Credits.length)
-    : []
 
   function handleSubmit(e) {
     e.preventDefault()
@@ -81,184 +68,52 @@ const PortfolioItem = ({ portfolioItem = {}, portfolioPagePassword }) => {
       <Head>
         <meta name="robots" content="noindex, nofollow" />
       </Head>
-      <div className="mt-28">
-        {!isLoggedIn && (
-          <PasswordLoginForm
-            handleSubmit={handleSubmit}
-            formError={formError}
-            passwordInputPrompt={portfolioPagePassword.passwordInputPrompt}
-          />
-        )}
+      {!isLoggedIn && (
+        <PasswordLoginForm
+          handleSubmit={handleSubmit}
+          formError={formError}
+          passwordInputPrompt={portfolioPagePassword.passwordInputPrompt}
+        />
+      )}
 
-        {isLoggedIn && (
-          <>
-            <div className="px-4 lg:px-8">
-              <div className="max-w-9xl my-12 rounded-xl xl:mx-auto">
-                <ClientOnly>
-                  <VideoPlayer
-                    client={portfolioItem.clientName}
-                    clientName={portfolioItem.clientName}
-                    description={portfolioItem.description}
-                    poster={portfolioItem.poster}
-                    title={portfolioItem.title}
-                    videoId={portfolioItem.videoId}
-                    videoHeightAspectRatio={
-                      portfolioItem.videoHeightAspectRatio || '9'
-                    }
-                    videoWidthAspectRatio={
-                      portfolioItem.videoWidthAspectRatio || '16'
-                    }
-                  />
-                </ClientOnly>
-              </div>
-            </div>
-
-            <div className="mt-10">
-              <div className="text-center">
-                <Link
-                  href="/private-gallery"
-                  className="font-outline hover:bg-gold inline-flex items-center justify-center border-2 border-gray-300 px-3 py-1 text-3xl uppercase transition-colors hover:text-black"
-                >
-                  Back To Portfolio
-                </Link>
-              </div>
-            </div>
-
-            <div className="3xl:px-0 container mx-auto mt-4 px-4">
-              {portfolioItem.credits && portfolioItem.credits.length > 0 && (
-                <div className="max-w-9xl mx-auto my-12">
-                  {isDesktop === false && (
-                    <>
-                      <button
-                        onClick={() => {
-                          setIsOpen(!isOpen)
-                        }}
-                        className="flex place-items-center"
-                      >
-                        <h3 className="text-xl font-extrabold uppercase">
-                          Credits
-                        </h3>
-                        <div
-                          className={`${isOpen ? 'rotate-90 pr-1 pl-0' : ''}`}
-                        >
-                          <p className="font-outline place-self-center pl-2 text-2xl lg:text-4xl">
-                            &gt;
-                          </p>
-                        </div>
-                      </button>
-                      <div className={`${isOpen ? 'visible' : 'hidden'}`}>
-                        <div className="h-auto overflow-hidden transition-all">
-                          <div className="grid grid-cols-1">
-                            <div>
-                              {column1Credits.map((credit, index) => {
-                                return (
-                                  <div
-                                    className="grid grid-cols-2 items-center gap-x-4 pt-4"
-                                    key={index}
-                                  >
-                                    <div className="justify-self-end text-right font-bold uppercase">
-                                      {credit.role}
-                                    </div>
-                                    <div className="space-x-4 text-lg font-light uppercase lg:text-xl">
-                                      {credit.value}
-                                    </div>
-                                  </div>
-                                )
-                              })}
-                            </div>
-                            <div>
-                              {column2Credits.map((credit, index) => {
-                                return (
-                                  <div
-                                    className="grid grid-cols-2 items-center gap-x-4 pt-4"
-                                    key={index}
-                                  >
-                                    <div className="justify-self-end text-right font-bold uppercase">
-                                      {credit.role}
-                                    </div>
-                                    <div className="space-x-4 text-lg font-light uppercase lg:text-xl">
-                                      {credit.value}
-                                    </div>
-                                  </div>
-                                )
-                              })}
-                            </div>
-                          </div>
-                        </div>
-                      </div>
-                    </>
-                  )}
-
-                  {isDesktop && (
-                    <>
-                      <H3>Credits</H3>
-                      <div className="h-auto overflow-hidden transition-all lg:text-xl xl:mt-12">
-                        <div className="mb-12 grid grid-cols-1 gap-x-20 gap-y-4 md:grid-cols-2 lg:grid-cols-2">
-                          <div>
-                            {column1Credits.map((credit, index) => {
-                              return (
-                                <div
-                                  className="grid grid-cols-2 items-center gap-2 pt-4"
-                                  key={index}
-                                >
-                                  <div className="font-bold uppercase">
-                                    {credit.role}
-                                  </div>
-                                  <div className="space-x-4 text-xl font-light uppercase">
-                                    {credit.value}
-                                  </div>
-                                </div>
-                              )
-                            })}
-                          </div>
-                          <div>
-                            {column2Credits.map((credit, index) => {
-                              return (
-                                <div
-                                  className="grid grid-cols-2 items-center gap-2 pt-4"
-                                  key={index}
-                                >
-                                  <div className="font-bold uppercase">
-                                    {credit.role}
-                                  </div>
-                                  <div className="space-x-4 text-xl font-light uppercase">
-                                    {credit.value}
-                                  </div>
-                                </div>
-                              )
-                            })}
-                          </div>
-                        </div>
-                      </div>
-                    </>
-                  )}
-                </div>
-              )}
-            </div>
-
-            {isDesktop === false && (
-              <div className="mx-auto mt-12 -mb-5 flex w-full max-w-md justify-center px-12 lg:mt-24 lg:max-w-xl">
-                <Image
-                  alt="JME Film Production Company"
-                  height={100}
-                  src={`/images/jmills-raven-gold.svg`}
-                  width={100}
-                />
-              </div>
+      {isLoggedIn && (
+        <article className="mx-auto max-w-7xl px-5 pt-8 pb-20 lg:pt-12 lg:pb-28">
+          <div className="mb-10 lg:mb-14">
+            {portfolioItem.clientName && portfolioItem.title && (
+              <Eyebrow className="mb-5">{portfolioItem.clientName}</Eyebrow>
             )}
-            {isDesktop && (
-              <div className="mx-auto mt-12 -mb-5 w-full max-w-md px-12 lg:mt-24 lg:max-w-xl">
-                <Image
-                  alt="JME Film Production Company"
-                  height={202}
-                  src={`/images/JME-film-prod-co-white.svg`}
-                  width={600}
-                />
-              </div>
-            )}
-          </>
-        )}
-      </div>
+            <H1 className="max-w-[24ch] text-4xl sm:text-5xl lg:text-6xl xl:text-7xl">
+              {portfolioItem.title || portfolioItem.clientName}
+              <span className="sr-only"> {fullTitle}</span>
+            </H1>
+          </div>
+
+          <ClientOnly>
+            <VideoPlayer
+              client={portfolioItem.clientName}
+              clientName={portfolioItem.clientName}
+              description={portfolioItem.description}
+              poster={portfolioItem.poster}
+              title={portfolioItem.title}
+              videoId={portfolioItem.videoId}
+              videoHeightAspectRatio={
+                portfolioItem.videoHeightAspectRatio || '9'
+              }
+              videoWidthAspectRatio={
+                portfolioItem.videoWidthAspectRatio || '16'
+              }
+            />
+          </ClientOnly>
+
+          <CreditsList credits={portfolioItem.credits} />
+
+          <div className="mt-16 border-t border-white/15 pt-6">
+            <ArrowLink href="/private-gallery" className="uppercase">
+              Back to portfolio
+            </ArrowLink>
+          </div>
+        </article>
+      )}
     </Layout>
   )
 }

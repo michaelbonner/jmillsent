@@ -1,7 +1,6 @@
-import { H1 } from '@/components/headings'
+import ArrowLink from '@/components/arrow-link'
+import { Eyebrow, H1 } from '@/components/headings'
 import Layout from '@/components/layout'
-import LittleWhiteBar from '@/components/little-white-bar'
-import Image from 'next/image'
 import { useEffect } from 'react'
 import { useState } from 'react'
 
@@ -21,9 +20,9 @@ function NotFound() {
 
   return (
     <Layout title={`404: This page could not be found.`} description={''}>
-      <div className="container mx-auto my-12 grid gap-y-8 px-4 text-center text-white lg:my-36">
+      <div className="mx-auto grid max-w-7xl justify-items-start gap-y-8 px-5 py-20 text-white lg:py-32">
         <svg
-          className="group mx-auto w-24 fill-white transition-colors duration-[10ms] hover:fill-current"
+          className="group w-20 fill-white transition-colors duration-[10ms] hover:fill-current"
           enableBackground="new 0 0 100 120"
           viewBox="0 0 100 120"
           style={{
@@ -45,29 +44,18 @@ function NotFound() {
             d="m51.4 88.6c-.3.9-.6 1.7-.8 2.6-.3 2-1.9 2.6-3.4 3.4-.8.4-1.6-.3-1.6-1.3.1-1.2.2-2.3.1-3.5-.7-4.2 1.2-7.7 2.6-11.3.6-1.6 2.2-2.5 3.9-2.4.3 0 .5.1.7.3.7.6 1.4 1.3 2.1 2 2.1 2.1 2.2 4.8 2.5 7.5.1 1 0 1.9 0 2.9.1 1.9-.9 3.1-2.2 4.2-.4.4-1.2.5-1.6.1-1-.6-1.8-1.3-1.7-2.7 0-.5-.1-1-.3-1.5z"
           />
         </svg>
-        <H1>
-          404
-          <br />
-          <span className="text-xl lg:text-5xl">
-            This page could not be found
-          </span>
-        </H1>
-        <div className="prose prose-lg mx-auto">
-          <p className="text-gray-100">
-            The page you are looking for might have been removed, had its name
-            changed, or is temporarily unavailable. Please use the site
-            navigation to find what you are looking for.
-          </p>
+        <div>
+          <Eyebrow className="mb-5">Error 404</Eyebrow>
+          <H1 className="max-w-[20ch]">Page not found</H1>
         </div>
-        <div className="mx-auto mt-12 -mb-5 w-full max-w-md px-12 lg:mt-24 lg:max-w-xl">
-          <Image
-            alt="JME Film Production Company"
-            height={202}
-            src={`/images/JME-film-prod-co-white.svg`}
-            width={600}
-          />
-        </div>
-        <LittleWhiteBar />
+        <p className="max-w-[48ch] text-lg/8 text-pretty text-neutral-300">
+          The page you are looking for might have been removed, had its name
+          changed, or is temporarily unavailable. Please use the site navigation
+          to find what you are looking for.
+        </p>
+        <ArrowLink href="/" className="uppercase">
+          Back to home
+        </ArrowLink>
       </div>
     </Layout>
   )

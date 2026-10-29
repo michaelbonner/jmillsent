@@ -1,4 +1,5 @@
 import Head from 'next/head'
+import { Eyebrow, H1 } from '@/components/headings'
 import Layout from '@/components/layout'
 import { PasswordLoginForm } from '@/components/password-login-form'
 import PortfolioItemTile from '@/components/portfolio-item-tile'
@@ -31,39 +32,34 @@ function Portfolio({ portfolioPage, portfolioItems }) {
       <Head>
         <meta name="robots" content="noindex, nofollow" />
       </Head>
-      <div className="mt-28">
-        {!isLoggedIn && (
-          <PasswordLoginForm
-            handleSubmit={handleSubmit}
-            formError={formError}
-            passwordInputPrompt={portfolioPage.passwordInputPrompt}
-          />
-        )}
+      {!isLoggedIn && (
+        <PasswordLoginForm
+          handleSubmit={handleSubmit}
+          formError={formError}
+          passwordInputPrompt={portfolioPage.passwordInputPrompt}
+        />
+      )}
 
-        {isLoggedIn && (
-          <>
-            <div className="mx-1 grid grid-cols-1 gap-1 lg:grid-cols-3">
-              {portfolioItems.map((portfolioItem, index) => {
-                return (
-                  <PortfolioItemTile
-                    portfolioItem={portfolioItem}
-                    key={index}
-                  />
-                )
-              })}
+      {isLoggedIn && (
+        <section className="max-w-13xl mx-auto px-5 pt-8 pb-20 lg:pt-12 lg:pb-28">
+          <div className="mb-10 lg:mb-14">
+            <Eyebrow className="mb-5">Private</Eyebrow>
+            <H1>Portfolio</H1>
+          </div>
+          <div className="grid grid-cols-1 gap-5 lg:grid-cols-3">
+            {portfolioItems.map((portfolioItem, index) => {
+              return (
+                <PortfolioItemTile portfolioItem={portfolioItem} key={index} />
+              )
+            })}
+          </div>
+          {portfolioPage.portfolioPageDescription && (
+            <div className="prose prose-lg prose-invert mt-16 max-w-[65ch] text-neutral-300">
+              <PortableText value={portfolioPage.portfolioPageDescription} />
             </div>
-            {portfolioPage.portfolioPageDescription && (
-              <div className="container mx-auto mt-12 px-12 text-center text-white">
-                <div className="prose prose-lg prose-invert mx-auto max-w-lg border py-1 text-center">
-                  <PortableText
-                    value={portfolioPage.portfolioPageDescription}
-                  />
-                </div>
-              </div>
-            )}
-          </>
-        )}
-      </div>
+          )}
+        </section>
+      )}
     </Layout>
   )
 }

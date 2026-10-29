@@ -1,18 +1,16 @@
 import 'yet-another-react-lightbox/plugins/captions.css'
 import 'yet-another-react-lightbox/styles.css'
 
+import ArrowLink from '@/components/arrow-link'
 import { ClientOnly } from '@/components/client-only'
+import { Eyebrow, H1, H2, H3 } from '@/components/headings'
 import Layout from '@/components/layout'
 import { sanityClient } from '@/lib/sanity'
 import { PortableText, toPlainText } from '@portabletext/react'
-import { clsx } from 'clsx'
 import groq from 'groq'
-import useIsDesktop from 'hooks/useIsDesktop'
 import dynamic from 'next/dynamic'
 import Image from 'next/image'
-import Link from 'next/link'
 import { useState } from 'react'
-import { styles } from 'styles/styles'
 import Lightbox from 'yet-another-react-lightbox'
 import Captions from 'yet-another-react-lightbox/plugins/captions'
 import { urlForSanitySource } from '../lib/urlForSanitySource'
@@ -42,7 +40,6 @@ aspect-w-16	aspect-h-16
 const Documentary = ({ documentaryPage }) => {
   const [isEpisodeLightBoxOpen, setIsEpisodeLightBoxOpen] = useState(false)
   const [episodePhotoIndex, setEpisodePhotoIndex] = useState(0)
-  const isDesktop = useIsDesktop()
 
   const episodeImages = documentaryPage.episodes.map((episode) => {
     return {
@@ -70,231 +67,110 @@ const Documentary = ({ documentaryPage }) => {
         `${documentaryPage.title} | JmillsENT | Motion Picture Studio + Film Agency`
       }
     >
-      <div className="lg:pt-24">
-        <ul
-          className={clsx(
-            'mx-6 mt-4 grid grid-cols-2 items-center justify-center border-t py-4 font-semibold',
-            'lg:mx-36 lg:flex lg:divide-x lg:divide-white',
-            'xl:mx-48'
-          )}
-        >
-          <li
-            className={clsx(
-              'flex justify-center text-xs',
-              'lg:px-12 lg:text-base',
-              'border-r lg:border-r-0'
-            )}
-          >
-            <Link
-              className={clsx(
-                'rounded-lg border px-2 py-1 uppercase transition-all',
-                'lg:tracking-wider',
-                'border-black hover:scale-110'
-              )}
-              href="/work"
-            >
-              Commercial
-            </Link>
-          </li>
-          <li
-            className={clsx(
-              'flex justify-center text-xs',
-              'lg:px-12 lg:text-base',
-              'border-r lg:border-r-0'
-            )}
-          >
-            <Link
-              className={clsx(
-                'rounded-lg border px-2 py-1 uppercase transition-all',
-                'lg:tracking-wider',
-                'border-black hover:scale-110'
-              )}
-              href="/work"
-            >
-              Branded Content
-            </Link>
-          </li>
-          {/* <li
-            className={clsx(
-              'flex justify-center text-xs',
-              'lg:px-12 lg:text-base'
-            )}
-          >
-            <span
-              className={clsx(
-                'rounded-lg border px-2 py-1 uppercase transition-all',
-                'lg:tracking-wider',
-                'border-white'
-              )}
-            >
-              Documentary
-            </span>
-          </li> */}
-        </ul>
-        <div className="container mx-auto max-w-7xl">
-          <div className="mt-4 rounded-lg bg-white p-4 text-black lg:p-12">
-            <div className="mb-12 rounded-xl bg-black text-white">
-              <ClientOnly>
-                <VideoPlayer
-                  client={documentaryPage.title}
-                  description={''}
-                  poster={documentaryPage.poster}
-                  title={documentaryPage.subtitle}
-                  videoId={documentaryPage.videoId}
-                  clientName={documentaryPage.subtitle}
-                  videoHeightAspectRatio={
-                    documentaryPage.videoHeightAspectRatio || '9'
-                  }
-                  videoWidthAspectRatio={
-                    documentaryPage.videoWidthAspectRatio || '16'
-                  }
-                />
-              </ClientOnly>
-            </div>
+      <article className="mx-auto max-w-7xl px-5 pt-8 pb-20 lg:pt-12 lg:pb-28">
+        <div className="mb-10 lg:mb-14">
+          <Eyebrow className="mb-5">
+            {documentaryPage.subtitle || 'Documentary'}
+          </Eyebrow>
+          <H1 className="max-w-[24ch]">{documentaryPage.title}</H1>
+        </div>
 
-            <div className="mx-auto max-w-5xl gap-6 md:flex lg:gap-10">
-              <div className="mb-6">
-                <Image
-                  alt="Documentary Poster"
-                  src={urlForSanitySource(documentaryPage.poster)
-                    .width(410)
-                    .height(630)
-                    .format('webp')
-                    .fit('crop')
-                    .crop('focalpoint')
-                    .url()}
-                  height={630}
-                  width={410}
-                  className="mx-auto rounded-lg"
-                />
-              </div>
-              <div className="prose prose-lg prose-invert md:w-3/4">
-                <h2 className="mb-0 text-3xl font-bold uppercase lg:text-5xl">
-                  {documentaryPage.bodyHeader}
-                </h2>
-                <h3 className="font-outline text-3xl uppercase lg:text-4xl">
-                  {documentaryPage.bodySubheader}
-                </h3>
-                <div className="h-[2px] w-full max-w-lg bg-black" />
-                <div className="text-base">
-                  <PortableText value={documentaryPage.body} />
-                </div>
-              </div>
-            </div>
-            <section id="episodes">
-              <div
-                className={clsx(
-                  'mt-4 grid gap-6',
-                  'md:grid-cols-2',
-                  'lg:grid-cols-4'
-                )}
-              >
-                {documentaryPage.episodes.map((episode, index) => {
-                  const imageSrc = urlForSanitySource(episode.image)
-                    .width(800)
-                    .height(600)
-                    .format('webp')
-                    .fit('crop')
-                    .crop('focalpoint')
-                    .url()
+        <ClientOnly>
+          <VideoPlayer
+            client={documentaryPage.title}
+            description={''}
+            poster={documentaryPage.poster}
+            title={documentaryPage.subtitle}
+            videoId={documentaryPage.videoId}
+            clientName={documentaryPage.subtitle}
+            videoHeightAspectRatio={
+              documentaryPage.videoHeightAspectRatio || '9'
+            }
+            videoWidthAspectRatio={
+              documentaryPage.videoWidthAspectRatio || '16'
+            }
+          />
+        </ClientOnly>
 
-                  return (
-                    <button
-                      className={clsx(
-                        'group relative rounded-lg',
-                        'aspect-2 overflow-hidden',
-                        'bg-cover bg-center bg-no-repeat'
-                      )}
-                      onClick={() => {
-                        setIsEpisodeLightBoxOpen(true)
-                        setEpisodePhotoIndex(index)
-                      }}
-                      style={{
-                        backgroundImage: `url(${imageSrc})`,
-                      }}
-                      key={index}
-                    >
-                      <div
-                        className={clsx(
-                          'absolute inset-0 rounded-lg bg-linear-to-t from-black via-black/30 to-black/0 opacity-50 transition-all duration-300',
-                          'lg:from-transparent lg:via-transparent lg:to-transparent lg:opacity-0',
-                          'group-hover:from-black/80 group-hover:via-black/80 group-hover:to-black/80 group-hover:opacity-100'
-                        )}
-                      />
-                      <div
-                        className={clsx(
-                          'relative z-10 flex translate-y-0 flex-col items-center justify-center overflow-hidden py-3 transition-transform duration-300',
-                          'group-hover:-translate-y-10'
-                        )}
-                      >
-                        <div
-                          className="font-outline text-5xl font-light text-white"
-                          style={{
-                            letterSpacing: 1,
-                          }}
-                        >
-                          EP {episode.episodeNum}
-                        </div>
-                        <div className="bg-gold mx-auto my-2 h-1 w-40 shrink-0"></div>
-                        <h4 className="mb-4 text-xl font-bold text-white uppercase">
-                          {episode.title}
-                        </h4>
-                        <div
-                          className={clsx(
-                            'px-4 text-sm font-light text-white uppercase opacity-0 transition-opacity',
-                            'group-hover:opacity-100'
-                          )}
-                        >
-                          <PortableText value={episode.description} />
-                        </div>
-                      </div>
-                    </button>
-                  )
-                })}
-              </div>
-            </section>
-            <div className="my-10 flex justify-center">
-              <a
+        <section className="mt-20 grid gap-10 lg:mt-28 lg:grid-cols-12">
+          <div className="lg:col-span-4">
+            <Image
+              alt="Documentary Poster"
+              src={urlForSanitySource(documentaryPage.poster)
+                .width(410)
+                .height(630)
+                .format('webp')
+                .fit('crop')
+                .crop('focalpoint')
+                .url()}
+              height={630}
+              width={410}
+              className="w-full max-w-[410px]"
+            />
+          </div>
+          <div className="lg:col-span-8">
+            {documentaryPage.bodySubheader && (
+              <Eyebrow className="mb-5">
+                {documentaryPage.bodySubheader}
+              </Eyebrow>
+            )}
+            <H2 className="max-w-[24ch]">{documentaryPage.bodyHeader}</H2>
+            <div className="prose prose-lg prose-invert mt-6 max-w-[65ch] text-pretty text-neutral-300">
+              <PortableText value={documentaryPage.body} />
+            </div>
+            {documentaryPage.docLink && (
+              <ArrowLink
                 href={documentaryPage.docLink}
-                className={styles.buttonLink.blackBorder}
+                className="mt-8 uppercase"
                 rel="noreferrer"
                 target="_blank"
               >
-                <span className="font-outline text-2xl tracking-tighter lg:text-3xl">
-                  Watch
-                </span>
-                <span className="text-2xl font-bold tracking-wide lg:text-3xl">
-                  Documentary
-                </span>
-                <span className="font-outline text-2xl tracking-tighter lg:text-3xl">
-                  Now
-                </span>
-              </a>
-            </div>
+                Watch the documentary
+              </ArrowLink>
+            )}
           </div>
+        </section>
 
-          {isDesktop === false && (
-            <div className="mx-auto mt-12 -mb-5 flex w-full max-w-md justify-center px-12 lg:mt-24 lg:max-w-xl">
-              <Image
-                alt="JME Film Production Company"
-                height={100}
-                src={`/images/jmills-raven-gold.svg`}
-                width={100}
-              />
-            </div>
-          )}
-          {isDesktop && (
-            <div className="mx-auto mt-12 -mb-5 w-full max-w-md px-12 lg:mt-24 lg:max-w-xl">
-              <Image
-                alt="JME Film Production Company"
-                height={202}
-                src={`/images/JME-film-prod-co-white.svg`}
-                width={600}
-              />
-            </div>
-          )}
-        </div>
-      </div>
+        <section className="mt-20 lg:mt-28" id="episodes">
+          <div className="border-t border-white/30 pt-5">
+            <Eyebrow className="mb-5">Episodes</Eyebrow>
+          </div>
+          <div className="grid gap-5 md:grid-cols-2 lg:grid-cols-4">
+            {documentaryPage.episodes.map((episode, index) => {
+              return (
+                <button
+                  className="group relative isolate flex aspect-4/5 flex-col justify-end overflow-hidden bg-neutral-900 p-5 text-left text-white"
+                  key={index}
+                  onClick={() => {
+                    setIsEpisodeLightBoxOpen(true)
+                    setEpisodePhotoIndex(index)
+                  }}
+                  type="button"
+                >
+                  <Image
+                    alt=""
+                    className="-z-10 object-cover transition-transform duration-500 group-hover:scale-[1.035]"
+                    fill
+                    sizes="(max-width: 767px) 100vw, (max-width: 1023px) 50vw, 320px"
+                    src={urlForSanitySource(episode.image)
+                      .width(800)
+                      .height(1000)
+                      .format('webp')
+                      .fit('crop')
+                      .crop('focalpoint')
+                      .url()}
+                  />
+                  <div className="absolute inset-0 -z-10 bg-linear-to-t from-neutral-950/85 via-neutral-950/20 to-transparent" />
+                  <Eyebrow className="mb-2 text-white/70">
+                    Ep {episode.episodeNum}
+                  </Eyebrow>
+                  <H3 className="mb-0">{episode.title}</H3>
+                </button>
+              )
+            })}
+          </div>
+        </section>
+      </article>
       <Lightbox
         captions={{
           descriptionMaxLines: 100,
@@ -316,10 +192,10 @@ const Documentary = ({ documentaryPage }) => {
           title: (
             <div>
               <span className="flex items-center gap-4 text-lg md:text-2xl">
-                <span className="font-outline">EP {image.episodeNum}</span>
+                <span className="text-white/60">EP {image.episodeNum}</span>
                 <span>{image.title}</span>
               </span>
-              <div className="bg-gold my-2 h-1 w-40 shrink-0" />
+              <div className="my-2 h-px w-40 shrink-0 bg-white/30" />
             </div>
           ),
         }))}

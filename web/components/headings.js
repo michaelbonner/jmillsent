@@ -1,11 +1,24 @@
 import { clsx } from 'clsx'
 
+const Eyebrow = ({ children, className = '' }) => {
+  return (
+    <p
+      className={clsx(
+        'text-sm font-medium tracking-[0.12em] text-neutral-400 uppercase',
+        className
+      )}
+    >
+      {children}
+    </p>
+  )
+}
+
 const H1 = ({ children, className = '' }) => {
   return (
     <h1
       className={clsx(
         className,
-        'text-2xl font-extrabold uppercase lg:mb-4 lg:text-7xl'
+        'text-5xl font-semibold tracking-[-0.06em] text-balance uppercase sm:text-6xl lg:text-7xl xl:text-8xl'
       )}
     >
       {children}
@@ -17,7 +30,7 @@ const H2 = ({ children, className = '' }) => {
     <h2
       className={clsx(
         className,
-        'mb-2 text-2xl font-extrabold uppercase lg:text-5xl'
+        'mb-2 text-4xl font-semibold tracking-[-0.05em] text-balance uppercase lg:text-5xl'
       )}
     >
       {children}
@@ -29,7 +42,7 @@ const H3 = ({ children, className = '' }) => {
     <h3
       className={clsx(
         className,
-        'mb-2 text-xl font-extrabold uppercase lg:text-3xl'
+        'mb-2 text-xl font-semibold tracking-tight text-balance uppercase lg:text-2xl'
       )}
     >
       {children}
@@ -37,4 +50,4 @@ const H3 = ({ children, className = '' }) => {
   )
 }
 
-export { H1, H2, H3 }
+export { Eyebrow, H1, H2, H3 }

@@ -16,7 +16,7 @@
     "up": "bun update"
   },
   "devDependencies": {
-    "@sanity/cli": "^3.92.0",
-    "lerna": "^8.2.2"
+    "@sanity/cli": "^8.25.0",
+    "lerna": "^10.1.1"
   }
 }

@@ -285,13 +285,13 @@ const Layout = ({
           <Link
             href="/"
             aria-label="Homepage"
-            className="w-20 shrink-0 lg:w-[100px]"
+            className="w-24 shrink-0 lg:w-[120px]"
           >
             <Image
               alt="Jmills Entertainment logo"
-              src="/images/jme_film_co_circle_white.svg"
-              width={100}
-              height={100}
+              src="/images/jme-box-white.svg"
+              width={120}
+              height={68}
               className="h-auto w-full"
               priority
             />
@@ -429,12 +429,12 @@ const Footer = () => {
     <footer className="bg-neutral-900 px-5 pt-16 pb-8 text-white sm:px-8 lg:pt-20">
       <div className="mx-auto grid max-w-7xl gap-12 lg:grid-cols-12 lg:gap-10">
         <div className="lg:col-span-6">
-          <Link href="/" aria-label="Homepage" className="block w-24">
+          <Link href="/" aria-label="Homepage" className="block w-28">
             <Image
               alt="Jmills Entertainment logo"
-              src="/images/jme_film_co_circle_white.svg"
-              width={100}
-              height={100}
+              src="/images/jme-box-white.svg"
+              width={120}
+              height={68}
               className="h-auto w-full"
             />
           </Link>

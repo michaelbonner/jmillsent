@@ -42,6 +42,7 @@ const Layout = ({
   heroImageUrl,
   heroVideoId,
   heroContent = '',
+  heroWide = false,
   heroVideoHeightInPixels = 0,
   heroVideoWidthInPixels = 0,
 }) => {
@@ -403,8 +404,15 @@ const Layout = ({
             <div className="absolute inset-x-0 top-0 h-32 bg-linear-to-b from-neutral-950/60 to-transparent" />
             {heroContent && (
               <div className="relative flex h-full items-end py-12 text-white lg:py-20">
-                <div className="mx-auto w-full max-w-7xl px-5">
-                  {heroContent}
+                <div className="w-full px-5">
+                  <div
+                    className={clsx(
+                      'mx-auto',
+                      heroWide ? 'max-w-13xl' : 'max-w-7xl'
+                    )}
+                  >
+                    {heroContent}
+                  </div>
                 </div>
               </div>
             )}
@@ -412,7 +420,16 @@ const Layout = ({
         )}
         {!showHero && heroContent && (
           <div className="pt-12 pb-8 text-white lg:pt-20">
-            <div className="mx-auto w-full max-w-7xl px-5">{heroContent}</div>
+            <div className="w-full px-5">
+              <div
+                className={clsx(
+                  'mx-auto',
+                  heroWide ? 'max-w-13xl' : 'max-w-7xl'
+                )}
+              >
+                {heroContent}
+              </div>
+            </div>
           </div>
         )}
       </header>

@@ -20,9 +20,10 @@ function News({ newsPage }) {
       description={newsPage?.seoDescription || 'News'}
       heroImageUrl={newsPage?.poster || ''}
       heroContent={heroContent}
+      heroWide
     >
-      <section className="py-20 lg:py-28">
-        <div className="mx-auto grid max-w-7xl gap-x-10 gap-y-16 px-5 lg:grid-cols-2">
+      <section className="px-5 py-20 lg:py-28">
+        <div className="max-w-13xl mx-auto grid gap-x-10 gap-y-16 lg:grid-cols-2 2xl:grid-cols-3">
           {(newsPage?.newsItems ?? []).map((newsItem, index) => {
             return <NewsItemCard key={index} newsItem={newsItem} />
           })}

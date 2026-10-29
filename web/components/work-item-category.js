@@ -89,7 +89,11 @@ export const WorkItemCategory = ({
       <div className="pt-8 pb-20 lg:pt-12 lg:pb-28">
         <div className="max-w-13xl mx-auto px-5">
           <div className="mb-10 lg:mb-14">
-            <Eyebrow className="mb-5">Selected work</Eyebrow>
+            <Eyebrow className="mb-5">
+              {workItemCategory !== defaultTab
+                ? currentCategory.name
+                : 'Portfolio'}
+            </Eyebrow>
             <H1>
               Work
               <span className="sr-only">

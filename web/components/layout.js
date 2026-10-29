@@ -84,6 +84,11 @@ const Layout = ({
     return heroImageUrl || heroVideoId
   }, [heroImageUrl, heroVideoId])
 
+  // Match the full-bleed work grid so the header doesn't look inset
+  const isWideHeader =
+    router.pathname === '/work' ||
+    router.pathname.startsWith('/work/category/')
+
   const { heroVideoHeight, heroVideoWidth } = useMemo(() => {
     if (isDesktop === false && !heroVideoId) {
       return {
@@ -281,7 +286,12 @@ const Layout = ({
           menuOpen && 'fixed bg-neutral-950'
         )}
       >
-        <div className="mx-auto flex max-w-[1480px] items-center justify-between gap-8 px-5 py-5 sm:px-8 lg:py-6">
+        <div
+          className={clsx(
+            'mx-auto flex items-center justify-between gap-8 px-5 py-5 lg:py-6',
+            isWideHeader ? 'max-w-13xl' : 'max-w-[1480px] sm:px-8'
+          )}
+        >
           <Link
             href="/"
             aria-label="Homepage"

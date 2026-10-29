@@ -5,7 +5,7 @@ import PortfolioItemTile from '@/components/portfolio-item-tile'
 import { sanityClient } from '@/lib/sanity'
 import { PortableText } from '@portabletext/react'
 import groq from 'groq'
-import useIsLoggedIn from 'hooks/useIsLoggedIn'
+import useIsLoggedIn from '@/hooks/useIsLoggedIn'
 import { useState } from 'react'
 
 function Portfolio({ portfolioPage, portfolioItems }) {

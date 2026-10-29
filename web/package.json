@@ -8,6 +8,7 @@
     "knip": "bunx knip",
     "start": "next start",
     "lint": "eslint .",
+    "typecheck": "tsc --noEmit",
     "preinstall": "npx only-allow bun",
     "test": "playwright test",
     "out": "bun outdated"
@@ -64,6 +65,6 @@
     "prettier": "^3.9.10",
     "prettier-plugin-tailwindcss": "^0.8.1",
     "tailwindcss": "^4.3.3",
-    "typescript": "^5.9.3"
+    "typescript": "^6.0.3"
   }
 }

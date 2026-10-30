@@ -14,28 +14,51 @@ import { styles } from '@/styles/styles'
 
 const VideoPlayer = dynamic(() => import('@/components/video-player'), {})
 
-const fordArticle = {
-  href: 'https://www.fromtheroad.ford.com/us/en/articles/2026/new-mustang-dark-horse-sc',
-  image: '/images/ford-dark-horse-sc.jpg',
-  title: 'The Mustang Dark Horse SC: A New Standard for Race-Bred Engineering',
-  source: 'Ford From the Road',
+const getExternalArticlePreview = (block, previews) => {
+  if (block._type !== 'block') return null
+
+  const links = block.markDefs?.filter((mark) => mark._type === 'link') ?? []
+  if (links.length !== 1) return null
+
+  const link = links[0]
+  const firstLinkedIndex = block.children?.findIndex((child) =>
+    child.marks?.includes(link._key)
+  )
+  if (firstLinkedIndex == null || firstLinkedIndex < 0) return null
+  if (
+    block.children
+      .slice(firstLinkedIndex)
+      .some((child) => child.text?.trim() && !child.marks?.includes(link._key))
+  ) {
+    return null
+  }
+
+  const preview = previews.find((item) => item.href === link.href)
+  return preview
+    ? { preview, introChildren: block.children.slice(0, firstLinkedIndex) }
+    : null
 }
 
-const isFordArticleLink = (block) =>
-  block._type === 'block' &&
-  block.markDefs?.some(
-    (mark) => mark._type === 'link' && mark.href === fordArticle.href
-  )
-
 const NewsItem = ({ newsItem = {} }) => {
-  const body =
-    newsItem.slug?.current === 'ford-mustang-dark-horse-sc'
-      ? newsItem.body?.map((block) =>
-          isFordArticleLink(block)
-            ? { ...block, _type: 'externalArticlePreview' }
-            : block
-        )
-      : newsItem.body
+  const previews = newsItem.externalArticlePreviews ?? []
+
+  const body = newsItem.body?.flatMap((block) => {
+    const match = getExternalArticlePreview(block, previews)
+    if (!match) return [block]
+
+    return [
+      ...(match.introChildren.some((child) => child.text?.trim())
+        ? [
+            {
+              ...block,
+              _key: `${block._key}-intro`,
+              children: match.introChildren,
+            },
+          ]
+        : []),
+      { ...block, _type: 'externalArticlePreview', preview: match.preview },
+    ]
+  })
 
   return (
     <>
@@ -84,8 +107,8 @@ const NewsItem = ({ newsItem = {} }) => {
                   ...portableTextComponents,
                   types: {
                     ...portableTextComponents.types,
-                    externalArticlePreview: () => (
-                      <ExternalArticlePreview {...fordArticle} />
+                    externalArticlePreview: ({ value }) => (
+                      <ExternalArticlePreview {...value.preview} />
                     ),
                   },
                 }}
@@ -151,6 +174,7 @@ export async function getStaticProps({ params }) {
         title,
         date,
         body,
+        externalArticlePreviews,
         videoId,
         videoHeightAspectRatio,
         videoWidthAspectRatio,

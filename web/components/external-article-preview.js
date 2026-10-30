@@ -1,14 +1,27 @@
 import Image from 'next/image'
+import { urlForSanitySource } from '@/lib/urlForSanitySource'
 
-export default function ExternalArticlePreview({ href, image, title, source }) {
+export default function ExternalArticlePreview({
+  href,
+  image,
+  imageAlt,
+  title,
+  source,
+}) {
+  const imageUrl = image?.asset
+    ? urlForSanitySource(image).width(1280).height(700).fit('crop').url()
+    : null
+
+  if (!imageUrl) return null
+
   return (
     <a
       href={href}
       className="not-prose group relative block min-h-80 overflow-hidden rounded-lg border border-white/20 text-left text-white focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-[#c5a663] sm:min-h-112"
     >
       <Image
-        src={image}
-        alt="Blue Mustang Dark Horse SC driving on a track. Prototype vehicle shown."
+        src={imageUrl}
+        alt={imageAlt}
         fill
         sizes="(max-width: 640px) 100vw, 960px"
         className="object-cover object-center transition-transform duration-500 group-hover:scale-105 motion-reduce:transition-none"

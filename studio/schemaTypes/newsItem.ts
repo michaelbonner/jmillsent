@@ -74,6 +74,58 @@ export const newsItem = defineType({
       type: 'blockContent',
     }),
     defineField({
+      name: 'externalArticlePreviews',
+      title: 'External article previews',
+      description:
+        'Add a preview for a link in the Body. Put the link in its own paragraph; the preview will appear in its place.',
+      type: 'array',
+      of: [
+        defineArrayMember({
+          name: 'externalArticlePreview',
+          title: 'External article preview',
+          type: 'object',
+          fields: [
+            defineField({
+              name: 'href',
+              title: 'Article URL',
+              type: 'url',
+              validation: (rule) =>
+                rule.required().uri({scheme: ['http', 'https']}),
+            }),
+            defineField({
+              name: 'source',
+              title: 'Publication',
+              type: 'string',
+              validation: (rule) => rule.required(),
+            }),
+            defineField({
+              name: 'title',
+              title: 'Headline',
+              type: 'string',
+              validation: (rule) => rule.required(),
+            }),
+            defineField({
+              name: 'image',
+              title: 'Preview image',
+              type: 'image',
+              options: {hotspot: true},
+              validation: (rule) => rule.required(),
+            }),
+            defineField({
+              name: 'imageAlt',
+              title: 'Image description',
+              description: 'Describe the image for screen readers.',
+              type: 'string',
+              validation: (rule) => rule.required(),
+            }),
+          ],
+          preview: {
+            select: {title: 'title', subtitle: 'source', media: 'image'},
+          },
+        }),
+      ],
+    }),
+    defineField({
       name: 'videoId',
       title: 'Video ID',
       type: 'string',

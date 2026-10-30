@@ -11,6 +11,17 @@ const config = {
 // Set up the client for fetching data in the getProps page functions
 export const sanityClient = createClient(config)
 
+// Reads drafts on top of published content; only used in Next.js draft mode
+export const previewClient = createClient({
+  ...config,
+  useCdn: false,
+  apiVersion: '2025-02-19',
+  perspective: 'drafts',
+  token: process.env.SANITY_API_TOKEN,
+})
+
+export const getClient = (preview) => (preview ? previewClient : sanityClient)
+
 export const portableTextComponents = {
   types: {
     image: ({ value }) => {

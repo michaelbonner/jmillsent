@@ -1,5 +1,6 @@
 import { ClientOnly } from '@/components/client-only'
 import Date from '@/components/date'
+import ExternalArticlePreview from '@/components/external-article-preview'
 import LargeGoldBar from '@/components/large-gold-bar'
 import Layout from '@/components/layout'
 import { portableTextComponents, sanityClient } from '@/lib/sanity'
@@ -13,7 +14,76 @@ import { styles } from '@/styles/styles'
 
 const VideoPlayer = dynamic(() => import('@/components/video-player'), {})
 
+const normalizeArticleUrl = (value) => {
+  try {
+    const url = new URL(value)
+    if (!['http:', 'https:'].includes(url.protocol)) return null
+    url.pathname = url.pathname.replace(/\/+$/, '') || '/'
+    return url.href
+  } catch {
+    return null
+  }
+}
+
+const getExternalArticlePreview = (block, previews) => {
+  if (block._type !== 'block' || block.listItem) return null
+
+  const links = block.markDefs?.filter((mark) => mark._type === 'link') ?? []
+  if (links.length !== 1) return null
+
+  const link = links[0]
+  const firstLinkedIndex = block.children?.findIndex((child) =>
+    child.marks?.includes(link._key)
+  )
+  if (firstLinkedIndex == null || firstLinkedIndex < 0) return null
+  if (
+    block.children
+      .slice(firstLinkedIndex)
+      .some((child) => child.text?.trim() && !child.marks?.includes(link._key))
+  ) {
+    return null
+  }
+
+  const linkedUrl = normalizeArticleUrl(link.href)
+  if (!linkedUrl) return null
+
+  const preview = previews.find(
+    (item) =>
+      item.image?.asset &&
+      item.title &&
+      item.source &&
+      normalizeArticleUrl(item.href) === linkedUrl
+  )
+  return preview
+    ? { preview, introChildren: block.children.slice(0, firstLinkedIndex) }
+    : null
+}
+
 const NewsItem = ({ newsItem = {} }) => {
+  const previews = newsItem.externalArticlePreviews ?? []
+
+  const body = newsItem.body?.flatMap((block) => {
+    const match = getExternalArticlePreview(block, previews)
+    if (!match) return [block]
+
+    return [
+      ...(match.introChildren.some((child) => child.text?.trim())
+        ? [
+            {
+              ...block,
+              _key: `${block._key}-intro`,
+              children: match.introChildren,
+            },
+          ]
+        : []),
+      {
+        _key: block._key,
+        _type: 'externalArticlePreview',
+        preview: match.preview,
+      },
+    ]
+  })
+
   return (
     <>
       <Layout title={newsItem.seoTitle} description={newsItem.seoDescription}>
@@ -57,8 +127,16 @@ const NewsItem = ({ newsItem = {} }) => {
           {newsItem.body && (
             <div className="prose prose-lg prose-invert mx-auto w-full max-w-5xl px-8 text-center">
               <PortableText
-                components={portableTextComponents}
-                value={newsItem.body}
+                components={{
+                  ...portableTextComponents,
+                  types: {
+                    ...portableTextComponents.types,
+                    externalArticlePreview: ({ value }) => (
+                      <ExternalArticlePreview {...value.preview} />
+                    ),
+                  },
+                }}
+                value={body}
               />
             </div>
           )}
@@ -120,6 +198,7 @@ export async function getStaticProps({ params }) {
         title,
         date,
         body,
+        externalArticlePreviews,
         videoId,
         videoHeightAspectRatio,
         videoWidthAspectRatio,

@@ -1,5 +1,6 @@
 import { ClientOnly } from '@/components/client-only'
 import Date from '@/components/date'
+import ExternalArticlePreview from '@/components/external-article-preview'
 import LargeGoldBar from '@/components/large-gold-bar'
 import Layout from '@/components/layout'
 import { portableTextComponents, sanityClient } from '@/lib/sanity'
@@ -13,7 +14,29 @@ import { styles } from '@/styles/styles'
 
 const VideoPlayer = dynamic(() => import('@/components/video-player'), {})
 
+const fordArticle = {
+  href: 'https://www.fromtheroad.ford.com/us/en/articles/2026/new-mustang-dark-horse-sc',
+  image: '/images/ford-dark-horse-sc.jpg',
+  title: 'The Mustang Dark Horse SC: A New Standard for Race-Bred Engineering',
+  source: 'Ford From the Road',
+}
+
+const isFordArticleLink = (block) =>
+  block._type === 'block' &&
+  block.markDefs?.some(
+    (mark) => mark._type === 'link' && mark.href === fordArticle.href
+  )
+
 const NewsItem = ({ newsItem = {} }) => {
+  const body =
+    newsItem.slug?.current === 'ford-mustang-dark-horse-sc'
+      ? newsItem.body?.map((block) =>
+          isFordArticleLink(block)
+            ? { ...block, _type: 'externalArticlePreview' }
+            : block
+        )
+      : newsItem.body
+
   return (
     <>
       <Layout title={newsItem.seoTitle} description={newsItem.seoDescription}>
@@ -57,8 +80,16 @@ const NewsItem = ({ newsItem = {} }) => {
           {newsItem.body && (
             <div className="prose prose-lg prose-invert mx-auto w-full max-w-5xl px-8 text-center">
               <PortableText
-                components={portableTextComponents}
-                value={newsItem.body}
+                components={{
+                  ...portableTextComponents,
+                  types: {
+                    ...portableTextComponents.types,
+                    externalArticlePreview: () => (
+                      <ExternalArticlePreview {...fordArticle} />
+                    ),
+                  },
+                }}
+                value={body}
               />
             </div>
           )}

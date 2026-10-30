@@ -1,9 +1,11 @@
 import { ClientOnly } from '@/components/client-only'
 import Date from '@/components/date'
 import ExternalArticlePreview from '@/components/external-article-preview'
+import YouTubeFacade from '@/components/youtube-facade'
 import LargeGoldBar from '@/components/large-gold-bar'
 import Layout from '@/components/layout'
 import { portableTextComponents, sanityClient } from '@/lib/sanity'
+import { getYouTubeVideoId } from '@/lib/youtube'
 import { PortableText } from '@portabletext/react'
 import groq from 'groq'
 import dynamic from 'next/dynamic'
@@ -25,7 +27,7 @@ const normalizeArticleUrl = (value) => {
   }
 }
 
-const getExternalArticlePreview = (block, previews) => {
+const getLinkedBlock = (block) => {
   if (block._type !== 'block' || block.listItem) return null
 
   const links = block.markDefs?.filter((mark) => mark._type === 'link') ?? []
@@ -44,27 +46,42 @@ const getExternalArticlePreview = (block, previews) => {
     return null
   }
 
-  const linkedUrl = normalizeArticleUrl(link.href)
-  if (!linkedUrl) return null
-
-  const preview = previews.find(
-    (item) =>
-      item.image?.asset &&
-      item.title &&
-      item.source &&
-      normalizeArticleUrl(item.href) === linkedUrl
-  )
-  return preview
-    ? { preview, introChildren: block.children.slice(0, firstLinkedIndex) }
-    : null
+  return {
+    href: link.href,
+    introChildren: block.children.slice(0, firstLinkedIndex),
+  }
 }
 
 const NewsItem = ({ newsItem = {} }) => {
   const previews = newsItem.externalArticlePreviews ?? []
+  const youtubeEmbeds = newsItem.youtubeEmbeds ?? []
 
   const body = newsItem.body?.flatMap((block) => {
-    const match = getExternalArticlePreview(block, previews)
+    const match = getLinkedBlock(block)
     if (!match) return [block]
+
+    const videoId = getYouTubeVideoId(match.href)
+    const youtubeEmbed = videoId
+      ? youtubeEmbeds.find(
+          (item) =>
+            item.title &&
+            item.poster?.asset &&
+            getYouTubeVideoId(item.url) === videoId
+        )
+      : null
+
+    const linkedUrl = normalizeArticleUrl(match.href)
+    const preview = linkedUrl
+      ? previews.find(
+          (item) =>
+            item.image?.asset &&
+            item.title &&
+            item.source &&
+            normalizeArticleUrl(item.href) === linkedUrl
+        )
+      : null
+
+    if (!youtubeEmbed && !preview) return [block]
 
     return [
       ...(match.introChildren.some((child) => child.text?.trim())
@@ -76,11 +93,14 @@ const NewsItem = ({ newsItem = {} }) => {
             },
           ]
         : []),
-      {
-        _key: block._key,
-        _type: 'externalArticlePreview',
-        preview: match.preview,
-      },
+      youtubeEmbed
+        ? {
+            _key: block._key,
+            _type: 'youtubeEmbed',
+            embed: youtubeEmbed,
+            videoId,
+          }
+        : { _key: block._key, _type: 'externalArticlePreview', preview },
     ]
   })
 
@@ -133,6 +153,9 @@ const NewsItem = ({ newsItem = {} }) => {
                     ...portableTextComponents.types,
                     externalArticlePreview: ({ value }) => (
                       <ExternalArticlePreview {...value.preview} />
+                    ),
+                    youtubeEmbed: ({ value }) => (
+                      <YouTubeFacade {...value.embed} videoId={value.videoId} />
                     ),
                   },
                 }}
@@ -199,6 +222,7 @@ export async function getStaticProps({ params }) {
         date,
         body,
         externalArticlePreviews,
+        youtubeEmbeds,
         videoId,
         videoHeightAspectRatio,
         videoWidthAspectRatio,

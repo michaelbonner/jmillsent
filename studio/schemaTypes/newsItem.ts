@@ -15,9 +15,34 @@ const normalizeArticleUrl = (value: string | undefined) => {
   }
 }
 
-const bodyHasArticleLink = (body: unknown, href: string) => {
-  const targetUrl = normalizeArticleUrl(href)
-  if (!targetUrl || !Array.isArray(body)) return false
+const getYouTubeVideoId = (value: string | undefined) => {
+  if (!value) return null
+
+  try {
+    const url = new URL(value)
+    if (!['http:', 'https:'].includes(url.protocol)) return null
+
+    const host = url.hostname.toLowerCase()
+    let id: string | null = null
+
+    if (host === 'youtu.be' || host === 'www.youtu.be') {
+      id = url.pathname.split('/')[1]
+    } else if (
+      ['youtube.com', 'www.youtube.com', 'm.youtube.com', 'youtube-nocookie.com', 'www.youtube-nocookie.com'].includes(host)
+    ) {
+      id = url.pathname === '/watch'
+        ? url.searchParams.get('v')
+        : url.pathname.match(/^\/(?:embed|shorts|live)\/([^/]+)/)?.[1] ?? null
+    }
+
+    return id && /^[A-Za-z0-9_-]{11}$/.test(id) ? id : null
+  } catch {
+    return null
+  }
+}
+
+const bodyHasLinkedUrl = (body: unknown, matchesUrl: (href: string) => boolean) => {
+  if (!Array.isArray(body)) return false
 
   return body.some((block) => {
     if (block?._type !== 'block' || block.listItem || !Array.isArray(block.children)) {
@@ -25,7 +50,7 @@ const bodyHasArticleLink = (body: unknown, href: string) => {
     }
 
     const links = block.markDefs?.filter((mark: {_type: string}) => mark._type === 'link') ?? []
-    if (links.length !== 1 || normalizeArticleUrl(links[0].href) !== targetUrl) {
+    if (links.length !== 1 || !matchesUrl(links[0].href)) {
       return false
     }
 
@@ -42,6 +67,20 @@ const bodyHasArticleLink = (body: unknown, href: string) => {
         )
     )
   })
+}
+
+const bodyHasArticleLink = (body: unknown, href: string) => {
+  const targetUrl = normalizeArticleUrl(href)
+  return targetUrl
+    ? bodyHasLinkedUrl(body, (linkedHref) => normalizeArticleUrl(linkedHref) === targetUrl)
+    : false
+}
+
+const bodyHasYouTubeLink = (body: unknown, url: string) => {
+  const targetId = getYouTubeVideoId(url)
+  return targetId
+    ? bodyHasLinkedUrl(body, (linkedHref) => getYouTubeVideoId(linkedHref) === targetId)
+    : false
 }
 
 export const newsItem = defineType({
@@ -166,6 +205,59 @@ export const newsItem = defineType({
           },
         }),
       ],
+    }),
+    defineField({
+      name: 'youtubeEmbeds',
+      title: 'YouTube video embeds',
+      description:
+        'Add an embed for a YouTube link in the Body. The link must be at the end of its paragraph; any text before it stays above the video. The poster image loads before the visitor clicks play.',
+      type: 'array',
+      of: [
+        defineArrayMember({
+          name: 'youtubeEmbed',
+          title: 'YouTube video embed',
+          type: 'object',
+          fields: [
+            defineField({
+              name: 'url',
+              title: 'YouTube URL',
+              type: 'url',
+              validation: (rule) =>
+                rule
+                  .required()
+                  .uri({scheme: ['http', 'https']})
+                  .custom((url, context) => {
+                    if (!url) return true
+                    if (!getYouTubeVideoId(url)) return 'Enter a YouTube video URL.'
+                    return bodyHasYouTubeLink(context.document?.body, url)
+                      ? true
+                      : 'Add a matching YouTube link at the end of a Body paragraph.'
+                  }),
+            }),
+            defineField({
+              name: 'title',
+              title: 'Video title',
+              type: 'string',
+              validation: (rule) => rule.required(),
+            }),
+            defineField({
+              name: 'poster',
+              title: 'Poster image',
+              description: 'This image is shown before the visitor clicks play.',
+              type: 'image',
+              options: {hotspot: true},
+              validation: (rule) => rule.required(),
+            }),
+          ],
+          preview: {
+            select: {title: 'title', subtitle: 'url', media: 'poster'},
+          },
+        }),
+      ],
+      validation: (rule) => rule.custom((embeds) => {
+        const ids = embeds?.map((embed) => getYouTubeVideoId((embed as {url?: string})?.url)).filter(Boolean) ?? []
+        return new Set(ids).size === ids.length ? true : 'Add each YouTube video only once.'
+      }),
     }),
     defineField({
       name: 'videoId',

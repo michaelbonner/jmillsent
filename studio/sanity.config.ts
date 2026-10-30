@@ -7,6 +7,7 @@ import {media} from 'sanity-plugin-media'
 import {s3Files} from 'sanity-plugin-s3-files'
 import {schemaTypes} from './schemaTypes'
 import {Logo} from './components/Logo'
+import {previewNewsItemAction} from './actions/previewNewsItemAction'
 
 export default defineConfig({
   name: 'default',
@@ -27,6 +28,11 @@ export default defineConfig({
 
   schema: {
     types: schemaTypes,
+  },
+
+  document: {
+    actions: (prev, context) =>
+      context.schemaType === 'newsItem' ? [...prev, previewNewsItemAction] : prev,
   },
 
   studio: {

@@ -4,7 +4,7 @@ import ExternalArticlePreview from '@/components/external-article-preview'
 import YouTubeFacade from '@/components/youtube-facade'
 import LargeGoldBar from '@/components/large-gold-bar'
 import Layout from '@/components/layout'
-import { portableTextComponents, sanityClient } from '@/lib/sanity'
+import { getClient, portableTextComponents, sanityClient } from '@/lib/sanity'
 import { getYouTubeVideoId } from '@/lib/youtube'
 import { PortableText } from '@portabletext/react'
 import groq from 'groq'
@@ -52,7 +52,7 @@ const getLinkedBlock = (block) => {
   }
 }
 
-const NewsItem = ({ newsItem = {} }) => {
+const NewsItem = ({ newsItem = {}, preview = false }) => {
   const previews = newsItem.externalArticlePreviews ?? []
   const youtubeEmbeds = newsItem.youtubeEmbeds ?? []
 
@@ -107,6 +107,16 @@ const NewsItem = ({ newsItem = {} }) => {
   return (
     <>
       <Layout title={newsItem.seoTitle} description={newsItem.seoDescription}>
+        {preview && (
+          <div className="bg-gold fixed inset-x-0 bottom-0 z-50 flex flex-wrap items-center justify-center gap-x-4 gap-y-1 px-4 py-3 text-center text-sm font-bold text-black uppercase">
+            <span>Preview — this story is not published yet</span>
+            {/* Full page load so the API route can clear the draft mode cookie */}
+            {/* eslint-disable-next-line @next/next/no-html-link-for-pages */}
+            <a href="/api/exit-preview?redirect=/news" className="underline">
+              Exit preview
+            </a>
+          </div>
+        )}
         <div className="relative mx-auto grid gap-y-8 lg:mt-28 lg:max-w-7xl">
           {!newsItem.videoId && (
             <div className="relative h-[600px] w-full">
@@ -201,15 +211,16 @@ export async function getStaticPaths() {
       .map((path) => {
         return { params: { slug: path.slug.current } }
       }),
-    fallback: false,
+    // Lets draft-only stories render in draft mode; unknown slugs still 404
+    fallback: 'blocking',
   }
 }
 
-export async function getStaticProps({ params }) {
+export async function getStaticProps({ params, draftMode = false }) {
   // It's important to default the slug so that it doesn't return "undefined"
   const { slug = '' } = params
   try {
-    const newsItem = await sanityClient.fetch(
+    const newsItem = await getClient(draftMode).fetch(
       groq`
       *[_type == "newsItem" && slug.current == $slug][0]{
         _id,
@@ -251,7 +262,7 @@ export async function getStaticProps({ params }) {
     }
 
     return {
-      props: { newsItem, newsItems },
+      props: { newsItem, newsItems, preview: draftMode },
     }
   } catch (error) {
     console.error(error)

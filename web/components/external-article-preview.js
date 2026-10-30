@@ -1,13 +1,7 @@
 import Image from 'next/image'
 import { urlForSanitySource } from '@/lib/urlForSanitySource'
 
-export default function ExternalArticlePreview({
-  href,
-  image,
-  imageAlt,
-  title,
-  source,
-}) {
+export default function ExternalArticlePreview({ href, image, title, source }) {
   const imageUrl = image?.asset
     ? urlForSanitySource(image).width(1280).height(700).fit('crop').url()
     : null
@@ -17,16 +11,17 @@ export default function ExternalArticlePreview({
   return (
     <a
       href={href}
+      rel="noreferrer noopener"
       className="not-prose group relative block min-h-80 overflow-hidden rounded-lg border border-white/20 text-left text-white focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-[#c5a663] sm:min-h-112"
     >
       <Image
         src={imageUrl}
-        alt={imageAlt}
+        alt=""
         fill
         sizes="(max-width: 640px) 100vw, 960px"
         className="object-cover object-center transition-transform duration-500 group-hover:scale-105 motion-reduce:transition-none"
       />
-      <span className="absolute inset-0 bg-gradient-to-t from-black via-black/55 to-black/5" />
+      <span className="absolute inset-0 bg-linear-to-t from-black via-black/55 to-black/5" />
       <span className="relative flex min-h-80 flex-col justify-between p-6 sm:min-h-112 sm:p-10">
         <span className="text-sm font-bold tracking-[0.18em] text-white uppercase">
           {source}

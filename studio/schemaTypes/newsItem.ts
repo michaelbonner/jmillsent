@@ -2,6 +2,48 @@ import {defineType, defineField, defineArrayMember} from 'sanity'
 import {BiNews as icon} from 'react-icons/bi'
 import {slugValidation} from './utils/slugValidation'
 
+const normalizeArticleUrl = (value: string | undefined) => {
+  if (!value) return null
+
+  try {
+    const url = new URL(value)
+    if (!['http:', 'https:'].includes(url.protocol)) return null
+    url.pathname = url.pathname.replace(/\/+$/, '') || '/'
+    return url.href
+  } catch {
+    return null
+  }
+}
+
+const bodyHasArticleLink = (body: unknown, href: string) => {
+  const targetUrl = normalizeArticleUrl(href)
+  if (!targetUrl || !Array.isArray(body)) return false
+
+  return body.some((block) => {
+    if (block?._type !== 'block' || block.listItem || !Array.isArray(block.children)) {
+      return false
+    }
+
+    const links = block.markDefs?.filter((mark: {_type: string}) => mark._type === 'link') ?? []
+    if (links.length !== 1 || normalizeArticleUrl(links[0].href) !== targetUrl) {
+      return false
+    }
+
+    const firstLinkedIndex = block.children.findIndex((child: {marks?: string[]}) =>
+      child.marks?.includes(links[0]._key),
+    )
+
+    return (
+      firstLinkedIndex >= 0 &&
+      block.children
+        .slice(firstLinkedIndex)
+        .every((child: {text?: string; marks?: string[]}) =>
+          !child.text?.trim() || child.marks?.includes(links[0]._key),
+        )
+    )
+  })
+}
+
 export const newsItem = defineType({
   name: 'newsItem',
   title: 'News Items',
@@ -77,7 +119,7 @@ export const newsItem = defineType({
       name: 'externalArticlePreviews',
       title: 'External article previews',
       description:
-        'Add a preview for a link in the Body. Put the link in its own paragraph; the preview will appear in its place.',
+        'Add a preview for a Body link. The link must be at the end of its paragraph; any text before it stays above the preview.',
       type: 'array',
       of: [
         defineArrayMember({
@@ -90,7 +132,14 @@ export const newsItem = defineType({
               title: 'Article URL',
               type: 'url',
               validation: (rule) =>
-                rule.required().uri({scheme: ['http', 'https']}),
+                rule
+                  .required()
+                  .uri({scheme: ['http', 'https']})
+                  .custom((href, context) =>
+                    !href || bodyHasArticleLink(context.document?.body, href)
+                      ? true
+                      : 'Add a matching link at the end of a Body paragraph. Query parameters must also match.',
+                  ),
             }),
             defineField({
               name: 'source',
@@ -109,13 +158,6 @@ export const newsItem = defineType({
               title: 'Preview image',
               type: 'image',
               options: {hotspot: true},
-              validation: (rule) => rule.required(),
-            }),
-            defineField({
-              name: 'imageAlt',
-              title: 'Image description',
-              description: 'Describe the image for screen readers.',
-              type: 'string',
               validation: (rule) => rule.required(),
             }),
           ],

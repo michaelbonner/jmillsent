@@ -361,6 +361,17 @@ const VideoPlayerComponent = ({
   }, [hasClicked, isDesktop, playingVideoId, videoId])
 
   useEffect(() => {
+    const handleFullScreenChange = () => {
+      try {
+        dispatch({
+          type: 'setIsFullscreen',
+          isFullscreen: screenfull.isFullscreen,
+        })
+      } catch (error) {
+        console.warn(error)
+      }
+    }
+
     try {
       if (screenfull.isEnabled) {
         screenfull.on('change', handleFullScreenChange)
@@ -448,18 +459,6 @@ const VideoPlayerComponent = ({
       }
     } catch (error) {
       console.warn('toggleFullScreen error', error)
-    }
-  }
-
-  const handleFullScreenChange = () => {
-    try {
-      if (screenfull.isFullscreen) {
-        dispatch({ type: 'setIsFullscreen', isFullscreen: true })
-      } else {
-        dispatch({ type: 'setIsFullscreen', isFullscreen: false })
-      }
-    } catch (error) {
-      console.warn(error)
     }
   }
 

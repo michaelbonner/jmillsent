@@ -352,11 +352,6 @@ function useAssetPreloader(treatment) {
 
   useEffect(() => {
     const total = images.length + videos.length
-    if (total === 0) {
-      setLoaded(true)
-      return
-    }
-
     let completed = 0
     const tick = () => {
       completed++

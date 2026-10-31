@@ -15,8 +15,8 @@ const PortfolioItemTile = ({ portfolioItem, index, hideAfterCount = 999 }) => {
         {
           'lg:hidden': index >= hideAfterCount,
         },
-        `bpd-project-tile relative text-white`,
-        `flex flex-col items-center justify-center space-y-2 lg:space-y-0`
+        `group bpd-project-tile relative isolate overflow-hidden bg-neutral-900 text-white`,
+        `flex flex-col items-start justify-end p-5 text-left lg:p-6`
       )}
       style={{
         backgroundImage: portfolioItem.poster
@@ -42,7 +42,7 @@ const PortfolioItemTile = ({ portfolioItem, index, hideAfterCount = 999 }) => {
         (portfolioItem.shortClipOgvURL || portfolioItem.shortClipOgvS3URL) && (
           <video
             className={clsx(
-              `absolute inset-0 h-full w-full object-cover transition-all duration-700`,
+              `absolute inset-0 -z-10 h-full w-full object-cover transition-all duration-700`,
               {
                 'opacity-100': portfolioItem.shortClipMp4S3URL && isHovered,
                 'opacity-0': !portfolioItem.shortClipMp4S3URL || !isHovered,
@@ -82,11 +82,12 @@ const PortfolioItemTile = ({ portfolioItem, index, hideAfterCount = 999 }) => {
             )}
           </video>
         )}
-      <div className="z-10 text-center">
-        <h2 className="text-3xl font-extrabold uppercase lg:text-2xl">
+      <div className="absolute inset-0 -z-10 bg-linear-to-t from-neutral-950/85 via-neutral-950/20 to-transparent transition-opacity duration-500 group-hover:opacity-60" />
+      <div className="z-10">
+        <h2 className="text-sm font-medium tracking-[0.12em] text-white/75 uppercase">
           {portfolioItem.clientName}
         </h2>
-        <h3 className="font-outline text-3xl uppercase lg:text-2xl">
+        <h3 className="mt-1 text-xl font-semibold tracking-tight text-balance uppercase lg:text-2xl">
           {portfolioItem.title}
         </h3>
       </div>

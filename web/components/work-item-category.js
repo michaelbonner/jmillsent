@@ -11,8 +11,9 @@ import { memo, useEffect, useMemo, useRef, useState } from 'react'
 import { GrPause, GrPlay, GrVolume, GrVolumeMute } from 'react-icons/gr'
 import Lightbox from 'yet-another-react-lightbox'
 import { ClientOnly } from './client-only'
+import { Eyebrow, H1 } from './headings'
 import Layout from './layout'
-import LittleBlackBar from './little-black-bar'
+import SectionIntro from './section-intro'
 
 const LoadingAnimation = dynamic(() => import('./loading-animation'))
 
@@ -67,7 +68,7 @@ export const WorkItemCategory = ({
       }))
     : []
 
-  const showWhiteContainer =
+  const showCategoryDetails =
     currentCategory?.imageGallery?.length > 0 ||
     currentCategory?.title ||
     currentCategory?.workPageDescription
@@ -85,156 +86,134 @@ export const WorkItemCategory = ({
           : workPage.seoDescription
       }
     >
-      <div className={clsx('lg:pt-28', '2xl:pt-32')}>
-        <h1 className="sr-only">
-          {workItemCategory !== defaultTab
-            ? `${currentCategory.name} ${workPage.seoTitle}`
-            : workPage.seoTitle}
-        </h1>
-        <div className="max-w-13xl mx-auto px-4">
-          <ul
-            className={clsx(
-              'mx-7 flex flex-wrap items-center justify-center gap-y-1 rounded-lg bg-black/80 py-4 font-semibold',
-              'lg:sticky lg:top-4 lg:z-20 lg:flex lg:flex-nowrap lg:divide-x lg:divide-black/20 lg:shadow-xl lg:backdrop-blur-sm'
-            )}
-          >
-            {workItemCategories.map((tab, index) => {
-              return (
-                <li
-                  className={clsx(
-                    'relative flex justify-center border-r border-black/20 text-xs',
-                    'last:border-r-0',
-                    'lg:px-2 lg:text-base'
-                  )}
-                  key={index}
-                >
-                  <Link
-                    className={clsx(
-                      'rounded-xs border px-4 py-1 uppercase transition-all',
-                      'lg:tracking-wider',
-                      workItemCategory === defaultSlugify(tab.name)
-                        ? 'border-white bg-black/30'
-                        : 'border-transparent hover:scale-110'
-                    )}
-                    href={
-                      index === 0
-                        ? '/work'
-                        : `/work/category/${defaultSlugify(tab.name)}`
-                    }
-                  >
-                    {tab.name}
-
-                    <span className="absolute inset-0" />
-                  </Link>
-                </li>
-              )
-            })}
-          </ul>
-
-          <div
-            className={clsx(
-              'mx-auto mt-2 rounded-xl bg-white p-4 text-black',
-              'lg:p-6'
-            )}
-          >
-            {/* lg:grid-cols-1 lg:grid-cols-2 lg:grid-cols-3 */}
-            {filteredWorkItems.length > 0 && (
-              <div
-                className={clsx(
-                  'grid grid-cols-1 gap-4',
-                  filteredWorkItems.length >= 3
-                    ? 'lg:grid-cols-3'
-                    : `lg:grid-cols-${filteredWorkItems.length}`,
-                  isSocialLayout && 'mx-auto grid-cols-3 xl:grid-cols-6'
-                )}
-              >
-                {filteredWorkItems.map((workItem, index) => {
-                  return (
-                    <WorkItemTile
-                      workItem={workItem}
-                      key={index}
-                      aspectRatio={
-                        isSocialLayout
-                          ? `aspect-w-${workItem.videoWidthAspectRatio} aspect-h-${workItem.videoHeightAspectRatio}`
-                          : ''
-                      }
-                      onClick={
-                        isSocialLayout
-                          ? () => {
-                              setLightboxActiveIndex(index)
-                            }
-                          : undefined
-                      }
-                      typographyClassNameOverrides={
-                        isSocialLayout
-                          ? {
-                              clientName: clsx(
-                                'text-lg font-extrabold uppercase transition-opacity duration-300',
-                                'lg:text-2xl',
-                                'group-hover:opacity-0'
-                              ),
-                              title: clsx(
-                                'font-outline text-lg uppercase transition-opacity duration-300',
-                                'lg:text-2xl',
-                                'group-hover:opacity-0'
-                              ),
-                            }
-                          : undefined
-                      }
-                      showPlayOnHover={isSocialLayout}
-                    />
-                  )
-                })}
-              </div>
-            )}
-
-            {showWhiteContainer && (
-              <div className="text-center">
-                {currentCategory?.imageGallery &&
-                  currentCategory.imageGallery.length > 0 && (
-                    <ClientOnly>
-                      <ImageGallery images={currentCategory.imageGallery} />
-                    </ClientOnly>
-                  )}
-                {(currentCategory?.title ||
-                  currentCategory?.subtitle ||
-                  currentCategory?.body) && (
-                  <div className="mt-12">
-                    {currentCategory?.title && (
-                      <h2 className="text-3xl font-extrabold uppercase lg:text-3xl">
-                        {currentCategory.title}
-                      </h2>
-                    )}
-                    {currentCategory?.subtitle && (
-                      <h3 className="font-outline text-3xl uppercase lg:text-4xl">
-                        {currentCategory.subtitle}
-                      </h3>
-                    )}
-                    {currentCategory?.body && (
-                      <>
-                        <LittleBlackBar yMargin="my-6" maxWidth="max-w-xs" />
-                        <div className="mx-auto max-w-2xl py-1 text-center text-sm font-light uppercase">
-                          <PortableText value={currentCategory.body} />
-                        </div>
-                      </>
-                    )}
-                  </div>
-                )}
-              </div>
-            )}
+      <div className="pt-8 pb-20 lg:pt-12 lg:pb-28">
+        <div className="max-w-13xl mx-auto px-5">
+          <div className="mb-10 lg:mb-14">
+            <Eyebrow className="mb-5">
+              {workItemCategory !== defaultTab
+                ? currentCategory.name
+                : 'Portfolio'}
+            </Eyebrow>
+            <H1>
+              Work
+              <span className="sr-only">
+                {' '}
+                {workItemCategory !== defaultTab
+                  ? `${currentCategory.name} ${workPage.seoTitle}`
+                  : workPage.seoTitle}
+              </span>
+            </H1>
           </div>
-          {workPage.workPageDescription && (
-            <div className="container mx-auto mt-12 px-12 text-center text-white">
-              {workPage.workPageDescription && (
-                <div className="prose prose-lg mx-auto max-w-lg border py-1 text-center">
-                  <PortableText value={workPage.workPageDescription} />
-                </div>
+
+          <nav
+            aria-label="Work categories"
+            className="sticky top-0 z-20 -mx-5 mb-8 border-b border-white/15 bg-neutral-950/90 px-5 backdrop-blur-sm"
+          >
+            <ul className="flex gap-6 overflow-x-auto text-sm font-medium tracking-[0.08em] whitespace-nowrap uppercase lg:gap-8">
+              {workItemCategories.map((tab, index) => {
+                const isActive = workItemCategory === defaultSlugify(tab.name)
+                return (
+                  <li key={index}>
+                    <Link
+                      aria-current={isActive ? 'page' : undefined}
+                      className={clsx(
+                        '-mb-px block border-b py-4 transition-colors',
+                        isActive
+                          ? 'border-white text-white'
+                          : 'border-transparent text-white/60 hover:border-white/50 hover:text-white'
+                      )}
+                      href={
+                        index === 0
+                          ? '/work'
+                          : `/work/category/${defaultSlugify(tab.name)}`
+                      }
+                    >
+                      {tab.name}
+                    </Link>
+                  </li>
+                )
+              })}
+            </ul>
+          </nav>
+
+          {/* lg:grid-cols-1 lg:grid-cols-2 lg:grid-cols-3 */}
+          {filteredWorkItems.length > 0 && (
+            <div
+              className={clsx(
+                'grid',
+                isSocialLayout
+                  ? 'grid-cols-2 gap-3 sm:grid-cols-3 xl:grid-cols-6'
+                  : clsx(
+                      'grid-cols-1 gap-5',
+                      filteredWorkItems.length >= 3
+                        ? 'lg:grid-cols-3'
+                        : `lg:grid-cols-${filteredWorkItems.length}`
+                    )
               )}
+            >
+              {filteredWorkItems.map((workItem, index) => {
+                return (
+                  <WorkItemTile
+                    workItem={workItem}
+                    key={index}
+                    aspectRatio={isSocialLayout ? 'aspect-[9/16]' : ''}
+                    onClick={
+                      isSocialLayout
+                        ? () => {
+                            setLightboxActiveIndex(index)
+                          }
+                        : undefined
+                    }
+                    typographyClassNameOverrides={
+                      isSocialLayout
+                        ? {
+                            clientName: clsx(
+                              'text-xs font-medium tracking-[0.12em] text-white/75 uppercase transition-opacity duration-300',
+                              'group-hover:opacity-0'
+                            ),
+                            title: clsx(
+                              'mt-1 text-base font-semibold tracking-tight uppercase transition-opacity duration-300',
+                              'lg:text-lg',
+                              'group-hover:opacity-0'
+                            ),
+                          }
+                        : undefined
+                    }
+                    showPlayOnHover={isSocialLayout}
+                  />
+                )
+              })}
             </div>
           )}
-          {/* {showWhiteContainer && (
-            
-          )} */}
+
+          {showCategoryDetails && (
+            <div className="mt-16 border-t border-white/15 pt-6 lg:mt-24">
+              {(currentCategory?.title ||
+                currentCategory?.subtitle ||
+                currentCategory?.body) && (
+                <SectionIntro
+                  eyebrow={currentCategory?.subtitle}
+                  title={currentCategory?.title}
+                >
+                  {currentCategory?.body && (
+                    <PortableText value={currentCategory.body} />
+                  )}
+                </SectionIntro>
+              )}
+              {currentCategory?.imageGallery &&
+                currentCategory.imageGallery.length > 0 && (
+                  <ClientOnly>
+                    <ImageGallery images={currentCategory.imageGallery} />
+                  </ClientOnly>
+                )}
+            </div>
+          )}
+
+          {workPage.workPageDescription && (
+            <div className="prose prose-lg prose-invert mt-16 max-w-[65ch] text-pretty text-neutral-300 lg:mt-24">
+              <PortableText value={workPage.workPageDescription} />
+            </div>
+          )}
         </div>
 
         {isSocialLayout && (
@@ -376,7 +355,7 @@ const SlideVideo = memo(
           autoPlay={false}
           ref={videoRef}
           id={`social-video-${slide.index}`}
-          className="h-full w-full cursor-pointer rounded-lg object-contain"
+          className="h-full w-full cursor-pointer object-contain"
           poster={slide.posterUrl}
           controlsList="nodownload nofullscreen noremoteplayback"
           disablePictureInPicture
@@ -453,7 +432,7 @@ const SlideVideo = memo(
           </button>
           <button
             aria-label="Player scrubber bar"
-            className="relative h-8 grow overflow-hidden rounded-sm border-2 border-gray-300"
+            className="relative h-8 grow overflow-hidden border border-white/40"
             onClick={(e) => {
               if (!scrubber.current) {
                 return

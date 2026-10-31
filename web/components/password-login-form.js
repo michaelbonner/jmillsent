@@ -1,40 +1,34 @@
-import { clsx } from 'clsx'
-
 export const PasswordLoginForm = ({
   handleSubmit,
   formError,
   passwordInputPrompt,
 }) => {
   return (
-    <div className="mx-auto min-h-screen max-w-3xl text-center">
-      <div className="border py-12">
-        <p className="mb-6 text-lg font-semibold">{passwordInputPrompt}</p>
-        <form
-          className="mx-auto flex w-1/2 items-center justify-center rounded-sm"
-          onSubmit={handleSubmit}
+    <div className="mx-auto min-h-[60vh] max-w-7xl px-5 py-20 lg:py-28">
+      <div className="max-w-xl border-t border-white/30 pt-6">
+        <label
+          className="text-sm font-medium tracking-[0.12em] text-neutral-400 uppercase"
+          htmlFor="password"
         >
-          <label className="sr-only" htmlFor="password">
-            Password
-          </label>
+          {passwordInputPrompt}
+        </label>
+        <form className="mt-3 flex items-end gap-4" onSubmit={handleSubmit}>
           <input
-            className="-mr-1 flex-1 rounded-l-md border-2 border-r-0 border-gray-300 bg-black/70 px-4 py-2 text-white focus:bg-black/90"
+            className="flex-1 border-0 border-b border-white/30 bg-transparent px-0 py-3 text-white placeholder:text-neutral-500 placeholder:uppercase focus:border-white focus:ring-0"
+            id="password"
             name="password"
             type="text"
-            placeholder="PASSWORD"
+            placeholder="Password"
           />
           <button
-            className={clsx(
-              'group flex items-center gap-x-2 rounded-md border-2 border-gray-300 px-4 py-2 transition-colors',
-              'hover:bg-gold hover:text-black'
-            )}
+            className="inline-flex min-h-12 items-center gap-3 border-b border-white py-2 text-sm font-medium tracking-[0.08em] uppercase transition-colors hover:border-white/50 hover:text-white/75"
             type="submit"
           >
-            Submit
+            Enter
+            <span aria-hidden="true">↗</span>
           </button>
         </form>
-        {formError && (
-          <p className="mt-6 text-sm font-semibold text-red-500">{formError}</p>
-        )}
+        {formError && <p className="mt-6 text-sm text-red-400">{formError}</p>}
       </div>
     </div>
   )

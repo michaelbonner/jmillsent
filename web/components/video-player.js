@@ -361,6 +361,17 @@ const VideoPlayerComponent = ({
   }, [hasClicked, isDesktop, playingVideoId, videoId])
 
   useEffect(() => {
+    const handleFullScreenChange = () => {
+      try {
+        dispatch({
+          type: 'setIsFullscreen',
+          isFullscreen: screenfull.isFullscreen,
+        })
+      } catch (error) {
+        console.warn(error)
+      }
+    }
+
     try {
       if (screenfull.isEnabled) {
         screenfull.on('change', handleFullScreenChange)
@@ -451,18 +462,6 @@ const VideoPlayerComponent = ({
     }
   }
 
-  const handleFullScreenChange = () => {
-    try {
-      if (screenfull.isFullscreen) {
-        dispatch({ type: 'setIsFullscreen', isFullscreen: true })
-      } else {
-        dispatch({ type: 'setIsFullscreen', isFullscreen: false })
-      }
-    } catch (error) {
-      console.warn(error)
-    }
-  }
-
   if (isDesktop === null) {
     return <></>
   }
@@ -473,7 +472,7 @@ const VideoPlayerComponent = ({
         {
           'flex h-screen flex-col items-center justify-center': isFullscreen,
         },
-        'bpd-player-container group relative z-20 w-full overflow-hidden rounded-lg'
+        'bpd-player-container group relative z-20 w-full overflow-hidden'
       )}
       ref={playerContainer}
     >

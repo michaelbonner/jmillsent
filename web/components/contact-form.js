@@ -24,6 +24,11 @@ const contactSchema = Yup.object().shape({
   preference: Yup.array().min(1, 'Please select at least one option'),
 })
 
+const inputClassName =
+  'block w-full border-0 border-b border-white/30 bg-transparent px-0 py-4 text-lg text-white placeholder:text-neutral-500 placeholder:uppercase focus:border-white focus:ring-0'
+
+const errorClassName = 'pb-2 text-sm text-red-400'
+
 const ContactForm = ({ interests, successMessage = '' }) => {
   const [state, setState] = useState('initial')
   const contactForm = {
@@ -33,19 +38,6 @@ const ContactForm = ({ interests, successMessage = '' }) => {
     message: '',
     preference: [],
   }
-
-  // split interests into two columns, first 2 and then the next 3
-  const interestsSplit = interests.reduce(
-    (acc, interest, index) => {
-      if (index < 2) {
-        acc[0].push(interest)
-      } else {
-        acc[1].push(interest)
-      }
-      return acc
-    },
-    [[], []]
-  )
 
   return (
     <div>
@@ -82,213 +74,131 @@ const ContactForm = ({ interests, successMessage = '' }) => {
           }}
         >
           {({ isSubmitting, isValid, handleChange, handleBlur, values }) => (
-            <Form className={clsx('grid gap-8', 'lg:gap-12')}>
-              <div className="mx-auto grid w-full max-w-3xl grid-cols-1 gap-6">
-                <div className="relative rounded-lg border-gray-300 bg-white">
+            <Form className="grid gap-12">
+              <div className="grid gap-x-10 gap-y-2 md:grid-cols-2">
+                <div className="relative">
+                  <label className="sr-only" htmlFor="name">
+                    Full name
+                  </label>
                   <Field
                     as="input"
                     autoComplete="name"
+                    className={inputClassName}
+                    id="name"
                     name="name"
-                    placeholder="FULL NAME"
-                    className="block w-full rounded-lg bg-transparent px-4 py-3 text-lg text-gray-900 placeholder-black shadow-xs focus:border-indigo-500 focus:ring-indigo-500 lg:px-8"
+                    placeholder="Full name"
                   />
                   <ErrorMessage
                     name="name"
-                    className="absolute right-0 -bottom-2 px-4 py-3 text-left text-xs leading-3 text-red-700"
+                    className={errorClassName}
                     component="div"
                   />
                 </div>
-
-                <div className="relative rounded-lg border-gray-300 bg-white">
+                <div className="relative">
+                  <label className="sr-only" htmlFor="emailAddress">
+                    Email address
+                  </label>
                   <Field
                     as="input"
-                    autoComplete="name"
+                    autoComplete="email"
+                    className={inputClassName}
+                    id="emailAddress"
                     name="emailAddress"
-                    placeholder="EMAIL ADDRESS"
-                    className="block w-full rounded-lg bg-transparent px-4 py-3 text-lg text-gray-900 placeholder-black shadow-xs focus:border-indigo-500 focus:ring-indigo-500 lg:px-8"
+                    placeholder="Email address"
                   />
                   <ErrorMessage
                     name="emailAddress"
-                    className="absolute right-0 -bottom-2 px-4 py-3 text-left text-xs leading-3 text-red-700"
+                    className={errorClassName}
                     component="div"
                   />
                 </div>
-
-                <div className="relative rounded-lg border-gray-300 bg-white">
+                <div className="relative">
+                  <label className="sr-only" htmlFor="phoneNumber">
+                    Phone number
+                  </label>
                   <Field
                     as="input"
                     autoComplete="tel"
+                    className={inputClassName}
+                    id="phoneNumber"
                     name="phoneNumber"
-                    placeholder="PHONE NUMBER"
-                    className="block w-full rounded-lg bg-transparent px-4 py-3 text-lg text-gray-900 placeholder-black shadow-xs focus:border-indigo-500 focus:ring-indigo-500 lg:px-8"
+                    placeholder="Phone number"
                   />
                   <ErrorMessage
                     name="phoneNumber"
-                    className="absolute right-0 -bottom-2 px-4 py-3 text-left text-xs leading-3 text-red-700"
+                    className={errorClassName}
                     component="div"
                   />
                 </div>
-                <div className="relative rounded-lg border-gray-300 bg-white">
+                <div className="relative md:col-span-2">
+                  <label className="sr-only" htmlFor="message">
+                    Message
+                  </label>
                   <TextareaAutosize
-                    className="block w-full rounded-lg border-gray-300 bg-transparent px-4 py-3 text-lg text-gray-900 placeholder-black shadow-xs focus:border-indigo-500 focus:ring-indigo-500 lg:px-8"
+                    className={inputClassName}
+                    id="message"
                     minRows={4}
-                    onChange={handleChange}
-                    onBlur={handleBlur}
-                    placeholder="MESSAGE"
                     name="message"
+                    onBlur={handleBlur}
+                    onChange={handleChange}
+                    placeholder="Message"
                     value={values.message}
                   />
                   <ErrorMessage
                     name="message"
-                    className="absolute right-0 -bottom-2 px-4 py-3 text-left text-xs leading-3 text-red-700"
+                    className={errorClassName}
                     component="div"
                   />
                 </div>
               </div>
-              <div className={clsx('mx-auto w-full', 'lg:pt-4', 'xl:border-t')}>
-                <div
-                  className={clsx(
-                    'relative mx-auto grid w-full items-center gap-4',
-                    'sm:flex sm:justify-center',
-                    'md:gap-8 md:px-8'
-                  )}
-                >
-                  <p className="shrink-0 text-lg font-bold uppercase">
-                    Interests:
-                  </p>
-                  {/* Mobile interests */}
-                  <div
-                    className={clsx(
-                      'grid gap-3 text-[13px]',
-                      'sm:text-sm',
-                      'lg:text-base'
-                    )}
-                  >
-                    <div
+
+              <fieldset>
+                <legend className="mb-5 text-sm font-medium tracking-[0.12em] text-neutral-400 uppercase">
+                  Interests
+                </legend>
+                <div className="flex flex-wrap gap-3">
+                  {interests.map((interest) => (
+                    <label
                       className={clsx(
-                        'col-span-2 flex flex-wrap justify-start gap-y-2 divide-x divide-white border-t border-gray-200 pt-3',
-                        'md:justify-center',
-                        'xl:hidden'
+                        'cursor-pointer border px-4 py-2.5 text-sm font-medium tracking-[0.08em] uppercase transition-colors has-focus-visible:ring-2 has-focus-visible:ring-white',
+                        values.preference.includes(interest)
+                          ? 'border-white bg-white text-neutral-950'
+                          : 'border-white/30 hover:border-white'
                       )}
+                      key={interest}
                     >
-                      {interestsSplit[0].map((interest) => (
-                        <div className={clsx('px-2')} key={interest}>
-                          <label
-                            className={clsx(
-                              'flex cursor-pointer items-center gap-x-3 divide-x divide-white border-2 px-1 py-1 font-light uppercase',
-                              'md:px-2',
-                              values.preference.includes(interest)
-                                ? 'border-white'
-                                : 'border-black'
-                            )}
-                          >
-                            <Field
-                              className="hidden appearance-none border-none bg-transparent"
-                              type="checkbox"
-                              name="preference"
-                              onChange={handleChange}
-                              value={interest}
-                            />
-                            {interest}
-                          </label>
-                        </div>
-                      ))}
-                      <ErrorMessage
+                      <Field
+                        className="sr-only"
                         name="preference"
-                        className="px-4 py-2 text-left text-xs leading-3 text-red-300 md:-bottom-7"
-                        component="div"
+                        onChange={handleChange}
+                        type="checkbox"
+                        value={interest}
                       />
-                    </div>
-                    <div
-                      className={clsx(
-                        'col-span-2 flex flex-wrap justify-start gap-y-2 divide-x divide-white border-t border-gray-200 pt-3',
-                        'xl:hidden'
-                      )}
-                    >
-                      {interestsSplit[1].map((interest) => (
-                        <div className={clsx('px-2')} key={interest}>
-                          <label
-                            className={clsx(
-                              'flex cursor-pointer items-center gap-x-3 divide-x divide-white border-2 px-1 py-1 font-light uppercase',
-                              'md:px-2',
-                              values.preference.includes(interest)
-                                ? 'border-white'
-                                : 'border-black'
-                            )}
-                          >
-                            <Field
-                              className="hidden appearance-none border-none bg-transparent"
-                              type="checkbox"
-                              name="preference"
-                              onChange={handleChange}
-                              value={interest}
-                            />
-                            {interest}
-                          </label>
-                        </div>
-                      ))}
-                      <ErrorMessage
-                        name="preference"
-                        className="px-4 py-2 text-left text-xs leading-3 text-red-300 md:-bottom-7"
-                        component="div"
-                      />
-                    </div>
-                  </div>
-                  {/* Desktop interests */}
-                  <div
-                    className={clsx(
-                      'col-span-2 hidden flex-wrap justify-start gap-y-2 divide-x divide-white',
-                      'xl:flex xl:gap-y-4'
-                    )}
-                  >
-                    {[...interestsSplit[0], ...interestsSplit[1]].map(
-                      (interest) => (
-                        <div className={clsx('px-2', 'lg:px-4')} key={interest}>
-                          <label
-                            className={clsx(
-                              'font-lights flex cursor-pointer items-center gap-x-3 divide-x-2 divide-white border-2 px-3 py-1 uppercase',
-                              values.preference.includes(interest)
-                                ? 'border-white'
-                                : 'border-black'
-                            )}
-                          >
-                            <Field
-                              className="hidden appearance-none border-none bg-transparent"
-                              type="checkbox"
-                              name="preference"
-                              onChange={handleChange}
-                              value={interest}
-                            />
-                            {interest}
-                          </label>
-                        </div>
-                      )
-                    )}
-                    <ErrorMessage
-                      name="preference"
-                      className="px-4 py-2 text-left text-xs leading-3 text-red-300 md:-bottom-7"
-                      component="div"
-                    />
-                  </div>
-                  {/* End interests */}
+                      {interest}
+                    </label>
+                  ))}
                 </div>
-              </div>
-              <div className="flex justify-center">
+                <ErrorMessage
+                  name="preference"
+                  className="mt-3 text-sm text-red-400"
+                  component="div"
+                />
+              </fieldset>
+
+              <div>
                 <button
                   type="submit"
                   className={clsx(
-                    'mx-auto inline-block w-full max-w-[450px] rounded-lg text-lg font-bold uppercase',
-                    'border border-gray-500 px-8 py-2.5 tracking-wider',
-                    'bg-black/50 transition-all',
-                    'hover:bg-gold hover:text-black',
-                    'focus:bg-gold focus:text-black',
+                    'inline-flex min-h-12 items-center gap-3 border border-white px-8 py-3 text-sm font-medium tracking-[0.08em] uppercase transition-colors',
+                    'hover:bg-white hover:text-neutral-950',
                     {
                       'opacity-50': isSubmitting || !isValid,
                     }
                   )}
                   disabled={isSubmitting}
                 >
-                  Submit
+                  Send message
+                  <span aria-hidden="true">↗</span>
                 </button>
               </div>
             </Form>
@@ -296,10 +206,10 @@ const ContactForm = ({ interests, successMessage = '' }) => {
         </Formik>
       )}
       {state === 'submitted' && (
-        <div className="mx-auto flex w-full max-w-4xl items-center justify-center rounded-lg border py-14 text-center shadow-md">
-          <h2 className="text-xl font-bold tracking-wide text-gray-300">
+        <div className="border-t border-white/30 pt-6">
+          <p className="text-2xl font-semibold tracking-tight uppercase lg:text-3xl">
             {successMessage}
-          </h2>
+          </p>
         </div>
       )}
     </div>

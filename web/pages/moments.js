@@ -1,5 +1,5 @@
 import { ClientOnly } from '@/components/client-only'
-import { H1 } from '@/components/headings'
+import { Eyebrow, H1 } from '@/components/headings'
 import Layout from '@/components/layout'
 import groq from 'groq'
 import capitalize from 'just-capitalize'
@@ -33,11 +33,11 @@ function Moments({ images, momentsPage }) {
   }, [images])
 
   const heroContent = (
-    <div className="flex h-full w-full flex-col items-center justify-center text-white">
-      <H1>{momentsPage.title}</H1>
-      <h2 className="font-outline text-2xl uppercase lg:text-6xl">
+    <div className="flex max-w-5xl flex-col items-start gap-5 text-left">
+      <Eyebrow className="border-b border-white/60 pb-3 text-white">
         {momentsPage.subtitle}
-      </h2>
+      </Eyebrow>
+      <H1 className="max-w-[20ch]">{momentsPage.title}</H1>
     </div>
   )
 
@@ -48,16 +48,15 @@ function Moments({ images, momentsPage }) {
       heroImageUrl={momentsPage.poster || null}
       heroVideoId={momentsPage.videoId}
       heroContent={heroContent}
+      heroWide
     >
-      <div className="px-4 lg:px-8">
-        <div className="max-w-13xl mx-auto mb-16 text-black lg:mt-[4%] lg:mb-24 lg:p-4">
-          <div className="rounded-xl bg-white p-5">
-            <ClientOnly>
-              <MomentsGallery images={shuffledImages} />
-            </ClientOnly>
-          </div>
+      <section className="px-5 py-20 lg:py-28">
+        <div className="max-w-13xl mx-auto">
+          <ClientOnly>
+            <MomentsGallery images={shuffledImages} />
+          </ClientOnly>
         </div>
-      </div>
+      </section>
     </Layout>
   )
 }
